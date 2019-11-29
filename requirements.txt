@@ -6,3 +6,4 @@ notebook
 pytest
 bookbook
 nbval
+plotly
