@@ -17,4 +17,8 @@ Acesse a versão interativa [aqui](https://mybinder.org/v2/gh/gcpeixoto/ipynb-la
 
 ## Desenvolvimento
 
-Prof. Gustavo Oliveira, UFPB/CI/DCC
+Este material está sendo desenvolvido no âmbito do [Projeto Numbiosis](numbiosis.ci.ufpb.br), coordenado pelo Prof. Gustavo Oliveira, UFPB/CI/DCC
+
+## Oportunidades 
+
+Caso queira contribuir com o projeto, envie um e-mail para gustavo.oliveira@ci.ufpb.br. 
