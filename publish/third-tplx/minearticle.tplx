@@ -1,0 +1,7 @@
+((*- extends 'minebase.tplx' -*))
+
+((*- block docclass -*))
+     \documentclass[11pt,twoside]{article}
+((*- endblock docclass -*))
+
+

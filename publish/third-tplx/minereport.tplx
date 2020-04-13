@@ -1,0 +1,11 @@
+((*- extends 'minebase.tplx' -*))
+
+((*- block docclass -*))
+\documentclass[11pt,twoside,openright]{report}
+\let\oldsection\section
+\let\oldsubsection\subsection
+\let\section\chapter
+\let\subsection\oldsection
+\let\subsubsecton\oldsubsection
+((*- endblock docclass -*))
+

@@ -1,0 +1,152 @@
+((* extends 'article.tplx' *))
+
+((* block docclass *))
+\documentclass[a4paper,11pt]{article}
+((* endblock docclass *))
+
+((* block header *))
+((( super() )))
+\usepackage[portuguese]{babel}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}  
+\usepackage{sectsty}
+\usepackage{mathpazo}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\tcbuselibrary{listings}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{microtype}
+
+\newcommand{\py}[1]{\texttt{\color{blue}#1}}
+\newcommand{\myhtmlniceskip}{\vspace{1pt}}
+\newcommand{\furtherinfosep}{\medskip}
+\newcommand{\htmllink}[2]{\href{#2}{#1}}
+
+((= MARGIN DEFINITIONS =))
+\setlength{\textheight}{24cm}
+\setlength{\textwidth}{17cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+\setlength{\topmargin}{-0.3cm}
+
+%%Double sided printing:
+%\setlength{\evensidemargin}{-0.54cm}
+%\setlength{\oddsidemargin}{0.46cm}
+
+%\setlength{\parindent}{0cm}
+
+
+((= FORMATTING =))
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+
+((= COLOR DEFINITIONS =))
+\definecolor{lightGreen}{rgb}{0.54,0.70,0.29}
+\definecolor{lightGreenBG}{rgb}{0.65,0.72,0.23}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+((= LINKS =))
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=lightGreen
+}
+
+((= REDUCE FIGURE PADDING =))
+\setlength{\intextsep}{1.0 pt plus 2.0pt minus 2.0pt}
+\setlength{\belowcaptionskip}{-20pt}
+
+((= SPACE FOR CAPTIONS =))
+\captionsetup{belowskip=12pt, aboveskip=4pt}
+
+
+%\lstdefinestyle{defaultstyle}{}
+%\lstset{language=Python}
+%\lstset{basicstyle=\ttfamily}
+%\lstset{showstringspaces=false}
+%\lstset{keywordstyle=\color{blue}}
+%\lstset{frame=single}
+%\lstset{backgroundcolor=\color{apricot},emph={EMPTY},emphstyle=\color{black}}
+%\definecolor{lightgrey}{cmyk}{0.05,0.05,0.05,0}
+%\lstset{backgroundcolor=\color{apricot}}
+
+((= CODE HIGHLIGHT =))
+
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+((* block listings *))
+        %% Language definition 
+        \lstloadlanguages{Python}
+        \lstdefinestyle{myPython}{
+          language=Python,
+          frame=single,
+          basicstyle=\ttfamily\small,
+          keywordstyle=\color{green!50!black}\bfseries,
+          identifierstyle=\color{blue!50!black}\slshape,
+          stringstyle=\color{brown!50!black},
+          commentstyle=\color{red!50!black}\itshape,
+          backgroundcolor=\color{yellow!10},
+          inputencoding=utf8,
+          belowskip=0pt,
+          morekeywords={assert},
+          % morekeywords=[2]{},
+          % keywordstyle={[2]\color{magenta!70!black}\bfseries},
+          % morekeywords=[3]{},
+          % keywordstyle={[3]\color{magenta!70!black}\itshape},
+          % morekeywords=[4]{},  
+          % keywordstyle={[4]\color{cyan!70!black}\bfseries},
+          % morecomment=[s]\%{,\%\}
+        }
+        \lstdefinestyle{myExecution}{
+          language={},
+          extendedchars=true,
+          frame=single,
+          breaklines=true,
+          basicstyle=\ttfamily\small,
+          backgroundcolor=\color{blue!10},
+          inputencoding=utf8,
+          aboveskip=0pt}
+        \lstnewenvironment{python}[1][]{
+          \lstset{style=myPython,#1}}{}
+        \lstnewenvironment{execution}[1][]{
+          \lstset{style=myExecution,#1}}{}
+        %% LaTeX execution
+        \newenvironment{ltxexecution}{%
+          \begin{longfbox}[width=.999\linewidth,
+              background-color=blue!10,%
+              margin-left=-.3em,
+              margin-top=-.5\baselineskip, % 7pt,
+              margin-bottom=1ex]}{%
+           \end{longfbox}}
+((* endblock listings *))
+
+((* endblock header *))
+
+((* block predoc *))
+
+\flushleft
+
+\title{ \Large \bfseries \sffamily Coletânea de \textit{Notebooks} para Métodos Numéricos \\[0.5cm]
+\textbf{\Large Projeto Numbiosis}\\[0.5cm]
+}
+
+\author{
+\sffamily \textbf{\large Gustavo Charles P. de Oliveira} \\
+\sffamily {\large Departamento de Computação Científica}\\
+\sffamily {\large Universidade Federal da Paraíba} 
+}
+\date{ \sffamily \today }
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+((* endblock predoc *))

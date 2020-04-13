@@ -1,0 +1,261 @@
+((= Not for direct use =))
+((= Uses listings for code =))
+
+((*- extends 'base.tplx' -*))
+
+% Custom definitions
+((* block header *))
+    ((*- block docclass -*))((*- endblock docclass -*))
+
+    ((* block packages *))
+        \usepackage{ifpdf,ifxetex,ifluatex} 
+        \usepackage{mathpazo}
+        \usepackage{graphicx}
+        \usepackage{xcolor}
+        \usepackage{geometry}
+        \usepackage{amsmath}
+        \usepackage{amstext}
+        \usepackage{textcomp}
+        \usepackage{upquote}
+        \usepackage{eurosym}
+        \usepackage[mathletters]{ucs}
+        \usepackage{longfbox}
+        \ifxetex
+          \usepackage{fontspec}    
+        \else
+          \usepackage[utf8]{inputenx}
+        \fi
+        \usepackage{hyperref}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{adjustbox}
+        \usepackage{listings}
+    ((* endblock packages *))
+
+    ((* block listings *))
+        %% Language definition 
+        \lstloadlanguages{Python}
+        \lstdefinestyle{myPython}{
+          language=Python,
+          frame=single,
+          basicstyle=\ttfamily\small,
+          keywordstyle=\color{green!50!black}\bfseries,
+          identifierstyle=\color{blue!50!black}\slshape,
+          stringstyle=\color{brown!50!black},
+          commentstyle=\color{red!50!black}\itshape,
+          backgroundcolor=\color{yellow!10},
+          inputencoding=utf8,
+          belowskip=0pt,
+          morekeywords={assert},
+          % morekeywords=[2]{},
+          % keywordstyle={[2]\color{magenta!70!black}\bfseries},
+          % morekeywords=[3]{},
+          % keywordstyle={[3]\color{magenta!70!black}\itshape},
+          % morekeywords=[4]{},  
+          % keywordstyle={[4]\color{cyan!70!black}\bfseries},
+          % morecomment=[s]\%{,\%\}
+        }
+        \lstdefinestyle{myExecution}{
+          language={},
+          extendedchars=true,
+          frame=single,
+          breaklines=true,
+          basicstyle=\ttfamily\small,
+          backgroundcolor=\color{blue!10},
+          inputencoding=utf8,
+          aboveskip=0pt}
+        \lstnewenvironment{python}[1][]{
+          \lstset{style=myPython,#1}}{}
+        \lstnewenvironment{execution}[1][]{
+          \lstset{style=myExecution,#1}}{}
+        %% LaTeX execution
+        \newenvironment{ltxexecution}{%
+          \begin{longfbox}[width=.999\linewidth,
+              background-color=blue!10,%
+              margin-left=-.3em,
+              margin-top=-.5\baselineskip, % 7pt,
+              margin-bottom=1ex]}{%
+           \end{longfbox}}
+    ((* endblock listings *))
+
+    ((* block definitions *))
+        %% Tighter lists
+        \providecommand{\tightlist}{%
+          \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+        %% Hyperref 
+        \definecolor{urlcolor}{rgb}{0,.145,.698}
+        \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+        \definecolor{citecolor}{rgb}{.12,.54,.11}
+        \hypersetup{
+          breaklinks=true,  % so long urls are correctly broken across lines
+          colorlinks=true,
+          urlcolor=urlcolor,
+          linkcolor=linkcolor,
+          citecolor=citecolor,
+        }
+	%% Section names
+	\providecommand\sectionname{Section}
+    ((* endblock definitions *))
+
+    ((* block commands *))
+        %% MathJax
+        \def\gt{>}
+        \def\lt{<}
+        %% For captions
+        \def\nextcaption{}
+	%% SF for bold-face
+	\let\bfseries\sffamily
+    ((* endblock commands *))
+
+    ((* block titlepage *))
+        %% Title page, etc.
+        \makeatletter
+        \def\ps@headings{%
+          \let\@oddfoot\@empty
+          \let\@evenfoot\@empty
+          \def\@evenhead{\thepage\hfil\thetitle}
+          \def\@oddhead{\rightmark\hfil\thepage}
+          \def\chaptermark##1{%
+             \markright{\ifnum \c@secnumdepth >\z@
+                 \thechapter\quad
+               \fi
+               ##1}}
+	   \def\sectionmark##1{%
+             \markright{\ifnum \c@secnumdepth >\z@
+                 \thesection\quad
+               \fi
+               ##1}}
+             \let\subsectionmark\@gobble}
+	\pagestyle{headings}
+        \providecommand\subtitle[1]{\gdef\@subtitle{#1}}
+        \providecommand\publisher[1]{\gdef\@publisher{#1}}
+	\def\@subtitle{\@latex@warning@no@line{No \noexpand\subtitle given}}
+	\def\@publisher{\@latex@warning@no@line{No \noexpand\publisher given}}
+	\def\maketitle{
+	  \cleardoublepage
+	  \thispagestyle{empty}
+	  \null
+	  \vskip 60\p@
+	  \begin{center}
+	    {\large \@author}
+	  \end{center}
+	  \vskip 30ex
+	  {\Huge\sffamily \@title\par}
+	  {\LARGE\sffamily \@subtitle\par}
+	  \vskip 6ex
+	  {\Large\sffamily \@date}
+	  \vfill
+	  \begin{center}
+	    {\large \@publisher}
+	  \end{center}
+          \global\let\thetitle\@title
+	  \let\@title\@empty
+	  \let\@subtitle\@empty
+	  \let\@author\@empty
+	  \let\@date\@empty
+	  \let\@publisher\@empty
+	  \let\title\relax
+	  \let\subtitle\relax
+	  \let\author\relax
+	  \let\date\relax
+	  \let\publisher\relax
+          \cleardoublepage}
+	\let\@maketitle\maketitle
+        \makeatother
+    ((* endblock titlepage *))
+    
+    ((* block margins *))
+        \geometry{margin=2cm}
+        \setlength{\parskip}{1ex}
+        \setlength{\parindent}{0em}
+    ((* endblock margins *))
+
+    % Document parameters
+    ((* block title *))
+        \title{((( resources.metadata.name | ascii_only | escape_latex )))}
+    ((* endblock title *))
+    ((* block date *))((* endblock date *))
+    ((* block author *))((* endblock author *))
+((* endblock header *))
+
+%% Error output
+((* block error *))
+\begin{execution}[backgroundcolor=\color{red!10}]
+  ((( '' )))
+  ((*- for line in output.traceback -*))
+     ((*- block traceback_line scoped -*))
+       ((( line | indent | strip_ansi )))
+     ((*- endblock traceback_line -*))
+  ((*- endfor -*))
+\end{execution}
+((* endblock error *))
+
+% Render markdown
+((* block markdowncell scoped *))
+    ((* if cell.metadata.get('toc',false) *))
+        ((* block toc *))
+        ((* set tocname = nb.metadata.get('toc','').get('title_cell','Contents') *))
+        ((( '\\renewcommand\contentsname{' ~ tocname ~ '}' )))
+        \tableofcontents
+        ((* endblock toc *))
+     ((* elif cell.metadata.get('purehtml',false) *))
+         ((( cell.source | citation2latex | strip_files_prefix | convert_pandoc('html', 'latex', extra_args=[]) )))
+     ((* elif cell.metadata.get('pyref',false) *))
+         ((( '\\def\\nextcaption{' ~ cell.source | citation2latex | strip_files_prefix | convert_pandoc('html', 'json',extra_args=[]) | resolve_references | convert_pandoc('json','latex') ~ '\ \includegraphics[height=1.5ex]{imgs/py.png}}')))     	 
+     ((* else *))
+         ((( super() )))
+     ((* endif *))
+((* endblock markdowncell *))
+
+%% Output stream
+((* block stream *))
+\begin{execution}
+((( output.text )))
+\end{execution}
+((* endblock stream *))
+
+%===============================================================================
+% Input
+%===============================================================================
+
+((* block input scoped *))
+\begin{python}[title={\nextcaption}]
+((( cell.source )))
+\end{python}
+\def\nextcaption{}
+((* endblock input *))
+
+
+%===============================================================================
+% Output
+%===============================================================================
+
+((* block execute_result scoped *))
+    ((*- for type in output.data | filter_data_type -*))
+        ((*- if type in ['text/plain'] *))
+	   \begin{execution}
+	      ((( output.data['text/plain'] )))
+	   \end{execution}
+	((* elif type in ['text/latex'] *))
+	   \begin{ltxexecution}
+	      ((( output.data['text/latex'] )))
+	   \end{ltxexecution}	   
+        ((* else -*))
+            ((( super() )))
+        ((*- endif -*))
+    ((*- endfor -*))
+((* endblock execute_result *))
+
+
+%==============================================================================
+% Support Macros
+%==============================================================================
+
+% Name: draw_prompt
+% Purpose: Renders an output/input prompt
+((* macro add_prompt(text, cell, prompt) -*))
+\begin{python}[title={\nextcaption}]
+((( text )))
+\end{python}
+\def\nextcaption{}
+((*- endmacro *))
