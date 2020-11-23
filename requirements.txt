@@ -7,3 +7,5 @@ pytest
 bookbook
 nbval
 plotly
+numba
+pyximport
