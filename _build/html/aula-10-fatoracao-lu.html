@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Fatoração LU com Python &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="13. Fatoração de Cholesky" href="aula-11-cholesky.html" />
+    <link rel="prev" title="10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento" href="aula-09-eliminacao-gauss.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-21-solucoes-edo.html">
+   25. Solução numérica de EDOs: método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-22-rungeKutta2.html">
+   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/aula-10-fatoracao-lu.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-10-fatoracao-lu.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-10-fatoracao-lu.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposicao-lu">
+   12.1. Decomposição LU
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplo">
+     12.1.1. Exemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usando-a-decomposicao-lu-para-resolver-sistemas-de-equacoes">
+   12.2. Usando a decomposição LU para resolver sistemas de equações
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     12.2.1. Exemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="fatoracao-lu-com-python">
+<h1><span class="section-number">12. </span>Fatoração LU com Python<a class="headerlink" href="#fatoracao-lu-com-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="decomposicao-lu">
+<h2><span class="section-number">12.1. </span>Decomposição LU<a class="headerlink" href="#decomposicao-lu" title="Permalink to this headline">¶</a></h2>
+<p>Suponha o sistema de equações</p>
+<div class="math notranslate nohighlight">
+\[AX = B\]</div>
+<p>A motivação para a decomposição LU baseia-se na observação de que sistemas triangulares são mais fáceis de resolver. Semelhantemente à Eliminação Gaussiana, a decomposição LU (que, na verdade, é uma segunda abordagem da própria Eliminação Gaussiana), explora a ideia de “fatoração” de matrizes, em que a matriz original do sistema é fatorada (“quebrada”) como</p>
+<div class="math notranslate nohighlight">
+\[A = LU,\]</div>
+<p>onde <span class="math notranslate nohighlight">\(L\)</span> é uma matriz triangular inferior e <span class="math notranslate nohighlight">\(U\)</span> é triangular superior. Nosso objetivo é determinar <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span>, de maneira que o vetor <span class="math notranslate nohighlight">\(X\)</span> seja obtido através da resolução de um par de sistemas cujas matrizes são triangulares.</p>
+<div class="section" id="exemplo">
+<h3><span class="section-number">12.1.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">¶</a></h3>
+<p>Consideraremos que as matrizes triangulares inferiores <span class="math notranslate nohighlight">\(L\)</span> sempre terão a sua diagonal principal formada por entradas iguais a 1. Este tipo de fatoração é conhecido como <em>Fatoração de Doolittle</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix} = LU\end{split}\]</div>
+<p>onde</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf L} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+L_{21} &amp; 1 &amp; 0\\
+L_{31} &amp; L_{32} &amp; 1
+\end{bmatrix}
+\quad \text{e} \quad
+{\bf U} = \begin{bmatrix}
+U_{11} &amp; U_{12} &amp; U_{13}\\
+0 &amp; U_{22} &amp; U_{23}\\
+0 &amp; 0 &amp; U_{33}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Multiplicando <span class="math notranslate nohighlight">\(LU\)</span> e definindo a resposta igual a <span class="math notranslate nohighlight">\(A\)</span> temos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+U_{11} &amp; U_{12} &amp; U_{13}\\
+L_{21} U_{11} &amp; L_{21} U_{12} + U_{22} &amp; L_{21} U_{13} + U_{23}\\
+L_{31} U_{11} &amp; L_{31} U_{12} + L_{32} U_{22} &amp; L_{31} U_{13} + L_{32} U_{23} + U_{33}
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix}
+\end{split}\]</div>
+<p>Agora, através de substituição de recorrência, facilmente encontramos <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+{\bf A} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="usando-a-decomposicao-lu-para-resolver-sistemas-de-equacoes">
+<h2><span class="section-number">12.2. </span>Usando a decomposição LU para resolver sistemas de equações<a class="headerlink" href="#usando-a-decomposicao-lu-para-resolver-sistemas-de-equacoes" title="Permalink to this headline">¶</a></h2>
+<p>Uma vez decomposta a matriz <span class="math notranslate nohighlight">\(A\)</span> no produto <span class="math notranslate nohighlight">\(LU\)</span>, podemos obter a solução <span class="math notranslate nohighlight">\(X\)</span> de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada <span class="math notranslate nohighlight">\(A\)</span>, encontre <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span> tal que <span class="math notranslate nohighlight">\(A = LU\)</span>, ou seja, <span class="math notranslate nohighlight">\((LU)X = B\)</span>. Em outras palavras:</p>
+<ul class="simple">
+<li><p>Defina <span class="math notranslate nohighlight">\(Y = UX\)</span>.</p></li>
+<li><p>Resolva o sistema triangular <span class="math notranslate nohighlight">\(LY = B\)</span> para <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>Finalmente, resolva o sistema triangular <span class="math notranslate nohighlight">\(UX = Y\)</span> para <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+</ul>
+<p>O benefício desta abordagem é a resolução de somente sistemas triangulares. Por outro lado, o custo empregado é termos de resolver dois sistemas.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">12.2.1. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Encontre a solução <span class="math notranslate nohighlight">\(X = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\)</span> do sistema</p>
+<p>$$\begin{bmatrix}
+1 &amp; 2 &amp; 4\
+3 &amp; 8 &amp; 14\
+2 &amp; 6 &amp; 13
+\end{bmatrix}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9259e36f-961f-4621-827e-c8e9c7780bc3">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-9259e36f-961f-4621-827e-c8e9c7780bc3" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix} 
+x_1 \\ x_2 \\ x_3 
+\end{bmatrix}\]</div>
+<p>=</p>
+<div class="amsmath math notranslate nohighlight" id="equation-29f4553f-09b8-4d3a-b44d-893a5882e70d">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-29f4553f-09b8-4d3a-b44d-893a5882e70d" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix} 
+3 \\ 13 \\ 4
+\end{bmatrix}\]</div>
+<ul class="simple">
+<li><p>As matrizes <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span> já foram obtidas anteriormente.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}L = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix},
+\quad 
+U = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p>A próxima etapa é resolver <span class="math notranslate nohighlight">\(LY = B\)</span>, para o vetor <span class="math notranslate nohighlight">\(Y = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}LY = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix} =
+\begin{bmatrix}
+3 \\ 13 \\ 4
+\end{bmatrix} = B\end{split}\]</div>
+<p>Este sistema pode ser resolvido por substituição direta, obtendo <span class="math notranslate nohighlight">\(Y = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}\)</span>.</p>
+<ul class="simple">
+<li><p>Agora que encontramos <span class="math notranslate nohighlight">\(Y\)</span>, concluímos o procedimento resolvendo <span class="math notranslate nohighlight">\(UX = Y\)</span> para <span class="math notranslate nohighlight">\(X\)</span>. Ou seja, resolvemos:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+UX = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = 
+\begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}
+\end{split}\]</div>
+<p>Realizando a substituição regressiva (baixo para cima; da direita para a esquerda), obtemos a solução do problema.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}\end{split}\]</div>
+<p>Abaixo, temos uma implementação de uma fatoração LU sem pivoteamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="k">def</span> <span class="nf">lu_nopivot</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Realiza fatoração LU para a matriz A</span>
+<span class="sd">    </span>
+<span class="sd">    entrada: </span>
+<span class="sd">        A  -  matriz:  array (nxn) </span>
+<span class="sd">    </span>
+<span class="sd">    saida: </span>
+<span class="sd">        L,U  - matriz triangular inferior, superior : array (nxn)         </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+        
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># dimensao</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># auxiliar </span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>        
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">l</span><span class="p">,</span><span class="n">k</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,:])</span>
+            
+    <span class="n">U</span> <span class="o">=</span> <span class="n">A</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo:</strong> Fatoração <span class="math notranslate nohighlight">\(\bf{ LU }\)</span> da matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} =
+\begin{bmatrix}
+4 &amp; -2 &amp; -3 &amp;  6 \\  
+1 &amp;  4 &amp;  2 &amp;  3 \\
+2 &amp; -3 &amp;  3 &amp; -2 \\ 
+1 &amp;  5 &amp;  3 &amp;  4
+\end{bmatrix}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">4.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">],[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">],[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="o">-</span><span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">],[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">]])</span>
+
+<span class="n">L</span><span class="p">,</span><span class="n">U</span> <span class="o">=</span> <span class="n">lu_nopivot</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.        ,  0.        ,  0.        ,  0.        ],
+       [ 0.25      ,  1.        ,  0.        ,  0.        ],
+       [ 0.5       , -0.44444444,  1.        ,  0.        ],
+       [ 0.25      ,  1.22222222,  0.06796117,  1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4.        , -2.        , -3.        ,  6.        ],
+       [ 0.        ,  4.5       ,  2.75      ,  1.5       ],
+       [ 0.        ,  0.        ,  5.72222222, -4.33333333],
+       [ 0.        ,  0.        ,  0.        ,  0.96116505]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
+    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
+<span class="n">css_styling</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="aula-09-eliminacao-gauss.html" title="previous page"><span class="section-number">10. </span>Álgebra linear com Python: Eliminação Gaussiana e Condicionamento</a>
+    <a class='right-next' id="next-link" href="aula-11-cholesky.html" title="next page"><span class="section-number">13. </span>Fatoração de Cholesky</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

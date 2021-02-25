@@ -1,0 +1,57 @@
+# The introduction file is mandatory
+- file: conteudo.ipynb
+- part: Cadernos
+  numbered: true
+  chapters:
+  - file: aula-00-modelagem-programacao
+  - file: aula-01-ponto-flutuante
+  - file: aula-02-erros
+  - file: aula-03-analise-grafica
+  - file: aula-04-bissecao
+  - file: aula-05-ponto-fixo
+  - file: aula-06-newton
+  - file: aula-07-secante
+  - file: aula-08-muller
+  - file: aula-09-eliminacao-gauss
+  - file: aula-10-fatoracao-lu
+  - file: aula-11-cholesky
+  - file: aula-12-jacobi
+  - file: aula-13-newton-nao-linear
+  - file: aula-14-interpolacao-lagrange
+  - file: aula-15-interpolacao-newton
+  - file: aula-16-minimos-quadrados
+  - file: aula-17-ajusteNaoLinear
+  - file: aula-18-integracao-newtonCotes
+  - file: aula-19-quadratura-gaussiana
+  - file: aula-20-diferenciacao-numerica
+  - file: aula-21-solucoes-edo
+  - file: aula-22-rungeKutta2   
+- part: Code sessions
+  chapters:
+  - file: codeSession-1-bisect
+  - file: codeSession-2-newton
+  - file: codeSession-3-polyval
+  - file: codeSession-4-fsolve
+  - file: codeSession-5-solve
+  - file: codeSession-6-interp
+  - file: codeSession-7-fit
+  - file: codeSession-8-integrate
+- part: Exercícios resolvidos
+  chapters:
+  - file: lista-1-solucoes
+  - file: lista-2-solucoes
+  - file: lista-3-solucoes
+  - file: lista-4-solucoes
+  - file: lista-5-solucoes
+  - file: lista-6-solucoes
+#
+# MODEL: 
+# - file: intro
+#- part: Get started
+#  chapters:
+#  - file: start/overview
+#  - file: start/build
+#  - file: start/publish
+#    sections:
+#      - file: publish/gh-pages
+#      - file: publish/netlify
