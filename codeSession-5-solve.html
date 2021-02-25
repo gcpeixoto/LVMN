@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code session 5 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code session 6" href="codeSession-6-interp.html" />
+    <link rel="prev" title="Code session 4" href="codeSession-4-fsolve.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-21-solucoes-edo.html">
+   25. Solução numérica de EDOs: método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-22-rungeKutta2.html">
+   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/codeSession-5-solve.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/codeSession-5-solve.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/codeSession-5-solve.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linalg-solve">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     linalg.solve
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problema-1">
+     Problema 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolucao">
+     Resolução
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tarefa">
+     Tarefa
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="code-session-5">
+<h1>Code session 5<a class="headerlink" href="#code-session-5" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="linalg-solve">
+<h2><code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code><a class="headerlink" href="#linalg-solve" title="Permalink to this headline">¶</a></h2>
+<p>A função <code class="docutils literal notranslate"><span class="pre">solve</span></code> é o método mais simples disponibilizado pelos módulos <code class="docutils literal notranslate"><span class="pre">numpy</span></code> e <code class="docutils literal notranslate"><span class="pre">scipy</span></code> para resolver sistemas matriciais lineares. Como a função pertence ao escopo da Álgebra Linear, ela está localizada em submódulo chamado <code class="docutils literal notranslate"><span class="pre">linalg</span></code>. <code class="docutils literal notranslate"><span class="pre">solve</span></code> calculará a solução exata do sistema como um método direto se a matriz do sistema for determinada (quadrada e sem colunas linearmente dependentes). Se a matriz for singular, o método retorna um erro. Se for de posto deficiente, o método resolve o sistema linear usando um algoritmo de mínimos quadrados.</p>
+<p>Os argumentos de entrada obrigatórios desta função são:</p>
+<ol class="simple">
+<li><p>a matriz <code class="docutils literal notranslate"><span class="pre">A</span></code> dos coeficientes</p></li>
+<li><p>o vetor independente <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+</ol>
+<p>O argumento de saída é:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: o vetor-solução do sistema.</p></li>
+</ul>
+<p>Como importá-la?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="problema-1">
+<h3>Problema 1<a class="headerlink" href="#problema-1" title="Permalink to this headline">¶</a></h3>
+<p>Uma rede elétrica contém 3 <em>loops</em>. Ao aplicar a lei de Kirchoff a cada <em>loop</em>, o cientista Hely Johnson obteve as seguintes equações para as correntes <span class="math notranslate nohighlight">\(i_1\)</span>, <span class="math notranslate nohighlight">\(i_2\)</span> e <span class="math notranslate nohighlight">\(i_3\)</span> em cada <em>loop:</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+(50 + R)i_1 - Ri_2 - 30i_3 &amp;=&amp; 0 \\
+- Ri_1 + (65 + R)i_2 - 15i_3 &amp;=&amp; 0 \\
+-30i_1 - 15i_2 + 45i_3 &amp;=&amp; 120 
+\end{eqnarray}\end{split}\]</div>
+<p>Ajude Hely Johnson em seus experimento e calcule as correntes para os valores de resistência <span class="math notranslate nohighlight">\(R = \{ 5 \Omega, 10 \Omega, 20 \Omega \}\)</span>.</p>
+</div>
+<div class="section" id="resolucao">
+<h3>Resolução<a class="headerlink" href="#resolucao" title="Permalink to this headline">¶</a></h3>
+<p>Podemos começar definindo uma lista para armazenar os valores das resistências de teste:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">15.</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida, escreveremos a matriz dos coeficientes e o vetor independente (lado direito). Note que precisamos de uma “lista de listas”, ou melhor, um <em>“array de arrays”</em>, onde cada <em>array</em> está associado à uma linha da matriz.</p>
+<p>Todavia, vamos definir uma função para montar o sistema em função do valor de <span class="math notranslate nohighlight">\(R\)</span> e resolvê-lo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># montagem do sistema</span>
+<span class="k">def</span> <span class="nf">resolve_sistema</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">50</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="p">],[</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="mi">65</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">],[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span> <span class="p">])</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Além disso, usaremos um laço <code class="docutils literal notranslate"><span class="pre">for</span></code> para calcularmos todas as respostas necessárias de uma só vez e organizaremos os resultados em dicionário (objeto <code class="docutils literal notranslate"><span class="pre">dict</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># salva soluções agrupadas em um dicionário</span>
+<span class="n">sols</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
+    <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolve_sistema</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Para o valor de resistência R = </span><span class="si">{0:g}</span><span class="s1"> ohms: i1 = </span><span class="si">{1:g}</span><span class="s1"> A, i2 = </span><span class="si">{2:g}</span><span class="s1"> A, i3 = </span><span class="si">{3:g}</span><span class="s1"> A&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Para o valor de resistência R = 5 ohms: i1 = 2.82927 A, i2 = 1.26829 A, i3 = 4.97561 A
+Para o valor de resistência R = 10 ohms: i1 = 2.66667 A, i2 = 1.33333 A, i3 = 4.88889 A
+Para o valor de resistência R = 15 ohms: i1 = 2.54545 A, i2 = 1.38182 A, i3 = 4.82424 A
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tarefa">
+<h3>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h3>
+<p>Retorne ao notebook da <a class="reference internal" href="aula-09-eliminacao-gauss.html"><span class="doc std std-doc">Aula 09</span></a> e use o conteúdo da aula para fazer uma verificação das soluções encontradas para este problema em cada caso. Use a função <code class="docutils literal notranslate"><span class="pre">linalg.cond</span></code> para calcular o <em>número de condicionamento</em> da matriz do sistema em cada caso. (<strong>Sugestão:</strong> vide <code class="docutils literal notranslate"><span class="pre">numpy.allclose</span></code>)</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="codeSession-4-fsolve.html" title="previous page">Code session 4</a>
+    <a class='right-next' id="next-link" href="codeSession-6-interp.html" title="next page">Code session 6</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

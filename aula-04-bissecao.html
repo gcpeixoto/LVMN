@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Implementações do método da bisseção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Método da Iteração Linear (Ponto Fixo)" href="aula-05-ponto-fixo.html" />
+    <link rel="prev" title="4. Análise gráfica, localização e refinamento de raízes" href="aula-03-analise-grafica.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-21-solucoes-edo.html">
+   25. Solução numérica de EDOs: método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-22-rungeKutta2.html">
+   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/aula-04-bissecao.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-04-bissecao.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-04-bissecao.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tarefas">
+   5.1. Tarefas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tarefa-falsa-posicao">
+   5.2. Tarefa: Falsa Posição
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="implementacoes-do-metodo-da-bissecao">
+<h1><span class="section-number">5. </span>Implementações do método da bisseção<a class="headerlink" href="#implementacoes-do-metodo-da-bissecao" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;MB Metodo da bissecao para funcoes unidimensionais</span>
+<span class="sd">entrada: </span>
+<span class="sd">    f: uma string dependendo de x, i.e., a funcao</span>
+<span class="sd">           (e.g., &#39;x^2 + 1&#39;, &#39;x^2*cos(x)&#39;, etc.) </span>
+<span class="sd">    a: limite inferior do dominio</span>
+<span class="sd">    b: limite superior do dominio</span>
+<span class="sd">    tol: tolerancia    </span>
+<span class="sd">    N: numero maximo de iteracoes do metodo</span>
+
+<span class="sd">saida: </span>
+<span class="sd">    xm: raiz da funcao</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">var</span><span class="p">):</span>
+        
+    <span class="c1"># TODO identificar a variável usada na função </span>
+    <span class="c1">#      Aqui, tentei assumir que apenas uma era usada (e.g. &#39;x&#39;),</span>
+    <span class="c1">#      mas foi complicado generalizar quando há objeto numpy</span>
+    <span class="c1">#var = re.search(&#39;[a-zA-Z]+&#39;,f)</span>
+    <span class="c1">#var = var.group()</span>
+
+    <span class="c1"># cria função anônima</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;lambda &#39;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s1">&#39; :&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="c1"># Se função não for de uma variável, lança erro.</span>
+    <span class="c1"># Mais aplicável se o caso geral fosse implementado.        </span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;O código é válido apenas para uma variável.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># calcula valor da função nos extremos</span>
+    <span class="n">fa</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
+    <span class="n">fb</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="c1"># verifica sinal da função para o intervalo passado     </span>
+    <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fb</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A função deve ter sinais opostos em a e b!&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># flag usada para prevenir a obtenção da raiz </span>
+    <span class="c1"># antes de o intervalo ter sido </span>
+    <span class="c1"># suficientemente reduzido</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1"># loop principal</span>
+
+    <span class="c1"># bisecta o intervalo</span>
+    <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># contador </span>
+
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="p">(</span> <span class="ow">not</span> <span class="n">done</span> <span class="ow">or</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">):</span>
+    <span class="c1"># avalia a função no ponto médio</span>
+        <span class="n">fxm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(i = </span><span class="si">{0:d}</span><span class="s2">) f(xm)=</span><span class="si">{1:f}</span><span class="s2"> | f(a)=</span><span class="si">{2:f}</span><span class="s2"> | f(b)=</span><span class="si">{3:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fxm</span><span class="p">,</span><span class="n">fa</span><span class="p">,</span><span class="n">fb</span><span class="p">))</span>
+   
+        <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fxm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># Raiz esta à esquerda de xm</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">xm</span>
+            <span class="n">fb</span> <span class="o">=</span> <span class="n">fxm</span>
+            <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">fxm</span><span class="o">*</span><span class="n">fb</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>     <span class="c1"># Raiz esta à direita de xm</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">xm</span>
+            <span class="n">fa</span> <span class="o">=</span> <span class="n">fxm</span>
+            <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>               <span class="c1"># Achamos a raiz</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span>
+    
+        <span class="n">N</span> <span class="o">-=</span> <span class="mi">1</span>              <span class="c1"># Atualiza passo</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>              <span class="c1"># Atualiza contador</span>
+            
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solução encontrada: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xm</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">xm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">newton</span>
+
+<span class="c1"># Dados de entrada</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">520</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># tempo [s]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">1.46</span>   <span class="c1"># coeficiente de arrasto [kg/s]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">90</span>     <span class="c1"># massa [kg]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>   <span class="c1"># constante de gravidade [m/s2]</span>
+
+<span class="c1"># Dados de saída</span>
+
+<span class="c1">## velocidade terminal [m/s]</span>
+<span class="n">v_ms1</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+
+<span class="c1"># velocidade terminal [km/h]</span>
+<span class="n">v_kh1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">3.6</span><span class="p">)</span><span class="o">*</span><span class="n">v_ms1</span><span class="p">;</span>
+
+<span class="c1"># gráfico tempo x velocidade</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_ms1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;v [m/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Velocidade terminal - paraquedista&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-04-bissecao_3_0.png" src="_images/aula-04-bissecao_3_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="mi">12</span>     <span class="c1"># tempo [s]</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">70</span>     <span class="c1"># massa [kg]</span>
+<span class="n">vel</span> <span class="o">=</span> <span class="mi">42</span>     <span class="c1"># velocidade [m/s]</span>
+<span class="n">grav</span> <span class="o">=</span> <span class="mf">9.81</span>   <span class="c1"># constante de gravidade [m/s2]</span>
+
+<span class="c1"># defino variáveis simbólicas</span>
+<span class="n">g</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;g,m,t,v,c&#39;</span><span class="p">)</span>
+
+<span class="c1"># expressão geral</span>
+<span class="n">f_g</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
+
+<span class="c1"># expressão particular com valores substituídos </span>
+<span class="c1"># convertida para string</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f_g</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;g&#39;</span><span class="p">:</span><span class="n">grav</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">:</span><span class="n">mass</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">:</span><span class="n">vel</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">:</span><span class="n">time</span><span class="p">}))</span>
+
+<span class="c1"># TODO</span>
+<span class="c1"># para esta função, teremos que substituir &#39;exp&#39; por &#39;np.exp&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(c) = &#39;</span> <span class="o">+</span> <span class="n">f_s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="s1">&#39;-42 + 686.7*(1 - np.exp(-6*c/35))/c&#39;</span>
+
+<span class="c1"># resolve bisseção</span>
+<span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="n">f_s</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(c) = -42 + 686.7*(1 - exp(-6*c/35))/c
+
+(i = 1) f(xm)=2.600284 | f(a)=7.910578 | f(b)=-1.844622
+(i = 2) f(xm)=0.281205 | f(a)=2.600284 | f(b)=-1.844622
+(i = 3) f(xm)=-0.804573 | f(a)=0.281205 | f(b)=-1.844622
+(i = 4) f(xm)=-0.267556 | f(a)=0.281205 | f(b)=-0.804573
+(i = 5) f(xm)=0.005337 | f(a)=0.281205 | f(b)=-0.267556
+(i = 6) f(xm)=-0.131479 | f(a)=0.005337 | f(b)=-0.267556
+(i = 7) f(xm)=-0.063164 | f(a)=0.005337 | f(b)=-0.131479
+(i = 8) f(xm)=-0.028937 | f(a)=0.005337 | f(b)=-0.063164
+(i = 9) f(xm)=-0.011806 | f(a)=0.005337 | f(b)=-0.028937
+(i = 10) f(xm)=-0.003236 | f(a)=0.005337 | f(b)=-0.011806
+(i = 11) f(xm)=0.001050 | f(a)=0.005337 | f(b)=-0.003236
+(i = 12) f(xm)=-0.001093 | f(a)=0.001050 | f(b)=-0.003236
+(i = 13) f(xm)=-0.000022 | f(a)=0.001050 | f(b)=-0.001093
+(i = 14) f(xm)=0.000514 | f(a)=0.001050 | f(b)=-0.000022
+(i = 15) f(xm)=0.000246 | f(a)=0.000514 | f(b)=-0.000022
+(i = 16) f(xm)=0.000112 | f(a)=0.000246 | f(b)=-0.000022
+(i = 17) f(xm)=0.000045 | f(a)=0.000112 | f(b)=-0.000022
+(i = 18) f(xm)=0.000012 | f(a)=0.000045 | f(b)=-0.000022
+(i = 19) f(xm)=-0.000005 | f(a)=0.000012 | f(b)=-0.000022
+Solução encontrada: 15.127429962158203
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo 5.1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="s1">&#39;x**3 - 9*x + 3&#39;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">var</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+<span class="n">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">var</span><span class="p">)</span>
+
+<span class="c1"># relação erro desejado x número de iterações</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">tol</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número de iterações é k = </span><span class="si">{0:g}</span><span class="s2"> ≈ </span><span class="si">{1:g}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">k</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(i = 1) f(xm)=-1.375000 | f(a)=3.000000 | f(b)=-5.000000
+(i = 2) f(xm)=0.765625 | f(a)=3.000000 | f(b)=-1.375000
+(i = 3) f(xm)=-0.322266 | f(a)=0.765625 | f(b)=-1.375000
+(i = 4) f(xm)=0.218018 | f(a)=0.765625 | f(b)=-0.322266
+(i = 5) f(xm)=-0.053131 | f(a)=0.218018 | f(b)=-0.322266
+(i = 6) f(xm)=0.082203 | f(a)=0.218018 | f(b)=-0.053131
+(i = 7) f(xm)=0.014474 | f(a)=0.082203 | f(b)=-0.053131
+(i = 8) f(xm)=-0.019344 | f(a)=0.014474 | f(b)=-0.053131
+(i = 9) f(xm)=-0.002439 | f(a)=0.014474 | f(b)=-0.019344
+(i = 10) f(xm)=0.006017 | f(a)=0.014474 | f(b)=-0.002439
+Solução encontrada: 0.33740234375
+O número de iterações é k = 9.96578 ≈ 10.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tarefas">
+<h2><span class="section-number">5.1. </span>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Melhore o código Python tratando os TODOs:</p></li>
+</ul>
+<p>Tente generalizar o código da bisseção para que identifique automaticamente a variável de entrada utilizada pelo usuário (use expressões regulares e remova o argumento <code class="docutils literal notranslate"><span class="pre">var</span></code> da definição da função).</p>
+<p>Note que o trecho simbólico abaixo foi necessário para substituir a função da chamada <code class="docutils literal notranslate"><span class="pre">exp</span></code>, não interpretada por <code class="docutils literal notranslate"><span class="pre">eval</span></code> por uma nova string que usasse <code class="docutils literal notranslate"><span class="pre">np.exp</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO</span>
+<span class="c1"># para esta função, teremos que substituir &#39;exp&#39; por &#39;np.exp&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(c) = &#39;</span> <span class="o">+</span> <span class="n">f_s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="s1">&#39;-42 + 686.7*(1 - np.exp(-6*c/35))/c&#39;</span>
+</pre></div>
+</div>
+<p>Tente fazer as correções necessárias no código. <strong>Sugestão:</strong> verifique a função <code class="docutils literal notranslate"><span class="pre">sympy.core.evalf</span></code> do módulo <code class="docutils literal notranslate"><span class="pre">sympy</span></code>)</p>
+<ul class="simple">
+<li><p>Adicione mecanismos de plotagem no código Python</p></li>
+<li><p>Crie um código em Javascript para adicionarmos na página do projeto Numbiosis com o máximo possível de GUI (labels + input data).</p></li>
+<li><p>Teste a implementação com um problema realista.</p></li>
+</ul>
+<p><strong>Problema sugerido:</strong>
+Uma reação química reversível</p>
+<div class="math notranslate nohighlight">
+\[2A+B \iff C\]</div>
+<p>pode ser caracterizada pela relação de equilíbrio</p>
+<div class="math notranslate nohighlight">
+\[K = \dfrac{c_c}{c_a^2c_b},\]</div>
+<p>onde a nomenclatura <span class="math notranslate nohighlight">\(c_i\)</span> representa a concentração do constituinte <span class="math notranslate nohighlight">\(i\)</span>. Suponha que definamos uma variável <span class="math notranslate nohighlight">\(x\)</span> como o número de moles de <span class="math notranslate nohighlight">\(C\)</span> que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como</p>
+<div class="math notranslate nohighlight">
+\[K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x),}\]</div>
+<p>onde o subscrito <span class="math notranslate nohighlight">\(0\)</span> designa a concentração inicial de cada constituinte. Se <span class="math notranslate nohighlight">\(K = 0,016\)</span>, <span class="math notranslate nohighlight">\(c_{a,0} = 42\)</span>, <span class="math notranslate nohighlight">\(c_{b,0} = 28\)</span> e <span class="math notranslate nohighlight">\(c_{c,0} = 4\)</span>, determine o valor de <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>(a) Obtenha a solução graficamente.</p>
+<p>(b) Com base em (a), resolva a raiz com suposições iniciais de <span class="math notranslate nohighlight">\(x_l = 0\)</span> e <span class="math notranslate nohighlight">\(x_u = 20\)</span>, com critério de erro de <span class="math notranslate nohighlight">\(\epsilon_s = 0,5\%\)</span>. (Vide clipping <em>Definições de erro</em> para entender <span class="math notranslate nohighlight">\(\epsilon_s\)</span>.)</p>
+<p>© Use o método da bisseção.</p>
+</div>
+<div class="section" id="tarefa-falsa-posicao">
+<h2><span class="section-number">5.2. </span>Tarefa: Falsa Posição<a class="headerlink" href="#tarefa-falsa-posicao" title="Permalink to this headline">¶</a></h2>
+<p>Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use <code class="docutils literal notranslate"><span class="pre">switch...</span> <span class="pre">case...</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
+    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
+<span class="n">css_styling</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="aula-03-analise-grafica.html" title="previous page"><span class="section-number">4. </span>Análise gráfica, localização e refinamento de raízes</a>
+    <a class='right-next' id="next-link" href="aula-05-ponto-fixo.html" title="next page"><span class="section-number">6. </span>Método da Iteração Linear (Ponto Fixo)</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

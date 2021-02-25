@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23. Integração Numérica: Quadratura Gaussiana &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="24. Diferenciação Numérica" href="aula-20-diferenciacao-numerica.html" />
+    <link rel="prev" title="22. Integração Numérica: Regras de Newton-Cotes" href="aula-18-integracao-newtonCotes.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-21-solucoes-edo.html">
+   25. Solução numérica de EDOs: método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-22-rungeKutta2.html">
+   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/aula-19-quadratura-gaussiana.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-19-quadratura-gaussiana.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-19-quadratura-gaussiana.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deducao-da-formula-de-gauss-legendre-para-dois-pontos">
+   23.1. Dedução da Fórmula de Gauss-Legendre para Dois Pontos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulas-com-mais-pontos">
+   23.2. Fórmulas com Mais Pontos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementacao">
+   23.3. Implementação
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tabela-de-pesos-pontos-quadratura-de-gauss-legendre">
+     23.3.1. Tabela de pesos/pontos - Quadratura de Gauss-Legendre
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tabela-de-quadratura-de-gauss-legendre">
+       23.3.1.1. Tabela de quadratura de Gauss-Legendre
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformacao-de-variaveis">
+   23.4. Transformação de variáveis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tarefa">
+     23.4.1. Tarefa
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nota">
+   23.5. Nota
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="integracao-numerica-quadratura-gaussiana">
+<h1><span class="section-number">23. </span>Integração Numérica: Quadratura Gaussiana<a class="headerlink" href="#integracao-numerica-quadratura-gaussiana" title="Permalink to this headline">¶</a></h1>
+<p>Uma característica das fórmulas de Newton-Cotes é estimar a integral com base em valores da função tomados em nós igualmente espaçados. Consequentemente, a posição desses nós é predeterminada, isto é, fixada.</p>
+<p>Agora, suponhamos que a restrição de ter nós fixados seja removida e que pudéssemos escolher arbitrariamente as posições por eles ocupadas. Com uma escolha adequada, será que conseguiríamos reduzir o erro de integração?</p>
+<p>De fato, o método da Quadratura Gaussiana permite-nos estabelecer um conjunto mínimo de <em>nós</em> e <em>pesos</em> que realizam uma espécie de “balanceamento” do erro (subestimação vs. superestimação) e determinam aproximações numéricas de integrais com alta ordem.</p>
+<p>As figuras abaixo mostram, por exemplo, como a integral de uma função <span class="math notranslate nohighlight">\(f(x)\)</span> é melhor calculada através da colocação de pontos em posições “especiais”. A regra do trapézio é posta em contraste com uma outra regra, que aprenderemos, cujo par de pontos, embora defina também um trapézio, ajuda a estimar melhor a integral de <span class="math notranslate nohighlight">\(f(x)\)</span> do que o observado no primeiro caso.</p>
+<p>Em particular, daremos enfoque à chamada <em>Quadratura de Gauss-Legendre</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy.polynomial.legendre</span> <span class="k">as</span> <span class="nn">leg</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">15</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">10</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Representação geométrica da regra do trapézio</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">)],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f1(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(a)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(b)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regra do Trapézio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="c1"># Representação geométrica da quadratura de Gauss</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">11.0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">f1</span><span class="p">(</span><span class="mi">8</span><span class="p">)],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f1(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(a)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(b)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">f1</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quadratura de Gauss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-19-quadratura-gaussiana_2_0.png" src="_images/aula-19-quadratura-gaussiana_2_0.png" />
+<img alt="_images/aula-19-quadratura-gaussiana_2_1.png" src="_images/aula-19-quadratura-gaussiana_2_1.png" />
+</div>
+</div>
+<div class="section" id="deducao-da-formula-de-gauss-legendre-para-dois-pontos">
+<h2><span class="section-number">23.1. </span>Dedução da Fórmula de Gauss-Legendre para Dois Pontos<a class="headerlink" href="#deducao-da-formula-de-gauss-legendre-para-dois-pontos" title="Permalink to this headline">¶</a></h2>
+<p>O objetivo da quadratura de Gauss-Legendre é determinar os coeficientes de uma equação da forma</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong c_0 f(x_0) + c_1 f(x_1) \qquad (1)
+\]</div>
+<p>em que os <span class="math notranslate nohighlight">\(c\)</span>’s são coeficientes desconhecidos. Entretanto, em contraste com a regra do trapézio que usa extremidades fixas <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>, os argumentos da função <span class="math notranslate nohighlight">\(x_0\)</span> e <span class="math notranslate nohighlight">\(x_1\)</span> não são fixados nas extremidades, mas são incógnitas. Assim, agora temos um total de quatro incógnitas que devem ser calculadas e necessitamos de quatro condições para determiná-las exatamente.</p>
+<p>Podemos obter duas dessas condições, supondo que a Equação (1) calcula a integral de uma função constante e de uma função linear exatamente. Então, para chegar a duas outras condições, simplesmente estendemos esse raciocínio supondo que ele também calculará a integral de uma função parabólica (<span class="math notranslate nohighlight">\(y = x^2\)</span>) e de uma cúbica (<span class="math notranslate nohighlight">\(y = x^3\)</span>) exatamente. Fazendo isso, determinamos todas as quatro incógnitas e, de quebra, deduzimos uma fórmula de integração linear de dois pontos que é exata para funções cúbicas. As quatro equações a serem resolvidas são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c_0 f(x_0) + c_1 f(x_1) = \int _{-1}^{1} 1 dx = 2 \qquad (2) \\
+c_0 f(x_0) + c_1 f(x_1) = \int _{-1}^{1} x dx = 0 \qquad (3) \\
+c_0 f(x_0) + c_1 f(x_1) = \int _{-1}^{1} x^2 dx = \dfrac{2}{3} \qquad (4) \\
+c_0 f(x_0) + c_1 f(x_1) = \int _{-1}^{1} x^3 dx = 0 \qquad (5)
+\end{split}\]</div>
+<p>As Equações (2) até (5) podem ser resolvidas simultaneamente por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c_0 = c_1 = 1 \\
+x_0 = -\dfrac{1}{\sqrt{3}} \\
+x_1 = \dfrac{1}{\sqrt{3}}
+\end{split}\]</div>
+<p>o que pode ser substituído na Equação (1) para fornecer a fórmula de Gauss-Legendre de dois pontos</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong f \left( \dfrac{-1}{\sqrt{3}} \right) + f \left( \dfrac{1}{\sqrt{3}} \right) \qquad (6)
+\]</div>
+<p>Logo, chegamos ao interessante resultado que uma simples adição de valores da função em <span class="math notranslate nohighlight">\(x = 1/\sqrt{3}\)</span> e <span class="math notranslate nohighlight">\(−1/\sqrt{3}\)</span> fornece uma estimativa da integral que tem acurácia de terceira ordem.</p>
+<p>Observe que os extremos de integração nas Equações (2) até (5) são de <span class="math notranslate nohighlight">\(−1\)</span> a <span class="math notranslate nohighlight">\(1\)</span>. Isso foi feito para simplificar a matemática e tornar a formulação tão geral quanto possível. Uma simples mudança de variável pode ser usada para transformar outros extremos de integração para essa fórmula, o que se faz supondo que uma nova variável <span class="math notranslate nohighlight">\(x_d\)</span> está relacionada à variável original <span class="math notranslate nohighlight">\(x\)</span> de uma forma linear como em</p>
+<div class="math notranslate nohighlight">
+\[
+x = a_0 + a_1 x_d \qquad (7)
+\]</div>
+<p>Se o extremo inferior, <span class="math notranslate nohighlight">\(x = a\)</span>, corresponder a <span class="math notranslate nohighlight">\(x_d = −1\)</span>, esses valores podem ser substituídos na Equação (7) para fornecer</p>
+<div class="math notranslate nohighlight">
+\[
+a = a_0 + a_1 (- 1) \qquad (8)
+\]</div>
+<p>Analogamente, o extremo superior, <span class="math notranslate nohighlight">\(x = b\)</span>, corresponde a <span class="math notranslate nohighlight">\(x_d = 1\)</span>, e fornece</p>
+<div class="math notranslate nohighlight">
+\[
+b = a_0 + a_1 (1) \qquad (9)
+\]</div>
+<p>As Equações (8) e (9) podem ser resolvidas simultaneamente por</p>
+<div class="math notranslate nohighlight">
+\[
+a_0 = \dfrac{b + a}{2}
+\]</div>
+<p>e</p>
+<div class="math notranslate nohighlight">
+\[
+a_1 = \dfrac{b - a}{2}
+\]</div>
+<p>o que pode ser substituído na Equação (7) para fornecer</p>
+<div class="math notranslate nohighlight">
+\[
+x = \dfrac{(b + a) + (b - a) x_d}{2} \qquad (10)
+\]</div>
+<p>Essa equação pode ser derivada para dar</p>
+<div class="math notranslate nohighlight">
+\[
+dx = \dfrac{b - a}{2} dx_d \qquad (11)
+\]</div>
+<p>Os valores de <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(dx\)</span>, nas Equações (10) e (11), respectivamente, podem ser substituídos na equação a ser integrada. Essas substituições transformam efetivamente o intervalo de integração sem mudar o valor da integral.</p>
+</div>
+<div class="section" id="formulas-com-mais-pontos">
+<h2><span class="section-number">23.2. </span>Fórmulas com Mais Pontos<a class="headerlink" href="#formulas-com-mais-pontos" title="Permalink to this headline">¶</a></h2>
+<p>Além da fórmula de dois pontos descrita acima, versões com mais pontos podem ser desenvolvidas na forma geral</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
+\]</div>
+<p>em que <span class="math notranslate nohighlight">\(n\)</span> é o número de pontos. Os valores para os <span class="math notranslate nohighlight">\(c\)</span>’s e os <span class="math notranslate nohighlight">\(x\)</span>’s para até (e incluindo) a fórmula de quatro pontos estão resumidos na tabela abaixo.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pontos</p></th>
+<th class="head"><p>Fatores de Peso</p></th>
+<th class="head"><p>Argumentos da Função</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_0\)</span> = 0.5555556</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_0\)</span> = - 0.774596669</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(c_1\)</span> = 0.8888889</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_1\)</span> = 0.0</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c_2\)</span> = 0.5555556</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_2\)</span> = 0.774596669</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_0\)</span> = 0.3478548</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_0\)</span> = - 0.861136312</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c_1\)</span> = 0.6521452</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_1\)</span> = - 0.339981044</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(c_2\)</span> = 0.6521452</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_2\)</span> = 0.339981044</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c_3\)</span> = 0.3478548</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_3\)</span> = 0.861136312</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="implementacao">
+<h2><span class="section-number">23.3. </span>Implementação<a class="headerlink" href="#implementacao" title="Permalink to this headline">¶</a></h2>
+<p>Vamos implementar abaixo o código para gerar a tabela de pontos (nós) e pesos para integração numérica consoante as fórmulas de quadratura de <strong>Gauss-Legendre</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># número de pontos de quadratura</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># pontos e pesos</span>
+<span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        
+</pre></div>
+</div>
+</div>
+</div>
+<p>Isto é, para a regra de 2 pontos, os nós de Gauss-Legendre são</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.96028986 -0.79666648 -0.52553241 -0.18343464  0.18343464  0.52553241
+  0.79666648  0.96028986]
+</pre></div>
+</div>
+</div>
+</div>
+<p>e os pesos correspondentes são:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pesos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.10122854 0.22238103 0.31370665 0.36268378 0.36268378 0.31370665
+ 0.22238103 0.10122854]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">autoscale</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-19-quadratura-gaussiana_10_0.png" src="_images/aula-19-quadratura-gaussiana_10_0.png" />
+</div>
+</div>
+<div class="section" id="tabela-de-pesos-pontos-quadratura-de-gauss-legendre">
+<h3><span class="section-number">23.3.1. </span>Tabela de pesos/pontos - Quadratura de Gauss-Legendre<a class="headerlink" href="#tabela-de-pesos-pontos-quadratura-de-gauss-legendre" title="Permalink to this headline">¶</a></h3>
+<p>Para gerarmos uma tabela de pontos e pesos, basta fazer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># número máximo de pontos</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>       
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;REGRA DE </span><span class="si">{0}</span><span class="s1"> PONTO(S):</span><span class="se">\n</span><span class="s1">-&gt; Pontos:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&gt; Pesos:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pesos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRA DE 1 PONTO(S):
+-&gt; Pontos:
+[0.]
+-&gt; Pesos:
+[2.]
+
+
+REGRA DE 2 PONTO(S):
+-&gt; Pontos:
+[-0.57735027  0.57735027]
+-&gt; Pesos:
+[1. 1.]
+
+
+REGRA DE 3 PONTO(S):
+-&gt; Pontos:
+[-0.77459667  0.          0.77459667]
+-&gt; Pesos:
+[0.55555556 0.88888889 0.55555556]
+
+
+REGRA DE 4 PONTO(S):
+-&gt; Pontos:
+[-0.86113631 -0.33998104  0.33998104  0.86113631]
+-&gt; Pesos:
+[0.34785485 0.65214515 0.65214515 0.34785485]
+
+
+REGRA DE 5 PONTO(S):
+-&gt; Pontos:
+[-0.90617985 -0.53846931  0.          0.53846931  0.90617985]
+-&gt; Pesos:
+[0.23692689 0.47862867 0.56888889 0.47862867 0.23692689]
+
+
+REGRA DE 6 PONTO(S):
+-&gt; Pontos:
+[-0.93246951 -0.66120939 -0.23861919  0.23861919  0.66120939  0.93246951]
+-&gt; Pesos:
+[0.17132449 0.36076157 0.46791393 0.46791393 0.36076157 0.17132449]
+
+
+REGRA DE 7 PONTO(S):
+-&gt; Pontos:
+[-0.94910791 -0.74153119 -0.40584515  0.          0.40584515  0.74153119
+  0.94910791]
+-&gt; Pesos:
+[0.12948497 0.27970539 0.38183005 0.41795918 0.38183005 0.27970539
+ 0.12948497]
+
+
+REGRA DE 8 PONTO(S):
+-&gt; Pontos:
+[-0.96028986 -0.79666648 -0.52553241 -0.18343464  0.18343464  0.52553241
+  0.79666648  0.96028986]
+-&gt; Pesos:
+[0.10122854 0.22238103 0.31370665 0.36268378 0.36268378 0.31370665
+ 0.22238103 0.10122854]
+
+
+REGRA DE 9 PONTO(S):
+-&gt; Pontos:
+[-0.96816024 -0.83603111 -0.61337143 -0.32425342  0.          0.32425342
+  0.61337143  0.83603111  0.96816024]
+-&gt; Pesos:
+[0.08127439 0.18064816 0.2606107  0.31234708 0.33023936 0.31234708
+ 0.2606107  0.18064816 0.08127439]
+
+
+REGRA DE 10 PONTO(S):
+-&gt; Pontos:
+[-0.97390653 -0.86506337 -0.67940957 -0.43339539 -0.14887434  0.14887434
+  0.43339539  0.67940957  0.86506337  0.97390653]
+-&gt; Pesos:
+[0.06667134 0.14945135 0.21908636 0.26926672 0.29552422 0.29552422
+ 0.26926672 0.21908636 0.14945135 0.06667134]
+
+
+REGRA DE 11 PONTO(S):
+-&gt; Pontos:
+[-0.97822866 -0.8870626  -0.73015201 -0.51909613 -0.26954316  0.
+  0.26954316  0.51909613  0.73015201  0.8870626   0.97822866]
+-&gt; Pesos:
+[0.05566857 0.12558037 0.18629021 0.23319376 0.26280454 0.27292509
+ 0.26280454 0.23319376 0.18629021 0.12558037 0.05566857]
+
+
+REGRA DE 12 PONTO(S):
+-&gt; Pontos:
+[-0.98156063 -0.90411726 -0.76990267 -0.58731795 -0.3678315  -0.12523341
+  0.12523341  0.3678315   0.58731795  0.76990267  0.90411726  0.98156063]
+-&gt; Pesos:
+[0.04717534 0.10693933 0.16007833 0.20316743 0.23349254 0.24914705
+ 0.24914705 0.23349254 0.20316743 0.16007833 0.10693933 0.04717534]
+
+
+REGRA DE 13 PONTO(S):
+-&gt; Pontos:
+[-0.98418305 -0.9175984  -0.80157809 -0.64234934 -0.44849275 -0.23045832
+  0.          0.23045832  0.44849275  0.64234934  0.80157809  0.9175984
+  0.98418305]
+-&gt; Pesos:
+[0.040484   0.0921215  0.13887351 0.17814598 0.20781605 0.22628318
+ 0.23255155 0.22628318 0.20781605 0.17814598 0.13887351 0.0921215
+ 0.040484  ]
+
+
+REGRA DE 14 PONTO(S):
+-&gt; Pontos:
+[-0.98628381 -0.92843488 -0.82720132 -0.6872929  -0.51524864 -0.31911237
+ -0.10805495  0.10805495  0.31911237  0.51524864  0.6872929   0.82720132
+  0.92843488  0.98628381]
+-&gt; Pesos:
+[0.03511946 0.08015809 0.12151857 0.15720317 0.1855384  0.20519846
+ 0.21526385 0.21526385 0.20519846 0.1855384  0.15720317 0.12151857
+ 0.08015809 0.03511946]
+
+
+REGRA DE 15 PONTO(S):
+-&gt; Pontos:
+[-0.98799252 -0.93727339 -0.84820658 -0.72441773 -0.57097217 -0.39415135
+ -0.20119409  0.          0.20119409  0.39415135  0.57097217  0.72441773
+  0.84820658  0.93727339  0.98799252]
+-&gt; Pesos:
+[0.03075324 0.07036605 0.10715922 0.13957068 0.16626921 0.186161
+ 0.19843149 0.20257824 0.19843149 0.186161   0.16626921 0.13957068
+ 0.10715922 0.07036605 0.03075324]
+
+
+REGRA DE 16 PONTO(S):
+-&gt; Pontos:
+[-0.98940093 -0.94457502 -0.8656312  -0.75540441 -0.61787624 -0.45801678
+ -0.28160355 -0.09501251  0.09501251  0.28160355  0.45801678  0.61787624
+  0.75540441  0.8656312   0.94457502  0.98940093]
+-&gt; Pesos:
+[0.02715246 0.06225352 0.09515851 0.12462897 0.14959599 0.16915652
+ 0.18260342 0.18945061 0.18945061 0.18260342 0.16915652 0.14959599
+ 0.12462897 0.09515851 0.06225352 0.02715246]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A partir daí, podemos organizar uma tabela para a regra de até 8 pontos/pesos como segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># número máximo de pontos</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">header</span><span class="o">=</span><span class="s1">&#39;| Regra | nó(s) | peso(s) |</span><span class="se">\n</span><span class="s1">|---|---|---|&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>       
+    <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pontos</span><span class="p">])</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pesos</span><span class="p">])</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="n">w</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>                   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Regra | nó(s) | peso(s) |
+|---|---|---|
+|1|0.0|2.0|
+|2|-0.5773502691896257, 0.5773502691896257|1.0, 1.0|
+|3|-0.7745966692414834, 0.0, 0.7745966692414834|0.5555555555555557, 0.8888888888888888, 0.5555555555555557|
+|4|-0.8611363115940526, -0.33998104358485626, 0.33998104358485626, 0.8611363115940526|0.3478548451374537, 0.6521451548625462, 0.6521451548625462, 0.3478548451374537|
+|5|-0.906179845938664, -0.5384693101056831, 0.0, 0.5384693101056831, 0.906179845938664|0.23692688505618942, 0.4786286704993662, 0.568888888888889, 0.4786286704993662, 0.23692688505618942|
+|6|-0.932469514203152, -0.6612093864662645, -0.23861918608319693, 0.23861918608319693, 0.6612093864662645, 0.932469514203152|0.17132449237916975, 0.36076157304813894, 0.46791393457269137, 0.46791393457269137, 0.36076157304813894, 0.17132449237916975|
+|7|-0.9491079123427585, -0.7415311855993945, -0.4058451513773972, 0.0, 0.4058451513773972, 0.7415311855993945, 0.9491079123427585|0.12948496616887065, 0.2797053914892766, 0.3818300505051183, 0.41795918367346896, 0.3818300505051183, 0.2797053914892766, 0.12948496616887065|
+|8|-0.9602898564975362, -0.7966664774136267, -0.525532409916329, -0.18343464249564978, 0.18343464249564978, 0.525532409916329, 0.7966664774136267, 0.9602898564975362|0.10122853629037669, 0.22238103445337434, 0.31370664587788705, 0.36268378337836177, 0.36268378337836177, 0.31370664587788705, 0.22238103445337434, 0.10122853629037669|
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tabela-de-quadratura-de-gauss-legendre">
+<h4><span class="section-number">23.3.1.1. </span>Tabela de quadratura de Gauss-Legendre<a class="headerlink" href="#tabela-de-quadratura-de-gauss-legendre" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regra</p></th>
+<th class="head"><p>nó(s)</p></th>
+<th class="head"><p>peso(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.0</p></td>
+<td><p>2.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-0.57735026919, 0.57735026919</p></td>
+<td><p>1.0, 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>-0.774596669241, 0.0, 0.774596669241</p></td>
+<td><p>0.555555555556, 0.888888888889, 0.555555555556</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>-0.861136311594, -0.339981043585, 0.339981043585, 0.861136311594</p></td>
+<td><p>0.347854845137, 0.652145154863, 0.652145154863, 0.347854845137</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>-0.906179845939, -0.538469310106, 0.0, 0.538469310106, 0.906179845939</p></td>
+<td><p>0.236926885056, 0.478628670499, 0.568888888889, 0.478628670499, 0.236926885056</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>-0.932469514203, -0.661209386466, -0.238619186083, 0.238619186083, 0.661209386466, 0.932469514203</p></td>
+<td><p>0.171324492379, 0.360761573048, 0.467913934573, 0.467913934573, 0.360761573048, 0.171324492379</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-0.949107912343, -0.741531185599, -0.405845151377, 0.0, 0.405845151377, 0.741531185599, 0.949107912343</p></td>
+<td><p>0.129484966169, 0.279705391489, 0.381830050505, 0.417959183673, 0.381830050505, 0.279705391489, 0.129484966169</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>-0.960289856498, -0.796666477414, -0.525532409916, -0.183434642496, 0.183434642496, 0.525532409916, 0.796666477414, 0.960289856498</p></td>
+<td><p>0.10122853629, 0.222381034453, 0.313706645878, 0.362683783378, 0.362683783378, 0.313706645878, 0.222381034453, 0.10122853629</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="transformacao-de-variaveis">
+<h2><span class="section-number">23.4. </span>Transformação de variáveis<a class="headerlink" href="#transformacao-de-variaveis" title="Permalink to this headline">¶</a></h2>
+<p>Uma integral <span class="math notranslate nohighlight">\(\int_a^b f(x) \, dx\)</span> sobre <span class="math notranslate nohighlight">\([a,b]\)</span> arbitrário ser transformada em uma integral em <span class="math notranslate nohighlight">\([-1,1]\)</span> utilizando a mudança de variáveis:</p>
+<div class="math notranslate nohighlight">
+\[t = \dfrac{2x - a - b}{b - a} \Rightarrow x = \dfrac{1}{2}[(b-a)t + a + b]\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$t = \dfrac{2x - a - b}{b - a}$&#39;</span><span class="p">,(</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-19-quadratura-gaussiana_18_0.png" src="_images/aula-19-quadratura-gaussiana_18_0.png" />
+</div>
+</div>
+<div class="section" id="tarefa">
+<h3><span class="section-number">23.4.1. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h3>
+<p>Defina uma função como a seguinte que retorne <code class="docutils literal notranslate"><span class="pre">output</span></code>, tal que <code class="docutils literal notranslate"><span class="pre">type(output)</span></code> seja <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_gauss_legendre_table</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">header</span><span class="o">=</span><span class="s1">&#39;| Regra | nó(s) | peso(s) |</span><span class="se">\n</span><span class="s1">|---|---|---|&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>       
+        <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pontos</span><span class="p">])</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pesos</span><span class="p">])</span>    
+        <span class="n">row</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="n">w</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>             
+</pre></div>
+</div>
+<p>Então, reimprima a tabela para 8 pesos/pontos anterior com o código.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">print_gauss_legendre_table</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Em seguida, use o código abaixo para converter a saída da célula de código do Jupyter diretamente para Markdown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Por último, incorpore esta funcionalidade em <code class="docutils literal notranslate"><span class="pre">print_gauss_legendre_table(N)</span></code>, para <code class="docutils literal notranslate"><span class="pre">N</span></code> dado.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regra</p></th>
+<th class="head"><p>nó(s)</p></th>
+<th class="head"><p>peso(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.0</p></td>
+<td><p>2.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-0.57735026919, 0.57735026919</p></td>
+<td><p>1.0, 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>-0.774596669241, 0.0, 0.774596669241</p></td>
+<td><p>0.555555555556, 0.888888888889, 0.555555555556</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>-0.861136311594, -0.339981043585, 0.339981043585, 0.861136311594</p></td>
+<td><p>0.347854845137, 0.652145154863, 0.652145154863, 0.347854845137</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>-0.906179845939, -0.538469310106, 0.0, 0.538469310106, 0.906179845939</p></td>
+<td><p>0.236926885056, 0.478628670499, 0.568888888889, 0.478628670499, 0.236926885056</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>-0.932469514203, -0.661209386466, -0.238619186083, 0.238619186083, 0.661209386466, 0.932469514203</p></td>
+<td><p>0.171324492379, 0.360761573048, 0.467913934573, 0.467913934573, 0.360761573048, 0.171324492379</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-0.949107912343, -0.741531185599, -0.405845151377, 0.0, 0.405845151377, 0.741531185599, 0.949107912343</p></td>
+<td><p>0.129484966169, 0.279705391489, 0.381830050505, 0.417959183673, 0.381830050505, 0.279705391489, 0.129484966169</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>-0.960289856498, -0.796666477414, -0.525532409916, -0.183434642496, 0.183434642496, 0.525532409916, 0.796666477414, 0.960289856498</p></td>
+<td><p>0.10122853629, 0.222381034453, 0.313706645878, 0.362683783378, 0.362683783378, 0.313706645878, 0.222381034453, 0.10122853629</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>-0.968160239508, -0.836031107327, -0.613371432701, -0.324253423404, 0.0, 0.324253423404, 0.613371432701, 0.836031107327, 0.968160239508</p></td>
+<td><p>0.0812743883616, 0.180648160695, 0.260610696403, 0.31234707704, 0.330239355001, 0.31234707704, 0.260610696403, 0.180648160695, 0.0812743883616</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>-0.973906528517, -0.865063366689, -0.679409568299, -0.433395394129, -0.148874338982, 0.148874338982, 0.433395394129, 0.679409568299, 0.865063366689, 0.973906528517</p></td>
+<td><p>0.0666713443087, 0.149451349151, 0.219086362516, 0.26926671931, 0.295524224715, 0.295524224715, 0.26926671931, 0.219086362516, 0.149451349151, 0.0666713443087</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>-0.978228658146, -0.887062599768, -0.730152005574, -0.519096129207, -0.269543155952, 0.0, 0.269543155952, 0.519096129207, 0.730152005574, 0.887062599768, 0.978228658146</p></td>
+<td><p>0.0556685671162, 0.125580369465, 0.186290210928, 0.233193764592, 0.26280454451, 0.272925086778, 0.26280454451, 0.233193764592, 0.186290210928, 0.125580369465, 0.0556685671162</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>-0.981560634247, -0.90411725637, -0.769902674194, -0.587317954287, -0.367831498998, -0.125233408511, 0.125233408511, 0.367831498998, 0.587317954287, 0.769902674194, 0.90411725637, 0.981560634247</p></td>
+<td><p>0.0471753363865, 0.106939325995, 0.160078328543, 0.203167426723, 0.233492536538, 0.249147045813, 0.249147045813, 0.233492536538, 0.203167426723, 0.160078328543, 0.106939325995, 0.0471753363865</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="nota">
+<h2><span class="section-number">23.5. </span>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">¶</a></h2>
+<p>O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
+    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
+<span class="n">css_styling</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="aula-18-integracao-newtonCotes.html" title="previous page"><span class="section-number">22. </span>Integração Numérica: Regras de Newton-Cotes</a>
+    <a class='right-next' id="next-link" href="aula-20-diferenciacao-numerica.html" title="next page"><span class="section-number">24. </span>Diferenciação Numérica</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
