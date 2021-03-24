@@ -8,3 +8,4 @@ bookbook
 nbval
 plotly
 numba
+pandas
