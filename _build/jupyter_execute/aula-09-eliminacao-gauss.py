@@ -103,7 +103,9 @@ a_{31}x_1+a_{32}x_2+a_{33}x_3 = b_3 \quad(L_3)\\
 * Realizar operações elementares de combinação linear e permutação entre linhas;
 
     - Multiplicação por escalar:
-$$\begin{array}{c}
+    
+$$
+\begin{array}{c}
 L_2 \leftarrow L_2 .w\ \Rightarrow\ 
 \begin{bmatrix}
 a_{11}&a_{12}\\
@@ -113,10 +115,13 @@ a_{21}&a_{22}\\
 a_{11}&a_{12}\\
 w.a_{21}&w.a_{22}\\
 \end{bmatrix}
-\end{array}$$
+\end{array}
+$$
 
     - Combinação linear:
-$$\begin{array}{c}
+    
+$$
+\begin{array}{c}
 L_2 \leftarrow L_2 - L_1.w\ \Rightarrow\ 
 \begin{bmatrix}
 a_{11}&a_{12}\\
@@ -126,10 +131,13 @@ a_{21}&a_{22}\\
 a_{11}&a_{12}\\
 a_{21}-a_{11}.w&a_{22}-a_{12}.w\\
 \end{bmatrix}
-\end{array}$$
+\end{array}
+$$
 
     - Permutação:
-$$\begin{array}{c}
+    
+$$
+\begin{array}{c}
 L_2 \leftarrow L_1\ e\ L_1\leftarrow L_2\ \Rightarrow\ 
 \begin{bmatrix}
 a_{11}&a_{12}\\
@@ -139,7 +147,8 @@ a_{21}&a_{22}\\
 a_{21}&a_{22}\\
 a_{11}&a_{12}\\
 \end{bmatrix}
-\end{array}$$
+\end{array}
+$$
 
 * Anular todos os elementos na porção triangular inferior da matriz original, isto é, todas as entradas exatamente abaixo das entradas dispostas na diagonal principal;
 
