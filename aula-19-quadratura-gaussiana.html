@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>23. Integração Numérica: Quadratura Gaussiana &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -460,6 +462,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -467,7 +470,7 @@
         
               <div>
                 
-  <div class="section" id="integracao-numerica-quadratura-gaussiana">
+  <section id="integracao-numerica-quadratura-gaussiana">
 <h1><span class="section-number">23. </span>Integração Numérica: Quadratura Gaussiana<a class="headerlink" href="#integracao-numerica-quadratura-gaussiana" title="Permalink to this headline">¶</a></h1>
 <p>Uma característica das fórmulas de Newton-Cotes é estimar a integral com base em valores da função tomados em nós igualmente espaçados. Consequentemente, a posição desses nós é predeterminada, isto é, fixada.</p>
 <p>Agora, suponhamos que a restrição de ter nós fixados seja removida e que pudéssemos escolher arbitrariamente as posições por eles ocupadas. Com uma escolha adequada, será que conseguiríamos reduzir o erro de integração?</p>
@@ -528,7 +531,7 @@
 <img alt="_images/aula-19-quadratura-gaussiana_2_1.png" src="_images/aula-19-quadratura-gaussiana_2_1.png" />
 </div>
 </div>
-<div class="section" id="deducao-da-formula-de-gauss-legendre-para-dois-pontos">
+<section id="deducao-da-formula-de-gauss-legendre-para-dois-pontos">
 <h2><span class="section-number">23.1. </span>Dedução da Fórmula de Gauss-Legendre para Dois Pontos<a class="headerlink" href="#deducao-da-formula-de-gauss-legendre-para-dois-pontos" title="Permalink to this headline">¶</a></h2>
 <p>O objetivo da quadratura de Gauss-Legendre é determinar os coeficientes de uma equação da forma</p>
 <div class="math notranslate nohighlight">
@@ -593,8 +596,8 @@ x = \dfrac{(b + a) + (b - a) x_d}{2} \qquad (10)
 dx = \dfrac{b - a}{2} dx_d \qquad (11)
 \]</div>
 <p>Os valores de <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(dx\)</span>, nas Equações (10) e (11), respectivamente, podem ser substituídos na equação a ser integrada. Essas substituições transformam efetivamente o intervalo de integração sem mudar o valor da integral.</p>
-</div>
-<div class="section" id="formulas-com-mais-pontos">
+</section>
+<section id="formulas-com-mais-pontos">
 <h2><span class="section-number">23.2. </span>Fórmulas com Mais Pontos<a class="headerlink" href="#formulas-com-mais-pontos" title="Permalink to this headline">¶</a></h2>
 <p>Além da fórmula de dois pontos descrita acima, versões com mais pontos podem ser desenvolvidas na forma geral</p>
 <div class="math notranslate nohighlight">
@@ -640,8 +643,8 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="implementacao">
+</section>
+<section id="implementacao">
 <h2><span class="section-number">23.3. </span>Implementação<a class="headerlink" href="#implementacao" title="Permalink to this headline">¶</a></h2>
 <p>Vamos implementar abaixo o código para gerar a tabela de pontos (nós) e pesos para integração numérica consoante as fórmulas de quadratura de <strong>Gauss-Legendre</strong>.</p>
 <div class="cell docutils container">
@@ -694,7 +697,7 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 <img alt="_images/aula-19-quadratura-gaussiana_10_0.png" src="_images/aula-19-quadratura-gaussiana_10_0.png" />
 </div>
 </div>
-<div class="section" id="tabela-de-pesos-pontos-quadratura-de-gauss-legendre">
+<section id="tabela-de-pesos-pontos-quadratura-de-gauss-legendre">
 <h3><span class="section-number">23.3.1. </span>Tabela de pesos/pontos - Quadratura de Gauss-Legendre<a class="headerlink" href="#tabela-de-pesos-pontos-quadratura-de-gauss-legendre" title="Permalink to this headline">¶</a></h3>
 <p>Para gerarmos uma tabela de pontos e pesos, basta fazer:</p>
 <div class="cell docutils container">
@@ -887,7 +890,7 @@ REGRA DE 16 PONTO(S):
 </div>
 </div>
 </div>
-<div class="section" id="tabela-de-quadratura-de-gauss-legendre">
+<section id="tabela-de-quadratura-de-gauss-legendre">
 <h4><span class="section-number">23.3.1.1. </span>Tabela de quadratura de Gauss-Legendre<a class="headerlink" href="#tabela-de-quadratura-de-gauss-legendre" title="Permalink to this headline">¶</a></h4>
 <table class="colwidths-auto table">
 <thead>
@@ -931,10 +934,10 @@ REGRA DE 16 PONTO(S):
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-<div class="section" id="transformacao-de-variaveis">
+</section>
+</section>
+</section>
+<section id="transformacao-de-variaveis">
 <h2><span class="section-number">23.4. </span>Transformação de variáveis<a class="headerlink" href="#transformacao-de-variaveis" title="Permalink to this headline">¶</a></h2>
 <p>Uma integral <span class="math notranslate nohighlight">\(\int_a^b f(x) \, dx\)</span> sobre <span class="math notranslate nohighlight">\([a,b]\)</span> arbitrário ser transformada em uma integral em <span class="math notranslate nohighlight">\([-1,1]\)</span> utilizando a mudança de variáveis:</p>
 <div class="math notranslate nohighlight">
@@ -955,7 +958,7 @@ REGRA DE 16 PONTO(S):
 <img alt="_images/aula-19-quadratura-gaussiana_18_0.png" src="_images/aula-19-quadratura-gaussiana_18_0.png" />
 </div>
 </div>
-<div class="section" id="tarefa">
+<section id="tarefa">
 <h3><span class="section-number">23.4.1. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h3>
 <p>Defina uma função como a seguinte que retorne <code class="docutils literal notranslate"><span class="pre">output</span></code>, tal que <code class="docutils literal notranslate"><span class="pre">type(output)</span></code> seja <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_gauss_legendre_table</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
@@ -1037,9 +1040,9 @@ REGRA DE 16 PONTO(S):
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="nota">
+</section>
+</section>
+<section id="nota">
 <h2><span class="section-number">23.5. </span>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">¶</a></h2>
 <p>O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).</p>
 <div class="cell docutils container">
@@ -1054,8 +1057,8 @@ REGRA DE 16 PONTO(S):
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1079,15 +1082,15 @@ REGRA DE 16 PONTO(S):
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="aula-18-integracao-newtonCotes.html" title="previous page"><span class="section-number">22. </span>Integração Numérica: Regras de Newton-Cotes</a>
     <a class='right-next' id="next-link" href="aula-20-diferenciacao-numerica.html" title="next page"><span class="section-number">24. </span>Diferenciação Numérica</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

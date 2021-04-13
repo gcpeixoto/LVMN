@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Lista de Exercícios 5 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -627,6 +629,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -634,7 +637,7 @@
         
               <div>
                 
-  <div class="section" id="lista-de-exercicios-5">
+  <section id="lista-de-exercicios-5">
 <h1>Lista de Exercícios 5<a class="headerlink" href="#lista-de-exercicios-5" title="Permalink to this headline">¶</a></h1>
 <p>Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 5.</p>
 <div class="cell docutils container">
@@ -653,13 +656,13 @@
 </div>
 </div>
 </div>
-<div class="section" id="ajuste-de-curvas">
+<section id="ajuste-de-curvas">
 <h2>Ajuste de curvas<a class="headerlink" href="#ajuste-de-curvas" title="Permalink to this headline">¶</a></h2>
 <p><strong>Obs.:</strong>: função <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> retorna coeficientes da curva de ajuste na ordem:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="o">...</span>
 </pre></div>
 </div>
-<div class="section" id="exemplo-solucao-fechada-2d">
+<section id="exemplo-solucao-fechada-2d">
 <h3>Exemplo: solução fechada 2D<a class="headerlink" href="#exemplo-solucao-fechada-2d" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,11 +686,11 @@
 <img alt="_images/lista-5-solucoes_5_0.png" src="_images/lista-5-solucoes_5_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="resolucao-da-lista-5">
+</section>
+</section>
+<section id="resolucao-da-lista-5">
 <h2>Resolução da Lista 5<a class="headerlink" href="#resolucao-da-lista-5" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="funcao-base-para-computar-ajuste-e-plotar-resultados">
+<section id="funcao-base-para-computar-ajuste-e-plotar-resultados">
 <h3>Função-base para computar ajuste e plotar resultados<a class="headerlink" href="#funcao-base-para-computar-ajuste-e-plotar-resultados" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -712,8 +715,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="l5-q2">
+</section>
+<section id="l5-q2">
 <h3>L5-Q2<a class="headerlink" href="#l5-q2" title="Permalink to this headline">¶</a></h3>
 <p>Ajuste os dados abaixo pelo método dos mínimos quadrados:</p>
 <p>\begin{array}{c|cccccccc}
@@ -723,10 +726,10 @@ y &amp; 0.5 &amp; 0.6  &amp; 0.9 &amp; 0.8 &amp; 1.2 &amp; 1.5 &amp;  1.7 &amp; 
 \end{array}</p>
 <p>a) por reta</p>
 <p>b) por parábola do tipo <span class="math notranslate nohighlight">\(ax^2 + bx + c\)</span>;</p>
-</div>
-<div class="section" id="solucao">
+</section>
+<section id="solucao">
 <h3>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="metodologia-matematica">
+<section id="metodologia-matematica">
 <h4>Metodologia matemática<a class="headerlink" href="#metodologia-matematica" title="Permalink to this headline">¶</a></h4>
 <p>a)</p>
 <div class="math notranslate nohighlight">
@@ -819,8 +822,8 @@ b_{3}=\  &lt;g_3,f&gt;  \ &amp;= 9.2
 \[\alpha_1 = 0.4071 ,\  \alpha_2 = 0.07738, \  \alpha_3 = 0.01547\]</div>
 <div class="math notranslate nohighlight">
 \[f(x) = 0.01547 + 0.07738x + 0.4071x^2\]</div>
-</div>
-<div class="section" id="metodologia-computacional">
+</section>
+<section id="metodologia-computacional">
 <h4>Metodologia computacional<a class="headerlink" href="#metodologia-computacional" title="Permalink to this headline">¶</a></h4>
 <p>a)</p>
 <div class="cell docutils container">
@@ -861,9 +864,9 @@ Coeficiente de ajuste p[2]: 0.407142857142857
 <img alt="_images/lista-5-solucoes_17_1.png" src="_images/lista-5-solucoes_17_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="l5-q3">
+</section>
+</section>
+<section id="l5-q3">
 <h3>L5-Q3<a class="headerlink" href="#l5-q3" title="Permalink to this headline">¶</a></h3>
 <p>Dada a tabela abaixo, faça o gráfico de dispersão dos dados e ajuste uma curva da melhor maneira possı́vel:</p>
 <p>\begin{array}{c|cccccc}
@@ -871,10 +874,10 @@ x &amp; 0.5 &amp; 0.75 &amp; 1 &amp; 1.5 &amp; 2.0 &amp; 2.5 &amp; 3.0  \
 \hline
 y &amp; -2.8 &amp; -0.6 &amp; 1&amp; 3.2&amp; 4.8 &amp; 6.0 &amp; 7.0
 \end{array}</p>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h3>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id2">
+<section id="id2">
 <h4>Metodologia matemática<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <div class="math notranslate nohighlight">
 \[g_1(x) = 1$$$$ g_2(x)=x$$$$ g_3(x)=x²$$ $$ g_4(x)=x³\]</div>
@@ -927,8 +930,8 @@ b_{4}=\  &lt;g_4,f&gt;  \ &amp;= 332.34
 \[\alpha_1 = -8.1043 ,\  \alpha_2 = 12.7882 \  \alpha_3 = -4.3250 , \  \alpha_4 = 0.5813\]</div>
 <div class="math notranslate nohighlight">
 \[f(x) = 0.5813  - 4.3250x + 12.79x^2 - 8.1043x^3\]</div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h4>Metodologia computacional<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -958,9 +961,9 @@ Coeficiente de ajuste p[3]: -8.131256481519904
 <img alt="_images/lista-5-solucoes_22_2.png" src="_images/lista-5-solucoes_22_2.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="l5-q4">
+</section>
+</section>
+<section id="l5-q4">
 <h3>L5-Q4<a class="headerlink" href="#l5-q4" title="Permalink to this headline">¶</a></h3>
 <p>A tabela abaixo mostra as alturas e pesos de nove homens entre as idades de 25 a 29 anos extraı́da ao acaso entre funcionários de uma grande indústria:</p>
 <p>\begin{array}{c|ccccccccc}
@@ -968,7 +971,7 @@ Coeficiente de ajuste p[3]: -8.131256481519904
 \hline
 \text{Peso/kg} &amp; 79 &amp; 69 &amp; 70&amp; 81  &amp; 61 &amp;63 &amp;79 &amp; 71 &amp; 73
 \end{array}</p>
-<div class="section" id="id4">
+<section id="id4">
 <h4>Metodologia matemática<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <div class="math notranslate nohighlight">
 \[g_1(x) = 1$$$$ g_2(x)=x\]</div>
@@ -1004,8 +1007,8 @@ b_{2}=\ &lt;g_2,f&gt;  \ &amp;= 113.103
 \[\alpha_1 = -20.0832 ,\  \alpha_2 = 0.5276\]</div>
 <div class="math notranslate nohighlight">
 \[f(x) = 0.5276x - 20.0832\]</div>
-</div>
-<div class="section" id="id5">
+</section>
+<section id="id5">
 <h4>Metodologia computacional<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1024,9 +1027,9 @@ b_{2}=\ &lt;g_2,f&gt;  \ &amp;= 113.103
 <img alt="_images/lista-5-solucoes_26_1.png" src="_images/lista-5-solucoes_26_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="solucao-l5-q4-b">
+</section>
+</section>
+<section id="solucao-l5-q4-b">
 <h3>solucao-L5-Q4-b<a class="headerlink" href="#solucao-l5-q4-b" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1043,8 +1046,8 @@ Coeficiente de ajuste p[1]: -20.078037383177612
 <img alt="_images/lista-5-solucoes_28_1.png" src="_images/lista-5-solucoes_28_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q4-c">
+</section>
+<section id="solucao-l5-q4-c">
 <h3>solucao-L5-Q4-c<a class="headerlink" href="#solucao-l5-q4-c" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1067,8 +1070,8 @@ Coeficiente de ajuste p[1]: -20.078037383177612
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q4-d">
+</section>
+<section id="solucao-l5-q4-d">
 <h3>solucao-L5-Q4-d<a class="headerlink" href="#solucao-l5-q4-d" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1084,8 +1087,8 @@ Coeficiente de ajuste p[1]: 60.294943820224695
 <img alt="_images/lista-5-solucoes_32_1.png" src="_images/lista-5-solucoes_32_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q4-e">
+</section>
+<section id="solucao-l5-q4-e">
 <h3>solucao-L5-Q4-e<a class="headerlink" href="#solucao-l5-q4-e" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1108,8 +1111,8 @@ Coeficiente de ajuste p[1]: 60.294943820224695
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q4-f">
+</section>
+<section id="solucao-l5-q4-f">
 <h3>solucao-L5-Q4-f<a class="headerlink" href="#solucao-l5-q4-f" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1128,11 +1131,11 @@ Coeficiente de ajuste p[1]: 60.294943820224695
 <img alt="_images/lista-5-solucoes_36_1.png" src="_images/lista-5-solucoes_36_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="solucao-l5-q5-a">
+</section>
+</section>
+<section id="solucao-l5-q5-a">
 <h2>solucao-L5-Q5-a<a class="headerlink" href="#solucao-l5-q5-a" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="ajuste-por-reta">
+<section id="ajuste-por-reta">
 <h3>AJUSTE POR RETA<a class="headerlink" href="#ajuste-por-reta" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1223,8 +1226,8 @@ Coeficiente de ajuste p[1]: -3420.8153029001523
 <img alt="_images/lista-5-solucoes_41_2.png" src="_images/lista-5-solucoes_41_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ajuste-por-parabola">
+</section>
+<section id="ajuste-por-parabola">
 <h3>AJUSTE POR PARÁBOLA<a class="headerlink" href="#ajuste-por-parabola" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1308,11 +1311,11 @@ Coeficiente de ajuste p[2]: 51061.1779002923
 <img alt="_images/lista-5-solucoes_45_2.png" src="_images/lista-5-solucoes_45_2.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="integracao-numerica">
+</section>
+</section>
+<section id="integracao-numerica">
 <h2>Integração Numérica<a class="headerlink" href="#integracao-numerica" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="funcao-base-para-integrais-de-newton-cotes">
+<section id="funcao-base-para-integrais-de-newton-cotes">
 <h3>Função-base para integrais de Newton-Cotes<a class="headerlink" href="#funcao-base-para-integrais-de-newton-cotes" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1368,8 +1371,8 @@ Coeficiente de ajuste p[2]: 51061.1779002923
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="exemplo">
+</section>
+<section id="exemplo">
 <h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">¶</a></h3>
 <p>Integração numérica pela regra do trapézio para a função
 $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x + 2) + 0.5\pi ] \, dx \approx I_T \)</span>$</p>
@@ -1411,8 +1414,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 <img alt="_images/lista-5-solucoes_51_0.png" src="_images/lista-5-solucoes_51_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="id6">
+</section>
+<section id="id6">
 <h3>Exemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>Idem, para regra 1/3 de Simpson <span class="math notranslate nohighlight">\(I_S\)</span></p>
 <div class="cell docutils container">
@@ -1429,9 +1432,9 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="funcao-residente-em-python-para-integracao">
+</section>
+</section>
+<section id="funcao-residente-em-python-para-integracao">
 <h2>Função residente em Python para integração<a class="headerlink" href="#funcao-residente-em-python-para-integracao" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1440,7 +1443,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-<div class="section" id="id7">
+<section id="id7">
 <h3>Exemplo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Mesma função <span class="math notranslate nohighlight">\(f(x)\)</span>, agora calculada com o Scipy.</p>
 <div class="cell docutils container">
@@ -1457,8 +1460,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q9">
+</section>
+<section id="solucao-l5-q9">
 <h3>solucao-L5-Q9<a class="headerlink" href="#solucao-l5-q9" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1489,8 +1492,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q10">
+</section>
+<section id="solucao-l5-q10">
 <h3>solucao-L5-Q10<a class="headerlink" href="#solucao-l5-q10" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1533,8 +1536,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q11">
+</section>
+<section id="solucao-l5-q11">
 <h3>solucao-L5-Q11<a class="headerlink" href="#solucao-l5-q11" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1561,8 +1564,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q17">
+</section>
+<section id="solucao-l5-q17">
 <h3>solucao L5-Q17<a class="headerlink" href="#solucao-l5-q17" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1598,8 +1601,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 <img alt="_images/lista-5-solucoes_66_0.png" src="_images/lista-5-solucoes_66_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="quadratura-gaussiana">
+</section>
+<section id="quadratura-gaussiana">
 <h3>QUADRATURA GAUSSIANA<a class="headerlink" href="#quadratura-gaussiana" title="Permalink to this headline">¶</a></h3>
 <p>Algumas informações:</p>
 <ul class="simple">
@@ -1622,8 +1625,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="nb">ord</span> <span class="o">-</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q18a">
+</section>
+<section id="solucao-l5-q18a">
 <h3>solucao-L5-Q18a<a class="headerlink" href="#solucao-l5-q18a" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1662,8 +1665,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q18b">
+</section>
+<section id="solucao-l5-q18b">
 <h3>solucao-L5-Q18b<a class="headerlink" href="#solucao-l5-q18b" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1694,12 +1697,12 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-<div class="section" id="exemplos-de-integrandos-com-singularidades">
+<section id="exemplos-de-integrandos-com-singularidades">
 <h4>Exemplos de integrandos com singularidades<a class="headerlink" href="#exemplos-de-integrandos-com-singularidades" title="Permalink to this headline">¶</a></h4>
 <p>Esses casos não são bem manipulados pelo submódulo <code class="docutils literal notranslate"><span class="pre">integrate</span></code>.</p>
-</div>
-</div>
-<div class="section" id="solucao-l5-q18c">
+</section>
+</section>
+<section id="solucao-l5-q18c">
 <h3>solucao-L5-Q18c<a class="headerlink" href="#solucao-l5-q18c" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1721,8 +1724,8 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solucao-l5-q18d">
+</section>
+<section id="solucao-l5-q18d">
 <h3>solucao-L5-Q18d<a class="headerlink" href="#solucao-l5-q18d" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1744,9 +1747,9 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1770,15 +1773,15 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="lista-4-solucoes.html" title="previous page">Lista de Exercícios 4</a>
     <a class='right-next' id="next-link" href="lista-6-solucoes.html" title="next page">Lista de Exercícios 6</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

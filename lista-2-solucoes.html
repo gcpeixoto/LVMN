@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Lista de Exercícios 2 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -480,6 +482,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -487,7 +490,7 @@
         
               <div>
                 
-  <div class="section" id="lista-de-exercicios-2">
+  <section id="lista-de-exercicios-2">
 <h1>Lista de Exercícios 2<a class="headerlink" href="#lista-de-exercicios-2" title="Permalink to this headline">¶</a></h1>
 <p>Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 2.</p>
 <div class="cell docutils container">
@@ -507,7 +510,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="q12-l2">
+<section id="q12-l2">
 <h2>Q12 - L2<a class="headerlink" href="#q12-l2" title="Permalink to this headline">¶</a></h2>
 <p>Primeiramente, recorramos à análise gráfica da função.</p>
 <div class="cell docutils container">
@@ -581,8 +584,8 @@ Solução obtida: x = 0.5397851616
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="q16-l2">
+</section>
+<section id="q16-l2">
 <h2>Q16 - L2<a class="headerlink" href="#q16-l2" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -613,7 +616,7 @@ Solução obtida: x = 0.5397851616
 </div>
 </div>
 </div>
-<div class="section" id="item-b-1">
+<section id="item-b-1">
 <h3>item b.1)<a class="headerlink" href="#item-b-1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,8 +665,8 @@ Solução obtida: x = -0.9061798789
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="item-b-2">
+</section>
+<section id="item-b-2">
 <h3>item b.2)<a class="headerlink" href="#item-b-2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -690,8 +693,8 @@ Solução encontrada: -0.5390625
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="item-b-3">
+</section>
+<section id="item-b-3">
 <h3>item b.3)<a class="headerlink" href="#item-b-3" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -713,8 +716,8 @@ Solução encontrada: -0.00018060189341005293
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="item-b-4">
+</section>
+<section id="item-b-4">
 <h3>item b.4)<a class="headerlink" href="#item-b-4" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -742,8 +745,8 @@ Solução encontrada: -0.00018060189341005293
 <img alt="_images/lista-2-solucoes_23_2.png" src="_images/lista-2-solucoes_23_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="item-b-5">
+</section>
+<section id="item-b-5">
 <h3>item b.5)<a class="headerlink" href="#item-b-5" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,9 +776,9 @@ Solução obtida: x = 0.9061586909
 <img alt="_images/lista-2-solucoes_25_2.png" src="_images/lista-2-solucoes_25_2.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="exemplos">
+</section>
+</section>
+<section id="exemplos">
 <h2>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -822,15 +825,15 @@ Solução encontrada: 0.33763504551140067
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="problemas-aplicados">
+</section>
+<section id="problemas-aplicados">
 <h2>Problemas aplicados<a class="headerlink" href="#problemas-aplicados" title="Permalink to this headline">¶</a></h2>
 <p>A temperatura <span class="math notranslate nohighlight">\(T\)</span> (em graus Kelvin) de um semicondutor pode ser calculada como uma função da resistência <span class="math notranslate nohighlight">\(R\)</span> (em ohms) pela equação de Steinhart-Hart:</p>
 <div class="math notranslate nohighlight">
 \[T = \dfrac{1}{A + B\ln(R) + C\ln(R)^3},\]</div>
 <p>para constantes <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> e <span class="math notranslate nohighlight">\(C\)</span> dependentes do material. Supondo que <span class="math notranslate nohighlight">\(A = 1.4056 \times 10^{-3}\)</span>, <span class="math notranslate nohighlight">\(B = 240.7620 \times 10^{-6} K^{-1}\)</span> e <span class="math notranslate nohighlight">\(C = 7.48 \times 10^{-7}\)</span>, determine a resistência do semicondutor para uma temperatura de 135 graus Celsius.</p>
 <p><strong>Sugestão:</strong> use o método da bisseção e tolerância de <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p>
-<div class="section" id="solucao-computacional">
+<section id="solucao-computacional">
 <h3>Solução computacional<a class="headerlink" href="#solucao-computacional" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,16 +869,16 @@ Solução encontrada: 0.33763504551140067
 </div>
 </div>
 <!-- Gilat/Subramanian 3.22-->
-</div>
-</div>
-<div class="section" id="problema-aplicado-revisar">
+</section>
+</section>
+<section id="problema-aplicado-revisar">
 <h2>Problema aplicado (revisar!)<a class="headerlink" href="#problema-aplicado-revisar" title="Permalink to this headline">¶</a></h2>
 <p>Quando se calcula o pagamento de uma hipoteca, a relação entre o montante do empréstimo <span class="math notranslate nohighlight">\(E\)</span>, o pagamento mensal <span class="math notranslate nohighlight">\(P\)</span>, a duração do empréstimo em anos <span class="math notranslate nohighlight">\(a\)</span>, e a taxa de juros anual <span class="math notranslate nohighlight">\(t\)</span> é dada pela equação:</p>
 <div class="math notranslate nohighlight">
 \[P = \dfrac{Et}{12\left( 1 - \dfrac{1}{\left(1 + \frac{t}{12}\right)^{12a}} \right)}.\]</div>
 <p>Determine a taxa <span class="math notranslate nohighlight">\(t\)</span> de um empréstimo de R<span>$</span> 170.000 00 por 20 anos se o pagamento mensal for de R<span>$</span> 1.250,00.</p>
 <p><strong>Sugestão:</strong> usar método de Newton como função programada pelo estudante ou função residente.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Solução computacional:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Resolver o problema <span class="math notranslate nohighlight">\(f(t) = 0\)</span> com método de Newton.</p>
 <div class="cell docutils container">
@@ -935,9 +938,9 @@ Solução encontrada: 0.33763504551140067
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -961,15 +964,15 @@ Solução encontrada: 0.33763504551140067
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="lista-1-solucoes.html" title="previous page">Lista de Exercícios 1</a>
     <a class='right-next' id="next-link" href="lista-3-solucoes.html" title="next page">Lista de Exercícios 3</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

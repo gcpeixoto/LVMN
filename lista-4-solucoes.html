@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Lista de Exercícios 4 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -507,6 +509,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -514,7 +517,7 @@
         
               <div>
                 
-  <div class="section" id="lista-de-exercicios-4">
+  <section id="lista-de-exercicios-4">
 <h1>Lista de Exercícios 4<a class="headerlink" href="#lista-de-exercicios-4" title="Permalink to this headline">¶</a></h1>
 <p>Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 4.</p>
 <div class="cell docutils container">
@@ -784,9 +787,9 @@
 </div>
 </div>
 </div>
-<div class="section" id="metodos-iterativos-para-sistemas-lineares">
+<section id="metodos-iterativos-para-sistemas-lineares">
 <h2>Métodos iterativos para sistemas lineares<a class="headerlink" href="#metodos-iterativos-para-sistemas-lineares" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="questao-1">
+<section id="questao-1">
 <h3>Questão 1<a class="headerlink" href="#questao-1" title="Permalink to this headline">¶</a></h3>
 <p>Verifique o condicionamento e o critério das linhas para os sistemas abaixo e em seguida aplique o método de Gauss-Jacobi para determinar uma solução aproximada, com erro absoluto inferior a <span class="math notranslate nohighlight">\(10^{-2}\)</span>, tomando a aproximação inicial <span class="math notranslate nohighlight">\(x^{(0)} = 0\)</span>.</p>
 <p>(a) \begin{cases}
@@ -870,8 +873,8 @@ A solução do problema é:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="questao-2">
+</section>
+<section id="questao-2">
 <h3>Questão 2<a class="headerlink" href="#questao-2" title="Permalink to this headline">¶</a></h3>
 <p>Considere o sistema</p>
 <p>\begin{cases}
@@ -966,8 +969,8 @@ O número de iterações pelo método de Gauss-Seidel foi: 3
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="questao-3">
+</section>
+<section id="questao-3">
 <h3>Questão 3<a class="headerlink" href="#questao-3" title="Permalink to this headline">¶</a></h3>
 <p>Use o método iterativo de Gauss-Seidel para determinar uma solução aproximada do sistema com erro relativo percentual abaixo de <span class="math notranslate nohighlight">\(5\%\)</span> dos seguintes sistemas. Antes verifique o critério de Sassenfeld e caso algum dos sitemas não o satisfaça, reorganize o sistema permutando linhas e/ou colunas para garantir a convergência.</p>
 <p>(a) \begin{cases}
@@ -1028,8 +1031,8 @@ A solução do sistema linear é:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="questao-4">
+</section>
+<section id="questao-4">
 <h3>Questão 4<a class="headerlink" href="#questao-4" title="Permalink to this headline">¶</a></h3>
 <p>Dos seguintes sistemas abaixo identifique qual(is) deles nao pode(m) ser resolvido(s) usando o método iterativo de Gauss-Seidel.</p>
 <p>(a) \begin{cases}
@@ -1047,14 +1050,14 @@ x + 5y − z = 5 \
 −2x + 2y − 3z = −3 \
 2y − z = 1
 \end{cases}</p>
-<div class="section" id="solucao">
+<section id="solucao">
 <h4>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">¶</a></h4>
 <p>(a) Convergente</p>
 <p>(b) Divergente</p>
 <p>© Divergente</p>
-</div>
-</div>
-<div class="section" id="questao-5">
+</section>
+</section>
+<section id="questao-5">
 <h3>Questão 5<a class="headerlink" href="#questao-5" title="Permalink to this headline">¶</a></h3>
 <p>Uma companhia de eletrônica produz transistores, resistores e chips de computador. Cada transistor usa quatro unidades de cobre, uma unidade de zinco e duas unidades de vidro. Cada resisitor usa três, três e uma unidades de cada material, respectivamente, e cada chip de computador usa duas, uma e três unidades desses materiais, respectivamente. Colocando essas
 informações em uma tabela, tem-se:</p>
@@ -1105,11 +1108,11 @@ informações em uma tabela, tem-se:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="sistemas-nao-lineares">
+</section>
+</section>
+<section id="sistemas-nao-lineares">
 <h2>Sistemas não-lineares<a class="headerlink" href="#sistemas-nao-lineares" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="questao-6">
+<section id="questao-6">
 <h3>Questão 6<a class="headerlink" href="#questao-6" title="Permalink to this headline">¶</a></h3>
 <p>Usando o Método de Newton, determinar uma raiz para cada sistema não-linear abaixo com precisão <span class="math notranslate nohighlight">\(\epsilon= 10^{-3}\)</span>:</p>
 <p>(i) $<span class="math notranslate nohighlight">\(\begin{cases} x^2 + y^2 = 2 \\ x^2 - y^2 = 1 \end{cases} \quad 
@@ -1156,11 +1159,11 @@ x^{(0)} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}\)</span>$</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="interpolacao-polinomial">
+</section>
+</section>
+<section id="interpolacao-polinomial">
 <h2>Interpolação Polinomial<a class="headerlink" href="#interpolacao-polinomial" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="questao-7">
+<section id="questao-7">
 <h3>Questão 7<a class="headerlink" href="#questao-7" title="Permalink to this headline">¶</a></h3>
 <p>Use um polinômio interpolador de Lagrange de primeiro e segundo graus para calcular <span class="math notranslate nohighlight">\(ln(2)\)</span>, com base nos seguintes dados:</p>
 <table class="colwidths-auto table">
@@ -1213,8 +1216,8 @@ A estimativa de ln(2) para o polinômio de segundo grau é: 0.5658441999999999
 <img alt="_images/lista-4-solucoes_20_1.png" src="_images/lista-4-solucoes_20_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="questao-8">
+</section>
+<section id="questao-8">
 <h3>Questão 8<a class="headerlink" href="#questao-8" title="Permalink to this headline">¶</a></h3>
 <p>Faça uma estimativa de <span class="math notranslate nohighlight">\(log(10)\)</span> usando interpolação linear</p>
 <p>(i) entre <span class="math notranslate nohighlight">\(log(8) = 0.9030900\)</span> e <span class="math notranslate nohighlight">\(log(12) = 1.0791812\)</span></p>
@@ -1257,8 +1260,8 @@ A estimativa de ln(10) é: 0.9978176
 <img alt="_images/lista-4-solucoes_22_1.png" src="_images/lista-4-solucoes_22_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="questao-9">
+</section>
+<section id="questao-9">
 <h3>Questão 9<a class="headerlink" href="#questao-9" title="Permalink to this headline">¶</a></h3>
 <p>Considere os dados e faça o que se pede:</p>
 <table class="colwidths-auto table">
@@ -1337,8 +1340,8 @@ A estimativa de f(4) de quarto grau é: 48.0
 <img alt="_images/lista-4-solucoes_24_1.png" src="_images/lista-4-solucoes_24_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="questao-10">
+</section>
+<section id="questao-10">
 <h3>Questão 10<a class="headerlink" href="#questao-10" title="Permalink to this headline">¶</a></h3>
 <p>Conhecendo a seguinte tabela</p>
 <table class="colwidths-auto table">
@@ -1406,8 +1409,8 @@ A estimativa de f(4) de quarto grau é: 48.0
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="questao-11">
+</section>
+<section id="questao-11">
 <h3>Questão 11<a class="headerlink" href="#questao-11" title="Permalink to this headline">¶</a></h3>
 <p>Usando os dados da tabela do exercício anterior:</p>
 <p>(i) Determine <span class="math notranslate nohighlight">\(P_2(x)\)</span> pela forma de Lagrange.</p>
@@ -1455,8 +1458,8 @@ A aproximação para f(1) é: 3.0
 <img alt="_images/lista-4-solucoes_28_1.png" src="_images/lista-4-solucoes_28_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="questao-12">
+</section>
+<section id="questao-12">
 <h3>Questão 12<a class="headerlink" href="#questao-12" title="Permalink to this headline">¶</a></h3>
 <p>Dada a tabela:</p>
 <table class="colwidths-auto table">
@@ -1527,8 +1530,8 @@ A estimativa de f(0.25) é: 2.1201875
 <img alt="_images/lista-4-solucoes_30_1.png" src="_images/lista-4-solucoes_30_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="questao-13">
+</section>
+<section id="questao-13">
 <h3>Questão 13<a class="headerlink" href="#questao-13" title="Permalink to this headline">¶</a></h3>
 <p>Para a seguinte função tabelada</p>
 <table class="colwidths-auto table">
@@ -1602,9 +1605,9 @@ A estimativa de f(0.25) é: 2.1201875
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1628,15 +1631,15 @@ A estimativa de f(0.25) é: 2.1201875
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="lista-3-solucoes.html" title="previous page">Lista de Exercícios 3</a>
     <a class='right-next' id="next-link" href="lista-5-solucoes.html" title="next page">Lista de Exercícios 5</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
