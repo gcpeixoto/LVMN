@@ -660,28 +660,30 @@ a_{31}x_1+a_{32}x_2+a_{33}x_3 = b_3 \quad(L_3)\\
 <ul class="simple">
 <li><p>Realizar operações elementares de combinação linear e permutação entre linhas;</p>
 <ul>
-<li><p>Multiplicação por escalar:
-$$\begin{array}{c}
-L_2 \leftarrow L_2 .w\ \Rightarrow\</p></li>
+<li><p>Multiplicação por escalar:</p></li>
 </ul>
 </li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-dc1fdfb7-062d-4e42-b803-6adff3301b31">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-dc1fdfb7-062d-4e42-b803-6adff3301b31" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+L_2 \leftarrow L_2 .w\ \Rightarrow\ 
+\begin{bmatrix}
 a_{11}&amp;a_{12}\\
 a_{21}&amp;a_{22}\\
-\end{bmatrix}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5716076d-0013-43f0-b8f2-68ed4e7d23de">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-5716076d-0013-43f0-b8f2-68ed4e7d23de" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
+\end{bmatrix} \rightarrow
+\begin{bmatrix}
 a_{11}&amp;a_{12}\\
 w.a_{21}&amp;w.a_{22}\\
-\end{bmatrix}\]</div>
-<p>\end{array}$$</p>
+\end{bmatrix}
+\end{array}
+\end{split}\]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Combinação linear:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{c}
+\[\begin{split}
+\begin{array}{c}
 L_2 \leftarrow L_2 - L_1.w\ \Rightarrow\ 
 \begin{bmatrix}
 a_{11}&amp;a_{12}\\
@@ -691,12 +693,14 @@ a_{21}&amp;a_{22}\\
 a_{11}&amp;a_{12}\\
 a_{21}-a_{11}.w&amp;a_{22}-a_{12}.w\\
 \end{bmatrix}
-\end{array}\end{split}\]</div>
+\end{array}
+\end{split}\]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Permutação:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{c}
+\[\begin{split}
+\begin{array}{c}
 L_2 \leftarrow L_1\ e\ L_1\leftarrow L_2\ \Rightarrow\ 
 \begin{bmatrix}
 a_{11}&amp;a_{12}\\
@@ -706,7 +710,8 @@ a_{21}&amp;a_{22}\\
 a_{21}&amp;a_{22}\\
 a_{11}&amp;a_{12}\\
 \end{bmatrix}
-\end{array}\end{split}\]</div>
+\end{array}
+\end{split}\]</div>
 <ul class="simple">
 <li><p>Anular todos os elementos na porção triangular inferior da matriz original, isto é, todas as entradas exatamente abaixo das entradas dispostas na diagonal principal;</p></li>
 </ul>
