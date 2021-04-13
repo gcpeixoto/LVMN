@@ -78,7 +78,7 @@ print(EA1)
 EA2 = abs(P2x - x_exato)
 print(EA2)
 
-Claro que $EA2 > EA1$. Entretanto, podemos verificar pelo seguinte teste lógico:
+Claro que $EA_1 > EA_2$. Entretanto, podemos verificar pelo seguinte teste lógico:
 
 # teste é verdadeiro
 EA1 > EA2

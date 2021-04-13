@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>5. Implementações do método da bisseção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -424,6 +426,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -431,7 +434,7 @@
         
               <div>
                 
-  <div class="section" id="implementacoes-do-metodo-da-bissecao">
+  <section id="implementacoes-do-metodo-da-bissecao">
 <h1><span class="section-number">5. </span>Implementações do método da bisseção<a class="headerlink" href="#implementacoes-do-metodo-da-bissecao" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -609,41 +612,7 @@ Solução encontrada: 15.127429962158203
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo 5.1</span>
-<span class="n">f</span> <span class="o">=</span> <span class="s1">&#39;x**3 - 9*x + 3&#39;</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-3</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">var</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
-<span class="n">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">var</span><span class="p">)</span>
-
-<span class="c1"># relação erro desejado x número de iterações</span>
-<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">tol</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número de iterações é k = </span><span class="si">{0:g}</span><span class="s2"> ≈ </span><span class="si">{1:g}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">k</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(i = 1) f(xm)=-1.375000 | f(a)=3.000000 | f(b)=-5.000000
-(i = 2) f(xm)=0.765625 | f(a)=3.000000 | f(b)=-1.375000
-(i = 3) f(xm)=-0.322266 | f(a)=0.765625 | f(b)=-1.375000
-(i = 4) f(xm)=0.218018 | f(a)=0.765625 | f(b)=-0.322266
-(i = 5) f(xm)=-0.053131 | f(a)=0.218018 | f(b)=-0.322266
-(i = 6) f(xm)=0.082203 | f(a)=0.218018 | f(b)=-0.053131
-(i = 7) f(xm)=0.014474 | f(a)=0.082203 | f(b)=-0.053131
-(i = 8) f(xm)=-0.019344 | f(a)=0.014474 | f(b)=-0.053131
-(i = 9) f(xm)=-0.002439 | f(a)=0.014474 | f(b)=-0.019344
-(i = 10) f(xm)=0.006017 | f(a)=0.014474 | f(b)=-0.002439
-Solução encontrada: 0.33740234375
-O número de iterações é k = 9.96578 ≈ 10.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="tarefas">
+<section id="tarefas">
 <h2><span class="section-number">5.1. </span>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Melhore o código Python tratando os TODOs:</p></li>
@@ -676,8 +645,8 @@ Uma reação química reversível</p>
 <p>(a) Obtenha a solução graficamente.</p>
 <p>(b) Com base em (a), resolva a raiz com suposições iniciais de <span class="math notranslate nohighlight">\(x_l = 0\)</span> e <span class="math notranslate nohighlight">\(x_u = 20\)</span>, com critério de erro de <span class="math notranslate nohighlight">\(\epsilon_s = 0,5\%\)</span>. (Vide clipping <em>Definições de erro</em> para entender <span class="math notranslate nohighlight">\(\epsilon_s\)</span>.)</p>
 <p>© Use o método da bisseção.</p>
-</div>
-<div class="section" id="tarefa-falsa-posicao">
+</section>
+<section id="tarefa-falsa-posicao">
 <h2><span class="section-number">5.2. </span>Tarefa: Falsa Posição<a class="headerlink" href="#tarefa-falsa-posicao" title="Permalink to this headline">¶</a></h2>
 <p>Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use <code class="docutils literal notranslate"><span class="pre">switch...</span> <span class="pre">case...</span></code>).</p>
 <div class="cell docutils container">
@@ -692,8 +661,8 @@ Uma reação química reversível</p>
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -717,15 +686,15 @@ Uma reação química reversível</p>
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="aula-03-analise-grafica.html" title="previous page"><span class="section-number">4. </span>Análise gráfica, localização e refinamento de raízes</a>
     <a class='right-next' id="next-link" href="aula-05-ponto-fixo.html" title="next page"><span class="section-number">6. </span>Método da Iteração Linear (Ponto Fixo)</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

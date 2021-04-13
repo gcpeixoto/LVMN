@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>1. Modelagem Matemática em Ciências Computacionais e Engenharias &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -472,6 +474,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -479,7 +482,7 @@
         
               <div>
                 
-  <div class="section" id="modelagem-matematica-em-ciencias-computacionais-e-engenharias">
+  <section id="modelagem-matematica-em-ciencias-computacionais-e-engenharias">
 <h1><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias<a class="headerlink" href="#modelagem-matematica-em-ciencias-computacionais-e-engenharias" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -488,7 +491,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="modelos-matematicos">
+<section id="modelos-matematicos">
 <h2><span class="section-number">1.1. </span>Modelos matemáticos<a class="headerlink" href="#modelos-matematicos" title="Permalink to this headline">¶</a></h2>
 <p>Um modelo matemático pode ser definido, de forma geral, como uma formulação ou equação que expressa as características essenciais de um sistema ou processo físico em termos matemáticos. A fórmula pode variar de uma simples relação algébrica a um conjunto grande e complicado de equações diferenciais.</p>
 <p>Por exemplo, com base em suas observações, Newton formulou sua segunda lei do movimento. Se escrevermos a taxa de variação temporal da velocidade pela derivada <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> (em <span class="math notranslate nohighlight">\(m/s)\)</span>, um modelo matemático que obtemos para a segunda lei de Newton é</p>
@@ -512,8 +515,8 @@
 <div class="math notranslate nohighlight">
 \[v(t) = \dfrac{gm}{c}(1 - e^{-(c/m)t}).\]</div>
 <p>Como veremos adiante em um estado de caso real apresentado por Yan Ferreira, esta função cresce exponencialmente até atingir uma estabilização na <em>velocidade terminal</em>.</p>
-</div>
-<div class="section" id="o-salto-de-paraquedas-de-yan-e-celso">
+</section>
+<section id="o-salto-de-paraquedas-de-yan-e-celso">
 <h2><span class="section-number">1.2. </span>O salto de paraquedas de Yan e Celso<a class="headerlink" href="#o-salto-de-paraquedas-de-yan-e-celso" title="Permalink to this headline">¶</a></h2>
 <p>Como exemplo, veremos a análise do salto de paraquedas de Yan com seu irmão Celso. Vamos calcular a aceleração que seria atingida por Yan desde o salto até o momento da abertura de seu paraquedas. Na época do salto, Yan estava com 65 kg e o ar apresentava um coeficiente de arrasto estimado em 12,5 kg/s.</p>
 <p>Utilizando a fórmula dada, podemos calcular a velocidade atingida por Yan em relação ao tempo. A seguir, criamos uma função para calcular <span class="math notranslate nohighlight">\(v(t)\)</span> nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.</p>
@@ -609,7 +612,7 @@
 </div>
 <p>Podemos observar que quanto maior a massa, maior é a velocidade atingida. Por esta razão, Celso chegou ao solo antes de Yan.</p>
 <p>Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação <em>estruturada</em> e <em>modular</em>. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os pacotes (ou <strong>módulos</strong>) <em>math</em> e <em>numpy</em> para invocarmos a função exponencial <code class="docutils literal notranslate"><span class="pre">exp</span></code> e os as funções para plotagens gráficas.</p>
-<div class="section" id="deslocamento-ate-a-abertura-do-paraquedas">
+<section id="deslocamento-ate-a-abertura-do-paraquedas">
 <h3><span class="section-number">1.2.1. </span>Deslocamento até a abertura do paraquedas<a class="headerlink" href="#deslocamento-ate-a-abertura-do-paraquedas" title="Permalink to this headline">¶</a></h3>
 <p>Sabemos da Física e do Cálculo que o deslocamento é a integral da velocidade com relação ao tempo. Portanto, se <span class="math notranslate nohighlight">\(D_Y\)</span> e <span class="math notranslate nohighlight">\(D_C\)</span> foram os deslocamentos de Yan e Celso em seus saltos, podemo usar a integral:</p>
 <div class="math notranslate nohighlight">
@@ -635,17 +638,17 @@ Celso voou incríveis DC = 317.38 metros em 10 segundos!
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="programacao-estruturada-e-modular">
+</section>
+</section>
+<section id="programacao-estruturada-e-modular">
 <h2><span class="section-number">1.3. </span>Programação estruturada e modular<a class="headerlink" href="#programacao-estruturada-e-modular" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="prgramacao-estruturada">
+<section id="prgramacao-estruturada">
 <h3><span class="section-number">1.3.1. </span>Prgramação estruturada<a class="headerlink" href="#prgramacao-estruturada" title="Permalink to this headline">¶</a></h3>
 <p>A idéia central por trás da programação estruturada é que qualquer algoritmo numérico pode ser composto de três estruturas de controle fundamentais: <em>sequencia</em>, <em>seleção</em> e <em>repetição</em>.</p>
 <p>Nos primórdios da computação, os programadores usualmente não prestavam muita atenção ao fato de o programa ser claro e fácil de entender. Hoje, é reconhecido que existem muitos benefícios em escrever um código bem organizado e bem estruturado. Além do benefício óbvio de tornar o software mais fácil de ser compartilhado, isso também ajuda a garantir um desenvolvimento de programa mais eficiente.</p>
 <p>Portanto, algoritmos bem estruturados são, invariavelmente, fáceis de corrigir e testar, resultando em programas que têm um tempo de desenvolvimento e atualização menor. Embora a programação estruturada seja flexível o suficiente para permitir criatividade e expressões pessoais, suas regras impõem restrições suficientes para garantir um código final de mais qualidade, mais limpo e mais elegante, quando comparada à versão não estruturada.</p>
-</div>
-<div class="section" id="programacao-modular">
+</section>
+<section id="programacao-modular">
 <h3><span class="section-number">1.3.2. </span>Programação modular<a class="headerlink" href="#programacao-modular" title="Permalink to this headline">¶</a></h3>
 <p>Na programação modular, a idéia é que cada módulo desenvolva uma tarefa específica e tenha um único ponto de entrada e um único ponto de saída, de modo que o desenvolvedor possa reutilizá-lo invariavelmente em várias aplicações.</p>
 <p>Dividir tarefas ou objetivos em partes mais simples é uma maneira de torná-los mais fáceis de tratar. Pensando dessa maneira, os programadores começaram a dividir grandes problemas em subproblemas menores, ou <strong>módulos</strong>, que podem ser desenvolvidos de forma separada e até mesmo por pessoas diferentes, sem que isso interfira no resultado final.</p>
@@ -704,7 +707,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </div>
 </div>
 </div>
-<div class="section" id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo">
+<section id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo">
 <h4><span class="section-number">1.3.2.1. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo retângulo<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -738,8 +741,8 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 <img alt="_images/aula-00-modelagem-programacao_14_0.png" src="_images/aula-00-modelagem-programacao_14_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer">
+</section>
+<section id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer">
 <h4><span class="section-number">1.3.2.2. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo qualquer<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -781,10 +784,10 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -808,15 +811,15 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="conteudo.html" title="previous page">Laboratório Virtual de Métodos Numéricos - LVMN</a>
     <a class='right-next' id="next-link" href="aula-01-ponto-flutuante.html" title="next page"><span class="section-number">2. </span>Conversão numérica e ponto flutuante</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

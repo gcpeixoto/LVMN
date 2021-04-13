@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>19. Polinômio Interpolador de Newton (Diferenças Divididas) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -461,6 +463,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -468,9 +471,9 @@
         
               <div>
                 
-  <div class="section" id="polinomio-interpolador-de-newton-diferencas-divididas">
+  <section id="polinomio-interpolador-de-newton-diferencas-divididas">
 <h1><span class="section-number">19. </span>Polinômio Interpolador de Newton (Diferenças Divididas)<a class="headerlink" href="#polinomio-interpolador-de-newton-diferencas-divididas" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="interpolacao-linear">
+<section id="interpolacao-linear">
 <h2><span class="section-number">19.1. </span>Interpolação Linear<a class="headerlink" href="#interpolacao-linear" title="Permalink to this headline">¶</a></h2>
 <p>Excluindo-se o caso de função constante, a forma mais simples de interpolação é ligar dois pontos dados com uma reta. Usando semelhança de triângulos entre nós e valores de função, obtemos</p>
 <div class="math notranslate nohighlight">
@@ -479,8 +482,8 @@
 <div class="math notranslate nohighlight">
 \[ f_1(x) = f(x_0) + \dfrac{f(x_1) − f(x_0)}{x_1 − x_0} (x − x_0) \qquad (1) \]</div>
 <p>A notação <span class="math notranslate nohighlight">\(f_1(x)\)</span> indica que esse é um polinômio interpolador de primeiro grau. Observe que, além de representar a inclinação da reta ligando os pontos, o termo <span class="math notranslate nohighlight">\([f(x_1) − f(x_0)]/(x_1 − x_0)\)</span> é uma aproximação por diferenças divididas da primeira derivada.</p>
-</div>
-<div class="section" id="interpolacao-quadratica">
+</section>
+<section id="interpolacao-quadratica">
 <h2><span class="section-number">19.2. </span>Interpolação Quadrática<a class="headerlink" href="#interpolacao-quadratica" title="Permalink to this headline">¶</a></h2>
 <p>Com três pontos, a interpolação quadrática é obtida a partir de</p>
 <div class="math notranslate nohighlight">
@@ -495,8 +498,8 @@
 <p>Finalmente, as Equações (3) e (4) podem ser substituídas na Equação (2), a qual pode ser calculada em <span class="math notranslate nohighlight">\(x = x_2\)</span> e resolvida (depois de algumas manipulações algébricas) por</p>
 <div class="math notranslate nohighlight">
 \[ b_2 = \dfrac{\dfrac{f(x_2) − f(x_1)}{x_2 − x_1} − \dfrac{f(x_1) − f(x_0)}{x_1 − x_0}}{x_2 − x_0} \qquad (5) \]</div>
-</div>
-<div class="section" id="forma-geral-dos-polinomios-interpoladores-de-newton">
+</section>
+<section id="forma-geral-dos-polinomios-interpoladores-de-newton">
 <h2><span class="section-number">19.3. </span>Forma Geral dos Polinômios Interpoladores de Newton<a class="headerlink" href="#forma-geral-dos-polinomios-interpoladores-de-newton" title="Permalink to this headline">¶</a></h2>
 <p>A análise anterior pode ser generalizada para ajustar um polinômio de grau <span class="math notranslate nohighlight">\(n\)</span> a <span class="math notranslate nohighlight">\(n + 1\)</span> pontos dados. O polinômio de grau <span class="math notranslate nohighlight">\(n\)</span> é</p>
 <div class="math notranslate nohighlight">
@@ -519,8 +522,8 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <p>Analogamente, a n-ésima diferença dividida é</p>
 <div class="math notranslate nohighlight">
 \[ f[x_n, x_{n − 1}, \dots , x_1, x_0] = \dfrac{f[x_n, x_{n − 1}, \dots , x_1] − f[x_{n − 1}, x_{n − 2}, \dots , x_0]}{x_n − x_0} \]</div>
-</div>
-<div class="section" id="funcoes-de-base-de-newton">
+</section>
+<section id="funcoes-de-base-de-newton">
 <h2><span class="section-number">19.4. </span>Funções de Base de Newton<a class="headerlink" href="#funcoes-de-base-de-newton" title="Permalink to this headline">¶</a></h2>
 <p>Código gerador de funções de base de Newton de grau <span class="math notranslate nohighlight">\(n\)</span> por computação simbólica.</p>
 <div class="cell docutils container">
@@ -624,7 +627,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <img alt="_images/aula-15-interpolacao-newton_3_0.png" src="_images/aula-15-interpolacao-newton_3_0.png" />
 </div>
 </div>
-<div class="section" id="exemplo">
+<section id="exemplo">
 <h3><span class="section-number">19.4.1. </span>Exemplo:<a class="headerlink" href="#exemplo" title="Permalink to this headline">¶</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 1 <span class="math notranslate nohighlight">\(P_1(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
@@ -707,8 +710,8 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h3><span class="section-number">19.4.2. </span>Exemplo:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 2 <span class="math notranslate nohighlight">\(P_2(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
@@ -790,8 +793,8 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h3><span class="section-number">19.4.3. </span>Exemplo:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 3 <span class="math notranslate nohighlight">\(P_3(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
@@ -907,9 +910,9 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <img alt="_images/aula-15-interpolacao-newton_13_0.png" src="_images/aula-15-interpolacao-newton_13_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="comparacao-zoom">
+</section>
+</section>
+<section id="comparacao-zoom">
 <h2><span class="section-number">19.5. </span>Comparação (zoom)<a class="headerlink" href="#comparacao-zoom" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -932,8 +935,8 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <img alt="_images/aula-15-interpolacao-newton_15_0.png" src="_images/aula-15-interpolacao-newton_15_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="nota">
+</section>
+<section id="nota">
 <h2><span class="section-number">19.6. </span>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">¶</a></h2>
 <p>O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).</p>
 <div class="cell docutils container">
@@ -967,8 +970,8 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -992,15 +995,15 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="aula-14-interpolacao-lagrange.html" title="previous page"><span class="section-number">17. </span>Polinômio Interpolador de Lagrange</a>
     <a class='right-next' id="next-link" href="aula-16-minimos-quadrados.html" title="next page"><span class="section-number">20. </span>Ajuste de Curvas por Mínimos Quadrados</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

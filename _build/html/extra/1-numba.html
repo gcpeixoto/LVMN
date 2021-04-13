@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Otimização de código &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -93,7 +94,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -230,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -277,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -330,21 +331,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -362,16 +363,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -398,13 +399,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -457,6 +459,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -464,7 +467,7 @@
         
               <div>
                 
-  <div class="section" id="otimizacao-de-codigo">
+  <section id="otimizacao-de-codigo">
 <h1>Otimização de código<a class="headerlink" href="#otimizacao-de-codigo" title="Permalink to this headline">¶</a></h1>
 <p>Python possui diversas bibliotecas para computação numérica que são eficientes e de alto desempenho, tais como <em>numpy</em> e <em>scipy</em>. A computação de alta performance é atingida não por Python puro, mas pelo aproveitamento de bibliotecas que são compiladas externamente.</p>
 <p>Às vezes, temos necessidade de desenvolver código do zero usando puramente Python. Entretanto, essa escolha pode levar a códigos lentos. A solução é escrever rotinas em linguages externas, tais como C, C++ ou Fortran que façam os cálculos que consomem mais tempo e criar interfaces entre elas e o código Puython.</p>
@@ -475,16 +478,16 @@
 <li><p>CFFI (C foreign function interface)</p></li>
 </ul>
 <p>Embora úteis, todas elas exigem conhecimento aprofundado de outras linguagens e são mais úteis para códigos-fonte já escritos nessas linguagens. Algumas alternativas de desenvolvimento que se aproximam de Python que valem a pena ser consideradas antes de partirmos para uma implementação direta em linguagem complicada existem. Duas delas são: <em>numba</em> e <em>cython</em>.</p>
-<div class="section" id="numba">
+<section id="numba">
 <h2><em>numba</em><a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://numba.pydata.org">[Numba]</a> é um compilador <em>just-in-time</em> (JIT) para código Python usando <em>numpy</em> que produz código de máquina executável de forma mais eficiente do que o código Python original. Para conseguir isso, <em>numba</em> aproveita o conjunto de compiladores <a class="reference external" href="http://llvm.org">[LLVM]</a>, que se tornou muito popular nos últimos anos por seu design e interface modular e reutilizável.</p>
-</div>
-<div class="section" id="cython">
+</section>
+<section id="cython">
 <h2><em>cython</em><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://cython.org">[Cython]</a> é um superconjunto da linguagem Python que pode ser traduzido automaticamente para C ou C++ e compilado em um código de máquina executável de modo muito mais rápido do que o código Python. Cython é amplamente utilizado em projetos Python orientados computacionalmente para acelerar partes críticas de tempo de um código que é escrita em Python. Várias bibliotecas dependem muito do Cython. Isso inclui NumPy, SciPy, Pandas e scikit-learn, apenas para mencionar algumas.</p>
 <p>Veremos como usar <em>numba</em> e <em>cython</em> para acelerar códigos originalmente escritos em Python. É recomendado que se faça um perfilamento de código com o módulo <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> ou outras ferramentas para identificar gargalos de cálculo antes de tentarmos otimizar algo.</p>
-</div>
-<div class="section" id="exemplos-com-numba">
+</section>
+<section id="exemplos-com-numba">
 <h2>Exemplos com numba<a class="headerlink" href="#exemplos-com-numba" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -497,7 +500,7 @@
 </div>
 </div>
 <p>Não precisamos alterar o código-alvo a ser acelerado. Basta usar o JIT do Numba como “decorador” <code class="docutils literal notranslate"><span class="pre">&#64;numba.jit</span></code> para uma função.</p>
-<div class="section" id="soma-de-elementos-em-um-array">
+<section id="soma-de-elementos-em-um-array">
 <h3>Soma de elementos em um array<a class="headerlink" href="#soma-de-elementos-em-um-array" title="Permalink to this headline">¶</a></h3>
 <p>Consideramos o seguinte código simples.</p>
 <div class="cell docutils container">
@@ -578,8 +581,8 @@
 </div>
 </div>
 <p>Comparando isto com a implementação pura, temos uma grande diferença.</p>
-</div>
-<div class="section" id="soma-cumulativa">
+</section>
+<section id="soma-cumulativa">
 <h3>Soma cumulativa<a class="headerlink" href="#soma-cumulativa" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,8 +648,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fractal-de-julia">
+</section>
+<section id="fractal-de-julia">
 <h3>Fractal de Julia<a class="headerlink" href="#fractal-de-julia" title="Permalink to this headline">¶</a></h3>
 <p>O fractal de Julia exige um número variável de iterações para cada elemento de uma matriz com coordenadas no plano complexo:</p>
 <ul class="simple">
@@ -726,8 +729,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="numba-vectorize">
+</section>
+<section id="numba-vectorize">
 <h3><code class="docutils literal notranslate"><span class="pre">numba.vectorize</span></code><a class="headerlink" href="#numba-vectorize" title="Permalink to this headline">¶</a></h3>
 <p>Aqui, vamos construir a função de Heaviside:</p>
 <div class="cell docutils container">
@@ -832,9 +835,9 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -858,13 +861,13 @@
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

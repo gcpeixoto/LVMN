@@ -81,7 +81,8 @@ O benefício desta abordagem é a resolução de somente sistemas triangulares. 
 
 Encontre a solução $X = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ do sistema 
 
-$$\begin{bmatrix} 
+$$
+\begin{bmatrix} 
 1 & 2 & 4\\ 
 3 & 8 & 14\\ 
 2 & 6 & 13 
@@ -92,7 +93,8 @@ x_1 \\ x_2 \\ x_3
 = 
 \begin{bmatrix} 
 3 \\ 13 \\ 4
-\end{bmatrix}$$.
+\end{bmatrix}.
+$$
 
 - As matrizes $L$ e $U$ já foram obtidas anteriormente.
 

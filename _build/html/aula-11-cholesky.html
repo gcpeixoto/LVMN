@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>13. Fatoração de Cholesky &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -455,6 +457,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -462,7 +465,7 @@
         
               <div>
                 
-  <div class="section" id="fatoracao-de-cholesky">
+  <section id="fatoracao-de-cholesky">
 <h1><span class="section-number">13. </span>Fatoração de Cholesky<a class="headerlink" href="#fatoracao-de-cholesky" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -471,7 +474,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="matrizes-positivas-definidas">
+<section id="matrizes-positivas-definidas">
 <h2><span class="section-number">13.1. </span>Matrizes positivas definidas<a class="headerlink" href="#matrizes-positivas-definidas" title="Permalink to this headline">¶</a></h2>
 <p><strong>Definição (baseada em autovalores)</strong> uma matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> é <em>positiva definida</em> se todos os seus autovalores são positivos (<span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>).</p>
 <p>Entretanto, não é conveniente computar todos os autovalores de uma matriz para saber se ela é ou não positiva definida. Há meios mais rápidos de fazer este teste como o da “energia”.</p>
@@ -538,7 +541,7 @@
 <li><p><span class="math notranslate nohighlight">\({\bf x}^T {\bf A}{\bf x} &gt; 0\)</span> para todo vetor não-nulo <span class="math notranslate nohighlight">\({\bf x}\)</span>. (Definição baseada na “energia”).</p></li>
 <li><p><span class="math notranslate nohighlight">\({\bf A} = {\bf G}{\bf G}^T\)</span> para uma matriz <span class="math notranslate nohighlight">\({\bf G}\)</span> com colunas independentes.</p></li>
 </ol>
-<div class="section" id="interpretacao-geometrica">
+<section id="interpretacao-geometrica">
 <h3><span class="section-number">13.1.1. </span>Interpretação geométrica<a class="headerlink" href="#interpretacao-geometrica" title="Permalink to this headline">¶</a></h3>
 <p>Matrizes positivas definidas realizam transformações “limitadas” no sentido de “semiplano” do vetor transformado. Por exemplo, se tomarmos um vetor <span class="math notranslate nohighlight">\({\bf x} \in \mathbb{R}^2\)</span> não-nulo e usarmos o fato de que para uma matriz positiva definida, a inequação <span class="math notranslate nohighlight">\({\bf x}^T{\bf A}{\bf x} &gt; 0\)</span> deve valer, ao chamarmos <span class="math notranslate nohighlight">\({\bf y} = {\bf A}{\bf x}\)</span>, a expressão anterior é o produto interno entre <span class="math notranslate nohighlight">\({\bf x}\)</span> e <span class="math notranslate nohighlight">\({\bf y}\)</span>, a saber <span class="math notranslate nohighlight">\({\bf x}^T{\bf y}\)</span>. Se o produto interno é positivo, já sabemos que os vetores não são ortogonais. Agora, para verificar que eles realmente pertencem a um mesmo semiplano, usaremos a seguinte expressão para o ângulo entre dois vetores:</p>
 <div class="math notranslate nohighlight">
@@ -547,12 +550,12 @@
 <div class="math notranslate nohighlight">
 \[|\theta| &lt; \frac{\pi}{2},\]</div>
 <p>ou seja, o ângulo entre <span class="math notranslate nohighlight">\({\bf x}\)</span> e <span class="math notranslate nohighlight">\({\bf y}\)</span> é sempre menor do que 90 graus (ou <span class="math notranslate nohighlight">\(\pi/2\)</span> radianos).</p>
-</div>
-</div>
-<div class="section" id="metodo-da-fatoracao-de-cholesky">
+</section>
+</section>
+<section id="metodo-da-fatoracao-de-cholesky">
 <h2><span class="section-number">13.2. </span>Método da Fatoração de Cholesky<a class="headerlink" href="#metodo-da-fatoracao-de-cholesky" title="Permalink to this headline">¶</a></h2>
 <p>Trata-se de um algoritmo para resolução de sistemas lineares <span class="math notranslate nohighlight">\({\bf A}{\bf x} = {\bf b}\)</span> através da decomposição da matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> em dois fatores simétricos, <span class="math notranslate nohighlight">\({\bf G}\)</span> e <span class="math notranslate nohighlight">\({\bf G}^T\)</span>. O método é aplicável apenas a sistemas cuja matriz associada é simétrica e positiva definida.</p>
-<div class="section" id="passos">
+<section id="passos">
 <h3><span class="section-number">13.2.1. </span>Passos<a class="headerlink" href="#passos" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Primeiramente, é necessário checar se a matriz associada ao sistema cumpre os requisitos da fatoração de Cholesky:</p>
@@ -597,9 +600,9 @@ g_{11} &amp; g_{21} &amp; g_{31} &amp;  g_{41} \\
 <div class="math notranslate nohighlight">
 \[{\bf A}{\bf x}={\bf b} \implies ({\bf G}{\bf G}^T){\bf x}={\bf b} \implies {\bf G}({\bf G}^T{\bf x})={\bf b} \implies {\bf G}{\bf y}=B.\]</div>
 <p>Aqui, usamos o mesmo processo utilizado na Fatoração LU. Primeiramente, obtemos o vetor <span class="math notranslate nohighlight">\({\bf y}\)</span> após a resolução do sistema <span class="math notranslate nohighlight">\({\bf G}{\bf y} = {\bf b}\)</span>. Enfim, obtemos <span class="math notranslate nohighlight">\({\bf x}\)</span> através da relação <span class="math notranslate nohighlight">\({\bf G}^T {\bf x} = {\bf y}\)</span>. Fazendo com que, assim, seja obtido o vetor <span class="math notranslate nohighlight">\({\bf x}\)</span> que resolve o sistema linear proposto no inicio.</p>
-</div>
-</div>
-<div class="section" id="algoritmo-para-a-fatoracao-de-cholesky">
+</section>
+</section>
+<section id="algoritmo-para-a-fatoracao-de-cholesky">
 <h2><span class="section-number">13.3. </span>Algoritmo para a fatoração de Cholesky<a class="headerlink" href="#algoritmo-para-a-fatoracao-de-cholesky" title="Permalink to this headline">¶</a></h2>
 <p>O código abaixo é uma implementação de um algoritmo para a fatoração de Cholesky por computação simbólica.</p>
 <div class="cell docutils container">
@@ -629,7 +632,7 @@ g_{11} &amp; g_{21} &amp; g_{31} &amp;  g_{41} \\
 <img alt="_images/aula-11-cholesky_9_0.png" src="_images/aula-11-cholesky_9_0.png" />
 </div>
 </div>
-<div class="section" id="tarefa">
+<section id="tarefa">
 <h3><span class="section-number">13.3.1. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h3>
 <p>Converta o código simbólico acima para uma versão numérica (ou implemente a sua própria versão) e aplique-o na matriz abaixo para encontrar o fator de Cholesky:</p>
 <div class="math notranslate nohighlight">
@@ -639,9 +642,9 @@ g_{11} &amp; g_{21} &amp; g_{31} &amp;  g_{41} \\
 15 &amp; 55 &amp; 225 \\
 55 &amp; 225 &amp; 979 
 \end{bmatrix}\end{split}\]</div>
-</div>
-</div>
-<div class="section" id="calculo-do-fator-de-cholesky-com-python">
+</section>
+</section>
+<section id="calculo-do-fator-de-cholesky-com-python">
 <h2><span class="section-number">13.4. </span>Cálculo do fator de Cholesky com Python<a class="headerlink" href="#calculo-do-fator-de-cholesky-com-python" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -719,8 +722,8 @@ Norma || A - LL^T || =  0.0
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -744,15 +747,15 @@ Norma || A - LL^T || =  0.0
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="aula-10-fatoracao-lu.html" title="previous page"><span class="section-number">12. </span>Fatoração LU com Python</a>
     <a class='right-next' id="next-link" href="aula-12-jacobi.html" title="next page"><span class="section-number">14. </span>Método de Jacobi-Richardson</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

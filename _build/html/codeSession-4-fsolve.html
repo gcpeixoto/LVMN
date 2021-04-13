@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Code session 4 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -469,6 +471,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -476,9 +479,9 @@
         
               <div>
                 
-  <div class="section" id="code-session-4">
+  <section id="code-session-4">
 <h1>Code session 4<a class="headerlink" href="#code-session-4" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="fsolve">
+<section id="fsolve">
 <h2><code class="docutils literal notranslate"><span class="pre">fsolve</span></code><a class="headerlink" href="#fsolve" title="Permalink to this headline">¶</a></h2>
 <p>A função <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> do submódulo <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> pode ser usada como método geral para busca de raízes de equações não-lineares escalares ou vetoriais.</p>
 <p>Para usar <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> em uma equação escalar, precisamos de, no mínimo:</p>
@@ -526,7 +529,7 @@ Minha raiz é 15.127432
 </div>
 </div>
 </div>
-<div class="section" id="como-incorporar-tudo-em-uma-so-funcao">
+<section id="como-incorporar-tudo-em-uma-so-funcao">
 <h3>Como incorporar tudo em uma só função<a class="headerlink" href="#como-incorporar-tudo-em-uma-so-funcao" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -569,8 +572,8 @@ Minha raiz é 15.127432
 <img alt="_images/codeSession-4-fsolve_6_0.png" src="_images/codeSession-4-fsolve_6_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="problema-1">
+</section>
+<section id="problema-1">
 <h3>Problema 1<a class="headerlink" href="#problema-1" title="Permalink to this headline">¶</a></h3>
 <p>Resolva o sistema não-linear abaixo:</p>
 <div class="math notranslate nohighlight">
@@ -578,10 +581,10 @@ Minha raiz é 15.127432
 x^2 + y^2 = 2 \\
 x^2 - y^2 = 1
 \end{cases}\end{split}\]</div>
-<div class="section" id="resolucao">
+<section id="resolucao">
 <h4>Resolução<a class="headerlink" href="#resolucao" title="Permalink to this headline">¶</a></h4>
 <p>Primeiramente, vamos plotar as curvas de nível 0 das funções que compõem o sistema. Faremos isto usando uma <em>grade numérica</em> e a função <code class="docutils literal notranslate"><span class="pre">contour</span></code>.</p>
-<div class="section" id="criando-uma-grade-numerica-bidimensional-uniforme">
+<section id="criando-uma-grade-numerica-bidimensional-uniforme">
 <h5>Criando uma grade numérica bidimensional uniforme<a class="headerlink" href="#criando-uma-grade-numerica-bidimensional-uniforme" title="Permalink to this headline">¶</a></h5>
 <p>Uma <em>grade numérica</em> é um conjunto de pontos separados por uma distância uniforme (ou variável). Neste caso em particular, criaremos uma <em>grade numérica</em> bidimensional. Podemos fazer isto da seguinte forma:</p>
 <div class="cell docutils container">
@@ -615,8 +618,8 @@ x^2 - y^2 = 1
 <img alt="_images/codeSession-4-fsolve_12_0.png" src="_images/codeSession-4-fsolve_12_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="plotando-curvas-de-nivel">
+</section>
+<section id="plotando-curvas-de-nivel">
 <h5>Plotando curvas de nível<a class="headerlink" href="#plotando-curvas-de-nivel" title="Permalink to this headline">¶</a></h5>
 <p>Plotaremos as curvas de nível 0 das funções não-lineares para realizar a análise gráfica e localizar as raízes para então escolhermos um vetor de estimativa inicial.</p>
 <p>Para plotar curvas de nível das funções sobre a grade numérica anterior, fazemos o seguinte:</p>
@@ -679,8 +682,8 @@ x^2 - y^2 = 1
 <img alt="_images/codeSession-4-fsolve_18_0.png" src="_images/codeSession-4-fsolve_18_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="estimativa-inicial">
+</section>
+<section id="estimativa-inicial">
 <h5>Estimativa inicial<a class="headerlink" href="#estimativa-inicial" title="Permalink to this headline">¶</a></h5>
 <p>A partir do gráfico anterior, vemos que há 4 raízes possíveis para o sistema não-linear. Vamos escolher uma delas para aproximar. Por conveniência, escolhamos a que se encontra no primeiro quadrante.</p>
 <p>Vamos fazer uma plotagem localizada no primeiro quadrante:</p>
@@ -701,8 +704,8 @@ x^2 - y^2 = 1
 </div>
 </div>
 <p>Observando o gráfico, faremos a escolha do ponto <span class="math notranslate nohighlight">\((x_0,y_0) = (1.2,0.7)\)</span> como estimativa inicial.</p>
-</div>
-<div class="section" id="resolucao-do-sistema-nao-linear">
+</section>
+<section id="resolucao-do-sistema-nao-linear">
 <h5>Resolução do sistema não-linear<a class="headerlink" href="#resolucao-do-sistema-nao-linear" title="Permalink to this headline">¶</a></h5>
 <p>Para resolver o sistema não-linear, primeiro definimos uma função que retornará uma tupla contendo cada função do sistema em cada uma de suas coordenadas.</p>
 <div class="cell docutils container">
@@ -733,8 +736,8 @@ x^2 - y^2 = 1
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="verificacao-e-plotagem">
+</section>
+<section id="verificacao-e-plotagem">
 <h5>Verificação e plotagem<a class="headerlink" href="#verificacao-e-plotagem" title="Permalink to this headline">¶</a></h5>
 <p>Podemos verificar que <span class="math notranslate nohighlight">\(x_r\)</span> e <span class="math notranslate nohighlight">\(y_r\)</span> satisfazem às equações dentro de uma certa precisão:</p>
 <div class="cell docutils container">
@@ -778,11 +781,11 @@ x^2 - y^2 = 1
 <img alt="_images/codeSession-4-fsolve_31_0.png" src="_images/codeSession-4-fsolve_31_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -806,15 +809,15 @@ x^2 - y^2 = 1
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="codeSession-3-polyval.html" title="previous page">Code session 3</a>
     <a class='right-next' id="next-link" href="codeSession-5-solve.html" title="next page">Code session 5</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

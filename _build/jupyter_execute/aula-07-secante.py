@@ -87,7 +87,7 @@ Vamos usar os nosso valores estimados:
 
 x0 = 1.4
 x1 = 1.5
-x2 = round(xm(x0,x1),3)
+x2 = round(xm(x0,x1),3) 
 print(x2)
 
 Agora, usamos este novo valor e o anterior.
@@ -97,7 +97,7 @@ print(x3)
 
 Calculemos o erro relativo entre as estimativas $x_1$ e $x_2$:
 
-err = lambda a,b: abs(a - b)/abs(a);
+err = lambda a,b: abs(a - b)/abs(a)
 e1 = err(x2,x1)
 print(round(e1,3))
 print("{0:e}".format(e1))

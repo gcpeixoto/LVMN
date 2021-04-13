@@ -99,15 +99,15 @@ f = lambda theta: x*np.tan(theta) - 0.5*(x**2*g/v0**2)*(1/(np.cos(theta)**2)) + 
 
 th = np.linspace(0.1,1.4,100,True)
 plt.plot(th,f(th))
-plt.xlabel('angulo')
+plt.xlabel('angulo');
 
 th = np.linspace(0.4,0.8,100,True)
 plt.plot(th,f(th))
-plt.xlabel('angulo')
+plt.xlabel('angulo');
 
 th = np.linspace(0.45,0.47,100,True)
 plt.plot(th,f(th))
-plt.xlabel('angulo')
+plt.xlabel('angulo');
 
 ## Refinamento
 

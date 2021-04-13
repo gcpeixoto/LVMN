@@ -127,19 +127,6 @@ f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
 # resolve bisseção
 xm = bissecao(f_s,12,16,1e-5,100,'c')
 
-# Exemplo 5.1
-f = 'x**3 - 9*x + 3'
-a = 0
-b = 1
-tol = 1e-3
-N = 100
-var = 'x'
-bissecao(f,a,b,tol,N,var)
-
-# relação erro desejado x número de iterações
-k = np.log2((b-a)/tol)
-print("O número de iterações é k = {0:g} ≈ {1:g}.".format(k,np.round(k)))
-
 ## Tarefas
 
 * Melhore o código Python tratando os TODOs: 

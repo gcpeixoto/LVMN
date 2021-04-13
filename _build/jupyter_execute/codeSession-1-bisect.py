@@ -35,7 +35,7 @@ from scipy.optimize import bisect
 
 ### Problema 1
 
-Encontre a menor raiz positiva (real) de $x^{3} - 3.23x^{2} - 5.54x + 9.84 = 0$ pelo método da bisseção.
+Encontre a menor raiz positiva (real) de $x^{3} - 3.23x^{2} - 5.54x + 9.84 = 0$  pelo método da bisseção.
 
 #### Resolução
 

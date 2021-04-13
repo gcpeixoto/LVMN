@@ -1,9 +1,9 @@
 # Code session 2
 
 %matplotlib inline 
-import numpy as np 
+import numpy as np
 import matplotlib.pyplot as plt 
-import sympy as sy 
+import sympy as sy
 
 ## Determinação de raízes
 

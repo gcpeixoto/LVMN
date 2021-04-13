@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>24. Diferenciação Numérica &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
@@ -26,7 +27,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +45,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,6 +53,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Cadernos
  </span>
@@ -232,7 +233,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Code sessions
  </span>
@@ -279,7 +280,7 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -332,21 +333,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -364,16 +365,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -400,13 +401,14 @@
     </div>
 </div>
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -453,6 +455,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -460,9 +463,9 @@
         
               <div>
                 
-  <div class="section" id="diferenciacao-numerica">
+  <section id="diferenciacao-numerica">
 <h1><span class="section-number">24. </span>Diferenciação Numérica<a class="headerlink" href="#diferenciacao-numerica" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="formula-de-derivacao-de-alta-acuracia">
+<section id="formula-de-derivacao-de-alta-acuracia">
 <h2><span class="section-number">24.1. </span>Fórmula de Derivação de Alta Acurácia<a class="headerlink" href="#formula-de-derivacao-de-alta-acuracia" title="Permalink to this headline">¶</a></h2>
 <p>A expansão em série de Taylor progressiva pode ser escrita como</p>
 <div class="math notranslate nohighlight">
@@ -495,8 +498,8 @@ f' (x_i) = \dfrac{f(x_{i+1}) - f(x_i)}{h} - \dfrac{f(x_{i+2}) - 2 f(x_{i+1}) + f
 f' (x_i) = \dfrac{- f(x_{i+2}) + 4 f(x_{i+1}) - 3 f(x_i)}{2 h} + O(h^2) \qquad (4)
 \]</div>
 <p>Observe que a inclusão do termo da segunda derivada melhorou a precisão para <span class="math notranslate nohighlight">\(O(h^2)\)</span>.</p>
-</div>
-<div class="section" id="derivada-de-dados-nao-uniformemente-espacados">
+</section>
+<section id="derivada-de-dados-nao-uniformemente-espacados">
 <h2><span class="section-number">24.2. </span>Derivada de Dados Não Uniformemente Espaçados<a class="headerlink" href="#derivada-de-dados-nao-uniformemente-espacados" title="Permalink to this headline">¶</a></h2>
 <p>Uma forma de tratar dados não uniformemente espaçados é ajustar um polinômio interpolador de Lagrange aos dados. Para uma derivada de primeira ordem mais acurada, por exemplo, podemos deduzir um polinômio de segundo grau para cada conjunto de três pontos adjacentes analiticamente através das expressões das funções de base de Lagrange. Em seguida, derivamos as funções de base de modo a obter</p>
 <div class="math notranslate nohighlight">
@@ -512,8 +515,8 @@ f' (x_i) = \dfrac{- f(x_{i+2}) + 4 f(x_{i+1}) - 3 f(x_i)}{2 h} + O(h^2) \qquad (
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="motivacao">
+</section>
+<section id="motivacao">
 <h2><span class="section-number">24.3. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">¶</a></h2>
 <p>Gerando curvas de deslocamento, velocidade e aceleração para uma partícula.</p>
 <div class="cell docutils container">
@@ -587,8 +590,8 @@ f' (x_i) = \dfrac{- f(x_{i+2}) + 4 f(x_{i+1}) - 3 f(x_i)}{2 h} + O(h^2) \qquad (
 <img alt="_images/aula-20-diferenciacao-numerica_6_0.png" src="_images/aula-20-diferenciacao-numerica_6_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="derivada-numerica-progressiva-e-regressiva-primeira-ordem">
+</section>
+<section id="derivada-numerica-progressiva-e-regressiva-primeira-ordem">
 <h2><span class="section-number">24.4. </span>Derivada numérica progressiva e regressiva (primeira ordem)<a class="headerlink" href="#derivada-numerica-progressiva-e-regressiva-primeira-ordem" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -636,7 +639,7 @@ f&#39;c(1.2) = 0.36235172
 <img alt="_images/aula-20-diferenciacao-numerica_8_1.png" src="_images/aula-20-diferenciacao-numerica_8_1.png" />
 </div>
 </div>
-<div class="section" id="comparando-resultados">
+<section id="comparando-resultados">
 <h3><span class="section-number">24.4.1. </span>Comparando resultados<a class="headerlink" href="#comparando-resultados" title="Permalink to this headline">¶</a></h3>
 <p><strong>Exemplo:</strong> considere a função <span class="math notranslate nohighlight">\(f(x) = \frac{2^x}{x}\)</span>. Calcule a segunda derivada em <span class="math notranslate nohighlight">\(x=2\)</span> numericamente com a fórmula de diferença centrada a 3 pontos usando:</p>
 <ul class="simple">
@@ -644,7 +647,7 @@ f&#39;c(1.2) = 0.36235172
 <li><p>Os pontos <span class="math notranslate nohighlight">\(x = 1.9\)</span>, <span class="math notranslate nohighlight">\(x = 2\)</span> e <span class="math notranslate nohighlight">\(x = 2.1\)</span>.</p></li>
 </ul>
 <p>Compare os resultados com a derivada analítica.</p>
-<div class="section" id="solucao">
+<section id="solucao">
 <h4><span class="section-number">24.4.1.1. </span>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">¶</a></h4>
 <p>Vamos primeiro computar a seguda derivada analítica de <span class="math notranslate nohighlight">\(f(x)\)</span> por computação simbólica.</p>
 <div class="cell docutils container">
@@ -741,10 +744,10 @@ erro relativo percentual 2: 0.12404011077131777%
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="nota">
+</section>
+</section>
+</section>
+<section id="nota">
 <h2><span class="section-number">24.5. </span>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">¶</a></h2>
 <p>O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).</p>
 <div class="cell docutils container">
@@ -759,8 +762,8 @@ erro relativo percentual 2: 0.12404011077131777%
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -784,15 +787,15 @@ erro relativo percentual 2: 0.12404011077131777%
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="aula-19-quadratura-gaussiana.html" title="previous page"><span class="section-number">23. </span>Integração Numérica: Quadratura Gaussiana</a>
     <a class='right-next' id="next-link" href="aula-21-solucoes-edo.html" title="next page"><span class="section-number">25. </span>Solução numérica de EDOs: método de Euler</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
