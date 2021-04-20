@@ -1,6 +1,6 @@
 # Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
 
-%matplotlib inline 
+%matplotlib inline
 
 ## Solução de sistemas lineares
 
@@ -101,9 +101,7 @@ a_{31}x_1+a_{32}x_2+a_{33}x_3 = b_3 \quad(L_3)\\
 \end{array}$$
 
 * Realizar operações elementares de combinação linear e permutação entre linhas;
-
-    - Multiplicação por escalar:
-    
+    - Multiplicação por escalar:    
 $$
 \begin{array}{c}
 L_2 \leftarrow L_2 .w\ \Rightarrow\ 
@@ -118,8 +116,7 @@ w.a_{21}&w.a_{22}\\
 \end{array}
 $$
 
-    - Combinação linear:
-    
+    - Combinação linear:    
 $$
 \begin{array}{c}
 L_2 \leftarrow L_2 - L_1.w\ \Rightarrow\ 

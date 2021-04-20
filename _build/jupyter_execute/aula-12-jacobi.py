@@ -8,6 +8,7 @@ O método de Jacobi-Richardson (MJR) é um método iterativo que busca uma solu�
 Este notebook usa o módulo `plotly` para plotagem. Para instalá-lo via `conda` e habilitá-lo para uso como extensão do Jupyter Lab, execute os comandos abaixo em uma célula:
 
 ``` python
+import sys
 !conda install --yes --prefix {sys.prefix} nodejs plotly
 !jupyter labextension install jupyterlab-plotly@4.12.0
 ```
@@ -156,18 +157,35 @@ xp = sol[0,:]
 yp = sol[1,:]
 zp = sol[2,:]
 
-points = go.Scatter3d(x = xp, y = yp, z = zp, mode = 'markers', marker = dict(size = 10,color = "rgb(227,26,28)"))
+points = go.Scatter3d(x = xp, y = yp, z = zp, mode = 'markers', marker = dict(size = 0.1,color = "rgb(227,26,28)"))
+
+vecs = []
+for i in range(len(xp)):
+    v = go.Scatter3d( x = [0,xp[i]], y = [0,yp[i]], z = [0,zp[i]], marker = dict(size = 0.1, color = "rgb(0,255,0)"),
+                       line = dict( color = "rgb(0,255,0)", width = 4) )
+    vecs.append(v)
+
 
 cx = np.sum(xp)/np.size(xp)
 cy = np.sum(yp)/np.size(yp)
 cz = np.sum(zp)/np.size(zp)
 
-vector = go.Scatter3d( x = [0,cx], y = [0,cy], z = [0,cz], marker = dict( size = 10, color = "rgb(84,48,5)"),
-                       line = dict( color = "rgb(84,48,5)", width = 10) )
+vector = go.Scatter3d( x = [0,cx], y = [0,cy], z = [0,cz], marker = dict(size = 1, color = "rgb(100,100,100)"),
+                       line = dict( color = "rgb(100,100,100)", width = 4) )
 
-data = [points,vector]
+data = [points,vector] + vecs
 layout = go.Layout(margin = dict( l = 0,r = 0, b = 0, t = 0))
 fig = go.Figure(data=data,layout=layout)
+
+
+# vector
+
+fig.add_cone(x=[cx],y=[cy],z=[cz],u=[cx],v=[cy],w=[cz],sizeref=0.1,anchor='tip',colorscale='gray')
+
+for i in range(len(xp)):
+    fig.add_cone(x=[xp[i]],y=[yp[i]],z=[zp[i]],u=[xp[i]],v=[yp[i]],w=[zp[i]],sizeref=0.1,anchor='tip',colorscale='jet')
+
+
 iplot(fig, show_link=True,filename='jacobi-3d-vectors')
 
 from IPython.core.display import HTML
