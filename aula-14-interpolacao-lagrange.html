@@ -224,12 +224,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-21-solucoes-edo.html">
-   25. Solução numérica de EDOs: método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-22-rungeKutta2.html">
-   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+   25. Introdução à solução numérica de EDOs
   </a>
  </li>
 </ul>
@@ -314,6 +309,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lista-6-solucoes.html">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   2. Otimização de código
   </a>
  </li>
 </ul>
@@ -449,10 +461,10 @@
 <p>onde</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}L_i(x) = \prod _{\substack{j = 0 \\ j \neq i}}^n \dfrac{x - x_j}{x_i - x_j}\end{split}\]</div>
-<p>Por exemplo, a versão linear <span class="math notranslate nohighlight">\((n = 1)\)</span> seria</p>
+<p>Por exemplo, a versão linear (<span class="math notranslate nohighlight">\(n = 1\)</span>) seria</p>
 <div class="math notranslate nohighlight">
 \[P_1(x) = \dfrac{x − x_1}{x_0 − x_1} f(x_0) + \dfrac{x − x_0}{x_1 − x_0} f(x_1) \]</div>
-<p>e a versão de segundo grau seria</p>
+<p>e a versão de segundo grau (<span class="math notranslate nohighlight">\(n = 1\)</span>) seria</p>
 <div class="math notranslate nohighlight">
 \[P_2(x) = \dfrac{(x − x_1)(x − x_2)}{(x_0 − x_1)(x_0 − x_2)} f(x_0) + \dfrac{(x − x_0)(x − x_2)}{(x_1 − x_0)(x_1 − x_2)} f(x_1) + \dfrac{(x − x_0)(x − x_1)}{(x_2 − x_0)(x_2 − x_1)}f(x_2)\]</div>
 </section>
@@ -473,12 +485,9 @@
 <span class="sd">            V: [&#39;var0&#39;,&#39;var1&#39;,...,&#39;varn-1&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> must be a string.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>                 
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1"> must be a string.&#39;</span><span class="p">)</span>                 
         
-    <span class="n">V</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">var</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">V</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Symbol</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="n">Symbol</span><span class="p">(</span><span class="n">var</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
         
     <span class="k">return</span> <span class="n">V</span>
 
@@ -489,8 +498,7 @@
 <span class="sd">            X: um vetor contendo variáveis simbólicas</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pega a variavel base passada e converte para simbólica</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>    
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
@@ -508,7 +516,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 
 <span class="c1"># número de nós de interpolação: interpolação de (n-1)-ésimo grau</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">7</span>
 
 <span class="c1"># domínio de interpolação</span>
 <span class="n">x0</span><span class="p">,</span><span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
@@ -540,35 +548,26 @@
 
 <span class="c1"># plotagem das funções</span>
 
-<span class="c1"># nós </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">xp</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span><span class="n">c</span><span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-
 <span class="n">leg</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,])</span>    
     <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;$L_{&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;}$&#39;</span>
     <span class="n">leg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> 
+
+<span class="c1"># nós </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">xp</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span><span class="n">c</span><span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">xp</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
         
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>        
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+       
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Funções de base de Lagrange de ordem &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; em [&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/aula-14-interpolacao-lagrange_5_0.png" src="_images/aula-14-interpolacao-lagrange_5_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-
-<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
-    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
-<span class="n">css_styling</span><span class="p">();</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>25. Solução numérica de EDOs: método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>25. Introdução à solução numérica de EDOs &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -53,10 +53,12 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem" href="aula-22-rungeKutta2.html" />
+    <link rel="next" title="Code session 1" href="codeSession-1-bisect.html" />
     <link rel="prev" title="24. Diferenciação Numérica" href="aula-20-diferenciacao-numerica.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -222,12 +224,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   25. Solução numérica de EDOs: método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-22-rungeKutta2.html">
-   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+   25. Introdução à solução numérica de EDOs
   </a>
  </li>
 </ul>
@@ -312,6 +309,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lista-6-solucoes.html">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   2. Otimização de código
   </a>
  </li>
 </ul>
@@ -404,6 +418,45 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelos-classicos">
+   25.1. Modelos clássicos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edos-de-primeira-ordem">
+     25.1.1. EDOs de primeira ordem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edos-de-segunda-ordem">
+     25.1.2. EDOs de segunda ordem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teoria-geral-de-resolubilidade-de-edos">
+   25.2. Teoria geral de resolubilidade de EDOs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problema-de-valor-inicial-pvi">
+     25.2.1. Problema de Valor Inicial (PVI)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
         </div>
     </div>
 </div>
@@ -412,130 +465,117 @@
         
               <div>
                 
-  <section id="solucao-numerica-de-edos-metodo-de-euler">
-<h1><span class="section-number">25. </span>Solução numérica de EDOs: método de Euler<a class="headerlink" href="#solucao-numerica-de-edos-metodo-de-euler" title="Permalink to this headline">¶</a></h1>
+  <section id="introducao-a-solucao-numerica-de-edos">
+<h1><span class="section-number">25. </span>Introdução à solução numérica de EDOs<a class="headerlink" href="#introducao-a-solucao-numerica-de-edos" title="Permalink to this headline">¶</a></h1>
+<p>Equações diferenciais ordinárias (EDOs) surgem em diversos problemas aplicados. Alguns exemplos:</p>
+<ul class="simple">
+<li><p><em>Química</em>: decréscimo radioativo de carbono 14;</p></li>
+<li><p><em>Engenharia</em>: queda da pressão atmosférica;</p></li>
+<li><p><em>Economia</em>: precificação de ativos financeiros.</p></li>
+</ul>
+<p>Nem sempre é possível obter soluções analíticas (forma fechada) para EDOs. Então, precisamos obter soluções aproximadas por meio de métodos numéricos.</p>
+<p>No passado, muito esforço era empregado para se desenvolver métodos computacionais ótimos, mas a insuficiência de poder computacional era um entrave. Hoje em dia, com a evolução tecnológica, a capacidade computacional de alto desempenho permite que soluções numéricas sejam obtidas com menor esforço de processamento e margem de erro satisfatória. A seguir, faremos uma breve introdução teórica sobre modelos clássicos descritos por EDOs e a resolubilidade das equações.</p>
+<section id="modelos-classicos">
+<h2><span class="section-number">25.1. </span>Modelos clássicos<a class="headerlink" href="#modelos-classicos" title="Permalink to this headline">¶</a></h2>
+<section id="edos-de-primeira-ordem">
+<h3><span class="section-number">25.1.1. </span>EDOs de primeira ordem<a class="headerlink" href="#edos-de-primeira-ordem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Crescimento e decrescimento</strong>: modelo (de Malthus) utilizado em crescimento populacional, mor- talidade de espécies biológicas.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[y'(t)=ky\Rightarrow y(t)=ce^{kt}, c,k \in \mathbb{R}\]</div>
+<p><strong>Interpretação:</strong> taxa de mudança da quantidade <span class="math notranslate nohighlight">\(y\)</span> é proporcional à própria quantidade ao longo do
+tempo. Se <span class="math notranslate nohighlight">\(k &gt; 0\)</span>, temos uma lei de crescimento; se <span class="math notranslate nohighlight">\(k &lt; 0\)</span>, temos uma lei de descrescimento (ou queda).</p>
+<ul class="simple">
+<li><p><strong>Lei do resfriamento de Newton:</strong> modelo utilizado para determinar a troca de calor entre um corpo material e um meio externo.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[T'(t) = k(T − T_{\infty}) \Rightarrow T(t) = T_0 + (T_{\infty} − T_0)e^{kt},\]</div>
+<p>onde <span class="math notranslate nohighlight">\(T\)</span> é a <em>temperatura do corpo</em>, <span class="math notranslate nohighlight">\(k &gt; 0 \in \mathbb{R}\)</span> a <em>condutividade térmica</em> (dependente do material do corpo e nem sempre constante), <span class="math notranslate nohighlight">\(T_{\infty}\)</span> a <em>temperatura do ambiente</em> e <span class="math notranslate nohighlight">\(T_0\)</span> a <em>temperatura inicial</em>.</p>
+<p><strong>Interpretação</strong>: taxa de mudança da temperatura é proporcional a diferença entre a temperatura do objeto e do ambiente com o qual troca calor.</p>
+</section>
+<section id="edos-de-segunda-ordem">
+<h3><span class="section-number">25.1.2. </span>EDOs de segunda ordem<a class="headerlink" href="#edos-de-segunda-ordem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Variação da quantidade de movimento em um sistema (2a. lei de Newton)</strong>: modelo utilizado para descrever a perda de equilíbrio de sistemas mecânicos (cordas vibrantes, molas amortecidas, escoamentos de fluidos viscosos).</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[my''(t) = −by'(t) − ky + f(t),\]</div>
+<p>onde <span class="math notranslate nohighlight">\(m\)</span> é a <em>massa</em>, <span class="math notranslate nohighlight">\(y\)</span> é um <em>deslocamento</em>, <span class="math notranslate nohighlight">\(t\)</span> o <em>tempo</em>, b &gt; 0 uma <em>constante de amortecimento</em> (absorvedor de choque), <span class="math notranslate nohighlight">\(k &gt; 0\)</span> um <em>parâmetro da mola/empuxo</em> e <span class="math notranslate nohighlight">\(f(t)\)</span> uma <em>força externa</em>.</p>
+<p><strong>Interpretação</strong>: taxa de mudança da quantidade de movimento do corpo é igual às forças aplicadas sobre o mesmo. A solução geral desta equação não homogênea será omitida aqui (cf. Weiglholfer and Lindsay, p.32).</p>
+<ul class="simple">
+<li><p><strong>2a. lei de Kirchhoff</strong>: modelo usado em circuitos elétricos e eletromagnetismo.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = U(t),\]</div>
+<p>onde <span class="math notranslate nohighlight">\(Q(t)\)</span> é a <em>carga elétrica</em>, <span class="math notranslate nohighlight">\(L\)</span> é a <em>indutância</em>, <span class="math notranslate nohighlight">\(R\)</span> a <em>resistência</em>, <span class="math notranslate nohighlight">\(C\)</span> a <em>capacitância</em> e <span class="math notranslate nohighlight">\(U(t)\)</span> a <em>força eletromotora</em> (tensão elétrica).</p>
+<p><strong>Interpretação</strong>: a força eletromotora (bateria, por exemplo) em qualquer circuito fechado equilibra todas as diferenças de potencial (d.d.p.) naquele circuito. Em outras palavras: em um circuito fechado, a soma de todas as d.d.p. é nula.</p>
+</section>
+</section>
+<section id="teoria-geral-de-resolubilidade-de-edos">
+<h2><span class="section-number">25.2. </span>Teoria geral de resolubilidade de EDOs<a class="headerlink" href="#teoria-geral-de-resolubilidade-de-edos" title="Permalink to this headline">¶</a></h2>
+<section id="problema-de-valor-inicial-pvi">
+<h3><span class="section-number">25.2.1. </span>Problema de Valor Inicial (PVI)<a class="headerlink" href="#problema-de-valor-inicial-pvi" title="Permalink to this headline">¶</a></h3>
+<p>Um <em>problema de valor inicial</em> (PVI) é formado por uma EDO e uma <em>condição inicial</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+y'(t) = f(t,y(t)) \\
+y(t_0) = y_0
+\end{cases},\end{split}\]</div>
+<p>Acima, <span class="math notranslate nohighlight">\(t\)</span> é a <em>variável independente</em>, <span class="math notranslate nohighlight">\(y(t)\)</span> é a <em>variável dependente</em> (solução da EDO) e <span class="math notranslate nohighlight">\(t_0\)</span> é a <em>condição inicial</em>.</p>
+<p><strong>Exemplo:</strong> A EDO <span class="math notranslate nohighlight">\(y'(t) = -[y(t)]^2 + y(t)\)</span> possui a chamada solução trivial <span class="math notranslate nohighlight">\(y(t) \equiv 0\)</span> e a solução geral:</p>
+<div class="math notranslate nohighlight">
+\[y(t) = \dfrac{1}{1+ce^{-t}}\]</div>
+<p>Observemos que <span class="math notranslate nohighlight">\(y(t)\)</span> é indefinida quando <span class="math notranslate nohighlight">\(1+ce^{-t}=0\)</span>, ou <span class="math notranslate nohighlight">\(t = \ln(-c)\)</span>. Se <span class="math notranslate nohighlight">\(y(0) = y_0 \neq 0\)</span> for uma condição inicial geral, <span class="math notranslate nohighlight">\(c = \frac{1}{y_0} - 1\)</span> e teremos os seguintes resultados adicionais:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>condição inicial</p></th>
+<th class="head"><p>valores de <span class="math notranslate nohighlight">\(c\)</span></p></th>
+<th class="head"><p>existência de solução</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y_0 &gt; 0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(c &gt; -1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0 \leq t &lt; \infty\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_0 &lt; 0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(c &lt; -1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0 &lt; t &lt; \ln(1 - y_0^{-1})\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Abaixo vemos os gráficos de <span class="math notranslate nohighlight">\(Y(t)\)</span> quando <span class="math notranslate nohighlight">\(c = \{-0.8,-0.5,-0.4,0,0.5,1,0,2.5\}\)</span> e para a solução trivial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline 
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define função f(t,y) = -2yt </span>
-<span class="c1"># para resolver o PVI </span>
-<span class="c1"># y&#39; = -2yt</span>
-<span class="c1"># y(0) = 1, (0,2]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 
-<span class="c1">#f = lambda t,y: -2*y*t</span>
-<span class="c1">#yan = lambda t: np.exp(-t**2)</span>
+<span class="c1"># variavel independente</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">y</span> <span class="o">+</span> <span class="n">t</span>
-<span class="n">yan</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c1"># condicao inicial</span>
+<span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
 
-<span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mf">5.0</span>
-<span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.001</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">C</span><span class="p">:</span>    
 
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+    <span class="c1"># solucoes não triviais</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)))</span>
     
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-
-    <span class="n">y2</span> <span class="o">=</span> <span class="n">y</span><span class="o">*</span><span class="mi">0</span>
-    <span class="n">y2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">y2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
+    <span class="c1"># solucao trivial</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>    
             
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-    <span class="c1">#plt.plot(t,y,&#39;k&#39;,label=&#39;odeint&#39;)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yan</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;sol. analítica&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Resolução de EDO: sol. analítica x mét. Euler (dt = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> 
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span> 
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-21-solucoes-edo_2_0.png" src="_images/aula-21-solucoes-edo_2_0.png" />
-<img alt="_images/aula-21-solucoes-edo_2_1.png" src="_images/aula-21-solucoes-edo_2_1.png" />
-<img alt="_images/aula-21-solucoes-edo_2_2.png" src="_images/aula-21-solucoes-edo_2_2.png" />
+<img alt="_images/aula-21-solucoes-edo_1_0.png" src="_images/aula-21-solucoes-edo_1_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline 
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">integrate</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
-
-<span class="c1"># PVI </span>
-<span class="c1"># y&#39; = f(T,y)</span>
-<span class="c1"># y(t0) = 1, T = (t0,tn]</span>
-
-<span class="c1"># parametros</span>
-<span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">tn</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="mi">35</span>
-<span class="n">y0_ex2</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="c1"># var. independente</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tn</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
-
-<span class="c1"># EDO</span>
-<span class="n">f_ex2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-
-<span class="c1"># solucao analitica simbolica </span>
-<span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;y**2*t*(sin(t))&#39;</span>
-<span class="n">tt</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">yan_ex2</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">fun</span><span class="p">,(</span><span class="n">tt</span><span class="p">,</span><span class="n">t0</span><span class="p">,</span><span class="n">tn</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">yan_ex2</span><span class="p">)</span>
-
-<span class="n">yan</span> <span class="o">=</span> <span class="n">yan_ex2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-
-<span class="n">y_ex2</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">f_ex2</span><span class="p">,</span> <span class="n">y0_ex2</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">y_ex2</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;odeint&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Resolução de EDO: sol. analítica x mét. Euler (dt = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">tn</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">);</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y**2*(sin(10) - 10*cos(10))
-</pre></div>
-</div>
-<img alt="_images/aula-21-solucoes-edo_3_1.png" src="_images/aula-21-solucoes-edo_3_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-
-<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
-    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
-<span class="n">css_styling</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -564,7 +604,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="aula-20-diferenciacao-numerica.html" title="previous page"><span class="section-number">24. </span>Diferenciação Numérica</a>
-    <a class='right-next' id="next-link" href="aula-22-rungeKutta2.html" title="next page"><span class="section-number">26. </span>Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem</a>
+    <a class='right-next' id="next-link" href="codeSession-1-bisect.html" title="next page">Code session 1</a>
 
         </div>
         

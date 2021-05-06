@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>Métodos de Taylor de Ordem Superior &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="shortcut icon" href="_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-21-solucoes-edo.html">
+   25. Introdução à solução numérica de EDOs
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   2. Otimização de código
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/aula-23-taylor-rungeKutta.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-23-taylor-rungeKutta.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-23-taylor-rungeKutta.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-de-runge-kutta">
+   Métodos de Runge-Kutta
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forma-geral">
+     Forma geral
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodos-de-runge-kutta-de-2a-ordem">
+     Métodos de Runge-Kutta de 2a. ordem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="metodos-de-taylor-de-ordem-superior">
+<h1>Métodos de Taylor de Ordem Superior<a class="headerlink" href="#metodos-de-taylor-de-ordem-superior" title="Permalink to this headline">¶</a></h1>
+<p>Métodos que usam o desenvolvimento em série de Taylor de <span class="math notranslate nohighlight">\(y(t)\)</span> teoricamente fornecem solução para qualquer ED. Sob o ponto de vista computacional, Métodos de Taylor de ordem mais elevada são inaceitáveis, pois, exceto uma classe restrita de funções, o cálculo das derivadas totais é complicado.</p>
+<p>Estes métodos são obtidos retendo-se termos de ordem superior na série de Taylor. Por sua vez, o Método de Euler é um caso particular, como veremos a seguir, já que tem os termos de ordem <span class="math notranslate nohighlight">\(\geq 2\)</span> truncados na série.</p>
+<p>Suponhamos que <span class="math notranslate nohighlight">\(y(t)\)</span> a solução para o PVI
+$<span class="math notranslate nohighlight">\(\begin{cases}
+y' = f(t,y) \\
+a \leq t \leq b \\
+y(a) = \alpha
+\end{cases}\)</span><span class="math notranslate nohighlight">\(
+é de classe \)</span>\mathcal{C}^{n+1}<span class="math notranslate nohighlight">\(. Haja vista que a série de Taylor de \)</span>y(t)<span class="math notranslate nohighlight">\( em relação ao ponto \)</span>t_i<span class="math notranslate nohighlight">\( pode ser expandida até a ordem \)</span>n$ como</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y(t_{i+1}) = y(t_i) + {h} y'(t) + \frac{ {h}^2 }{2} y''(t_i) + \dots + \frac{ {h}^n }{n!} y^{(n)}(t_i) + \frac{ {h}^{n+1} }{(n+1)!} y^{(n+1)}(\xi_i), 
+\end{equation*}\]</div>
+<p>para <span class="math notranslate nohighlight">\(\xi_i \in (t_i,t_{i+1})\)</span>.</p>
+<p>A diferenciação sucessiva de <span class="math notranslate nohighlight">\(y(t)\)</span> fornece</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y'(t) &amp;= f(t,y(t)) \\
+y''(t) &amp;= f'(t,y(t)) \\
+		&amp; \vdots  \\
+y^k(t) &amp;= f^{(k-1)}(t,y(t))
+\end{align*}\]</div>
+<p>Substituindo-as na série de Taylor, temos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y(t_{i+1}) = y(t_i) + h f(t_i,y(t_i)) + \frac{ h^2 }{2} f'(t_i,y(t_i)) + \dots + 
+\frac{ h^n }{n!} f^{(n-1)}(t_i,y(t_i)) + \frac{ h^{n+1} }{(n+1)!} f^{(n)}(\xi_i,y(\xi_i))
+\end{equation*}\]</div>
+<p>Excluindo o termo de resto envolvendo <span class="math notranslate nohighlight">\(\xi\)</span>, obtemos o <strong>Método de Taylor de ordem <span class="math notranslate nohighlight">\(n\)</span></strong> através do seguinte processo iterativo</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+w_0 &amp;= \alpha \\
+w_{i+1} &amp;= w_i + T^{(n)}(t_i,w_i), \quad i = 0,1,2, \ldots, N
+\end{align*}\]</div>
+<p>em que</p>
+<div class="math notranslate nohighlight">
+\[T^{(n)}(t_i,w_i) = f(t_i,w_i) + \frac{h}{2} f'(t_i,y(t_i)) + \dots + \frac{ h^{n-1} }{n!}f^{(n-1)}(t_i,w_i).\]</div>
+<p>Logo, vemos que o método de Euler é o Método de Taylor de ordem 1. As derivadas sucessivas podem ser calculadas pela Regra da Cadeia. Por exemplo,</p>
+<div class="math notranslate nohighlight">
+\[y' = f(t,y) \Rightarrow  y'' = f_t(t,y) + f_y(t,y) y' = f_t(t,y) + f_y(t,y) f(t,y).\]</div>
+<p>Todavia, os métodos da família Runge-Kutta são alternativas numéricas melhores para métodos de Taylor pois simulam o efeito das derivadas a partir de cálculos médios que não necessitam de derivadas analíticas. Estudaremos métodos de Runge-Kutta em breve.</p>
+<p><strong>Exemplo:</strong> Aplique o Método de Taylor de ordem 2 ao PVI</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+y'= y − t^2 + 1 \\
+0 \leq t \leq 2 \\
+y(0) = 0.5.
+\end{cases}\end{split}\]</div>
+<p>Para o método de ordem 2, precisamos da primeira derivada de <span class="math notranslate nohighlight">\(f(t,y(t)) = y(t) − t^2 + 1\)</span> em relação a <span class="math notranslate nohighlight">\(t\)</span>. Então,</p>
+<div class="math notranslate nohighlight">
+\[f'(t,y(t)) = \frac{d}{dt} (y − t^2 + 1) = y' − 2t = (y − t^2 + 1) − 2t,\]</div>
+<p>de modo que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T^{(2)}(t_i,w_i) = 
+f(t_i,w_i)+ \frac{h}{2}f'(t_i,w_i) = w_i − t_i^2 + 1 + \frac{h}{2}(w_i − t_i^2 + 1 − 2t_i) = \\
+= \left( 1 + \frac{h}{2} \right) (w_i − t_i^2 + 1) − ht_i\end{split}\]</div>
+<p>Como <span class="math notranslate nohighlight">\(N = 10\)</span>, temos <span class="math notranslate nohighlight">\(h = 0.2\)</span> e <span class="math notranslate nohighlight">\(t_i = 0.2i, \forall i = 1,2,...,10\)</span>. Assim, o método de segunda ordem torna-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}w_0 = 0.5 \\
+w_{i+1} = w_i + h \left[ \left(1 + \frac{h}{2} \right)(w_i − t_i^2 + 1) − h t_i \right] = \\
+= w_i + 0.2 \left[ \left(1 + \frac{0.2}{2} \right) (w_i − 0.04i^2 + 1) −0.04i \right] \\
+= 1.22w_i − 0.0088i^2 − 0.008i + 0.22.\end{split}\]</div>
+<p>Os dois primeiros passos dão a aproximação:</p>
+<div class="math notranslate nohighlight">
+\[y(0.2) \approx w_1 = 1.22(0.5) − 0.0088(0)^2 − 0.008(0) + 0.22 = 0.83\]</div>
+<div class="math notranslate nohighlight">
+\[y(0.4) \approx w_2 = 1.22(0.83) − 0.0088(0.2)^2 − 0.008(0.2) + 0.22 = 1.2158\]</div>
+<div class="math notranslate nohighlight">
+\[(\ldots)\]</div>
+<p>Os demais passos seguem da mesma forma</p>
+<section id="metodos-de-runge-kutta">
+<h2>Métodos de Runge-Kutta<a class="headerlink" href="#metodos-de-runge-kutta" title="Permalink to this headline">¶</a></h2>
+<p>O objetivo principal dos métodos de Runge-Kutta (RK) é imitar o comportamento de <span class="math notranslate nohighlight">\(f(t,y)\)</span> avaliando-a em vários pontos “abstratos” dentro de um mesmo passo numérico.</p>
+<p>Esquemas do tipo RK são usados para reter precisão e substituir aproximações de baixa ou alta ordem via séries de Taylor. São populares na resolução de PVIs e mais simples de programar do que os métodos de Taylor.</p>
+<section id="forma-geral">
+<h3>Forma geral<a class="headerlink" href="#forma-geral" title="Permalink to this headline">¶</a></h3>
+<p>A forma geral de um método RK é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+w_{n+1} &amp;=&amp; w_n + hF(t_n,w_n;h), \ \ n \geq 0 \\
+w_0 &amp;=&amp; y_0
+\end{cases}\end{split}\]</div>
+<p>O termo <span class="math notranslate nohighlight">\(F(t_n,w_n;h)\)</span> representa uma <em>inclinação média</em>, de maneira que, informalmente, métodos RK seja refraseados como:</p>
+<p><em>valor futuro = valor atual + passo x inclinação média</em>.</p>
+<p>Se fizéssemos uma analogia com o movimento uniforme da física, <span class="math notranslate nohighlight">\(w\)</span> seria uma posição do espaço, <span class="math notranslate nohighlight">\(h\)</span> o tempo e <span class="math notranslate nohighlight">\(F\)</span> a velocidade, resultando em</p>
+<p><em>posição final = posição inicial + tempo x velocidade</em></p>
+<p>ou, equivalentemente, <span class="math notranslate nohighlight">\(s_f = s_0 + vt\)</span>.</p>
+</section>
+<section id="metodos-de-runge-kutta-de-2a-ordem">
+<h3>Métodos de Runge-Kutta de 2a. ordem<a class="headerlink" href="#metodos-de-runge-kutta-de-2a-ordem" title="Permalink to this headline">¶</a></h3>
+<p>Para métodos RK2, a inclinação média é dada pela expressão</p>
+<div class="math notranslate nohighlight">
+\[F(t,w;h) = b_1 f(t,w) + b_2 f(t+\alpha h, w + \beta h f(t,w),\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\alpha, \beta, b_1, b_2 \in \mathbb{R}\)</span> são constantes a serem determinadas de modo que atinjamos um erro de truncamento</p>
+<div class="math notranslate nohighlight">
+\[T_{n+1}(w) = w_{n+1} - [ w_n + h F(t_n,w_n;h) ] \equiv \mathcal{O}(h^3),\]</div>
+<p>i.e., seja de terceira ordem.</p>
+<p>Abaixo, vamos resolver o PVI:</p>
+<p>\begin{cases}
+y’ = -1.2y + 7e^(-0.3x) \
+y(0) = 3 \
+0 &lt; x \leq 2 \
+h = 1,0.5,0.25,0.1
+\end{cases}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definição</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># dados de entrada </span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">31</span><span class="p">]</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">ode</span> <span class="o">=</span> <span class="s1">&#39;-1.2*y + 7*e**(-0.3*x)&#39;</span>
+
+<span class="c1"># soluções numéricas</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">:</span>
+    <span class="c1"># MEE</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">we</span> <span class="o">=</span> <span class="n">ode_euler_expl</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">w0</span><span class="p">)</span>
+
+    <span class="c1"># MEM</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">wm</span> <span class="o">=</span> <span class="n">ode_euler_mod</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">w0</span><span class="p">)</span>
+
+    <span class="c1"># conversao de dados</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">we</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">we</span><span class="p">)</span>
+    <span class="n">wm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">wm</span><span class="p">)</span>
+
+    <span class="c1"># solução exata</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">70</span><span class="o">/</span><span class="mi">9</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">43</span><span class="o">/</span><span class="mi">9</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># curvas</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;exata&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">we</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Eu expl&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">wm</span><span class="p">,</span><span class="s1">&#39;go&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Eu mod&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">tit</span> <span class="o">=</span> <span class="s1">&#39;$h = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$h=$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-23-taylor-rungeKutta_3_0.png" src="_images/aula-23-taylor-rungeKutta_3_0.png" />
+<img alt="_images/aula-23-taylor-rungeKutta_3_1.png" src="_images/aula-23-taylor-rungeKutta_3_1.png" />
+<img alt="_images/aula-23-taylor-rungeKutta_3_2.png" src="_images/aula-23-taylor-rungeKutta_3_2.png" />
+<img alt="_images/aula-23-taylor-rungeKutta_3_3.png" src="_images/aula-23-taylor-rungeKutta_3_3.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

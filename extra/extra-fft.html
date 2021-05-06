@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>1. Processamento de sinais &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Otimização de código" href="extra-numba.html" />
+    <link rel="prev" title="Lista de Exercícios 6" href="../lista-6-solucoes.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-21-solucoes-edo.html">
+   25. Introdução à solução numérica de EDOs
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-numba.html">
+   2. Otimização de código
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/extra/extra-fft.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-fft.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-fft.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analise-espectral">
+   1.1. Análise espectral
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformadas-de-fourier">
+   1.2. Transformadas de Fourier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modulo-fftpack">
+   1.3. Módulo
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fftpack
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importacao-de-modulos">
+     1.3.1. Importação de módulos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filros-no-dominio-das-frequencias">
+     1.3.2. Filros no domínio das frequencias
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="processamento-de-sinais">
+<h1><span class="section-number">1. </span>Processamento de sinais<a class="headerlink" href="#processamento-de-sinais" title="Permalink to this headline">¶</a></h1>
+<p>Na ciência e engenharias, o processamento de sinais é bastante útil, principalmente em áreas como <em>teoria do controle</em>. Um sinal pode ser:</p>
+<ul class="simple">
+<li><p><em>temporal</em>: uma quantidade que varia no tempo (ex.: sinal de áudio, música etc.)</p></li>
+<li><p><em>espacial</em>: uma quantidade que varia no espaço (ex.: uma imagem 2D)</p></li>
+</ul>
+<p>Sinais são frequentemente funções contínuas. Em aplicações computacionais, entretanto, eles se tornam discretos, visto que são amostrados em um conjunto limitado de pontos separados de distâncias uniformes.</p>
+<p>Um algoritmo importantíssimo utilizado para processar sinais é a Transformada Rápida de Fourier, conhecida como <em>Fast Fourier Transform</em>, ou simplesmente <em>FFT</em>.</p>
+<section id="analise-espectral">
+<h2><span class="section-number">1.1. </span>Análise espectral<a class="headerlink" href="#analise-espectral" title="Permalink to this headline">¶</a></h2>
+<p>A análise espectral, como o nome já diz, estuda espectros de frequencias e forma um arcabouço fundamental para aplicação da FFT e de transformadas de Fourier mais gerais. Transformadas são integrais matemáticas que nos permitem transformar um sinal do <em>domínio temporal</em> (onde ele é descrito como uma função do tempo) para o <em>domínio de frequencias</em> (onde ele é representado como uma função da frequencia).</p>
+<p>A representação de um sinal no domínio de frequencias é útil para muitos objetivos, entre os quais podemos citar a extração de frequencias dominantes, a aplicação de filtros e a resolução equações diferenciais.</p>
+</section>
+<section id="transformadas-de-fourier">
+<h2><span class="section-number">1.2. </span>Transformadas de Fourier<a class="headerlink" href="#transformadas-de-fourier" title="Permalink to this headline">¶</a></h2>
+<p>A expressão matemática para a transformada de Fourier <span class="math notranslate nohighlight">\(F(v)\)</span> de um sinal contínuo <span class="math notranslate nohighlight">\(f(t)\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[F(v) = \int_{-\infty}^{+\infty} f(t) e^{-2 \pi i v t} \, dt.\]</div>
+<p>A transformada de Fourier inversa é dada por:</p>
+<div class="math notranslate nohighlight">
+\[f(t) = \int_{-\infty}^{+\infty} F(v) e^{2 \pi i v t} \, dv,\]</div>
+<p>Acima,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F(v)\)</span> é o espectro de amplitudes do sinal <span class="math notranslate nohighlight">\(f(t)\)</span> (uma função complexa)</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> é a frequencia</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(t)\)</span> é um sinal contínuo com duração infinita</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> é uma coordenada temporal.</p></li>
+</ul>
+<p>Usualmente, aplicações computacionais baseiam-se em amostrar a função <span class="math notranslate nohighlight">\(f(t)\)</span> em <span class="math notranslate nohighlight">\(N\)</span> pontos uniformemente espaçados <span class="math notranslate nohighlight">\(x_0, x_1, \ldots, x_N\)</span> durante um intervalo finito de tempo <span class="math notranslate nohighlight">\(0 \leq t \leq T\)</span>, de modo que a transformada contínua anterior seja adaptada para a <em>Transformada de Fourier Discreta</em> (DFT), dada por:</p>
+<div class="math notranslate nohighlight">
+\[X_k = \displaystyle\sum_{n=0}^{N-1}x_n e^{\frac{-2 \pi i n k}{N}},\]</div>
+<p>cuja DFT inversa é</p>
+<div class="math notranslate nohighlight">
+\[x_n = \frac{1}{N}\displaystyle\sum_{k=0}^{N-1}X_k e^{\frac{-2 \pi i n k}{N}}.\]</div>
+<p>Acima,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_k\)</span> é a DFT das amostras <span class="math notranslate nohighlight">\(x_n\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> é uma faixa de frequencia (<em>bin</em>).</p></li>
+</ul>
+<p>O cálculo eficiente da DFT é feito pelo algoritmo conhecido como FFT.</p>
+</section>
+<section id="modulo-fftpack">
+<h2><span class="section-number">1.3. </span>Módulo <code class="docutils literal notranslate"><span class="pre">fftpack</span></code><a class="headerlink" href="#modulo-fftpack" title="Permalink to this headline">¶</a></h2>
+<p>Podemos usar o submódulo <code class="docutils literal notranslate"><span class="pre">fftpack</span></code> do <code class="docutils literal notranslate"><span class="pre">scipy</span></code> para ter acesso a implementações da FFT. Veremos uma aplicação das funções <code class="docutils literal notranslate"><span class="pre">fft</span></code> e <code class="docutils literal notranslate"><span class="pre">ifft</span></code>, que são, respectivamente, implementações da FFT geral e de sua inversa.</p>
+<section id="importacao-de-modulos">
+<h3><span class="section-number">1.3.1. </span>Importação de módulos<a class="headerlink" href="#importacao-de-modulos" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">fftpack</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aqui, criamos um sinal simulado com componentes senoidais puras em 1 Hz e em 22 Hz em cima de um ruído de distribuição normal. A função abaixo gera amostras ruidosas deste sinal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">amostra_sinal</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> 
+            <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">22</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> 
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uma vez que a DFT toma amostras discretas como entrada e retorna um espectro de frequencias discretas como saída, para usá-la em processos que são originalmente contínuos, primeiro devemos reduzir os sinais para valores discretos usando amostragem (<em>sampling</em>).</p>
+<p>Pelo teorema da amostragem, um sinal contínuo com largura de banda <span class="math notranslate nohighlight">\(B\)</span> (i.e. o sinal não contém frequencias maiores do que <span class="math notranslate nohighlight">\(B\)</span>) pode ser completamente reconstruído a partir de amostras discretas com frequencia de amostragem <span class="math notranslate nohighlight">\(f_s \geq 2B\)</span>. Este resultado nos diz sob quais circunstâncias podemos trabalhar com sinais discretos em vez de contínuos. Ele permite-nos determinar uma taxa de amostragem adequada.</p>
+<p>Digamos que estejamos interessados em computar o espectro de frequencias deste sinal até frequencias de 30 Hz. Precisamos escolher a frequencia de amostragem <span class="math notranslate nohighlight">\(f_s = 60\)</span> Hz e, se quisermos obter um espectro de frequencias com resolução de <span class="math notranslate nohighlight">\(\Delta f = 0.01\)</span> Hz, precisamos coletar pelo menos <span class="math notranslate nohighlight">\(N = f_s / \Delta f = 6000\)</span> amostras, correspondendo a um período de amostragem de <span class="math notranslate nohighlight">\(T = N/f_s = 100\)</span> segundos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="mf">30.0</span> <span class="c1"># largura de banda [Hz]</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span> <span class="c1"># frequencia de amostragem [Hz]</span>
+<span class="n">delta_f</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># espaçamento</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f_s</span> <span class="o">/</span> <span class="n">delta_f</span><span class="p">)</span> <span class="c1"># número de amostras</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">f_s</span> <span class="c1"># tempo total de amostragem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida, amostramos o sinal em <span class="math notranslate nohighlight">\(N\)</span> pontos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">f_t</span> <span class="o">=</span> <span class="n">amostra_sinal</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>O sinal é plotado como segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_t</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;tempo (s)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sinal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_t</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;tempo (s)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/extra-fft_11_0.png" src="../_images/extra-fft_11_0.png" />
+</div>
+</div>
+<p>O sinal é muitor ruidoso. À direita, vemos uma plotagem ampliada. Para revelar as componentes senoidais no sinal, podemos usar a FFT para calcular o espectro do sinal, isto é, sua representação no domínio das frequencias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">f_t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">F</span></code> contém as componentes de frequencia do espectro nas frequencias que são determinadas pela taxa de amostragem e pelo número de amostras. Ao computar estas frequencias, é conveniente usar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="n">f_s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>para retornar as frequencias correspondendo a cada <em>bin</em> de frequnecia.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> possui frequencias positivas e negativas. Para selecionar as positivas, fazemos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">f</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida, podemos plotar o espectro com as componentes positivas de frequencia (em escala logarítmica para contrastar sinal e ruído), bem como os dois picos em 1 Hz e 22 Hz que se sobressaem. Ambos correspondem às componentes senoidais existentes no sinal.</p>
+<p>Embora o ruído esconda as componentes senoidais no sinal em seu domínio temporal, podemos vê-las claramente presentes no domínio das frequencias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">mask</span><span class="p">])),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;real&quot;</span><span class="p">)</span>  
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;r*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$\log(|F|)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;real&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$|F|/N$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;real&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;frequencia (Hz)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$|F|/N$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/extra-fft_20_0.png" src="../_images/extra-fft_20_0.png" />
+</div>
+</div>
+</section>
+<section id="filros-no-dominio-das-frequencias">
+<h3><span class="section-number">1.3.2. </span>Filros no domínio das frequencias<a class="headerlink" href="#filros-no-dominio-das-frequencias" title="Permalink to this headline">¶</a></h3>
+<p>Podemos também computar o sinal no domínio temporal a partir da representação no domínio das frequencias usando a função FFT inversa.</p>
+<p>Por exemplo, a aplicação de um filtro passa-baixa (<em>low pass</em>) de 2 Hz, i.e. que suprime componentes com frequencia maiores do que 2 Hz nos leva a:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_filtered</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">f_t_filtered</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">F_filtered</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>O cálculo da FFT inversa para o sinal filtrado resulta em um sinal no domínio temporal onde as oscilações de alta frequencia estão ausentes. Este exemplo resume a essência de muitos filtros aplicáveis ao domínio de frequencias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_t_filtered</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;filtrado&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;tempo (s)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sinal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/extra-fft_25_0.png" src="../_images/extra-fft_25_0.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./extra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../lista-6-solucoes.html" title="previous page">Lista de Exercícios 6</a>
+    <a class='right-next' id="next-link" href="extra-numba.html" title="next page"><span class="section-number">2. </span>Otimização de código</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

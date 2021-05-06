@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>Sistemas de EDOs &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/numbiosis.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../conteudo.html">
+   Laboratório Virtual de Métodos Numéricos - LVMN
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-01-ponto-flutuante.html">
+   2. Conversão numérica e ponto flutuante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-02-erros.html">
+   3. Erros numéricos e seus efeitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-03-analise-grafica.html">
+   4. Análise gráfica, localização e refinamento de raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-04-bissecao.html">
+   5. Implementações do método da bisseção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-05-ponto-fixo.html">
+   6. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-06-newton.html">
+   7. Implementação do método de Newton
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-07-secante.html">
+   8. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-08-muller.html">
+   9. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-09-eliminacao-gauss.html">
+   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
+   11. Eliminação Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-10-fatoracao-lu.html">
+   12. Fatoração LU com Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-11-cholesky.html">
+   13. Fatoração de Cholesky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-12-jacobi.html">
+   14. Método de Jacobi-Richardson
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-13-newton-nao-linear.html">
+   15. Método de Newton para sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
+   16. Nota: Raízes de sistemas não-lineares
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-14-interpolacao-lagrange.html">
+   17. Polinômio Interpolador de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
+   18. Funções de base de Lagrange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-15-interpolacao-newton.html">
+   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-16-minimos-quadrados.html">
+   20. Ajuste de Curvas por Mínimos Quadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-17-ajusteNaoLinear.html">
+   21. Ajuste de curvas: caso não-linear
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-18-integracao-newtonCotes.html">
+   22. Integração Numérica: Regras de Newton-Cotes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-19-quadratura-gaussiana.html">
+   23. Integração Numérica: Quadratura Gaussiana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-20-diferenciacao-numerica.html">
+   24. Diferenciação Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-21-solucoes-edo.html">
+   25. Introdução à solução numérica de EDOs
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Code sessions
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-1-bisect.html">
+   Code session 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-2-newton.html">
+   Code session 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-3-polyval.html">
+   Code session 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-4-fsolve.html">
+   Code session 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-5-solve.html">
+   Code session 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-6-interp.html">
+   Code session 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-7-fit.html">
+   Code session 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-8-integrate.html">
+   Code session 8
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Exercícios resolvidos
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-numba.html">
+   2. Otimização de código
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/extra/extra-sistemas-edo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-sistemas-edo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-sistemas-edo.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistema-com-m-edos-de-primeira-ordem">
+   Sistema com
+   <span class="math notranslate nohighlight">
+    \(m\)
+   </span>
+   EDOs de primeira ordem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-numericos-para-sistemas">
+   Métodos numéricos para sistemas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementacao-computacional">
+     Implementação computacional
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problemas">
+   Problemas
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="sistemas-de-edos">
+<h1>Sistemas de EDOs<a class="headerlink" href="#sistemas-de-edos" title="Permalink to this headline">¶</a></h1>
+<p>Embora EDOs escalares sejam responsáveis por descrever uma vasta quantidade de fenômenos naturais, muitas aplicações são melhor descritas através de um sistema de EDOs escalares ou de ordem superior. O tratamento numérico de EDOs de alta ordem baseia-se em uma conversão a sistemas de primeira ordem. Vejamos como escrever a forma geral de um sistema de duas EDOS de primeira ordem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+y_1'(t) &amp;=&amp; f_1(t, y_1(t), y_2(t)) \\
+y_2'(t) &amp;=&amp; f_2(t, y_1(t), y_2(t))
+\end{cases}\end{split}\]</div>
+<p>As funções <span class="math notranslate nohighlight">\(f_1(t,z_1,z_2)\)</span> e <span class="math notranslate nohighlight">\(f_2(t,z_1,z_2)\)</span> definem EDOs e as incógnitas são as funções <span class="math notranslate nohighlight">\(y_1(t)\)</span> e <span class="math notranslate nohighlight">\(y_2(t)\)</span>. O problema de valor inicial então consiste de resolver o sistema anterior, sujeito às condições iniciais <span class="math notranslate nohighlight">\(y_1(t_0) = y_{1,0}\)</span> e <span class="math notranslate nohighlight">\(y_2(t_0) = y_{2,0}\)</span>.</p>
+<p><strong>Exemplo:</strong> O PVI
+$<span class="math notranslate nohighlight">\(\begin{cases}
+y_1'(t) &amp;=&amp; y_1(t) − 2y_2(t) + 4\cos(t) − 2{\rm sen}(t) \\
+y_2'(t) &amp;=&amp; 3y_1(t) − 4y_2(t) + 5\cos(t) − 5{\rm sen}(t) \\
+y_1(0)  &amp;=&amp; 1 \\ 
+y_2(0)  &amp;=&amp; 2
+\end{cases}\)</span>$</p>
+<p>tem por solução as funções <span class="math notranslate nohighlight">\(y_1(t) = \cos(t) + {\rm sen}(t)\)</span> e <span class="math notranslate nohighlight">\(y_2(t) = 2\cos(t)\)</span>.</p>
+<p><strong>Exemplo (Modelo de Lotka-Volterra):</strong> O sistema de EDOs dado por
+$<span class="math notranslate nohighlight">\(\begin{cases}
+y_1'(t) &amp;=&amp; A y_1(t)[1 − B y_2(t)] \\
+y_2'(t) &amp;=&amp; C y_2(t)[D y_1(t) − 1] \\
+y_1(0)  &amp;=&amp; y_{1,0} \\ 
+y_2(0)  &amp;=&amp; y_{2,0}
+\end{cases}\)</span>$</p>
+<p>com constantes <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D&gt;0\)</span> é conhecido como modelo <em>predador-presa</em>. A variável <span class="math notranslate nohighlight">\(t\)</span> é o tempo, <span class="math notranslate nohighlight">\(y_1(t)\)</span> o número de presas no tempo <span class="math notranslate nohighlight">\(t\)</span> (e.g. coelhos) e <span class="math notranslate nohighlight">\(y_2(t)\)</span> o número de predadores (e.g. raposas). Para apenas um tipo de predador e de presa, este modelo é uma aproximação razoável da realidade.</p>
+<section id="sistema-com-m-edos-de-primeira-ordem">
+<h2>Sistema com <span class="math notranslate nohighlight">\(m\)</span> EDOs de primeira ordem<a class="headerlink" href="#sistema-com-m-edos-de-primeira-ordem" title="Permalink to this headline">¶</a></h2>
+<p>Um PVI com <span class="math notranslate nohighlight">\(m\)</span> EDOs escalares é dado por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+y_1'(t) &amp;=&amp; f_1(t, y_1(t), y_2(t),\ldots,y_m(t)) \\
+y_2'(t) &amp;=&amp; f_2(t, y_1(t), y_2(t),\ldots,y_m(t)) \\
+\vdots  &amp;\vdots&amp; \vdots \\ 
+y_m'(t) &amp;=&amp; f_m(t, y_1(t), y_2(t),\ldots,y_m(t)) \\ 
+y_1(t_0)  &amp;=&amp; y_{1,0} \\ 
+y_2(t_0)  &amp;=&amp; y_{2,0} \\
+\vdots  &amp;\vdots&amp; \vdots \\ 
+y_m(t_0)  &amp;=&amp; y_{m,0} \\
+t_0 \leq t \leq b,
+\end{cases}\end{split}\]</div>
+<p>cuja solução procurada são as funções <span class="math notranslate nohighlight">\(y_1(t), y_2(t),\ldots,y_m(t)\)</span>. Entretanto, a forma anterior não é computacionalmente adequada para se trabalhar. Assim, simplificamo-na para a forma vetorial</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+{\bf y}'(t) &amp;=&amp; {\bf f}(t,{\bf y}(t)) \\
+{\bf y}(t_0) &amp;=&amp; {\bf y}_0,
+\end{cases}\end{split}\]</div>
+<p>onde</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf y}(t) = 
+\begin{bmatrix}
+y_1(t) \\
+\vdots \\
+y_m(t) \\
+\end{bmatrix}, 
+\quad
+{\bf y}_0 = 
+\begin{bmatrix}
+y_{1,0} \\
+\vdots \\
+y_{m,0} \\
+\end{bmatrix}, 
+\quad
+{\bf f}(t,{\bf y}) = 
+\begin{bmatrix}
+f_1(t, y_1, y_2,\ldots,y_m) \\
+\vdots \\
+f_m(t, y_1, y_2,\ldots,y_m) \\
+\end{bmatrix}, \end{split}\]</div>
+<p>com <span class="math notranslate nohighlight">\({\bf y} = [y_1,y_2,\ldots,y_m]^T\)</span>.</p>
+<p><strong>Exemplo:</strong> O primeiro PVI pode ser reescrito como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+{\bf y}'(t) &amp;=&amp; {\bf A}{\bf y}(t) + {\bf G}(t) \\
+{\bf y}(0) &amp;=&amp; {\bf y}_0, \\
+\end{cases}\end{split}\]</div>
+<p>com</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf y} = 
+\begin{bmatrix}
+y_1 \\
+y_2
+\end{bmatrix}, 
+\quad
+{\bf A} = 
+\begin{bmatrix}
+1 &amp; -2 \\ 
+3 &amp; 4 
+\end{bmatrix}, 
+\quad
+{\bf G}(t) = 
+\begin{bmatrix}
+4\cos(t) − 2{\rm sen}(t) \\
+5\cos(t) − 5{\rm sen}(t)
+\end{bmatrix}, 
+\quad
+{\bf y}_0 = 
+\begin{bmatrix}
+1 \\
+2
+\end{bmatrix}\end{split}\]</div>
+</section>
+<section id="metodos-numericos-para-sistemas">
+<h2>Métodos numéricos para sistemas<a class="headerlink" href="#metodos-numericos-para-sistemas" title="Permalink to this headline">¶</a></h2>
+<p>Tanto o método de Euler quanto outros métodos numéricos podem ser usados de forma similar para sistemas de EDOs quando aplicados a cada EDO individual. Para isto, lança-se mão da forma matriz/vetor, em que a derivação é essencialmente a mesma feita para o caso individual.</p>
+<p>Lembremos que a série de Taylor desenvolvida para o método de Euler é dada por:</p>
+<div class="math notranslate nohighlight">
+\[y_j(t_{n+1}) = y_j(t_{n}) + hy_j'(t_{n}) + \dfrac{h^2}{2}y_j''(\xi_{n,j}), \ \ t_n \leq \xi_{n,j} \leq t_{n+1}, \quad j = 1,\ldots,m\]</div>
+<p>para <span class="math notranslate nohighlight">\(m\)</span> EDOs. Desprezando-se os termos de erro, o método de Euler em forma vetorial é escrito como</p>
+<div class="math notranslate nohighlight">
+\[{\bf y}_{n+1} = {\bf y}_{n} + h{\bf f}(t_n,{\bf y}_n), \ \ \ {\bf y}_0 = {\bf y}(0)\]</div>
+<section id="implementacao-computacional">
+<h3>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">¶</a></h3>
+<p>O seguinte código é uma implementação do método de Euler para resolver sistemas de EDOs. O usuário necessita especificar uma função adicional para determinar as EDOs como componentes de um vetor. Isto é feito pela função</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fsys</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">euler_sys</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resolve o PVI de um sistema de EDOs escalares</span>
+<span class="sd">    y’ = f(t,y), t0 &lt;= t &lt;= b, y(t0)=y0 pelo metodo de Euler com tamanho de passo h.</span>
+<span class="sd">    O usuario deve fornecer um vetor f contendo as funcoes a serem avaliadas como </span>
+<span class="sd">    membro direito.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrada: </span>
+<span class="sd">        t0  - tempo inicial</span>
+<span class="sd">        tf  - tempo final </span>
+<span class="sd">        y0  - condicao inicial </span>
+<span class="sd">        h   - passo </span>
+<span class="sd">        f   - vetor de funcoes f(t,y) (anonima)</span>
+<span class="sd">    </span>
+<span class="sd">    Saída:</span>
+<span class="sd">        t   - vetor contendo os valores nodais t[i], i = 1,2,...,n</span>
+<span class="sd">        Y   - matriz de dimensoes n x m, com m sendo o numero de EDOs</span>
+<span class="sd">             (a i-esima linha y[i,:] traz as estimativas de todas </span>
+<span class="sd">              as funcoes y_j no tempo t[i])</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    
+    <span class="n">m</span> <span class="o">=</span> <span class="n">y0</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">tf</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">h</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">t0</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">h</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">))</span>
+    
+    <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">y0</span>
+    
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>  
+        <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>     
+        
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercício resolvido:</strong> Resolva o PVI abaixo pelo método de Euler:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+{\bf y}'(t) &amp;=&amp; {\bf A}{\bf y}(t) + {\bf G}(t) \\
+{\bf y}(0) &amp;=&amp; {\bf y}_0, \\
+\end{cases}\end{split}\]</div>
+<p>com</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf y} = 
+\begin{bmatrix}
+y_1 \\
+y_2
+\end{bmatrix}, 
+\quad
+{\bf A} = 
+\begin{bmatrix}
+1 &amp; -2 \\ 
+3 &amp; -4 
+\end{bmatrix}, 
+\quad
+{\bf G}(t) = 
+\begin{bmatrix}
+4\cos(t) - 2{\rm sen}(t) \\
+5\cos(t) - 5{\rm sen}(t) 
+\end{bmatrix}, 
+\quad
+{\bf y}_0 = 
+\begin{bmatrix}
+1 \\
+2
+\end{bmatrix}.\end{split}\]</div>
+<p>Resolver numericamente pelo método de Euler para <span class="math notranslate nohighlight">\(0 &lt; t \le 5\)</span> e <span class="math notranslate nohighlight">\(h = 0.5\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define funcao vetorial f(t,y)</span>
+<span class="k">def</span> <span class="nf">fsys</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função definida pelo usuario para montar vetor das m funcoes fm(t,(y1,...,ym))</span>
+<span class="sd">    Em cada componente prescrevemos a funcao da EDO correspondente no sistema </span>
+<span class="sd">    de m EDOs. </span>
+<span class="sd">    </span>
+<span class="sd">    Isto e, </span>
+<span class="sd">    </span>
+<span class="sd">    F = [f1(t,y1,...,ym),f2(t,y1,...,ym),...,fm(t,y1,...,ym)]^T </span>
+<span class="sd">    </span>
+<span class="sd">    Neste exemplo, o sistema possui 2 EDOs, com:</span>
+<span class="sd">    </span>
+<span class="sd">    f1(t,y1,y2) = y1 - 2y2 + 4cos(t) - 2sin(t)</span>
+<span class="sd">    f2(t,y1,y2) = 3y1 - 4y2 + 5cos(t) - 5sin(t)    </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">F</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+    
+    <span class="k">return</span> <span class="n">F</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span><span class="n">legend</span>
+
+
+<span class="c1"># parâmetros</span>
+<span class="n">t0</span><span class="p">,</span><span class="n">tf</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># solução numérica do sistema</span>
+<span class="n">t</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">euler_sys</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">fsys</span><span class="p">)</span>
+<span class="n">y1_num</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y2_num</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># solução analítica</span>
+<span class="n">y1_an</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">y2_an</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># plotagem</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y1_num</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y_{1,h}(t)$&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y2_num</span><span class="p">,</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y_{2,h}(t)$&#39;</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y1_an</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y_1(t)$&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y2_an</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y_2(t)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># erro absoluto</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">y1_an</span> <span class="o">-</span> <span class="n">y1_num</span><span class="p">),</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$EA_1(t)$&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">y2_an</span> <span class="o">-</span> <span class="n">y2_num</span><span class="p">),</span><span class="s1">&#39;b:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$EA_2(t)$&#39;</span><span class="p">)</span>
+
+<span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/extra-sistemas-edo_5_0.png" src="../_images/extra-sistemas-edo_5_0.png" />
+</div>
+</div>
+<p><strong>Exercício:</strong> Considere o PVI</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+{\bf y}'(t) &amp;=&amp; {\bf A}{\bf y}(t) + {\bf G}(t) \\
+{\bf y}(0) &amp;=&amp; {\bf y}_0, \\
+\end{cases}\end{split}\]</div>
+<p>com</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf y} = 
+\begin{bmatrix}
+y_1 \\
+y_2
+\end{bmatrix}, 
+\quad
+{\bf A} = 
+\begin{bmatrix}
+1 &amp; -2 \\ 
+2 &amp; 1 
+\end{bmatrix}, 
+\quad
+{\bf G}(t) = 
+\begin{bmatrix}
+-2\exp(-t) + 2 \\
+-2\exp(-t) + 1 \\
+\end{bmatrix}, 
+\quad
+{\bf y}_0 = 
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}.\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(t \in (0,t_f]\)</span> e <span class="math notranslate nohighlight">\( 0 &lt; h &lt; 1\)</span> convenientemente escolhidos. Verifique que a sua solução analítica é dada por <span class="math notranslate nohighlight">\({\bf y} = [\exp(-t), 1]^T\)</span>, resolva-o numericamente, plote os gráficos das curvas da solução numérica e do <em>erro relativo</em> para cada uma. Compare os gráficos com aqueles das curvas da solução analítica.</p>
+</section>
+</section>
+<section id="problemas">
+<h2>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">¶</a></h2>
+<p><strong>Problema:</strong> considere o modelo de Lotka-Volterra com os parâmetros <span class="math notranslate nohighlight">\(A = 4\)</span>, <span class="math notranslate nohighlight">\(B = 1\)</span>, <span class="math notranslate nohighlight">\(C = 3\)</span> e <span class="math notranslate nohighlight">\(D = 1\)</span>. Usando o método de Euler, resolva-o para <span class="math notranslate nohighlight">\(0 \le t \le 5\)</span>. Use passos de <span class="math notranslate nohighlight">\(h = 0.001\)</span>, <span class="math notranslate nohighlight">\(0.0005\)</span> e <span class="math notranslate nohighlight">\(0.00025\)</span> e a condição inicial values <span class="math notranslate nohighlight">\(y_1(0) = 3\)</span>, <span class="math notranslate nohighlight">\(y_2(0) = 5\)</span>. Plote as funções <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> em função de <span class="math notranslate nohighlight">\(t\)</span> e, depois, plote o gráfico de <span class="math notranslate nohighlight">\(y_1\)</span> <em>versus</em> <span class="math notranslate nohighlight">\(y_2\)</span>. Comente os resultados.</p>
+<p><strong>Problema:</strong> Considere o esquema numérico</p>
+<div class="math notranslate nohighlight">
+\[y_{n+1} =  y_n + \frac{h}{2}[f(t_n,y_n) + f(t_{n+1},y_n + h f(t_n,y_n))]\]</div>
+<p>Tente adaptá-lo para resolver o PVI do <strong>Exercício resolvido</strong>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./extra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Gustavo Oliveira<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
