@@ -33,7 +33,7 @@ $$\begin{eqnarray}
 -30i_1 - 15i_2 + 45i_3 &=& 120 
 \end{eqnarray}$$
 
-Ajude Hely Johnson em seus experimento e calcule as correntes para os valores de resistência $R = \{ 5 \Omega, 10 \Omega, 20 \Omega \}$.
+Ajude Hely Johnson em seus experimentos e calcule as correntes para os valores de resistência $R = \{ 5 \Omega, 10 \Omega, 20 \Omega \}$.
 
 ### Resolução
 

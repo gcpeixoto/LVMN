@@ -198,10 +198,3 @@ print('Norma || A - LL^T || = ', linalg.norm(A-A2))
 plt.matshow(A,cmap=plt.cm.flag);
 plt.matshow(L,cmap=plt.cm.flag);
 plt.matshow(L.T,cmap=plt.cm.flag);
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

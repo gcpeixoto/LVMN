@@ -44,6 +44,11 @@
   - file: lista-4-solucoes
   - file: lista-5-solucoes
   - file: lista-6-solucoes
+- part: Extra
+  numbered: true
+  chapters:
+  - file: extra/extra-fft
+  - file: extra/extra-numba
 #
 # MODEL: 
 # - file: intro

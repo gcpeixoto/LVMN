@@ -109,10 +109,3 @@ print(round(e2,3))
 print("{0:e}".format(e2))
 
 O erro está diminuindo. Além disso, o valor da raiz está se estabilizando em torno de 1.430. Isto significa que as estimativas iniciais foram muito boas. Com efeito, o uso das interseções proporcionou uma boa escolha.
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

@@ -178,10 +178,3 @@ print('\ncaso 1: {0:5g}'.format(s))
 
 print('caso 2: {0:5g}'.format(1/np.exp(v)))
 
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();
-

@@ -226,12 +226,3 @@ plt.legend({'modelo de ajuste':mod, 'medição':med}); # legenda
 plt.annotate('y= {0:.2f} + {1:.2f}x'.format(alpha0,alpha1),(2.8,0.8),fontsize=14,c=[0.4,0.5,0.4]);
 
 Na prática, podemos calcular regressão linear usando o módulo `scipy.stats`. Vide _Code session 7_.
-
-### Execução de Código Implementado
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

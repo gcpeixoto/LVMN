@@ -10,11 +10,11 @@ onde
 
 $$L_i(x) = \prod _{\substack{j = 0 \\ j \neq i}}^n \dfrac{x - x_j}{x_i - x_j}$$
 
-Por exemplo, a versão linear $(n = 1)$ seria
+Por exemplo, a versão linear ($n = 1$) seria
 
 $$P_1(x) = \dfrac{x − x_1}{x_0 − x_1} f(x_0) + \dfrac{x − x_0}{x_1 − x_0} f(x_1) $$
 
-e a versão de segundo grau seria
+e a versão de segundo grau ($n = 1$) seria
 
 $$P_2(x) = \dfrac{(x − x_1)(x − x_2)}{(x_0 − x_1)(x_0 − x_2)} f(x_0) + \dfrac{(x − x_0)(x − x_2)}{(x_1 − x_0)(x_1 − x_2)} f(x_1) + \dfrac{(x − x_0)(x − x_1)}{(x_2 − x_0)(x_2 − x_1)}f(x_2)$$
 
@@ -34,12 +34,9 @@ def symbolic_vector(n,var):
             V: ['var0','var1',...,'varn-1']
     """
     if not isinstance(var,str):
-        raise TypeError("{0} must be a string.".format(var))                 
+        raise TypeError(f'{var} must be a string.')                 
         
-    V = []
-    for i in range(0,n):
-        v = var + str(i)
-        V.append(Symbol(v))
+    V = [Symbol(var + str(i)) for i in range(0,n)]
         
     return V
 
@@ -50,8 +47,7 @@ def L_nj(X,j):
             X: um vetor contendo variáveis simbólicas
     """
     # pega a variavel base passada e converte para simbólica
-    x = X[1]
-    x = str(x)
+    x = str(X[1])
     x = Symbol(x[0:-1])
     L = 1.0    
     for i in range(0,len(X)):
@@ -66,7 +62,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 # número de nós de interpolação: interpolação de (n-1)-ésimo grau
-n = 5
+n = 7
 
 # domínio de interpolação
 x0,x1 = -1,1
@@ -98,22 +94,18 @@ for i in range(0,Y.shape[0]):
 
 # plotagem das funções
 
-# nós 
-plt.scatter(xp,np.zeros(xp.shape),c= 'k')
-
 leg = []
 for i in range(0,Y.shape[0]):
-    plt.plot(xv,Y[i,])
+    plt.plot(xv,Y[i,])    
     s = '$L_{' + str(n-1) + ',' + str(i) + '}$'
     leg.append(s)
+
+plt.grid() 
+
+# nós 
+plt.scatter(xp,np.zeros(xp.shape),c= 'k')
+plt.scatter(xp,np.ones(xp.shape),c='k',marker='s')
         
-plt.grid()        
-plt.legend(leg,loc='best')
+       
+plt.legend(leg,loc='best',bbox_to_anchor=(0.7, 0.5, 0.5, 0.5))
 plt.title('Funções de base de Lagrange de ordem ' + str(n-1) + ' em ['+str(x0)+','+str(x1)+']');
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

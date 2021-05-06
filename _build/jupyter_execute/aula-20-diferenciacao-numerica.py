@@ -189,14 +189,3 @@ print('erro relativo percentual 1: ' + str(erp(d2fdx2_p2_num,df2_1)) + '%' )
 
 # erro para o grupo 2
 print('erro relativo percentual 2: ' + str(erp(d2fdx2_p2_num,df2_2)) + '%' )
-
-## Nota
-
-O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

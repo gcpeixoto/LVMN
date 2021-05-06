@@ -4,6 +4,9 @@ html:
 latex:
 	jupyter-book build . --builder pdflatex
 
+push:
+	ghp-import -n -p -f _build/html to update 
+
 
 # How to update book (see https://jupyterbook.org/publish/gh-pages.html)
 # 1. Make changes to the master branch

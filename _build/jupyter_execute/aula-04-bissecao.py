@@ -172,11 +172,3 @@ onde o subscrito $0$ designa a concentração inicial de cada constituinte. Se $
 ## Tarefa: Falsa Posição
 Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `switch... case...`).
 
-
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

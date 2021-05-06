@@ -250,10 +250,3 @@ $$ y^1 = 3.5 - \frac{\cdots}{156.125} = 2.84388 $$
 
 
 *Ref.: Chapra & Canale, sec. 6.6*
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

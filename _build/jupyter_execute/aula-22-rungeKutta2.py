@@ -143,10 +143,3 @@ def ode_euler_impl(ode,a,b,n,w0):
     return x,w
 
 ode = '-1.2*y + 7*e**(-0.3*x)'
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

@@ -45,9 +45,9 @@ def minha_fun(t,v,m,g,c0):
     
     p = [t,v,m,g] 
     f = lambda c: p[3]*p[2]/c*(1 - np.exp(-c/p[2]*p[0])) - p[1]
-    c_raiz = fsolve(f,c0)    
+    c_raiz = fsolve(f,c0)
     print("---> Minha raiz é {0:.6f}".format(c_raiz[0]))
-    return f,c_raiz[0]
+    return f,c_raiz
 
 fc,c_raiz = minha_fun(t,v,m,g,c0)
 
@@ -117,7 +117,7 @@ plt.grid()
 Por que a figura está meio "tosca"? Porque temos poucos pontos na grade. Vamos aumentar o número de pontos. Este processo é conhecido como _refinamento de malha_.
 
 # refinando a malha numérica
-nx2, ny2 = 100, 200 
+nx2, ny2 = 100, 200
 
 # redistribuição dos pontos
 x2 = np.linspace(a,b,nx2)

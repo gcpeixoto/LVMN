@@ -123,10 +123,3 @@ tol = 1e-5
 N = 100
 
 ponto_fixo(x0,f,g,tol,N,True)
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

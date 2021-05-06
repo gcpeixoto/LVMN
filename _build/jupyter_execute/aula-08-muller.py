@@ -216,10 +216,3 @@ legend();
 
 
 Na primeira escolha de estimativas iniciais, obtivemos uma raiz complexa porque no intervalo $[-0.5,0.5]$, o polinômio não intersecta o eixo $x$. Nos outros dois casos, temos as duas raízes reais do polinômio.
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

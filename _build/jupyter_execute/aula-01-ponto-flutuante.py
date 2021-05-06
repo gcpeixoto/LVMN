@@ -261,10 +261,3 @@ from matplotlib.pyplot import plot
 x = np.linspace(1e-15,1e-20,num=100)
 f = ((1+x)-1)/x
 plot(x,f);
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

@@ -419,14 +419,3 @@ a, b = 0, 1
 g, h = lambda x: 0, lambda x: 1
 q, r = lambda x, y: 0, lambda x, y: 1
 integrate.tplquad(f, 0, 1, g, h, q, r) 
-
-## Nota
-
-O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

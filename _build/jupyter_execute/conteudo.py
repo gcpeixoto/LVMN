@@ -52,7 +52,8 @@ _Notebooks_ com notas de aula, exemplos resolvidos, algoritmos e exercícios de 
 ### VI. Métodos numéricos para EDOs
 
 - [Aula 21 - Solução numérica de EDOs](aula-21-solucoes-edo.ipynb)
-- [Aula 22 - Métodos de Runge-Kutta de 2a. ordem](aula-22-rungeKutta2.ipynb)
+- [Aula 22 - Método de Euler](aula-22-metodo-euler.ipynb)
+- [Aula 23 - Métodos de Taylor e Runge-Kutta de 2a. ordem](aula-23-taylor-rungeKutta.ipynb)
 
 ## _Code sessions_
 
@@ -66,6 +67,7 @@ _Notebooks_ com um compêndio de funções de utilidade predefinidas em módulos
 - [Code session 6 - interp](codeSession-6-interp.ipynb)
 - [Code session 7 - fit](codeSession-7-fit.ipynb)
 - [Code session 8 - integrate](codeSession-8-integrate.ipynb)
+- [Code session 9 - solve_ivp](codeSession-9-solveivp.ipynb)
 
 ## _Listas de exercícios_
 
@@ -77,6 +79,24 @@ _Notebooks_ contendo solucionário matemático e computacional de exercícios ge
 - [Lista 4](lista-4-solucoes.ipynb) 
 - [Lista 5](lista-5-solucoes.ipynb)
 - [Lista 6](lista-6-solucoes.ipynb) 
+
+## _Conteúdo Extra_
+
+_Notebooks_ com conteúdos complementares não contemplados no curso regular.
+
+- [Malhas numéricas](extra/extra-malhasNumericas.ipynb)
+
+- [Campos de direção para EDOs](extra/extra-camposDirecao.ipynb)
+- [Melhoramentos do método de Euler](extra/extra-eulerMelhorado.ipynb)
+- [Estabilidade do método de Euler](extra/extra-estabilidadeEuler.ipynb)
+- [Método de Euler implícito](extra/extra-eulerImplicito.ipynb)
+- [Métodos de múltiplos passos: _Adams-Bashfort_](extra/extra-multistep-adamsBashfort.ipynb)
+- [EDOs de ordem superior](extra/extra-edo-superior.ipynb)
+- [Sistemas de EDOs](extra/extra-sistemas-edp.ipynb)
+
+- [Transformada de Fourier](extra/extra-fft.ipynb)
+
+- [Otimização de código](extra/extra-numba.ipynb)
 
 ## Como contribuir?
 
@@ -160,4 +180,15 @@ lista-3-solucoes
 lista-4-solucoes
 lista-5-solucoes
 lista-6-solucoes
+```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
+:numbered: True
+:caption: Extra
+
+extra/extra-fft
+extra/extra-numba
 ```

@@ -189,10 +189,3 @@ plt.xlabel('$x$',fontsize=14)
 plt.ylabel('$f(x)$',fontsize=14)        
 plt.grid()
 plt.title('Raízes de $\exp(-x^2)\cos(3x)$');
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

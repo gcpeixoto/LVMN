@@ -224,12 +224,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-21-solucoes-edo.html">
-   25. Solução numérica de EDOs: método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-22-rungeKutta2.html">
-   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+   25. Introdução à solução numérica de EDOs
   </a>
  </li>
 </ul>
@@ -314,6 +309,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lista-6-solucoes.html">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   2. Otimização de código
   </a>
  </li>
 </ul>
@@ -667,13 +679,13 @@ L_2 \leftarrow L_2 .w\ \Rightarrow\</p></li>
 </ul>
 </li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-ab396164-f1a8-49ae-b9e5-a8195eaec456">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-ab396164-f1a8-49ae-b9e5-a8195eaec456" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-98f2f804-65fe-4916-b718-973af98b501f">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-98f2f804-65fe-4916-b718-973af98b501f" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
 a_{11}&amp;a_{12}\\
 a_{21}&amp;a_{22}\\
 \end{bmatrix}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b7fac294-53d9-4a67-8eb6-60fe5a0e3bee">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-b7fac294-53d9-4a67-8eb6-60fe5a0e3bee" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-560665ee-cdba-4471-8661-de56782c73eb">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-560665ee-cdba-4471-8661-de56782c73eb" title="Permalink to this equation">¶</a></span>\[\begin{bmatrix}
 a_{11}&amp;a_{12}\\
 w.a_{21}&amp;w.a_{22}\\
 \end{bmatrix}\]</div>
@@ -1128,18 +1140,6 @@ vetor
 <section id="tarefa">
 <h2><span class="section-number">11.5. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h2>
 <p>Implemente o algoritmo pleno para a eliminação gaussiana. Verifique exceções (erros que devem ser observados para evitar falhas no algoritmo, tal como pivôs nulos e matrizes singulares, por exemplo) e use o seu método para resolver os sistemas lineares da forma <span class="math notranslate nohighlight">\({\bf A}{\bf x} = {\bf b}\)</span> da lista de exercícios.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-
-<span class="k">def</span> <span class="nf">css_styling</span><span class="p">():</span>
-    <span class="n">styles</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;styles/custom.css&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span>
-<span class="n">css_styling</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 

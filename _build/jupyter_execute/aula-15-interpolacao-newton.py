@@ -78,10 +78,7 @@ def symbolic_vector(n,var):
     if not isinstance(var,str):
         raise TypeError("{0} must be a string.".format(var))                 
         
-    V = []
-    for i in range(0,n):
-        v = var + str(i)
-        V.append(Symbol(v))
+    V = [Symbol(var  + str(i)) for i in range(0,n)]
         
     return V
 
@@ -355,14 +352,3 @@ plt.axvline(xp,0,max(YP),c='r',ls='dashed')
 
 plt.grid()
 plt.legend(loc='best');
-
-## Nota
-
-O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

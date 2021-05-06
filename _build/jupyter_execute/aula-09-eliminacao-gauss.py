@@ -319,10 +319,3 @@ np.array(np.mat('1 2 3'))
 ## Tarefa
 
 Implemente o algoritmo pleno para a eliminação gaussiana. Verifique exceções (erros que devem ser observados para evitar falhas no algoritmo, tal como pivôs nulos e matrizes singulares, por exemplo) e use o seu método para resolver os sistemas lineares da forma ${\bf A}{\bf x} = {\bf b}$ da lista de exercícios.
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

@@ -216,10 +216,3 @@ plt.scatter(P6.x,P6.y,color='blue')
 Px = [P4.x,P5.x,P6.x]
 Py = [P4.y,P5.y,P6.y]
 plt.fill(Px,Py,color='red',alpha=0.4);
-
-from IPython.core.display import HTML
-
-def css_styling():
-    styles = open("styles/custom.css", "r").read()
-    return HTML(styles)
-css_styling();

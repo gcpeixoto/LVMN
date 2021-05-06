@@ -224,12 +224,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-21-solucoes-edo.html">
-   25. Solução numérica de EDOs: método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-22-rungeKutta2.html">
-   26. Solução numérica de EDOs: métodos de Runge-Kutta de segunda ordem
+   25. Introdução à solução numérica de EDOs
   </a>
  </li>
 </ul>
@@ -314,6 +309,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lista-6-solucoes.html">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   1. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   2. Otimização de código
   </a>
  </li>
 </ul>
@@ -537,9 +549,9 @@ Minha raiz é 15.127432
     
     <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">g</span><span class="p">]</span> 
     <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">c_raiz</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">c0</span><span class="p">)</span>    
+    <span class="n">c_raiz</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">c0</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&gt; Minha raiz é </span><span class="si">{0:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_raiz</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-    <span class="k">return</span> <span class="n">f</span><span class="p">,</span><span class="n">c_raiz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span><span class="n">c_raiz</span>
 </pre></div>
 </div>
 </div>
@@ -644,7 +656,7 @@ x^2 - y^2 = 1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinando a malha numérica</span>
-<span class="n">nx2</span><span class="p">,</span> <span class="n">ny2</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span> 
+<span class="n">nx2</span><span class="p">,</span> <span class="n">ny2</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span>
 
 <span class="c1"># redistribuição dos pontos</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">nx2</span><span class="p">)</span>
