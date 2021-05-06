@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>26. Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -58,6 +58,8 @@
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="27. Métodos de Taylor de Ordem Superior" href="aula-23-taylor-rungeKutta.html" />
+    <link rel="prev" title="25. Introdução à solução numérica de EDOs" href="aula-21-solucoes-edo.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -99,7 +101,7 @@
   Cadernos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
    1. Modelagem Matemática em Ciências Computacionais e Engenharias
@@ -225,6 +227,16 @@
    25. Introdução à solução numérica de EDOs
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   26. Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-23-taylor-rungeKutta.html">
+   27. Métodos de Taylor de Ordem Superior
+  </a>
+ </li>
 </ul>
 <p>
  <span class="caption-text">
@@ -270,6 +282,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
    Code session 8
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+   Code session 9
   </a>
  </li>
 </ul>
@@ -324,6 +341,71 @@
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
    2. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   3. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
+   4. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecao-edo.html#problemas">
+   5. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   6. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   7. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   8. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html#codigo-preditor-corretor">
+   9. Código preditor/corretor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html#metodo-trapezoidal">
+   10. Método Trapezoidal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   11. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edo-superior.html">
+   12. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edo-superior.html#problemas">
+   13. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemas-edo.html">
+   14. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   15. Método das Linhas
   </a>
  </li>
 </ul>
@@ -424,34 +506,34 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definicao-do-metodo-de-euler">
-   Definição do método de Euler
+   26.1. Definição do método de Euler
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpretacao-geometrica">
-   Interpretação geométrica
+   26.2. Interpretação geométrica
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementacao-computacional">
-   Implementação computacional
+   26.3. Implementação computacional
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analise-de-erro">
-   Análise de erro
+   26.4. Análise de erro
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#teoremas-para-limite-de-erro">
-     Teoremas para limite de erro
+     26.4.1. Teoremas para limite de erro
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   Problemas
+   26.5. Problemas
   </a>
  </li>
 </ul>
@@ -475,11 +557,11 @@
 </div>
 </div>
 <section id="metodo-de-euler">
-<h1>Método de Euler<a class="headerlink" href="#metodo-de-euler" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">26. </span>Método de Euler<a class="headerlink" href="#metodo-de-euler" title="Permalink to this headline">¶</a></h1>
 <p>As considerações anteriores sobre malhas numéricas são fundamentais para sugerir a notação que utilizaremos para expressar os métodos numéricos que estudaremos. O primeiro deles, chamado <em>método de Euler</em>, é considerado o método numérico mais simples para resolver PVIs. Embora não seja muito eficiente, é o ponto de partida para a compreensão de uma enorme família de métodos.</p>
 <p>Ao longo do texto, denotaremos por <span class="math notranslate nohighlight">\(y(t_n) = y_h(t_n) = y_n, \ \ n = 0,1,2,\ldots,N\)</span> a solução aproximada de um PVI.</p>
 <section id="definicao-do-metodo-de-euler">
-<h2>Definição do método de Euler<a class="headerlink" href="#definicao-do-metodo-de-euler" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.1. </span>Definição do método de Euler<a class="headerlink" href="#definicao-do-metodo-de-euler" title="Permalink to this headline">¶</a></h2>
 <p>A derivação do método de Euler inicia-se com a seguinte aproximação para a derivada:</p>
 <div class="math notranslate nohighlight">
 \[y'(t) \approx \dfrac{y(t+h) - y(t)}{h},\]</div>
@@ -494,7 +576,7 @@
 <p>A estimativa inicial é <span class="math notranslate nohighlight">\(y_0 = Y_0\)</span> ou alguma aproximação de <span class="math notranslate nohighlight">\(Y_0\)</span>. Quando <span class="math notranslate nohighlight">\(Y_0\)</span> é obtido empiricamente, seu valor é conhecido apenas aproximadamente. A fórmula anterior permite o cálculo sequencial das iteradas do método de Euler <span class="math notranslate nohighlight">\(y_1,y_2,\ldots,y_n\)</span>, aproximações para os valores exatos de <span class="math notranslate nohighlight">\(y\)</span> nesses instantes.</p>
 </section>
 <section id="interpretacao-geometrica">
-<h2>Interpretação geométrica<a class="headerlink" href="#interpretacao-geometrica" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.2. </span>Interpretação geométrica<a class="headerlink" href="#interpretacao-geometrica" title="Permalink to this headline">¶</a></h2>
 <p>A figura a seguir ajuda-nos a interpretar o método de Euler geometricamente. A aproximação numérica da curva exata (azul) é feita por meio de retas tangentes. O valor <span class="math notranslate nohighlight">\(y(t_{n+1})\)</span> é erroneamente computado (comprimento <span class="math notranslate nohighlight">\(BD\)</span>) e excede o valor exato (comprimento <span class="math notranslate nohighlight">\(BC\)</span>) por uma quantidade (comprimento <span class="math notranslate nohighlight">\(CD\)</span>). Isto é, a equação da reta tangente a <span class="math notranslate nohighlight">\((t_n,y(t_n))\)</span> é <span class="math notranslate nohighlight">\(r(t) = y(t_n) + f(t_n,y(t_n))(t-t_n)\)</span>. Na verdade, <span class="math notranslate nohighlight">\(r(t_{n+1})\)</span> coincide com o ponto <span class="math notranslate nohighlight">\(D\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -558,7 +640,7 @@ y(0) = 1
 \[y_{h,2} - y_2 = e^{-0.2} - y_2 = 0.008731\]</div>
 </section>
 <section id="implementacao-computacional">
-<h2>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.3. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">¶</a></h2>
 <p>O seguinte código implementa o método de Euler explícito.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,7 +762,7 @@ h = 0.1
 </table>
 </section>
 <section id="analise-de-erro">
-<h2>Análise de erro<a class="headerlink" href="#analise-de-erro" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.4. </span>Análise de erro<a class="headerlink" href="#analise-de-erro" title="Permalink to this headline">¶</a></h2>
 <p>A análise de erro para o método de Euler tem o propósito de entender como o método funciona para que se possa estimar o erro ao usá-lo e, possivelmente, acelerar sua convergência. Procedimentos similares são aplicáveis a métodos numéricos mais eficientes.</p>
 <p>Para a análise, assumiremos que o PVI padrão possui solução única <span class="math notranslate nohighlight">\(y(t)\)</span> em <span class="math notranslate nohighlight">\([t_0,b]\)</span> e que esta solução tem uma segunda derivada <span class="math notranslate nohighlight">\(y''(t)\)</span> limitada neste intervalo.</p>
 <p>Consideremos a série de Taylor para aproximar <span class="math notranslate nohighlight">\(y(t_{n+1})\)</span>:</p>
@@ -711,7 +793,7 @@ h = 0.1
 \[e_{n+1} = \left[ 1 + h \dfrac{\partial f(t_n,\zeta_n)}{\partial y} \right]e_n + T_{n+1},\]</div>
 <p>assim obtendo uma equação geral para análise de erro do método de Euler.</p>
 <section id="teoremas-para-limite-de-erro">
-<h3>Teoremas para limite de erro<a class="headerlink" href="#teoremas-para-limite-de-erro" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">26.4.1. </span>Teoremas para limite de erro<a class="headerlink" href="#teoremas-para-limite-de-erro" title="Permalink to this headline">¶</a></h3>
 <p><strong>Teorema:</strong> Suponha que <span class="math notranslate nohighlight">\(f(t,y)\)</span> seja definida em um conjunto convexo <span class="math notranslate nohighlight">\(D \subset \mathbb{R}^2\)</span>. Se existe uma constante <span class="math notranslate nohighlight">\(L&gt;0\)</span> com</p>
 <div class="math notranslate nohighlight">
 \[\left| \dfrac{\partial f}{\partial y}(t,y)\right| \leq L, \ \ \forall(t,y) \in D\]</div>
@@ -792,7 +874,7 @@ h = 0.2
 </section>
 </section>
 <section id="problemas">
-<h2>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.5. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Resolva os seguintes problemas usando o método de Euler com passos <span class="math notranslate nohighlight">\(h = 0.2,0.1,0.05\)</span>. Compute o erro relativo usando a solução exata <span class="math notranslate nohighlight">\(y(t)\)</span>. Para valores selecionados de <span class="math notranslate nohighlight">\(t\)</span>, observe a razão com que o erro diminui à medida que <span class="math notranslate nohighlight">\(h\)</span> é reduzido pela metade.
 a. <span class="math notranslate nohighlight">\(y'(t) = [\cos(y(t))]^2, 0 \leq t \leq 10, \quad y(0) = 0; \quad y(t) = \tan^{-1}(t)\)</span></p></li>
@@ -841,6 +923,8 @@ a. <span class="math notranslate nohighlight">\(y'(t) = [\cos(y(t))]^2, 0 \leq t
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="aula-21-solucoes-edo.html" title="previous page"><span class="section-number">25. </span>Introdução à solução numérica de EDOs</a>
+    <a class='right-next' id="next-link" href="aula-23-taylor-rungeKutta.html" title="next page"><span class="section-number">27. </span>Métodos de Taylor de Ordem Superior</a>
 
         </div>
         

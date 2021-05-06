@@ -25,7 +25,8 @@
   - file: aula-19-quadratura-gaussiana
   - file: aula-20-diferenciacao-numerica
   - file: aula-21-solucoes-edo
-  - file: aula-22-rungeKutta2   
+  - file: aula-22-metodo-euler
+  - file: aula-23-taylor-rungeKutta
 - part: Code sessions
   chapters:
   - file: codeSession-1-bisect
@@ -36,6 +37,7 @@
   - file: codeSession-6-interp
   - file: codeSession-7-fit
   - file: codeSession-8-integrate
+  - file: codeSession-9-solve_ivp
 - part: Exercícios resolvidos
   chapters:
   - file: lista-1-solucoes
@@ -49,6 +51,15 @@
   chapters:
   - file: extra/extra-fft
   - file: extra/extra-numba
+  - file: extra/extra-malhasNumericas
+  - file: extra/extra-camposDirecao-edo
+  - file: extra/extra-eulerMelhorado
+  - file: extra/extra-estabilidadeEuler
+  - file: extra/extra-eulerImplicito
+  - file: extra/extra-multistep-adamsBashfort
+  - file: extra/extra-edo-superior
+  - file: extra/extra-sistemas-edo
+  - file: extra/extra-metodo-linhas
 #
 # MODEL: 
 # - file: intro

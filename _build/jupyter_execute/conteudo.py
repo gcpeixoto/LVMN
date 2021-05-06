@@ -149,7 +149,8 @@ aula-18-integracao-newtonCotes
 aula-19-quadratura-gaussiana
 aula-20-diferenciacao-numerica
 aula-21-solucoes-edo
-aula-22-rungeKutta2
+aula-22-metodo-euler
+aula-23-taylor-rungeKutta
 ```
 
 
@@ -166,6 +167,7 @@ codeSession-5-solve
 codeSession-6-interp
 codeSession-7-fit
 codeSession-8-integrate
+codeSession-9-solve_ivp
 ```
 
 
@@ -191,4 +193,13 @@ lista-6-solucoes
 
 extra/extra-fft
 extra/extra-numba
+extra/extra-malhasNumericas
+extra/extra-camposDirecao-edo
+extra/extra-eulerMelhorado
+extra/extra-estabilidadeEuler
+extra/extra-eulerImplicito
+extra/extra-multistep-adamsBashfort
+extra/extra-edo-superior
+extra/extra-sistemas-edo
+extra/extra-metodo-linhas
 ```

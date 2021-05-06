@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>Métodos de Taylor de Ordem Superior &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>27. Métodos de Taylor de Ordem Superior &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -58,6 +58,8 @@
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code session 1" href="codeSession-1-bisect.html" />
+    <link rel="prev" title="26. Método de Euler" href="aula-22-metodo-euler.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -99,7 +101,7 @@
   Cadernos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
    1. Modelagem Matemática em Ciências Computacionais e Engenharias
@@ -225,6 +227,16 @@
    25. Introdução à solução numérica de EDOs
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-22-metodo-euler.html">
+   26. Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   27. Métodos de Taylor de Ordem Superior
+  </a>
+ </li>
 </ul>
 <p>
  <span class="caption-text">
@@ -270,6 +282,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
    Code session 8
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+   Code session 9
   </a>
  </li>
 </ul>
@@ -324,6 +341,71 @@
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
    2. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   3. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
+   4. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecao-edo.html#problemas">
+   5. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   6. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   7. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   8. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html#codigo-preditor-corretor">
+   9. Código preditor/corretor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html#metodo-trapezoidal">
+   10. Método Trapezoidal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   11. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edo-superior.html">
+   12. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edo-superior.html#problemas">
+   13. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemas-edo.html">
+   14. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   15. Método das Linhas
   </a>
  </li>
 </ul>
@@ -424,17 +506,17 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-de-runge-kutta">
-   Métodos de Runge-Kutta
+   27.1. Métodos de Runge-Kutta
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#forma-geral">
-     Forma geral
+     27.1.1. Forma geral
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#metodos-de-runge-kutta-de-2a-ordem">
-     Métodos de Runge-Kutta de 2a. ordem
+     27.1.2. Métodos de Runge-Kutta de 2a. ordem
     </a>
    </li>
   </ul>
@@ -452,7 +534,7 @@
               <div>
                 
   <section id="metodos-de-taylor-de-ordem-superior">
-<h1>Métodos de Taylor de Ordem Superior<a class="headerlink" href="#metodos-de-taylor-de-ordem-superior" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">27. </span>Métodos de Taylor de Ordem Superior<a class="headerlink" href="#metodos-de-taylor-de-ordem-superior" title="Permalink to this headline">¶</a></h1>
 <p>Métodos que usam o desenvolvimento em série de Taylor de <span class="math notranslate nohighlight">\(y(t)\)</span> teoricamente fornecem solução para qualquer ED. Sob o ponto de vista computacional, Métodos de Taylor de ordem mais elevada são inaceitáveis, pois, exceto uma classe restrita de funções, o cálculo das derivadas totais é complicado.</p>
 <p>Estes métodos são obtidos retendo-se termos de ordem superior na série de Taylor. Por sua vez, o Método de Euler é um caso particular, como veremos a seguir, já que tem os termos de ordem <span class="math notranslate nohighlight">\(\geq 2\)</span> truncados na série.</p>
 <p>Suponhamos que <span class="math notranslate nohighlight">\(y(t)\)</span> a solução para o PVI
@@ -524,11 +606,11 @@ w_{i+1} = w_i + h \left[ \left(1 + \frac{h}{2} \right)(w_i − t_i^2 + 1) − h 
 \[(\ldots)\]</div>
 <p>Os demais passos seguem da mesma forma</p>
 <section id="metodos-de-runge-kutta">
-<h2>Métodos de Runge-Kutta<a class="headerlink" href="#metodos-de-runge-kutta" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">27.1. </span>Métodos de Runge-Kutta<a class="headerlink" href="#metodos-de-runge-kutta" title="Permalink to this headline">¶</a></h2>
 <p>O objetivo principal dos métodos de Runge-Kutta (RK) é imitar o comportamento de <span class="math notranslate nohighlight">\(f(t,y)\)</span> avaliando-a em vários pontos “abstratos” dentro de um mesmo passo numérico.</p>
 <p>Esquemas do tipo RK são usados para reter precisão e substituir aproximações de baixa ou alta ordem via séries de Taylor. São populares na resolução de PVIs e mais simples de programar do que os métodos de Taylor.</p>
 <section id="forma-geral">
-<h3>Forma geral<a class="headerlink" href="#forma-geral" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">27.1.1. </span>Forma geral<a class="headerlink" href="#forma-geral" title="Permalink to this headline">¶</a></h3>
 <p>A forma geral de um método RK é dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -542,7 +624,7 @@ w_0 &amp;=&amp; y_0
 <p>ou, equivalentemente, <span class="math notranslate nohighlight">\(s_f = s_0 + vt\)</span>.</p>
 </section>
 <section id="metodos-de-runge-kutta-de-2a-ordem">
-<h3>Métodos de Runge-Kutta de 2a. ordem<a class="headerlink" href="#metodos-de-runge-kutta-de-2a-ordem" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">27.1.2. </span>Métodos de Runge-Kutta de 2a. ordem<a class="headerlink" href="#metodos-de-runge-kutta-de-2a-ordem" title="Permalink to this headline">¶</a></h3>
 <p>Para métodos RK2, a inclinação média é dada pela expressão</p>
 <div class="math notranslate nohighlight">
 \[F(t,w;h) = b_1 f(t,w) + b_2 f(t+\alpha h, w + \beta h f(t,w),\]</div>
@@ -634,6 +716,8 @@ h = 1,0.5,0.25,0.1
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="aula-22-metodo-euler.html" title="previous page"><span class="section-number">26. </span>Método de Euler</a>
+    <a class='right-next' id="next-link" href="codeSession-1-bisect.html" title="next page">Code session 1</a>
 
         </div>
         
