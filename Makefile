@@ -5,7 +5,7 @@ latex:
 	jupyter-book build . --builder pdflatex
 
 push:
-	ghp-import -n -p -f _build/html to update 
+	ghp-import -n -p -f _build/html
 
 
 # How to update book (see https://jupyterbook.org/publish/gh-pages.html)
