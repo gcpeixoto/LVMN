@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>Método de Euler Implícito &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>8. Método de Euler Implícito &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -58,6 +58,8 @@
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Métodos de Adams-Bashfort" href="extra-multistep-adamsBashfort.html" />
+    <link rel="prev" title="7. Estabilidade Numérica para o Método de Euler" href="extra-estabilidadeEuler.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -225,6 +227,16 @@
    25. Introdução à solução numérica de EDOs
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-22-metodo-euler.html">
+   26. Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-23-taylor-rungeKutta.html">
+   27. Métodos de Taylor de Ordem Superior
+  </a>
+ </li>
 </ul>
 <p>
  <span class="caption-text">
@@ -272,6 +284,11 @@
    Code session 8
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codeSession-9-solve_ivp.html">
+   Code session 9
+  </a>
+ </li>
 </ul>
 <p>
  <span class="caption-text">
@@ -315,7 +332,7 @@
   Extra
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
    1. Processamento de sinais
@@ -324,6 +341,71 @@
  <li class="toctree-l1">
   <a class="reference internal" href="extra-numba.html">
    2. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-malhasNumericas.html">
+   3. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-camposDirecao-edo.html">
+   4. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-camposDirecao-edo.html#problemas">
+   5. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-eulerMelhorado.html">
+   6. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-estabilidadeEuler.html">
+   7. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#codigo-preditor-corretor">
+   9. Código preditor/corretor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#metodo-trapezoidal">
+   10. Método Trapezoidal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-multistep-adamsBashfort.html">
+   11. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-edo-superior.html">
+   12. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-edo-superior.html#problemas">
+   13. Problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-sistemas-edo.html">
+   14. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-metodo-linhas.html">
+   15. Método das Linhas
   </a>
  </li>
 </ul>
@@ -424,17 +506,17 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Método de Euler Implícito
+   8. Método de Euler Implícito
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#codigo-preditor-corretor">
-   Código preditor/corretor
+   9. Código preditor/corretor
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-trapezoidal">
-   Método Trapezoidal
+   10. Método Trapezoidal
   </a>
  </li>
 </ul>
@@ -450,7 +532,7 @@
               <div>
                 
   <section id="metodo-de-euler-implicito">
-<h1>Método de Euler Implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">8. </span>Método de Euler Implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Permalink to this headline">¶</a></h1>
 <p>A forma do <em>Método de Euler Implícito</em> (MEI) é similar àquela do MEE, exceto por uma característica distintiva. Em vez de a inclinação utilizada para avanço ser tomada em <span class="math notranslate nohighlight">\(t_i\)</span>, ela é tomada em <span class="math notranslate nohighlight">\(t_{i+1}\)</span>. Isto é, o processo numérico avança com a estimativa <span class="math notranslate nohighlight">\(f(t_{i+1},y_{i+1})\)</span> e não <span class="math notranslate nohighlight">\(f(t_i,y_i)\)</span>. O fato de usar esta inclinação ainda desconhecida é a razão de o método ser denominado “implícito”. O esquema numérico resultante é o processo iterativo:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -460,7 +542,7 @@ w_{i+1} &amp;= w_i + h f(t_{i+1},w_{i+1}) \ \ i = 0,1,\dots,N-1.
 <p>Note, entretanto, que <span class="math notranslate nohighlight">\(w_{i+1}\)</span> aparece não apenas no lado esquerdo, mas também no lado direito da equaçõe. Esta incógnita nem sempre é obtenível de modo explícito, isto é, por isolamento. Quando este é o caso, <span class="math notranslate nohighlight">\(f\)</span> é linear ou uma função simples, mas, em geral, <span class="math notranslate nohighlight">\(f\)</span> é não-linear e dependente do valor futuro <span class="math notranslate nohighlight">\(w_{i+1}\)</span>.</p>
 </section>
 <section id="codigo-preditor-corretor">
-<h1>Código preditor/corretor<a class="headerlink" href="#codigo-preditor-corretor" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">9. </span>Código preditor/corretor<a class="headerlink" href="#codigo-preditor-corretor" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -577,7 +659,7 @@ w_{i+1} &amp;= w_i + h f(t_{i+1},w_{i+1}) \ \ i = 0,1,\dots,N-1.
 </div>
 </section>
 <section id="metodo-trapezoidal">
-<h1>Método Trapezoidal<a class="headerlink" href="#metodo-trapezoidal" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10. </span>Método Trapezoidal<a class="headerlink" href="#metodo-trapezoidal" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trapezoidal</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">tol</span><span class="p">):</span>
@@ -679,6 +761,8 @@ w_{i+1} &amp;= w_i + h f(t_{i+1},w_{i+1}) \ \ i = 0,1,\dots,N-1.
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="extra-estabilidadeEuler.html" title="previous page"><span class="section-number">7. </span>Estabilidade Numérica para o Método de Euler</a>
+    <a class='right-next' id="next-link" href="extra-multistep-adamsBashfort.html" title="next page"><span class="section-number">11. </span>Métodos de Adams-Bashfort</a>
 
         </div>
         
