@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Campos de direção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>5. Campos de direção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Variações do Método de Euler" href="extra-eulerMelhorado.html" />
-    <link rel="prev" title="3. Malhas numéricas" href="extra-malhasNumericas.html" />
+    <link rel="next" title="7. Variações do Método de Euler" href="extra-eulerMelhorado.html" />
+    <link rel="prev" title="4. Malhas numéricas" href="extra-malhasNumericas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -316,58 +316,63 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="extra-pontoFlutuante.html">
+   1. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
-   1. Processamento de sinais
+   2. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-numba.html">
-   2. Otimização de código
+   3. Otimização de código
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-malhasNumericas.html">
-   3. Malhas numéricas
+   4. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Campos de direção
+   5. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   6. Variações do Método de Euler
+   7. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   7. Estabilidade Numérica para o Método de Euler
+   8. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   8. Método de Euler Implícito
+   9. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   11. Métodos de Adams-Bashfort
+   12. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edo-superior.html">
-   12. EDOs de ordem superior (redução de ordem)
+   13. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemas-edo.html">
-   14. Sistemas de EDOs
+   15. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   15. Método das Linhas
+   16. Método das Linhas
   </a>
  </li>
 </ul>
@@ -468,12 +473,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   4. Campos de direção
+   5. Campos de direção
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   5. Problemas
+   6. Problemas
   </a>
  </li>
 </ul>
@@ -488,7 +493,7 @@
               <div>
                 
   <section id="campos-de-direcao">
-<h1><span class="section-number">4. </span>Campos de direção<a class="headerlink" href="#campos-de-direcao" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Campos de direção<a class="headerlink" href="#campos-de-direcao" title="Permalink to this headline">¶</a></h1>
 <p><em>Campos de direção</em> são úteis para entender o comportamento das soluções de uma EDO. O gráfico de uma solução da equação <span class="math notranslate nohighlight">\(y' = f(t,y)\)</span> é aquele que, para todo ponto <span class="math notranslate nohighlight">\((t,y)\)</span> do plano, conhecemos a inclinação da curva <span class="math notranslate nohighlight">\(y(t)\)</span>, solução da EDO. Campos de direção podem ser plotados em Python através das funções <code class="docutils literal notranslate"><span class="pre">meshgrid</span></code>, do pacote <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, e <code class="docutils literal notranslate"><span class="pre">quiver</span></code>, do pacote <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <p><strong>Exemplo</strong> Consideremos a EDO <span class="math notranslate nohighlight">\(y'= y\)</span>. A inclinação é dada por <span class="math notranslate nohighlight">\(f(t,y) = y\)</span> e é independente de <span class="math notranslate nohighlight">\(t\)</span>. Vamos gerar o diagrama do campo de direções para esta EDO pelo código a seguir.</p>
 <div class="cell docutils container">
@@ -561,7 +566,7 @@
 </div>
 </section>
 <section id="problemas">
-<h1><span class="section-number">5. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">¶</a></h1>
 <ol class="simple">
 <li><p>Use o Python para plotar os campos de direção para a família de soluções de cada PVI do Problema 1 da Aula 1.</p></li>
 <li><p>Em cada caso, plote as soluções particulares que você encontrou com a substituição de <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
@@ -593,8 +598,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="extra-malhasNumericas.html" title="previous page"><span class="section-number">3. </span>Malhas numéricas</a>
-    <a class='right-next' id="next-link" href="extra-eulerMelhorado.html" title="next page"><span class="section-number">6. </span>Variações do Método de Euler</a>
+    <a class='left-prev' id="prev-link" href="extra-malhasNumericas.html" title="previous page"><span class="section-number">4. </span>Malhas numéricas</a>
+    <a class='right-next' id="next-link" href="extra-eulerMelhorado.html" title="next page"><span class="section-number">7. </span>Variações do Método de Euler</a>
 
         </div>
         

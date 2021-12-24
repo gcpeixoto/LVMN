@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>7. Estabilidade Numérica para o Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>8. Estabilidade Numérica para o Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Método de Euler Implícito" href="extra-eulerImplicito.html" />
-    <link rel="prev" title="6. Variações do Método de Euler" href="extra-eulerMelhorado.html" />
+    <link rel="next" title="9. Método de Euler Implícito" href="extra-eulerImplicito.html" />
+    <link rel="prev" title="7. Variações do Método de Euler" href="extra-eulerMelhorado.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -316,58 +316,63 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="extra-pontoFlutuante.html">
+   1. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
-   1. Processamento de sinais
+   2. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-numba.html">
-   2. Otimização de código
+   3. Otimização de código
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-malhasNumericas.html">
-   3. Malhas numéricas
+   4. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-camposDirecao-edo.html">
-   4. Campos de direção
+   5. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   6. Variações do Método de Euler
+   7. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Estabilidade Numérica para o Método de Euler
+   8. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   8. Método de Euler Implícito
+   9. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   11. Métodos de Adams-Bashfort
+   12. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edo-superior.html">
-   12. EDOs de ordem superior (redução de ordem)
+   13. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemas-edo.html">
-   14. Sistemas de EDOs
+   15. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   15. Método das Linhas
+   16. Método das Linhas
   </a>
  </li>
 </ul>
@@ -468,12 +473,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notas-sobre-analise-de-estabilidade">
-   7.1. Notas sobre análise de estabilidade
+   8.1. Notas sobre análise de estabilidade
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regiao-de-estabilidade">
-     7.1.1. Região de estabilidade
+     8.1.1. Região de estabilidade
     </a>
    </li>
   </ul>
@@ -490,7 +495,7 @@
               <div>
                 
   <section id="estabilidade-numerica-para-o-metodo-de-euler">
-<h1><span class="section-number">7. </span>Estabilidade Numérica para o Método de Euler<a class="headerlink" href="#estabilidade-numerica-para-o-metodo-de-euler" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">8. </span>Estabilidade Numérica para o Método de Euler<a class="headerlink" href="#estabilidade-numerica-para-o-metodo-de-euler" title="Permalink to this headline">¶</a></h1>
 <p>A seguir, aplicaremos um resultado derivado do contexto da estabilidade teórica do PVI ao método de Euler e estudar alguns aspectos de sua estabilidade numérica.</p>
 <p>Definamos uma solução numérica <span class="math notranslate nohighlight">\(\{z_n\}\)</span> tal que</p>
 <div class="math notranslate nohighlight">
@@ -504,7 +509,7 @@
 \[\max_{0 \leq n \leq N(h)} |z_n - y_n| \leq e^{(b-t_0)K}|\epsilon| \leq \kappa |\epsilon|,\]</div>
 <p>para uma constante <span class="math notranslate nohighlight">\(\kappa \geq 0\)</span>. Vale relembrar que <span class="math notranslate nohighlight">\(K\)</span> é a constante de Lipschitz. Este resultado diz-nos que, ressalvadas as condições teóricas do PVI, a estabilidade numérica do método é encontrada.</p>
 <section id="notas-sobre-analise-de-estabilidade">
-<h2><span class="section-number">7.1. </span>Notas sobre análise de estabilidade<a class="headerlink" href="#notas-sobre-analise-de-estabilidade" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.1. </span>Notas sobre análise de estabilidade<a class="headerlink" href="#notas-sobre-analise-de-estabilidade" title="Permalink to this headline">¶</a></h2>
 <p>Consideremos o PVI</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -585,7 +590,7 @@ y(\pi/4) = 1/2
 \end{cases}\end{split}\]</div>
 <p>para <span class="math notranslate nohighlight">\(\lambda = 2\)</span> e <span class="math notranslate nohighlight">\(\lambda = - 0.2\)</span>. Compare as soluções numéricas obtidas pelo método de Euler para <span class="math notranslate nohighlight">\(h = \pi/10\)</span> e <span class="math notranslate nohighlight">\(h = \pi/20\)</span> para cada valor de <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <section id="regiao-de-estabilidade">
-<h3><span class="section-number">7.1.1. </span>Região de estabilidade<a class="headerlink" href="#regiao-de-estabilidade" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.1.1. </span>Região de estabilidade<a class="headerlink" href="#regiao-de-estabilidade" title="Permalink to this headline">¶</a></h3>
 <p>Considere o PVI mais geral</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -631,8 +636,8 @@ y(0) = y_0
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="extra-eulerMelhorado.html" title="previous page"><span class="section-number">6. </span>Variações do Método de Euler</a>
-    <a class='right-next' id="next-link" href="extra-eulerImplicito.html" title="next page"><span class="section-number">8. </span>Método de Euler Implícito</a>
+    <a class='left-prev' id="prev-link" href="extra-eulerMelhorado.html" title="previous page"><span class="section-number">7. </span>Variações do Método de Euler</a>
+    <a class='right-next' id="next-link" href="extra-eulerImplicito.html" title="next page"><span class="section-number">9. </span>Método de Euler Implícito</a>
 
         </div>
         

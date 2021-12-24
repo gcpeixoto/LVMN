@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Otimização de código &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>3. Otimização de código &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Malhas numéricas" href="extra-malhasNumericas.html" />
-    <link rel="prev" title="1. Processamento de sinais" href="extra-fft.html" />
+    <link rel="next" title="4. Malhas numéricas" href="extra-malhasNumericas.html" />
+    <link rel="prev" title="2. Processamento de sinais" href="extra-fft.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -316,58 +316,63 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="extra-pontoFlutuante.html">
+   1. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
-   1. Processamento de sinais
+   2. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Otimização de código
+   3. Otimização de código
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-malhasNumericas.html">
-   3. Malhas numéricas
+   4. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-camposDirecao-edo.html">
-   4. Campos de direção
+   5. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   6. Variações do Método de Euler
+   7. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   7. Estabilidade Numérica para o Método de Euler
+   8. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   8. Método de Euler Implícito
+   9. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   11. Métodos de Adams-Bashfort
+   12. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edo-superior.html">
-   12. EDOs de ordem superior (redução de ordem)
+   13. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemas-edo.html">
-   14. Sistemas de EDOs
+   15. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   15. Método das Linhas
+   16. Método das Linhas
   </a>
  </li>
 </ul>
@@ -468,7 +473,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#numba">
-   2.1.
+   3.1.
    <em>
     numba
    </em>
@@ -476,7 +481,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cython">
-   2.2.
+   3.2.
    <em>
     cython
    </em>
@@ -484,27 +489,27 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exemplos-com-numba">
-   2.3. Exemplos com numba
+   3.3. Exemplos com numba
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#soma-de-elementos-em-um-array">
-     2.3.1. Soma de elementos em um array
+     3.3.1. Soma de elementos em um array
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#soma-cumulativa">
-     2.3.2. Soma cumulativa
+     3.3.2. Soma cumulativa
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fractal-de-julia">
-     2.3.3. Fractal de Julia
+     3.3.3. Fractal de Julia
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numba-vectorize">
-     2.3.4.
+     3.3.4.
      <code class="docutils literal notranslate">
       <span class="pre">
        numba.vectorize
@@ -526,7 +531,7 @@
               <div>
                 
   <section id="otimizacao-de-codigo">
-<h1><span class="section-number">2. </span>Otimização de código<a class="headerlink" href="#otimizacao-de-codigo" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Otimização de código<a class="headerlink" href="#otimizacao-de-codigo" title="Permalink to this headline">¶</a></h1>
 <p>Python possui diversas bibliotecas para computação numérica que são eficientes e de alto desempenho, tais como <em>numpy</em> e <em>scipy</em>. A computação de alta performance é atingida não por Python puro, mas pelo aproveitamento de bibliotecas que são compiladas externamente.</p>
 <p>Às vezes, temos necessidade de desenvolver código do zero usando puramente Python. Entretanto, essa escolha pode levar a códigos lentos. A solução é escrever rotinas em linguages externas, tais como C, C++ ou Fortran que façam os cálculos que consomem mais tempo e criar interfaces entre elas e o código Puython.</p>
 <p>Existem métodos que permitem criar módulos de extensão para Python, tais como:</p>
@@ -537,16 +542,16 @@
 </ul>
 <p>Embora úteis, todas elas exigem conhecimento aprofundado de outras linguagens e são mais úteis para códigos-fonte já escritos nessas linguagens. Algumas alternativas de desenvolvimento que se aproximam de Python que valem a pena ser consideradas antes de partirmos para uma implementação direta em linguagem complicada existem. Duas delas são: <em>numba</em> e <em>cython</em>.</p>
 <section id="numba">
-<h2><span class="section-number">2.1. </span><em>numba</em><a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span><em>numba</em><a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://numba.pydata.org">[Numba]</a> é um compilador <em>just-in-time</em> (JIT) para código Python usando <em>numpy</em> que produz código de máquina executável de forma mais eficiente do que o código Python original. Para conseguir isso, <em>numba</em> aproveita o conjunto de compiladores <a class="reference external" href="http://llvm.org">[LLVM]</a>, que se tornou muito popular nos últimos anos por seu design e interface modular e reutilizável.</p>
 </section>
 <section id="cython">
-<h2><span class="section-number">2.2. </span><em>cython</em><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span><em>cython</em><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://cython.org">[Cython]</a> é um superconjunto da linguagem Python que pode ser traduzido automaticamente para C ou C++ e compilado em um código de máquina executável de modo muito mais rápido do que o código Python. Cython é amplamente utilizado em projetos Python orientados computacionalmente para acelerar partes críticas de tempo de um código que é escrita em Python. Várias bibliotecas dependem muito do Cython. Isso inclui NumPy, SciPy, Pandas e scikit-learn, apenas para mencionar algumas.</p>
 <p>Veremos como usar <em>numba</em> e <em>cython</em> para acelerar códigos originalmente escritos em Python. É recomendado que se faça um perfilamento de código com o módulo <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> ou outras ferramentas para identificar gargalos de cálculo antes de tentarmos otimizar algo.</p>
 </section>
 <section id="exemplos-com-numba">
-<h2><span class="section-number">2.3. </span>Exemplos com numba<a class="headerlink" href="#exemplos-com-numba" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Exemplos com numba<a class="headerlink" href="#exemplos-com-numba" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span>
@@ -559,7 +564,7 @@
 </div>
 <p>Não precisamos alterar o código-alvo a ser acelerado. Basta usar o JIT do Numba como “decorador” <code class="docutils literal notranslate"><span class="pre">&#64;numba.jit</span></code> para uma função.</p>
 <section id="soma-de-elementos-em-um-array">
-<h3><span class="section-number">2.3.1. </span>Soma de elementos em um array<a class="headerlink" href="#soma-de-elementos-em-um-array" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.1. </span>Soma de elementos em um array<a class="headerlink" href="#soma-de-elementos-em-um-array" title="Permalink to this headline">¶</a></h3>
 <p>Consideramos o seguinte código simples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -641,7 +646,7 @@
 <p>Comparando isto com a implementação pura, temos uma grande diferença.</p>
 </section>
 <section id="soma-cumulativa">
-<h3><span class="section-number">2.3.2. </span>Soma cumulativa<a class="headerlink" href="#soma-cumulativa" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.2. </span>Soma cumulativa<a class="headerlink" href="#soma-cumulativa" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">py_cumsum</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
@@ -708,7 +713,7 @@
 </div>
 </section>
 <section id="fractal-de-julia">
-<h3><span class="section-number">2.3.3. </span>Fractal de Julia<a class="headerlink" href="#fractal-de-julia" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.3. </span>Fractal de Julia<a class="headerlink" href="#fractal-de-julia" title="Permalink to this headline">¶</a></h3>
 <p>O fractal de Julia exige um número variável de iterações para cada elemento de uma matriz com coordenadas no plano complexo:</p>
 <ul class="simple">
 <li><p>Um ponto <span class="math notranslate nohighlight">\(z\)</span> no plano complexo pertence ao conjunto de Julia se a fórmula de iteração <span class="math notranslate nohighlight">\(z \leftarrow z^2 + c\)</span> não diverge após um número grande de iterações.</p></li>
@@ -789,7 +794,7 @@
 </div>
 </section>
 <section id="numba-vectorize">
-<h3><span class="section-number">2.3.4. </span><code class="docutils literal notranslate"><span class="pre">numba.vectorize</span></code><a class="headerlink" href="#numba-vectorize" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.4. </span><code class="docutils literal notranslate"><span class="pre">numba.vectorize</span></code><a class="headerlink" href="#numba-vectorize" title="Permalink to this headline">¶</a></h3>
 <p>Aqui, vamos construir a função de Heaviside:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -922,8 +927,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="extra-fft.html" title="previous page"><span class="section-number">1. </span>Processamento de sinais</a>
-    <a class='right-next' id="next-link" href="extra-malhasNumericas.html" title="next page"><span class="section-number">3. </span>Malhas numéricas</a>
+    <a class='left-prev' id="prev-link" href="extra-fft.html" title="previous page"><span class="section-number">2. </span>Processamento de sinais</a>
+    <a class='right-next' id="next-link" href="extra-malhasNumericas.html" title="next page"><span class="section-number">4. </span>Malhas numéricas</a>
 
         </div>
         
