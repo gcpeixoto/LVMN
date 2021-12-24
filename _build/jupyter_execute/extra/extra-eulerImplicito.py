@@ -1,18 +1,28 @@
-## Método de Euler Implícito
+#!/usr/bin/env python
+# coding: utf-8
 
-A forma do _Método de Euler Implícito_ (MEI) é similar àquela do MEE, exceto por uma característica distintiva. Em vez de a inclinação utilizada para avanço ser tomada em $t_i$, ela é tomada em $t_{i+1}$. Isto é, o processo numérico avança com a estimativa $f(t_{i+1},y_{i+1})$ e não $f(t_i,y_i)$. O fato de usar esta inclinação ainda desconhecida é a razão de o método ser denominado "implícito". O esquema numérico resultante é o processo iterativo: 
+# ## Método de Euler Implícito
+# 
+# A forma do _Método de Euler Implícito_ (MEI) é similar àquela do MEE, exceto por uma característica distintiva. Em vez de a inclinação utilizada para avanço ser tomada em $t_i$, ela é tomada em $t_{i+1}$. Isto é, o processo numérico avança com a estimativa $f(t_{i+1},y_{i+1})$ e não $f(t_i,y_i)$. O fato de usar esta inclinação ainda desconhecida é a razão de o método ser denominado "implícito". O esquema numérico resultante é o processo iterativo: 
+# 
+# \begin{align*}
+# w_0 &= \alpha \\
+# w_{i+1} &= w_i + h f(t_{i+1},w_{i+1}) \ \ i = 0,1,\dots,N-1.
+# \end{align*}
+# 
+# Note, entretanto, que $w_{i+1}$ aparece não apenas no lado esquerdo, mas também no lado direito da equaçõe. Esta incógnita nem sempre é obtenível de modo explícito, isto é, por isolamento. Quando este é o caso, $f$ é linear ou uma função simples, mas, em geral, $f$ é não-linear e dependente do valor futuro $w_{i+1}$.
+# 
+# ## Código preditor/corretor
+# 
 
-\begin{align*}
-w_0 &= \alpha \\
-w_{i+1} &= w_i + h f(t_{i+1},w_{i+1}) \ \ i = 0,1,\dots,N-1.
-\end{align*}
-
-Note, entretanto, que $w_{i+1}$ aparece não apenas no lado esquerdo, mas também no lado direito da equaçõe. Esta incógnita nem sempre é obtenível de modo explícito, isto é, por isolamento. Quando este é o caso, $f$ é linear ou uma função simples, mas, em geral, $f$ é não-linear e dependente do valor futuro $w_{i+1}$.
-
-## Código preditor/corretor
+# In[1]:
 
 
 import matplotlib.pyplot as plt
+
+
+# In[2]:
+
 
 # MEI: preditor/corretor
 
@@ -50,6 +60,10 @@ def euler_impl(t0,tf,y0,h,f,tol):
     
     return t,y
 
+
+# In[3]:
+
+
 from numpy import linspace, zeros
 
 def euler_expl(t0,tf,y0,h,fun):
@@ -81,6 +95,10 @@ def euler_expl(t0,tf,y0,h,fun):
 
     return (t,y)
 
+
+# In[4]:
+
+
 from numpy import log 
 
 # define funcao
@@ -103,7 +121,11 @@ plt.plot(t,y2,'r-',label='$y_{MEI}(t)$')
 plt.plot(t,yex,'k--',label='$y(t)$')
 plt.legend();
 
-## Método Trapezoidal
+
+# ## Método Trapezoidal
+
+# In[5]:
+
 
 
 def trapezoidal(t0,tf,y0,h,f,tol):
@@ -142,6 +164,10 @@ def trapezoidal(t0,tf,y0,h,f,tol):
     
     return t,y
 
+
+# In[6]:
+
+
 # define funcao
 f = lambda t,y: (y + t**2 - 2)/(t+1)
 
@@ -163,3 +189,4 @@ plt.plot(t,y2,'r-',label='$y_{MEI}(t)$')
 plt.plot(t,y3,'g-',label='$y_{MT}(t)$')
 plt.plot(t,yex,'k--',label='$y(t)$')
 plt.legend();
+

@@ -1,44 +1,58 @@
-# Code session 9
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Code session 9
+
+# In[7]:
+
 
 import numpy as np 
 import matplotlib.pyplot as plt
 
-A integração numérica de uma EDO pode ser realizada em Python utilizando a função `solve_ivp` do módulo `scipy.integrate`.
 
-## `solve_ivp`
+# A integração numérica de uma EDO pode ser realizada em Python utilizando a função `solve_ivp` do módulo `scipy.integrate`.
+# 
+# ## `solve_ivp`
+# 
+# Esta função resolve um problema de valor inicial (PVI) para uma EDO ou um sistema de EDOs. Por padrão, o método de resolução é um algoritmo de Runge-Kutta com precisão de 4a. ordem. 
+# 
+# Os argumentos de entrada obrigatórios desta função são: 
+# 
+# 1. a função `f(t,y)` a ser integrada
+# 2. o domínio de integração, definido como uma tupla `(t0,tf)`
+# 3. a condição inicial `y0`
+# 
+# O principal argumento de saída é um objeto `sol`, em que:
+# 
+# - `sol.t`: retorna os valores do domínio
+# - `sol.y`: retorna os valores da solução numérica
+# 
+# Como importá-la? 
+# 
+# ```python 
+# from scipy.integrate import solve_ivp
+# ```
 
-Esta função resolve um problema de valor inicial (PVI) para uma EDO ou um sistema de EDOs. Por padrão, o método de resolução é um algoritmo de Runge-Kutta com precisão de 4a. ordem. 
+# In[22]:
 
-Os argumentos de entrada obrigatórios desta função são: 
 
-1. a função `f(t,y)` a ser integrada
-2. o domínio de integração, definido como uma tupla `(t0,tf)`
-3. a condição inicial `y0`
-
-O principal argumento de saída é um objeto `sol`, em que:
-
-- `sol.t`: retorna os valores do domínio
-- `sol.y`: retorna os valores da solução numérica
-
-Como importá-la? 
-
-```python 
 from scipy.integrate import solve_ivp
-```
 
-from scipy.integrate import solve_ivp
 
-**Exemplo:** Resolver numericamente o PVI
+# **Exemplo:** Resolver numericamente o PVI
+# 
+# $$\begin{cases}
+# y'(t) = -2y(t)\\
+# y(0) = 1 \\
+# 0 < t \le 3
+# \end{cases}$$
+# 
+# para $h=1.0,0.1,0.001$. 
+# 
+# Compare a solução numérica com a analítica: $y_{an}(t) = e^{-t^2}$. 
 
-$$\begin{cases}
-y'(t) = -2y(t)\\
-y(0) = 1 \\
-0 < t \le 3
-\end{cases}$$
+# In[23]:
 
-para $h=1.0,0.1,0.001$. 
-
-Compare a solução numérica com a analítica: $y_{an}(t) = e^{-t^2}$. 
 
 f = lambda t,y: -2*y*t
 yan = lambda t: np.exp(-t**2)
@@ -71,18 +85,20 @@ for k in T:
     plt.ylabel('$y(t)$')
 
 
+# **Exemplo:** Resolver numericamente o PVI
+# 
+# $$\begin{cases}
+# y'(t) = y+t\\
+# y(0) = 1 \\
+# 0 < t \le 5
+# \end{cases}$$
+# 
+# para $h=1.0,0.1,0.001$. 
+# 
+# Compare a solução numérica com a analítica: $y_{an}(t) = 2e^{t} - t - 1$.
 
-**Exemplo:** Resolver numericamente o PVI
+# In[54]:
 
-$$\begin{cases}
-y'(t) = y+t\\
-y(0) = 1 \\
-0 < t \le 5
-\end{cases}$$
-
-para $h=1.0,0.1,0.001$. 
-
-Compare a solução numérica com a analítica: $y_{an}(t) = 2e^{t} - t - 1$.
 
 f = lambda t,y: y + t
 yan = lambda t: 2*np.exp(t) - t - 1
@@ -114,6 +130,8 @@ for k in T:
     plt.xlabel('$t$') 
     plt.ylabel('$y(t)$')
 
+
+# In[62]:
 
 
 """
@@ -158,3 +176,4 @@ plt.title(s)
 plt.xlabel('$t$'); 
 plt.ylabel('$y(t)$')
 """;
+

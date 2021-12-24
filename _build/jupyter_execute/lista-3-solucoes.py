@@ -1,11 +1,25 @@
-# Lista de Exercícios 3
+#!/usr/bin/env python
+# coding: utf-8
 
-Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 3.
+# # Lista de Exercícios 3
+# 
+# Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 3.
 
-%matplotlib inline
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
 
 import numpy as np
 import matplotlib.pyplot as plt
+
+
+# In[3]:
+
 
 # Funções Implementadas
 
@@ -227,19 +241,23 @@ def cholesky(AB):
     
     return G,X
 
-## Sistemas lineares
 
-### Questão 1
+# ## Sistemas lineares
 
-Escreva o seguinte conjunto de equações na forma matricial:
+# ### Questão 1
+# 
+# Escreva o seguinte conjunto de equações na forma matricial:
+# 
+# \begin{align} 
+# 8 &= 6x_3 + 2x_2 \\
+# 2 − x_1 &= x_3 \\
+# 5x_2 + x_1 &= 13
+# \end{align}
+# 
+# Mulitiplique a matriz dos coeficientes por sua transposta, i.e. $AA^T$.
 
-\begin{align} 
-8 &= 6x_3 + 2x_2 \\
-2 − x_1 &= x_3 \\
-5x_2 + x_1 &= 13
-\end{align}
+# In[4]:
 
-Mulitiplique a matriz dos coeficientes por sua transposta, i.e. $AA^T$.
 
 # Solução
 
@@ -251,14 +269,18 @@ print("A matriz dos coeficientes desse sistema é: \n\n", A)
 print("\nA sua transposta é: \n\n", AT)
 print("\nLogo, o produto entre A e sua transposta é: \n\n", B)
 
-### Questão 2
 
-Use o metodo gráfico para resolver:
+# ### Questão 2
+# 
+# Use o metodo gráfico para resolver:
+# 
+# \begin{align} 
+# 4x_1 − 8x_2 &= −24 \\
+# −x_1 + 6x_2 &= 34
+# \end{align}
 
-\begin{align} 
-4x_1 − 8x_2 &= −24 \\
-−x_1 + 6x_2 &= 34
-\end{align}
+# In[5]:
+
 
 # Solução
 
@@ -279,19 +301,23 @@ plt.grid()
 plt.legend()
 plt.plot(8,7,'or')
 
-### Questão 3
 
-Para o conjunto de equações:
+# ### Questão 3
+# 
+# Para o conjunto de equações:
+# 
+# \begin{align} 
+# 2x_2 + 5x_3 &= 9 \\
+# 2x_1 + x_2 + x_3 &= 9 \\
+# 3x_1 + x_2 &= 10
+# \end{align}
+# 
+# (i) Calcule o determinante.
+# 
+# (ii) Use a regra de Cramer para determinar $x_1$, $x_2$, $x_3$.
 
-\begin{align} 
-2x_2 + 5x_3 &= 9 \\
-2x_1 + x_2 + x_3 &= 9 \\
-3x_1 + x_2 &= 10
-\end{align}
+# In[6]:
 
-(i) Calcule o determinante.
-
-(ii) Use a regra de Cramer para determinar $x_1$, $x_2$, $x_3$.
 
 # Solução
 
@@ -315,17 +341,21 @@ X = [round(i,3) for i in X]
     
 print("\n(ii) Os valores de [x1, x2, x3] são:", X)
 
-### Questão 4
 
-Dadas as equações:
+# ### Questão 4
+# 
+# Dadas as equações:
+# 
+# \begin{align} 
+# 10x_1 + 2x_2 − x_3 &= 27 \\
+# −3x_1 − 6x_2 + 2x_3 &= −61.5 \\
+# x_1 + 5x_2 + 5x_3 &= −21.5
+# \end{align}
+# 
+# Resolva por Eliminação de Gauss Simples. Mostre todos os passos de cálculo.
 
-\begin{align} 
-10x_1 + 2x_2 − x_3 &= 27 \\
-−3x_1 − 6x_2 + 2x_3 &= −61.5 \\
-x_1 + 5x_2 + 5x_3 &= −21.5
-\end{align}
+# In[7]:
 
-Resolva por Eliminação de Gauss Simples. Mostre todos os passos de cálculo.
 
 # Solução
 
@@ -360,15 +390,19 @@ X = np.around(X, decimals=3)
 
 print("\nA solução do problema é: \n", X)
 
-### Questão 5
 
-Use Eliminação de Gauss com pivotamento parcial para resolver:
+# ### Questão 5
+# 
+# Use Eliminação de Gauss com pivotamento parcial para resolver:
+# 
+# \begin{align} 
+# 8x_1 + 2x_2 − 2x_3 &= −2 \\
+# 10x_1 + 2x_2 − 4x_3 &= 4 \\
+# 12x_1 + 2x_2 + 2x_3 &= 6
+# \end{align}
 
-\begin{align} 
-8x_1 + 2x_2 − 2x_3 &= −2 \\
-10x_1 + 2x_2 − 4x_3 &= 4 \\
-12x_1 + 2x_2 + 2x_3 &= 6
-\end{align}
+# In[8]:
+
 
 # Solução
 
@@ -377,17 +411,21 @@ X = gauss_pivparc(AB)
 
 print("A solução do problema é: \n", X)
 
-### Questão 6
 
-Dadas as equações:
+# ### Questão 6
+# 
+# Dadas as equações:
+# 
+# \begin{align} 
+# 2x_1 − 6x_2 − x_3 &= −38 \\
+# −3x_1 − x_2 + 7x_3 &= 34 \\
+# −8x_1 + x_2 − 2x_3 &= −20
+# \end{align}
+# 
+# Resolva por Eliminação de Gauss com pivotamento parcial.
 
-\begin{align} 
-2x_1 − 6x_2 − x_3 &= −38 \\
-−3x_1 − x_2 + 7x_3 &= 34 \\
-−8x_1 + x_2 − 2x_3 &= −20
-\end{align}
+# In[9]:
 
-Resolva por Eliminação de Gauss com pivotamento parcial.
 
 # Solução
 
@@ -395,17 +433,21 @@ AB = np.array([[2., -6., -1., -38], [-3., -1., 7., 34], [-8., 1., -2., -20]])
 X = gauss_pivparc(AB)
 print("A solução do problema é: \n", X)
 
-### Questão 7
 
-Use Eliminação de Gauss-Jordan para resolver:
+# ### Questão 7
+# 
+# Use Eliminação de Gauss-Jordan para resolver:
+# 
+# \begin{align} 
+# 2x_1 + x_2 − x_3 &= 1 \\
+# 5x_1 + 2x_2 + 2x_3 &= −4 \\
+# 3x_1 + x_2 + x_3 &= 5
+# \end{align}
+# 
+# Não utilize pivotamento. Substitua seus resultados nas equações originais para verificá-los.
 
-\begin{align} 
-2x_1 + x_2 − x_3 &= 1 \\
-5x_1 + 2x_2 + 2x_3 &= −4 \\
-3x_1 + x_2 + x_3 &= 5
-\end{align}
+# In[10]:
 
-Não utilize pivotamento. Substitua seus resultados nas equações originais para verificá-los.
 
 # Solução
 
@@ -413,21 +455,25 @@ AB = np.array([[2., 1., -1., 1], [5., 2., 2., -4], [3., 1., 1., 5]])
 X = gaussjordan(AB)
 print("A solução do problema é", X)
 
-### Questão 8 
 
-Resolva:
+# ### Questão 8 
+# 
+# Resolva:
+# 
+# \begin{align}
+# x_1 + x_2 − x_3 &= −3 \\
+# 6x_1 + 2x_2 + 2x_3 &= 2 \\
+# −3x_1 + 4x_2 + x_3 &= 1
+# \end{align}
+# 
+# (i) Por Eliminação de Gauss simples.
+# 
+# (ii) Por Eliminação de Gauss com pivotamento parcial.
+# 
+# (iii) Por Eliminação de Gauss-Jordan sem pivotamento parcial.
 
-\begin{align}
-x_1 + x_2 − x_3 &= −3 \\
-6x_1 + 2x_2 + 2x_3 &= 2 \\
-−3x_1 + 4x_2 + x_3 &= 1
-\end{align}
+# In[11]:
 
-(i) Por Eliminação de Gauss simples.
-
-(ii) Por Eliminação de Gauss com pivotamento parcial.
-
-(iii) Por Eliminação de Gauss-Jordan sem pivotamento parcial.
 
 # Solução
 
@@ -446,19 +492,23 @@ AB = np.array([[1., 1., -1., -3], [6., 2., 2., 2], [-3., 4., 1., 1]])
 X = gaussjordan(AB)
 print("\n(ii) A solução do problema, pelo método da eliminação de Gauss-Jordan sem pivotamento parcial, é: \n", AB[:,-1])
 
-## Fatoração LU
 
-### Questão 9
+# ## Fatoração LU
 
-Resolva o seguinte sistema de equações por decomposição LU sem pivotamento (usando a definição A = LU):
+# ### Questão 9
+# 
+# Resolva o seguinte sistema de equações por decomposição LU sem pivotamento (usando a definição A = LU):
+# 
+# \begin{align} 
+# 8x_1 + 4x_2 − x_3 &= 11 \\
+# −2x_1 + 5x_2 + x_3 &= 4 \\
+# 2x_1 − x_2 + 6x_3 &= 7
+# \end{align}
+# 
+# Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
-\begin{align} 
-8x_1 + 4x_2 − x_3 &= 11 \\
-−2x_1 + 5x_2 + x_3 &= 4 \\
-2x_1 − x_2 + 6x_3 &= 7
-\end{align}
+# In[12]:
 
-Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
 #Solução
 AB = np.array([[8., 4., -1., 11.], [-2., 5., 1., 4.], [2., -1., 6., 7.]])
@@ -473,17 +523,21 @@ print("\nA inversa de A é: \n", np.around(np.linalg.inv(A), decimals=3))
 print("\nO produto entre as inversas de U e L é: \n", np.around(np.dot(np.linalg.inv(U),np.linalg.inv(L)), decimals=3))
 print("\nO produto entre A e sua inversa é: \n", np.around(np.dot(A,np.linalg.inv(A))))
 
-### Questão 10
 
-Resolva o seguinte sistema de equações por decomposição LU com pivotamento parcial.
+# ### Questão 10
+# 
+# Resolva o seguinte sistema de equações por decomposição LU com pivotamento parcial.
+# 
+# \begin{align} 
+# 2x_1 − 6x_2 − x_3 &= −38 \\
+# −3x_1 − x_2 + 7x_3 &= −34 \\
+# −8x_1 + x_2 − 2x_3 &= −20
+# \end{align}
+# 
+# Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
-\begin{align} 
-2x_1 − 6x_2 − x_3 &= −38 \\
-−3x_1 − x_2 + 7x_3 &= −34 \\
-−8x_1 + x_2 − 2x_3 &= −20
-\end{align}
+# In[13]:
 
-Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
 #Solução
 AB = np.array([[2., -6., -1., -38.], [-3., -1., 7., -34.], [-8., 1., -2., -20.]])
@@ -500,17 +554,21 @@ print("\nA inversa de A é: \n", np.around(np.linalg.inv(A), decimals=3))
 print("\nO produto entre as inversas de U e L é: \n", np.around(np.dot(np.linalg.inv(U),np.linalg.inv(L)), decimals=3))
 print("\nO produto entre A e sua inversa é: \n", np.around(np.dot(A,np.linalg.inv(A))))
 
-### Questão 11
 
-Resolva o seguinte sistema de equações por decomposição LU.
+# ### Questão 11
+# 
+# Resolva o seguinte sistema de equações por decomposição LU.
+# 
+# \begin{align} 
+# 10x_1 + 2x_2 − x_3 &= 27 \\
+# −3x_1 − 6x_2 + 2x_3 &= −61.5 \\
+# x_1 + x_2 + 5x_3 &= −21.5
+# \end{align}
+# 
+# Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
-\begin{align} 
-10x_1 + 2x_2 − x_3 &= 27 \\
-−3x_1 − 6x_2 + 2x_3 &= −61.5 \\
-x_1 + x_2 + 5x_3 &= −21.5
-\end{align}
+# In[14]:
 
-Em seguida, determine a matriz inversa $A^{−1} = U^{−1} L^{−1}$. Verifique seus resultados comprovando que $AA^{−1} = I$.
 
 #Solução
 AB = np.array([[10., 2., -1., 27.], [-3., -6., 2., -61.5], [1., 1., 5., -21.5]])
@@ -527,35 +585,39 @@ print("\nA inversa de A é: \n", np.around(np.linalg.inv(A), decimals=3))
 print("\nO produto entre as inversas de U e L é: \n", np.around(np.dot(np.linalg.inv(U),np.linalg.inv(L)), decimals=3))
 print("\nO produto entre A e sua inversa é: \n", np.around(np.dot(A,np.linalg.inv(A))))
 
-## Fatoração de Cholesky
 
-### Questão 12
+# ## Fatoração de Cholesky
 
-Determine quais matrizes a seguir são (i) simétricas, (ii) singulares, (iii) diagonalmente dominantes, (iv) positivas definidas.
+# ### Questão 12
+# 
+# Determine quais matrizes a seguir são (i) simétricas, (ii) singulares, (iii) diagonalmente dominantes, (iv) positivas definidas.
+# 
+# (a) \begin{pmatrix}
+# 2 & 1 \\
+# 1 & 3
+# \end{pmatrix}
+# 
+# (b) \begin{pmatrix}
+# 2 & 1 & 0 \\
+# 0 & 3 & 0 \\
+# 1 & 0 & 4
+# \end{pmatrix}
+# 
+# (c) \begin{pmatrix}
+# 4 & 2 & 6 \\
+# 3 & 0 & 7 \\
+# -2 & -1 & -3
+# \end{pmatrix}
+# 
+# (d) \begin{pmatrix}
+# 4 & 0 & 0 & 0 \\
+# 6 & 7 & 0 & 0 \\
+# 9 & 11 & 1 & 0 \\
+# 5 & 4 & 1 & 1
+# \end{pmatrix}
 
-(a) \begin{pmatrix}
-2 & 1 \\
-1 & 3
-\end{pmatrix}
+# In[15]:
 
-(b) \begin{pmatrix}
-2 & 1 & 0 \\
-0 & 3 & 0 \\
-1 & 0 & 4
-\end{pmatrix}
-
-(c) \begin{pmatrix}
-4 & 2 & 6 \\
-3 & 0 & 7 \\
--2 & -1 & -3
-\end{pmatrix}
-
-(d) \begin{pmatrix}
-4 & 0 & 0 & 0 \\
-6 & 7 & 0 & 0 \\
-9 & 11 & 1 & 0 \\
-5 & 4 & 1 & 1
-\end{pmatrix}
 
 # Solução
 
@@ -585,40 +647,43 @@ for i in range(1,len(D)+1):
 print("\nOs determinantes dos menores principais de (d) são:", np.around(menD, decimals=3))
 
 
-#### Solução:
+# #### Solução:
+# 
+# (i) Apenas a matriz em (a) e simétrica.
+# 
+# (ii) Apenas a matriz em (d) é singular.
+# 
+# (iii) As matrizes em (a) e (b) são diagonalmente dominantes.
+# 
+# (iv) As matrizes em (a), (b) e (d) são positivas-definidas. 
 
-(i) Apenas a matriz em (a) e simétrica.
+# ### Questão 13
+# 
+# Determine a fatoração de Cholesky $A = GGT$ das matrizes a seguir.
+# 
+# (a) \begin{pmatrix}
+# 2 & −1 & 0 \\
+# −1 & 2 & −1 \\
+# 0 & −1 & 2
+# \end{pmatrix}
+# 
+# (b) \begin{pmatrix}
+# 4 & 1 & 1 & 1 \\
+# 1 & 3 & −1 & 1 \\
+# 1 & −1 & 2 & 0 \\
+# 1 & 1 & 0 & 2
+# \end{pmatrix}
+# 
+# 
+# (c) \begin{pmatrix}
+# 4 & 1 & −1 & 0 \\
+# 1 & 3 & −1 & 0 \\
+# −1 & −1 & 5 & 2 \\
+# 0 & 0 & 2 & 4
+# \end{pmatrix}
 
-(ii) Apenas a matriz em (d) é singular.
+# In[16]:
 
-(iii) As matrizes em (a) e (b) são diagonalmente dominantes.
-
-(iv) As matrizes em (a), (b) e (d) são positivas-definidas. 
-
-### Questão 13
-
-Determine a fatoração de Cholesky $A = GGT$ das matrizes a seguir.
-
-(a) \begin{pmatrix}
-2 & −1 & 0 \\
-−1 & 2 & −1 \\
-0 & −1 & 2
-\end{pmatrix}
-
-(b) \begin{pmatrix}
-4 & 1 & 1 & 1 \\
-1 & 3 & −1 & 1 \\
-1 & −1 & 2 & 0 \\
-1 & 1 & 0 & 2
-\end{pmatrix}
-
-
-(c) \begin{pmatrix}
-4 & 1 & −1 & 0 \\
-1 & 3 & −1 & 0 \\
-−1 & −1 & 5 & 2 \\
-0 & 0 & 2 & 4
-\end{pmatrix}
 
 # Solução
 
@@ -682,36 +747,40 @@ G = np.around(G, decimals=3)
 
 print("A matriz G é:\n", G)
 
-### Questão 14
 
-Resolva os seguintes sistemas de equações por decomposição de Cholesky.
+# ### Questão 14
+# 
+# Resolva os seguintes sistemas de equações por decomposição de Cholesky.
+# 
+# (a) \begin{cases}
+# 8x_1 + 20x_2 + 15x_3 = 50 \\
+# 20x_1 + 80x_2 + 50x_3 = 250 \\
+# 15x_1 + 50x_2 + 60x_3 = 100
+# \end{cases}
+# 
+# (b) \begin{cases} 
+# 6x_1 + 15x_2 + 55x_3 = 152.6 \\
+# 15x_1 + 55x_2 + 225x_3 = 585.6 \\
+# 55x_1 + 225x_2 + 979x_3 = 2488.8
+# \end{cases}
+# 
+# (c)
+# \begin{cases} 
+# 2x_1 − x_2 = 3 \\
+# −x_1 + 2x_2 − x_3 = − 3 \\
+# −x_2 + 2x_3 = 1
+# \end{cases}
+# 
+# (d)
+# \begin{cases} 
+# 4x_1 + x_2 + x_3 + x_4 = 0.65 \\
+# x_1 + 3x_2 − x_3 + x_4 = 0.05 \\
+# x_1 − x_2 + 2x_3 = 0 \\
+# x_1 + x_2 + 2x_4 = 0.5
+# \end{cases}
 
-(a) \begin{cases}
-8x_1 + 20x_2 + 15x_3 = 50 \\
-20x_1 + 80x_2 + 50x_3 = 250 \\
-15x_1 + 50x_2 + 60x_3 = 100
-\end{cases}
+# In[17]:
 
-(b) \begin{cases} 
-6x_1 + 15x_2 + 55x_3 = 152.6 \\
-15x_1 + 55x_2 + 225x_3 = 585.6 \\
-55x_1 + 225x_2 + 979x_3 = 2488.8
-\end{cases}
-
-(c)
-\begin{cases} 
-2x_1 − x_2 = 3 \\
-−x_1 + 2x_2 − x_3 = − 3 \\
-−x_2 + 2x_3 = 1
-\end{cases}
-
-(d)
-\begin{cases} 
-4x_1 + x_2 + x_3 + x_4 = 0.65 \\
-x_1 + 3x_2 − x_3 + x_4 = 0.05 \\
-x_1 − x_2 + 2x_3 = 0 \\
-x_1 + x_2 + 2x_4 = 0.5
-\end{cases}
 
 # Solução
 
@@ -738,3 +807,4 @@ print("\n(d)")
 AB = np.array([[4., 1., 1., 1., 0.65], [1., 3., -1., 1., 0.05], [1., -1., 2., 0., 0.], [1., 1., 0., 2., 0.5]])
 G, X = cholesky(AB)
 print("A solução do sistema é: \n", G)
+

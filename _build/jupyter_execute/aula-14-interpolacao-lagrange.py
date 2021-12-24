@@ -1,26 +1,36 @@
-%matplotlib inline
+#!/usr/bin/env python
+# coding: utf-8
 
-# Polinômio Interpolador de Lagrange
+# In[1]:
 
-O polinômio interpolador de Lagrange é representado por:
 
-$$P_n (x) = \sum _{i = 0}^{n} L_i (x) f(x_i)$$
+get_ipython().run_line_magic('matplotlib', 'inline')
 
-onde
 
-$$L_i(x) = \prod _{\substack{j = 0 \\ j \neq i}}^n \dfrac{x - x_j}{x_i - x_j}$$
+# # Polinômio Interpolador de Lagrange
+# 
+# O polinômio interpolador de Lagrange é representado por:
+# 
+# $$P_n (x) = \sum _{i = 0}^{n} L_i (x) f(x_i)$$
+# 
+# onde
+# 
+# $$L_i(x) = \prod _{\substack{j = 0 \\ j \neq i}}^n \dfrac{x - x_j}{x_i - x_j}$$
+# 
+# Por exemplo, a versão linear ($n = 1$) seria
+# 
+# $$P_1(x) = \dfrac{x − x_1}{x_0 − x_1} f(x_0) + \dfrac{x − x_0}{x_1 − x_0} f(x_1) $$
+# 
+# e a versão de segundo grau ($n = 1$) seria
+# 
+# $$P_2(x) = \dfrac{(x − x_1)(x − x_2)}{(x_0 − x_1)(x_0 − x_2)} f(x_0) + \dfrac{(x − x_0)(x − x_2)}{(x_1 − x_0)(x_1 − x_2)} f(x_1) + \dfrac{(x − x_0)(x − x_1)}{(x_2 − x_0)(x_2 − x_1)}f(x_2)$$
 
-Por exemplo, a versão linear ($n = 1$) seria
+# # Funções de base de Lagrange
 
-$$P_1(x) = \dfrac{x − x_1}{x_0 − x_1} f(x_0) + \dfrac{x − x_0}{x_1 − x_0} f(x_1) $$
+# Código gerador de funções de base de Lagrange de grau $n$ por computação simbólica.
 
-e a versão de segundo grau ($n = 1$) seria
+# In[2]:
 
-$$P_2(x) = \dfrac{(x − x_1)(x − x_2)}{(x_0 − x_1)(x_0 − x_2)} f(x_0) + \dfrac{(x − x_0)(x − x_2)}{(x_1 − x_0)(x_1 − x_2)} f(x_1) + \dfrac{(x − x_0)(x − x_1)}{(x_2 − x_0)(x_2 − x_1)}f(x_2)$$
-
-# Funções de base de Lagrange
-
-Código gerador de funções de base de Lagrange de grau $n$ por computação simbólica.
 
 from sympy import Symbol
 
@@ -56,6 +66,8 @@ def L_nj(X,j):
             
     return L
 
+
+# In[3]:
 
 
 import numpy as np
@@ -109,3 +121,4 @@ plt.scatter(xp,np.ones(xp.shape),c='k',marker='s')
        
 plt.legend(leg,loc='best',bbox_to_anchor=(0.7, 0.5, 0.5, 0.5))
 plt.title('Funções de base de Lagrange de ordem ' + str(n-1) + ' em ['+str(x0)+','+str(x1)+']');
+

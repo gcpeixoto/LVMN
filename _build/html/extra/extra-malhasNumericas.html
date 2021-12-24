@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Malhas numéricas &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>4. Malhas numéricas &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -20,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,39 +32,39 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Campos de direção" href="extra-camposDirecao-edo.html" />
-    <link rel="prev" title="2. Otimização de código" href="extra-numba.html" />
-
+    <link rel="next" title="5. Campos de direção" href="extra-camposDirecao-edo.html" />
+    <link rel="prev" title="3. Otimização de código" href="extra-numba.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +73,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/numbiosis.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../conteudo.html">
    Laboratório Virtual de Métodos Numéricos - LVMN
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Cadernos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
    1. Modelagem Matemática em Ciências Computacionais e Engenharias
@@ -153,11 +150,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
-   11. Eliminação Gaussiana
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../aula-10-fatoracao-lu.html">
    12. Fatoração LU com Python
   </a>
@@ -178,18 +170,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
-   16. Nota: Raízes de sistemas não-lineares
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../aula-14-interpolacao-lagrange.html">
    17. Polinômio Interpolador de Lagrange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
-   18. Funções de base de Lagrange
   </a>
  </li>
  <li class="toctree-l1">
@@ -238,12 +220,12 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code sessions
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../codeSession-1-bisect.html">
    Code session 1
@@ -290,12 +272,12 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../lista-1-solucoes.html">
    Lista de Exercícios 1
@@ -327,89 +309,75 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Extra
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-pontoFlutuante.html">
+   1. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
-   1. Processamento de sinais
+   2. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-numba.html">
-   2. Otimização de código
+   3. Otimização de código
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Malhas numéricas
+   4. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-camposDirecao-edo.html">
-   4. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-camposDirecao-edo.html#problemas">
-   5. Problemas
+   5. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   6. Variações do Método de Euler
+   7. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   7. Estabilidade Numérica para o Método de Euler
+   8. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   8. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerImplicito.html#codigo-preditor-corretor">
-   9. Código preditor/corretor
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerImplicito.html#metodo-trapezoidal">
-   10. Método Trapezoidal
+   9. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   11. Métodos de Adams-Bashfort
+   12. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edo-superior.html">
-   12. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-edo-superior.html#problemas">
-   13. Problemas
+   13. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemas-edo.html">
-   14. Sistemas de EDOs
+   15. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   15. Método das Linhas
+   16. Método das Linhas
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -459,12 +427,12 @@
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -498,43 +466,41 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#malhas-uniformes">
-   3.1. Malhas uniformes
+   4.1. Malhas uniformes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#malhas-nao-uniformes">
-   3.2. Malhas não uniformes
+   4.2. Malhas não uniformes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#refinamento-de-malha">
-   3.3. Refinamento de malha
+   4.3. Refinamento de malha
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#malha-numerica-bidimensional-uniforme">
-   3.4. Malha numérica bidimensional uniforme
+   4.4. Malha numérica bidimensional uniforme
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotando-curvas-de-nivel">
-     3.4.1. Plotando curvas de nível
+     4.4.1. Plotando curvas de nível
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -544,13 +510,13 @@
               <div>
                 
   <section id="malhas-numericas">
-<h1><span class="section-number">3. </span>Malhas numéricas<a class="headerlink" href="#malhas-numericas" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Malhas numéricas<a class="headerlink" href="#malhas-numericas" title="Permalink to this headline">¶</a></h1>
 <p>Ao transferir a informação de nossos modelos matemáticos do universo <em>contínuo</em> para o universo <em>discreto</em> do computador, precisamos criar uma <em>malha numérica</em> (a construção Cartesiana em gradeado recebe o nome de <em>grade numérica</em>), que pode ser estruturada por uma sucessão de pontos tal como uma imitação de uma reta “furada”. Em uma dimensão, uma malha numérica <em>uniforme</em>, cujo espaçamento entre seus pontos é igual, pode ser definida como uma progressão aritmética:</p>
 <div class="math notranslate nohighlight">
 \[t_n = t_0 \pm n h, \ \ n = 1,2,\ldots,N,\]</div>
 <p>onde <span class="math notranslate nohighlight">\(h\)</span> é conhecido como <em>passo</em>.</p>
 <section id="malhas-uniformes">
-<h2><span class="section-number">3.1. </span>Malhas uniformes<a class="headerlink" href="#malhas-uniformes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Malhas uniformes<a class="headerlink" href="#malhas-uniformes" title="Permalink to this headline">¶</a></h2>
 <p>A figura abaixo mostra os pontos de uma malha numérica uniforme. A linha pontilhada foi desenhada meramente para representar a porção do contínuo que o computador <strong>não</strong> captura, isto é, a informação que é perdida.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -581,7 +547,7 @@
 </div>
 </section>
 <section id="malhas-nao-uniformes">
-<h2><span class="section-number">3.2. </span>Malhas não uniformes<a class="headerlink" href="#malhas-nao-uniformes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Malhas não uniformes<a class="headerlink" href="#malhas-nao-uniformes" title="Permalink to this headline">¶</a></h2>
 <p>Uma malha numérica <em>não uniforme</em> é aquela para a qual o tamanho do passo não é constante, como
 vemos na Figura a seguir. Neste caso, podemos ter comprimentos arbitrários <span class="math notranslate nohighlight">\(h_0 \neq h_1 \neq \ldots \neq h_{N-1}\)</span> todos distintos, tanto à esquerda quanto à direita de <span class="math notranslate nohighlight">\(t_0\)</span>.</p>
 <div class="cell docutils container">
@@ -610,13 +576,13 @@ vemos na Figura a seguir. Neste caso, podemos ter comprimentos arbitrários <spa
 </div>
 </section>
 <section id="refinamento-de-malha">
-<h2><span class="section-number">3.3. </span>Refinamento de malha<a class="headerlink" href="#refinamento-de-malha" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Refinamento de malha<a class="headerlink" href="#refinamento-de-malha" title="Permalink to this headline">¶</a></h2>
 <p>Quando uma malha não uniforme possui uma ou mais regiões onde há uma acumulação de pontos, dizemos que ela está <em>refinada</em> nessas regiões. Na figura, os pontos <span class="math notranslate nohighlight">\(t_{-2}, t_{-1}\)</span> e <span class="math notranslate nohighlight">\(t_{0}\)</span>, por exemplo, acumulam-se próximos um do outro, ao passo que os pontos <span class="math notranslate nohighlight">\(t_1, t_2\)</span> e <span class="math notranslate nohighlight">\(t_N\)</span> afastam-se cada vez mais um do outro e da região de refinamento. Então, poderíamos dizer que a malha foi refinada entre <span class="math notranslate nohighlight">\(t_{-2}\)</span> e <span class="math notranslate nohighlight">\(t_0\)</span>.</p>
 <p>O refinamento faz mais sentido apenas quando queremos capturar informações localizadas com mais precisão. Esta situação ocorre, por exemplo, em problemas práticos que envolvem variações ou mudanças abruptas de propriedades, como é o caso da massa específica nas proximidades de uma interface de dois fluidos imiscíveis.</p>
 <p>Nos esquemas acima, os nós com índice negativo são apenas ilustrativos e têm pouco efeito prático. Podemos trabalhar apenas com a indexação positiva sem problema algum.</p>
 </section>
 <section id="malha-numerica-bidimensional-uniforme">
-<h2><span class="section-number">3.4. </span>Malha numérica bidimensional uniforme<a class="headerlink" href="#malha-numerica-bidimensional-uniforme" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Malha numérica bidimensional uniforme<a class="headerlink" href="#malha-numerica-bidimensional-uniforme" title="Permalink to this headline">¶</a></h2>
 <p>Em particular, uma <em>malha numérica</em> bidimensional dependerá de cópias de <em>arrays</em> unidimensionais que formam as coordenadas do plano Cartesiano em cada dimensão</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -650,7 +616,7 @@ vemos na Figura a seguir. Neste caso, podemos ter comprimentos arbitrários <spa
 </div>
 </div>
 <section id="plotando-curvas-de-nivel">
-<h3><span class="section-number">3.4.1. </span>Plotando curvas de nível<a class="headerlink" href="#plotando-curvas-de-nivel" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.1. </span>Plotando curvas de nível<a class="headerlink" href="#plotando-curvas-de-nivel" title="Permalink to this headline">¶</a></h3>
 <p>Plotaremos as curvas de nível 0 de funções não-lineares é útil para realizarmos análise gráfica e escolher vetores de estimativa inicial.</p>
 <p>Para plotar curvas de nível das funções sobre a grade numérica anterior, fazemos o seguinte:</p>
 <div class="cell docutils container">
@@ -741,8 +707,8 @@ vemos na Figura a seguir. Neste caso, podemos ter comprimentos arbitrários <spa
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="extra-numba.html" title="previous page"><span class="section-number">2. </span>Otimização de código</a>
-    <a class='right-next' id="next-link" href="extra-camposDirecao-edo.html" title="next page"><span class="section-number">4. </span>Campos de direção</a>
+    <a class='left-prev' id="prev-link" href="extra-numba.html" title="previous page"><span class="section-number">3. </span>Otimização de código</a>
+    <a class='right-next' id="next-link" href="extra-camposDirecao-edo.html" title="next page"><span class="section-number">5. </span>Campos de direção</a>
 
         </div>
         
@@ -763,11 +729,9 @@ vemos na Figura a seguir. Neste caso, podemos ter comprimentos arbitrários <spa
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

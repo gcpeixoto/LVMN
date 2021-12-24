@@ -1,9 +1,19 @@
-# Implementação do método de Newton
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline
+# # Implementação do método de Newton
 
-- Analisar a dependência da estimativa inicial. 
-- Executar o código duas vezes: para $x_0=0.0$ e $x_0=1.0$ em $f(x) = -0.9x^2 + 1.7x + 2.5$.
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# - Analisar a dependência da estimativa inicial. 
+# - Executar o código duas vezes: para $x_0=0.0$ e $x_0=1.0$ em $f(x) = -0.9x^2 + 1.7x + 2.5$.
+
+# In[2]:
+
 
 # Método de Newton
 
@@ -61,26 +71,33 @@ plotar = True
 xm = newton(x0,f,df,tol,nmax,var,plotar)
 
 
+# In[3]:
+
+
 # chamada da função
 xm = newton(1.0,f,df,tol,nmax,var,plotar)
 
-## Desafio
 
-1. Generalize o código acima para que a expressão da derivada seja calculada diretamenta e não manualmente. (dica: use computação simbólica)
-2. Resolva o problema aplicado abaixo com este método ou desenvolva o seu para resolver e compare com a função residente do `scipy`.
+# ## Desafio
+# 
+# 1. Generalize o código acima para que a expressão da derivada seja calculada diretamenta e não manualmente. (dica: use computação simbólica)
+# 2. Resolva o problema aplicado abaixo com este método ou desenvolva o seu para resolver e compare com a função residente do `scipy`.
 
-### Problema aplicado
+# ### Problema aplicado
+# 
+# Um jogador de futebol americano está prestes a fazer um lançamento para outro jogador de seu time. O lançador tem uma altura de 1,82 m e o outro jogador está afastado de 18,2 m. A expressão que descreve o movimento da bola é a familiar equação da física que descreve o movimento de um projétil:
+# 
+# $$y = x\tan(\theta) - \dfrac{1}{2}\dfrac{x^2 g}{v_0^2}\dfrac{1}{\cos^2(\theta)} + h,$$
+# 
+# onde $x$ e $y$ são as distâncias horizontal e verical, respectivamente, $g=9,8 \, m/s^2$ é a aceleração da gravidade, $v_0$ é a velocidade inicial da bola quando deixa a mão do lançador e $\theta$ é o Ângulo que a bola faz com o eixo horizontal nesse mesmo instante. Para $v_0 = 15,2 \, m/s$, $x = 18,2 \, m$, $h = 1,82 \, m$ e $y = 2,1 \, m$, determine o ângulo $\theta$ no qual o jogador deve lançar a bola. 
 
-Um jogador de futebol americano está prestes a fazer um lançamento para outro jogador de seu time. O lançador tem uma altura de 1,82 m e o outro jogador está afastado de 18,2 m. A expressão que descreve o movimento da bola é a familiar equação da física que descreve o movimento de um projétil:
+# ### Solução por função residente
+# 
+# - Importar módulos
+# - Definir função $f(\theta)$
 
-$$y = x\tan(\theta) - \dfrac{1}{2}\dfrac{x^2 g}{v_0^2}\dfrac{1}{\cos^2(\theta)} + h,$$
+# In[4]:
 
-onde $x$ e $y$ são as distâncias horizontal e verical, respectivamente, $g=9,8 \, m/s^2$ é a aceleração da gravidade, $v_0$ é a velocidade inicial da bola quando deixa a mão do lançador e $\theta$ é o Ângulo que a bola faz com o eixo horizontal nesse mesmo instante. Para $v_0 = 15,2 \, m/s$, $x = 18,2 \, m$, $h = 1,82 \, m$ e $y = 2,1 \, m$, determine o ângulo $\theta$ no qual o jogador deve lançar a bola. 
-
-### Solução por função residente
-
-- Importar módulos
-- Definir função $f(\theta)$
 
 from scipy.optimize import newton 
 import numpy as np
@@ -95,29 +112,50 @@ g = 9.8
 # f(theta) = 0
 f = lambda theta: x*np.tan(theta) - 0.5*(x**2*g/v0**2)*(1/(np.cos(theta)**2)) + h - y
 
-## Localização 
+
+# ## Localização 
+
+# In[5]:
+
 
 th = np.linspace(0.1,1.4,100,True)
 plt.plot(th,f(th))
 plt.xlabel('angulo');
 
+
+# In[6]:
+
+
 th = np.linspace(0.4,0.8,100,True)
 plt.plot(th,f(th))
 plt.xlabel('angulo');
+
+
+# In[7]:
+
 
 th = np.linspace(0.45,0.47,100,True)
 plt.plot(th,f(th))
 plt.xlabel('angulo');
 
-## Refinamento
 
-Para a função residente, nem é preciso fazer um processo de localização prolongado de modo a entrar com uma estimativa inicial muito próxima. Plotar a função até um intervalo razoável já é suficiente para ter uma noção sobre onde a raiz está. 
+# ## Refinamento
+# 
+# Para a função residente, nem é preciso fazer um processo de localização prolongado de modo a entrar com uma estimativa inicial muito próxima. Plotar a função até um intervalo razoável já é suficiente para ter uma noção sobre onde a raiz está. 
+# 
+# Quanto à escolha da estimativa inicial, ainda que seja "mal feita", o método poderá encontrar a raiz de modo rápido, pois sua programação é robusta. 
+# 
+# Vejamos então, qual é a raiz com uma estimativa inicial de 0.47.
 
-Quanto à escolha da estimativa inicial, ainda que seja "mal feita", o método poderá encontrar a raiz de modo rápido, pois sua programação é robusta. 
+# In[8]:
 
-Vejamos então, qual é a raiz com uma estimativa inicial de 0.47.
 
 ang = newton(f,0.47)
 ang
 
+
+# In[9]:
+
+
 np.rad2deg(ang)
+

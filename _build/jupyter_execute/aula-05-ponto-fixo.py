@@ -1,14 +1,24 @@
-# Método da Iteração Linear (Ponto Fixo)
+#!/usr/bin/env python
+# coding: utf-8
 
-Este notebook explora aspectos do método da _iteração linear_, ou também chamado de método do _ponto fixo_.
+# # Método da Iteração Linear (Ponto Fixo)
+
+# Este notebook explora aspectos do método da _iteração linear_, ou também chamado de método do _ponto fixo_.
+
+# In[1]:
+
 
 import numpy as np
 import matplotlib.pyplot as plt 
-%matplotlib inline
+get_ipython().run_line_magic('matplotlib', 'inline')
 
-## Exemplo
 
-Estudamos a função $f(x) = x^2 + x - 6$.
+# ## Exemplo
+# 
+# Estudamos a função $f(x) = x^2 + x - 6$.
+
+# In[2]:
+
 
 x = np.linspace(-4,4,50)
 f = lambda x: x**2 + x - 6
@@ -28,9 +38,13 @@ plt.axvline(-3,-5,10,color='m');
 plt.axvline(2,-5,10,color='m');
 plt.legend(loc='best');
 
-## Exemplo
 
-Estudamos a função $f(x) = \exp(x) -x$
+# ## Exemplo
+# 
+# Estudamos a função $f(x) = \exp(x) -x$
+
+# In[3]:
+
 
 x2 = np.linspace(-1,1,50)
 
@@ -40,7 +54,11 @@ g2 = lambda x:  np.exp(-x)
 plt.plot(x2,f2(x2),x2,g2(x2),'r',x2,x2,'c')
 plt.grid(True)
 
-## Implementação do método do ponto fixo
+
+# ## Implementação do método do ponto fixo
+
+# In[4]:
+
 
 def ponto_fixo(x0,f,g,tol,N,vis):
     """ 
@@ -100,9 +118,13 @@ def ponto_fixo(x0,f,g,tol,N,vis):
         
     return x
 
-## Estudo de caso: $f(x) = x^2 + x - 6$
 
-Função de iteração: $g(x) = \sqrt{6 - x}$
+# ## Estudo de caso: $f(x) = x^2 + x - 6$
+# 
+# Função de iteração: $g(x) = \sqrt{6 - x}$
+
+# In[5]:
+
 
 f = 'x**2 + x - 6'
 g = '(6 - x)**(1/2)'
@@ -113,7 +135,11 @@ N = 100
 
 ponto_fixo(x0,f,g,tol,N,True)
 
-Função de iteração: $g(x) = -\sqrt{6 - x}$
+
+# Função de iteração: $g(x) = -\sqrt{6 - x}$
+
+# In[6]:
+
 
 f = 'x**2 + x - 6'
 g = '-(6 - x)**(1/2)'
@@ -123,3 +149,4 @@ tol = 1e-5
 N = 100
 
 ponto_fixo(x0,f,g,tol,N,True)
+

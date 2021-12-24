@@ -1,6 +1,16 @@
-# Implementação do método da secante 
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline
+# # Implementação do método da secante 
+
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
 
 # Método da Secante
 
@@ -55,13 +65,17 @@ plotar = True
 # chamada da função
 xm = secante(xa,xb,f,tol,nmax,var,plotar)
 
-## Problema
 
-Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 5e^{-x}$, pelo método das secantes com erro inferior a $10^{-2}$. 
+# ## Problema
+# 
+# Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 5e^{-x}$, pelo método das secantes com erro inferior a $10^{-2}$. 
 
-### Resolução
+# ### Resolução
 
-Para obtermos os valores iniciais $x_0$ e $x_1$ necessários para iniciar o processo iterativo, dividimos a equação original $f(x) = 0$ em outras duas $y_1$ e $y_2$, com $y_1 = \sqrt{x}$ e $y_2(x) = e^{-x}$, que colocadas no mesmo gráfico, produzem uma interseção próximo a $x = 1.5$. Assim, podemos escolher duas estimativas iniciais próximas deste valor. Podemos escolher $x_0 = 1.4$ e $x_1=1.5$.
+# Para obtermos os valores iniciais $x_0$ e $x_1$ necessários para iniciar o processo iterativo, dividimos a equação original $f(x) = 0$ em outras duas $y_1$ e $y_2$, com $y_1 = \sqrt{x}$ e $y_2(x) = e^{-x}$, que colocadas no mesmo gráfico, produzem uma interseção próximo a $x = 1.5$. Assim, podemos escolher duas estimativas iniciais próximas deste valor. Podemos escolher $x_0 = 1.4$ e $x_1=1.5$.
+
+# In[3]:
+
 
 from numpy import sqrt, exp
 from matplotlib.pyplot import plot,legend
@@ -75,37 +89,62 @@ plot(x,5*exp(-x),label='$y_2(x) = 5e^{-x}$');
 plot(x,fx(x)*0,'--');
 legend();
 
-Vejamos o valor de $f(x=1.5)$.
+
+# Vejamos o valor de $f(x=1.5)$.
+
+# In[4]:
+
 
 fx(1.5)
 
-Vamos montar uma função anônima para computar o valor da interseção da secante com o eixo $x$, a saber:
+
+# Vamos montar uma função anônima para computar o valor da interseção da secante com o eixo $x$, a saber:
+
+# In[5]:
+
 
 xm = lambda a,b: ( a*fx(b) - b*fx(a) ) / (fx(b) - fx(a) )
 
-Vamos usar os nosso valores estimados: 
+
+# Vamos usar os nosso valores estimados: 
+
+# In[6]:
+
 
 x0 = 1.4
 x1 = 1.5
 x2 = round(xm(x0,x1),3) 
 print(x2)
 
-Agora, usamos este novo valor e o anterior.
+
+# Agora, usamos este novo valor e o anterior.
+
+# In[7]:
+
 
 x3 = round(xm(x1,x2),3)
 print(x3)
 
-Calculemos o erro relativo entre as estimativas $x_1$ e $x_2$:
+
+# Calculemos o erro relativo entre as estimativas $x_1$ e $x_2$:
+
+# In[8]:
+
 
 err = lambda a,b: abs(a - b)/abs(a)
 e1 = err(x2,x1)
 print(round(e1,3))
 print("{0:e}".format(e1))
 
-Agora, calculemos o erro relativo entre as estimativas $x_2$ e $x_3$:
+
+# Agora, calculemos o erro relativo entre as estimativas $x_2$ e $x_3$:
+
+# In[9]:
+
 
 e2 = err(x3,x2)
 print(round(e2,3))
 print("{0:e}".format(e2))
 
-O erro está diminuindo. Além disso, o valor da raiz está se estabilizando em torno de 1.430. Isto significa que as estimativas iniciais foram muito boas. Com efeito, o uso das interseções proporcionou uma boa escolha.
+
+# O erro está diminuindo. Além disso, o valor da raiz está se estabilizando em torno de 1.430. Isto significa que as estimativas iniciais foram muito boas. Com efeito, o uso das interseções proporcionou uma boa escolha.

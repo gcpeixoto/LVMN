@@ -1,8 +1,18 @@
-## Métodos de Adams-Bashfort
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline 
+# ## Métodos de Adams-Bashfort
+
+# In[21]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
 from numpy import *
 from matplotlib.pyplot import *
+
+
+# In[24]:
+
 
 # Metodo de Adams-Bashfort de 2a. ordem
 
@@ -57,15 +67,18 @@ def plot_fig(t,y_n,y_e,h):
     legend(['$y_{exata}$','$y_{num}$'])
 
 
-**Exemplo:** Use o esquema de Adams-Bashfort de 2a. ordem para resolver o PVI. 
+# **Exemplo:** Use o esquema de Adams-Bashfort de 2a. ordem para resolver o PVI. 
+# 
+# $$\begin{cases}
+# y'(t) = -y(t) + 2 \cos(t) \\
+# y(0) = 1 \\
+# 0 \le t \le 18 \\ 
+# \end{cases}$$
+# 
+# _Solução exata_: $y(t) = {\rm sen}(t) + \cos(t)$
 
-$$\begin{cases}
-y'(t) = -y(t) + 2 \cos(t) \\
-y(0) = 1 \\
-0 \le t \le 18 \\ 
-\end{cases}$$
+# In[32]:
 
-_Solução exata_: $y(t) = {\rm sen}(t) + \cos(t)$
 
 # define funcao
 f = lambda t,y: -y + 2*cos(t)
@@ -86,6 +99,10 @@ plot_fig(t,y_num,y_ex,h)
 
 tab_erro_rel(t,y_num,y_ex)
 
+
+# In[33]:
+
+
 h = 0.1
 
 # solucao numerica 
@@ -103,6 +120,10 @@ tab_erro_rel(t,y_num,y_ex)
 
 plot_fig(t,y_num,y_ex,h)
 
+
+# In[34]:
+
+
 h = 0.01
 
 # solucao numerica 
@@ -119,3 +140,4 @@ legend(['$y_{exata}$','$y_{num}$'])
 #tab_erro_rel(t,y_num,y_ex)
 
 plot_fig(t,y_num,y_ex,h)
+

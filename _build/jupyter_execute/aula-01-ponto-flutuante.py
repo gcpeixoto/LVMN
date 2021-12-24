@@ -1,12 +1,22 @@
-# Conversão numérica e ponto flutuante
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline
+# # Conversão numérica e ponto flutuante
 
-## Sistema binário
+# In[1]:
 
-Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.
 
-### Exercícios de conversão numérica
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# ## Sistema binário
+# 
+# Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.
+# 
+# ### Exercícios de conversão numérica
+
+# In[2]:
+
 
 # (100)_2 -> base 10
 c = int('100',base=2)
@@ -20,6 +30,10 @@ print(1*2**2 + 0*2**1 + 0*2**0)
 c = bin(4)
 print(c)
 
+
+# In[3]:
+
+
 # (222)_8
 c = int('222',base=8)
 print(c)
@@ -32,6 +46,10 @@ print(2*8**2 + 2*8**1 + 2*8**0)
 c = oct(146)
 # obs: note que '0o' indica que o número é octal
 print(c)
+
+
+# In[4]:
+
 
 # (2AE4)_16
 c = int('2ae4',base=16)
@@ -47,6 +65,10 @@ c = oct(146)
 # obs: note que '0o' indica que o número é octal
 print(c)
 
+
+# In[5]:
+
+
 "Brincando com Python e divisões sucessivas"
 
 print('Esquema de divisões sucessivas:\n')
@@ -57,11 +79,15 @@ print( str( 4 % 2) + '   ' + str(4 // 2) + ' | 2' )
 print( str( 5*len(str(4))*' ') + '  –––')
 print( str( 4*len(str(4))*' ') + str(4 % 2 % 2) + '   ' + str(4 // 2 // 2))
 
-**Exercício:** estude a codificação do esquema acima. O que os operadores `//` e `%` estão fazendo?
 
-## Máquina binária 
+# **Exercício:** estude a codificação do esquema acima. O que os operadores `//` e `%` estão fazendo?
 
-O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
+# ## Máquina binária 
+# 
+# O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
+
+# In[6]:
+
 
 """
 Converte inteiro para binário
@@ -137,47 +163,51 @@ def main():
 if __name__ == "__main__":
     main()
 
-## Sistema de ponto flutuante 
 
-### A reta "perfurada" 
+# ## Sistema de ponto flutuante 
+# 
+# ### A reta "perfurada" 
+# 
+# Como temos estudado, a matemática computacional opera no domínio $\mathbb{F}$, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
+# 
+# **Exemplo**: Considere o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$. Determinemos todos os seus números representáveis:
+# 
+# Como a base é $2$, os dígitos possíveis são $0$ e $1$ com mantissas: 
+# 
+# - $0.100$
+# - $0.101$
+# - $0.110$
+# - $0.111$
+# 
+# Para cada expoente no conjunto $e=\{-1,0,1,2\}$, obteremos 16 números positivos, a saber: 
+# 
+# - $(0.100 \times 2^{-1})_{2} = (0.01)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} = 1/4$
+# - $(0.100 \times 2^{0})_{2} = (0.1)_2 = 0.2^0 + 1.2^{-1} = 1/2$
+# - $(0.100 \times 2^{1})_{2} = (1.0)_2 = 1.2^0 + 0.2^{-1} = 1$
+# - $(0.100 \times 2^{2})_{2} = (10.0)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
+# 
+# 
+# - $(0.101 \times 2^{-1})_{2} = (0.0101)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} + 0.2^{-3} + 1.2^{-4}= 5/16$
+# - $(0.101 \times 2^{0})_{2} = (0.101)_2 = 0.2^0 + 1.2^{-1} + 0.2^{-2} + 1.2^{-3} = 5/8$
+# - $(0.101 \times 2^{1})_{2} = (1.01)_2 = 1.2^0 + 0.2^{-1} + 1.2^{-2} = 1$
+# - $(0.101 \times 2^{2})_{2} = (10.1)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
+# 
+# (...)
+# 
+# Fazendo as contas para os números restantes, obtemos a seguinte tabela: 
+# 
+# |     | m  | 0.100 | 0.101 | 0.110 | 0.111 |
+# |-----|----|------ |-------|-------|-------|
+# |**e**|    |       |       |       |       |
+# | -1  |    | 1/4   | 5/16  | 3/8   | 7/16  |
+# | 0   |    | 1/2   | 5/8   | 3/4   | 7/8   |
+# | 1   |    | 1     | 5/4   | 3/2   | 7/4   |
+# | 2   |    | 2     | 5/2   | 3     | 7/2   |
+# 
+# Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-Como temos estudado, a matemática computacional opera no domínio $\mathbb{F}$, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
+# In[7]:
 
-**Exemplo**: Considere o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$. Determinemos todos os seus números representáveis:
-
-Como a base é $2$, os dígitos possíveis são $0$ e $1$ com mantissas: 
-
-- $0.100$
-- $0.101$
-- $0.110$
-- $0.111$
-
-Para cada expoente no conjunto $e=\{-1,0,1,2\}$, obteremos 16 números positivos, a saber: 
-
-- $(0.100 \times 2^{-1})_{2} = (0.01)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} = 1/4$
-- $(0.100 \times 2^{0})_{2} = (0.1)_2 = 0.2^0 + 1.2^{-1} = 1/2$
-- $(0.100 \times 2^{1})_{2} = (1.0)_2 = 1.2^0 + 0.2^{-1} = 1$
-- $(0.100 \times 2^{2})_{2} = (10.0)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
-
-
-- $(0.101 \times 2^{-1})_{2} = (0.0101)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} + 0.2^{-3} + 1.2^{-4}= 5/16$
-- $(0.101 \times 2^{0})_{2} = (0.101)_2 = 0.2^0 + 1.2^{-1} + 0.2^{-2} + 1.2^{-3} = 5/8$
-- $(0.101 \times 2^{1})_{2} = (1.01)_2 = 1.2^0 + 0.2^{-1} + 1.2^{-2} = 1$
-- $(0.101 \times 2^{2})_{2} = (10.1)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
-
-(...)
-
-Fazendo as contas para os números restantes, obtemos a seguinte tabela: 
-
-|     | m  | 0.100 | 0.101 | 0.110 | 0.111 |
-|-----|----|------ |-------|-------|-------|
-|**e**|    |       |       |       |       |
-| -1  |    | 1/4   | 5/16  | 3/8   | 7/16  |
-| 0   |    | 1/2   | 5/8   | 3/4   | 7/8   |
-| 1   |    | 1     | 5/4   | 3/2   | 7/4   |
-| 2   |    | 2     | 5/2   | 3     | 7/2   |
-
-Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
 from matplotlib.pyplot import plot
 x = [1/4,1/2,1,2,5/16,5/8,5/4,5/2,3/8,3/4,3/2,3,7/16,7/8,7/4,7/2]
@@ -186,14 +216,18 @@ x = sorted(x)
 plot(x,16*[0],':')
 plot(x,16*[0],'o');
 
-Isto é, $\mathbb{F}$ é uma reta "perfurada", para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.
 
-## Simulador de $\mathbb{F}$
+# Isto é, $\mathbb{F}$ é uma reta "perfurada", para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.
+
+# ## Simulador de $\mathbb{F}$
+
+# In[8]:
+
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-%matplotlib inline
+get_ipython().run_line_magic('matplotlib', 'inline')
 
 def simulacao_F(b,t,L,U):
     x = []
@@ -221,7 +255,11 @@ X = np.zeros(Y.shape)
 
 plt.scatter(Y,X,c='r',marker='+');
 
-## Limites de máquina para ponto flutuante
+
+# ## Limites de máquina para ponto flutuante
+
+# In[9]:
+
 
 import numpy as np 
 
@@ -256,8 +294,13 @@ print(np.finfo(float).nexp)
 print('número de bits na mantissa')
 print(np.finfo(float).nmant)
 
+
+# In[10]:
+
+
 from matplotlib.pyplot import plot
 
 x = np.linspace(1e-15,1e-20,num=100)
 f = ((1+x)-1)/x
 plot(x,f);
+

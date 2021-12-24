@@ -1,74 +1,80 @@
-# Método de Jacobi-Richardson
+#!/usr/bin/env python
+# coding: utf-8
 
-O método de Jacobi-Richardson (MJR) é um método iterativo que busca uma solução aproximada para sistemas lineares. Um método iterativo como tal é também conhecido como _aproximações sucessivas_, em que uma sequência convergente de vetores é desejada. O MJR é de especial interesse em sistemas cujas matrizes são _diagonalmente dominantes_.
+# # Método de Jacobi-Richardson
+# 
+# O método de Jacobi-Richardson (MJR) é um método iterativo que busca uma solução aproximada para sistemas lineares. Um método iterativo como tal é também conhecido como _aproximações sucessivas_, em que uma sequência convergente de vetores é desejada. O MJR é de especial interesse em sistemas cujas matrizes são _diagonalmente dominantes_.
 
-### Instalações necessárias 
+# ### Instalações necessárias 
+# 
+# 
+# Este notebook usa o módulo `plotly` para plotagem. Para instalá-lo via `conda` e habilitá-lo para uso como extensão do Jupyter Lab, execute os comandos abaixo em uma célula:
+# 
+# ``` python
+# import sys
+# !conda install --yes --prefix {sys.prefix} nodejs plotly
+# !jupyter labextension install jupyterlab-plotly@4.12.0
+# ```
 
+# ## Descrição do método
+# 
+# Suponha um sistema linear nas incógnitas $x_1, x_2, \dots, x_n$ da seguinte forma:
+# 
+# $$a_{11} x_{1} + a_{12} x_{2} + \dots + a_{1n} x_{n} = b_1 \\
+# a_{21} x_{1} + a_{22} x_{2} + \dots + a_{2n} x_{n} = b_2 \\
+# . \\
+# . \\
+# . \\
+# a_{n1} x_{1} + a_{n2} x_{2} + \dots + a_{nn} x_{n} = b_n$$
+# 
+# Suponha também que todos os termos $a_{ii}$ sejam diferentes de zero $(i = 1, . . . , n)$. Se não for o caso, isso pode, geralmente, ser resolvido permutando equações. 
+# 
+# Inicialmente, o método sugere que as variáveis sejam isoladas em cada equação. Assim, escrevemos
+# 
+# $$
+# x_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x_{2} - a_{13} x_{3} - \dots - a_{1n} x_{n}] \\
+# x_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x_{1} - a_{23} x_{3} - \dots - a_{2n} x_{n}] \\
+# . \\
+# . \\
+# . \\
+# x_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x_{1} - a_{n2} x_{2} - \dots - a_{n \ n-1} x_{n-1}]
+# $$
+# 
+# A partir dessas equações "isoladas" e de um vetor de estimativa inicial ("chute inicial") $[x^{(0)}_1 \ \ x^{(0)}_2 \ \ \dots \ \  x^{(0)}_n]^T$, criamos o processo iterativo inserindo, à direita, um contador. 
+# 
+# No primeiro passo, obtemos $[x^{(1)}_1 \ \ x^{(1)}_2 \ \ \dots \ \ x^{(1)}_n]^T$. Em seguida, estimamos $[x^{(2)}_1 \ \ x^{(2)}_2 \ \  \dots \ \  x^{(2)}_n]^T$. Repetindo o processo, a iterada $k$ é construída como segue:
+# 
+# $$
+# x^{(k+1)}_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x^{(k)}_{2} - a_{13} x^{(k)}_{3} - \dots - a_{1n} x^{(k)}_{n}] \\
+# x^{(k+1)}_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x^{(k)}_{1} - a_{23} x^{(k)}_{3} - \dots - a_{2n} x^{(k)}_{n}] \\
+# . \\
+# . \\
+# . \\
+# x^{(k+1)}_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x^{(k)}_{1} - a_{n2} x^{(k)}_{2} - \dots - a_{n \ n-1} x^{(k)}_{n-1}]
+# $$
+# 
+# Logo, para todo $i = 1, 2, \dots , n$, esperamos que a sequência $\{ x^{(k+1)}_i \}_k$ convirja para o vetor solução ${\bf x}$ do sistema original, caracterizado por ${\bf A}{\bf x} = {\bf b}$.
+# 
+# Entretanto, a convergência é garantida apenas se houver dominância dos valores da diagonal principal sobre seus pares nas mesmas linhas. Podemos verificar a convergência do processo iterativo acima por meio do _critério das linhas_, embora exista uma maneira mais versátil de fazer esta verificação usando normas de matrizes. Por enquanto, entendamos o critério das linhas.
 
-Este notebook usa o módulo `plotly` para plotagem. Para instalá-lo via `conda` e habilitá-lo para uso como extensão do Jupyter Lab, execute os comandos abaixo em uma célula:
+# ## Critério das linhas
+# 
+# O critério das linhas estabelece que 
+# 
+# $$\sum_{\substack{j = 1 \\ j \neq i}} ^n |a_{ij}| < |a_{ii}|, \forall i = 1, 2, \dots , n.$$
+# 
+# Em palavras: *“o valor absoluto do termo diagonal na linha $i$ é maior do que a soma dos valores absolutos de todos os outros termos na mesma linha”*. Se satisfeita, esta equação implica que a matriz ${\bf A}$ é (estritamente) diagonalmente dominante.
+# 
+# É importante observar que o critério das linhas pode deixar de ser satisfeito se houver troca na ordem das equações, e vice-versa. Todavia, uma troca cuidadosa pode fazer com que o sistema passe a satisfazer o critério. Por teorema, admite-se que se a matriz do sistema linear satisfaz o critério das linhas, então o algoritmo de Jacobi-Richardson converge para uma solução aproximada.
 
-``` python
-import sys
-!conda install --yes --prefix {sys.prefix} nodejs plotly
-!jupyter labextension install jupyterlab-plotly@4.12.0
-```
+# ## Vantagens e desvantagens do método
+# 
+# O método tem a vantagem de ser de fácil implementação no computador do que o método de escalonamento e está menos propenso à propagação de erros de arredondamento. Por outro lado, sua desvantagem é não funcionar para todos os casos.
 
-## Descrição do método
+# ## Implementação do método de Jacobi
 
-Suponha um sistema linear nas incógnitas $x_1, x_2, \dots, x_n$ da seguinte forma:
+# In[1]:
 
-$$a_{11} x_{1} + a_{12} x_{2} + \dots + a_{1n} x_{n} = b_1 \\
-a_{21} x_{1} + a_{22} x_{2} + \dots + a_{2n} x_{n} = b_2 \\
-. \\
-. \\
-. \\
-a_{n1} x_{1} + a_{n2} x_{2} + \dots + a_{nn} x_{n} = b_n$$
-
-Suponha também que todos os termos $a_{ii}$ sejam diferentes de zero $(i = 1, . . . , n)$. Se não for o caso, isso pode, geralmente, ser resolvido permutando equações. 
-
-Inicialmente, o método sugere que as variáveis sejam isoladas em cada equação. Assim, escrevemos
-
-$$
-x_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x_{2} - a_{13} x_{3} - \dots - a_{1n} x_{n}] \\
-x_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x_{1} - a_{23} x_{3} - \dots - a_{2n} x_{n}] \\
-. \\
-. \\
-. \\
-x_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x_{1} - a_{n2} x_{2} - \dots - a_{n \ n-1} x_{n-1}]
-$$
-
-A partir dessas equações "isoladas" e de um vetor de estimativa inicial ("chute inicial") $[x^{(0)}_1 \ \ x^{(0)}_2 \ \ \dots \ \  x^{(0)}_n]^T$, criamos o processo iterativo inserindo, à direita, um contador. 
-
-No primeiro passo, obtemos $[x^{(1)}_1 \ \ x^{(1)}_2 \ \ \dots \ \ x^{(1)}_n]^T$. Em seguida, estimamos $[x^{(2)}_1 \ \ x^{(2)}_2 \ \  \dots \ \  x^{(2)}_n]^T$. Repetindo o processo, a iterada $k$ é construída como segue:
-
-$$
-x^{(k+1)}_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x^{(k)}_{2} - a_{13} x^{(k)}_{3} - \dots - a_{1n} x^{(k)}_{n}] \\
-x^{(k+1)}_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x^{(k)}_{1} - a_{23} x^{(k)}_{3} - \dots - a_{2n} x^{(k)}_{n}] \\
-. \\
-. \\
-. \\
-x^{(k+1)}_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x^{(k)}_{1} - a_{n2} x^{(k)}_{2} - \dots - a_{n \ n-1} x^{(k)}_{n-1}]
-$$
-
-Logo, para todo $i = 1, 2, \dots , n$, esperamos que a sequência $\{ x^{(k+1)}_i \}_k$ convirja para o vetor solução ${\bf x}$ do sistema original, caracterizado por ${\bf A}{\bf x} = {\bf b}$.
-
-Entretanto, a convergência é garantida apenas se houver dominância dos valores da diagonal principal sobre seus pares nas mesmas linhas. Podemos verificar a convergência do processo iterativo acima por meio do _critério das linhas_, embora exista uma maneira mais versátil de fazer esta verificação usando normas de matrizes. Por enquanto, entendamos o critério das linhas.
-
-## Critério das linhas
-
-O critério das linhas estabelece que 
-
-$$\sum_{\substack{j = 1 \\ j \neq i}} ^n |a_{ij}| < |a_{ii}|, \forall i = 1, 2, \dots , n.$$
-
-Em palavras: *“o valor absoluto do termo diagonal na linha $i$ é maior do que a soma dos valores absolutos de todos os outros termos na mesma linha”*. Se satisfeita, esta equação implica que a matriz ${\bf A}$ é (estritamente) diagonalmente dominante.
-
-É importante observar que o critério das linhas pode deixar de ser satisfeito se houver troca na ordem das equações, e vice-versa. Todavia, uma troca cuidadosa pode fazer com que o sistema passe a satisfazer o critério. Por teorema, admite-se que se a matriz do sistema linear satisfaz o critério das linhas, então o algoritmo de Jacobi-Richardson converge para uma solução aproximada.
-
-## Vantagens e desvantagens do método
-
-O método tem a vantagem de ser de fácil implementação no computador do que o método de escalonamento e está menos propenso à propagação de erros de arredondamento. Por outro lado, sua desvantagem é não funcionar para todos os casos.
-
-## Implementação do método de Jacobi
 
 """
 JACOBI: metodo de Jacobi para solução do sistema Ax=b.
@@ -132,6 +138,10 @@ def jacobi(A,b,x0,N):
         
     return x,v
 
+
+# In[2]:
+
+
 # Exemplo 15.2
 A = [[10,2,1],[1,5,1],[2,3,10]]
 b = [7,-8,6]
@@ -142,11 +152,15 @@ sol,v = jacobi(A,b,x,N)
 print(sol[:,-1])
 print(v)
 
-### Tarefa para turma de computação: 
 
-(Este código depende da biblioteca `plotly`, mas não *está otimizado*.)
+# ### Tarefa para turma de computação: 
+# 
+# (Este código depende da biblioteca `plotly`, mas não *está otimizado*.)
+# 
+# Desenvolver código para plotagem 3D da convergência para o método de Jacobi.
 
-Desenvolver código para plotagem 3D da convergência para o método de Jacobi.
+# In[3]:
+
 
 # plotagem 3D da convergência 
 import plotly.graph_objs as go
@@ -187,3 +201,4 @@ for i in range(len(xp)):
 
 
 iplot(fig, show_link=True,filename='jacobi-3d-vectors')
+

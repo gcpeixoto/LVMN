@@ -1,10 +1,20 @@
-# Raízes de polinômios com o método de Müller
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline
+# # Raízes de polinômios com o método de Müller
 
-## Computação com polinômios
+# In[1]:
 
-Como exemplo, vamos implementar a forma aninhada de um polinômio de grau 3 (também conhecida como **forma de Hörner**)
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# ## Computação com polinômios
+# 
+# Como exemplo, vamos implementar a forma aninhada de um polinômio de grau 3 (também conhecida como **forma de Hörner**)
+
+# In[2]:
+
 
 import sympy as sy
 import numpy as np
@@ -21,8 +31,7 @@ n = 3
 x = sy.Symbol('x');       
 
 # coeficientes do polinomio
-a = [ sy.Symbol('a'+ str(i)) \
-     for i in range(0,n+1) ] 
+a = [ sy.Symbol('a'+ str(i))      for i in range(0,n+1) ] 
 
 # forma aninhada simbolica
 p, dp = 0, 0
@@ -33,23 +42,43 @@ for j in range(n,-1,-1):
 # determinacao de derivada de modo simbolico 
 dp2 = sy.diff(p,x)
 
-Imprimindo o polinômio simbólico
+
+# Imprimindo o polinômio simbólico
+
+# In[3]:
+
 
 p
 
-Imprimindo a derivada simbólica do polinômio implementada pelo usuário
+
+# Imprimindo a derivada simbólica do polinômio implementada pelo usuário
+
+# In[4]:
+
 
 dp
 
-Imprimindo a derivada simbólica do polinômio pela função residente `diff`
+
+# Imprimindo a derivada simbólica do polinômio pela função residente `diff`
+
+# In[5]:
+
 
 dp2
 
-Verificando igualdade
+
+# Verificando igualdade
+
+# In[6]:
+
 
 dp == dp2
 
-## Calculando raízes de polinômios
+
+# ## Calculando raízes de polinômios
+
+# In[7]:
+
 
 # define valores dos coeficientes aj para o polinômio
 # na ordem a0 + a1x + a2x**2 + ...
@@ -59,33 +88,57 @@ v = [-1, 2.2,3.5,4]
 pn = p.subs(dict(zip(a,v)))
 print(pn)
 
-Calcula todas as raízes do polinômio `pn`
+
+# Calcula todas as raízes do polinômio `pn`
+
+# In[8]:
+
 
 rc = sy.roots(pn,x,multiple=True)
 rc
 
-Calcula apenas as raízes reais de `pn`
+
+# Calcula apenas as raízes reais de `pn`
+
+# In[9]:
+
 
 rr = sy.roots(pn,x,multiple=True,filter='R')
 rr
 
-## Avaliando polinômios
 
-Podemos avaliar polinômios usando a função `polyval` do _Numpy_. Entretanto, como ela recebe coeficientes do maior para o menor grau, para mantermos a consistência com nosso polinômio anterior, devemos converter a lista `v` para um objeto `array` e fazer uma inversão (`flip`).
+# ## Avaliando polinômios
+# 
+# Podemos avaliar polinômios usando a função `polyval` do _Numpy_. Entretanto, como ela recebe coeficientes do maior para o menor grau, para mantermos a consistência com nosso polinômio anterior, devemos converter a lista `v` para um objeto `array` e fazer uma inversão (`flip`).
+
+# In[10]:
+
 
 vi = np.flip(np.asarray(v),axis=0)
 vi
 
-Agora, vamos avaliar o polinômio em $x=\pi$
+
+# Agora, vamos avaliar o polinômio em $x=\pi$
+
+# In[11]:
+
 
 xi = np.pi
 np.polyval(vi,xi)
 
-Note que se avaliássemos o polinômio em um ponto arbitrário, a forma impressa é idêntica àquela que obtivemos anteriormente.
+
+# Note que se avaliássemos o polinômio em um ponto arbitrário, a forma impressa é idêntica àquela que obtivemos anteriormente.
+
+# In[12]:
+
 
 np.polyval(vi,x)
 
-Agora vamos plotar o polinômio. Antes, vamos converter nosso polinômio para uma função a fim de a avaliarmos em um intervalo. Vamos escolher o intervalo $-1 \le x \le 1$
+
+# Agora vamos plotar o polinômio. Antes, vamos converter nosso polinômio para uma função a fim de a avaliarmos em um intervalo. Vamos escolher o intervalo $-1 \le x \le 1$
+
+# In[13]:
+
 
 # converte para função
 f = sy.lambdify(x,pn)
@@ -101,7 +154,11 @@ plt.plot(rr[0],f(rr[0]),'ro')
 plt.xlabel('$x$')
 plt.ylabel('$P(x)$');
 
-## Implementação: Método de Müller
+
+# ## Implementação: Método de Müller
+
+# In[14]:
+
 
 # \TODO caso complexo (verificar aritmética)
 def metodo_muller(f,x0,dx,EPS,N):
@@ -167,13 +224,20 @@ def metodo_muller(f,x0,dx,EPS,N):
         
         i += 1
 
-## Exemplos
 
-**Exemplo**. Determinando raízes para o polinômio $P(x) = 4x^3 + 3.5x^2 + 2.2x - 1$ com estimativas iniciais $x_0 = 0.5$ $x_1 = 1.0$ e $x_2 = 1.5$, $\epsilon = 10^{-5}$ e $N = 100$. Notemos que o segundo argumento da função desempenha o papel de $x_1$ e o terceiro argumento opera como um "raio" de comprimento $dx = 0.5$ que fará com que $x_0 = x_1 - dx$ e $x_2 = x_1 + dx$. Isto decorre de como o a função foi programada. Veja o código anterior.
+# ## Exemplos
+
+# **Exemplo**. Determinando raízes para o polinômio $P(x) = 4x^3 + 3.5x^2 + 2.2x - 1$ com estimativas iniciais $x_0 = 0.5$ $x_1 = 1.0$ e $x_2 = 1.5$, $\epsilon = 10^{-5}$ e $N = 100$. Notemos que o segundo argumento da função desempenha o papel de $x_1$ e o terceiro argumento opera como um "raio" de comprimento $dx = 0.5$ que fará com que $x_0 = x_1 - dx$ e $x_2 = x_1 + dx$. Isto decorre de como o a função foi programada. Veja o código anterior.
+
+# In[15]:
+
 
 f = lambda x: 4*x**3 + 3.5*x**2 + 2.2*x - 1
 
 x0 = metodo_muller(f,1.0,0.5,1e-5,100)
+
+
+# In[16]:
 
 
 X = np.linspace(0.2,1.7,100)
@@ -181,26 +245,42 @@ plt.plot(X,f(X))
 plt.plot(X,0*f(X))
 plt.axvline(x=x0.real,c='r',ls='--');
 
-**Exemplo**. Determinando raízes para o polinômio $P(x) = x^4 - 3x^3 + x^2 + x + 1$ com estimativas iniciais $x_0 = -0.5$ $x_1 = 0.0$ e $x_2 = 0.5$, $\epsilon = 10^{-5}$ e $N = 100$. 
+
+# **Exemplo**. Determinando raízes para o polinômio $P(x) = x^4 - 3x^3 + x^2 + x + 1$ com estimativas iniciais $x_0 = -0.5$ $x_1 = 0.0$ e $x_2 = 0.5$, $\epsilon = 10^{-5}$ e $N = 100$. 
+
+# In[17]:
+
 
 f2 = lambda x: x**4 - 3*x**3 + x**2 + x + 1
 
 metodo_muller(f2,-0.5,0.5,1e-5,100)
 
-Com essas estimativas a raiz é um número complexo. Escolhamos agora estimativas diferentes: 
 
-- Caso 1: $x_0 = 0.5$ $x_1 = 1.0$ e $x_2 = 1.5$
-- Caso 2: $x_0 = 1.5$ $x_1 = 2.0$ e $x_2 = 2.5$
+# Com essas estimativas a raiz é um número complexo. Escolhamos agora estimativas diferentes: 
+# 
+# - Caso 1: $x_0 = 0.5$ $x_1 = 1.0$ e $x_2 = 1.5$
+# - Caso 2: $x_0 = 1.5$ $x_1 = 2.0$ e $x_2 = 2.5$
+
+# In[18]:
+
 
 # caso 1
 c1 = metodo_muller(f2,1.5,0.5,1e-5,100)
 print(c1)
 
+
+# In[19]:
+
+
 # caso 2
 c2 = metodo_muller(f2,2.0,0.5,1e-5,100)
 print(c2)
 
-Por que há resultados diferentes? Vamos verificar o gráfico deste polinômio no domínio $[-1,2.8]$.
+
+# Por que há resultados diferentes? Vamos verificar o gráfico deste polinômio no domínio $[-1,2.8]$.
+
+# In[20]:
+
 
 from matplotlib.pyplot import plot,legend
 from numpy import linspace, where, logical_and
@@ -215,4 +295,4 @@ plot(c1,0,'or',c2,0,'or',label='raiz real')
 legend();
 
 
-Na primeira escolha de estimativas iniciais, obtivemos uma raiz complexa porque no intervalo $[-0.5,0.5]$, o polinômio não intersecta o eixo $x$. Nos outros dois casos, temos as duas raízes reais do polinômio.
+# Na primeira escolha de estimativas iniciais, obtivemos uma raiz complexa porque no intervalo $[-0.5,0.5]$, o polinômio não intersecta o eixo $x$. Nos outros dois casos, temos as duas raízes reais do polinômio.

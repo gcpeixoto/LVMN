@@ -1,14 +1,28 @@
-# Lista de Exercícios 6
+#!/usr/bin/env python
+# coding: utf-8
 
-Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 6.
+# # Lista de Exercícios 6
+# 
+# Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 6.
 
-%matplotlib inline 
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[1]:
+
 
 import numpy as np 
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
-## Funções-base para resolucão
+
+# ## Funções-base para resolucão
+
+# In[2]:
+
 
 """
 Implementação do método de Euler
@@ -83,9 +97,12 @@ def met_pt_medio(expr,n,a,b,y0):
     
 
 
-## Soluções da Lista 6
+# ## Soluções da Lista 6
 
-### solucao-L6-Q1a
+# ### solucao-L6-Q1a
+
+# In[3]:
+
 
 # PVI 
 # h = 0.1 => 5 pontos
@@ -122,7 +139,11 @@ plt.axvline(x=1.2,color='k',linewidth=0.6,linestyle='--')
 plt.axhline(y=1.0,color='k',linewidth=0.6,linestyle='--')
 plt.legend()
 
-### solucao-L6-Q1b
+
+# ### solucao-L6-Q1b
+
+# In[4]:
+
 
 # resolve por ponto médio 
 y0 = 1
@@ -137,7 +158,11 @@ xr = np.linspace(1.2,1.6,num=5,endpoint=True)
 yr = odeint(f,1,xr)
 yr
 
-### Solução analítica para a EDO do PVI 
+
+# ### Solução analítica para a EDO do PVI 
+
+# In[5]:
+
 
 # Encontrando a solução por computação simbólica 
 import sympy as sp 
@@ -166,7 +191,11 @@ yt = np.asarray(yt)
 print("Solução analítica:")
 sol
 
-### Comparação de soluções
+
+# ### Comparação de soluções
+
+# In[6]:
+
 
 # compara todos os resultados
 plt.plot(x1,y1,'o-',label='Euler')
@@ -174,6 +203,9 @@ plt.plot(xm,ym,'o-',label='ponto médio')
 plt.plot(xr,yr.T[0],'o-',label='odeint')
 plt.plot(xr,yt,'o-',label='analítica')
 plt.legend();
+
+
+# In[7]:
 
 
 # variável simbólica
@@ -197,3 +229,4 @@ yt = np.asarray(yt)
 
 print("Solução analítica:")
 sol
+

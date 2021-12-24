@@ -1,21 +1,35 @@
-# Lista de Exercícios 5
+#!/usr/bin/env python
+# coding: utf-8
 
-Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 5.
+# # Lista de Exercícios 5
+# 
+# Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 5.
 
-%matplotlib inline
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
 
 # importação de módulos
 import numpy as np
 import matplotlib.pyplot as plt
 
-## Ajuste de curvas
 
-**Obs.:**: função `polyfit` retorna coeficientes da curva de ajuste na ordem: 
-```python 
-P = p[0] + p[1]*x + p[2]*x**2 + p[3]*x**3 + ...
-```
+# ## Ajuste de curvas
+# 
+# **Obs.:**: função `polyfit` retorna coeficientes da curva de ajuste na ordem: 
+# ```python 
+# P = p[0] + p[1]*x + p[2]*x**2 + p[3]*x**3 + ...
+# ```
 
-### Exemplo: solução fechada 2D 
+# ### Exemplo: solução fechada 2D 
+
+# In[3]:
+
 
 # tabela de dados
 x = np.array([1,2,3,4])
@@ -31,9 +45,13 @@ plt.scatter(x,y)
 y2 = alpha0 + alpha1*x
 plt.plot(x,y2,'r:');
 
-## Resolução da Lista 5
 
-### Função-base para computar ajuste e plotar resultados
+# ## Resolução da Lista 5
+
+# ### Função-base para computar ajuste e plotar resultados
+
+# In[4]:
+
 
 """
 Resolve problema de ajuste polinomial discreto e plota resultado
@@ -53,124 +71,128 @@ def resolve_ajuste(x,y,g):
 
     return p
 
-### L5-Q2
 
-Ajuste os dados abaixo pelo método dos mínimos quadrados:
+# ### L5-Q2
+# 
+# Ajuste os dados abaixo pelo método dos mínimos quadrados:
+# 
+# \begin{array}{c|cccccccc}
+# x & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+# \hline
+# y & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
+# \end{array}
+# 
+# a) por reta 
+# 
+# b) por parábola do tipo $ax^2 + bx + c$; 
 
-\begin{array}{c|cccccccc}
-x & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-\hline
-y & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
-\end{array}
+# ### Solução
+# 
+# #### Metodologia matemática
 
-a) por reta 
+# a)
+# 
+# $$g_1(x) = x$$$$ g_2(x)=1$$
+# 
+# \begin{array}{c|cccccccc}
+# g_1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+# \hline
+# g_2 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1 \\
+# \hline
+# f & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
+# \end{array}
+# 
+# \begin{eqnarray*}
+# a_{11} &=& <g_1,g_1> &= 204\\
+# a_{12} &=& <g_1,g_2> &= 36 \\
+# a_{21} &=& a_{12}  \\
+# a_{22} &=& <g_2,g_2> &= 8\\
+# b_{1} &=&  <g_1,f>   &= 50.5\\
+# b_{2} &=&  <g_2,f>  &= 9.2
+# \end{eqnarray*}
+# 
+# 
+# $$\begin{bmatrix}
+# 204 & 36 \\
+# 36 &  8
+# \end{bmatrix}
+# \begin{bmatrix}
+# \alpha_1 \\
+# \alpha_2 
+# \end{bmatrix} = 
+# \begin{bmatrix}
+# 50.5 \\
+# 9.2
+# \end{bmatrix}$$
+# 
+# $$\begin{align*}
+# 204\alpha_1+36\alpha_2 &= 50.5 \\
+# 36\alpha_1+8\alpha_2 &= 9.2
+# \end{align*}$$
+# 
+# 
+# $$\alpha_1 = 0.2166 ,\  \alpha_2 = 0.175$$
+# 
+# $$f(x) = 0.1749x + 0.2167$$
 
-b) por parábola do tipo $ax^2 + bx + c$; 
+# b) 
+# 
+# $$g_1(x) = x²$$$$ g_2(x)=x$$$$ g_3(x)=1$$ 
+# 
+# \begin{array}{c|cccccccc}
+# g_1 & 1 & 4 & 9 & 16 & 25 & 36 & 49 & 64 \\
+# \hline
+# g_2 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+# \hline
+# g_3 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1 \\
+# \hline
+# f & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
+# \end{array}
+# 
+# \begin{align*}
+# a_{11}=\ <g_1,g_1> \ &= 8772\\
+# a_{12}=\ a_{21}   =\  <g_1,g_2> \ &= 1296 \\
+# a_{13}=\ a_{31}   =\  <g_1,g_3> \ &= 204 \\
+# a_{22}=\ <g_2,g_2> \ &= 204\\
+# a_{23}=\ a_{32}   =\  <g_2,g_3> \ &= 36 \\
+# a_{33}=\ <g_3,g_3> \ &= 8 \\
+# b_{1}=\  <g_1,f>  \ &= 319.1\\
+# b_{2}=\  <g_2,f>  \ &= 50.5\\
+# b_{3}=\  <g_3,f>  \ &= 9.2
+# \end{align*}
+# 
+# $$\begin{bmatrix}
+# 8872 & 1296 & 204 \\
+# 1296 &  204 & 36 \\
+# 204 &  36 & 8
+# \end{bmatrix}
+# \begin{bmatrix}
+# \alpha_1 \\
+# \alpha_2 \\
+# \alpha_3 
+# \end{bmatrix} = 
+# \begin{bmatrix}
+# 319.1\\
+# 50.5 \\
+# 9.2 
+# \end{bmatrix}$$
+# 
+# $$\begin{align*}
+# 8872\alpha_1+1296\alpha_2 + 204\alpha_3 &= 319.1 \\
+# 1296\alpha_1+204\alpha_2 + 36\alpha_3 &= 50.5 \\
+# 204\alpha_1+36\alpha_2 + 8\alpha_3 &= 9.2
+# \end{align*}$$
+# 
+# $$\alpha_1 = 0.4071 ,\  \alpha_2 = 0.07738, \  \alpha_3 = 0.01547$$ 
+# 
+# $$f(x) = 0.01547 + 0.07738x + 0.4071x^2$$
 
-### Solução
+# #### Metodologia computacional
 
-#### Metodologia matemática
+# a)
 
-a)
+# In[5]:
 
-$$g_1(x) = x$$$$ g_2(x)=1$$
-
-\begin{array}{c|cccccccc}
-g_1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-\hline
-g_2 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1 \\
-\hline
-f & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
-\end{array}
-
-\begin{eqnarray*}
-a_{11} &=& <g_1,g_1> &= 204\\
-a_{12} &=& <g_1,g_2> &= 36 \\
-a_{21} &=& a_{12}  \\
-a_{22} &=& <g_2,g_2> &= 8\\
-b_{1} &=&  <g_1,f>   &= 50.5\\
-b_{2} &=&  <g_2,f>  &= 9.2
-\end{eqnarray*}
-
-
-$$\begin{bmatrix}
-204 & 36 \\
-36 &  8
-\end{bmatrix}
-\begin{bmatrix}
-\alpha_1 \\
-\alpha_2 
-\end{bmatrix} = 
-\begin{bmatrix}
-50.5 \\
-9.2
-\end{bmatrix}$$
-
-$$\begin{align*}
-204\alpha_1+36\alpha_2 &= 50.5 \\
-36\alpha_1+8\alpha_2 &= 9.2
-\end{align*}$$
-
-
-$$\alpha_1 = 0.2166 ,\  \alpha_2 = 0.175$$
-
-$$f(x) = 0.1749x + 0.2167$$
-
-b) 
-
-$$g_1(x) = x²$$$$ g_2(x)=x$$$$ g_3(x)=1$$ 
-
-\begin{array}{c|cccccccc}
-g_1 & 1 & 4 & 9 & 16 & 25 & 36 & 49 & 64 \\
-\hline
-g_2 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-\hline
-g_3 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1 \\
-\hline
-f & 0.5 & 0.6  & 0.9 & 0.8 & 1.2 & 1.5 &  1.7 & 2.0
-\end{array}
-
-\begin{align*}
-a_{11}=\ <g_1,g_1> \ &= 8772\\
-a_{12}=\ a_{21}   =\  <g_1,g_2> \ &= 1296 \\
-a_{13}=\ a_{31}   =\  <g_1,g_3> \ &= 204 \\
-a_{22}=\ <g_2,g_2> \ &= 204\\
-a_{23}=\ a_{32}   =\  <g_2,g_3> \ &= 36 \\
-a_{33}=\ <g_3,g_3> \ &= 8 \\
-b_{1}=\  <g_1,f>  \ &= 319.1\\
-b_{2}=\  <g_2,f>  \ &= 50.5\\
-b_{3}=\  <g_3,f>  \ &= 9.2
-\end{align*}
-
-$$\begin{bmatrix}
-8872 & 1296 & 204 \\
-1296 &  204 & 36 \\
-204 &  36 & 8
-\end{bmatrix}
-\begin{bmatrix}
-\alpha_1 \\
-\alpha_2 \\
-\alpha_3 
-\end{bmatrix} = 
-\begin{bmatrix}
-319.1\\
-50.5 \\
-9.2 
-\end{bmatrix}$$
-
-$$\begin{align*}
-8872\alpha_1+1296\alpha_2 + 204\alpha_3 &= 319.1 \\
-1296\alpha_1+204\alpha_2 + 36\alpha_3 &= 50.5 \\
-204\alpha_1+36\alpha_2 + 8\alpha_3 &= 9.2
-\end{align*}$$
-
-$$\alpha_1 = 0.4071 ,\  \alpha_2 = 0.07738, \  \alpha_3 = 0.01547$$ 
-
-$$f(x) = 0.01547 + 0.07738x + 0.4071x^2$$
-
-#### Metodologia computacional
-
-a)
 
 # tabela de dados
 x = np.arange(1,9)
@@ -180,80 +202,88 @@ y = np.array([0.5,.6,.9,.8,1.2,1.5,1.7,2.])
 g = 1
 p = resolve_ajuste(x,y,g)
 
-b)
+
+# b)
+
+# In[6]:
+
 
 # grau 2
 g = 2
 p = resolve_ajuste(x,y,g)
 
-### L5-Q3
 
-Dada a tabela abaixo, faça o gráfico de dispersão dos dados e ajuste uma curva da melhor maneira possı́vel:
+# ### L5-Q3
+# 
+# Dada a tabela abaixo, faça o gráfico de dispersão dos dados e ajuste uma curva da melhor maneira possı́vel:
+# 
+# \begin{array}{c|cccccc}
+# x & 0.5 & 0.75 & 1 & 1.5 & 2.0 & 2.5 & 3.0  \\
+# \hline
+# y & -2.8 & -0.6 & 1& 3.2& 4.8 & 6.0 & 7.0 
+# \end{array}
 
-\begin{array}{c|cccccc}
-x & 0.5 & 0.75 & 1 & 1.5 & 2.0 & 2.5 & 3.0  \\
-\hline
-y & -2.8 & -0.6 & 1& 3.2& 4.8 & 6.0 & 7.0 
-\end{array}
+# ### Solução
+# 
+# #### Metodologia matemática
+# 
 
-### Solução
+# $$g_1(x) = 1$$$$ g_2(x)=x$$$$ g_3(x)=x²$$ $$ g_4(x)=x³$$
+# 
+# \begin{array}{c|cccccc}
+# g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 \\
+# g_2 & 0.5 & 0.75 & 1 & 1.5 & 2.0 & 2.5 & 3.0  \\
+# \hline
+# g_3 & 0.25 & 0.5625& 1& 2.25& 4 & 6.25 & 9.0\\
+# \hline
+# g_4 & 0.1250 & 0.4219 & 1& 3.375& 8 &15. 625 & 27 \\
+# f & -2.8 & -0.6 & 1& 3.2& 4.8 & 6.0 & 7.0 
+# \end{array}
+# 
+# \begin{align*}
+# a_{11}=\ <g_1,g_1> \ &= 7\\
+# a_{12}=\ a_{21}   =\  <g_1,g_2> \ &= 11.25 \\
+# a_{13}=\ a_{31}   =\  <g_1,g_3> \ &= 23.3125 \\
+# a_{14}=\ a_{41}   =\  <g_1,g_4> \ &= 55.5468 \\
+# a_{22}=\ <g_2,g_2> \ &= 23.3125\\
+# a_{23}=\ a_{32}   =\  <g_2,g_3> \ &= 55.5468 \\
+# a_{24}=\ a_{42}   =\  <g_2,g_4> \ &= 142.5039 \\
+# a_{33}=\ <g_3,g_3> \ &= 142.5039 \\
+# a_{34}=\ <g_3,g_4> \ &= 381.5185 \\
+# a_{44}=\ <g_4,g_4> \ &= 1049.7248 \\
+# b_{1}=\  <g_1,f>  \ &= 18.6\\
+# b_{2}=\  <g_2,f>  \ &= 49.55\\
+# b_{3}=\  <g_3,f>  \ &= 126.86\\
+# b_{4}=\  <g_4,f>  \ &= 332.34
+# \end{align*}
+# 
+# $$\begin{bmatrix}
+# 7 & 11.25 & 23.3125 & 55.5468 \\
+# 11.25 &  23.3125 & 55.5468 & 142.5039 \\
+# 23.3125 &  55.5468 & 142.5039 & 381.5185\\
+# 55.5468 &  142.5039 & 381.5185 & 1049.7248
+# \end{bmatrix}
+# \begin{bmatrix}
+# \alpha_1 \\
+# \alpha_2 \\
+# \alpha_3 \\
+# \alpha_4 
+# \end{bmatrix} = 
+# \begin{bmatrix}
+# 18.6\\
+# 49.55 \\
+# 126.8625\\
+# 332.3468
+# \end{bmatrix}$$
+# 
+# $$\alpha_1 = -8.1043 ,\  \alpha_2 = 12.7882 \  \alpha_3 = -4.3250 , \  \alpha_4 = 0.5813$$
+# 
+# $$f(x) = 0.5813  - 4.3250x + 12.79x^2 - 8.1043x^3$$
 
-#### Metodologia matemática
+# #### Metodologia computacional
 
+# In[7]:
 
-$$g_1(x) = 1$$$$ g_2(x)=x$$$$ g_3(x)=x²$$ $$ g_4(x)=x³$$
-
-\begin{array}{c|cccccc}
-g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 \\
-g_2 & 0.5 & 0.75 & 1 & 1.5 & 2.0 & 2.5 & 3.0  \\
-\hline
-g_3 & 0.25 & 0.5625& 1& 2.25& 4 & 6.25 & 9.0\\
-\hline
-g_4 & 0.1250 & 0.4219 & 1& 3.375& 8 &15. 625 & 27 \\
-f & -2.8 & -0.6 & 1& 3.2& 4.8 & 6.0 & 7.0 
-\end{array}
-
-\begin{align*}
-a_{11}=\ <g_1,g_1> \ &= 7\\
-a_{12}=\ a_{21}   =\  <g_1,g_2> \ &= 11.25 \\
-a_{13}=\ a_{31}   =\  <g_1,g_3> \ &= 23.3125 \\
-a_{14}=\ a_{41}   =\  <g_1,g_4> \ &= 55.5468 \\
-a_{22}=\ <g_2,g_2> \ &= 23.3125\\
-a_{23}=\ a_{32}   =\  <g_2,g_3> \ &= 55.5468 \\
-a_{24}=\ a_{42}   =\  <g_2,g_4> \ &= 142.5039 \\
-a_{33}=\ <g_3,g_3> \ &= 142.5039 \\
-a_{34}=\ <g_3,g_4> \ &= 381.5185 \\
-a_{44}=\ <g_4,g_4> \ &= 1049.7248 \\
-b_{1}=\  <g_1,f>  \ &= 18.6\\
-b_{2}=\  <g_2,f>  \ &= 49.55\\
-b_{3}=\  <g_3,f>  \ &= 126.86\\
-b_{4}=\  <g_4,f>  \ &= 332.34
-\end{align*}
-
-$$\begin{bmatrix}
-7 & 11.25 & 23.3125 & 55.5468 \\
-11.25 &  23.3125 & 55.5468 & 142.5039 \\
-23.3125 &  55.5468 & 142.5039 & 381.5185\\
-55.5468 &  142.5039 & 381.5185 & 1049.7248
-\end{bmatrix}
-\begin{bmatrix}
-\alpha_1 \\
-\alpha_2 \\
-\alpha_3 \\
-\alpha_4 
-\end{bmatrix} = 
-\begin{bmatrix}
-18.6\\
-49.55 \\
-126.8625\\
-332.3468
-\end{bmatrix}$$
-
-$$\alpha_1 = -8.1043 ,\  \alpha_2 = 12.7882 \  \alpha_3 = -4.3250 , \  \alpha_4 = 0.5813$$
-
-$$f(x) = 0.5813  - 4.3250x + 12.79x^2 - 8.1043x^3$$
-
-#### Metodologia computacional
 
 # tabela
 x = np.array([0.5,0.75,1,1.5,2.0,2.5,3.0])
@@ -266,54 +296,58 @@ p = resolve_ajuste(x,y,g)
 # erro 
 np.sum((p(x)-y)**2)
 
-### L5-Q4
 
-A tabela abaixo mostra as alturas e pesos de nove homens entre as idades de 25 a 29 anos extraı́da ao acaso entre funcionários de uma grande indústria:
+# ### L5-Q4
+# 
+# A tabela abaixo mostra as alturas e pesos de nove homens entre as idades de 25 a 29 anos extraı́da ao acaso entre funcionários de uma grande indústria:
+# 
+# \begin{array}{c|ccccccccc}
+# \text{Altura/cm} & 183& 173 & 168 & 188  & 158 & 163 & 193 &163 &178 \\
+# \hline
+# \text{Peso/kg} & 79 & 69 & 70& 81  & 61 &63 &79 & 71 & 73
+# \end{array}
 
-\begin{array}{c|ccccccccc}
-\text{Altura/cm} & 183& 173 & 168 & 188  & 158 & 163 & 193 &163 &178 \\
-\hline
-\text{Peso/kg} & 79 & 69 & 70& 81  & 61 &63 &79 & 71 & 73
-\end{array}
+# #### Metodologia matemática 
+# 
+# $$g_1(x) = 1$$$$ g_2(x)=x$$
+# 
+# \begin{array}{c|cccccccc}
+# g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1&1\\
+# \hline
+# g_2 & 183& 173 & 168 & 188  & 158 & 163 & 193 &163 &178 \\
+# \hline
+# f &  79 & 69 & 70& 81  & 61 &63 &79 & 71 & 73
+# \end{array}
+# 
+# \begin{align*}
+# a_{11}=\ <g_1,g_1> \ &= 9\\
+# a_{12}=\ a_{21}   =  <g_1,g_2> \ &= 1567 \\
+# a_{22}=\ <g_2,g_2> \ &= 274.021\\
+# b_{1}=\ <g_1,f>  \ &= 646\\
+# b_{2}=\ <g_2,f>  \ &= 113.103
+# \end{align*}
+# 
+# $$\begin{bmatrix}
+# 9 & 1567 \\
+# 1567 &  274.021
+# \end{bmatrix}
+# \begin{bmatrix}
+# \alpha_1 \\
+# \alpha_2 
+# \end{bmatrix} = 
+# \begin{bmatrix}
+# 646 \\
+# 113.103
+# \end{bmatrix}$$
+# 
+# $$\alpha_1 = -20.0832 ,\  \alpha_2 = 0.5276$$
+# 
+# $$f(x) = 0.5276x - 20.0832$$
 
-#### Metodologia matemática 
+# #### Metodologia computacional
 
-$$g_1(x) = 1$$$$ g_2(x)=x$$
+# In[8]:
 
-\begin{array}{c|cccccccc}
-g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1&1\\
-\hline
-g_2 & 183& 173 & 168 & 188  & 158 & 163 & 193 &163 &178 \\
-\hline
-f &  79 & 69 & 70& 81  & 61 &63 &79 & 71 & 73
-\end{array}
-
-\begin{align*}
-a_{11}=\ <g_1,g_1> \ &= 9\\
-a_{12}=\ a_{21}   =  <g_1,g_2> \ &= 1567 \\
-a_{22}=\ <g_2,g_2> \ &= 274.021\\
-b_{1}=\ <g_1,f>  \ &= 646\\
-b_{2}=\ <g_2,f>  \ &= 113.103
-\end{align*}
-
-$$\begin{bmatrix}
-9 & 1567 \\
-1567 &  274.021
-\end{bmatrix}
-\begin{bmatrix}
-\alpha_1 \\
-\alpha_2 
-\end{bmatrix} = 
-\begin{bmatrix}
-646 \\
-113.103
-\end{bmatrix}$$
-
-$$\alpha_1 = -20.0832 ,\  \alpha_2 = 0.5276$$
-
-$$f(x) = 0.5276x - 20.0832$$
-
-#### Metodologia computacional
 
 altura = np.array([183,173,168,188,158,163,193,163,178])
 peso = np.array([79,69,70,81,61,63,79,71,73])
@@ -321,12 +355,20 @@ peso = np.array([79,69,70,81,61,63,79,71,73])
 # gráfico de dispersão 
 plt.scatter(altura,peso)
 
-### solucao-L5-Q4-b
+
+# ### solucao-L5-Q4-b
+
+# In[9]:
+
 
 # ajuste da reta 
 p = resolve_ajuste(altura,peso,1)
 
-### solucao-L5-Q4-c
+
+# ### solucao-L5-Q4-c
+
+# In[10]:
+
 
 # estimativa de peso (kg)
 alt = 175 
@@ -339,11 +381,18 @@ a_c = (alt - p[0])/p[1]
 print(a_c)
 
 
-### solucao-L5-Q4-d
+# ### solucao-L5-Q4-d
+
+# In[11]:
+
 
 p2 = resolve_ajuste(peso,altura,1)
 
-### solucao-L5-Q4-e
+
+# ### solucao-L5-Q4-e
+
+# In[12]:
+
 
 # estimativa de peso a partir de altura com novo ajuste 
 alt = 175
@@ -356,16 +405,23 @@ dif = abs(p_c-p_e)
 print(dif)
 
 
-### solucao-L5-Q4-f
+# ### solucao-L5-Q4-f
+
+# In[13]:
+
 
 # comparação das retas de ajuste
 # influência do resíduo => inclinações diferentes
 
 plt.plot(altura,p(altura),altura,(altura - p2[0])/p2[1])
 
-## solucao-L5-Q5-a
 
-#### AJUSTE POR RETA
+# ## solucao-L5-Q5-a
+
+# #### AJUSTE POR RETA
+
+# In[14]:
+
 
 """ 
 Nota: pesquisa no IBGE em maio de 2018 
@@ -393,6 +449,10 @@ plt.plot(2025,p(2025),'go')
 # estimativa no ano 2025
 p(2025)
 
+
+# In[15]:
+
+
 # abrindo vetor de 1900 a 2024
 anos = np.arange(ano[0],ano[-1]+10)
 pops = p(anos) # população
@@ -407,6 +467,9 @@ print('Marca de 150 milhões de pessoas: ' + str(anos[lim150[0][0]]))
 print('Marca de 200 milhões de pessoas: ' + str(anos[lim200[0][0]]))
 
 
+# In[16]:
+
+
 # plotagem por faixas de valores 
 fig,ax = plt.subplots(1,1)
 p = resolve_ajuste(ano,hab,1)
@@ -415,7 +478,11 @@ v1 = np.ones(np.shape(ano))
 ax.fill_between(ano,100*v1,150*v1,alpha=0.1)
 ax.fill_between(ano,150*v1,200*v1,facecolor='r',alpha=0.1)
 
-### AJUSTE POR PARÁBOLA
+
+# ### AJUSTE POR PARÁBOLA
+
+# In[17]:
+
 
 
 
@@ -436,6 +503,10 @@ plt.plot(2025,p(2025),'go')
 # estimativa no ano 2025
 p(2025)
 
+
+# In[18]:
+
+
 # abrindo vetor de 1900 a 2024
 anos = np.arange(ano[0],ano[-1]+10)
 pops = p(anos) # população
@@ -450,6 +521,8 @@ print('Marca de 150 milhões de pessoas: ' + str(anos[lim150[0][0]]))
 print('Marca de 200 milhões de pessoas: ' + str(anos[lim200[0][0]]))
 
 
+# In[19]:
+
 
 # plotagem por faixas de valores 
 fig,ax = plt.subplots(1,1)
@@ -459,9 +532,13 @@ v1 = np.ones(np.shape(ano))
 ax.fill_between(ano,100*v1,150*v1,alpha=0.1)
 ax.fill_between(ano,150*v1,200*v1,facecolor='r',alpha=0.1)
 
-## Integração Numérica
 
-### Função-base para integrais de Newton-Cotes
+# ## Integração Numérica
+
+# ### Função-base para integrais de Newton-Cotes
+
+# In[20]:
+
 
 def integral_newton_cotes(x,y,metodo):
 
@@ -513,10 +590,13 @@ def integral_newton_cotes(x,y,metodo):
     return integral 
 
 
-### Exemplo 
+# ### Exemplo 
+# 
+# Integração numérica pela regra do trapézio para a função 
+# $$\int_{a=0}^{b=\pi} [ {\rm sen}(3x + 2) + 0.5\pi ] \, dx \approx I_T $$
+# 
 
-Integração numérica pela regra do trapézio para a função 
-$$\int_{a=0}^{b=\pi} [ {\rm sen}(3x + 2) + 0.5\pi ] \, dx \approx I_T $$
+# In[21]:
 
 
 # função
@@ -529,6 +609,10 @@ y = f(x)
 # integração por trapézio
 integral_newton_cotes(x,y,'trapezio')
 
+
+# In[22]:
+
+
 # plotagem dos trapézios
 plt.stem(x,y,'-ok',basefmt='k-',use_line_collection=True)
 plt.plot(x,y,'-k',label='$I_T$')
@@ -539,26 +623,42 @@ xx = np.linspace(a,b,num=200,endpoint=True)
 plt.plot(xx,f(xx),color=[0.5,0.5,0.5],label='$f(x)$')
 plt.legend();
 
-### Exemplo 
 
-Idem, para regra 1/3 de Simpson $I_S$
+# ### Exemplo 
+# 
+# Idem, para regra 1/3 de Simpson $I_S$
+
+# In[23]:
+
 
 # integração por 1/3 Simpson 
 
 integral_newton_cotes(x,y,'simpson13')
 
-## Função residente em Python para integração
+
+# ## Função residente em Python para integração
+
+# In[24]:
+
 
 import scipy.integrate as sp
 
-### Exemplo
-Mesma função $f(x)$, agora calculada com o Scipy.
+
+# ### Exemplo
+# Mesma função $f(x)$, agora calculada com o Scipy.
+
+# In[25]:
+
 
 # scipy::quad (erro absoluto)
 integral_ = sp.quad(f,a,b)
 integral_
 
-### solucao-L5-Q9
+
+# ### solucao-L5-Q9
+
+# In[26]:
+
 
 # dados
 x = np.array([1.00, 1.05, 1.10, 1.15, 1.20, 1.25, 1.30])
@@ -576,7 +676,10 @@ f = lambda x: np.sqrt(x)
 sp.quad(f,x[0],x[-1])
 
 
-### solucao-L5-Q10
+# ### solucao-L5-Q10
+
+# In[27]:
+
 
 # caso h = 0.1
 x = np.array([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
@@ -604,7 +707,11 @@ print(integral_newton_cotes(x2[0:-1],y2[0:-1],'simpson13'))
 # residente 
 print(sp.quad(f,x2[0],x2[-1]))
 
-### solucao-L5-Q11
+
+# ### solucao-L5-Q11
+
+# In[28]:
+
 
 x = np.array([1.2, 1.3, 1.4, 1.5, 1.6])
 y = np.array([0.93204, 0.96356, 0.98545, 0.99749, 0.99957])
@@ -619,7 +726,11 @@ f = lambda x: np.sin(x)
 
 print(sp.quad(f,x[0],x[-1]))
 
-### solucao L5-Q17 
+
+# ### solucao L5-Q17 
+# 
+
+# In[29]:
 
 
 z = np.linspace(0,10,num=50,endpoint=True)
@@ -632,44 +743,56 @@ print(d)
 f2 = lambda z: ( z/(4+z)*np.exp(-0.5*z) )*z
 print(sp.quad(f2,0,10)[0]/sp.quad(f,0,10)[0])
 
+
+# In[30]:
+
+
 # plotagem da força
 plt.plot(f(z),z,label='$f(z)$')
 plt.plot(f(z),np.ones(np.shape(f(z)))*d,'--',label='$d$')
 plt.legend();
 
-### QUADRATURA GAUSSIANA
 
-Algumas informações:
+# ### QUADRATURA GAUSSIANA
+# 
+# Algumas informações:
+# 
+# - A quadratura gaussiana pode ser chamada como 
+# 
+# ```python
+# from scipy.integrate import quadrature
+# ```
+# Depois de importar, veja 
+# 
+# ```python              
+# help(quadrature)
+# ```
+# 
+# - A tabela de pesos de quadratura pode ser acessada no Numpy através do comando 
+# 
+# ```python
+# np.polynomial.legendre.leggauss(ord)
+# ```
+# Integra exatamente polinômios de grau até 
+# 
+# ```python
+# 2*ord - 1
+# ```
 
-- A quadratura gaussiana pode ser chamada como 
+# ### solucao-L5-Q18a
 
-```python
-from scipy.integrate import quadrature
-```
-Depois de importar, veja 
+# In[31]:
 
-```python              
-help(quadrature)
-```
-
-- A tabela de pesos de quadratura pode ser acessada no Numpy através do comando 
-
-```python
-np.polynomial.legendre.leggauss(ord)
-```
-Integra exatamente polinômios de grau até 
-
-```python
-2*ord - 1
-```
-
-### solucao-L5-Q18a
 
 from scipy.integrate import quadrature
 
 # integração
 f = lambda z: z**3 + z**2 + z + 1
 quadrature(f, -1, 1,maxiter=3) # grau máximo = 3; erro = 0
+
+
+# In[32]:
+
 
 # Verificando computação numérica x simbólica com Sympy
 import sympy as sy
@@ -682,22 +805,34 @@ f = zsym**3 + zsym**2 + zsym + 1
 val = sy.integrate(f, (zsym,-1,1))
 float(val)
 
-### solucao-L5-Q18b
+
+# ### solucao-L5-Q18b
+
+# In[33]:
+
 
 # integração
 f = lambda x: x**2 -1
 quadrature(f, -2, 0,maxiter=3) 
+
+
+# In[34]:
+
 
 # integração simbólica
 f = zsym**2 + -1
 val = sy.integrate(f, (zsym,-2,0))
 float(val)
 
-#### Exemplos de integrandos com singularidades 
 
-Esses casos não são bem manipulados pelo submódulo `integrate`.
+# #### Exemplos de integrandos com singularidades 
+# 
+# Esses casos não são bem manipulados pelo submódulo `integrate`.
 
-### solucao-L5-Q18c
+# ### solucao-L5-Q18c
+
+# In[35]:
+
 
 # função com singularidade
 
@@ -705,10 +840,15 @@ Esses casos não são bem manipulados pelo submódulo `integrate`.
 f = lambda x: ((1-x**2)**(-1/2))*x**2*x**2
 quadrature(f, -1, 1) 
 
-### solucao-L5-Q18d
+
+# ### solucao-L5-Q18d
+
+# In[36]:
+
 
 # função com singularidade 
 
 # integração
 f = lambda x: (x**3 +2*x**2)/(4*(4-x**2)**1/2)
 quadrature(f, -2, 2,maxiter=3) 
+

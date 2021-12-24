@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>23. Integração Numérica: Quadratura Gaussiana &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -20,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -35,39 +32,39 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="24. Diferenciação Numérica" href="aula-20-diferenciacao-numerica.html" />
     <link rel="prev" title="22. Integração Numérica: Regras de Newton-Cotes" href="aula-18-integracao-newtonCotes.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +73,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/numbiosis.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="conteudo.html">
    Laboratório Virtual de Métodos Numéricos - LVMN
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Cadernos
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
    1. Modelagem Matemática em Ciências Computacionais e Engenharias
@@ -153,11 +150,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-09-eliminacao-gauss.html#eliminacao-gaussiana">
-   11. Eliminação Gaussiana
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-10-fatoracao-lu.html">
    12. Fatoração LU com Python
   </a>
@@ -178,18 +170,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-13-newton-nao-linear.html#nota-raizes-de-sistemas-nao-lineares">
-   16. Nota: Raízes de sistemas não-lineares
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
    17. Polinômio Interpolador de Lagrange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-14-interpolacao-lagrange.html#funcoes-de-base-de-lagrange">
-   18. Funções de base de Lagrange
   </a>
  </li>
  <li class="toctree-l1">
@@ -238,12 +220,12 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code sessions
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-1-bisect.html">
    Code session 1
@@ -290,12 +272,12 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="lista-1-solucoes.html">
    Lista de Exercícios 1
@@ -327,89 +309,75 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Extra
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   1. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   1. Processamento de sinais
+   2. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   2. Otimização de código
+   3. Otimização de código
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   3. Malhas numéricas
+   4. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
-   4. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecao-edo.html#problemas">
-   5. Problemas
+   5. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   6. Variações do Método de Euler
+   7. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   7. Estabilidade Numérica para o Método de Euler
+   8. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   8. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-eulerImplicito.html#codigo-preditor-corretor">
-   9. Código preditor/corretor
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-eulerImplicito.html#metodo-trapezoidal">
-   10. Método Trapezoidal
+   9. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   11. Métodos de Adams-Bashfort
+   12. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-edo-superior.html">
-   12. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edo-superior.html#problemas">
-   13. Problemas
+   13. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-sistemas-edo.html">
-   14. Sistemas de EDOs
+   15. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   15. Método das Linhas
+   16. Método das Linhas
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -459,12 +427,12 @@
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -498,12 +466,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#deducao-da-formula-de-gauss-legendre-para-dois-pontos">
    23.1. Dedução da Fórmula de Gauss-Legendre para Dois Pontos
@@ -547,8 +514,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -790,7 +756,7 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># número máximo de pontos</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>       
@@ -861,86 +827,6 @@ REGRA DE 8 PONTO(S):
 -&gt; Pesos:
 [0.10122854 0.22238103 0.31370665 0.36268378 0.36268378 0.31370665
  0.22238103 0.10122854]
-
-
-REGRA DE 9 PONTO(S):
--&gt; Pontos:
-[-0.96816024 -0.83603111 -0.61337143 -0.32425342  0.          0.32425342
-  0.61337143  0.83603111  0.96816024]
--&gt; Pesos:
-[0.08127439 0.18064816 0.2606107  0.31234708 0.33023936 0.31234708
- 0.2606107  0.18064816 0.08127439]
-
-
-REGRA DE 10 PONTO(S):
--&gt; Pontos:
-[-0.97390653 -0.86506337 -0.67940957 -0.43339539 -0.14887434  0.14887434
-  0.43339539  0.67940957  0.86506337  0.97390653]
--&gt; Pesos:
-[0.06667134 0.14945135 0.21908636 0.26926672 0.29552422 0.29552422
- 0.26926672 0.21908636 0.14945135 0.06667134]
-
-
-REGRA DE 11 PONTO(S):
--&gt; Pontos:
-[-0.97822866 -0.8870626  -0.73015201 -0.51909613 -0.26954316  0.
-  0.26954316  0.51909613  0.73015201  0.8870626   0.97822866]
--&gt; Pesos:
-[0.05566857 0.12558037 0.18629021 0.23319376 0.26280454 0.27292509
- 0.26280454 0.23319376 0.18629021 0.12558037 0.05566857]
-
-
-REGRA DE 12 PONTO(S):
--&gt; Pontos:
-[-0.98156063 -0.90411726 -0.76990267 -0.58731795 -0.3678315  -0.12523341
-  0.12523341  0.3678315   0.58731795  0.76990267  0.90411726  0.98156063]
--&gt; Pesos:
-[0.04717534 0.10693933 0.16007833 0.20316743 0.23349254 0.24914705
- 0.24914705 0.23349254 0.20316743 0.16007833 0.10693933 0.04717534]
-
-
-REGRA DE 13 PONTO(S):
--&gt; Pontos:
-[-0.98418305 -0.9175984  -0.80157809 -0.64234934 -0.44849275 -0.23045832
-  0.          0.23045832  0.44849275  0.64234934  0.80157809  0.9175984
-  0.98418305]
--&gt; Pesos:
-[0.040484   0.0921215  0.13887351 0.17814598 0.20781605 0.22628318
- 0.23255155 0.22628318 0.20781605 0.17814598 0.13887351 0.0921215
- 0.040484  ]
-
-
-REGRA DE 14 PONTO(S):
--&gt; Pontos:
-[-0.98628381 -0.92843488 -0.82720132 -0.6872929  -0.51524864 -0.31911237
- -0.10805495  0.10805495  0.31911237  0.51524864  0.6872929   0.82720132
-  0.92843488  0.98628381]
--&gt; Pesos:
-[0.03511946 0.08015809 0.12151857 0.15720317 0.1855384  0.20519846
- 0.21526385 0.21526385 0.20519846 0.1855384  0.15720317 0.12151857
- 0.08015809 0.03511946]
-
-
-REGRA DE 15 PONTO(S):
--&gt; Pontos:
-[-0.98799252 -0.93727339 -0.84820658 -0.72441773 -0.57097217 -0.39415135
- -0.20119409  0.          0.20119409  0.39415135  0.57097217  0.72441773
-  0.84820658  0.93727339  0.98799252]
--&gt; Pesos:
-[0.03075324 0.07036605 0.10715922 0.13957068 0.16626921 0.186161
- 0.19843149 0.20257824 0.19843149 0.186161   0.16626921 0.13957068
- 0.10715922 0.07036605 0.03075324]
-
-
-REGRA DE 16 PONTO(S):
--&gt; Pontos:
-[-0.98940093 -0.94457502 -0.8656312  -0.75540441 -0.61787624 -0.45801678
- -0.28160355 -0.09501251  0.09501251  0.28160355  0.45801678  0.61787624
-  0.75540441  0.8656312   0.94457502  0.98940093]
--&gt; Pesos:
-[0.02715246 0.06225352 0.09515851 0.12462897 0.14959599 0.16915652
- 0.18260342 0.18945061 0.18945061 0.18260342 0.16915652 0.14959599
- 0.12462897 0.09515851 0.06225352 0.02715246]
 </pre></div>
 </div>
 </div>
@@ -1178,11 +1064,9 @@ REGRA DE 16 PONTO(S):
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

@@ -1,6 +1,16 @@
-# Implementações do método da bisseção
+#!/usr/bin/env python
+# coding: utf-8
 
-%matplotlib inline
+# # Implementações do método da bisseção
+
+# In[1]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
 
 """MB Metodo da bissecao para funcoes unidimensionais
 entrada: 
@@ -76,6 +86,10 @@ def bissecao(f,a,b,tol,N,var):
 
     return xm
 
+
+# In[3]:
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import bisect, newton
@@ -102,6 +116,10 @@ plt.xlabel('t [s]')
 plt.ylabel('v [m/s]')
 plt.title('Velocidade terminal - paraquedista');
 
+
+# In[4]:
+
+
 import sympy as sp
 
 time = 12     # tempo [s]
@@ -127,48 +145,50 @@ f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
 # resolve bisseção
 xm = bissecao(f_s,12,16,1e-5,100,'c')
 
-## Tarefas
 
-* Melhore o código Python tratando os TODOs: 
+# ## Tarefas
+# 
+# * Melhore o código Python tratando os TODOs: 
+# 
+# Tente generalizar o código da bisseção para que identifique automaticamente a variável de entrada utilizada pelo usuário (use expressões regulares e remova o argumento `var` da definição da função).
+# 
+# Note que o trecho simbólico abaixo foi necessário para substituir a função da chamada `exp`, não interpretada por `eval` por uma nova string que usasse `np.exp`.
+# ```python
+# # TODO
+# # para esta função, teremos que substituir 'exp' por 'np.exp')
+# print('f(c) = ' + f_s + '\n')
+# f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
+# ```
+# Tente fazer as correções necessárias no código. **Sugestão:** verifique a função `sympy.core.evalf` do módulo `sympy`)
+# 
+# * Adicione mecanismos de plotagem no código Python 
+# 
+# * Crie um código em Javascript para adicionarmos na página do projeto Numbiosis com o máximo possível de GUI (labels + input data).
+# 
+# * Teste a implementação com um problema realista.
 
-Tente generalizar o código da bisseção para que identifique automaticamente a variável de entrada utilizada pelo usuário (use expressões regulares e remova o argumento `var` da definição da função).
+# **Problema sugerido:**
+# Uma reação química reversível
+# 
+# $$2A+B \iff C$$
+# 
+# pode ser caracterizada pela relação de equilíbrio
+# 
+# $$K = \dfrac{c_c}{c_a^2c_b},$$
+# 
+# onde a nomenclatura $c_i$ representa a concentração do constituinte $i$. Suponha que definamos uma variável $x$ como o número de moles de $C$ que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como
+# 
+# $$K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x),}$$
+# 
+# onde o subscrito $0$ designa a concentração inicial de cada constituinte. Se $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$, determine o valor de $x$. 
+# 
+# (a) Obtenha a solução graficamente. 
+# 
+# (b) Com base em (a), resolva a raiz com suposições iniciais de $x_l = 0$ e $x_u = 20$, com critério de erro de $\epsilon_s = 0,5\%$. (Vide clipping _Definições de erro_ para entender $\epsilon_s$.)
+# 
+# (c) Use o método da bisseção.
 
-Note que o trecho simbólico abaixo foi necessário para substituir a função da chamada `exp`, não interpretada por `eval` por uma nova string que usasse `np.exp`.
-```python
-# TODO
-# para esta função, teremos que substituir 'exp' por 'np.exp')
-print('f(c) = ' + f_s + '\n')
-f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
-```
-Tente fazer as correções necessárias no código. **Sugestão:** verifique a função `sympy.core.evalf` do módulo `sympy`)
-
-* Adicione mecanismos de plotagem no código Python 
-
-* Crie um código em Javascript para adicionarmos na página do projeto Numbiosis com o máximo possível de GUI (labels + input data).
-
-* Teste a implementação com um problema realista.
-
-**Problema sugerido:**
-Uma reação química reversível
-
-$$2A+B \iff C$$
-
-pode ser caracterizada pela relação de equilíbrio
-
-$$K = \dfrac{c_c}{c_a^2c_b},$$
-
-onde a nomenclatura $c_i$ representa a concentração do constituinte $i$. Suponha que definamos uma variável $x$ como o número de moles de $C$ que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como
-
-$$K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x),}$$
-
-onde o subscrito $0$ designa a concentração inicial de cada constituinte. Se $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$, determine o valor de $x$. 
-
-(a) Obtenha a solução graficamente. 
-
-(b) Com base em (a), resolva a raiz com suposições iniciais de $x_l = 0$ e $x_u = 20$, com critério de erro de $\epsilon_s = 0,5\%$. (Vide clipping _Definições de erro_ para entender $\epsilon_s$.)
-
-(c) Use o método da bisseção.
-
-## Tarefa: Falsa Posição
-Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `switch... case...`).
-
+# ## Tarefa: Falsa Posição
+# Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `switch... case...`).
+# 
+# 

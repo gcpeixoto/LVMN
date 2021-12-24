@@ -1,47 +1,53 @@
-# Integração Numérica: Regras de Newton-Cotes
+#!/usr/bin/env python
+# coding: utf-8
 
-As fórmulas de Newton-Cotes são os esquemas mais comuns de integração numérica. Elas são baseadas na estratégia de substituir uma função complicada ou dados tabulados por uma função aproximadora simples que seja fácil de integrar:
+# # Integração Numérica: Regras de Newton-Cotes
+# 
+# As fórmulas de Newton-Cotes são os esquemas mais comuns de integração numérica. Elas são baseadas na estratégia de substituir uma função complicada ou dados tabulados por uma função aproximadora simples que seja fácil de integrar:
+# 
+# $$
+# I = \int _a^b f(x)dx \cong \int _a^b f_n (x)dx \qquad (1)
+# $$
+# 
+# em que $f_n (x)$ é um polinômio da forma
+# 
+# $$
+# f_n (x) = a_0 + a_1 x + \dots + a_{n-1} x^{n-1} + a_n x^n
+# $$
+# 
+# em que $n$ é o grau do polinômio.
+# 
+# ## A Regra do Trapézio
+# 
+# A **regra do trapézio** corresponde ao caso no qual o polinômio na Equação (1) é de primeiro grau:
+# 
+# $$
+# I = \int _a^b f(x)dx \cong \int _a^b f_1 (x)dx
+# $$
+# 
+# onde
+# 
+# $$
+# f_1 (x) = f(a) + \dfrac{f(b) - f(a)}{b - a} (x - a)
+# $$
+# 
+# O resultado da integração é 
+# 
+# $$
+# I = (b - a) \dfrac{f(a) + f(b)}{2} \qquad (2)
+# $$
+# 
+# Geometricamente, a regra dos trapézios é equivalente a aproximar a integral pela área do trapézio sob a reta ligando $f(a)$ e $f(b)$ (conforme figura abaixo). Portanto, a estimativa da integral pode ser representada por
+# 
+# $$
+# I \cong \text{largura} \times \text{altura média} \\
+# I \cong (b - a) \times \text{altura média}
+# $$
+# 
+# em que, para a regra dos trapézios, a altura média é a média dos valores da função nas extremidades, ou $[f (a) + f (b)]/2$, conforme Equação (2).
 
-$$
-I = \int _a^b f(x)dx \cong \int _a^b f_n (x)dx \qquad (1)
-$$
+# In[1]:
 
-em que $f_n (x)$ é um polinômio da forma
-
-$$
-f_n (x) = a_0 + a_1 x + \dots + a_{n-1} x^{n-1} + a_n x^n
-$$
-
-em que $n$ é o grau do polinômio.
-
-## A Regra do Trapézio
-
-A **regra do trapézio** corresponde ao caso no qual o polinômio na Equação (1) é de primeiro grau:
-
-$$
-I = \int _a^b f(x)dx \cong \int _a^b f_1 (x)dx
-$$
-
-onde
-
-$$
-f_1 (x) = f(a) + \dfrac{f(b) - f(a)}{b - a} (x - a)
-$$
-
-O resultado da integração é 
-
-$$
-I = (b - a) \dfrac{f(a) + f(b)}{2} \qquad (2)
-$$
-
-Geometricamente, a regra dos trapézios é equivalente a aproximar a integral pela área do trapézio sob a reta ligando $f(a)$ e $f(b)$ (conforme figura abaixo). Portanto, a estimativa da integral pode ser representada por
-
-$$
-I \cong \text{largura} \times \text{altura média} \\
-I \cong (b - a) \times \text{altura média}
-$$
-
-em que, para a regra dos trapézios, a altura média é a média dos valores da função nas extremidades, ou $[f (a) + f (b)]/2$, conforme Equação (2).
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,7 +55,11 @@ import sympy as sy
 import scipy as sp
 from scipy import interpolate
 from scipy import integrate
-%matplotlib inline
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
 
 # Representação geométrica da regra do trapézio
 
@@ -69,33 +79,37 @@ plt.legend()
 plt.axvline(x=0,color='k',linewidth=0.6,linestyle='--')
 plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 
-## Aplicação Múltipla da Regra do Trapézio
 
-Uma maneira de melhorar a acurácia da regra do trapézio é dividir o intervalo de integração de $a$ a $b$ em diversos segmentos e aplicar o método a cada segmento (conforme figura abaixo). As áreas correspondentes aos segmentos individuais podem então ser somadas parafornecer a integral para o intervalo inteiro. As equações resultantes são chamadas fórmulas de integração por aplicações múltiplas ou compostas.
+# ## Aplicação Múltipla da Regra do Trapézio
+# 
+# Uma maneira de melhorar a acurácia da regra do trapézio é dividir o intervalo de integração de $a$ a $b$ em diversos segmentos e aplicar o método a cada segmento (conforme figura abaixo). As áreas correspondentes aos segmentos individuais podem então ser somadas parafornecer a integral para o intervalo inteiro. As equações resultantes são chamadas fórmulas de integração por aplicações múltiplas ou compostas.
+# 
+# Existem $n + 1$ pontos base igualmente espaçados $(x_0, x_1, x_2, \dots , x_n)$. Consequentemente, existem $n$ segmentos de largura igual:
+# 
+# $$
+# h = \dfrac{b − a}{n} \qquad (3)
+# $$
+# 
+# Se $a$ e $b$ forem designados por $x_0$ e $x_n$, respectivamente, a integral total pode ser representada como
+# 
+# $$
+# I = \int _{x_0}^{x_1} f(x)dx + \int _{x_1}^{x_2} f(x)dx + \dots + \int _{x_{n - 1}}^{x_n} f(x)dx 
+# $$
+# 
+# Substituindo cada integral pela regra do trapézio, obtém-se
+# 
+# $$
+# I = h \dfrac{f(x_0) + f(x_1)}{2} + h \dfrac{f(x_1) + f(x_2)}{2} + \dots + h \dfrac{f(x_{n - 1}) + f(x_n)}{2}
+# $$
+# 
+# ou, agrupando termos,
+# 
+# $$
+# I = \dfrac{h}{2} \left[ f(x_0) + 2 \sum _{i = 1} ^{n - 1} f(x_i) + f(x_n) \right] \qquad (4)
+# $$
 
-Existem $n + 1$ pontos base igualmente espaçados $(x_0, x_1, x_2, \dots , x_n)$. Consequentemente, existem $n$ segmentos de largura igual:
+# In[3]:
 
-$$
-h = \dfrac{b − a}{n} \qquad (3)
-$$
-
-Se $a$ e $b$ forem designados por $x_0$ e $x_n$, respectivamente, a integral total pode ser representada como
-
-$$
-I = \int _{x_0}^{x_1} f(x)dx + \int _{x_1}^{x_2} f(x)dx + \dots + \int _{x_{n - 1}}^{x_n} f(x)dx 
-$$
-
-Substituindo cada integral pela regra do trapézio, obtém-se
-
-$$
-I = h \dfrac{f(x_0) + f(x_1)}{2} + h \dfrac{f(x_1) + f(x_2)}{2} + \dots + h \dfrac{f(x_{n - 1}) + f(x_n)}{2}
-$$
-
-ou, agrupando termos,
-
-$$
-I = \dfrac{h}{2} \left[ f(x_0) + 2 \sum _{i = 1} ^{n - 1} f(x_i) + f(x_n) \right] \qquad (4)
-$$
 
 # Representação geométrica da aplicação múltipla da regra do trapézio
 # É possível observar, visualmente, que houve uma redução do erro do resultado em comparação com o caso anterior
@@ -114,31 +128,35 @@ plt.legend()
 plt.axvline(x=0,color='k',linewidth=0.6,linestyle='--')
 plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--'); 
 
-## A Regra 1/3 de Simpson
 
-A **regra 1/3 de Simpson** é obtida quando um polinômio interpolador de segundo grau é substituído na Equação (1):
+# ## A Regra 1/3 de Simpson
+# 
+# A **regra 1/3 de Simpson** é obtida quando um polinômio interpolador de segundo grau é substituído na Equação (1):
+# 
+# $$
+# I = \int _a^b f(x)dx \cong \int _a^b f_2 (x)dx
+# $$
+# 
+# Se $a$ e $b$ forem designados por $x_0$ e $x_2$ e se $f_2(x)$ for representado por um polinômio de Lagrange de segundo grau, a integral se torna
+# 
+# $$
+# I = \int _{x_0}^{x_2} \left[ \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_0) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_1) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_2) \right] dx
+# $$
+# 
+# Depois da integração e de manipulações algébricas, obtém-se a seguinte fórmula:
+# 
+# $$
+# I \cong \dfrac{h}{3} [f(x_0) + 4 f(x_1) + f(x_2)] \qquad (5)
+# $$
+# 
+# em que, para esse caso
+# 
+# $$
+# h = \dfrac{b − a}{2} \qquad (6)
+# $$
 
-$$
-I = \int _a^b f(x)dx \cong \int _a^b f_2 (x)dx
-$$
+# In[4]:
 
-Se $a$ e $b$ forem designados por $x_0$ e $x_2$ e se $f_2(x)$ for representado por um polinômio de Lagrange de segundo grau, a integral se torna
-
-$$
-I = \int _{x_0}^{x_2} \left[ \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_0) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_1) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_2) \right] dx
-$$
-
-Depois da integração e de manipulações algébricas, obtém-se a seguinte fórmula:
-
-$$
-I \cong \dfrac{h}{3} [f(x_0) + 4 f(x_1) + f(x_2)] \qquad (5)
-$$
-
-em que, para esse caso
-
-$$
-h = \dfrac{b − a}{2} \qquad (6)
-$$
 
 # Descrição gráfica da regra 1/3 de Simpson: ela consiste em tomar a área sob uma parábola ligando três pontos
 
@@ -170,53 +188,57 @@ plt.legend()
 plt.axvline(x=0,color='k',linewidth=0.6,linestyle='--')
 plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 
-## Aplicações Múltiplas da Regra 1/3 de Simpson
 
-Do mesmo modo como no caso da regra do trapézio, a regra de Simpson pode ser melhorada dividindo-se o intervalo de integração em diversos segmentos de mesmo comprimento
+# ## Aplicações Múltiplas da Regra 1/3 de Simpson
+# 
+# Do mesmo modo como no caso da regra do trapézio, a regra de Simpson pode ser melhorada dividindo-se o intervalo de integração em diversos segmentos de mesmo comprimento
+# 
+# $$
+# h = \dfrac{b − a}{2}
+# $$
+# 
+# A integral total pode ser representada como
+# 
+# $$
+# I = \int _{x_0}^{x_2} f(x)dx + \int _{x_2}^{x_4} f(x)dx + \dots + \int _{x_{n - 2}}^{x_n} f(x)dx 
+# $$
+# 
+# Substituindo cada integral individual pela regra 1/3 de Simpson, obtemos
+# 
+# $$
+# I \cong 2 h \dfrac{f(x_0) + 4 f(x_1) + f(x_2)}{6} + 2 h \dfrac{f(x_2) + 4 f(x_3) + f(x_4)}{6} + \dots + 2 h \dfrac{f(x_{n - 2}) + 4 f(x_{n - 1}) + f(x_n)}{6}
+# $$
+# 
+# ou 
+# 
+# $$
+# I \cong (b - a) \dfrac{ f(x_0) + 4 \sum _{i = 1, 3, 5}^{n-1} f(x_i) + 2 \sum _{i = 2, 4, 6}^{n-2} f(x_j) + f(x_n) }{3 n} \qquad (7)
+# $$
+# 
+# ## Regra 3/8 de Simpson
+# 
+# De uma maneira parecida com a dedução da regra do trapézio e da regra 1/3 de Simpson, um polinômio de Lagrange de ordem três pode ser ajustado a quatro pontos e integrado
+# 
+# $$
+# I = \int _a^b f(x)dx \cong \int _a^b f_3 (x)dx
+# $$
+# 
+# para fornecer
+# 
+# $$
+# I \cong \dfrac{3 h}{8} [f(x_0) + 3 f(x_1) + 3 f(x_2) + f(x_3)] \qquad (8)
+# $$
+# 
+# em que
+# 
+# $$
+# h = \dfrac{b − a}{3} \qquad (9)
+# $$
+# 
+# Essa equação é chamada regra 3/8 de Simpson porque $h$ é multiplicada por 3/8.
 
-$$
-h = \dfrac{b − a}{2}
-$$
+# In[5]:
 
-A integral total pode ser representada como
-
-$$
-I = \int _{x_0}^{x_2} f(x)dx + \int _{x_2}^{x_4} f(x)dx + \dots + \int _{x_{n - 2}}^{x_n} f(x)dx 
-$$
-
-Substituindo cada integral individual pela regra 1/3 de Simpson, obtemos
-
-$$
-I \cong 2 h \dfrac{f(x_0) + 4 f(x_1) + f(x_2)}{6} + 2 h \dfrac{f(x_2) + 4 f(x_3) + f(x_4)}{6} + \dots + 2 h \dfrac{f(x_{n - 2}) + 4 f(x_{n - 1}) + f(x_n)}{6}
-$$
-
-ou 
-
-$$
-I \cong (b - a) \dfrac{ f(x_0) + 4 \sum _{i = 1, 3, 5}^{n-1} f(x_i) + 2 \sum _{i = 2, 4, 6}^{n-2} f(x_j) + f(x_n) }{3 n} \qquad (7)
-$$
-
-## Regra 3/8 de Simpson
-
-De uma maneira parecida com a dedução da regra do trapézio e da regra 1/3 de Simpson, um polinômio de Lagrange de ordem três pode ser ajustado a quatro pontos e integrado
-
-$$
-I = \int _a^b f(x)dx \cong \int _a^b f_3 (x)dx
-$$
-
-para fornecer
-
-$$
-I \cong \dfrac{3 h}{8} [f(x_0) + 3 f(x_1) + 3 f(x_2) + f(x_3)] \qquad (8)
-$$
-
-em que
-
-$$
-h = \dfrac{b − a}{3} \qquad (9)
-$$
-
-Essa equação é chamada regra 3/8 de Simpson porque $h$ é multiplicada por 3/8.
 
 # Descrição gráfica da regra 3/8 de Simpson: ela consiste em tomar a área sob uma equação cúbica ligando quatro pontos
 
@@ -243,17 +265,21 @@ plt.legend()
 plt.axvline(x=0,color='k',linewidth=0.6,linestyle='--')
 plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 
-## Integração com Segmentos Desiguais
 
-Até esse ponto, todas as fórmulas para integração numérica foram baseadas em dados igualmente espaçados. Na prática, existem muitas situações nas quais essa hipótese não é válida e precisamos lidar com segmentos de tamanhos distintos. Por exemplo, dados obtidos experimentalmente, muitas vezes, são desse tipo. Para tais casos, um método é aplicar a regra do trapézio para cada segmento e somar os resultados:
+# ## Integração com Segmentos Desiguais
+# 
+# Até esse ponto, todas as fórmulas para integração numérica foram baseadas em dados igualmente espaçados. Na prática, existem muitas situações nas quais essa hipótese não é válida e precisamos lidar com segmentos de tamanhos distintos. Por exemplo, dados obtidos experimentalmente, muitas vezes, são desse tipo. Para tais casos, um método é aplicar a regra do trapézio para cada segmento e somar os resultados:
+# 
+# $$
+# I = h_1 \dfrac{f(x_0) + f(x_1)}{2} + h_2 \dfrac{f(x_1) + f(x_2)}{2} + \dots + h_n \dfrac{f(x_{n - 1}) + f(x_n)}{2}
+# $$
+# 
+# em que $h_i$ é a largura do segmento $i$.
 
-$$
-I = h_1 \dfrac{f(x_0) + f(x_1)}{2} + h_2 \dfrac{f(x_1) + f(x_2)}{2} + \dots + h_n \dfrac{f(x_{n - 1}) + f(x_n)}{2}
-$$
+# ## Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas
 
-em que $h_i$ é a largura do segmento $i$.
+# In[6]:
 
-## Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas
 
 ''' Newton-Cotes: Regra do Trapezio
     assume Y igualmente espaçado e 
@@ -337,80 +363,119 @@ for metodo in metodos:
     no = False
 
 
-### Tarefa
-Implemente uma função para realizar a integração numérica pela regra 3/8 de Simpson, use-a para calcular o valor de 
+# ### Tarefa
+# Implemente uma função para realizar a integração numérica pela regra 3/8 de Simpson, use-a para calcular o valor de 
+# 
+# $$\int_{a=0}^{b=93} \frac{97000v}{(5v^2 + 570000)} \, dx$$ 
+# 
+# e compare o resultado com os obtidos pelas anteriores.
 
-$$\int_{a=0}^{b=93} \frac{97000v}{(5v^2 + 570000)} \, dx$$ 
+# ## Integração simbólica 
+# 
+# Vamos ver alguns exemplos de integração simbólica. Para termos uma impressão mais elegante de expressões, antes usamos a seguinte instrução:
 
-e compare o resultado com os obtidos pelas anteriores.
+# In[7]:
 
-## Integração simbólica 
-
-Vamos ver alguns exemplos de integração simbólica. Para termos uma impressão mais elegante de expressões, antes usamos a seguinte instrução:
 
 sy.init_printing()
 
-### Regra quadratura de Simpson
 
-Vamos usar símbolos para chegar à expressão da regra de quadratura de Simpson.
+# ### Regra quadratura de Simpson
+# 
+# Vamos usar símbolos para chegar à expressão da regra de quadratura de Simpson.
+
+# In[8]:
+
 
 a,b,X = sy.symbols("a, b, x")
 f = sy.Function("f")
 
-Definimos tuplas para os pontos de amostra e pesos.
+
+# Definimos tuplas para os pontos de amostra e pesos.
+
+# In[9]:
+
 
 x = a, (a + b)/2, b # ponto médio 
 w = [sy.symbols("w_%d" % i) for i in range(len(x))] # pesos 
 
+
+# In[10]:
+
+
 q = sum([w[i] * f(x[i]) for i in range(len(x))])
 q
 
-Para calcular valores aproximados dos pesos $w_i$, escolhemos a base polinomial 
 
-$$\{ \phi_n(x) = x^n \}_{n=0}^2$$
+# Para calcular valores aproximados dos pesos $w_i$, escolhemos a base polinomial 
+# 
+# $$\{ \phi_n(x) = x^n \}_{n=0}^2$$
+# 
+# para a interpolação de $f(x)$ e um objeto simbólico para representar cada uma dessas funções.
 
-para a interpolação de $f(x)$ e um objeto simbólico para representar cada uma dessas funções.
+# In[11]:
+
 
 phi = [sy.Lambda(X, X**n) for n in range(len(x))]
 phi
 
-Agora temos que descobrir os valores dos pesos. A integral $\int_a^b \phi_n(x) \, dx$ pode ser calculada analiticamente para cada função de base. Isto nos ajuda a resolver o seguinte sistema:
 
-$$\sum\limits_{i=0}^2 w_i \phi_n(x_i) = \int_a^b \phi_n(x) \, dx$$
+# Agora temos que descobrir os valores dos pesos. A integral $\int_a^b \phi_n(x) \, dx$ pode ser calculada analiticamente para cada função de base. Isto nos ajuda a resolver o seguinte sistema:
+# 
+# $$\sum\limits_{i=0}^2 w_i \phi_n(x_i) = \int_a^b \phi_n(x) \, dx$$
 
-O sistema pode ser construído no `sympy` da seguinte forma: 
+# O sistema pode ser construído no `sympy` da seguinte forma: 
+
+# In[12]:
+
 
 eqs = [q.subs(f, phi[n]) - sy.integrate(phi[n](X), (X, a, b)) for n in range(len(phi))]
 eqs
 
-Em seguida, resolvemos o sistema para obter as expressões analíticas para os pesos:  
+
+# Em seguida, resolvemos o sistema para obter as expressões analíticas para os pesos:  
+
+# In[13]:
+
 
 w_sol = sy.solve(eqs,w)
 w_sol
 
-Substituindo a solução na expressão simbólica para a regra de quadratura:
+
+# Substituindo a solução na expressão simbólica para a regra de quadratura:
+
+# In[14]:
+
 
 q.subs(w_sol).simplify()
 
-Podemos verificar no material que esta é, de fato, a expressão para a regra de quadratura de Simpson.
 
-## Integração múltipla
+# Podemos verificar no material que esta é, de fato, a expressão para a regra de quadratura de Simpson.
 
-A integração em 2 ou mais variáveis pode ser feita usando as funções `dblquad`, `tplquad` e `nquad`, onde o número de funções e de limites de integração deve se adequar ao tipo de integral.
+# ## Integração múltipla
+# 
+# A integração em 2 ou mais variáveis pode ser feita usando as funções `dblquad`, `tplquad` e `nquad`, onde o número de funções e de limites de integração deve se adequar ao tipo de integral.
+# 
+# Abaixo, temos alguns exemplos: 
 
-Abaixo, temos alguns exemplos: 
+# #### Integração dupla
+# 
+# Neste exemplo, integramos 
+# $$\int_0^1\int_0^1 e^{-x^2 - y^2} \, dx dy$$
 
-#### Integração dupla
+# In[15]:
 
-Neste exemplo, integramos 
-$$\int_0^1\int_0^1 e^{-x^2 - y^2} \, dx dy$$
 
 integrate.dblquad(lambda x, y: np.exp(-x**2-y**2), 0, 1, lambda x: 0, lambda x: 1)
 
-#### Integração tripla
 
-Neste exemplo, integramos 
-$$\int_0^1\int_0^1\int_0^1 e^{-x^2 - y^2 - z^2} \, dx dy dz$$
+# #### Integração tripla
+# 
+# Neste exemplo, integramos 
+# $$\int_0^1\int_0^1\int_0^1 e^{-x^2 - y^2 - z^2} \, dx dy dz$$
+
+# In[16]:
+
 
 def f(x, y, z): 
     return np.exp(-x**2-y**2-z**2) 
@@ -419,3 +484,4 @@ a, b = 0, 1
 g, h = lambda x: 0, lambda x: 1
 q, r = lambda x, y: 0, lambda x, y: 1
 integrate.tplquad(f, 0, 1, g, h, q, r) 
+

@@ -1,11 +1,21 @@
-## Método das Linhas 
+#!/usr/bin/env python
+# coding: utf-8
+
+# ## Método das Linhas 
+
+# In[1]:
+
 
 from numpy import *
 import sympy as sy 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 
-O código abaixo usa o método de Euler explícito para resolver a EDP do calor unidimensional. 
+
+# O código abaixo usa o método de Euler explícito para resolver a EDP do calor unidimensional. 
+
+# In[2]:
+
 
 def met_linhas_euler(d0,d1,f,G,t0,T,h,m):
     """
@@ -59,7 +69,11 @@ def met_linhas_euler(d0,d1,f,G,t0,T,h,m):
             
     return x,t,u
 
-A solução exata para a EDP é $u(x,t) = \exp(-0.1t){\rm sen}(\pi x)$. A partir desta função obteremos todos os demais termos da EDP. Abaixo, encontraremos as derivadas parciais em relação ao tempo e ao espaço. 
+
+# A solução exata para a EDP é $u(x,t) = \exp(-0.1t){\rm sen}(\pi x)$. A partir desta função obteremos todos os demais termos da EDP. Abaixo, encontraremos as derivadas parciais em relação ao tempo e ao espaço. 
+
+# In[3]:
+
 
 # u(x,t) = exp(-0.1*t)*sin(pi*x)
 
@@ -79,6 +93,10 @@ d2udx2 = sy.diff(u,xsym,2)
 Gxt = dudt - d2udx2
 
 print(Gxt)
+
+
+# In[17]:
+
 
 # d0 = u(0,t) = 0
 # d1 = u(1,t) = 0
@@ -113,6 +131,10 @@ plt.ylabel('T')
 plt.title('comparativo')
 ax.view_init(45, 45)
 
+
+# In[18]:
+
+
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot(1,1,1, projection='3d')
 ax.plot_surface(X, TT, abs(ue-un), alpha=1.)
@@ -120,3 +142,4 @@ plt.xlabel('X')
 plt.ylabel('T')
 plt.title('erro')
 ax.view_init(45, 45)
+

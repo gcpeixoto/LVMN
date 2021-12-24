@@ -1,19 +1,25 @@
-# Lista de Exercícios 1
+#!/usr/bin/env python
+# coding: utf-8
 
-Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 1.
+# # Lista de Exercícios 1
+# 
+# Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 1.
 
-## Exercícios computacionais
+# ## Exercícios computacionais
 
-### Q
-Considere a função quadrática $f(x) = x^2 - 100.0001 + 0.01$:
+# ### Q
+# Considere a função quadrática $f(x) = x^2 - 100.0001 + 0.01$:
+# 
+# a) Implemente a fórmula de Bhaskara para calcular suas raízes
+# 
+# b) Racionalize a fórmula de Bhaskara para a solução $x_2$ (multiplique por $\frac{-b + \sqrt{\Delta}}{-b + \sqrt{\Delta}}$) e refaça o cálculo para $x_2$.
+# 
+# c) Compare os resultados para $x_2$.
 
-a) Implemente a fórmula de Bhaskara para calcular suas raízes
+# ### S
 
-b) Racionalize a fórmula de Bhaskara para a solução $x_2$ (multiplique por $\frac{-b + \sqrt{\Delta}}{-b + \sqrt{\Delta}}$) e refaça o cálculo para $x_2$.
+# In[1]:
 
-c) Compare os resultados para $x_2$.
-
-### S
 
 from math import sqrt
 
