@@ -494,19 +494,21 @@
                 
   <section id="implementacoes-do-metodo-da-bissecao">
 <h1><span class="section-number">5. </span>Implementações do método da bisseção<a class="headerlink" href="#implementacoes-do-metodo-da-bissecao" title="Permalink to this headline">¶</a></h1>
+<p>Neste capítulo, apresentamos alternativas para a resolução de equações não-lineares através do Método da Bisseção. A primeira delas apresenta um algoritmo capaz de lidar com uma quantidade razoável de funções a uma variável, isto é.</p>
+<p>Para ser executado, o método <code class="docutils literal notranslate"><span class="pre">bissecao</span></code> requer 5 parâmetros:</p>
+<ul class="simple">
+<li><p>a função <span class="math notranslate nohighlight">\(f(x)\)</span> propriamente dita;</p></li>
+<li><p>o domínio de solução <span class="math notranslate nohighlight">\([a,b]\)</span>;</p></li>
+<li><p>o erro absoluto desejado <span class="math notranslate nohighlight">\(EA_d\)</span>, representado por <code class="docutils literal notranslate"><span class="pre">tol</span></code>;</p></li>
+<li><p>o número máximo de iterações <span class="math notranslate nohighlight">\(N\)</span> para tentativa de solução.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;MB Metodo da bissecao para funcoes unidimensionais</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;MB - Metodo da Bisseção 1D</span>
+
 <span class="sd">entrada: </span>
-<span class="sd">    f: uma string dependendo de x, i.e., a funcao</span>
-<span class="sd">           (e.g., &#39;x^2 + 1&#39;, &#39;x^2*cos(x)&#39;, etc.) </span>
+<span class="sd">    f: string dependendo de uma variável, i.e., a função-alvo</span>
+<span class="sd">        (e.g., &#39;x**2 - 1&#39;, &#39;x**2*cos(x)&#39;, etc.) </span>
 <span class="sd">    a: limite inferior do dominio</span>
 <span class="sd">    b: limite superior do dominio</span>
 <span class="sd">    tol: tolerancia    </span>
@@ -514,23 +516,30 @@
 
 <span class="sd">saida: </span>
 <span class="sd">    xm: raiz da funcao</span>
+<span class="sd">    </span>
+<span class="sd">nota:     </span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">var</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
         
-    <span class="c1"># TODO identificar a variável usada na função </span>
-    <span class="c1">#      Aqui, tentei assumir que apenas uma era usada (e.g. &#39;x&#39;),</span>
-    <span class="c1">#      mas foi complicado generalizar quando há objeto numpy</span>
-    <span class="c1">#var = re.search(&#39;[a-zA-Z]+&#39;,f)</span>
-    <span class="c1">#var = var.group()</span>
+    <span class="c1"># adiciona as chamadas das funções do numpy</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(sin|sinh|cos|cosh|tan|tanh|</span><span class="se">\</span>
+<span class="s1">               exp|log|sqrt|log10|</span><span class="se">\</span>
+<span class="s1">               arcsin|arccos|arctan|</span><span class="se">\</span>
+<span class="s1">               arcsinh|arccosh|arctanh)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;np.\1&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># identifica a variavel</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(&#39;</span><span class="o">+</span> <span class="n">var</span> <span class="o">+</span><span class="s1">&#39;) = &#39;</span> <span class="o">+</span> <span class="n">f</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="c1"># cria função anônima</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;lambda &#39;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s1">&#39; :&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
-
-    <span class="c1"># Se função não for de uma variável, lança erro.</span>
-    <span class="c1"># Mais aplicável se o caso geral fosse implementado.        </span>
+    
+    <span class="c1"># Se função não for de uma variável, lança erro        </span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>    
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;O código é válido apenas para uma variável.&#39;</span><span class="p">)</span>
 
@@ -557,7 +566,7 @@
     <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="p">(</span> <span class="ow">not</span> <span class="n">done</span> <span class="ow">or</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">):</span>
     <span class="c1"># avalia a função no ponto médio</span>
         <span class="n">fxm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(i = </span><span class="si">{0:d}</span><span class="s2">) f(xm)=</span><span class="si">{1:f}</span><span class="s2"> | f(a)=</span><span class="si">{2:f}</span><span class="s2"> | f(b)=</span><span class="si">{3:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fxm</span><span class="p">,</span><span class="n">fa</span><span class="p">,</span><span class="n">fb</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(i = </span><span class="si">{0:d}</span><span class="s2">) f(</span><span class="si">{4:s}</span><span class="s2">m)=</span><span class="si">{1:f}</span><span class="s2"> | f(a)=</span><span class="si">{2:f}</span><span class="s2"> | f(b)=</span><span class="si">{3:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fxm</span><span class="p">,</span><span class="n">fa</span><span class="p">,</span><span class="n">fb</span><span class="p">,</span><span class="n">var</span><span class="p">))</span>
    
         <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fxm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># Raiz esta à esquerda de xm</span>
             <span class="n">b</span> <span class="o">=</span> <span class="n">xm</span>
@@ -576,6 +585,70 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solução encontrada: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xm</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">xm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;-arccos(x) + 4*sin(x) + 1.7&#39;</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(x) = -np.arccos(x) + 4*np.sin(x) + 1.7
+
+(i = 1) f(xm)=2.098394 | f(a)=-0.866832 | f(b)=5.065884
+(i = 2) f(xm)=0.628705 | f(a)=-0.866832 | f(b)=2.098394
+(i = 3) f(xm)=-0.120734 | f(a)=-0.866832 | f(b)=0.628705
+(i = 4) f(xm)=0.254196 | f(a)=-0.120734 | f(b)=0.628705
+(i = 5) f(xm)=0.066705 | f(a)=-0.120734 | f(b)=0.254196
+(i = 6) f(xm)=-0.027031 | f(a)=-0.120734 | f(b)=0.066705
+(i = 7) f(xm)=0.019834 | f(a)=-0.027031 | f(b)=0.066705
+(i = 8) f(xm)=-0.003599 | f(a)=-0.027031 | f(b)=0.019834
+(i = 9) f(xm)=0.008117 | f(a)=-0.003599 | f(b)=0.019834
+(i = 10) f(xm)=0.002259 | f(a)=-0.003599 | f(b)=0.008117
+(i = 11) f(xm)=-0.000670 | f(a)=-0.003599 | f(b)=0.002259
+Solução encontrada: -0.02568359375
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([-10,10]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
+<p><em>Nota:</em> Neste exemplo, <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">5</span></code> não afeta o processo iterativo de determinação da raiz, porque o algoritmo
+gera convergência para uma solução aproximada. Caso tivéssemos uma função mais “rígida”, o valor de <code class="docutils literal notranslate"><span class="pre">N</span></code> impediria iterações <em>ad infinitum</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;z/(1 - 2*z) - tan(z+1)&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(z) = z/(1 - 2*z) - np.tan(z+1)
+
+(i = 1) f(zm)=-1.557408 | f(a)=-0.928506 | f(b)=225.424531
+(i = 2) f(zm)=-0.264549 | f(a)=-1.557408 | f(b)=225.424531
+(i = 3) f(zm)=0.790650 | f(a)=-0.264549 | f(b)=225.424531
+(i = 4) f(zm)=-1.992758 | f(a)=-0.264549 | f(b)=0.790650
+(i = 5) f(zm)=47.031216 | f(a)=-1.992758 | f(b)=0.790650
+(i = 6) f(zm)=-3.874270 | f(a)=-1.992758 | f(b)=47.031216
+(i = 7) f(zm)=-7.889788 | f(a)=-3.874270 | f(b)=47.031216
+(i = 8) f(zm)=-18.031763 | f(a)=-7.889788 | f(b)=47.031216
+(i = 9) f(zm)=-55.953115 | f(a)=-18.031763 | f(b)=47.031216
+(i = 10) f(zm)=671.902656 | f(a)=-55.953115 | f(b)=47.031216
+(i = 11) f(zm)=-121.331336 | f(a)=-55.953115 | f(b)=671.902656
+(i = 12) f(zm)=-295.028631 | f(a)=-121.331336 | f(b)=671.902656
+(i = 13) f(zm)=-1048.438272 | f(a)=-295.028631 | f(b)=671.902656
+(i = 14) f(zm)=3753.032553 | f(a)=-1048.438272 | f(b)=671.902656
+(i = 15) f(zm)=-2908.034407 | f(a)=-1048.438272 | f(b)=3753.032553
+(i = 16) f(zm)=-25798.415576 | f(a)=-2908.034407 | f(b)=3753.032553
+(i = 17) f(zm)=8784.876063 | f(a)=-25798.415576 | f(b)=3753.032553
+(i = 18) f(zm)=26644.055226 | f(a)=-25798.415576 | f(b)=8784.876063
+(i = 19) f(zm)=-1623619.448713 | f(a)=-25798.415576 | f(b)=26644.055226
+(i = 20) f(zm)=54177.749175 | f(a)=-1623619.448713 | f(b)=26644.055226
+(i = 21) f(zm)=112096.589477 | f(a)=-1623619.448713 | f(b)=54177.749175
+Solução encontrada: 6.853985786437988
 </pre></div>
 </div>
 </div>
@@ -611,7 +684,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-04-bissecao_3_0.png" src="_images/aula-04-bissecao_3_0.png" />
+<img alt="_images/aula-04-bissecao_6_0.png" src="_images/aula-04-bissecao_6_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -635,36 +708,35 @@
 
 <span class="c1"># TODO</span>
 <span class="c1"># para esta função, teremos que substituir &#39;exp&#39; por &#39;np.exp&#39;)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(c) = &#39;</span> <span class="o">+</span> <span class="n">f_s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">f_s</span> <span class="o">=</span> <span class="s1">&#39;-42 + 686.7*(1 - np.exp(-6*c/35))/c&#39;</span>
 
 <span class="c1"># resolve bisseção</span>
-<span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="n">f_s</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="n">f_s</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(c) = -42 + 686.7*(1 - exp(-6*c/35))/c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(c) = -42 + 686.7*(1 - np.exp(-6*c/35))/c
 
-(i = 1) f(xm)=2.600284 | f(a)=7.910578 | f(b)=-1.844622
-(i = 2) f(xm)=0.281205 | f(a)=2.600284 | f(b)=-1.844622
-(i = 3) f(xm)=-0.804573 | f(a)=0.281205 | f(b)=-1.844622
-(i = 4) f(xm)=-0.267556 | f(a)=0.281205 | f(b)=-0.804573
-(i = 5) f(xm)=0.005337 | f(a)=0.281205 | f(b)=-0.267556
-(i = 6) f(xm)=-0.131479 | f(a)=0.005337 | f(b)=-0.267556
-(i = 7) f(xm)=-0.063164 | f(a)=0.005337 | f(b)=-0.131479
-(i = 8) f(xm)=-0.028937 | f(a)=0.005337 | f(b)=-0.063164
-(i = 9) f(xm)=-0.011806 | f(a)=0.005337 | f(b)=-0.028937
-(i = 10) f(xm)=-0.003236 | f(a)=0.005337 | f(b)=-0.011806
-(i = 11) f(xm)=0.001050 | f(a)=0.005337 | f(b)=-0.003236
-(i = 12) f(xm)=-0.001093 | f(a)=0.001050 | f(b)=-0.003236
-(i = 13) f(xm)=-0.000022 | f(a)=0.001050 | f(b)=-0.001093
-(i = 14) f(xm)=0.000514 | f(a)=0.001050 | f(b)=-0.000022
-(i = 15) f(xm)=0.000246 | f(a)=0.000514 | f(b)=-0.000022
-(i = 16) f(xm)=0.000112 | f(a)=0.000246 | f(b)=-0.000022
-(i = 17) f(xm)=0.000045 | f(a)=0.000112 | f(b)=-0.000022
-(i = 18) f(xm)=0.000012 | f(a)=0.000045 | f(b)=-0.000022
-(i = 19) f(xm)=-0.000005 | f(a)=0.000012 | f(b)=-0.000022
+(i = 1) f(cm)=2.600284 | f(a)=7.910578 | f(b)=-1.844622
+(i = 2) f(cm)=0.281205 | f(a)=2.600284 | f(b)=-1.844622
+(i = 3) f(cm)=-0.804573 | f(a)=0.281205 | f(b)=-1.844622
+(i = 4) f(cm)=-0.267556 | f(a)=0.281205 | f(b)=-0.804573
+(i = 5) f(cm)=0.005337 | f(a)=0.281205 | f(b)=-0.267556
+(i = 6) f(cm)=-0.131479 | f(a)=0.005337 | f(b)=-0.267556
+(i = 7) f(cm)=-0.063164 | f(a)=0.005337 | f(b)=-0.131479
+(i = 8) f(cm)=-0.028937 | f(a)=0.005337 | f(b)=-0.063164
+(i = 9) f(cm)=-0.011806 | f(a)=0.005337 | f(b)=-0.028937
+(i = 10) f(cm)=-0.003236 | f(a)=0.005337 | f(b)=-0.011806
+(i = 11) f(cm)=0.001050 | f(a)=0.005337 | f(b)=-0.003236
+(i = 12) f(cm)=-0.001093 | f(a)=0.001050 | f(b)=-0.003236
+(i = 13) f(cm)=-0.000022 | f(a)=0.001050 | f(b)=-0.001093
+(i = 14) f(cm)=0.000514 | f(a)=0.001050 | f(b)=-0.000022
+(i = 15) f(cm)=0.000246 | f(a)=0.000514 | f(b)=-0.000022
+(i = 16) f(cm)=0.000112 | f(a)=0.000246 | f(b)=-0.000022
+(i = 17) f(cm)=0.000045 | f(a)=0.000112 | f(b)=-0.000022
+(i = 18) f(cm)=0.000012 | f(a)=0.000045 | f(b)=-0.000022
+(i = 19) f(cm)=-0.000005 | f(a)=0.000012 | f(b)=-0.000022
 Solução encontrada: 15.127429962158203
 </pre></div>
 </div>
