@@ -124,13 +124,13 @@ plotting(x,dy2,'ob','$a(t)$')
 
 # ## Derivada numérica progressiva e regressiva (primeira ordem)
 
-# In[14]:
+# In[6]:
 
 
 # Exemplo: f(x) = sen(x); 
 # Derivada analítica (verdadeira): f'(x=x0) = cos(x0)
 x0 = 1.2
-h = 0.01
+h = .01
 n = 10
 x = np.linspace(x0-2*h,x0+2*h,n)
 
@@ -172,7 +172,7 @@ print('f\'c({0:g}) = {1:.8f}'.format(x0,dfc))
 # 
 # Vamos primeiro computar a seguda derivada analítica de $f(x)$ por computação simbólica.
 
-# In[24]:
+# In[7]:
 
 
 from sympy.abc import x 
@@ -186,14 +186,14 @@ d2fdx2 = sy.diff(f,x,2)
 d2fdx2
 
 
-# In[25]:
+# In[8]:
 
 
 # derivada em x = 2 
 d2fdx2_p2 = d2fdx2.subs(x,2)
 
 
-# In[26]:
+# In[9]:
 
 
 # valor numérico
@@ -203,7 +203,7 @@ d2fdx2_p2_num
 
 # Agora, vamos montar uma função para a fórmula da segunda derivada a 3 pontos (supondo que os pontos dados sejam igualmente espaçados:
 
-# In[27]:
+# In[10]:
 
 
 # função 
@@ -214,7 +214,7 @@ def der_num_2(x1,x2,x3):
 
 # Aplicamos a nossa aproximação numérica ao primeiro conjunto de pontos para estimar a derivada numérica no ponto $x=2$ por diferença centrada.
 
-# In[28]:
+# In[11]:
 
 
 df2_1 = der_num_2(1.8,2.0,2.2)
@@ -223,7 +223,7 @@ df2_1
 
 # Em seguida, aplicamos a nossa aproximação numérica ao segundo conjunto de pontos:
 
-# In[29]:
+# In[12]:
 
 
 df2_2 = der_num_2(1.9,2.0,2.1)
@@ -232,7 +232,7 @@ df2_2
 
 # Esperamos que o segundo conjunto de pontos nos dê uma estimativa mais próxima para a derivada analítica já que os pontos estão mais próximos um do outro. Para verificar isto, vamos medir o erro relativo percentual entre as derivadas numéricas e a derivada analítica.
 
-# In[30]:
+# In[13]:
 
 
 # erro relativo percentual 

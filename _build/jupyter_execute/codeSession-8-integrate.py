@@ -3,7 +3,7 @@
 
 # # Code session 8
 
-# In[3]:
+# In[1]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -34,7 +34,7 @@ import matplotlib.pyplot as plt
 # from scipy.integrate import quad
 # ```
 
-# In[4]:
+# In[2]:
 
 
 from scipy.integrate import quad
@@ -52,7 +52,7 @@ from scipy.integrate import quad
 # 
 # Em primeiro lugar, fazemos os cálculos diretos da integral para os distintos valores de $\tau$.
 
-# In[11]:
+# In[22]:
 
 
 # cálculo direto das integrais caso a caso
@@ -73,9 +73,9 @@ vals = np.asarray(vals)
 errs = np.asarray(errs)
 
 
-# Vemos que o valor das integrais é muito sensível. Para realizar uma comparação mais interessante, utilizaremos um cálculo relativo tomando o valor em $h(0)$ como referência.
+# Vemos que o valor das integrais é muito sensível. Para realizar uma comparação mais interessante, utilizaremos um cálculo relativo tomando o valor em $h(15)$ como referência.
 
-# In[20]:
+# In[23]:
 
 
 plt.stem(theta0, (vals - vals[0])/vals[0], use_line_collection=True);
@@ -99,7 +99,7 @@ plt.ylabel('erro relativo');
 # 
 # Neste caso, basta passarmos os valores iniciais e finais para computar a integral. 
 
-# In[21]:
+# In[27]:
 
 
 i0, t0, beta = 1.0, 0.05, 0.2 # parâmetros iniciais
@@ -121,19 +121,19 @@ print(f'Corrente RMS = {i_rms:g} A')
 # 
 # Vamos utilizar a função $i(t)$ do Problema 2 e estimar sua integral no intervalo $t = [0,5]$ utilizando a regra do trapézio generalizada.
 
-# In[28]:
+# In[36]:
 
 
 # Visualização
 t = np.linspace(0,5)
 i = lambda t: i0 * ( np.sin( (np.pi*t) / t0 ) - beta * np.sin( (2*np.pi*t) / t0 ) )  # função
 
-plt.plot(t,i(t),'o-');
+plt.plot(t,i(t),'o');
 plt.xlabel('$t$')
 plt.ylabel('$i(t)$');
 
 
-# In[38]:
+# In[7]:
 
 
 from scipy.integrate import cumtrapz

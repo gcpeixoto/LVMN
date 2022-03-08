@@ -2,20 +2,24 @@
 # coding: utf-8
 
 # # Implementações do método da bisseção
+# 
+# Neste capítulo, apresentamos alternativas para a resolução de equações não-lineares através do Método da Bisseção. A primeira delas apresenta um algoritmo capaz de lidar com uma quantidade razoável de funções a uma variável, isto é.
+# 
+# Para ser executado, o método `bissecao` requer 5 parâmetros: 
+# 
+# - a função $f(x)$ propriamente dita;
+# - o domínio de solução $[a,b]$;
+# - o erro absoluto desejado $EA_d$, representado por `tol`;
+# - o número máximo de iterações $N$ para tentativa de solução.
 
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+"""MB - Metodo da Bisseção 1D
 
-
-# In[2]:
-
-
-"""MB Metodo da bissecao para funcoes unidimensionais
 entrada: 
-    f: uma string dependendo de x, i.e., a funcao
-           (e.g., 'x^2 + 1', 'x^2*cos(x)', etc.) 
+    f: string dependendo de uma variável, i.e., a função-alvo
+        (e.g., 'x**2 - 1', 'x**2*cos(x)', etc.) 
     a: limite inferior do dominio
     b: limite superior do dominio
     tol: tolerancia    
@@ -23,23 +27,27 @@ entrada:
 
 saida: 
     xm: raiz da funcao
+    
+nota:     
 """
 
 import inspect, re
+import numpy as np
 
-def bissecao(f,a,b,tol,N,var):
+def bissecao(f,a,b,tol,N):
         
-    # TODO identificar a variável usada na função 
-    #      Aqui, tentei assumir que apenas uma era usada (e.g. 'x'),
-    #      mas foi complicado generalizar quando há objeto numpy
-    #var = re.search('[a-zA-Z]+',f)
-    #var = var.group()
+    # adiciona as chamadas das funções do numpy
+    f = re.sub('(sin|sinh|cos|cosh|tan|tanh|               exp|log|sqrt|log10|               arcsin|arccos|arctan|               arcsinh|arccosh|arctanh)', r'np.\1', f)
+    
+    # identifica a variavel
+    var = re.search(r'([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))', f).group(1)
+    
+    print('f('+ var +') = ' + f + '\n')
 
     # cria função anônima
     f = eval('lambda ' + var + ' :' + f)
-
-    # Se função não for de uma variável, lança erro.
-    # Mais aplicável se o caso geral fosse implementado.        
+    
+    # Se função não for de uma variável, lança erro        
     if len(inspect.getfullargspec(f).args) - 1 > 0:    
         raise ValueError('O código é válido apenas para uma variável.')
 
@@ -66,7 +74,7 @@ def bissecao(f,a,b,tol,N,var):
     while abs(a-b) > tol and ( not done or N != 0 ):
     # avalia a função no ponto médio
         fxm = f(xm)
-        print("(i = {0:d}) f(xm)={1:f} | f(a)={2:f} | f(b)={3:f}".format(i,fxm,fa,fb))
+        print("(i = {0:d}) f({4:s}m)={1:f} | f(a)={2:f} | f(b)={3:f}".format(i,fxm,fa,fb,var))
    
         if fa*fxm < 0:       # Raiz esta à esquerda de xm
             b = xm
@@ -87,7 +95,26 @@ def bissecao(f,a,b,tol,N,var):
     return xm
 
 
+# **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
+
+# In[2]:
+
+
+xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,30)
+
+
+# **Exemplo:** Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[-10,10]$ e $\epsilon = 10^{-5}$.
+# 
+# _Nota:_ Neste exemplo, `N = 5` não afeta o processo iterativo de determinação da raiz, porque o algoritmo
+# gera convergência para uma solução aproximada. Caso tivéssemos uma função mais "rígida", o valor de `N` impediria iterações _ad infinitum_.
+
 # In[3]:
+
+
+zm = bissecao('z/(1 - 2*z) - tan(z+1)',-10,10,1e-5,5)
+
+
+# In[4]:
 
 
 import numpy as np
@@ -117,7 +144,7 @@ plt.ylabel('v [m/s]')
 plt.title('Velocidade terminal - paraquedista');
 
 
-# In[4]:
+# In[6]:
 
 
 import sympy as sp
@@ -139,11 +166,10 @@ f_s = str(f_g.subs({'g':grav,'m':mass,'v':vel,'t':time}))
 
 # TODO
 # para esta função, teremos que substituir 'exp' por 'np.exp')
-print('f(c) = ' + f_s + '\n')
 f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
 
 # resolve bisseção
-xm = bissecao(f_s,12,16,1e-5,100,'c')
+xm = bissecao(f_s,12,16,1e-5,100)
 
 
 # ## Tarefas

@@ -220,8 +220,8 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # tabela de dados
-x = np.array([1,2.1,3.3,4.5]) # densidade
-y = np.array([0.5,2.5,2.0,4.2]) # diâmetro
+x = np.array([1,2,3,4]) # densidade
+y = np.array([0.5,2.5,2.0,4.0]) # diâmetro
 
 
 # Agora, calculamos os coeficientes linear $\alpha_0$ e angular $\alpha_1$ pelas fórmulas das equações normais vistas em aula.

@@ -164,7 +164,7 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 # 
 # Vamos implementar abaixo o código para gerar a tabela de pontos (nós) e pesos para integração numérica consoante as fórmulas de quadratura de **Gauss-Legendre**. 
 
-# In[47]:
+# In[3]:
 
 
 # número de pontos de quadratura
@@ -176,7 +176,7 @@ n = 8
 
 # Isto é, para a regra de 2 pontos, os nós de Gauss-Legendre são
 
-# In[48]:
+# In[4]:
 
 
 print(pontos)
@@ -184,13 +184,13 @@ print(pontos)
 
 # e os pesos correspondentes são:
 
-# In[49]:
+# In[5]:
 
 
 print(pesos)
 
 
-# In[50]:
+# In[6]:
 
 
 plt.plot(pontos,pesos)
@@ -201,11 +201,11 @@ plt.autoscale;
 
 # Para gerarmos uma tabela de pontos e pesos, basta fazer:
 
-# In[53]:
+# In[7]:
 
 
 # número máximo de pontos
-N = 8
+N = 16
 
 for i in range(1,N+1):
     (pontos,pesos) = leg.leggauss(i)       
@@ -218,7 +218,7 @@ for i in range(1,N+1):
 
 # A partir daí, podemos organizar uma tabela para a regra de até 8 pontos/pesos como segue:
 
-# In[54]:
+# In[12]:
 
 
 # número máximo de pontos
