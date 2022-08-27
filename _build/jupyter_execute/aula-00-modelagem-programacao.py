@@ -63,36 +63,36 @@
 # 
 # Como exemplo, veremos a análise do salto de paraquedas de Yan com seu irmão Celso. Vamos calcular a aceleração que seria atingida por Yan desde o salto até o momento da abertura de seu paraquedas. Na época do salto, Yan estava com 65 kg e o ar apresentava um coeficiente de arrasto estimado em 12,5 kg/s.
 # 
-# Utilizando a fórmula dada, podemos calcular a velocidade atingida por Yan em relação ao tempo. A seguir, criamos uma função para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
+# Utilizando a fórmula dada, podemos calcular a velocidade atingida por Yan em relação ao tempo. A seguir, criamos um pequeno programa para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
 
-# In[2]:
+# In[1]:
 
 
 # velocidade no salto de Yan
-import numpy as np
+from numpy import exp
 import matplotlib.pyplot as plt
-
 
 arr_yan = 11*[0]
 contador = 0
-while (contador <= 10):
-    a = ((9.8 * 65)/12.5)*(1 - np.exp(-(12.5/65)*contador))   
+while contador <= 10:
+    a = ((9.8 * 65)/12.5)*(1 - exp(-(12.5/65)*contador))   
     arr_yan[contador] = a
-    print("{0:.4f} m/s".format(a))
+    print(f'{contador}: {a:.4f} m/s')
     contador += 1
 else:
-    print('==> Abertura do paraquedas.')
+    print('-> Abertura do paraquedas.')
     
-plt.plot(arr_yan,'o-b')
-plt.xlabel('tempo')
-plt.ylabel('velocidade')
-plt.grid()
-plt.axhline(a,color='r',ls='--');
+# plotagem    
+fig, ax = plt.subplots(figsize=(8,4))
+ax.plot(arr_yan,'o-g')
+ax.set_xlabel('tempo')
+ax.set_ylabel('velocidade')
+ax.grid()
 
 
 # Porém, Celso, irmão de Yan, também saltou com ele, em separado. Celso, tem mais 20kg a mais do que Yan. Então, vamos ver como a massa influenciou a velocidade no salto de Celso e comparas as curvas.
 
-# In[3]:
+# In[2]:
 
 
 # velocidade no salto de Yan
@@ -106,23 +106,23 @@ contador = 0
 while (contador <= 10):       
     b = ((9.8 * 85)/12.5)*(1- exp(-(12.5/85)*contador))   
     arr_celso[contador] = b
-    print("{0:.4f} m/s".format(b))
+    print(f'{contador}: {a:.4f} m/s')
     contador += 1
 else:
     print('==> Abertura do paraquedas')
-    
-plt.plot(arr_yan,'o-b')
-plt.plot(arr_celso,'o-g')
-plt.xlabel('tempo')
-plt.ylabel('velocidade')
-plt.grid()
-plt.axhline(a,color='r',ls='--')
-plt.axhline(b,color='m',ls='--');
+
+# plotagem
+fig, ax = plt.subplots(figsize=(8,4))    
+ax.plot(arr_yan,'o-g')
+ax.plot(arr_celso,'o-',c='gray')
+ax.set_xlabel('tempo')
+ax.set_ylabel('velocidade')
+ax.grid()
 
 
 # Podemos observar que quanto maior a massa, maior é a velocidade atingida. Por esta razão, Celso chegou ao solo antes de Yan.
 # 
-# Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação _estruturada_ e _modular_. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os pacotes (ou **módulos**) _math_ e _numpy_ para invocarmos a função exponencial `exp` e os as funções para plotagens gráficas.
+# Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação _estruturada_ e _modular_. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os pacotes (ou **módulos**) _math_ e _numpy_ para invocarmos a função exponencial `exp` e as funções para plotagens gráficas.
 
 # ### Deslocamento até a abertura do paraquedas
 # 
@@ -132,17 +132,21 @@ plt.axhline(b,color='m',ls='--');
 # 
 # em cada caso para computar esses deslocamentos. No Python, podemos fazer isso com o código abaixo (que você entenderá mais tarde como fazer).
 
-# In[4]:
+# In[3]:
 
 
-import sympy as sy
+from sympy import symbols, exp, integrate
 
-t,g,m,c = sy.symbols('t g m c')
-v = g*m/c*(1 - sy.exp(-c/m*t))
-s1 = sy.integrate(v,(t,0,10)).subs({'m':65.0,'g':9.8,'c':12.5})
-s2 = sy.integrate(v,(t,0,10)).subs({'m':85.0,'g':9.8,'c':12.5})
-print("Yan voou incríveis DY = {0:.2f} metros em 10 segundos!".format(s1))
-print("Celso voou incríveis DC = {0:.2f} metros em 10 segundos!".format(s2))
+# função v(t)
+t,g,m,c = symbols('t g m c')
+v = g*m/c*(1 - exp(-c/m*t))
+
+# integração numérica
+s1 = integrate(v,(t,0,10)).subs({'m':65.0,'g':9.8,'c':12.5})
+s2 = integrate(v,(t,0,10)).subs({'m':85.0,'g':9.8,'c':12.5})
+
+print(f'Yan voou incríveis DY = {s1:2f} metros em 10 segundos!')
+print(f'Yan voou incríveis DY = {s2:2f} metros em 10 segundos!')
 
 
 # ## Programação estruturada e modular
@@ -176,19 +180,18 @@ print("Celso voou incríveis DC = {0:.2f} metros em 10 segundos!".format(s2))
 # - imprimir o valor da área de um triângulo.
 # 
 
-# In[5]:
+# In[4]:
 
 
-"""
-Módulo: ponto.py
-Exemplo de programação modular. 
-Classe para trabalhar com pontos do espaço 2D.
-"""
+# ponto.py
 
 import numpy as np 
 import matplotlib.pyplot as plt
 
 class Ponto:
+    """
+        Classe que implementa pontos no espaço 2D.
+    """
 
     # inicialização de um ponto arbitrário com coordenadas (xp,yp)
     def __init__(self, xp, yp):
@@ -213,17 +216,15 @@ class Ponto:
         return A
     
     def imprime_area_triangulo(P1,P2,P3):
-        
-        txt = 'Area do triângulo P1 = ({0}.{1}); P2 = ({2}.{3}); P3 = ({4}.{5}) :: A = {6}'        
-        area = Ponto.area_heron(P1,P2,P3)
-        
-        print(txt.format(P1.x,P1.y,P2.x,P2.y,P3.x,P3.y,area))
+                
+        area = Ponto.area_heron(P1,P2,P3)                        
+        print(f'Triângulo P1({P1.x}.{P1.y}); P2({P2.x}.{P2.y}); P3({P3.x}.{P3.y}) :: Área = {area:.4f}')
     
 
 
 # #### Exemplo: usando a classe `ponto.py` para calcular a área de um triângulo retângulo
 
-# In[6]:
+# In[5]:
 
 
 # Cálculo da área para o triângulo 
@@ -235,19 +236,19 @@ P3 = Ponto(0.0,1.0)
 Ponto.imprime_area_triangulo(P1,P2,P3)
 
 
-# In[7]:
+# In[6]:
 
 
 # plotagem do triângulo
 P = np.array([[P1.x,P1.y],[P2.x,P2.y],[P3.x,P3.y]])
 plt.figure()
-pol = plt.Polygon(P,color='red',alpha=0.4)
+pol = plt.Polygon(P,color='green',alpha=0.4)
 plt.gca().add_patch(pol);
 
 
 # #### Exemplo: usando a classe `ponto.py` para calcular a área de um triângulo qualquer
 
-# In[8]:
+# In[7]:
 
 
 # Cálculo da área para o triângulo 
@@ -259,13 +260,13 @@ P6 = Ponto(2.0,-3.0)
 Ponto.imprime_area_triangulo(P4,P5,P6)
 
 plt.figure()
-plt.scatter(P4.x,P4.y,color='blue')
-plt.scatter(P5.x,P5.y,color='blue')
-plt.scatter(P6.x,P6.y,color='blue')
+plt.scatter(P4.x,P4.y,color='green')
+plt.scatter(P5.x,P5.y,color='green')
+plt.scatter(P6.x,P6.y,color='green')
 
 Px = [P4.x,P5.x,P6.x]
 Py = [P4.y,P5.y,P6.y]
-plt.fill(Px,Py,color='red',alpha=0.4);
+plt.fill(Px,Py,color='green',alpha=0.4);
 
 
 # ## O quarto paradigma da ciência

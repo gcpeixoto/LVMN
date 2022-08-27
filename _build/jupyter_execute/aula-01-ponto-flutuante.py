@@ -3,19 +3,11 @@
 
 # # Conversão numérica e ponto flutuante
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## Sistema binário
 # 
-# Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.
-# 
-# ### Exercícios de conversão numérica
+# Neste capítulo, exploramos exercícios simples de conversão numérica como parte do conhecimento introdutó à computação numérica com Python.
 
-# In[2]:
+# In[1]:
 
 
 # (100)_2 -> base 10
@@ -66,113 +58,13 @@ c = oct(146)
 print(c)
 
 
-# In[5]:
-
-
-"Brincando com Python e divisões sucessivas"
-
-print('Esquema de divisões sucessivas:\n')
-
-print(str(4) + ' | 2')
-print( str( len(str(4))*' ') + '  –––')
-print( str( 4 % 2) + '   ' + str(4 // 2) + ' | 2' )
-print( str( 5*len(str(4))*' ') + '  –––')
-print( str( 4*len(str(4))*' ') + str(4 % 2 % 2) + '   ' + str(4 // 2 // 2))
-
-
-# **Exercício:** estude a codificação do esquema acima. O que os operadores `//` e `%` estão fazendo?
-
-# ## Máquina binária 
-# 
-# O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
-
-# In[6]:
-
-
-"""
-Converte inteiro para binário
-por divisões sucessivas.
-! Confronte com a função residente 'bin()'
-"""
-
-
-def int2bin(N):
-
-    b = [] # lista auxiliar
-
-    # divisões sucessivas
-    while N >= 2:
-        b.append(N % 2)
-        N = N//2
-
-    b.append(N)
-    b.reverse()
-    b = [str(i) for i in b] # converte para string
-    s = ''
-    s = s.join(b)
-
-    return s # retorna string
-
-
-"""
-Converte parte fracionária para binário
-por multiplicações sucessivas.
-"""
-def frac2bin(Q):
-
-    count = 0 # contador (limite manual posto em 10!)
-    b = []  # lista auxiliar
-
-    # multiplicações sucessivas
-    Q *= 2
-    while Q > 0 and count <= 10:
-        if Q > 1:
-            Q = Q-1
-            b.append(1)
-        else:
-            b.append(0)
-        Q *= 2
-        count += 1
-
-    b = [str(i) for i in b] # converte para string
-    s = ''
-    s = s.join(b)
-
-    return s # retorna string
-
-
-def convert(app,btn):
-    print(btn)
-
-
-
-# Função principal
-def main():
-
-    # Pré-criação da interface com usuário
-
-    # todo: tratamento de exceção no tipo de entrada
-    #       contagem de casas decimais no caso de dízimas
-         print('*** MÁQUINA BINÁRIA ***')
-    #     N = input('Selecione a parte inteira:\n')
-    #     Q = input('Selecione a parte fracionária:\n')
-    #     print('Seu número é: ' + int2bin( int(N) ) + '.' + frac2bin( float(Q) )  + '.')
-    #     print('*** ***')
-
-
-if __name__ == "__main__":
-    main()
-
-
 # ## Sistema de ponto flutuante 
 # 
 # ### A reta "perfurada" 
 # 
-# Como temos estudado, a matemática computacional opera no domínio $\mathbb{F}$, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
+# Na realidade, a matemática computacional opera sobre um universo discreto e "descontínuo (conjunto $\mathbb{F}$), de pontos flutuantes, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Por exemplo, o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$ seria bastante limitado em sua capacidade de representar números. Determinemos todos eles.
 # 
-# **Exemplo**: Considere o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$. Determinemos todos os seus números representáveis:
-# 
-# Como a base é $2$, os dígitos possíveis são $0$ e $1$ com mantissas: 
+# Como a base é 2 e a precisão é 3, os dígitos possíveis são $0$ e $1$ com mantissas: 
 # 
 # - $0.100$
 # - $0.101$
@@ -192,7 +84,9 @@ if __name__ == "__main__":
 # - $(0.101 \times 2^{1})_{2} = (1.01)_2 = 1.2^0 + 0.2^{-1} + 1.2^{-2} = 1$
 # - $(0.101 \times 2^{2})_{2} = (10.1)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
 # 
-# (...)
+# $\vdots$
+# 
+# 
 # 
 # Fazendo as contas para os números restantes, obtemos a seguinte tabela: 
 # 
@@ -206,7 +100,7 @@ if __name__ == "__main__":
 # 
 # Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-# In[7]:
+# In[21]:
 
 
 from matplotlib.pyplot import plot
@@ -220,20 +114,16 @@ plot(x,16*[0],'o');
 # Isto é, $\mathbb{F}$ é uma reta "perfurada", para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.
 
 # ## Simulador de $\mathbb{F}$
+# 
+# O programa abaixo permite-nos simular sistemas de pontos flutuantes básicos que plotam apenas a parte positiva do eixo.
 
-# In[8]:
+# In[23]:
 
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 def simulacao_F(b,t,L,U):
     x = []
     epsm = b**(1-t) # epsilon de máquina
     M = np.arange(1.,b-epsm,epsm)
-    print(M)
 
     E = 1
     for e in range(0,U+1):
@@ -257,20 +147,46 @@ plt.scatter(Y,X,c='r',marker='+');
 
 
 # ## Limites de máquina para ponto flutuante
+# 
+# As informações sobre os limites de máquina para um sistema de 64 bits utilizados na computação científica com Python podem ser obtidas com a ajuda do _numpy_. Detalhes são exibidos com
+# 
+# ```python
+# help(np.finfo)
+# ```
+# 
+# 
 
-# In[9]:
+# In[27]:
 
 
 import numpy as np 
-
-# limites de máquina para ponto flutuante
-#help(np.finfo)
 
 # epsilon de máquina para tipo float (64 bits)
 print('Epsilon de máquina do numpy - 64 bits')
 print(np.finfo(float).eps)
 
-# função para calculo do epsilon: erro relativo
+# número máximo representável 
+print('\nNúmero máximo representável:')
+print(np.finfo(float).max)
+
+# número mínimo representável 
+print('\nNúmero mínimo representável:') 
+print(np.finfo(float).min)
+
+# número de bits no expoente 
+print('\nNúmero de bits no expoente') 
+print(np.finfo(float).nexp)
+
+# número de bits na mantissa
+print('\nNúmero de bits na mantissa')
+print(np.finfo(float).nmant)
+
+
+# O cálculo do _epsilon de máquina_ pode ser realizado da seguinte forma:
+
+# In[36]:
+
+
 def eps_mach(func=float):
     eps = func(1)
     while func(1) + func(eps) != func(1):
@@ -278,24 +194,12 @@ def eps_mach(func=float):
         eps = func(eps) / func(2)
     return epsf
 
-# número máximo representável 
-print('número máximo representável')
-print(np.finfo(float).max)
-
-# número mínimo representável 
-print('número mínimo representável') 
-print(np.finfo(float).min)
-
-# número de bits no expoente 
-print('número de bits no expoente') 
-print(np.finfo(float).nexp)
-
-# número de bits na mantissa
-print('número de bits na mantissa')
-print(np.finfo(float).nmant)
+eps_mach()
 
 
-# In[10]:
+# Em termos relativos, a estagnação do _epsilon de máquina_ pode ser graficamente representada através dos seguintes comandos.
+
+# In[39]:
 
 
 from matplotlib.pyplot import plot
@@ -304,3 +208,7 @@ x = np.linspace(1e-15,1e-20,num=100)
 f = ((1+x)-1)/x
 plot(x,f);
 
+
+# ## Exercícios
+# 
+# 1. Use o simulador de $\mathbb{F}$ para construir outros sistemas computacionais.

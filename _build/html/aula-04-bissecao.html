@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>5. Implementações do método da bisseção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>5. Implementação do método da bisseção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -121,7 +121,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Implementações do método da bisseção
+   5. Implementação do método da bisseção
   </a>
  </li>
  <li class="toctree-l1">
@@ -472,13 +472,28 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tarefas">
-   5.1. Tarefas
+  <a class="reference internal nav-link" href="#exemplo">
+   5.1. Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tarefa-falsa-posicao">
-   5.2. Tarefa: Falsa Posição
+  <a class="reference internal nav-link" href="#id1">
+   5.2. Exemplo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplo-aplicado">
+   5.3. Exemplo aplicado
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   5.4. Exercícios
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problema-proposto">
+   5.5. Problema proposto
   </a>
  </li>
 </ul>
@@ -492,54 +507,52 @@
         
               <div>
                 
-  <section id="implementacoes-do-metodo-da-bissecao">
-<h1><span class="section-number">5. </span>Implementações do método da bisseção<a class="headerlink" href="#implementacoes-do-metodo-da-bissecao" title="Permalink to this headline">¶</a></h1>
-<p>Neste capítulo, apresentamos alternativas para a resolução de equações não-lineares através do Método da Bisseção. A primeira delas apresenta um algoritmo capaz de lidar com uma quantidade razoável de funções a uma variável, isto é.</p>
+  <section id="implementacao-do-metodo-da-bissecao">
+<h1><span class="section-number">5. </span>Implementação do método da bisseção<a class="headerlink" href="#implementacao-do-metodo-da-bissecao" title="Permalink to this headline">¶</a></h1>
+<p>Neste capítulo, utilizamos uma implementação própria do método da bisseção para resolver equações não-lineares unidimensionais. O algoritmo é capaz de lidar com uma quantidade razoável de funções matemáticas.</p>
 <p>Para ser executado, o método <code class="docutils literal notranslate"><span class="pre">bissecao</span></code> requer 5 parâmetros:</p>
 <ul class="simple">
-<li><p>a função <span class="math notranslate nohighlight">\(f(x)\)</span> propriamente dita;</p></li>
-<li><p>o domínio de solução <span class="math notranslate nohighlight">\([a,b]\)</span>;</p></li>
-<li><p>o erro absoluto desejado <span class="math notranslate nohighlight">\(EA_d\)</span>, representado por <code class="docutils literal notranslate"><span class="pre">tol</span></code>;</p></li>
-<li><p>o número máximo de iterações <span class="math notranslate nohighlight">\(N\)</span> para tentativa de solução.</p></li>
+<li><p>a função <span class="math notranslate nohighlight">\(f(x)\)</span> propriamente dita, representada por <code class="docutils literal notranslate"><span class="pre">f</span></code>;</p></li>
+<li><p>o domínio de busca da raiz <span class="math notranslate nohighlight">\([a,b]\)</span>, representado pelas estimativas iniciais <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>;</p></li>
+<li><p>o erro absoluto desejado <span class="math notranslate nohighlight">\(EA_d\)</span>, representado por <code class="docutils literal notranslate"><span class="pre">e</span></code>;</p></li>
+<li><p>o número máximo de iterações <span class="math notranslate nohighlight">\(N\)</span> para tentativa de solução, representado por <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;MB - Metodo da Bisseção 1D</span>
-
-<span class="sd">entrada: </span>
-<span class="sd">    f: string dependendo de uma variável, i.e., a função-alvo</span>
-<span class="sd">        (e.g., &#39;x**2 - 1&#39;, &#39;x**2*cos(x)&#39;, etc.) </span>
-<span class="sd">    a: limite inferior do dominio</span>
-<span class="sd">    b: limite superior do dominio</span>
-<span class="sd">    tol: tolerancia    </span>
-<span class="sd">    N: numero maximo de iteracoes do metodo</span>
-
-<span class="sd">saida: </span>
-<span class="sd">    xm: raiz da funcao</span>
-<span class="sd">    </span>
-<span class="sd">nota:     </span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">re</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
+
 
 <span class="k">def</span> <span class="nf">bissecao</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
-        
-    <span class="c1"># adiciona as chamadas das funções do numpy</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(sin|sinh|cos|cosh|tan|tanh|</span><span class="se">\</span>
-<span class="s1">               exp|log|sqrt|log10|</span><span class="se">\</span>
-<span class="s1">               arcsin|arccos|arctan|</span><span class="se">\</span>
-<span class="s1">               arcsinh|arccosh|arctanh)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;np.\1&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Algoritmo para determinação de raízes pelo método da bisseção.</span>
+
+<span class="sd">    Parâmetros: </span>
+<span class="sd">        f: string dependendo de uma variável, i.e., a função-alvo</span>
+<span class="sd">            (e.g., &#39;x**2 - 1&#39;, &#39;x**2*cos(x)&#39;, etc.) </span>
+<span class="sd">        a: estimativa inferior</span>
+<span class="sd">        b: estimativa superior</span>
+<span class="sd">        tol: erro desejado (tolerância)</span>
+<span class="sd">        N: número máximo de iterações a repetir</span>
+
+<span class="sd">    Retorno: </span>
+<span class="sd">        xm: raiz da funcao    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># construtor de tabela</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
     
-    <span class="c1"># identifica a variavel</span>
+    <span class="c1"># substitui expressões da string pelas chamadas das funções do numpy</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(sin|sinh|cos|cosh|tan|tanh|exp|log|sqrt|log10|arcsin|arccos|arctan|arcsinh|arccosh|arctanh)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;np.\1&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># identifica a variável independente</span>
     <span class="n">var</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(&#39;</span><span class="o">+</span> <span class="n">var</span> <span class="o">+</span><span class="s1">&#39;) = &#39;</span> <span class="o">+</span> <span class="n">f</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
     <span class="c1"># cria função anônima</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;lambda &#39;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s1">&#39; :&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
     
-    <span class="c1"># Se função não for de uma variável, lança erro        </span>
+    <span class="c1"># checa se a função é de uma variável, senão lança erro        </span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>    
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;O código é válido apenas para uma variável.&#39;</span><span class="p">)</span>
 
@@ -551,234 +564,358 @@
     <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fb</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A função deve ter sinais opostos em a e b!&#39;</span><span class="p">)</span>
     
-    <span class="c1"># flag usada para prevenir a obtenção da raiz </span>
-    <span class="c1"># antes de o intervalo ter sido </span>
-    <span class="c1"># suficientemente reduzido</span>
-    <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1"># flag usada para marcar caso f(xm) = 0</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span><span class="p">;</span>
+        
+    <span class="c1"># no. iterações mínimo</span>
+    <span class="n">niter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">tol</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="n">niter</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;! São necessárias pelo menos </span><span class="si">{</span><span class="n">niter</span><span class="si">}</span><span class="s1"> iterações, mas N = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="c1"># loop principal</span>
+    
+    <span class="c1"># cabeçalho de tabela</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;xm&#39;</span><span class="p">,</span><span class="s1">&#39;f(xm)&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;f(a)&#39;</span><span class="p">,</span><span class="s1">&#39;f(b)&#39;</span><span class="p">,</span><span class="s1">&#39;EA&#39;</span><span class="p">]</span>
 
     <span class="c1"># bisecta o intervalo</span>
     <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># contador </span>
-
-    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="p">(</span> <span class="ow">not</span> <span class="n">done</span> <span class="ow">or</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">):</span>
-    <span class="c1"># avalia a função no ponto médio</span>
-        <span class="n">fxm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(i = </span><span class="si">{0:d}</span><span class="s2">) f(</span><span class="si">{4:s}</span><span class="s2">m)=</span><span class="si">{1:f}</span><span class="s2"> | f(a)=</span><span class="si">{2:f}</span><span class="s2"> | f(b)=</span><span class="si">{3:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">fxm</span><span class="p">,</span><span class="n">fa</span><span class="p">,</span><span class="n">fb</span><span class="p">,</span><span class="n">var</span><span class="p">))</span>
+    
+    <span class="c1"># contador </span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> 
+    
+    <span class="c1"># loop </span>
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">done</span> <span class="ow">and</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>    
+        
+        <span class="c1"># avalia a função no ponto médio</span>
+        <span class="n">fxm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span> 
+                        
+        <span class="c1"># adiciona linha de tabela de resultado</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">),</span><span class="mi">8</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="mi">4</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="mi">4</span><span class="p">),</span>
+                   <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
    
-        <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fxm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># Raiz esta à esquerda de xm</span>
+        <span class="k">if</span> <span class="n">fa</span><span class="o">*</span><span class="n">fxm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>      <span class="c1"># Raiz esta à esquerda de xm</span>
             <span class="n">b</span> <span class="o">=</span> <span class="n">xm</span>
             <span class="n">fb</span> <span class="o">=</span> <span class="n">fxm</span>
             <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-        <span class="k">elif</span> <span class="n">fxm</span><span class="o">*</span><span class="n">fb</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>     <span class="c1"># Raiz esta à direita de xm</span>
+        <span class="k">elif</span> <span class="n">fxm</span><span class="o">*</span><span class="n">fb</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>    <span class="c1"># Raiz esta à direita de xm</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">xm</span>
             <span class="n">fa</span> <span class="o">=</span> <span class="n">fxm</span>
             <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>               <span class="c1"># Achamos a raiz</span>
-            <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>            
     
         <span class="n">N</span> <span class="o">-=</span> <span class="mi">1</span>              <span class="c1"># Atualiza passo</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>              <span class="c1"># Atualiza contador</span>
-            
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solução encontrada: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xm</span><span class="p">))</span>
-
+    
+    <span class="c1"># impressão de tabela</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">),</span><span class="mi">8</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="mi">4</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="mi">4</span><span class="p">),</span>
+                   <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">xm</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;-arccos(x) + 4*sin(x) + 1.7&#39;</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(x) = -np.arccos(x) + 4*np.sin(x) + 1.7
-
-(i = 1) f(xm)=2.098394 | f(a)=-0.866832 | f(b)=5.065884
-(i = 2) f(xm)=0.628705 | f(a)=-0.866832 | f(b)=2.098394
-(i = 3) f(xm)=-0.120734 | f(a)=-0.866832 | f(b)=0.628705
-(i = 4) f(xm)=0.254196 | f(a)=-0.120734 | f(b)=0.628705
-(i = 5) f(xm)=0.066705 | f(a)=-0.120734 | f(b)=0.254196
-(i = 6) f(xm)=-0.027031 | f(a)=-0.120734 | f(b)=0.066705
-(i = 7) f(xm)=0.019834 | f(a)=-0.027031 | f(b)=0.066705
-(i = 8) f(xm)=-0.003599 | f(a)=-0.027031 | f(b)=0.019834
-(i = 9) f(xm)=0.008117 | f(a)=-0.003599 | f(b)=0.019834
-(i = 10) f(xm)=0.002259 | f(a)=-0.003599 | f(b)=0.008117
-(i = 11) f(xm)=-0.000670 | f(a)=-0.003599 | f(b)=0.002259
-Solução encontrada: -0.02568359375
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([-10,10]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
-<p><em>Nota:</em> Neste exemplo, <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">5</span></code> não afeta o processo iterativo de determinação da raiz, porque o algoritmo
-gera convergência para uma solução aproximada. Caso tivéssemos uma função mais “rígida”, o valor de <code class="docutils literal notranslate"><span class="pre">N</span></code> impediria iterações <em>ad infinitum</em>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;z/(1 - 2*z) - tan(z+1)&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(z) = z/(1 - 2*z) - np.tan(z+1)
-
-(i = 1) f(zm)=-1.557408 | f(a)=-0.928506 | f(b)=225.424531
-(i = 2) f(zm)=-0.264549 | f(a)=-1.557408 | f(b)=225.424531
-(i = 3) f(zm)=0.790650 | f(a)=-0.264549 | f(b)=225.424531
-(i = 4) f(zm)=-1.992758 | f(a)=-0.264549 | f(b)=0.790650
-(i = 5) f(zm)=47.031216 | f(a)=-1.992758 | f(b)=0.790650
-(i = 6) f(zm)=-3.874270 | f(a)=-1.992758 | f(b)=47.031216
-(i = 7) f(zm)=-7.889788 | f(a)=-3.874270 | f(b)=47.031216
-(i = 8) f(zm)=-18.031763 | f(a)=-7.889788 | f(b)=47.031216
-(i = 9) f(zm)=-55.953115 | f(a)=-18.031763 | f(b)=47.031216
-(i = 10) f(zm)=671.902656 | f(a)=-55.953115 | f(b)=47.031216
-(i = 11) f(zm)=-121.331336 | f(a)=-55.953115 | f(b)=671.902656
-(i = 12) f(zm)=-295.028631 | f(a)=-121.331336 | f(b)=671.902656
-(i = 13) f(zm)=-1048.438272 | f(a)=-295.028631 | f(b)=671.902656
-(i = 14) f(zm)=3753.032553 | f(a)=-1048.438272 | f(b)=671.902656
-(i = 15) f(zm)=-2908.034407 | f(a)=-1048.438272 | f(b)=3753.032553
-(i = 16) f(zm)=-25798.415576 | f(a)=-2908.034407 | f(b)=3753.032553
-(i = 17) f(zm)=8784.876063 | f(a)=-25798.415576 | f(b)=3753.032553
-(i = 18) f(zm)=26644.055226 | f(a)=-25798.415576 | f(b)=8784.876063
-(i = 19) f(zm)=-1623619.448713 | f(a)=-25798.415576 | f(b)=26644.055226
-(i = 20) f(zm)=54177.749175 | f(a)=-1623619.448713 | f(b)=26644.055226
-(i = 21) f(zm)=112096.589477 | f(a)=-1623619.448713 | f(b)=54177.749175
-Solução encontrada: 6.853985786437988
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">newton</span>
-
-<span class="c1"># Dados de entrada</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">520</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># tempo [s]</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mf">1.46</span>   <span class="c1"># coeficiente de arrasto [kg/s]</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mi">90</span>     <span class="c1"># massa [kg]</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>   <span class="c1"># constante de gravidade [m/s2]</span>
-
-<span class="c1"># Dados de saída</span>
-
-<span class="c1">## velocidade terminal [m/s]</span>
-<span class="n">v_ms1</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
-
-<span class="c1"># velocidade terminal [km/h]</span>
-<span class="n">v_kh1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">3.6</span><span class="p">)</span><span class="o">*</span><span class="n">v_ms1</span><span class="p">;</span>
-
-<span class="c1"># gráfico tempo x velocidade</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_ms1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t [s]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;v [m/s]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Velocidade terminal - paraquedista&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/aula-04-bissecao_6_0.png" src="_images/aula-04-bissecao_6_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-
-<span class="n">time</span> <span class="o">=</span> <span class="mi">12</span>     <span class="c1"># tempo [s]</span>
-<span class="n">mass</span> <span class="o">=</span> <span class="mi">70</span>     <span class="c1"># massa [kg]</span>
-<span class="n">vel</span> <span class="o">=</span> <span class="mi">42</span>     <span class="c1"># velocidade [m/s]</span>
-<span class="n">grav</span> <span class="o">=</span> <span class="mf">9.81</span>   <span class="c1"># constante de gravidade [m/s2]</span>
-
-<span class="c1"># defino variáveis simbólicas</span>
-<span class="n">g</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;g,m,t,v,c&#39;</span><span class="p">)</span>
-
-<span class="c1"># expressão geral</span>
-<span class="n">f_g</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
-
-<span class="c1"># expressão particular com valores substituídos </span>
-<span class="c1"># convertida para string</span>
-<span class="n">f_s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f_g</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;g&#39;</span><span class="p">:</span><span class="n">grav</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">:</span><span class="n">mass</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">:</span><span class="n">vel</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">:</span><span class="n">time</span><span class="p">}))</span>
-
-<span class="c1"># TODO</span>
-<span class="c1"># para esta função, teremos que substituir &#39;exp&#39; por &#39;np.exp&#39;)</span>
-<span class="n">f_s</span> <span class="o">=</span> <span class="s1">&#39;-42 + 686.7*(1 - np.exp(-6*c/35))/c&#39;</span>
-
-<span class="c1"># resolve bisseção</span>
-<span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="n">f_s</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(c) = -42 + 686.7*(1 - np.exp(-6*c/35))/c
-
-(i = 1) f(cm)=2.600284 | f(a)=7.910578 | f(b)=-1.844622
-(i = 2) f(cm)=0.281205 | f(a)=2.600284 | f(b)=-1.844622
-(i = 3) f(cm)=-0.804573 | f(a)=0.281205 | f(b)=-1.844622
-(i = 4) f(cm)=-0.267556 | f(a)=0.281205 | f(b)=-0.804573
-(i = 5) f(cm)=0.005337 | f(a)=0.281205 | f(b)=-0.267556
-(i = 6) f(cm)=-0.131479 | f(a)=0.005337 | f(b)=-0.267556
-(i = 7) f(cm)=-0.063164 | f(a)=0.005337 | f(b)=-0.131479
-(i = 8) f(cm)=-0.028937 | f(a)=0.005337 | f(b)=-0.063164
-(i = 9) f(cm)=-0.011806 | f(a)=0.005337 | f(b)=-0.028937
-(i = 10) f(cm)=-0.003236 | f(a)=0.005337 | f(b)=-0.011806
-(i = 11) f(cm)=0.001050 | f(a)=0.005337 | f(b)=-0.003236
-(i = 12) f(cm)=-0.001093 | f(a)=0.001050 | f(b)=-0.003236
-(i = 13) f(cm)=-0.000022 | f(a)=0.001050 | f(b)=-0.001093
-(i = 14) f(cm)=0.000514 | f(a)=0.001050 | f(b)=-0.000022
-(i = 15) f(cm)=0.000246 | f(a)=0.000514 | f(b)=-0.000022
-(i = 16) f(cm)=0.000112 | f(a)=0.000246 | f(b)=-0.000022
-(i = 17) f(cm)=0.000045 | f(a)=0.000112 | f(b)=-0.000022
-(i = 18) f(cm)=0.000012 | f(a)=0.000045 | f(b)=-0.000022
-(i = 19) f(cm)=-0.000005 | f(a)=0.000012 | f(b)=-0.000022
-Solução encontrada: 15.127429962158203
-</pre></div>
-</div>
-</div>
-</div>
-<section id="tarefas">
-<h2><span class="section-number">5.1. </span>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">¶</a></h2>
+<section id="exemplo">
+<h2><span class="section-number">5.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">¶</a></h2>
+<p>Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
 <ul class="simple">
-<li><p>Melhore o código Python tratando os TODOs:</p></li>
+<li><p>Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.</p></li>
 </ul>
-<p>Tente generalizar o código da bisseção para que identifique automaticamente a variável de entrada utilizada pelo usuário (use expressões regulares e remova o argumento <code class="docutils literal notranslate"><span class="pre">var</span></code> da definição da função).</p>
-<p>Note que o trecho simbólico abaixo foi necessário para substituir a função da chamada <code class="docutils literal notranslate"><span class="pre">exp</span></code>, não interpretada por <code class="docutils literal notranslate"><span class="pre">eval</span></code> por uma nova string que usasse <code class="docutils literal notranslate"><span class="pre">np.exp</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO</span>
-<span class="c1"># para esta função, teremos que substituir &#39;exp&#39; por &#39;np.exp&#39;)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(c) = &#39;</span> <span class="o">+</span> <span class="n">f_s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">f_s</span> <span class="o">=</span> <span class="s1">&#39;-42 + 686.7*(1 - np.exp(-6*c/35))/c&#39;</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.7</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Tente fazer as correções necessárias no código. <strong>Sugestão:</strong> verifique a função <code class="docutils literal notranslate"><span class="pre">sympy.core.evalf</span></code> do módulo <code class="docutils literal notranslate"><span class="pre">sympy</span></code>)</p>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-04-bissecao_4_0.png" src="_images/aula-04-bissecao_4_0.png" />
+</div>
+</div>
 <ul class="simple">
-<li><p>Adicione mecanismos de plotagem no código Python</p></li>
-<li><p>Crie um código em Javascript para adicionarmos na página do projeto Numbiosis com o máximo possível de GUI (labels + input data).</p></li>
-<li><p>Teste a implementação com um problema realista.</p></li>
+<li><p>Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.</p></li>
 </ul>
-<p><strong>Problema sugerido:</strong>
-Uma reação química reversível</p>
-<div class="math notranslate nohighlight">
-\[2A+B \iff C\]</div>
-<p>pode ser caracterizada pela relação de equilíbrio</p>
-<div class="math notranslate nohighlight">
-\[K = \dfrac{c_c}{c_a^2c_b},\]</div>
-<p>onde a nomenclatura <span class="math notranslate nohighlight">\(c_i\)</span> representa a concentração do constituinte <span class="math notranslate nohighlight">\(i\)</span>. Suponha que definamos uma variável <span class="math notranslate nohighlight">\(x\)</span> como o número de moles de <span class="math notranslate nohighlight">\(C\)</span> que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como</p>
-<div class="math notranslate nohighlight">
-\[K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x),}\]</div>
-<p>onde o subscrito <span class="math notranslate nohighlight">\(0\)</span> designa a concentração inicial de cada constituinte. Se <span class="math notranslate nohighlight">\(K = 0,016\)</span>, <span class="math notranslate nohighlight">\(c_{a,0} = 42\)</span>, <span class="math notranslate nohighlight">\(c_{b,0} = 28\)</span> e <span class="math notranslate nohighlight">\(c_{c,0} = 4\)</span>, determine o valor de <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p>(a) Obtenha a solução graficamente.</p>
-<p>(b) Com base em (a), resolva a raiz com suposições iniciais de <span class="math notranslate nohighlight">\(x_l = 0\)</span> e <span class="math notranslate nohighlight">\(x_u = 20\)</span>, com critério de erro de <span class="math notranslate nohighlight">\(\epsilon_s = 0,5\%\)</span>. (Vide clipping <em>Definições de erro</em> para entender <span class="math notranslate nohighlight">\(\epsilon_s\)</span>.)</p>
-<p>© Use o método da bisseção.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;-arccos(x) + 4*sin(x) + 1.7&#39;</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----+-------------+-------------+---------+---------+---------+--------+--------------+
+| i  |      xm     |    f(xm)    |    a    |    b    |   f(a)  |  f(b)  |      EA      |
++----+-------------+-------------+---------+---------+---------+--------+--------------+
+| 1  |     0.4     |  2.09839389 |   -0.2  |   1.0   | -0.8668 | 5.0659 | 1.200000e+00 |
+| 2  |     0.1     |  0.62870476 |   -0.2  |   0.4   | -0.8668 | 2.0984 | 6.000000e-01 |
+| 3  |    -0.05    | -0.12073386 |   -0.2  |   0.1   | -0.8668 | 0.6287 | 3.000000e-01 |
+| 4  |    0.025    |  0.25419586 |  -0.05  |   0.1   | -0.1207 | 0.6287 | 1.500000e-01 |
+| 5  |   -0.0125   |  0.06670465 |  -0.05  |  0.025  | -0.1207 | 0.2542 | 7.500000e-02 |
+| 6  |   -0.03125  | -0.02703107 |  -0.05  | -0.0125 | -0.1207 | 0.0667 | 3.750000e-02 |
+| 7  |  -0.021875  |  0.01983391 | -0.0312 | -0.0125 |  -0.027 | 0.0667 | 1.875000e-02 |
+| 8  |  -0.0265625 | -0.00359946 | -0.0312 | -0.0219 |  -0.027 | 0.0198 | 9.375000e-03 |
+| 9  | -0.02421875 |  0.00811703 | -0.0266 | -0.0219 | -0.0036 | 0.0198 | 4.687500e-03 |
+| 10 | -0.02539062 |  0.00225873 | -0.0266 | -0.0242 | -0.0036 | 0.0081 | 2.343750e-03 |
+| 11 | -0.02597656 | -0.00067038 | -0.0266 | -0.0254 | -0.0036 | 0.0023 | 1.171875e-03 |
+| 12 | -0.02568359 |  0.00079417 |  -0.026 | -0.0254 | -0.0007 | 0.0023 | 5.859375e-04 |
++----+-------------+-------------+---------+---------+---------+--------+--------------+
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A raiz aproximada <span class="math notranslate nohighlight">\(x^{*}\)</span>, tal que para <span class="math notranslate nohighlight">\(f(x^{*}) = 0\)</span> no intervalo-alvo é mostrada na última linha da tabela. Isto é,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raiz aproximada</span>
+<span class="n">xm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.02568359375
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="tarefa-falsa-posicao">
-<h2><span class="section-number">5.2. </span>Tarefa: Falsa Posição<a class="headerlink" href="#tarefa-falsa-posicao" title="Permalink to this headline">¶</a></h2>
-<p>Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use <code class="docutils literal notranslate"><span class="pre">switch...</span> <span class="pre">case...</span></code>).</p>
+<section id="id1">
+<h2><span class="section-number">5.2. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([1,8]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
+<ul class="simple">
+<li><p>Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">8.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-04-bissecao_11_0.png" src="_images/aula-04-bissecao_11_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Neste caso, a função apresenta sensibilidades e mais de uma raiz no intervalo dado. Vamos buscar a raiz que está no subintervalo <span class="math notranslate nohighlight">\([4,6]\)</span>. Para tanto, vamos deamplificar a plotagem.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">z</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-04-bissecao_13_0.png" src="_images/aula-04-bissecao_13_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="s1">&#39;z/(1 - 2*z) - tan(z+1)&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----+------------+-------------+--------+--------+--------+---------+--------------+
+| i  |     xm     |    f(xm)    |   a    |   b    |  f(a)  |   f(b)  |      EA      |
++----+------------+-------------+--------+--------+--------+---------+--------------+
+| 1  |    5.0     | -0.26454936 |   4    |   6    | 2.8091 | -1.4169 | 2.000000e+00 |
+| 2  |    4.5     |  0.43308405 |   4    |  5.0   | 2.8091 | -0.2645 | 1.000000e+00 |
+| 3  |    4.75    |  0.03138032 |  4.5   |  5.0   | 0.4331 | -0.2645 | 5.000000e-01 |
+| 4  |   4.875    | -0.12466745 |  4.75  |  5.0   | 0.0314 | -0.2645 | 2.500000e-01 |
+| 5  |   4.8125   | -0.04914268 |  4.75  | 4.875  | 0.0314 | -0.1247 | 1.250000e-01 |
+| 6  |  4.78125   | -0.00957612 |  4.75  | 4.8125 | 0.0314 | -0.0491 | 6.250000e-02 |
+| 7  |  4.765625  |  0.01071879 |  4.75  | 4.7812 | 0.0314 | -0.0096 | 3.125000e-02 |
+| 8  | 4.7734375  |  0.00052675 | 4.7656 | 4.7812 | 0.0107 | -0.0096 | 1.562500e-02 |
+| 9  | 4.77734375 | -0.00453568 | 4.7734 | 4.7812 | 0.0005 | -0.0096 | 7.812500e-03 |
+| 10 | 4.77539062 | -0.00200723 | 4.7734 | 4.7773 | 0.0005 | -0.0045 | 3.906250e-03 |
+| 11 | 4.77441406 | -0.00074094 | 4.7734 | 4.7754 | 0.0005 |  -0.002 | 1.953125e-03 |
+| 12 | 4.77392578 | -0.00010727 | 4.7734 | 4.7744 | 0.0005 | -0.0007 | 9.765625e-04 |
+| 13 | 4.77368164 |  0.0002097  | 4.7734 | 4.7739 | 0.0005 | -0.0001 | 4.882812e-04 |
+| 14 | 4.77380371 |   5.12e-05  | 4.7737 | 4.7739 | 0.0002 | -0.0001 | 2.441406e-04 |
+| 15 | 4.77386475 |  -2.803e-05 | 4.7738 | 4.7739 | 0.0001 | -0.0001 | 1.220703e-04 |
+| 16 | 4.77383423 |  1.158e-05  | 4.7738 | 4.7739 | 0.0001 |   -0.0  | 6.103516e-05 |
+| 17 | 4.77384949 |  -8.23e-06  | 4.7738 | 4.7739 |  0.0   |   -0.0  | 3.051758e-05 |
+| 18 | 4.77384186 |   1.68e-06  | 4.7738 | 4.7738 |  0.0   |   -0.0  | 1.525879e-05 |
+| 19 | 4.77384567 |  -3.27e-06  | 4.7738 | 4.7738 |  0.0   |   -0.0  | 7.629395e-06 |
++----+------------+-------------+--------+--------+--------+---------+--------------+
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A raiz aproximada <span class="math notranslate nohighlight">\(z^{*}\)</span>, tal que para <span class="math notranslate nohighlight">\(h(z^{*}) = 0\)</span> é mostrada na última linha da tabela. Isto é,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raiz aproximada</span>
+<span class="n">zm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.773845672607422
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exemplo-aplicado">
+<h2><span class="section-number">5.3. </span>Exemplo aplicado<a class="headerlink" href="#exemplo-aplicado" title="Permalink to this headline">¶</a></h2>
+<p>Vamos aplicar nosso método da bisseção ao problema do paraquedista apresentado no capítulo introdutório para buscar o coeficiente de arrasto adequado para os parâmetros de projeto impostos.</p>
+<ul class="simple">
+<li><p>Primeiramente, vamos definir uma função para retornar a equação particular.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eq_paraq</span><span class="p">(</span><span class="n">tempo</span><span class="p">,</span><span class="n">massa</span><span class="p">,</span><span class="n">vel</span><span class="p">,</span><span class="n">grav</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Define equação particular para cálculo de coeficiente de arrasto </span>
+<span class="sd">        em salto de paraquedista. (Ver introdução.)</span>
+<span class="sd">        </span>
+<span class="sd">        Parâmetros: </span>
+<span class="sd">        </span>
+<span class="sd">            tempo: duração de salto até velocidade terminal [s]</span>
+<span class="sd">            massa: massa do paraquedista [kg]</span>
+<span class="sd">            vel: velocidade terminal desejada [m/s]</span>
+<span class="sd">            grav: aceleração gravitacional ambiente [m/s**2]</span>
+<span class="sd">        </span>
+<span class="sd">        Retorno: </span>
+<span class="sd">        </span>
+<span class="sd">            f: expressão numérica para equação particular</span>
+<span class="sd">               do coeficiente de arrasto</span>
+<span class="sd">                </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># variáveis simbólicas    </span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">lambdify</span>
+    
+    <span class="n">g</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;g,m,t,v,c&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># expressão geral</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
+    
+    <span class="c1"># expressão particular com valores substituídos convertidos para str</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;g&#39;</span><span class="p">:</span><span class="n">grav</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">:</span><span class="n">massa</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">:</span><span class="n">vel</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">:</span><span class="n">tempo</span><span class="p">})</span>
+    
+    <span class="c1"># expressão simbólica convertida para expessão numérica</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># imprime para </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Equação particular: f(c) = </span><span class="si">{</span><span class="n">fs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Em seguida, inserimos os valores de entrada para teste.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parâmetros de entrada</span>
+<span class="n">tempo</span><span class="p">,</span> <span class="n">massa</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">grav</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mf">9.81</span>
+
+<span class="c1"># equação particular</span>
+<span class="n">fs</span><span class="p">,</span><span class="n">fn</span> <span class="o">=</span> <span class="n">eq_paraq</span><span class="p">(</span><span class="n">tempo</span><span class="p">,</span><span class="n">massa</span><span class="p">,</span><span class="n">vel</span><span class="p">,</span><span class="n">grav</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Equação particular: f(c) = -42 + 686.7*(1 - exp(-6*c/35))/c
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">fn</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-04-bissecao_24_0.png" src="_images/aula-04-bissecao_24_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Por fim, aplicamos o método.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">bissecao</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fs</span><span class="p">),</span><span class="mi">14</span><span class="p">,</span><span class="mf">17.0</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----+-------------+-------------+---------+---------+--------+---------+--------------+
+| i  |      xm     |    f(xm)    |    a    |    b    |  f(a)  |   f(b)  |      EA      |
++----+-------------+-------------+---------+---------+--------+---------+--------------+
+| 1  |     15.5    | -0.80457281 |    14   |   17.0  | 2.6003 |  -3.797 | 3.000000e+00 |
+| 2  |    14.75    |  0.84203047 |    14   |   15.5  | 2.6003 | -0.8046 | 1.500000e+00 |
+| 3  |    15.125   |  0.00533671 |  14.75  |   15.5  | 0.842  | -0.8046 | 7.500000e-01 |
+| 4  |   15.3125   | -0.40289836 |  15.125 |   15.5  | 0.0053 | -0.8046 | 3.750000e-01 |
+| 5  |   15.21875  | -0.19960925 |  15.125 | 15.3125 | 0.0053 | -0.4029 | 1.875000e-01 |
+| 6  |  15.171875  | -0.09734443 |  15.125 | 15.2188 | 0.0053 | -0.1996 | 9.375000e-02 |
+| 7  |  15.1484375 | -0.04605603 |  15.125 | 15.1719 | 0.0053 | -0.0973 | 4.687500e-02 |
+| 8  | 15.13671875 | -0.02037272 |  15.125 | 15.1484 | 0.0053 | -0.0461 | 2.343750e-02 |
+| 9  | 15.13085938 | -0.00752127 |  15.125 | 15.1367 | 0.0053 | -0.0204 | 1.171875e-02 |
+| 10 | 15.12792969 |  -0.0010931 |  15.125 | 15.1309 | 0.0053 | -0.0075 | 5.859375e-03 |
+| 11 | 15.12646484 |  0.0021216  |  15.125 | 15.1279 | 0.0053 | -0.0011 | 2.929688e-03 |
+| 12 | 15.12719727 |  0.0005142  | 15.1265 | 15.1279 | 0.0021 | -0.0011 | 1.464844e-03 |
+| 13 | 15.12756348 | -0.00028946 | 15.1272 | 15.1279 | 0.0005 | -0.0011 | 7.324219e-04 |
+| 14 | 15.12738037 |  0.00011237 | 15.1272 | 15.1276 | 0.0005 | -0.0003 | 3.662109e-04 |
+| 15 | 15.12747192 |  -8.855e-05 | 15.1274 | 15.1276 | 0.0001 | -0.0003 | 1.831055e-04 |
+| 16 | 15.12742615 |  1.191e-05  | 15.1274 | 15.1275 | 0.0001 | -0.0001 | 9.155273e-05 |
++----+-------------+-------------+---------+---------+--------+---------+--------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>O coeficiente de arrasto aproximado para este caso é dado por:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.127426147460938
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercicios">
+<h2><span class="section-number">5.4. </span>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Repita a análise anterior alterando os parâmetros de projeto de salto para paraquedistas de diferentes massas e com duração de salto até a velocidade terminal variáveis. Faça a análise gráfica e busque aproximações.</p></li>
+<li><p>Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use <code class="docutils literal notranslate"><span class="pre">if</span></code>).</p></li>
+</ol>
+</section>
+<section id="problema-proposto">
+<h2><span class="section-number">5.5. </span>Problema proposto<a class="headerlink" href="#problema-proposto" title="Permalink to this headline">¶</a></h2>
+<p>Uma reação química reversível <span class="math notranslate nohighlight">\(2A+B \iff C\)</span> pode ser caracterizada pela relação de equilíbrio <span class="math notranslate nohighlight">\(K = \dfrac{c_c}{c_a^2c_b}\)</span>, onde a nomenclatura <span class="math notranslate nohighlight">\(c_i\)</span> representa a concentração do constituinte <span class="math notranslate nohighlight">\(i\)</span>. Suponha que <span class="math notranslate nohighlight">\(x\)</span> é o número de moles de <span class="math notranslate nohighlight">\(C\)</span> que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como</p>
+<div class="math notranslate nohighlight">
+\[K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x)},\]</div>
+<p>onde o subscrito <span class="math notranslate nohighlight">\(0\)</span> designa a concentração inicial de cada constituinte. Considere <span class="math notranslate nohighlight">\(K = 0,016\)</span>, <span class="math notranslate nohighlight">\(c_{a,0} = 42\)</span>, <span class="math notranslate nohighlight">\(c_{b,0} = 28\)</span> e <span class="math notranslate nohighlight">\(c_{c,0} = 4\)</span> e faça o que se pede:</p>
+<ol class="simple">
+<li><p>Faça a análise gráfica do problema.</p></li>
+<li><p>Com base em no item anterior, escolha aproximações <span class="math notranslate nohighlight">\(x_l\)</span> e <span class="math notranslate nohighlight">\(x_r\)</span> adequadas e adote <span class="math notranslate nohighlight">\(\epsilon_s = 0,5\%\)</span> como erro. (Vide clipping <em>Definições de erro</em> para entender <span class="math notranslate nohighlight">\(\epsilon_s\)</span>.)</p></li>
+<li><p>Aplique o método da bisseção para determinar uma aproximação para <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ol>
 </section>
 </section>
 
@@ -820,7 +957,7 @@ Uma reação química reversível</p>
         
           By Prof. Gustavo Oliveira<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2022.<br/>
       </p>
     </div>
   </footer>

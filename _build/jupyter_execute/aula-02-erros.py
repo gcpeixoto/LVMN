@@ -3,12 +3,6 @@
 
 # # Erros numéricos e seus efeitos
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## Motivação
 
 # **Exemplo**: Avaliar o polinômio $P(x) = x^3 - 6x^2 + 4x - 0.1$
@@ -134,63 +128,6 @@ x = np.linspace(-3,3,num=20,endpoint=True)
 P1x = lambda x: x**3 - 6*x**2 + 4*x - 0.1
 P2x = lambda x: x*(x*(x - 6) + 4) - 0.1
 plt.plot(x,P1x(x),'r',x,P2x(x),'bo');
-
-
-# ### Função de Airy
-# 
-# A função de Airy é solução da equação de Schrödinger da mecânica quântica. Muda o comportamento de oscilatório para exponencial.
-# 
-# Abaixo, vamos criar uma função aproximada (perturbada) para a função de Airy (assumindo-a como uma aproximação daquela que é exata) e outra para calcular diretamente o erro relativo para valores dessas funções.
-# 
-
-# In[8]:
-
-
-from scipy import special
-import matplotlib.pyplot as plt 
-
-# eixo x 
-x = np.linspace(-10, -2, 100)
-
-# funções de Airy e derivadas (solução exata)
-ai, aip, bi, bip = special.airy(x)
-
-# função de Airy (fazendo papel de solução aproximada)
-ai2 = 1.1*ai + 0.05*np.cos(x) 
-
-
-# Podemos usar o conceito de _função anônima_ para calcular diretamente o **erro relativo percentual** para cada ponto $x$:
-# 
-# $$ER_p(x) = \frac{\mid \ f_{aprox}(x) - f_{ex}(x) \ \mid}{\mid \ f_{ex}(x) \ \mid},$$
-# 
-# onde $f_{aprox}(x)$ é o valor da função aproximada (de Airy) e 
-# onde $f_{ex}(x)$ é o valor da função exata (de Airy).
-
-# In[9]:
-
-
-# define função anônima para erro relativo
-r = lambda fex,faprox: (np.abs(fex-faprox)/np.abs(fex))/100
-
-# calcula erro relativo para função de Airy e sua aproximação
-rel = r(ai,ai2)
-
-
-# A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
-
-# In[10]:
-
-
-# plotagens 
-plt.plot(x, ai, 'r', label='sol exata')
-plt.plot(x, ai2, 'b', label='sol aprox')
-plt.grid()
-plt.legend(loc='upper right')
-plt.show()
-
-plt.plot(x,rel,'-', label='err rel %')
-plt.grid()
-plt.legend(loc='upper right');
 
 
 # ## Erro de cancelamento

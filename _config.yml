@@ -4,7 +4,7 @@
 title: "Métodos Numéricos para Ciências Computacionais e Engenharia"
 author: Prof. Gustavo Oliveira
 logo: "styles/numbiosis.png" # Leave it with "" for none
-copyright: "2021"
+copyright: "2022"
 exclude_patterns: [_build,Thumds.db,.DS_Store,"**.ipynb_checkpoints","/rise/*.ipynb"]
 
 # Change this to "on" to have notebooks executed

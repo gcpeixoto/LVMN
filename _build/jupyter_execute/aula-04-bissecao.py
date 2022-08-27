@@ -1,53 +1,54 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Implementações do método da bisseção
+# # Implementação do método da bisseção
 # 
-# Neste capítulo, apresentamos alternativas para a resolução de equações não-lineares através do Método da Bisseção. A primeira delas apresenta um algoritmo capaz de lidar com uma quantidade razoável de funções a uma variável, isto é.
+# Neste capítulo, utilizamos uma implementação própria do método da bisseção para resolver equações não-lineares unidimensionais. O algoritmo é capaz de lidar com uma quantidade razoável de funções matemáticas.
 # 
 # Para ser executado, o método `bissecao` requer 5 parâmetros: 
 # 
-# - a função $f(x)$ propriamente dita;
-# - o domínio de solução $[a,b]$;
-# - o erro absoluto desejado $EA_d$, representado por `tol`;
-# - o número máximo de iterações $N$ para tentativa de solução.
+# - a função $f(x)$ propriamente dita, representada por `f`;
+# - o domínio de busca da raiz $[a,b]$, representado pelas estimativas iniciais `a` e `b`;
+# - o erro absoluto desejado $EA_d$, representado por `e`;
+# - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
 
 # In[1]:
 
 
-"""MB - Metodo da Bisseção 1D
-
-entrada: 
-    f: string dependendo de uma variável, i.e., a função-alvo
-        (e.g., 'x**2 - 1', 'x**2*cos(x)', etc.) 
-    a: limite inferior do dominio
-    b: limite superior do dominio
-    tol: tolerancia    
-    N: numero maximo de iteracoes do metodo
-
-saida: 
-    xm: raiz da funcao
-    
-nota:     
-"""
-
 import inspect, re
 import numpy as np
+from matplotlib.pyplot import plot
+from warnings import warn
+from prettytable import PrettyTable as pt
+
 
 def bissecao(f,a,b,tol,N):
-        
-    # adiciona as chamadas das funções do numpy
-    f = re.sub('(sin|sinh|cos|cosh|tan|tanh|               exp|log|sqrt|log10|               arcsin|arccos|arctan|               arcsinh|arccosh|arctanh)', r'np.\1', f)
+    """Algoritmo para determinação de raízes pelo método da bisseção.
+
+    Parâmetros: 
+        f: string dependendo de uma variável, i.e., a função-alvo
+            (e.g., 'x**2 - 1', 'x**2*cos(x)', etc.) 
+        a: estimativa inferior
+        b: estimativa superior
+        tol: erro desejado (tolerância)
+        N: número máximo de iterações a repetir
+
+    Retorno: 
+        xm: raiz da funcao    
+    """
+    # construtor de tabela
+    table = pt()
     
-    # identifica a variavel
+    # substitui expressões da string pelas chamadas das funções do numpy
+    f = re.sub('(sin|sinh|cos|cosh|tan|tanh|exp|log|sqrt|log10|arcsin|arccos|arctan|arcsinh|arccosh|arctanh)', r'np.\1', f)
+    
+    # identifica a variável independente
     var = re.search(r'([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))', f).group(1)
     
-    print('f('+ var +') = ' + f + '\n')
-
     # cria função anônima
     f = eval('lambda ' + var + ' :' + f)
     
-    # Se função não for de uma variável, lança erro        
+    # checa se a função é de uma variável, senão lança erro        
     if len(inspect.getfullargspec(f).args) - 1 > 0:    
         raise ValueError('O código é válido apenas para uma variável.')
 
@@ -59,162 +60,228 @@ def bissecao(f,a,b,tol,N):
     if fa*fb >= 0:
         raise ValueError('A função deve ter sinais opostos em a e b!')
     
-    # flag usada para prevenir a obtenção da raiz 
-    # antes de o intervalo ter sido 
-    # suficientemente reduzido
-    done = 0;
+    # flag usada para marcar caso f(xm) = 0
+    done = False;
+        
+    # no. iterações mínimo
+    niter = int(np.ceil(np.log((b-a)/tol)/np.log(2)))
+    if N < niter:
+        print(f'! São necessárias pelo menos {niter} iterações, mas N = {N}.\n')
 
-    # loop principal
+    
+    # cabeçalho de tabela
+    table.field_names = ['i','xm','f(xm)','a','b','f(a)','f(b)','EA']
 
     # bisecta o intervalo
     xm = (a+b)/2
-
-    i = 1 # contador 
-
-    while abs(a-b) > tol and ( not done or N != 0 ):
-    # avalia a função no ponto médio
-        fxm = f(xm)
-        print("(i = {0:d}) f({4:s}m)={1:f} | f(a)={2:f} | f(b)={3:f}".format(i,fxm,fa,fb,var))
+    
+    # contador 
+    i = 1 
+    
+    # loop 
+    while abs(a-b) > tol and (not done and N != 0):    
+        
+        # avalia a função no ponto médio
+        fxm = f(xm) 
+                        
+        # adiciona linha de tabela de resultado
+        table.add_row([i,np.round(xm,8),np.round(f(xm),8),
+                   np.round(a,4),np.round(b,4),
+                   np.round(f(a),4),np.round(f(b),4),
+                   f'{abs(a-b):e}'])
    
-        if fa*fxm < 0:       # Raiz esta à esquerda de xm
+        if fa*fxm < 0:      # Raiz esta à esquerda de xm
             b = xm
             fb = fxm
             xm = (a+b)/2
-        elif fxm*fb < 0:     # Raiz esta à direita de xm
+        elif fxm*fb < 0:    # Raiz esta à direita de xm
             a = xm
             fa = fxm
             xm = (a+b)/2
         else:               # Achamos a raiz
-            done = 1
+            done = True            
     
         N -= 1              # Atualiza passo
         i += 1              # Atualiza contador
-            
-    print("Solução encontrada: {0}".format(xm))
-
+    
+    # impressão de tabela
+    table.add_row([i,np.round(xm,8),np.round(f(xm),8),
+                   np.round(a,4),np.round(b,4),
+                   np.round(f(a),4),np.round(f(b),4),
+                   f'{abs(a-b):e}'])
+    table.align = 'c'; print(table)
+    
     return xm
 
 
-# **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
+# ## Exemplo
+# 
+# Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
+
+# - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
 # In[2]:
 
 
-xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,30)
+x = np.linspace(-0.2,1,100)
+plot(x,-np.arccos(x) + 4*np.sin(x) + 1.7,x,0*x);
 
 
-# **Exemplo:** Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[-10,10]$ e $\epsilon = 10^{-5}$.
-# 
-# _Nota:_ Neste exemplo, `N = 5` não afeta o processo iterativo de determinação da raiz, porque o algoritmo
-# gera convergência para uma solução aproximada. Caso tivéssemos uma função mais "rígida", o valor de `N` impediria iterações _ad infinitum_.
+# - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
 # In[3]:
 
 
-zm = bissecao('z/(1 - 2*z) - tan(z+1)',-10,10,1e-5,5)
+xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,40)
 
+
+# - A raiz aproximada $x^{*}$, tal que para $f(x^{*}) = 0$ no intervalo-alvo é mostrada na última linha da tabela. Isto é,
 
 # In[4]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.optimize import bisect, newton
+# raiz aproximada
+xm
 
-# Dados de entrada
 
-t = np.arange(0,520,1)   # tempo [s]
-c = 1.46   # coeficiente de arrasto [kg/s]
-m = 90     # massa [kg]
-g = 9.81   # constante de gravidade [m/s2]
+# ## Exemplo
+# 
+# Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
 
-# Dados de saída
+# - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-## velocidade terminal [m/s]
-v_ms1 = (g*m/c)*(1 - np.exp((-c/m)*t))
+# In[5]:
 
-# velocidade terminal [km/h]
-v_kh1 = (1/3.6)*v_ms1;
 
-# gráfico tempo x velocidade
-plt.figure
-plt.plot(t,v_ms1)
-plt.xlabel('t [s]')
-plt.ylabel('v [m/s]')
-plt.title('Velocidade terminal - paraquedista');
+z = np.linspace(1,8.5,100)
+plot(z,z/(1 - 2*z) - np.tan(z+1),z,0*z);
 
+
+# - Neste caso, a função apresenta sensibilidades e mais de uma raiz no intervalo dado. Vamos buscar a raiz que está no subintervalo $[4,6]$. Para tanto, vamos deamplificar a plotagem.
 
 # In[6]:
 
 
-import sympy as sp
-
-time = 12     # tempo [s]
-mass = 70     # massa [kg]
-vel = 42     # velocidade [m/s]
-grav = 9.81   # constante de gravidade [m/s2]
-
-# defino variáveis simbólicas
-g,m,t,v,c = sp.symbols('g,m,t,v,c')
-
-# expressão geral
-f_g = (g*m/c)*(1 - sp.exp((-c/m)*t)) - v
-
-# expressão particular com valores substituídos 
-# convertida para string
-f_s = str(f_g.subs({'g':grav,'m':mass,'v':vel,'t':time}))
-
-# TODO
-# para esta função, teremos que substituir 'exp' por 'np.exp')
-f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
-
-# resolve bisseção
-xm = bissecao(f_s,12,16,1e-5,100)
+z = np.linspace(4,6,100)
+plot(z,z/(1 - 2*z) - np.tan(z+1),z,0*z);
 
 
-# ## Tarefas
-# 
-# * Melhore o código Python tratando os TODOs: 
-# 
-# Tente generalizar o código da bisseção para que identifique automaticamente a variável de entrada utilizada pelo usuário (use expressões regulares e remova o argumento `var` da definição da função).
-# 
-# Note que o trecho simbólico abaixo foi necessário para substituir a função da chamada `exp`, não interpretada por `eval` por uma nova string que usasse `np.exp`.
-# ```python
-# # TODO
-# # para esta função, teremos que substituir 'exp' por 'np.exp')
-# print('f(c) = ' + f_s + '\n')
-# f_s = '-42 + 686.7*(1 - np.exp(-6*c/35))/c'
-# ```
-# Tente fazer as correções necessárias no código. **Sugestão:** verifique a função `sympy.core.evalf` do módulo `sympy`)
-# 
-# * Adicione mecanismos de plotagem no código Python 
-# 
-# * Crie um código em Javascript para adicionarmos na página do projeto Numbiosis com o máximo possível de GUI (labels + input data).
-# 
-# * Teste a implementação com um problema realista.
+# - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
-# **Problema sugerido:**
-# Uma reação química reversível
-# 
-# $$2A+B \iff C$$
-# 
-# pode ser caracterizada pela relação de equilíbrio
-# 
-# $$K = \dfrac{c_c}{c_a^2c_b},$$
-# 
-# onde a nomenclatura $c_i$ representa a concentração do constituinte $i$. Suponha que definamos uma variável $x$ como o número de moles de $C$ que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como
-# 
-# $$K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x),}$$
-# 
-# onde o subscrito $0$ designa a concentração inicial de cada constituinte. Se $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$, determine o valor de $x$. 
-# 
-# (a) Obtenha a solução graficamente. 
-# 
-# (b) Com base em (a), resolva a raiz com suposições iniciais de $x_l = 0$ e $x_u = 20$, com critério de erro de $\epsilon_s = 0,5\%$. (Vide clipping _Definições de erro_ para entender $\epsilon_s$.)
-# 
-# (c) Use o método da bisseção.
+# In[7]:
 
-# ## Tarefa: Falsa Posição
-# Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `switch... case...`).
+
+zm = bissecao('z/(1 - 2*z) - tan(z+1)',4,6,1e-5,20)
+
+
+# - A raiz aproximada $z^{*}$, tal que para $h(z^{*}) = 0$ é mostrada na última linha da tabela. Isto é,
+
+# In[8]:
+
+
+# raiz aproximada
+zm
+
+
+# ## Exemplo aplicado
+# 
+# Vamos aplicar nosso método da bisseção ao problema do paraquedista apresentado no capítulo introdutório para buscar o coeficiente de arrasto adequado para os parâmetros de projeto impostos. 
+
+# - Primeiramente, vamos definir uma função para retornar a equação particular.
+
+# In[11]:
+
+
+def eq_paraq(tempo,massa,vel,grav):
+    """ Define equação particular para cálculo de coeficiente de arrasto 
+        em salto de paraquedista. (Ver introdução.)
+        
+        Parâmetros: 
+        
+            tempo: duração de salto até velocidade terminal [s]
+            massa: massa do paraquedista [kg]
+            vel: velocidade terminal desejada [m/s]
+            grav: aceleração gravitacional ambiente [m/s**2]
+        
+        Retorno: 
+        
+            f: expressão numérica para equação particular
+               do coeficiente de arrasto
+                
+    """
+    
+    # variáveis simbólicas    
+    from sympy import symbols, exp, lambdify
+    
+    g,m,t,v,c = symbols('g,m,t,v,c')
+    
+    # expressão geral
+    f = (g*m/c)*(1 - exp((-c/m)*t)) - v
+    
+    # expressão particular com valores substituídos convertidos para str
+    fs = f.subs({'g':grav,'m':massa,'v':vel,'t':tempo})
+    
+    # expressão simbólica convertida para expessão numérica
+    fn = lambdify(c,fs,"numpy")
+    
+    # imprime para 
+    print(f'Equação particular: f(c) = {fs}')
+    
+    return (fs,fn)
+
+
+# - Em seguida, inserimos os valores de entrada para teste. 
+
+# In[12]:
+
+
+# parâmetros de entrada
+tempo, massa, vel, grav = 12, 70, 42, 9.81
+
+# equação particular
+fs,fn = eq_paraq(tempo,massa,vel,grav)
+
+
+# - O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.
+
+# In[13]:
+
+
+c = np.linspace(1,20)
+plot(c,fn(c),c,0*c);
+
+
+# - Por fim, aplicamos o método.
+
+# In[14]:
+
+
+cm = bissecao(str(fs),14,17.0,1e-4,20)
+
+
+# O coeficiente de arrasto aproximado para este caso é dado por:
+
+# In[15]:
+
+
+cm
+
+
+# ## Exercícios
+# 
+# 1. Repita a análise anterior alterando os parâmetros de projeto de salto para paraquedistas de diferentes massas e com duração de salto até a velocidade terminal variáveis. Faça a análise gráfica e busque aproximações.
+# 
+# 2. Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `if`).
+
+# ## Problema proposto 
+# 
+# Uma reação química reversível $2A+B \iff C$ pode ser caracterizada pela relação de equilíbrio $K = \dfrac{c_c}{c_a^2c_b}$, onde a nomenclatura $c_i$ representa a concentração do constituinte $i$. Suponha que $x$ é o número de moles de $C$ que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como
+# 
+# $$K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x)},$$
+# 
+# onde o subscrito $0$ designa a concentração inicial de cada constituinte. Considere $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$ e faça o que se pede:
 # 
 # 
+# 1. Faça a análise gráfica do problema.
+# 2. Com base em no item anterior, escolha aproximações $x_l$ e $x_r$ adequadas e adote $\epsilon_s = 0,5\%$ como erro. (Vide clipping _Definições de erro_ para entender $\epsilon_s$.)
+# 3. Aplique o método da bisseção para determinar uma aproximação para $x$.
