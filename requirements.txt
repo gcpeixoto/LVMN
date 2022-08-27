@@ -9,3 +9,5 @@ nbval
 plotly
 numba
 pandas
+prettytable
+warnings
