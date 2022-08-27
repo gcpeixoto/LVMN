@@ -121,7 +121,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementações do método da bisseção
+   5. Implementação do método da bisseção
   </a>
  </li>
  <li class="toctree-l1">
@@ -475,13 +475,6 @@
   <a class="reference internal nav-link" href="#motivacao">
    3.1. Motivação
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funcao-de-airy">
-     3.1.1. Função de Airy
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#erro-de-cancelamento">
@@ -506,13 +499,6 @@
                 
   <section id="erros-numericos-e-seus-efeitos">
 <h1><span class="section-number">3. </span>Erros numéricos e seus efeitos<a class="headerlink" href="#erros-numericos-e-seus-efeitos" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
 <section id="motivacao">
 <h2><span class="section-number">3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">¶</a></h2>
 <p><strong>Exemplo</strong>: Avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = x^3 - 6x^2 + 4x - 0.1\)</span>
@@ -677,68 +663,9 @@ Px: (com arredondamento): -0.01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_15_0.png" src="_images/aula-02-erros_15_0.png" />
+<img alt="_images/aula-02-erros_14_0.png" src="_images/aula-02-erros_14_0.png" />
 </div>
 </div>
-<section id="funcao-de-airy">
-<h3><span class="section-number">3.1.1. </span>Função de Airy<a class="headerlink" href="#funcao-de-airy" title="Permalink to this headline">¶</a></h3>
-<p>A função de Airy é solução da equação de Schrödinger da mecânica quântica. Muda o comportamento de oscilatório para exponencial.</p>
-<p>Abaixo, vamos criar uma função aproximada (perturbada) para a função de Airy (assumindo-a como uma aproximação daquela que é exata) e outra para calcular diretamente o erro relativo para valores dessas funções.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">special</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
-
-<span class="c1"># eixo x </span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-
-<span class="c1"># funções de Airy e derivadas (solução exata)</span>
-<span class="n">ai</span><span class="p">,</span> <span class="n">aip</span><span class="p">,</span> <span class="n">bi</span><span class="p">,</span> <span class="n">bip</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">airy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># função de Airy (fazendo papel de solução aproximada)</span>
-<span class="n">ai2</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">ai</span> <span class="o">+</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<p>Podemos usar o conceito de <em>função anônima</em> para calcular diretamente o <strong>erro relativo percentual</strong> para cada ponto <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[ER_p(x) = \frac{\mid \ f_{aprox}(x) - f_{ex}(x) \ \mid}{\mid \ f_{ex}(x) \ \mid},\]</div>
-<p>onde <span class="math notranslate nohighlight">\(f_{aprox}(x)\)</span> é o valor da função aproximada (de Airy) e
-onde <span class="math notranslate nohighlight">\(f_{ex}(x)\)</span> é o valor da função exata (de Airy).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define função anônima para erro relativo</span>
-<span class="n">r</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">fex</span><span class="p">,</span><span class="n">faprox</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fex</span><span class="o">-</span><span class="n">faprox</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fex</span><span class="p">))</span><span class="o">/</span><span class="mi">100</span>
-
-<span class="c1"># calcula erro relativo para função de Airy e sua aproximação</span>
-<span class="n">rel</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">ai2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotagens </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ai</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sol exata&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ai2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sol aprox&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rel</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;err rel %&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_21_0.png" src="_images/aula-02-erros_21_0.png" />
-<img alt="_images/aula-02-erros_21_1.png" src="_images/aula-02-erros_21_1.png" />
-</div>
-</div>
-</section>
 </section>
 <section id="erro-de-cancelamento">
 <h2><span class="section-number">3.2. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">¶</a></h2>
@@ -837,7 +764,7 @@ caso 2: 0.00524752
         
           By Prof. Gustavo Oliveira<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2022.<br/>
       </p>
     </div>
   </footer>

@@ -121,7 +121,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementações do método da bisseção
+   5. Implementação do método da bisseção
   </a>
  </li>
  <li class="toctree-l1">
@@ -475,34 +475,22 @@
   <a class="reference internal nav-link" href="#sistema-binario">
    2.1. Sistema binário
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercicios-de-conversao-numerica">
-     2.1.1. Exercícios de conversão numérica
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#maquina-binaria">
-   2.2. Máquina binária
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-de-ponto-flutuante">
-   2.3. Sistema de ponto flutuante
+   2.2. Sistema de ponto flutuante
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-reta-perfurada">
-     2.3.1. A reta “perfurada”
+     2.2.1. A reta “perfurada”
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulador-de-mathbb-f">
-   2.4. Simulador de
+   2.3. Simulador de
    <span class="math notranslate nohighlight">
     \(\mathbb{F}\)
    </span>
@@ -510,7 +498,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
-   2.5. Limites de máquina para ponto flutuante
+   2.4. Limites de máquina para ponto flutuante
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   2.5. Exercícios
   </a>
  </li>
 </ul>
@@ -526,18 +519,9 @@
                 
   <section id="conversao-numerica-e-ponto-flutuante">
 <h1><span class="section-number">2. </span>Conversão numérica e ponto flutuante<a class="headerlink" href="#conversao-numerica-e-ponto-flutuante" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
 <section id="sistema-binario">
 <h2><span class="section-number">2.1. </span>Sistema binário<a class="headerlink" href="#sistema-binario" title="Permalink to this headline">¶</a></h2>
-<p>Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.</p>
-<section id="exercicios-de-conversao-numerica">
-<h3><span class="section-number">2.1.1. </span>Exercícios de conversão numérica<a class="headerlink" href="#exercicios-de-conversao-numerica" title="Permalink to this headline">¶</a></h3>
+<p>Neste capítulo, exploramos exercícios simples de conversão numérica como parte do conhecimento introdutó à computação numérica com Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (100)_2 -&gt; base 10</span>
@@ -613,130 +597,13 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Brincando com Python e divisões sucessivas&quot;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Esquema de divisões sucessivas:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; | 2&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;  –––&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">4</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; | 2&#39;</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;  –––&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Esquema de divisões sucessivas:
-
-4 | 2
-   –––
-0   2 | 2
-       –––
-    0   1
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Exercício:</strong> estude a codificação do esquema acima. O que os operadores <code class="docutils literal notranslate"><span class="pre">//</span></code> e <code class="docutils literal notranslate"><span class="pre">%</span></code> estão fazendo?</p>
-</section>
-</section>
-<section id="maquina-binaria">
-<h2><span class="section-number">2.2. </span>Máquina binária<a class="headerlink" href="#maquina-binaria" title="Permalink to this headline">¶</a></h2>
-<p>O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: <a class="reference external" href="https://vnicius.github.io/numbiosis/conversor/index.html">https://vnicius.github.io/numbiosis/conversor/index.html</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Converte inteiro para binário</span>
-<span class="sd">por divisões sucessivas.</span>
-<span class="sd">! Confronte com a função residente &#39;bin()&#39;</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">int2bin</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-
-    <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># lista auxiliar</span>
-
-    <span class="c1"># divisões sucessivas</span>
-    <span class="k">while</span> <span class="n">N</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span>
-
-    <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">b</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span> <span class="c1"># converte para string</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">s</span> <span class="c1"># retorna string</span>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Converte parte fracionária para binário</span>
-<span class="sd">por multiplicações sucessivas.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="k">def</span> <span class="nf">frac2bin</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
-
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># contador (limite manual posto em 10!)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># lista auxiliar</span>
-
-    <span class="c1"># multiplicações sucessivas</span>
-    <span class="n">Q</span> <span class="o">*=</span> <span class="mi">2</span>
-    <span class="k">while</span> <span class="n">Q</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">Q</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span><span class="o">-</span><span class="mi">1</span>
-            <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">Q</span> <span class="o">*=</span> <span class="mi">2</span>
-        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span> <span class="c1"># converte para string</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">s</span> <span class="c1"># retorna string</span>
-
-
-<span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="n">btn</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">btn</span><span class="p">)</span>
-
-
-
-<span class="c1"># Função principal</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-
-    <span class="c1"># Pré-criação da interface com usuário</span>
-
-    <span class="c1"># todo: tratamento de exceção no tipo de entrada</span>
-    <span class="c1">#       contagem de casas decimais no caso de dízimas</span>
-         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*** MÁQUINA BINÁRIA ***&#39;</span><span class="p">)</span>
-    <span class="c1">#     N = input(&#39;Selecione a parte inteira:\n&#39;)</span>
-    <span class="c1">#     Q = input(&#39;Selecione a parte fracionária:\n&#39;)</span>
-    <span class="c1">#     print(&#39;Seu número é: &#39; + int2bin( int(N) ) + &#39;.&#39; + frac2bin( float(Q) )  + &#39;.&#39;)</span>
-    <span class="c1">#     print(&#39;*** ***&#39;)</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*** MÁQUINA BINÁRIA ***
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="sistema-de-ponto-flutuante">
-<h2><span class="section-number">2.3. </span>Sistema de ponto flutuante<a class="headerlink" href="#sistema-de-ponto-flutuante" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Sistema de ponto flutuante<a class="headerlink" href="#sistema-de-ponto-flutuante" title="Permalink to this headline">¶</a></h2>
 <section id="a-reta-perfurada">
-<h3><span class="section-number">2.3.1. </span>A reta “perfurada”<a class="headerlink" href="#a-reta-perfurada" title="Permalink to this headline">¶</a></h3>
-<p>Como temos estudado, a matemática computacional opera no domínio <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>). Vejamos um exemplo:</p>
-<p><strong>Exemplo</strong>: Considere o sistema de ponto flutuante <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span>. Determinemos todos os seus números representáveis:</p>
-<p>Como a base é <span class="math notranslate nohighlight">\(2\)</span>, os dígitos possíveis são <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span> com mantissas:</p>
+<h3><span class="section-number">2.2.1. </span>A reta “perfurada”<a class="headerlink" href="#a-reta-perfurada" title="Permalink to this headline">¶</a></h3>
+<p>Na realidade, a matemática computacional opera sobre um universo discreto e “descontínuo (conjunto <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>), de pontos flutuantes, ao invés de trabalhar com números reais (conjunto <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>). Por exemplo, o sistema de ponto flutuante <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span> seria bastante limitado em sua capacidade de representar números. Determinemos todos eles.</p>
+<p>Como a base é 2 e a precisão é 3, os dígitos possíveis são <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span> com mantissas:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(0.100\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(0.101\)</span></p></li>
@@ -754,7 +621,7 @@
 <li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{1})_{2} = (1.01)_2 = 1.2^0 + 0.2^{-1} + 1.2^{-2} = 1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{2})_{2} = (10.1)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2\)</span></p></li>
 </ul>
-<p>(…)</p>
+<p><span class="math notranslate nohighlight">\(\vdots\)</span></p>
 <p>Fazendo as contas para os números restantes, obtemos a seguinte tabela:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -817,26 +684,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_11_0.png" src="_images/aula-01-ponto-flutuante_11_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_6_0.png" src="_images/aula-01-ponto-flutuante_6_0.png" />
 </div>
 </div>
 <p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.</p>
 </section>
 </section>
 <section id="simulador-de-mathbb-f">
-<h2><span class="section-number">2.4. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Permalink to this headline">¶</a></h2>
+<p>O programa abaixo permite-nos simular sistemas de pontos flutuantes básicos que plotam apenas a parte positiva do eixo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="k">def</span> <span class="nf">simulacao_F</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulacao_F</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">epsm</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="c1"># epsilon de máquina</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="n">b</span><span class="o">-</span><span class="n">epsm</span><span class="p">,</span><span class="n">epsm</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 
     <span class="n">E</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">U</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -861,48 +723,38 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.]
-</pre></div>
-</div>
-<img alt="_images/aula-01-ponto-flutuante_14_1.png" src="_images/aula-01-ponto-flutuante_14_1.png" />
+<img alt="_images/aula-01-ponto-flutuante_9_0.png" src="_images/aula-01-ponto-flutuante_9_0.png" />
 </div>
 </div>
 </section>
 <section id="limites-de-maquina-para-ponto-flutuante">
-<h2><span class="section-number">2.5. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">¶</a></h2>
+<p>As informações sobre os limites de máquina para um sistema de 64 bits utilizados na computação científica com Python podem ser obtidas com a ajuda do <em>numpy</em>. Detalhes são exibidos com</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-
-<span class="c1"># limites de máquina para ponto flutuante</span>
-<span class="c1">#help(np.finfo)</span>
 
 <span class="c1"># epsilon de máquina para tipo float (64 bits)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epsilon de máquina do numpy - 64 bits&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
 
-<span class="c1"># função para calculo do epsilon: erro relativo</span>
-<span class="k">def</span> <span class="nf">eps_mach</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">!=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">epsf</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">/</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">epsf</span>
-
 <span class="c1"># número máximo representável </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número máximo representável&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Número máximo representável:&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
 
 <span class="c1"># número mínimo representável </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número mínimo representável&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Número mínimo representável:&#39;</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">)</span>
 
 <span class="c1"># número de bits no expoente </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número de bits no expoente&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Número de bits no expoente&#39;</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">nexp</span><span class="p">)</span>
 
 <span class="c1"># número de bits na mantissa</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número de bits na mantissa&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Número de bits na mantissa&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">nmant</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -910,18 +762,43 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epsilon de máquina do numpy - 64 bits
 2.220446049250313e-16
-número máximo representável
+
+Número máximo representável:
 1.7976931348623157e+308
-número mínimo representável
+
+Número mínimo representável:
 -1.7976931348623157e+308
-número de bits no expoente
+
+Número de bits no expoente
 11
-número de bits na mantissa
+
+Número de bits na mantissa
 52
 </pre></div>
 </div>
 </div>
 </div>
+<p>O cálculo do <em>epsilon de máquina</em> pode ser realizado da seguinte forma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eps_mach</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">!=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">epsf</span> <span class="o">=</span> <span class="n">eps</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">/</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">epsf</span>
+
+<span class="n">eps_mach</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em termos relativos, a estagnação do <em>epsilon de máquina</em> pode ser graficamente representada através dos seguintes comandos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span>
@@ -933,9 +810,15 @@ número de bits na mantissa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_17_0.png" src="_images/aula-01-ponto-flutuante_17_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_15_0.png" src="_images/aula-01-ponto-flutuante_15_0.png" />
 </div>
 </div>
+</section>
+<section id="exercicios">
+<h2><span class="section-number">2.5. </span>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Use o simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> para construir outros sistemas computacionais.</p></li>
+</ol>
 </section>
 </section>
 
@@ -977,7 +860,7 @@ número de bits na mantissa
         
           By Prof. Gustavo Oliveira<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2022.<br/>
       </p>
     </div>
   </footer>
