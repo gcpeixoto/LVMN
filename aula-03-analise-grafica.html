@@ -6,10 +6,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Análise gráfica, localização e refinamento de raízes &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>4. Análise gráfica de funções não lineares &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,49 +20,65 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="5. Implementação do método da bisseção" href="aula-04-bissecao.html" />
     <link rel="prev" title="3. Erros numéricos e seus efeitos" href="aula-02-erros.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +87,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/numbiosis.png" class="logo" alt="logo">
       
@@ -84,16 +106,17 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="conteudo.html">
-   Laboratório Virtual de Métodos Numéricos - LVMN
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Cadernos
  </span>
@@ -106,7 +129,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Conversão numérica e ponto flutuante
+   2. Aritmética de ponto flutuante e conversão numérica
   </a>
  </li>
  <li class="toctree-l1">
@@ -116,7 +139,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Análise gráfica, localização e refinamento de raízes
+   4. Análise gráfica de funções não lineares
   </a>
  </li>
  <li class="toctree-l1">
@@ -220,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Code sessions
  </span>
@@ -272,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -309,7 +332,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Extra
  </span>
@@ -317,198 +340,363 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   1. Números em ponto flutuante e seus problemas
+   28. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   2. Processamento de sinais
+   29. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   3. Otimização de código
+   30. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   31. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   4. Malhas numéricas
+   32. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
-   5. Campos de direção
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   33. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   7. Variações do Método de Euler
+   35. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   8. Estabilidade Numérica para o Método de Euler
+   36. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   9. Método de Euler Implícito
+   37. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   12. Métodos de Adams-Bashfort
+   40. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edo-superior.html">
-   13. EDOs de ordem superior (redução de ordem)
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   41. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-sistemas-edo.html">
-   15. Sistemas de EDOs
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   43. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   16. Método das Linhas
+   44. Método das Linhas
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/aula-03-analise-grafica.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-03-analise-grafica.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-03-analise-grafica.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-03-analise-grafica.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-03-analise-grafica.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/aula-03-analise-grafica.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#o-processo-iterativo">
-   4.1. O processo iterativo
+  <a class="reference internal nav-link" href="#estudo-de-caso-salto-do-paraquedista">
+   4.1. Estudo de caso: salto do paraquedista
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-iterativos">
+   4.2. Métodos iterativos
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#determinacao-de-raizes-por-forca-bruta">
-   4.2. Determinação de raízes por força bruta
+   4.3. Determinação de raízes por força bruta
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#algoritmo-numerico">
-     4.2.1. Algoritmo numérico
+     4.3.1. Algoritmo numérico
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Análise gráfica de funções não lineares</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estudo-de-caso-salto-do-paraquedista">
+   4.1. Estudo de caso: salto do paraquedista
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-iterativos">
+   4.2. Métodos iterativos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#determinacao-de-raizes-por-forca-bruta">
+   4.3. Determinação de raízes por força bruta
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-numerico">
+     4.3.1. Algoritmo numérico
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <section id="analise-grafica-localizacao-e-refinamento-de-raizes">
-<h1><span class="section-number">4. </span>Análise gráfica, localização e refinamento de raízes<a class="headerlink" href="#analise-grafica-localizacao-e-refinamento-de-raizes" title="Permalink to this headline">¶</a></h1>
-<p>Neste capítulo, nosso objetivo é utilizar recursos de plotagem de gráficos no plano Cartesiano para analisar o comportamento de funções não lineares a fim de buscar intervalos iniciais para busca de raízes aproximadas de equações delas provenientes.</p>
-<p>Faremos um estudo de caso baseado no modelo de salto de paraquedistas. Nosso alvo é obter o único valor do coeficiente de arrasto que valide a física do salto para parâmetros iniciais fixados.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analise-grafica-de-funcoes-nao-lineares">
+<h1><span class="section-number">4. </span>Análise gráfica de funções não lineares<a class="headerlink" href="#analise-grafica-de-funcoes-nao-lineares" title="Permalink to this headline">#</a></h1>
+<p>Saber realizar plotagens básicas para analisar o comportamento de funções-alvo, aquelas para as quais procuramos raízes é essencial para a compreensão de métodos intervalares e abertos de determinação de raízes.</p>
+<p>Neste capítulio, abordaremos os seguintes tópicos:</p>
+<ul class="simple">
+<li><p>plotagem básica com <em>matplotlib</em>;</p></li>
+<li><p>estruturas de controle essenciais;</p></li>
+<li><p>algoritmo de determinação de raízes por “força bruta”.</p></li>
+</ul>
+<section id="estudo-de-caso-salto-do-paraquedista">
+<h2><span class="section-number">4.1. </span>Estudo de caso: salto do paraquedista<a class="headerlink" href="#estudo-de-caso-salto-do-paraquedista" title="Permalink to this headline">#</a></h2>
+<p>Faremos a análise gráfica da função do salto do paraquedista já vista anteriormente, isto é:</p>
+<div class="math notranslate nohighlight">
+\[v(t) = \dfrac{gm}{c}(1 - e^{-(c/m)t}).\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 
-<span class="c1"># parâmetros </span>
+<span class="c1"># parametros </span>
 <span class="n">t</span> <span class="o">=</span> <span class="mf">12.0</span>
 <span class="n">v</span> <span class="o">=</span> <span class="mf">42.0</span>
 <span class="n">m</span> <span class="o">=</span> <span class="mf">70.0</span>
@@ -519,33 +707,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># localização</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># localizacao</span>
 <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">20</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;k--o&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(c)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Variação do coef. de arrasto&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_2_0.png" src="_images/aula-03-analise-grafica_2_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="mi">20</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,13 +727,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span><span class="mi">16</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="mi">20</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -573,13 +744,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">14.75</span><span class="p">,</span><span class="mf">15.5</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span><span class="mi">16</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -590,12 +761,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">15.1</span><span class="p">,</span><span class="mf">15.2</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">14.75</span><span class="p">,</span><span class="mf">15.5</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -607,61 +778,67 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">15.1</span><span class="p">,</span><span class="mf">15.2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-03-analise-grafica_7_0.png" src="_images/aula-03-analise-grafica_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># refinamento</span>
 <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">15.12</span><span class="p">,</span><span class="mf">15.14</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">c</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">15.1278</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">15.1275</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fe53ec356d0&gt;
-</pre></div>
-</div>
-<img alt="_images/aula-03-analise-grafica_7_1.png" src="_images/aula-03-analise-grafica_7_1.png" />
+<img alt="_images/aula-03-analise-grafica_8_0.png" src="_images/aula-03-analise-grafica_8_0.png" />
 </div>
 </div>
-<section id="o-processo-iterativo">
-<h2><span class="section-number">4.1. </span>O processo iterativo<a class="headerlink" href="#o-processo-iterativo" title="Permalink to this headline">¶</a></h2>
-<p>Grande parte das tarefas realizadas por algoritmos utilizados em métodos numéricos baseiam-se em um processo de repetição chamado de <em>processo iterativo</em>, o qual gera a ideia de <em>aproximações sucessivas</em>. A estrutura de controle mais fundamental de que precisamos saber um pouco para o trabalho com computação numérica é o laço <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
-<p>A seguir, vamos ver como usá-lo para calcular somatórias e produtórios finitos. Por exemplo, vamos computar:</p>
-<p><span class="math notranslate nohighlight">\(s = \sum_{i=1}^n i = i + i + \ldots + i, para \)</span>n &lt; \infty$.</p>
+</section>
+<section id="metodos-iterativos">
+<h2><span class="section-number">4.2. </span>Métodos iterativos<a class="headerlink" href="#metodos-iterativos" title="Permalink to this headline">#</a></h2>
+<p>A primeira estrutura de controle fundamental para computação numérica é o laço <code class="docutils literal notranslate"><span class="pre">for</span></code>. Vamos ver como usá-lo para computar somatórias e produtórios.</p>
+<p>Por exemplo, vamos computar:</p>
+<p><span class="math notranslate nohighlight">\(s = \sum_{i=1}^n i = i + i + \ldots + i = s_1 + s_2 + \ldots + s_{n}\)</span>, para um valor <span class="math notranslate nohighlight">\(n\)</span> finito.</p>
 <p>Podemos fazer isto da seguinte maneira:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># número de termos</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Detalhando… Considere o par <span class="math notranslate nohighlight">\((i,s_i)\)</span>. Há soma abaixo?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># inicializa com soma 0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">si</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)):</span>    
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">si</span> <span class="c1"># acumula</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 0.0
-2 0.0
-3 0.0
-4 0.0
-5 0.0
-6 0.0
-7 0.0
-8 0.0
-9 0.0
-10 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s(1) = 1.0
+s(2) = 3.0
+s(3) = 6.0
+s(4) = 10.0
+s(5) = 15.0
+s(6) = 21.0
+s(7) = 28.0
+s(8) = 36.0
+s(9) = 45.0
 </pre></div>
 </div>
 </div>
@@ -669,81 +846,30 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aqui há um incremento constante de 1</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">si</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)):</span>    
+    <span class="n">s</span> <span class="o">=</span> <span class="n">si</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 1.0
-2 2.0
-3 3.0
-4 4.0
-5 5.0
-6 6.0
-7 7.0
-8 8.0
-9 9.0
-10 10.0
-</pre></div>
-</div>
-</div>
-</div>
-<p>O exemplo anterior também poderia ser reproduzido como:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># produz o mesmo que s &lt;- s + 1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 1.0
-2 2.0
-3 3.0
-4 4.0
-5 5.0
-6 6.0
-7 7.0
-8 8.0
-9 9.0
-10 10.0
-</pre></div>
-</div>
-</div>
-</div>
-<p>No próximo exemplo, o incremento não é mais constante:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 0.0
-2 1.0
-3 3.0
-4 6.0
-5 10.0
-6 15.0
-7 21.0
-8 28.0
-9 36.0
-10 45.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s(1) = 2
+s(2) = 3
+s(3) = 4
+s(4) = 5
+s(5) = 6
+s(6) = 7
+s(7) = 8
+s(8) = 9
+s(9) = 10
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="determinacao-de-raizes-por-forca-bruta">
-<h2><span class="section-number">4.2. </span>Determinação de raízes por força bruta<a class="headerlink" href="#determinacao-de-raizes-por-forca-bruta" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Determinação de raízes por força bruta<a class="headerlink" href="#determinacao-de-raizes-por-forca-bruta" title="Permalink to this headline">#</a></h2>
 <p>No computador, sabemos que uma função matemática <span class="math notranslate nohighlight">\(f(x)\)</span> pode ser representada de duas formas principais:</p>
 <ul class="simple">
 <li><p>através de uma função programada (em Python, por exemplo) que retorna o valor da função para um dado argumento</p></li>
@@ -752,7 +878,7 @@
 <p>A segunda forma é bem mais útil para análise gráfica. Esta forma é também adequada para resolver problemas de determinação de raízes e de otimização com simplicidade. No primeiro caso, basta pesquisar todos os pontos e procurar onde a função cruza o eixo <span class="math notranslate nohighlight">\(x\)</span>, como fizemos anteriormente. No segundo caso, buscamos um ponto de mínimo ou máximo local, ou global.</p>
 <p>Abordagens que seguem esse caminho podem chegar a examinar uma grande quantidade de pontos. Por essa razão, são chamados de métodos de <em>força bruta</em>, isto é, não seguem uma técnica elaborada.</p>
 <section id="algoritmo-numerico">
-<h3><span class="section-number">4.2.1. </span>Algoritmo numérico<a class="headerlink" href="#algoritmo-numerico" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1. </span>Algoritmo numérico<a class="headerlink" href="#algoritmo-numerico" title="Permalink to this headline">#</a></h3>
 <p>Em geral, queremos resolver o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span> especialmente quando <span class="math notranslate nohighlight">\(f\)</span> é não-linear. Para isso, desejamos encontrar os <span class="math notranslate nohighlight">\(x\)</span> onde <span class="math notranslate nohighlight">\(f\)</span> cruza o eixo. Um algoritmo em força bruta deverá percorrer todos os pontos sobre a curva e verificar se um ponto está abaixo do eixo e seu sucessor imediato está acima, ou vice-versa. Se isto ocorrer, então deve haver uma raiz neste intervalo.</p>
 <p><strong>Algoritmo.</strong> Dado um conjunto de <span class="math notranslate nohighlight">\(n+1\)</span> pontos <span class="math notranslate nohighlight">\((x_i,y_i)\)</span>, <span class="math notranslate nohighlight">\(y_i = f(x_i), \, i = 0,\ldots,n\)</span>, onde <span class="math notranslate nohighlight">\(x_0 &lt; \ldots &lt; x_n\)</span>. Verificamos se <span class="math notranslate nohighlight">\(y_i &lt; 0\)</span> e se <span class="math notranslate nohighlight">\(y_{i+1} &gt; 0\)</span>. Uma expressão compacta para esta checagem é o teste <span class="math notranslate nohighlight">\(y_i \, y_{i+1} &lt; 0\)</span>. Se o produto for negativo, então a raiz de <span class="math notranslate nohighlight">\(f\)</span> está no intervalo <span class="math notranslate nohighlight">\([x_i,x_{i+1}]\)</span>. Assumindo uma variação linear entre os pontos, temos a aproximação</p>
 <div class="math notranslate nohighlight">
@@ -768,13 +894,12 @@
 
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_22_0.png" src="_images/aula-03-analise-grafica_22_0.png" />
+<img alt="_images/aula-03-analise-grafica_17_0.png" src="_images/aula-03-analise-grafica_17_0.png" />
 </div>
 </div>
 <p>Nesta plotagem, vemos claramente que a função possui duas raizes: uma próxima de <span class="math notranslate nohighlight">\(x = 0.5\)</span> e outra em <span class="math notranslate nohighlight">\(x = \pi/6\)</span>.</p>
@@ -816,24 +941,24 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">3.8</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_28_0.png" src="_images/aula-03-analise-grafica_28_0.png" />
+<img alt="_images/aula-03-analise-grafica_23_0.png" src="_images/aula-03-analise-grafica_23_0.png" />
 </div>
 </div>
 <p>Conseguimos enxergar mais uma raiz. Agora, plotemos um pouco mais ampliado entre [3.6,3.7].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">3.6</span><span class="p">,</span><span class="mf">3.7</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x3</span><span class="p">),</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x3</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_30_0.png" src="_images/aula-03-analise-grafica_30_0.png" />
+<img alt="_images/aula-03-analise-grafica_25_0.png" src="_images/aula-03-analise-grafica_25_0.png" />
 </div>
 </div>
 <p>Dessa forma, podemos identificar que, de fato existe uma quarta raiz.</p>
@@ -841,7 +966,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raizes</span><span class="p">)</span> <span class="c1"># vetoriza a lista</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;-g&#39;</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="s1">&#39;ok&#39;</span><span class="p">,)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="s1">&#39;ok&#39;</span><span class="p">,)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>        
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -850,7 +975,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_33_0.png" src="_images/aula-03-analise-grafica_33_0.png" />
+<img alt="_images/aula-03-analise-grafica_28_0.png" src="_images/aula-03-analise-grafica_28_0.png" />
 </div>
 </div>
 </section>
@@ -879,34 +1004,48 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="aula-02-erros.html" title="previous page"><span class="section-number">3. </span>Erros numéricos e seus efeitos</a>
-    <a class='right-next' id="next-link" href="aula-04-bissecao.html" title="next page"><span class="section-number">5. </span>Implementação do método da bisseção</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-02-erros.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Erros numéricos e seus efeitos</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="aula-04-bissecao.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Implementação do método da bisseção</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Gustavo Oliveira<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

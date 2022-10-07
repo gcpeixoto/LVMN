@@ -8,8 +8,9 @@
 
     <title>Laboratório Virtual de Métodos Numéricos - LVMN &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,46 +20,62 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Modelagem Matemática em Ciências Computacionais e Engenharias" href="aula-00-modelagem-programacao.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -67,10 +84,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/numbiosis.png" class="logo" alt="logo">
       
@@ -81,16 +103,17 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
-   Laboratório Virtual de Métodos Numéricos - LVMN
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Cadernos
  </span>
@@ -103,7 +126,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Conversão numérica e ponto flutuante
+   2. Aritmética de ponto flutuante e conversão numérica
   </a>
  </li>
  <li class="toctree-l1">
@@ -113,7 +136,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Análise gráfica, localização e refinamento de raízes
+   4. Análise gráfica de funções não lineares
   </a>
  </li>
  <li class="toctree-l1">
@@ -217,7 +240,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Code sessions
  </span>
@@ -269,7 +292,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -306,7 +329,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Extra
  </span>
@@ -314,160 +337,275 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   1. Números em ponto flutuante e seus problemas
+   28. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   2. Processamento de sinais
+   29. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   3. Otimização de código
+   30. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   31. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   4. Malhas numéricas
+   32. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
-   5. Campos de direção
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   33. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   7. Variações do Método de Euler
+   35. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   8. Estabilidade Numérica para o Método de Euler
+   36. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   9. Método de Euler Implícito
+   37. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   12. Métodos de Adams-Bashfort
+   40. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edo-superior.html">
-   13. EDOs de ordem superior (redução de ordem)
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   41. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-sistemas-edo.html">
-   15. Sistemas de EDOs
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   43. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   16. Método das Linhas
+   44. Método das Linhas
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/conteudo.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/conteudo.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/conteudo.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/conteudo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/conteudo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/conteudo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objetivos-do-curso">
+   Objetivos do curso
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#programa-geral-do-curso">
    Programa geral do curso
@@ -527,6 +665,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#livro-complementar">
+   Livro complementar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#como-contribuir">
    Como contribuir?
   </a>
@@ -539,33 +682,142 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iniciacao-cientifica">
-   Iniciação científica
+  <a class="reference internal nav-link" href="#iniciacao-cientifica-e-outros-projetos">
+   Iniciação científica e outros projetos
   </a>
-  <ul class="nav section-nav flex-column">
-  </ul>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Laboratório Virtual de Métodos Numéricos - LVMN</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objetivos-do-curso">
+   Objetivos do curso
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#programa-geral-do-curso">
+   Programa geral do curso
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-introducao">
+     I. Introdução
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ii-determinacao-de-raizes">
+     II. Determinação de raízes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iii-solucao-de-sistemas-de-equacoes">
+     III. Solução de sistemas de equações
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iv-interpolacao-e-ajuste-de-curvas">
+     IV. Interpolação e ajuste de curvas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v-integracao-e-diferenciacao-numerica">
+     V. Integração e diferenciação numérica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-metodos-numericos-para-edos">
+     VI. Métodos numéricos para EDOs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-sessions">
+   <em>
+    Code sessions
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#listas-de-exercicios">
+   <em>
+    Listas de exercícios
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conteudo-extra">
+   <em>
+    Conteúdo Extra
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#livro-complementar">
+   Livro complementar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#como-contribuir">
+   Como contribuir?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alguns-temas-abertos-no-ambito-do-projeto-numbiosis">
+     Alguns temas abertos no âmbito do projeto Numbiosis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iniciacao-cientifica-e-outros-projetos">
+   Iniciação científica e outros projetos
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <section id="laboratorio-virtual-de-metodos-numericos-lvmn">
-<h1>Laboratório Virtual de Métodos Numéricos - LVMN<a class="headerlink" href="#laboratorio-virtual-de-metodos-numericos-lvmn" title="Permalink to this headline">¶</a></h1>
-<p>Conteúdo para formação complementar empregável em cursos de graduação introdutórios sobre métodos numéricos para aprendizagem ativa baseada em problemas.</p>
-<p>Este conteúdo é ensinado na disciplina <em>Cálculo Numérico</em> (GDCOC0072) ministrada pelo <a class="reference external" href="https://gcpeixoto.github.io">Prof. Gustavo Oliveira</a> (UFPB/CI/DCC). Todo material é desenvolvido no âmbito do <a class="reference external" href="http://numbiosis.ci.ufpb.br/pt/inicio/">Projeto Numbiosis</a> com suporte do Programa Institucional de Monitoria.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="laboratorio-virtual-de-metodos-numericos-lvmn">
+<h1>Laboratório Virtual de Métodos Numéricos - LVMN<a class="headerlink" href="#laboratorio-virtual-de-metodos-numericos-lvmn" title="Permalink to this headline">#</a></h1>
+<p>O LVMN é constituído de uma coleção de materiais digitais para cursos de graduação em ciências exatas, computacionais e engenharias que possuam disciplinas de métodos numéricos ou afins em seus currículos.</p>
+<p>Este conteúdo é ensinado na disciplina <em>Cálculo Numérico</em> (GDCOC0072) ministrada pelo <a class="reference external" href="https://gcpeixoto.github.io">Prof. Gustavo Oliveira</a> (UFPB/CI/DCC). O material começou a ser desenvolvido pelo professor no âmbito do <a class="reference external" href="http://numbiosis.ci.ufpb.br/pt/inicio/">Projeto Numbiosis</a> em 2017 e recebeu suporte do Programa Institucional de Monitoria até o ano de 2020.</p>
 <p>Aplicações específicas em Javascript que simulam diversos métodos do curso foram desenvolvidas pelo egresso <a class="reference external" href="https://github.com/Vnicius">Vinícius Veríssimo</a> e estão disponíveis <a class="reference external" href="https://vnicius.github.io/numbiosis/">aqui</a>.</p>
+<section id="objetivos-do-curso">
+<h2>Objetivos do curso<a class="headerlink" href="#objetivos-do-curso" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Apresentar o universo dos métodos numéricos a estudantes de graduação em ciências exatas;</p></li>
+<li><p>Estimular a aprendizagem ativa através da resolução de projetos e problemas do mundo real;</p></li>
+<li><p>Fomentar a maturidade do pensamento computacional e as habilidades de programação através do ecossistema Python para métodos numéricos;</p></li>
+</ul>
+</section>
 <section id="programa-geral-do-curso">
-<h2>Programa geral do curso<a class="headerlink" href="#programa-geral-do-curso" title="Permalink to this headline">¶</a></h2>
-<p><em>Notebooks</em> com notas de aula, exemplos resolvidos, algoritmos e exercícios de programação.</p>
+<h2>Programa geral do curso<a class="headerlink" href="#programa-geral-do-curso" title="Permalink to this headline">#</a></h2>
+<p>O curso contém cadernos interativos, exemplos resolvidos, algoritmos,  exercícios de programação, sessões de código</p>
 <section id="i-introducao">
-<h3>I. Introdução<a class="headerlink" href="#i-introducao" title="Permalink to this headline">¶</a></h3>
+<h3>I. Introdução<a class="headerlink" href="#i-introducao" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-00-modelagem-programacao.html"><span class="doc std std-doc">Aula 00 - Modelagem</span></a></p></li>
 <li><p><a class="reference internal" href="aula-01-ponto-flutuante.html"><span class="doc std std-doc">Aula 01 - Ponto flutuante</span></a></p></li>
@@ -573,7 +825,7 @@
 </ul>
 </section>
 <section id="ii-determinacao-de-raizes">
-<h3>II. Determinação de raízes<a class="headerlink" href="#ii-determinacao-de-raizes" title="Permalink to this headline">¶</a></h3>
+<h3>II. Determinação de raízes<a class="headerlink" href="#ii-determinacao-de-raizes" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-03-analise-grafica.html"><span class="doc std std-doc">Aula 03 - Análise gráfica</span></a></p></li>
 <li><p><a class="reference internal" href="aula-04-bissecao.html"><span class="doc std std-doc">Aula 04 - Bisseção</span></a></p></li>
@@ -584,7 +836,7 @@
 </ul>
 </section>
 <section id="iii-solucao-de-sistemas-de-equacoes">
-<h3>III. Solução de sistemas de equações<a class="headerlink" href="#iii-solucao-de-sistemas-de-equacoes" title="Permalink to this headline">¶</a></h3>
+<h3>III. Solução de sistemas de equações<a class="headerlink" href="#iii-solucao-de-sistemas-de-equacoes" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-09-eliminacao-gauss.html"><span class="doc std std-doc">Aula 09 - Eliminação Gaussiana</span></a></p></li>
 <li><p><a class="reference internal" href="aula-10-fatoracao-lu.html"><span class="doc std std-doc">Aula 10 - Fatoração LU</span></a></p></li>
@@ -594,7 +846,7 @@
 </ul>
 </section>
 <section id="iv-interpolacao-e-ajuste-de-curvas">
-<h3>IV. Interpolação e ajuste de curvas<a class="headerlink" href="#iv-interpolacao-e-ajuste-de-curvas" title="Permalink to this headline">¶</a></h3>
+<h3>IV. Interpolação e ajuste de curvas<a class="headerlink" href="#iv-interpolacao-e-ajuste-de-curvas" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-14-interpolacao-lagrange.html"><span class="doc std std-doc">Aula 14 - Interpolação de Lagrange</span></a></p></li>
 <li><p><a class="reference internal" href="aula-15-interpolacao-newton.html"><span class="doc std std-doc">Aula 15 - Interpolação de Newton</span></a></p></li>
@@ -603,7 +855,7 @@
 </ul>
 </section>
 <section id="v-integracao-e-diferenciacao-numerica">
-<h3>V. Integração e diferenciação numérica<a class="headerlink" href="#v-integracao-e-diferenciacao-numerica" title="Permalink to this headline">¶</a></h3>
+<h3>V. Integração e diferenciação numérica<a class="headerlink" href="#v-integracao-e-diferenciacao-numerica" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-18-integracao-newtonCotes.html"><span class="doc std std-doc">Aula 18 - Integração por Newton-Cotes</span></a></p></li>
 <li><p><a class="reference internal" href="aula-19-quadratura-gaussiana.html"><span class="doc std std-doc">Aula 19 - Quadratura Gaussiana</span></a></p></li>
@@ -611,7 +863,7 @@
 </ul>
 </section>
 <section id="vi-metodos-numericos-para-edos">
-<h3>VI. Métodos numéricos para EDOs<a class="headerlink" href="#vi-metodos-numericos-para-edos" title="Permalink to this headline">¶</a></h3>
+<h3>VI. Métodos numéricos para EDOs<a class="headerlink" href="#vi-metodos-numericos-para-edos" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="aula-21-solucoes-edo.html"><span class="doc std std-doc">Aula 21 - Solução numérica de EDOs</span></a></p></li>
 <li><p><a class="reference internal" href="aula-22-metodo-euler.html"><span class="doc std std-doc">Aula 22 - Método de Euler</span></a></p></li>
@@ -620,7 +872,7 @@
 </section>
 </section>
 <section id="code-sessions">
-<h2><em>Code sessions</em><a class="headerlink" href="#code-sessions" title="Permalink to this headline">¶</a></h2>
+<h2><em>Code sessions</em><a class="headerlink" href="#code-sessions" title="Permalink to this headline">#</a></h2>
 <p><em>Notebooks</em> com um compêndio de funções de utilidade predefinidas em módulos Python para resolução direta de problemas aplicados às ciências matemáticas, computacionais e engenharias.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="codeSession-1-bisect.html"><span class="doc std std-doc">Code session 1 - bisect</span></a></p></li>
@@ -631,11 +883,11 @@
 <li><p><a class="reference internal" href="codeSession-6-interp.html"><span class="doc std std-doc">Code session 6 - interp</span></a></p></li>
 <li><p><a class="reference internal" href="codeSession-7-fit.html"><span class="doc std std-doc">Code session 7 - fit</span></a></p></li>
 <li><p><a class="reference internal" href="codeSession-8-integrate.html"><span class="doc std std-doc">Code session 8 - integrate</span></a></p></li>
-<li><p><span class="xref myst">Code session 9 - solve_ivp</span></p></li>
+<li><p><a class="reference internal" href="codeSession-9-solve_ivp.html"><span class="doc std std-doc">Code session 9 - solve_ivp</span></a></p></li>
 </ul>
 </section>
 <section id="listas-de-exercicios">
-<h2><em>Listas de exercícios</em><a class="headerlink" href="#listas-de-exercicios" title="Permalink to this headline">¶</a></h2>
+<h2><em>Listas de exercícios</em><a class="headerlink" href="#listas-de-exercicios" title="Permalink to this headline">#</a></h2>
 <p><em>Notebooks</em> contendo solucionário matemático e computacional de exercícios gerais de menor complexidade.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="lista-1-solucoes.html"><span class="doc std std-doc">Lista 1</span></a></p></li>
@@ -647,28 +899,33 @@
 </ul>
 </section>
 <section id="conteudo-extra">
-<h2><em>Conteúdo Extra</em><a class="headerlink" href="#conteudo-extra" title="Permalink to this headline">¶</a></h2>
+<h2><em>Conteúdo Extra</em><a class="headerlink" href="#conteudo-extra" title="Permalink to this headline">#</a></h2>
 <p><em>Notebooks</em> com conteúdos complementares não contemplados no curso regular.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="extra/extra-pontoFlutuante.html"><span class="doc std std-doc">Números em ponto flutuante e seus problemas</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-malhasNumericas.html"><span class="doc std std-doc">Malhas numéricas</span></a></p></li>
-<li><p><span class="xref myst">Campos de direção para EDOs</span></p></li>
+<li><p><a class="reference internal" href="extra/extra-matplotlibTopicos.html"><span class="doc std std-doc">Plotagem com <em>matplotlib</em>: tópicos especiais</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-camposDirecaoEDO.html"><span class="doc std std-doc">Campos de direção para EDOs</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-eulerMelhorado.html"><span class="doc std std-doc">Melhoramentos do método de Euler</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-estabilidadeEuler.html"><span class="doc std std-doc">Estabilidade do método de Euler</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-eulerImplicito.html"><span class="doc std std-doc">Método de Euler implícito</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html"><span class="doc std std-doc">Métodos de múltiplos passos: <em>Adams-Bashfort</em></span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-edo-superior.html"><span class="doc std std-doc">EDOs de ordem superior</span></a></p></li>
-<li><p><span class="xref myst">Sistemas de EDOs</span></p></li>
+<li><p><a class="reference internal" href="extra/extra-edoSuperior.html"><span class="doc std std-doc">EDOs de ordem superior</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-sistemasEDO.html"><span class="doc std std-doc">Sistemas de EDOs</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-fft.html"><span class="doc std std-doc">Transformada de Fourier</span></a></p></li>
 <li><p><a class="reference internal" href="extra/extra-numba.html"><span class="doc std std-doc">Otimização de código</span></a></p></li>
 </ul>
 </section>
+<section id="livro-complementar">
+<h2>Livro complementar<a class="headerlink" href="#livro-complementar" title="Permalink to this headline">#</a></h2>
+<p>O livro <a class="reference external" href="https://gcpeixoto.github.io/lecture-ipynb/indice.html">Introdução à Linguagem Python para Ciências Computacionais e Engenharia</a>, traduzido pelo professor, fornece conhecimento básico para discentes que não possuam experiência com Python, permitindo que acompanhem o curso em paralelo.</p>
+</section>
 <section id="como-contribuir">
-<h2>Como contribuir?<a class="headerlink" href="#como-contribuir" title="Permalink to this headline">¶</a></h2>
-<p>O projeto Numbiosis não recebe financiamento direto para bolsas. Todo o conteúdo é desenvolvido pelo Prof. Gustavo Oliveira e alunos (monitores e/ou tutores bolsistas ou voluntários, bem como aqueles que se matriculam no curso e contribuem com melhorias). O material é revisado constantemente, mas possui suporte limitado.</p>
+<h2>Como contribuir?<a class="headerlink" href="#como-contribuir" title="Permalink to this headline">#</a></h2>
+<p>O projeto Numbiosis não recebe financiamento direto para bolsas. Todo o conteúdo é desenvolvido pelo Prof. Gustavo Oliveira e alunos (monitores e/ou tutores bolsistas ou voluntários, bem como aqueles que se matriculam no curso e contribuem com melhorias). O material passa por revisões periodicamente, mas possui suporte limitado.</p>
 <p>Você é estudante da UFPB e gostaria de contribuir com o projeto? Entre em contato com o Prof. Gustavo.</p>
 <section id="alguns-temas-abertos-no-ambito-do-projeto-numbiosis">
-<h3>Alguns temas abertos no âmbito do projeto Numbiosis<a class="headerlink" href="#alguns-temas-abertos-no-ambito-do-projeto-numbiosis" title="Permalink to this headline">¶</a></h3>
+<h3>Alguns temas abertos no âmbito do projeto Numbiosis<a class="headerlink" href="#alguns-temas-abertos-no-ambito-do-projeto-numbiosis" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Implementação de gráficos interativos para visualização 3D de processos iterativos.</p></li>
 <li><p>Desenvolvimento de APIs para integração de códigos da base Numbiosis em Github/Gitlab.</p></li>
@@ -680,23 +937,23 @@
 </ul>
 </section>
 </section>
-<section id="iniciacao-cientifica">
-<h2>Iniciação científica<a class="headerlink" href="#iniciacao-cientifica" title="Permalink to this headline">¶</a></h2>
-<p>Consulte projetos nos horizontes estratégicos do <span class="xref myst">TRIL Lab</span> no CI/UFPB. Algumas temas de interesse são:</p>
+<section id="iniciacao-cientifica-e-outros-projetos">
+<h2>Iniciação científica e outros projetos<a class="headerlink" href="#iniciacao-cientifica-e-outros-projetos" title="Permalink to this headline">#</a></h2>
+<p>Consulte projetos nos horizontes estratégicos do <a class="reference external" href="http://tril.ci.ufpb.br">TRIL Lab</a>. Estamos no <a class="reference external" href="http://ci.ufpb.br">Centro de Informática</a> da UFPB. Alguns temas de interesse são:</p>
 <ul class="simple">
 <li><p>Computação científica para aplicações em engenharia</p></li>
 <li><p>Ciência de dados para o setor energético</p></li>
 <li><p>Dinâmica dos fluidos computacional</p></li>
 </ul>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
 </section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -721,33 +978,41 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='right-next' id="next-link" href="aula-00-modelagem-programacao.html" title="next page"><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias</a>
-
-        </div>
-        
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="aula-00-modelagem-programacao.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Gustavo Oliveira<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>
