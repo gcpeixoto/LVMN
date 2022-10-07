@@ -1,6 +1,7 @@
-# The introduction file is mandatory
-- file: conteudo.ipynb
-- part: Cadernos
+format: jb-book
+root: conteudo.ipynb
+parts:
+- caption: Cadernos
   numbered: true
   chapters:
   - file: aula-00-modelagem-programacao
@@ -27,7 +28,7 @@
   - file: aula-21-solucoes-edo
   - file: aula-22-metodo-euler
   - file: aula-23-taylor-rungeKutta
-- part: Code sessions
+- caption: Code sessions
   chapters:
   - file: codeSession-1-bisect
   - file: codeSession-2-newton
@@ -38,7 +39,7 @@
   - file: codeSession-7-fit
   - file: codeSession-8-integrate
   - file: codeSession-9-solve_ivp
-- part: Exercícios resolvidos
+- caption: Exercícios resolvidos
   chapters:
   - file: lista-1-solucoes
   - file: lista-2-solucoes
@@ -46,29 +47,19 @@
   - file: lista-4-solucoes
   - file: lista-5-solucoes
   - file: lista-6-solucoes
-- part: Extra
+- caption: Extra
   numbered: true
   chapters:
   - file: extra/extra-pontoFlutuante
   - file: extra/extra-fft
   - file: extra/extra-numba
+  - file: extra/extra-matplotlibTopicos
   - file: extra/extra-malhasNumericas
-  - file: extra/extra-camposDirecao-edo
+  - file: extra/extra-camposDirecaoEDO
   - file: extra/extra-eulerMelhorado
   - file: extra/extra-estabilidadeEuler
   - file: extra/extra-eulerImplicito
   - file: extra/extra-multistep-adamsBashfort
-  - file: extra/extra-edo-superior
-  - file: extra/extra-sistemas-edo
+  - file: extra/extra-edoSuperior
+  - file: extra/extra-sistemasEDO
   - file: extra/extra-metodo-linhas
-#
-# MODEL: 
-# - file: intro
-#- part: Get started
-#  chapters:
-#  - file: start/overview
-#  - file: start/build
-#  - file: start/publish
-#    sections:
-#      - file: publish/gh-pages
-#      - file: publish/netlify

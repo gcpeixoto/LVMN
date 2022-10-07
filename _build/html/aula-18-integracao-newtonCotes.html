@@ -8,8 +8,9 @@
 
     <title>22. Integração Numérica: Regras de Newton-Cotes &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,49 +20,65 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="23. Integração Numérica: Quadratura Gaussiana" href="aula-19-quadratura-gaussiana.html" />
     <link rel="prev" title="21. Ajuste de curvas: caso não-linear" href="aula-17-ajusteNaoLinear.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +87,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/numbiosis.png" class="logo" alt="logo">
       
@@ -84,16 +106,17 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="conteudo.html">
-   Laboratório Virtual de Métodos Numéricos - LVMN
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Cadernos
  </span>
@@ -106,7 +129,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Conversão numérica e ponto flutuante
+   2. Aritmética de ponto flutuante e conversão numérica
   </a>
  </li>
  <li class="toctree-l1">
@@ -116,7 +139,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Análise gráfica, localização e refinamento de raízes
+   4. Análise gráfica de funções não lineares
   </a>
  </li>
  <li class="toctree-l1">
@@ -220,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Code sessions
  </span>
@@ -272,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -309,7 +332,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Extra
  </span>
@@ -317,160 +340,270 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   1. Números em ponto flutuante e seus problemas
+   28. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   2. Processamento de sinais
+   29. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   3. Otimização de código
+   30. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   31. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   4. Malhas numéricas
+   32. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
-   5. Campos de direção
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   33. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   7. Variações do Método de Euler
+   35. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   8. Estabilidade Numérica para o Método de Euler
+   36. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   9. Método de Euler Implícito
+   37. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   12. Métodos de Adams-Bashfort
+   40. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edo-superior.html">
-   13. EDOs de ordem superior (redução de ordem)
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   41. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-sistemas-edo.html">
-   15. Sistemas de EDOs
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   43. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   16. Método das Linhas
+   44. Método das Linhas
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/aula-18-integracao-newtonCotes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-18-integracao-newtonCotes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-18-integracao-newtonCotes.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-18-integracao-newtonCotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-18-integracao-newtonCotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/aula-18-integracao-newtonCotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-regra-do-trapezio">
    22.1. A Regra do Trapézio
@@ -544,17 +677,106 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Integração Numérica: Regras de Newton-Cotes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-regra-do-trapezio">
+   22.1. A Regra do Trapézio
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicacao-multipla-da-regra-do-trapezio">
+   22.2. Aplicação Múltipla da Regra do Trapézio
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-regra-1-3-de-simpson">
+   22.3. A Regra 1/3 de Simpson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson">
+   22.4. Aplicações Múltiplas da Regra 1/3 de Simpson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regra-3-8-de-simpson">
+   22.5. Regra 3/8 de Simpson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integracao-com-segmentos-desiguais">
+   22.6. Integração com Segmentos Desiguais
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas">
+   22.7. Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tarefa">
+     22.7.1. Tarefa
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integracao-simbolica">
+   22.8. Integração simbólica
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regra-quadratura-de-simpson">
+     22.8.1. Regra quadratura de Simpson
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integracao-multipla">
+   22.9. Integração múltipla
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integracao-dupla">
+     22.9.1. Integração dupla
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integracao-tripla">
+     22.9.2. Integração tripla
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <section id="integracao-numerica-regras-de-newton-cotes">
-<h1><span class="section-number">22. </span>Integração Numérica: Regras de Newton-Cotes<a class="headerlink" href="#integracao-numerica-regras-de-newton-cotes" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="integracao-numerica-regras-de-newton-cotes">
+<h1><span class="section-number">22. </span>Integração Numérica: Regras de Newton-Cotes<a class="headerlink" href="#integracao-numerica-regras-de-newton-cotes" title="Permalink to this headline">#</a></h1>
 <p>As fórmulas de Newton-Cotes são os esquemas mais comuns de integração numérica. Elas são baseadas na estratégia de substituir uma função complicada ou dados tabulados por uma função aproximadora simples que seja fácil de integrar:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -567,7 +789,7 @@ f_n (x) = a_0 + a_1 x + \dots + a_{n-1} x^{n-1} + a_n x^n
 \]</div>
 <p>em que <span class="math notranslate nohighlight">\(n\)</span> é o grau do polinômio.</p>
 <section id="a-regra-do-trapezio">
-<h2><span class="section-number">22.1. </span>A Regra do Trapézio<a class="headerlink" href="#a-regra-do-trapezio" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.1. </span>A Regra do Trapézio<a class="headerlink" href="#a-regra-do-trapezio" title="Permalink to this headline">#</a></h2>
 <p>A <strong>regra do trapézio</strong> corresponde ao caso no qual o polinômio na Equação (1) é de primeiro grau:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -631,7 +853,7 @@ I \cong (b - a) \times \text{altura média}
 </div>
 </section>
 <section id="aplicacao-multipla-da-regra-do-trapezio">
-<h2><span class="section-number">22.2. </span>Aplicação Múltipla da Regra do Trapézio<a class="headerlink" href="#aplicacao-multipla-da-regra-do-trapezio" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2. </span>Aplicação Múltipla da Regra do Trapézio<a class="headerlink" href="#aplicacao-multipla-da-regra-do-trapezio" title="Permalink to this headline">#</a></h2>
 <p>Uma maneira de melhorar a acurácia da regra do trapézio é dividir o intervalo de integração de <span class="math notranslate nohighlight">\(a\)</span> a <span class="math notranslate nohighlight">\(b\)</span> em diversos segmentos e aplicar o método a cada segmento (conforme figura abaixo). As áreas correspondentes aos segmentos individuais podem então ser somadas parafornecer a integral para o intervalo inteiro. As equações resultantes são chamadas fórmulas de integração por aplicações múltiplas ou compostas.</p>
 <p>Existem <span class="math notranslate nohighlight">\(n + 1\)</span> pontos base igualmente espaçados <span class="math notranslate nohighlight">\((x_0, x_1, x_2, \dots , x_n)\)</span>. Consequentemente, existem <span class="math notranslate nohighlight">\(n\)</span> segmentos de largura igual:</p>
 <div class="math notranslate nohighlight">
@@ -680,7 +902,7 @@ I = \dfrac{h}{2} \left[ f(x_0) + 2 \sum _{i = 1} ^{n - 1} f(x_i) + f(x_n) \right
 </div>
 </section>
 <section id="a-regra-1-3-de-simpson">
-<h2><span class="section-number">22.3. </span>A Regra 1/3 de Simpson<a class="headerlink" href="#a-regra-1-3-de-simpson" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.3. </span>A Regra 1/3 de Simpson<a class="headerlink" href="#a-regra-1-3-de-simpson" title="Permalink to this headline">#</a></h2>
 <p>A <strong>regra 1/3 de Simpson</strong> é obtida quando um polinômio interpolador de segundo grau é substituído na Equação (1):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -741,7 +963,7 @@ h = \dfrac{b − a}{2} \qquad (6)
 </div>
 </section>
 <section id="aplicacoes-multiplas-da-regra-1-3-de-simpson">
-<h2><span class="section-number">22.4. </span>Aplicações Múltiplas da Regra 1/3 de Simpson<a class="headerlink" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.4. </span>Aplicações Múltiplas da Regra 1/3 de Simpson<a class="headerlink" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson" title="Permalink to this headline">#</a></h2>
 <p>Do mesmo modo como no caso da regra do trapézio, a regra de Simpson pode ser melhorada dividindo-se o intervalo de integração em diversos segmentos de mesmo comprimento</p>
 <div class="math notranslate nohighlight">
 \[
@@ -764,7 +986,7 @@ I \cong (b - a) \dfrac{ f(x_0) + 4 \sum _{i = 1, 3, 5}^{n-1} f(x_i) + 2 \sum _{i
 \]</div>
 </section>
 <section id="regra-3-8-de-simpson">
-<h2><span class="section-number">22.5. </span>Regra 3/8 de Simpson<a class="headerlink" href="#regra-3-8-de-simpson" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.5. </span>Regra 3/8 de Simpson<a class="headerlink" href="#regra-3-8-de-simpson" title="Permalink to this headline">#</a></h2>
 <p>De uma maneira parecida com a dedução da regra do trapézio e da regra 1/3 de Simpson, um polinômio de Lagrange de ordem três pode ser ajustado a quatro pontos e integrado</p>
 <div class="math notranslate nohighlight">
 \[
@@ -816,7 +1038,7 @@ h = \dfrac{b − a}{3} \qquad (9)
 </div>
 </section>
 <section id="integracao-com-segmentos-desiguais">
-<h2><span class="section-number">22.6. </span>Integração com Segmentos Desiguais<a class="headerlink" href="#integracao-com-segmentos-desiguais" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.6. </span>Integração com Segmentos Desiguais<a class="headerlink" href="#integracao-com-segmentos-desiguais" title="Permalink to this headline">#</a></h2>
 <p>Até esse ponto, todas as fórmulas para integração numérica foram baseadas em dados igualmente espaçados. Na prática, existem muitas situações nas quais essa hipótese não é válida e precisamos lidar com segmentos de tamanhos distintos. Por exemplo, dados obtidos experimentalmente, muitas vezes, são desse tipo. Para tais casos, um método é aplicar a regra do trapézio para cada segmento e somar os resultados:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -825,7 +1047,7 @@ I = h_1 \dfrac{f(x_0) + f(x_1)}{2} + h_2 \dfrac{f(x_1) + f(x_2)}{2} + \dots + h_
 <p>em que <span class="math notranslate nohighlight">\(h_i\)</span> é a largura do segmento <span class="math notranslate nohighlight">\(i\)</span>.</p>
 </section>
 <section id="implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas">
-<h2><span class="section-number">22.7. </span>Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas<a class="headerlink" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.7. </span>Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas<a class="headerlink" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Newton-Cotes: Regra do Trapezio</span>
@@ -931,7 +1153,7 @@ no. de pontos de integração = 100001 	 I = 709.3361458907 	 EREL = 0.000999990
 </div>
 </div>
 <section id="tarefa">
-<h3><span class="section-number">22.7.1. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">22.7.1. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">#</a></h3>
 <p>Implemente uma função para realizar a integração numérica pela regra 3/8 de Simpson, use-a para calcular o valor de</p>
 <div class="math notranslate nohighlight">
 \[\int_{a=0}^{b=93} \frac{97000v}{(5v^2 + 570000)} \, dx\]</div>
@@ -939,7 +1161,7 @@ no. de pontos de integração = 100001 	 I = 709.3361458907 	 EREL = 0.000999990
 </section>
 </section>
 <section id="integracao-simbolica">
-<h2><span class="section-number">22.8. </span>Integração simbólica<a class="headerlink" href="#integracao-simbolica" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.8. </span>Integração simbólica<a class="headerlink" href="#integracao-simbolica" title="Permalink to this headline">#</a></h2>
 <p>Vamos ver alguns exemplos de integração simbólica. Para termos uma impressão mais elegante de expressões, antes usamos a seguinte instrução:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -949,7 +1171,7 @@ no. de pontos de integração = 100001 	 I = 709.3361458907 	 EREL = 0.000999990
 </div>
 </div>
 <section id="regra-quadratura-de-simpson">
-<h3><span class="section-number">22.8.1. </span>Regra quadratura de Simpson<a class="headerlink" href="#regra-quadratura-de-simpson" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">22.8.1. </span>Regra quadratura de Simpson<a class="headerlink" href="#regra-quadratura-de-simpson" title="Permalink to this headline">#</a></h3>
 <p>Vamos usar símbolos para chegar à expressão da regra de quadratura de Simpson.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1036,11 +1258,11 @@ no. de pontos de integração = 100001 	 I = 709.3361458907 	 EREL = 0.000999990
 </section>
 </section>
 <section id="integracao-multipla">
-<h2><span class="section-number">22.9. </span>Integração múltipla<a class="headerlink" href="#integracao-multipla" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.9. </span>Integração múltipla<a class="headerlink" href="#integracao-multipla" title="Permalink to this headline">#</a></h2>
 <p>A integração em 2 ou mais variáveis pode ser feita usando as funções <code class="docutils literal notranslate"><span class="pre">dblquad</span></code>, <code class="docutils literal notranslate"><span class="pre">tplquad</span></code> e <code class="docutils literal notranslate"><span class="pre">nquad</span></code>, onde o número de funções e de limites de integração deve se adequar ao tipo de integral.</p>
 <p>Abaixo, temos alguns exemplos:</p>
 <section id="integracao-dupla">
-<h3><span class="section-number">22.9.1. </span>Integração dupla<a class="headerlink" href="#integracao-dupla" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">22.9.1. </span>Integração dupla<a class="headerlink" href="#integracao-dupla" title="Permalink to this headline">#</a></h3>
 <p>Neste exemplo, integramos
 $<span class="math notranslate nohighlight">\(\int_0^1\int_0^1 e^{-x^2 - y^2} \, dx dy\)</span>$</p>
 <div class="cell docutils container">
@@ -1055,7 +1277,7 @@ $<span class="math notranslate nohighlight">\(\int_0^1\int_0^1 e^{-x^2 - y^2} \,
 </div>
 </section>
 <section id="integracao-tripla">
-<h3><span class="section-number">22.9.2. </span>Integração tripla<a class="headerlink" href="#integracao-tripla" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">22.9.2. </span>Integração tripla<a class="headerlink" href="#integracao-tripla" title="Permalink to this headline">#</a></h3>
 <p>Neste exemplo, integramos
 $<span class="math notranslate nohighlight">\(\int_0^1\int_0^1\int_0^1 e^{-x^2 - y^2 - z^2} \, dx dy dz\)</span>$</p>
 <div class="cell docutils container">
@@ -1100,34 +1322,48 @@ $<span class="math notranslate nohighlight">\(\int_0^1\int_0^1\int_0^1 e^{-x^2 -
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="aula-17-ajusteNaoLinear.html" title="previous page"><span class="section-number">21. </span>Ajuste de curvas: caso não-linear</a>
-    <a class='right-next' id="next-link" href="aula-19-quadratura-gaussiana.html" title="next page"><span class="section-number">23. </span>Integração Numérica: Quadratura Gaussiana</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-17-ajusteNaoLinear.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">21. </span>Ajuste de curvas: caso não-linear</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="aula-19-quadratura-gaussiana.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Integração Numérica: Quadratura Gaussiana</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Gustavo Oliveira<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

@@ -8,8 +8,9 @@
 
     <title>1. Modelagem Matemática em Ciências Computacionais e Engenharias &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,49 +20,65 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Conversão numérica e ponto flutuante" href="aula-01-ponto-flutuante.html" />
+    <link rel="next" title="2. Aritmética de ponto flutuante e conversão numérica" href="aula-01-ponto-flutuante.html" />
     <link rel="prev" title="Laboratório Virtual de Métodos Numéricos - LVMN" href="conteudo.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +87,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/numbiosis.png" class="logo" alt="logo">
       
@@ -84,16 +106,17 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="conteudo.html">
-   Laboratório Virtual de Métodos Numéricos - LVMN
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Cadernos
  </span>
@@ -106,7 +129,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Conversão numérica e ponto flutuante
+   2. Aritmética de ponto flutuante e conversão numérica
   </a>
  </li>
  <li class="toctree-l1">
@@ -116,7 +139,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Análise gráfica, localização e refinamento de raízes
+   4. Análise gráfica de funções não lineares
   </a>
  </li>
  <li class="toctree-l1">
@@ -220,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Code sessions
  </span>
@@ -272,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -309,7 +332,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Extra
  </span>
@@ -317,160 +340,270 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   1. Números em ponto flutuante e seus problemas
+   28. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   2. Processamento de sinais
+   29. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   3. Otimização de código
+   30. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   31. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   4. Malhas numéricas
+   32. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecao-edo.html">
-   5. Campos de direção
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   33. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   7. Variações do Método de Euler
+   35. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   8. Estabilidade Numérica para o Método de Euler
+   36. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   9. Método de Euler Implícito
+   37. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   12. Métodos de Adams-Bashfort
+   40. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edo-superior.html">
-   13. EDOs de ordem superior (redução de ordem)
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   41. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-sistemas-edo.html">
-   15. Sistemas de EDOs
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   43. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   16. Método das Linhas
+   44. Método das Linhas
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/aula-00-modelagem-programacao.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-00-modelagem-programacao.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-00-modelagem-programacao.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/aula-00-modelagem-programacao.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/aula-00-modelagem-programacao.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/aula-00-modelagem-programacao.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#modelos-matematicos">
    1.1. Modelos matemáticos
@@ -563,17 +696,125 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modelagem Matemática em Ciências Computacionais e Engenharias</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelos-matematicos">
+   1.1. Modelos matemáticos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-salto-de-paraquedas-de-yan-e-celso">
+   1.2. O salto de paraquedas de Yan e Celso
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deslocamento-ate-a-abertura-do-paraquedas">
+     1.2.1. Deslocamento até a abertura do paraquedas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#programacao-estruturada-e-modular">
+   1.3. Programação estruturada e modular
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prgramacao-estruturada">
+     1.3.1. Prgramação estruturada
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programacao-modular">
+     1.3.2. Programação modular
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo">
+       1.3.2.1. Exemplo: usando a classe
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ponto.py
+        </span>
+       </code>
+       para calcular a área de um triângulo retângulo
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer">
+       1.3.2.2. Exemplo: usando a classe
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ponto.py
+        </span>
+       </code>
+       para calcular a área de um triângulo qualquer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-quarto-paradigma-da-ciencia">
+   1.4. O quarto paradigma da ciência
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ciencia-e-engenharia-computacional">
+     1.4.1. Ciência e Engenharia Computacional
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#por-que-a-cse-importa-em-um-mundo-de-dados">
+     1.4.2. Por que a CSE importa em um mundo de dados?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#engenharia-centrada-em-dados-um-novo-ramo-na-arvore-do-futuro">
+     1.4.3. Engenharia centrada em dados: um novo ramo na árvore do futuro?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#engenharia-computacional-no-enfrentamento-da-covid-19">
+     1.4.4. Engenharia computacional no enfrentamento da Covid-19
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consideracoes-finais">
+   1.5. Considerações finais
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <section id="modelagem-matematica-em-ciencias-computacionais-e-engenharias">
-<h1><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias<a class="headerlink" href="#modelagem-matematica-em-ciencias-computacionais-e-engenharias" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modelagem-matematica-em-ciencias-computacionais-e-engenharias">
+<h1><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias<a class="headerlink" href="#modelagem-matematica-em-ciencias-computacionais-e-engenharias" title="Permalink to this headline">#</a></h1>
 <p>Ao deparar-se com um problema real, profissionais envolvidos nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo à uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de <em>método</em>.</p>
 <p>Alguns exemplos de perguntas que eventualmente surgiriam em domínios específicos do conhecimento são:</p>
 <ul class="simple">
@@ -586,11 +827,11 @@
 <figure class="align-default" id="passos-modelagem">
 <a class="reference internal image-reference" href="_images/passos-modelagem.png"><img alt="_images/passos-modelagem.png" src="_images/passos-modelagem.png" style="width: 700px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">As quatro fases fundamentais para a resolução de um problema aplicado nas ciências computacionais e engenharias.</span><a class="headerlink" href="#passos-modelagem" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">As quatro fases fundamentais para a resolução de um problema aplicado nas ciências computacionais e engenharias.</span><a class="headerlink" href="#passos-modelagem" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="modelos-matematicos">
-<h2><span class="section-number">1.1. </span>Modelos matemáticos<a class="headerlink" href="#modelos-matematicos" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.1. </span>Modelos matemáticos<a class="headerlink" href="#modelos-matematicos" title="Permalink to this headline">#</a></h2>
 <p>Um modelo matemático pode ser definido, de forma geral, como uma formulação ou equação que expressa as características essenciais de um sistema ou processo físico em termos matemáticos. A fórmula pode variar de uma simples relação algébrica a um conjunto grande e complicado de equações diferenciais.</p>
 <p>Por exemplo, com base em suas observações, Newton formulou sua segunda lei do movimento. Se escrevermos a taxa de variação temporal da velocidade pela derivada <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> (em <span class="math notranslate nohighlight">\(m/s)\)</span>, um modelo matemático que obtemos para a segunda lei de Newton é</p>
 <div class="math notranslate nohighlight">
@@ -615,7 +856,7 @@
 <p>Como veremos adiante em um estado de caso real apresentado por Yan Ferreira, esta função cresce exponencialmente até atingir uma estabilização na <em>velocidade terminal</em>.</p>
 </section>
 <section id="o-salto-de-paraquedas-de-yan-e-celso">
-<h2><span class="section-number">1.2. </span>O salto de paraquedas de Yan e Celso<a class="headerlink" href="#o-salto-de-paraquedas-de-yan-e-celso" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2. </span>O salto de paraquedas de Yan e Celso<a class="headerlink" href="#o-salto-de-paraquedas-de-yan-e-celso" title="Permalink to this headline">#</a></h2>
 <p>Como exemplo, veremos a análise do salto de paraquedas de Yan com seu irmão Celso. Vamos calcular a aceleração que seria atingida por Yan desde o salto até o momento da abertura de seu paraquedas. Na época do salto, Yan estava com 65 kg e o ar apresentava um coeficiente de arrasto estimado em 12,5 kg/s.</p>
 <p>Utilizando a fórmula dada, podemos calcular a velocidade atingida por Yan em relação ao tempo. A seguir, criamos um pequeno programa para calcular <span class="math notranslate nohighlight">\(v(t)\)</span> nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.</p>
 <div class="cell docutils container">
@@ -711,7 +952,7 @@
 <p>Podemos observar que quanto maior a massa, maior é a velocidade atingida. Por esta razão, Celso chegou ao solo antes de Yan.</p>
 <p>Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação <em>estruturada</em> e <em>modular</em>. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os pacotes (ou <strong>módulos</strong>) <em>math</em> e <em>numpy</em> para invocarmos a função exponencial <code class="docutils literal notranslate"><span class="pre">exp</span></code> e as funções para plotagens gráficas.</p>
 <section id="deslocamento-ate-a-abertura-do-paraquedas">
-<h3><span class="section-number">1.2.1. </span>Deslocamento até a abertura do paraquedas<a class="headerlink" href="#deslocamento-ate-a-abertura-do-paraquedas" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.2.1. </span>Deslocamento até a abertura do paraquedas<a class="headerlink" href="#deslocamento-ate-a-abertura-do-paraquedas" title="Permalink to this headline">#</a></h3>
 <p>Sabemos da Física e do Cálculo que o deslocamento é a integral da velocidade com relação ao tempo. Portanto, se <span class="math notranslate nohighlight">\(D_Y\)</span> e <span class="math notranslate nohighlight">\(D_C\)</span> foram os deslocamentos de Yan e Celso em seus saltos, podemo usar a integral:</p>
 <div class="math notranslate nohighlight">
 \[D = \int_0^{10} v(t) \, dt,\]</div>
@@ -743,15 +984,15 @@ Yan voou incríveis DY = 317.377922548627 metros em 10 segundos!
 </section>
 </section>
 <section id="programacao-estruturada-e-modular">
-<h2><span class="section-number">1.3. </span>Programação estruturada e modular<a class="headerlink" href="#programacao-estruturada-e-modular" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.3. </span>Programação estruturada e modular<a class="headerlink" href="#programacao-estruturada-e-modular" title="Permalink to this headline">#</a></h2>
 <section id="prgramacao-estruturada">
-<h3><span class="section-number">1.3.1. </span>Prgramação estruturada<a class="headerlink" href="#prgramacao-estruturada" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.3.1. </span>Prgramação estruturada<a class="headerlink" href="#prgramacao-estruturada" title="Permalink to this headline">#</a></h3>
 <p>A idéia central por trás da programação estruturada é que qualquer algoritmo numérico pode ser composto de três estruturas de controle fundamentais: <em>sequencia</em>, <em>seleção</em> e <em>repetição</em>.</p>
 <p>Nos primórdios da computação, os programadores usualmente não prestavam muita atenção ao fato de o programa ser claro e fácil de entender. Hoje, é reconhecido que existem muitos benefícios em escrever um código bem organizado e bem estruturado. Além do benefício óbvio de tornar o software mais fácil de ser compartilhado, isso também ajuda a garantir um desenvolvimento de programa mais eficiente.</p>
 <p>Portanto, algoritmos bem estruturados são, invariavelmente, fáceis de corrigir e testar, resultando em programas que têm um tempo de desenvolvimento e atualização menor. Embora a programação estruturada seja flexível o suficiente para permitir criatividade e expressões pessoais, suas regras impõem restrições suficientes para garantir um código final de mais qualidade, mais limpo e mais elegante, quando comparada à versão não estruturada.</p>
 </section>
 <section id="programacao-modular">
-<h3><span class="section-number">1.3.2. </span>Programação modular<a class="headerlink" href="#programacao-modular" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.3.2. </span>Programação modular<a class="headerlink" href="#programacao-modular" title="Permalink to this headline">#</a></h3>
 <p>Na programação modular, a idéia é que cada módulo desenvolva uma tarefa específica e tenha um único ponto de entrada e um único ponto de saída, de modo que o desenvolvedor possa reutilizá-lo invariavelmente em várias aplicações.</p>
 <p>Dividir tarefas ou objetivos em partes mais simples é uma maneira de torná-los mais fáceis de tratar. Pensando dessa maneira, os programadores começaram a dividir grandes problemas em subproblemas menores, ou <strong>módulos</strong>, que podem ser desenvolvidos de forma separada e até mesmo por pessoas diferentes, sem que isso interfira no resultado final.</p>
 <p>Hoje em dia, todas as linguagens de programação modernas, tais como C++, Java, Javascript e a própria Python utilizam módulos (também conhecidos como <em>pacotes</em> ou <em>bibliotecas</em>). Algumas características diferenciais da programação modular são a manutençao facilitada e a reusabilidade do código em programas posteriores.</p>
@@ -807,7 +1048,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </div>
 </div>
 <section id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo">
-<h4><span class="section-number">1.3.2.1. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo retângulo<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">1.3.2.1. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo retângulo<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-retangulo" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cálculo da área para o triângulo </span>
@@ -842,7 +1083,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </div>
 </section>
 <section id="exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer">
-<h4><span class="section-number">1.3.2.2. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo qualquer<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">1.3.2.2. </span>Exemplo: usando a classe <code class="docutils literal notranslate"><span class="pre">ponto.py</span></code> para calcular a área de um triângulo qualquer<a class="headerlink" href="#exemplo-usando-a-classe-ponto-py-para-calcular-a-area-de-um-triangulo-qualquer" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cálculo da área para o triângulo </span>
@@ -875,7 +1116,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </section>
 </section>
 <section id="o-quarto-paradigma-da-ciencia">
-<h2><span class="section-number">1.4. </span>O quarto paradigma da ciência<a class="headerlink" href="#o-quarto-paradigma-da-ciencia" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.4. </span>O quarto paradigma da ciência<a class="headerlink" href="#o-quarto-paradigma-da-ciencia" title="Permalink to this headline">#</a></h2>
 <p><strong>Nota:</strong> o texto desta seção pode ser encontrado em sua forma expandida neste <a class="reference external" href="https://tril.ci.ufpb.br/2021/10/16/engenharia-computacional-para-um-mundo-centrado-em-dados/">link</a>.</p>
 <p>Durante uma palestra proferida na Califórnia em 2009 para o <em>Computer Science and Telecommunications Board – National Research Council (NRC- CSTB)</em>, o renomado cientista da computação Jerry Nicholas “Jim” Gray (1944 – 2012), pontuou o surgimento do quarto paradigma da ciência. Ao utilizar o termo “eScience”, Gray queria dizer que a exploração científica seria grandemente influenciada pelo uso intensivo dos dados nos anos vindouros.</p>
 <p>A evolução dos supercomputadores nesses últimos vinte anos elevou a capacidade de compreensão da natureza e permitiu que a ciência subisse mais um degrau na escada do conhecimento. A fim de entender o que é o quarto paradigma da ciência, vejamos quais são os três primeiros retrocedendo no tempo.</p>
@@ -889,12 +1130,12 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 </ol>
 <p>sendo o último paradigma a consumação dos três anteriores.</p>
 <section id="ciencia-e-engenharia-computacional">
-<h3><span class="section-number">1.4.1. </span>Ciência e Engenharia Computacional<a class="headerlink" href="#ciencia-e-engenharia-computacional" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.4.1. </span>Ciência e Engenharia Computacional<a class="headerlink" href="#ciencia-e-engenharia-computacional" title="Permalink to this headline">#</a></h3>
 <p>A <strong>Ciência e Engenharia Computacional</strong>, internacionalmente conhecida pelo acrônimo CSE (<em>Computational Science and Engineering</em>) é uma área interdisciplinar que compreende a ciência da computação, matemática aplicada, biologia e outras áreas do núcleo STEM (<em>Science, Technology, Engineering, and Mathematics</em>) voltada à resolução de problemas práticos das engenharias. A característica peculiar da CSE é o uso de métodos numéricos e sua integração com modelos matemáticos para subsidiar simulações computacionais e a resolução de equações diferenciais ordinárias ou parciais.</p>
 <p>Equações diferenciais descrevem uma ampla variedade de fenômenos físicos, desde a absorção de um fármaco pelo organismo humano em escala nanométrica, até as ondas de choque macroscópicas causadas pela explosão de uma dinamite. Estes são apenas dois exemplos de situações que interessariam a indústria de biotecnologia e de construção ocorrendo em escalas extremamente distintas. Portanto, a CSE é afeita a problemas do mundo real caracterizados por multi-escalas pelos quais se compreende a dinâmica intrínseca de um fenômeno complexo modelável analiticamente.</p>
 </section>
 <section id="por-que-a-cse-importa-em-um-mundo-de-dados">
-<h3><span class="section-number">1.4.2. </span>Por que a CSE importa em um mundo de dados?<a class="headerlink" href="#por-que-a-cse-importa-em-um-mundo-de-dados" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.4.2. </span>Por que a CSE importa em um mundo de dados?<a class="headerlink" href="#por-que-a-cse-importa-em-um-mundo-de-dados" title="Permalink to this headline">#</a></h3>
 <p>Embora em muitas áreas já se saiba com riqueza de detalhes como mecanismos intrínsecos de sistemas dinâmicos funcionam, em outras, este não é o caso. A indisponibilidade de dados em certos domínios do conhecimento decorre, principalmente, da dificuldade de capturá-los e coletá-los, seja pela inexistência de infraestrutura tecnológica, seja pelo alto investimento necessário para obtê-los. Um exemplo é a exploração da subsuperfície terreste. Dominar o conhecimento acerca da mecânica das rochas, a salinidade de aquíferos, o potencial geotérmico, ou a constituição química do gás natural nas partes mais baixas do planeta equivale a adentrar dezenas, centenas ou milhares de quilômetros na litosfera. Essa não é uma tarefa fácil. Pelo contrário, há tantas variáveis, riscos e custos envolvidos que sua execução pode ser inviabilizada.</p>
 <p>A CSE entra em cena para preencher lacunas que os “dados”, por si só, não conseguem fechar. Uma vez que a exploração de dados só é exequível quando os próprios dados estão disponíveis, seria impossível explorar dados acerca de algo desconhecido. Claramente, seria paradoxal. Para dar outra ilustração, tomemos o exemplo das imagens digitais. A tecnologia atual provê condições suficientes para tirarmos fotos de milhares de objetos, seres e indivíduos (p.ex. uma formiga, um prédio, um planeta) sem qualquer dificuldade.</p>
 <p>Processar imagens, hoje em dia, é um dos grandes carros-chefe para que modelos de inteligência artificial sejam implementados com precisão. Mas a manipulação de imagens só é possível por causa do progresso na física, óptica álgebra linear – afinal, imagens são matrizes – e ciência dos materiais – para construir carcaças de celulares, câmeras DSLR e satélites.</p>
@@ -902,7 +1143,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 <p>Estando em algum lugar entre o terceiro e o quarto paradigma, a CSE não apenas intermedia a análise de incertezas, como também simula processos, assim gerando economia de recursos. A CSE usa o primeiro, o segundo e o terceiro na transição para o quarto paradigma e, naturalmente, agrega valor a processos de um mundo que vive em transição tecnológica.</p>
 </section>
 <section id="engenharia-centrada-em-dados-um-novo-ramo-na-arvore-do-futuro">
-<h3><span class="section-number">1.4.3. </span>Engenharia centrada em dados: um novo ramo na árvore do futuro?<a class="headerlink" href="#engenharia-centrada-em-dados-um-novo-ramo-na-arvore-do-futuro" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.4.3. </span>Engenharia centrada em dados: um novo ramo na árvore do futuro?<a class="headerlink" href="#engenharia-centrada-em-dados-um-novo-ramo-na-arvore-do-futuro" title="Permalink to this headline">#</a></h3>
 <p>Mark Girolami, um professor de Engenharia Civil em Cambridge, liderou um grande programa de ciência de dados e inteligência artificial no <a class="reference external" href="https://turing.ac.uk/">Alan Turing Institute</a> entre os anos de 2017 e 2020. Em sua percepção, a ciência de dados já havia se impregnado nas engenharias de tal forma que a inauguração de um novo termo para descrever essa interseção crescente seria justificável. Ele o chamou de engenharia centrada em dados (data-centric engineering, ou DCE).</p>
 <p>Segundo Girolami, a DCE é explicada por um desenvolvimento substancial que impacta as engenharias, profissões associadas, suas práticas e também a política. Ao relembrar que a engenharia erigiu-se sobre dados desde seus primórdios, citou em seu artigo uma clássica fala de Lord Kelvin de 1889:</p>
 <blockquote>
@@ -922,7 +1163,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 <p>Na Engenharia Mecânica, em particular, o conceito de <strong>ciência de dados mecanicista</strong> (<em>mechanistic data science</em>, MDS) e sua incorporação na educação de engenheiros, bem como de estudantes de nível médio nos Estados Unidos foi recentemente debatida no <a class="reference external" href="http://16.usnccm.org/SC16-002">16th USCCM</a> e na conferência <a class="reference external" href="https://mmldt.eng.ucsd.edu/short-course">MMLDT-CSET 2021</a>. A proposta da MDS é explanada, por exemplo, nesta <a class="reference external" href="https://www.imagwiki.nibib.nih.gov/sites/default/files/liu_pdf_usnccm2019_lecture1.pdf">apresentação</a> do Prof. Wing Kam Liu da Northwestern University.</p>
 </section>
 <section id="engenharia-computacional-no-enfrentamento-da-covid-19">
-<h3><span class="section-number">1.4.4. </span>Engenharia computacional no enfrentamento da Covid-19<a class="headerlink" href="#engenharia-computacional-no-enfrentamento-da-covid-19" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.4.4. </span>Engenharia computacional no enfrentamento da Covid-19<a class="headerlink" href="#engenharia-computacional-no-enfrentamento-da-covid-19" title="Permalink to this headline">#</a></h3>
 <p>A pandemia da Covid-19 desencadeou enormes desafios para a comunidade global. Concomitantemente, pesquisadores de diversas áreas mobilizaram-se para apresentar estratégias de enfrentamento à doença e propostas para mitigação dos riscos de contaminação do vírus SARS-CoV-2. A CSE não ficou de fora. A dinâmica dos fluidos computacional (computational fluid dynamics, CFD) contribuiu magnificamente para a elaboração de protocolos, equipamentos de proteção individual e coletiva, bem como para controle de engenharia em ambientes hospitalares. A seguir, parafraseamos três objetivos reportados pela Siemens Digital Industries Software em estudos de caso reais guiados por CFD:</p>
 <p>entender a dinâmica espaço-temporal de partículas virais exaladas por seres humanos na forma de gotículas e aerossóis;
 aperfeiçoar o projeto de sistemas de ventilação interior, bem como de exaustão e filtração visando conforto e segurança hospitalar;
@@ -930,8 +1171,8 @@ projetar equipamentos respiratórios, dispositivos para esterilização, purific
 </section>
 </section>
 <section id="consideracoes-finais">
-<h2><span class="section-number">1.5. </span>Considerações finais<a class="headerlink" href="#consideracoes-finais" title="Permalink to this headline">¶</a></h2>
-<p>A datificação está se consolidando como o quarto paradigma da ciência e a engenharia será cada vez mais influenciada por uma cultura baseada em dados. No <span class="xref myst">TRIL Lab</span>, defendemos uma formação estratégica e trabalhamos para que nossos alunos e colaboradores se adaptem a um cenário que demanda cada vez mais habilidades flexíveis e interdisciplinaridade. Em um mundo centrado em dados, a engenharia computacional terá um leque incomensurável de oportunidades, compreendendo, modelando e resolvendo problemas de engenharia do mundo real.</p>
+<h2><span class="section-number">1.5. </span>Considerações finais<a class="headerlink" href="#consideracoes-finais" title="Permalink to this headline">#</a></h2>
+<p>A datificação está se consolidando como o quarto paradigma da ciência e a engenharia será cada vez mais influenciada por uma cultura baseada em dados. No <a class="reference external" href="http://tril.ci.ufpb.br">TRIL Lab</a>, defendemos uma formação estratégica e trabalhamos para que nossos alunos e colaboradores se adaptem a um cenário que demanda cada vez mais habilidades flexíveis e interdisciplinaridade. Em um mundo centrado em dados, a engenharia computacional terá um leque incomensurável de oportunidades, compreendendo, modelando e resolvendo problemas de engenharia do mundo real.</p>
 <p>O conteúdo deste livro tem o objetivo de proporcionar a nossos estudantes uma formação moderna e ampla em métodos numéricos com aplicações às ciências computacionais e engenharias. Entretanto, qualquer perfil profissional que se beneficie da computação científica terá nele um estímulo adicional para enveredar-se pelo frutífero e versátil universo das técnicas fundamentais da engenharia computacional.</p>
 </section>
 </section>
@@ -958,34 +1199,48 @@ projetar equipamentos respiratórios, dispositivos para esterilização, purific
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="conteudo.html" title="previous page">Laboratório Virtual de Métodos Numéricos - LVMN</a>
-    <a class='right-next' id="next-link" href="aula-01-ponto-flutuante.html" title="next page"><span class="section-number">2. </span>Conversão numérica e ponto flutuante</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="conteudo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Laboratório Virtual de Métodos Numéricos - LVMN</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="aula-01-ponto-flutuante.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Aritmética de ponto flutuante e conversão numérica</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Gustavo Oliveira<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

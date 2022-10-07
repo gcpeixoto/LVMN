@@ -3,17 +3,21 @@
 
 # # Laboratório Virtual de Métodos Numéricos - LVMN
 # 
+# O LVMN é constituído de uma coleção de materiais digitais para cursos de graduação em ciências exatas, computacionais e engenharias que possuam disciplinas de métodos numéricos ou afins em seus currículos. 
 # 
-# Conteúdo para formação complementar empregável em cursos de graduação introdutórios sobre métodos numéricos para aprendizagem ativa baseada em problemas. 
-# 
-# Este conteúdo é ensinado na disciplina _Cálculo Numérico_ (GDCOC0072) ministrada pelo [Prof. Gustavo Oliveira](https://gcpeixoto.github.io) (UFPB/CI/DCC). Todo material é desenvolvido no âmbito do [Projeto Numbiosis](http://numbiosis.ci.ufpb.br/pt/inicio/) com suporte do Programa Institucional de Monitoria.
+# Este conteúdo é ensinado na disciplina _Cálculo Numérico_ (GDCOC0072) ministrada pelo [Prof. Gustavo Oliveira](https://gcpeixoto.github.io) (UFPB/CI/DCC). O material começou a ser desenvolvido pelo professor no âmbito do [Projeto Numbiosis](http://numbiosis.ci.ufpb.br/pt/inicio/) em 2017 e recebeu suporte do Programa Institucional de Monitoria até o ano de 2020.
 # 
 # Aplicações específicas em Javascript que simulam diversos métodos do curso foram desenvolvidas pelo egresso [Vinícius Veríssimo](https://github.com/Vnicius) e estão disponíveis [aqui](https://vnicius.github.io/numbiosis/).
 # 
+# ## Objetivos do curso
+# 
+# - Apresentar o universo dos métodos numéricos a estudantes de graduação em ciências exatas;
+# - Estimular a aprendizagem ativa através da resolução de projetos e problemas do mundo real;
+# - Fomentar a maturidade do pensamento computacional e as habilidades de programação através do ecossistema Python para métodos numéricos; 
 # 
 # ## Programa geral do curso
 # 
-# _Notebooks_ com notas de aula, exemplos resolvidos, algoritmos e exercícios de programação.
+# O curso contém cadernos interativos, exemplos resolvidos, algoritmos,  exercícios de programação, sessões de código
 # 
 # ### I. Introdução
 # 
@@ -70,7 +74,7 @@
 # - [Code session 6 - interp](codeSession-6-interp.ipynb)
 # - [Code session 7 - fit](codeSession-7-fit.ipynb)
 # - [Code session 8 - integrate](codeSession-8-integrate.ipynb)
-# - [Code session 9 - solve_ivp](codeSession-9-solveivp.ipynb)
+# - [Code session 9 - solve_ivp](codeSession-9-solve_ivp.ipynb)
 # 
 # ## _Listas de exercícios_
 # 
@@ -88,24 +92,25 @@
 # _Notebooks_ com conteúdos complementares não contemplados no curso regular.
 # 
 # - [Números em ponto flutuante e seus problemas](extra/extra-pontoFlutuante.ipynb)
-# 
 # - [Malhas numéricas](extra/extra-malhasNumericas.ipynb)
-# 
-# - [Campos de direção para EDOs](extra/extra-camposDirecao.ipynb)
+# - [Plotagem com _matplotlib_: tópicos especiais](extra/extra-matplotlibTopicos.ipynb)
+# - [Campos de direção para EDOs](extra/extra-camposDirecaoEDO.ipynb)
 # - [Melhoramentos do método de Euler](extra/extra-eulerMelhorado.ipynb)
 # - [Estabilidade do método de Euler](extra/extra-estabilidadeEuler.ipynb)
 # - [Método de Euler implícito](extra/extra-eulerImplicito.ipynb)
 # - [Métodos de múltiplos passos: _Adams-Bashfort_](extra/extra-multistep-adamsBashfort.ipynb)
-# - [EDOs de ordem superior](extra/extra-edo-superior.ipynb)
-# - [Sistemas de EDOs](extra/extra-sistemas-edp.ipynb)
-# 
+# - [EDOs de ordem superior](extra/extra-edoSuperior.ipynb)
+# - [Sistemas de EDOs](extra/extra-sistemasEDO.ipynb)
 # - [Transformada de Fourier](extra/extra-fft.ipynb)
-# 
 # - [Otimização de código](extra/extra-numba.ipynb)
+
+# ## Livro complementar
+# 
+# O livro [Introdução à Linguagem Python para Ciências Computacionais e Engenharia](https://gcpeixoto.github.io/lecture-ipynb/indice.html), traduzido pelo professor, fornece conhecimento básico para discentes que não possuam experiência com Python, permitindo que acompanhem o curso em paralelo.
 
 # ## Como contribuir?
 # 
-# O projeto Numbiosis não recebe financiamento direto para bolsas. Todo o conteúdo é desenvolvido pelo Prof. Gustavo Oliveira e alunos (monitores e/ou tutores bolsistas ou voluntários, bem como aqueles que se matriculam no curso e contribuem com melhorias). O material é revisado constantemente, mas possui suporte limitado.
+# O projeto Numbiosis não recebe financiamento direto para bolsas. Todo o conteúdo é desenvolvido pelo Prof. Gustavo Oliveira e alunos (monitores e/ou tutores bolsistas ou voluntários, bem como aqueles que se matriculam no curso e contribuem com melhorias). O material passa por revisões periodicamente, mas possui suporte limitado.
 # 
 # Você é estudante da UFPB e gostaria de contribuir com o projeto? Entre em contato com o Prof. Gustavo.
 # 
@@ -119,96 +124,10 @@
 # - Integração de ferramentas de _autograding_.
 # - Programação orientada a objetos para criação de _smart courses_ (módulos para geração de questões customizadas, avaliações e compilações em Latex).
 
-# ## Iniciação científica
+# ## Iniciação científica e outros projetos
 # 
-# Consulte projetos nos horizontes estratégicos do [TRIL Lab](tril.ci.ufpb.br) no CI/UFPB. Algumas temas de interesse são:
+# Consulte projetos nos horizontes estratégicos do [TRIL Lab](http://tril.ci.ufpb.br). Estamos no [Centro de Informática](http://ci.ufpb.br) da UFPB. Alguns temas de interesse são:
 # 
 # - Computação científica para aplicações em engenharia
 # - Ciência de dados para o setor energético 
 # - Dinâmica dos fluidos computacional
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# :numbered: True
-# :caption: Cadernos
-# 
-# aula-00-modelagem-programacao
-# aula-01-ponto-flutuante
-# aula-02-erros
-# aula-03-analise-grafica
-# aula-04-bissecao
-# aula-05-ponto-fixo
-# aula-06-newton
-# aula-07-secante
-# aula-08-muller
-# aula-09-eliminacao-gauss
-# aula-10-fatoracao-lu
-# aula-11-cholesky
-# aula-12-jacobi
-# aula-13-newton-nao-linear
-# aula-14-interpolacao-lagrange
-# aula-15-interpolacao-newton
-# aula-16-minimos-quadrados
-# aula-17-ajusteNaoLinear
-# aula-18-integracao-newtonCotes
-# aula-19-quadratura-gaussiana
-# aula-20-diferenciacao-numerica
-# aula-21-solucoes-edo
-# aula-22-metodo-euler
-# aula-23-taylor-rungeKutta
-# ```
-# 
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# :caption: Code sessions
-# 
-# codeSession-1-bisect
-# codeSession-2-newton
-# codeSession-3-polyval
-# codeSession-4-fsolve
-# codeSession-5-solve
-# codeSession-6-interp
-# codeSession-7-fit
-# codeSession-8-integrate
-# codeSession-9-solve_ivp
-# ```
-# 
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# :caption: Exercícios resolvidos
-# 
-# lista-1-solucoes
-# lista-2-solucoes
-# lista-3-solucoes
-# lista-4-solucoes
-# lista-5-solucoes
-# lista-6-solucoes
-# ```
-# 
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# :numbered: True
-# :caption: Extra
-# 
-# extra/extra-pontoFlutuante
-# extra/extra-fft
-# extra/extra-numba
-# extra/extra-malhasNumericas
-# extra/extra-camposDirecao-edo
-# extra/extra-eulerMelhorado
-# extra/extra-estabilidadeEuler
-# extra/extra-eulerImplicito
-# extra/extra-multistep-adamsBashfort
-# extra/extra-edo-superior
-# extra/extra-sistemas-edo
-# extra/extra-metodo-linhas
-# ```
-# 

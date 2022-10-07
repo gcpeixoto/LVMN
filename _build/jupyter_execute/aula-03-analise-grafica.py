@@ -1,41 +1,51 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Análise gráfica, localização e refinamento de raízes
+# # Análise gráfica de funções não lineares
 # 
-# Neste capítulo, nosso objetivo é utilizar recursos de plotagem de gráficos no plano Cartesiano para analisar o comportamento de funções não lineares a fim de buscar intervalos iniciais para busca de raízes aproximadas de equações delas provenientes.
+# Saber realizar plotagens básicas para analisar o comportamento de funções-alvo, aquelas para as quais procuramos raízes é essencial para a compreensão de métodos intervalares e abertos de determinação de raízes.
 # 
-# Faremos um estudo de caso baseado no modelo de salto de paraquedistas. Nosso alvo é obter o único valor do coeficiente de arrasto que valide a física do salto para parâmetros iniciais fixados.
+# Neste capítulio, abordaremos os seguintes tópicos: 
+# 
+# - plotagem básica com _matplotlib_;
+# - estruturas de controle essenciais;
+# - algoritmo de determinação de raízes por "força bruta".
 
-# In[1]:
+# ## Estudo de caso: salto do paraquedista
+# 
+# Faremos a análise gráfica da função do salto do paraquedista já vista anteriormente, isto é: 
+# 
+# $$v(t) = \dfrac{gm}{c}(1 - e^{-(c/m)t}).$$
+
+# In[2]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt 
 
-# parâmetros 
+# parametros 
 t = 12.0
 v = 42.0
 m = 70.0
 g = 9.81
 
 
-# In[12]:
+# In[3]:
 
 
-# localização
+# localizacao
 a,b = 1,20
 c = np.linspace(a,b,20)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
+plt.plot(c,f,'k--o');
 plt.xlabel('c')
 plt.ylabel('f(c)')
 plt.title('Variação do coef. de arrasto')
-plt.grid()
+plt.grid(True)
 
 
-# In[13]:
+# In[4]:
 
 
 # refinamento
@@ -43,12 +53,12 @@ a,b = 10,20
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
-plt.plot(c,0*c,'--',color='gray')
-plt.grid();
+plt.plot(c,f)
+plt.plot(c,0*c,'r--')
+plt.grid()
 
 
-# In[14]:
+# In[5]:
 
 
 # refinamento
@@ -56,12 +66,12 @@ a,b = 14,16
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
-plt.plot(c,0*c,'--',color='gray')
-plt.grid();
+plt.plot(c,f)
+plt.plot(c,0*c,'r--')
+plt.grid()
 
 
-# In[15]:
+# In[6]:
 
 
 # refinamento
@@ -69,12 +79,12 @@ a,b = 14.75,15.5
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
-plt.plot(c,0*c,'--',color='gray')
-plt.grid();
+plt.plot(c,f)
+plt.plot(c,0*c,'r--')
+plt.grid()
 
 
-# In[21]:
+# In[7]:
 
 
 # refinamento
@@ -82,12 +92,12 @@ a,b = 15.1,15.2
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
-plt.plot(c,0*c,'--',color='gray');
+plt.plot(c,f)
+plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[22]:
+# In[8]:
 
 
 # refinamento
@@ -95,72 +105,42 @@ a,b = 15.12,15.14
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-',alpha=0.9);
-plt.plot(c,0*c,'--',color='gray')
+plt.plot(c,f)
+plt.plot(c,0*c,'r--')
 plt.axvline(x=15.1278)
 plt.axvline(x=15.1275)
+plt.grid()
 
 
-# ## O processo iterativo
+# ## Métodos iterativos
 
-# Grande parte das tarefas realizadas por algoritmos utilizados em métodos numéricos baseiam-se em um processo de repetição chamado de _processo iterativo_, o qual gera a ideia de _aproximações sucessivas_. A estrutura de controle mais fundamental de que precisamos saber um pouco para o trabalho com computação numérica é o laço `for`. 
+# A primeira estrutura de controle fundamental para computação numérica é o laço `for`. Vamos ver como usá-lo para computar somatórias e produtórios. 
 # 
-# A seguir, vamos ver como usá-lo para calcular somatórias e produtórios finitos. Por exemplo, vamos computar: 
+# Por exemplo, vamos computar: 
 # 
-# $s = \sum_{i=1}^n i = i + i + \ldots + i, para $n < \infty$.
+# $s = \sum_{i=1}^n i = i + i + \ldots + i = s_1 + s_2 + \ldots + s_{n}$, para um valor $n$ finito.
 # 
 # Podemos fazer isto da seguinte maneira:
 
-# In[23]:
+# In[4]:
 
 
-n = 10
+n = 10 # número de termos
 
-s = 0.0
-for i in range(n):
-    s += i
-
-
-# Detalhando... Considere o par $(i,s_i)$. Há soma abaixo?
-
-# In[24]:
+s = 0.0 # inicializa com soma 0
+for i,si in enumerate(range(1,n)):    
+    s += si # acumula
+    print(f's({i+1}) = {s}')
 
 
-s = 0.
-for i in range(n):
-    print(i+1,s)
-
-
-# In[25]:
+# In[7]:
 
 
 # Aqui há um incremento constante de 1
-s = 0.
-for i in range(n):
-    s = s + 1
-    print(i+1,s)
-
-
-# O exemplo anterior também poderia ser reproduzido como:
-
-# In[26]:
-
-
-s = 0.
-for i in range(n):
-    s += 1 # produz o mesmo que s <- s + 1
-    print(i+1,s)
-
-
-# No próximo exemplo, o incremento não é mais constante:
-
-# In[27]:
-
-
-s = 0.
-for i in range(n):
-    s += i
-    print(i+1,s)
+s = 0.0
+for i,si in enumerate(range(1,n)):    
+    s = si + 1
+    print(f's({i+1}) = {s}')
 
 
 # ## Determinação de raízes por força bruta
@@ -190,22 +170,21 @@ for i in range(n):
 
 # Vamos plotar esta função apenas para visualizar seu comportamento.
 
-# In[35]:
+# In[14]:
 
 
 from numpy import exp, cos
 
 f = lambda x: exp(-x**2)*cos(3*x)
 x = np.linspace(0,4,1000)
-plt.plot(x,f(x),'g',alpha=0.9); 
-plt.grid()
+plt.plot(x,f(x)); plt.grid()
 
 
 # Nesta plotagem, vemos claramente que a função possui duas raizes: uma próxima de $x = 0.5$ e outra em $x = \pi/6$. 
 # 
 # Implementemos o algoritmo.
 
-# In[36]:
+# In[15]:
 
 
 def forca_bruta(f,a,b,n):
@@ -224,7 +203,7 @@ def forca_bruta(f,a,b,n):
 
 # Agora aplicamos o algoritmo na mesma função.
 
-# In[37]:
+# In[16]:
 
 
 a,b,n = 0,4,1000
@@ -234,31 +213,31 @@ print(raizes)
 
 # Temos, na verdade, 4 raízes! Plotemos o gráfico ampliado no intervalo [2.5,3.8].
 
-# In[38]:
+# In[17]:
 
 
 x2 = np.linspace(2.5,3.8,100)
-plt.plot(x2,f(x2),'g',alpha=0.9); plt.grid()
+plt.plot(x2,f(x2)); plt.grid()
 
 
 # Conseguimos enxergar mais uma raiz. Agora, plotemos um pouco mais ampliado entre [3.6,3.7].
 
-# In[39]:
+# In[18]:
 
 
 x3 = np.linspace(3.6,3.7,100)
-plt.plot(x3,f(x3),'g',alpha=0.9); plt.grid()
+plt.plot(x3,f(x3)); plt.grid()
 
 
 # Dessa forma, podemos identificar que, de fato existe uma quarta raiz.
 
 # Este exemplo mostrou uma aplicação do método de força bruta para determinação de raízes. Para finalizar, podemos embelezar o gráfico.
 
-# In[41]:
+# In[19]:
 
 
 r = np.array(raizes) # vetoriza a lista
-plt.plot(x,0*f(x),'r:',x,f(x),'-g',r,np.zeros(4),'ok',)
+plt.plot(x,0*f(x),'r:',x,f(x),'-',r,np.zeros(4),'ok',)
 plt.xlabel('$x$',fontsize=14)
 plt.ylabel('$f(x)$',fontsize=14)        
 plt.grid()

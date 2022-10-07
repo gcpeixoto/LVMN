@@ -130,6 +130,63 @@ P2x = lambda x: x*(x*(x - 6) + 4) - 0.1
 plt.plot(x,P1x(x),'r',x,P2x(x),'bo');
 
 
+# ### Função de Airy
+# 
+# A função de Airy é solução da equação de Schrödinger da mecânica quântica. Muda o comportamento de oscilatório para exponencial.
+# 
+# Abaixo, vamos criar uma função aproximada (perturbada) para a função de Airy (assumindo-a como uma aproximação daquela que é exata) e outra para calcular diretamente o erro relativo para valores dessas funções.
+# 
+
+# In[8]:
+
+
+from scipy import special
+import matplotlib.pyplot as plt 
+
+# eixo x 
+x = np.linspace(-10, -2, 100)
+
+# funções de Airy e derivadas (solução exata)
+ai, aip, bi, bip = special.airy(x)
+
+# função de Airy (fazendo papel de solução aproximada)
+ai2 = 1.1*ai + 0.05*np.cos(x) 
+
+
+# Podemos usar o conceito de _função anônima_ para calcular diretamente o **erro relativo percentual** para cada ponto $x$:
+# 
+# $$ER_p(x) = \frac{\mid \ f_{aprox}(x) - f_{ex}(x) \ \mid}{\mid \ f_{ex}(x) \ \mid},$$
+# 
+# onde $f_{aprox}(x)$ é o valor da função aproximada (de Airy) e 
+# onde $f_{ex}(x)$ é o valor da função exata (de Airy).
+
+# In[9]:
+
+
+# define função anônima para erro relativo
+r = lambda fex,faprox: (np.abs(fex-faprox)/np.abs(fex))/100
+
+# calcula erro relativo para função de Airy e sua aproximação
+rel = r(ai,ai2)
+
+
+# A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
+
+# In[10]:
+
+
+# plotagens 
+plt.plot(x, ai, 'r', label='sol exata')
+plt.plot(x, ai2, 'b', label='sol aprox')
+plt.grid()
+plt.legend(loc='upper right')
+plt.show()
+
+plt.plot(x,rel,'-', label='err rel %')
+plt.grid()
+plt.legend(loc='upper right');
+
+
 # ## Erro de cancelamento
 # 
 # Ocorre quando números de grandezas próximas são subtraídos. No exemplo, a seguir, induzimos uma divisão por zero usando o valor do épsilon de máquina $\epsilon_m$ ao fazer 
@@ -159,10 +216,4 @@ for i in range(20):
 print('\ncaso 1: {0:5g}'.format(s))    
 
 print('caso 2: {0:5g}'.format(1/np.exp(v)))
-
-
-# In[ ]:
-
-
-
 

@@ -5,12 +5,12 @@
 # 
 # O método de Jacobi-Richardson (MJR) é um método iterativo que busca uma solução aproximada para sistemas lineares. Um método iterativo como tal é também conhecido como _aproximações sucessivas_, em que uma sequência convergente de vetores é desejada. O MJR é de especial interesse em sistemas cujas matrizes são _diagonalmente dominantes_.
 
-# ### Instalações necessárias 
+# ## Instalações necessárias 
 # 
 # 
 # Este notebook usa o módulo `plotly` para plotagem. Para instalá-lo via `conda` e habilitá-lo para uso como extensão do Jupyter Lab, execute os comandos abaixo em uma célula:
-# 
-# ``` python
+
+# ```
 # import sys
 # !conda install --yes --prefix {sys.prefix} nodejs plotly
 # !jupyter labextension install jupyterlab-plotly@4.12.0
@@ -73,7 +73,7 @@
 
 # ## Implementação do método de Jacobi
 
-# In[1]:
+# In[4]:
 
 
 """
@@ -139,7 +139,7 @@ def jacobi(A,b,x0,N):
     return x,v
 
 
-# In[2]:
+# In[5]:
 
 
 # Exemplo 15.2
@@ -153,18 +153,18 @@ print(sol[:,-1])
 print(v)
 
 
-# ### Tarefa para turma de computação: 
+# ### Tarefa para turmas de computação: 
 # 
 # (Este código depende da biblioteca `plotly`, mas não *está otimizado*.)
 # 
 # Desenvolver código para plotagem 3D da convergência para o método de Jacobi.
 
-# In[3]:
+# In[23]:
 
 
 # plotagem 3D da convergência 
 import plotly.graph_objs as go
-from plotly.offline import iplot, init_notebook_mode
+from plotly.offline import iplot, init_notebook_mode, plot
 init_notebook_mode(connected=False)
 
 xp = sol[0,:]
@@ -198,7 +198,16 @@ fig.add_cone(x=[cx],y=[cy],z=[cz],u=[cx],v=[cy],w=[cz],sizeref=0.1,anchor='tip',
 
 for i in range(len(xp)):
     fig.add_cone(x=[xp[i]],y=[yp[i]],z=[zp[i]],u=[xp[i]],v=[yp[i]],w=[zp[i]],sizeref=0.1,anchor='tip',colorscale='jet')
+    fig.update_layout(showlegend=False)
 
 
-iplot(fig, show_link=True,filename='jacobi-3d-vectors')
+plot(fig, show_link=True,filename='jacobi-3d-vectors.html')
+from IPython.display import display, HTML
+display(HTML('jacobi-3d-vectors.html'))
+
+
+# In[ ]:
+
+
+
 

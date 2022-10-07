@@ -6,10 +6,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Números em ponto flutuante e seus problemas &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>28. Números em ponto flutuante e seus problemas &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,49 +20,65 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Processamento de sinais" href="extra-fft.html" />
+    <link rel="next" title="29. Processamento de sinais" href="extra-fft.html" />
     <link rel="prev" title="Lista de Exercícios 6" href="../lista-6-solucoes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +87,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/numbiosis.png" class="logo" alt="logo">
       
@@ -84,16 +106,17 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../conteudo.html">
-   Laboratório Virtual de Métodos Numéricos - LVMN
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Cadernos
  </span>
@@ -106,7 +129,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-01-ponto-flutuante.html">
-   2. Conversão numérica e ponto flutuante
+   2. Aritmética de ponto flutuante e conversão numérica
   </a>
  </li>
  <li class="toctree-l1">
@@ -116,7 +139,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-03-analise-grafica.html">
-   4. Análise gráfica, localização e refinamento de raízes
+   4. Análise gráfica de funções não lineares
   </a>
  </li>
  <li class="toctree-l1">
@@ -220,7 +243,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Code sessions
  </span>
@@ -272,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercícios resolvidos
  </span>
@@ -309,7 +332,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Extra
  </span>
@@ -317,168 +340,278 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Números em ponto flutuante e seus problemas
+   28. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-fft.html">
-   2. Processamento de sinais
+   29. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-numba.html">
-   3. Otimização de código
+   30. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra-matplotlibTopicos.html">
+   31. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-malhasNumericas.html">
-   4. Malhas numéricas
+   32. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra-camposDirecao-edo.html">
-   5. Campos de direção
+  <a class="reference internal" href="extra-camposDirecaoEDO.html">
+   33. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   7. Variações do Método de Euler
+   35. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   8. Estabilidade Numérica para o Método de Euler
+   36. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   9. Método de Euler Implícito
+   37. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   12. Métodos de Adams-Bashfort
+   40. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra-edo-superior.html">
-   13. EDOs de ordem superior (redução de ordem)
+  <a class="reference internal" href="extra-edoSuperior.html">
+   41. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="extra-sistemas-edo.html">
-   15. Sistemas de EDOs
+  <a class="reference internal" href="extra-sistemasEDO.html">
+   43. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   16. Método das Linhas
+   44. Método das Linhas
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/extra/extra-pontoFlutuante.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-pontoFlutuante.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-pontoFlutuante.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-pontoFlutuante.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-pontoFlutuante.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/extra/extra-pontoFlutuante.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#perguntas-e-respostas">
-   1.1. Perguntas e respostas
+   28.1. Perguntas e respostas
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#por-que-a-soma-0-1-0-2-nao-e-exatamente-0-3-mas-resulta-em-0-30000000000000004">
-     1.1.1. Por que a soma
+     28.1.1. Por que a soma
      <code class="docutils literal notranslate">
       <span class="pre">
        0.1
@@ -501,17 +634,17 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#este-sistema-parece-um-tanto-estupido-por-que-os-computadores-o-utilizam-para-fazer-calculos">
-     1.1.2. Este sistema parece um tanto estúpido. Por que os computadores o utilizam para fazer cálculos?
+     28.1.2. Este sistema parece um tanto estúpido. Por que os computadores o utilizam para fazer cálculos?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#o-que-pode-ser-feito-para-evitar-este-problema">
-     1.1.3. O que pode ser feito para evitar este problema?
+     28.1.3. O que pode ser feito para evitar este problema?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#por-que-outros-calculos-como-0-1-0-4-funcionam-corretamente">
-     1.1.4. Por que outros cálculos como
+     28.1.4. Por que outros cálculos como
      <code class="docutils literal notranslate">
       <span class="pre">
        0.1
@@ -530,37 +663,37 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparacao-de-numeros-em-ponto-flutuante">
-   1.2. Comparação de números em ponto flutuante
+   28.2. Comparação de números em ponto flutuante
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#margens-de-erro-absoluto-x-relativo">
-     1.2.1. Margens de erro: absoluto x relativo
+     28.2.1. Margens de erro: absoluto x relativo
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#referencias-para-estudo">
-     1.2.2. Referências para estudo
+     28.2.2. Referências para estudo
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#miscelanea">
-       1.2.2.1. Miscelânea
+       28.2.2.1. Miscelânea
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#visualizadores-interativos-de-numeros-no-padrao-ieee-754">
-       1.2.2.2. Visualizadores interativos de números no padrão IEEE 754
+       28.2.2.2. Visualizadores interativos de números no padrão IEEE 754
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#exemplos-de-comparacao-de-numeros-em-ponto-flutuante">
-       1.2.2.3. Exemplos de comparação de números em ponto flutuante
+       28.2.2.3. Exemplos de comparação de números em ponto flutuante
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#livros">
-       1.2.2.4. Livros
+       28.2.2.4. Livros
       </a>
      </li>
     </ul>
@@ -569,22 +702,136 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Números em ponto flutuante e seus problemas</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perguntas-e-respostas">
+   28.1. Perguntas e respostas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#por-que-a-soma-0-1-0-2-nao-e-exatamente-0-3-mas-resulta-em-0-30000000000000004">
+     28.1.1. Por que a soma
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       0.1
+      </span>
+      <span class="pre">
+       +
+      </span>
+      <span class="pre">
+       0.2
+      </span>
+     </code>
+     não é exatamente 0.3, mas resulta em
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       0.30000000000000004
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#este-sistema-parece-um-tanto-estupido-por-que-os-computadores-o-utilizam-para-fazer-calculos">
+     28.1.2. Este sistema parece um tanto estúpido. Por que os computadores o utilizam para fazer cálculos?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#o-que-pode-ser-feito-para-evitar-este-problema">
+     28.1.3. O que pode ser feito para evitar este problema?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#por-que-outros-calculos-como-0-1-0-4-funcionam-corretamente">
+     28.1.4. Por que outros cálculos como
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       0.1
+      </span>
+      <span class="pre">
+       +
+      </span>
+      <span class="pre">
+       0.4
+      </span>
+     </code>
+     funcionam corretamente?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparacao-de-numeros-em-ponto-flutuante">
+   28.2. Comparação de números em ponto flutuante
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#margens-de-erro-absoluto-x-relativo">
+     28.2.1. Margens de erro: absoluto x relativo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referencias-para-estudo">
+     28.2.2. Referências para estudo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#miscelanea">
+       28.2.2.1. Miscelânea
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizadores-interativos-de-numeros-no-padrao-ieee-754">
+       28.2.2.2. Visualizadores interativos de números no padrão IEEE 754
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exemplos-de-comparacao-de-numeros-em-ponto-flutuante">
+       28.2.2.3. Exemplos de comparação de números em ponto flutuante
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#livros">
+       28.2.2.4. Livros
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <section id="numeros-em-ponto-flutuante-e-seus-problemas">
-<h1><span class="section-number">1. </span>Números em ponto flutuante e seus problemas<a class="headerlink" href="#numeros-em-ponto-flutuante-e-seus-problemas" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="numeros-em-ponto-flutuante-e-seus-problemas">
+<h1><span class="section-number">28. </span>Números em ponto flutuante e seus problemas<a class="headerlink" href="#numeros-em-ponto-flutuante-e-seus-problemas" title="Permalink to this headline">#</a></h1>
 <p>Este capítulo é um compêndio sobre a representação numérica em computadores, sistema de ponto flutuante, bem como notas sobre causas de erros. O texto é essencialmente uma reprodução adaptada do conteúdo encontrado no site <a class="reference external" href="https://floating-point-gui.de">floating-point-gui.de</a>.</p>
 <section id="perguntas-e-respostas">
-<h2><span class="section-number">1.1. </span>Perguntas e respostas<a class="headerlink" href="#perguntas-e-respostas" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.1. </span>Perguntas e respostas<a class="headerlink" href="#perguntas-e-respostas" title="Permalink to this headline">#</a></h2>
 <section id="por-que-a-soma-0-1-0-2-nao-e-exatamente-0-3-mas-resulta-em-0-30000000000000004">
-<h3><span class="section-number">1.1.1. </span>Por que a soma <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.2</span></code> não é exatamente 0.3, mas resulta em <code class="docutils literal notranslate"><span class="pre">0.30000000000000004</span></code>?<a class="headerlink" href="#por-que-a-soma-0-1-0-2-nao-e-exatamente-0-3-mas-resulta-em-0-30000000000000004" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.1.1. </span>Por que a soma <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.2</span></code> não é exatamente 0.3, mas resulta em <code class="docutils literal notranslate"><span class="pre">0.30000000000000004</span></code>?<a class="headerlink" href="#por-que-a-soma-0-1-0-2-nao-e-exatamente-0-3-mas-resulta-em-0-30000000000000004" title="Permalink to this headline">#</a></h3>
 <p>Porque, internamente, os computadores usam um formato de ponto flutuante binário limitado que não pode representar com precisão números como 0.1, 0.2 ou 0.3. Quando o código é compilado ou interpretado, <code class="docutils literal notranslate"><span class="pre">0.1</span></code> já é arredondado para o número mais próximo consoante este formato, o que resulta em um pequeno erro de arredondamento antes mesmo de o cálculo acontecer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -601,12 +848,12 @@
 </div>
 </section>
 <section id="este-sistema-parece-um-tanto-estupido-por-que-os-computadores-o-utilizam-para-fazer-calculos">
-<h3><span class="section-number">1.1.2. </span>Este sistema parece um tanto estúpido. Por que os computadores o utilizam para fazer cálculos?<a class="headerlink" href="#este-sistema-parece-um-tanto-estupido-por-que-os-computadores-o-utilizam-para-fazer-calculos" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.1.2. </span>Este sistema parece um tanto estúpido. Por que os computadores o utilizam para fazer cálculos?<a class="headerlink" href="#este-sistema-parece-um-tanto-estupido-por-que-os-computadores-o-utilizam-para-fazer-calculos" title="Permalink to this headline">#</a></h3>
 <p>Não se trata de estupidez. O sistema é apenas diferente. Números decimais não podem representar com precisão qualquer número, a exemplo da fração <code class="docutils literal notranslate"><span class="pre">1/3</span></code>. Então, temos que usar algum tipo de arredondamento para algo como <code class="docutils literal notranslate"><span class="pre">0.33</span></code>. Afinal, não podemos esperar que a soma <code class="docutils literal notranslate"><span class="pre">0.33</span> <span class="pre">+</span> <span class="pre">0.33</span> <span class="pre">+</span> <span class="pre">0.33</span></code> seja exatamente igual a <code class="docutils literal notranslate"><span class="pre">1</span></code>, não é mesmo?</p>
 <p>Os computadores usam números binários porque são mais rápidos ao lidar com eles e, para a maioria dos cálculos usuais, um pequeno erro na 17a. casa decimal não é relevante, pois, de qualquer maneira, os números com os quais trabalhamos não são “redondos” (ou exatamente “precisos”).</p>
 </section>
 <section id="o-que-pode-ser-feito-para-evitar-este-problema">
-<h3><span class="section-number">1.1.3. </span>O que pode ser feito para evitar este problema?<a class="headerlink" href="#o-que-pode-ser-feito-para-evitar-este-problema" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.1.3. </span>O que pode ser feito para evitar este problema?<a class="headerlink" href="#o-que-pode-ser-feito-para-evitar-este-problema" title="Permalink to this headline">#</a></h3>
 <p>Isso depende do tipo de cálculo pretendido.</p>
 <p>Se a precisão dos resultados for absoluta, especialmente quando se trabalha com cálculos monetários, é melhor usar um tipo de dado especial, a saber o <code class="docutils literal notranslate"><span class="pre">decimal</span></code>. Em Python, por exemplo, há um <a class="reference external" href="https://docs.python.org/3/library/decimal.html">módulo de mesmo nome</a> para esta finalidade específica. Por exemplo:</p>
 <div class="cell docutils container">
@@ -645,7 +892,7 @@
 </div>
 </section>
 <section id="por-que-outros-calculos-como-0-1-0-4-funcionam-corretamente">
-<h3><span class="section-number">1.1.4. </span>Por que outros cálculos como <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.4</span></code> funcionam corretamente?<a class="headerlink" href="#por-que-outros-calculos-como-0-1-0-4-funcionam-corretamente" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.1.4. </span>Por que outros cálculos como <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.4</span></code> funcionam corretamente?<a class="headerlink" href="#por-que-outros-calculos-como-0-1-0-4-funcionam-corretamente" title="Permalink to this headline">#</a></h3>
 <p>Nesse caso, o resultado, <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, <strong>pode</strong> ser representado exatamente como um número de ponto flutuante e é possível que haja erro de cancelamento nos números de entrada. Porém, pode não podemos confiar interamente nisto. Por exemplo, quando tais dois números são primeiro armazenados em representações de ponto flutuante de tamanhos diferentes, os erros de arredondamento podem não compensar um com o outro.</p>
 <p>Em outros casos, como <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">+</span> <span class="pre">0.3</span></code>, o resultado <strong>não é realmente</strong> <code class="docutils literal notranslate"><span class="pre">0.4</span></code>, mas próximo o suficiente para que <code class="docutils literal notranslate"><span class="pre">0.4</span></code> seja o menor número mais próximo do resultado do que qualquer outro número em ponto flutuante. Muitas linguagens de programação exibem esse número em vez de converter o resultado real de volta para a fração decimal mais próxima. Por exemplo:</p>
 <div class="cell docutils container">
@@ -665,7 +912,7 @@
 </section>
 </section>
 <section id="comparacao-de-numeros-em-ponto-flutuante">
-<h2><span class="section-number">1.2. </span>Comparação de números em ponto flutuante<a class="headerlink" href="#comparacao-de-numeros-em-ponto-flutuante" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">28.2. </span>Comparação de números em ponto flutuante<a class="headerlink" href="#comparacao-de-numeros-em-ponto-flutuante" title="Permalink to this headline">#</a></h2>
 <p>Devido a erros de arredondamento, a representação da maioria dos números em ponto flutuante torna-se  imprecisa. Enquanto essa imprecisão permanecer pequena, ela poderá ser geralmente ignorada. No entanto, às vezes, os números que esperamos ser iguais (por exemplo, ao calcular o mesmo resultado por diferentes métodos corretos) diferem ligeiramente de tal forma que um mero teste de igualdade implica em falha. Por exemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -687,7 +934,7 @@ False
 </div>
 </div>
 <section id="margens-de-erro-absoluto-x-relativo">
-<h3><span class="section-number">1.2.1. </span>Margens de erro: absoluto x relativo<a class="headerlink" href="#margens-de-erro-absoluto-x-relativo" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.2.1. </span>Margens de erro: absoluto x relativo<a class="headerlink" href="#margens-de-erro-absoluto-x-relativo" title="Permalink to this headline">#</a></h3>
 <p>Ao compararmos dois números reais, o melhor caminho a seguir não é verificar se os números são exatamente iguais, mas se a <em>diferença entre ambos é muito pequena</em>. A margem de erro com a qual a diferença é comparada costuma ser chamada de “epsilon”. A forma mais simples seria por meio do erro absoluto. Por exemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -826,9 +1073,9 @@ False
 </div>
 </section>
 <section id="referencias-para-estudo">
-<h3><span class="section-number">1.2.2. </span>Referências para estudo<a class="headerlink" href="#referencias-para-estudo" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">28.2.2. </span>Referências para estudo<a class="headerlink" href="#referencias-para-estudo" title="Permalink to this headline">#</a></h3>
 <section id="miscelanea">
-<h4><span class="section-number">1.2.2.1. </span>Miscelânea<a class="headerlink" href="#miscelanea" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">28.2.2.1. </span>Miscelânea<a class="headerlink" href="#miscelanea" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://standards.ieee.org/content/ieee-standards/en/standard/754-2019.html">IEEE 754-2019 - IEEE Standard for Floating-Point Arithmetic</a></p></li>
 <li><p><a class="reference external" href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a>, artigo publicado por David Goldberg na ACM Computing Surveys, Vol. 23 (1), 1991. DOI: <a class="reference external" href="https://dl.acm.org/doi/abs/10.1145/103162.103163">10.1145/103162.103163</a></p></li>
@@ -841,20 +1088,20 @@ False
 </ul>
 </section>
 <section id="visualizadores-interativos-de-numeros-no-padrao-ieee-754">
-<h4><span class="section-number">1.2.2.2. </span>Visualizadores interativos de números no padrão IEEE 754<a class="headerlink" href="#visualizadores-interativos-de-numeros-no-padrao-ieee-754" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">28.2.2.2. </span>Visualizadores interativos de números no padrão IEEE 754<a class="headerlink" href="#visualizadores-interativos-de-numeros-no-padrao-ieee-754" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://bartaz.github.io/ieee754-visualization/">IEEE 754 Visualization</a></p></li>
 <li><p>[Float exposed]</p></li>
 </ul>
 </section>
 <section id="exemplos-de-comparacao-de-numeros-em-ponto-flutuante">
-<h4><span class="section-number">1.2.2.3. </span>Exemplos de comparação de números em ponto flutuante<a class="headerlink" href="#exemplos-de-comparacao-de-numeros-em-ponto-flutuante" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">28.2.2.3. </span>Exemplos de comparação de números em ponto flutuante<a class="headerlink" href="#exemplos-de-comparacao-de-numeros-em-ponto-flutuante" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Random ASCII – tech blog of Bruce Dawson</a></p></li>
 </ul>
 </section>
 <section id="livros">
-<h4><span class="section-number">1.2.2.4. </span>Livros<a class="headerlink" href="#livros" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">28.2.2.4. </span>Livros<a class="headerlink" href="#livros" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Modern Computer Architecture and Organization, por Jim Ledin</p></li>
 <li><p>Computer Organization and Architecture Designing for Performance, por William Stallings</p></li>
@@ -887,34 +1134,48 @@ False
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../lista-6-solucoes.html" title="previous page">Lista de Exercícios 6</a>
-    <a class='right-next' id="next-link" href="extra-fft.html" title="next page"><span class="section-number">2. </span>Processamento de sinais</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../lista-6-solucoes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lista de Exercícios 6</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="extra-fft.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">29. </span>Processamento de sinais</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Prof. Gustavo Oliveira<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>
