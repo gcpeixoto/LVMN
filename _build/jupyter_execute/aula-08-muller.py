@@ -3,12 +3,6 @@
 
 # # Raízes de polinômios com o método de Müller
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## Computação com polinômios
 # 
 # Como exemplo, vamos implementar a forma aninhada de um polinômio de grau 3 (também conhecida como **forma de Hörner**)

@@ -7,23 +7,23 @@
 # 
 # Suponha o sistema de equações
 # 
-# $$AX = B$$
+# $$\mathbf{A}\mathbf{x} = \mathbf{b}$$
 # 
 # A motivação para a decomposição LU baseia-se na observação de que sistemas triangulares são mais fáceis de resolver. Semelhantemente à Eliminação Gaussiana, a decomposição LU (que, na verdade, é uma segunda abordagem da própria Eliminação Gaussiana), explora a ideia de "fatoração" de matrizes, em que a matriz original do sistema é fatorada ("quebrada") como
 # 
-# $$A = LU,$$
+# $$\mathbf{A} = \mathbf{L}\mathbf{U},$$
 # 
-# onde $L$ é uma matriz triangular inferior e $U$ é triangular superior. Nosso objetivo é determinar $L$ e $U$, de maneira que o vetor $X$ seja obtido através da resolução de um par de sistemas cujas matrizes são triangulares.
+# onde $\mathbf{L}$ é uma matriz triangular inferior e $\mathbf{U}$ é triangular superior. Nosso objetivo é determinar $\mathbf{L}$ e $\mathbf{U}$, de maneira que o vetor $\mathbf{x}$ seja obtido através da resolução de um par de sistemas cujas matrizes são triangulares.
 
 # ### Exemplo
 # 
-# Consideraremos que as matrizes triangulares inferiores $L$ sempre terão a sua diagonal principal formada por entradas iguais a 1. Este tipo de fatoração é conhecido como _Fatoração de Doolittle_.
+# Consideraremos que as matrizes triangulares inferiores $\mathbf{L}$ sempre terão a sua diagonal principal formada por entradas iguais a 1. Este tipo de fatoração é conhecido como _Fatoração de Doolittle_.
 # 
 # $${\bf A} = \begin{bmatrix}
 # 1 & 2 & 4\\
 # 3 & 8 & 14\\
 # 2 & 6 & 13
-# \end{bmatrix} = LU$$
+# \end{bmatrix} = \mathbf{L}\mathbf{U}$$
 # onde
 # 
 # $${\bf L} = \begin{bmatrix}
@@ -39,7 +39,7 @@
 # \end{bmatrix}
 # $$
 # 
-# Multiplicando $LU$ e definindo a resposta igual a $A$ temos:
+# Multiplicando $\mathbf{L}\mathbf{U}$ e definindo a resposta igual a $\mathbf{A}$ temos:
 # 
 # $$\begin{bmatrix}
 # U_{11} & U_{12} & U_{13}\\
@@ -52,7 +52,7 @@
 # \end{bmatrix}
 # $$
 # 
-# Agora, através de substituição de recorrência, facilmente encontramos $L$ e $U$.
+# Agora, através de substituição de recorrência, facilmente encontramos $\mathbf{L}$ e $\mathbf{U}$.
 # 
 # $$
 # {\bf A} = \begin{bmatrix}
@@ -72,17 +72,17 @@
 
 # ## Usando a decomposição LU para resolver sistemas de equações
 # 
-# Uma vez decomposta a matriz $A$ no produto $LU$, podemos obter a solução $X$ de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada $A$, encontre $L$ e $U$ tal que $A = LU$, ou seja, $(LU)X = B$. Em outras palavras:
+# Uma vez decomposta a matriz $\mathbf{A}$ no produto $\mathbf{L}\mathbf{U}$, podemos obter a solução $\mathbf{x}$ de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada $\mathbf{A}$, encontre $\mathbf{L}$ e $\mathbf{U}$ tal que $\mathbf{A} = \mathbf{L}\mathbf{U}$, ou seja, $(\mathbf{L}\mathbf{U})\mathbf{x} = \mathbf{b}$. Em outras palavras:
 # 
-# - Defina $Y = UX$.
-# - Resolva o sistema triangular $LY = B$ para $Y$.
-# - Finalmente, resolva o sistema triangular $UX = Y$ para $X$.
+# - Defina $\mathbf{y} = \mathbf{U}\mathbf{x}$.
+# - Resolva o sistema triangular $\mathbf{L}\mathbf{y} = \mathbf{b}$ para $\mathbf{y}$.
+# - Finalmente, resolva o sistema triangular $\mathbf{U}\mathbf{x} = \mathbf{y}$ para $\mathbf{x}$.
 # 
 # O benefício desta abordagem é a resolução de somente sistemas triangulares. Por outro lado, o custo empregado é termos de resolver dois sistemas.
 
 # ### Exemplo
 # 
-# Encontre a solução $X = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ do sistema 
+# Encontre a solução $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ do sistema 
 # 
 # $$
 # \begin{bmatrix} 
@@ -99,23 +99,23 @@
 # \end{bmatrix}.
 # $$
 
-# - As matrizes $L$ e $U$ já foram obtidas anteriormente.
+# - As matrizes $\mathbf{L}$ e $\mathbf{U}$ já foram obtidas anteriormente.
 # 
-# $$L = \begin{bmatrix}
+# $$\mathbf{L} = \begin{bmatrix}
 # 1 & 0 & 0\\
 # 3 & 1 & 0\\
 # 2 & 1 & 1
 # \end{bmatrix},
 # \quad 
-# U = \begin{bmatrix}
+# \mathbf{U} = \begin{bmatrix}
 # 1 & 2 & 4\\
 # 0 & 2 & 2\\
 # 0 & 0 & 3
 # \end{bmatrix}$$
 # 
-# - A próxima etapa é resolver $LY = B$, para o vetor $Y = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}$.
+# - A próxima etapa é resolver $\mathbf{L}\mathbf{y} = \mathbf{b}$, para o vetor $\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}$.
 # 
-# $$LY = \begin{bmatrix}
+# $$\mathbf{L}\mathbf{y} = \begin{bmatrix}
 # 1 & 0 & 0\\
 # 3 & 1 & 0\\
 # 2 & 1 & 1
@@ -125,14 +125,14 @@
 # \end{bmatrix} =
 # \begin{bmatrix}
 # 3 \\ 13 \\ 4
-# \end{bmatrix} = B$$
+# \end{bmatrix} = \mathbf{b}$$
 # 
-# Este sistema pode ser resolvido por substituição direta, obtendo $Y = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}$.
+# Este sistema pode ser resolvido por substituição direta, obtendo $\mathbf{y} = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}$.
 # 
-# - Agora que encontramos $Y$, concluímos o procedimento resolvendo $UX = Y$ para $X$. Ou seja, resolvemos:
+# - Agora que encontramos $\mathbf{y}$, concluímos o procedimento resolvendo $\mathbf{U}\mathbf{x} = \mathbf{y}$ para $\mathbf{x}$. Ou seja, resolvemos:
 # 
 # $$
-# UX = \begin{bmatrix}
+# \mathbf{U}\mathbf{x} = \begin{bmatrix}
 # 1 & 2 & 4\\
 # 0 & 2 & 2\\
 # 0 & 0 & 3
@@ -141,9 +141,9 @@
 # \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}
 # $$
 # 
-# Realizando a substituição regressiva (baixo para cima; da direita para a esquerda), obtemos a solução do problema.
+# Realizando a substituição regressiva (baixo para cima; direita para esquerda), obtemos a solução do problema.
 # 
-# $$X = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}$$
+# $$\mathbf{x} = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}$$
 
 # Abaixo, temos uma implementação de uma fatoração LU sem pivoteamento. 
 

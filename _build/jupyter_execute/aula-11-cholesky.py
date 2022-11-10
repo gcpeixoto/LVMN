@@ -3,12 +3,6 @@
 
 # # Fatoração de Cholesky
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## Matrizes positivas definidas
 # 
 # **Definição (baseada em autovalores)** uma matriz ${\bf A}$ é _positiva definida_ se todos os seus autovalores são positivos ($\lambda > 0$). 
@@ -169,7 +163,7 @@ for k in range(0,n):
 B
 
 
-# #### Tarefa 
+# ### Tarefa 
 # 
 # Converta o código simbólico acima para uma versão numérica (ou implemente a sua própria versão) e aplique-o na matriz abaixo para encontrar o fator de Cholesky: 
 # 

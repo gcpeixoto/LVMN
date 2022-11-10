@@ -205,9 +205,3 @@ plot(fig, show_link=True,filename='jacobi-3d-vectors.html')
 from IPython.display import display, HTML
 display(HTML('jacobi-3d-vectors.html'))
 
-
-# In[ ]:
-
-
-
-

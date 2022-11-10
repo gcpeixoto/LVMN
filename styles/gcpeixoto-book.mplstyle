@@ -1,0 +1,23 @@
+# gcpeixoto-book.mplstyle
+
+# AXES
+axes.titlesize: 16
+axes.labelsize: 14
+axes.edgecolor: (0.95, 0.85, 0.8)
+axes.labelcolor: (0.54,0.54,0.54)
+axes.linewidth: 1
+axes.spines.top: False
+axes.spines.right: False
+axes.spines.bottom: True
+axes.spines.left: True
+
+
+# GRID
+axes.grid: True
+grid.alpha: 0.5
+grid.linestyle: -
+grid.linewidth: 0.5
+
+# LINES
+lines.linewidth: 2
+lines.color: (0.75, 0.35, 0.1)

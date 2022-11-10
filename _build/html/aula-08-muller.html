@@ -685,13 +685,6 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="raizes-de-polinomios-com-o-metodo-de-muller">
 <h1><span class="section-number">9. </span>Raízes de polinômios com o método de Müller<a class="headerlink" href="#raizes-de-polinomios-com-o-metodo-de-muller" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
 <section id="computacao-com-polinomios">
 <h2><span class="section-number">9.1. </span>Computação com polinômios<a class="headerlink" href="#computacao-com-polinomios" title="Permalink to this headline">#</a></h2>
 <p>Como exemplo, vamos implementar a forma aninhada de um polinômio de grau 3 (também conhecida como <strong>forma de Hörner</strong>)</p>
@@ -735,7 +728,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_5_0.png" src="_images/aula-08-muller_5_0.png" />
+<img alt="_images/aula-08-muller_4_0.png" src="_images/aula-08-muller_4_0.png" />
 </div>
 </div>
 <p>Imprimindo a derivada simbólica do polinômio implementada pelo usuário</p>
@@ -746,7 +739,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_7_0.png" src="_images/aula-08-muller_7_0.png" />
+<img alt="_images/aula-08-muller_6_0.png" src="_images/aula-08-muller_6_0.png" />
 </div>
 </div>
 <p>Imprimindo a derivada simbólica do polinômio pela função residente <code class="docutils literal notranslate"><span class="pre">diff</span></code></p>
@@ -757,7 +750,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_9_0.png" src="_images/aula-08-muller_9_0.png" />
+<img alt="_images/aula-08-muller_8_0.png" src="_images/aula-08-muller_8_0.png" />
 </div>
 </div>
 <p>Verificando igualdade</p>
@@ -803,7 +796,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_15_0.png" src="_images/aula-08-muller_15_0.png" />
+<img alt="_images/aula-08-muller_14_0.png" src="_images/aula-08-muller_14_0.png" />
 </div>
 </div>
 <p>Calcula apenas as raízes reais de <code class="docutils literal notranslate"><span class="pre">pn</span></code></p>
@@ -815,7 +808,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_17_0.png" src="_images/aula-08-muller_17_0.png" />
+<img alt="_images/aula-08-muller_16_0.png" src="_images/aula-08-muller_16_0.png" />
 </div>
 </div>
 </section>
@@ -844,7 +837,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_21_0.png" src="_images/aula-08-muller_21_0.png" />
+<img alt="_images/aula-08-muller_20_0.png" src="_images/aula-08-muller_20_0.png" />
 </div>
 </div>
 <p>Note que se avaliássemos o polinômio em um ponto arbitrário, a forma impressa é idêntica àquela que obtivemos anteriormente.</p>
@@ -855,7 +848,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_23_0.png" src="_images/aula-08-muller_23_0.png" />
+<img alt="_images/aula-08-muller_22_0.png" src="_images/aula-08-muller_22_0.png" />
 </div>
 </div>
 <p>Agora vamos plotar o polinômio. Antes, vamos converter nosso polinômio para uma função a fim de a avaliarmos em um intervalo. Vamos escolher o intervalo <span class="math notranslate nohighlight">\(-1 \le x \le 1\)</span></p>
@@ -878,7 +871,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_25_0.png" src="_images/aula-08-muller_25_0.png" />
+<img alt="_images/aula-08-muller_24_0.png" src="_images/aula-08-muller_24_0.png" />
 </div>
 </div>
 </section>
@@ -976,7 +969,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_31_0.png" src="_images/aula-08-muller_31_0.png" />
+<img alt="_images/aula-08-muller_30_0.png" src="_images/aula-08-muller_30_0.png" />
 </div>
 </div>
 <p><strong>Exemplo</strong>. Determinando raízes para o polinômio <span class="math notranslate nohighlight">\(P(x) = x^4 - 3x^3 + x^2 + x + 1\)</span> com estimativas iniciais <span class="math notranslate nohighlight">\(x_0 = -0.5\)</span> <span class="math notranslate nohighlight">\(x_1 = 0.0\)</span> e <span class="math notranslate nohighlight">\(x_2 = 0.5\)</span>, <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span> e <span class="math notranslate nohighlight">\(N = 100\)</span>.</p>
@@ -1045,7 +1038,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-08-muller_38_0.png" src="_images/aula-08-muller_38_0.png" />
+<img alt="_images/aula-08-muller_37_0.png" src="_images/aula-08-muller_37_0.png" />
 </div>
 </div>
 <p>Na primeira escolha de estimativas iniciais, obtivemos uma raiz complexa porque no intervalo <span class="math notranslate nohighlight">\([-0.5,0.5]\)</span>, o polinômio não intersecta o eixo <span class="math notranslate nohighlight">\(x\)</span>. Nos outros dois casos, temos as duas raízes reais do polinômio.</p>

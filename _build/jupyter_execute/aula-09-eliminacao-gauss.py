@@ -3,12 +3,6 @@
 
 # # Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## Solução de sistemas lineares
 
 # Métodos adequados para a resolução de sistemas lineares e realizar operações no escopo da Álgebra Linear são encontrados no submódulo `linalg` do `scipy`. Importamos essas funcionalidades com: 

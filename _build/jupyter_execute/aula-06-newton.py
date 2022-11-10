@@ -3,12 +3,6 @@
 
 # # Implementação do método de Newton
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # - Analisar a dependência da estimativa inicial. 
 # - Executar o código duas vezes: para $x_0=0.0$ e $x_0=1.0$ em $f(x) = -0.9x^2 + 1.7x + 2.5$.
 

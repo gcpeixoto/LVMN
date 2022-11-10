@@ -19,7 +19,6 @@
 import matplotlib.pyplot as plt
 import numpy.polynomial.legendre as leg
 import numpy as np
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[2]:

@@ -687,20 +687,20 @@ title="Print to PDF"
 <h2><span class="section-number">12.1. </span>Decomposição LU<a class="headerlink" href="#decomposicao-lu" title="Permalink to this headline">#</a></h2>
 <p>Suponha o sistema de equações</p>
 <div class="math notranslate nohighlight">
-\[AX = B\]</div>
+\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
 <p>A motivação para a decomposição LU baseia-se na observação de que sistemas triangulares são mais fáceis de resolver. Semelhantemente à Eliminação Gaussiana, a decomposição LU (que, na verdade, é uma segunda abordagem da própria Eliminação Gaussiana), explora a ideia de “fatoração” de matrizes, em que a matriz original do sistema é fatorada (“quebrada”) como</p>
 <div class="math notranslate nohighlight">
-\[A = LU,\]</div>
-<p>onde <span class="math notranslate nohighlight">\(L\)</span> é uma matriz triangular inferior e <span class="math notranslate nohighlight">\(U\)</span> é triangular superior. Nosso objetivo é determinar <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span>, de maneira que o vetor <span class="math notranslate nohighlight">\(X\)</span> seja obtido através da resolução de um par de sistemas cujas matrizes são triangulares.</p>
+\[\mathbf{A} = \mathbf{L}\mathbf{U},\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> é uma matriz triangular inferior e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> é triangular superior. Nosso objetivo é determinar <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, de maneira que o vetor <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> seja obtido através da resolução de um par de sistemas cujas matrizes são triangulares.</p>
 <section id="exemplo">
 <h3><span class="section-number">12.1.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h3>
-<p>Consideraremos que as matrizes triangulares inferiores <span class="math notranslate nohighlight">\(L\)</span> sempre terão a sua diagonal principal formada por entradas iguais a 1. Este tipo de fatoração é conhecido como <em>Fatoração de Doolittle</em>.</p>
+<p>Consideraremos que as matrizes triangulares inferiores <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> sempre terão a sua diagonal principal formada por entradas iguais a 1. Este tipo de fatoração é conhecido como <em>Fatoração de Doolittle</em>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\bf A} = \begin{bmatrix}
 1 &amp; 2 &amp; 4\\
 3 &amp; 8 &amp; 14\\
 2 &amp; 6 &amp; 13
-\end{bmatrix} = LU\end{split}\]</div>
+\end{bmatrix} = \mathbf{L}\mathbf{U}\end{split}\]</div>
 <p>onde</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\bf L} = \begin{bmatrix}
@@ -715,7 +715,7 @@ U_{11} &amp; U_{12} &amp; U_{13}\\
 0 &amp; 0 &amp; U_{33}
 \end{bmatrix}
 \end{split}\]</div>
-<p>Multiplicando <span class="math notranslate nohighlight">\(LU\)</span> e definindo a resposta igual a <span class="math notranslate nohighlight">\(A\)</span> temos:</p>
+<p>Multiplicando <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{U}\)</span> e definindo a resposta igual a <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> temos:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
 U_{11} &amp; U_{12} &amp; U_{13}\\
@@ -727,7 +727,7 @@ L_{31} U_{11} &amp; L_{31} U_{12} + L_{32} U_{22} &amp; L_{31} U_{13} + L_{32} U
 2 &amp; 6 &amp; 13
 \end{bmatrix}
 \end{split}\]</div>
-<p>Agora, através de substituição de recorrência, facilmente encontramos <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>Agora, através de substituição de recorrência, facilmente encontramos <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 {\bf A} = \begin{bmatrix}
@@ -748,16 +748,16 @@ L_{31} U_{11} &amp; L_{31} U_{12} + L_{32} U_{22} &amp; L_{31} U_{13} + L_{32} U
 </section>
 <section id="usando-a-decomposicao-lu-para-resolver-sistemas-de-equacoes">
 <h2><span class="section-number">12.2. </span>Usando a decomposição LU para resolver sistemas de equações<a class="headerlink" href="#usando-a-decomposicao-lu-para-resolver-sistemas-de-equacoes" title="Permalink to this headline">#</a></h2>
-<p>Uma vez decomposta a matriz <span class="math notranslate nohighlight">\(A\)</span> no produto <span class="math notranslate nohighlight">\(LU\)</span>, podemos obter a solução <span class="math notranslate nohighlight">\(X\)</span> de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada <span class="math notranslate nohighlight">\(A\)</span>, encontre <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span> tal que <span class="math notranslate nohighlight">\(A = LU\)</span>, ou seja, <span class="math notranslate nohighlight">\((LU)X = B\)</span>. Em outras palavras:</p>
+<p>Uma vez decomposta a matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> no produto <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{U}\)</span>, podemos obter a solução <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, encontre <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> tal que <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{L}\mathbf{U}\)</span>, ou seja, <span class="math notranslate nohighlight">\((\mathbf{L}\mathbf{U})\mathbf{x} = \mathbf{b}\)</span>. Em outras palavras:</p>
 <ul class="simple">
-<li><p>Defina <span class="math notranslate nohighlight">\(Y = UX\)</span>.</p></li>
-<li><p>Resolva o sistema triangular <span class="math notranslate nohighlight">\(LY = B\)</span> para <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
-<li><p>Finalmente, resolva o sistema triangular <span class="math notranslate nohighlight">\(UX = Y\)</span> para <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p>Defina <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{U}\mathbf{x}\)</span>.</p></li>
+<li><p>Resolva o sistema triangular <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{y} = \mathbf{b}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p></li>
+<li><p>Finalmente, resolva o sistema triangular <span class="math notranslate nohighlight">\(\mathbf{U}\mathbf{x} = \mathbf{y}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
 </ul>
 <p>O benefício desta abordagem é a resolução de somente sistemas triangulares. Por outro lado, o custo empregado é termos de resolver dois sistemas.</p>
 <section id="id1">
 <h3><span class="section-number">12.2.1. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<p>Encontre a solução <span class="math notranslate nohighlight">\(X = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\)</span> do sistema</p>
+<p>Encontre a solução <span class="math notranslate nohighlight">\(\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\)</span> do sistema</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix} 
@@ -774,25 +774,25 @@ x_1 \\ x_2 \\ x_3
 \end{bmatrix}.
 \end{split}\]</div>
 <ul class="simple">
-<li><p>As matrizes <span class="math notranslate nohighlight">\(L\)</span> e <span class="math notranslate nohighlight">\(U\)</span> já foram obtidas anteriormente.</p></li>
+<li><p>As matrizes <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> já foram obtidas anteriormente.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}L = \begin{bmatrix}
+\[\begin{split}\mathbf{L} = \begin{bmatrix}
 1 &amp; 0 &amp; 0\\
 3 &amp; 1 &amp; 0\\
 2 &amp; 1 &amp; 1
 \end{bmatrix},
 \quad 
-U = \begin{bmatrix}
+\mathbf{U} = \begin{bmatrix}
 1 &amp; 2 &amp; 4\\
 0 &amp; 2 &amp; 2\\
 0 &amp; 0 &amp; 3
 \end{bmatrix}\end{split}\]</div>
 <ul class="simple">
-<li><p>A próxima etapa é resolver <span class="math notranslate nohighlight">\(LY = B\)</span>, para o vetor <span class="math notranslate nohighlight">\(Y = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}\)</span>.</p></li>
+<li><p>A próxima etapa é resolver <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{y} = \mathbf{b}\)</span>, para o vetor <span class="math notranslate nohighlight">\(\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}\)</span>.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}LY = \begin{bmatrix}
+\[\begin{split}\mathbf{L}\mathbf{y} = \begin{bmatrix}
 1 &amp; 0 &amp; 0\\
 3 &amp; 1 &amp; 0\\
 2 &amp; 1 &amp; 1
@@ -802,14 +802,14 @@ x_1 \\ x_2 \\ x_3
 \end{bmatrix} =
 \begin{bmatrix}
 3 \\ 13 \\ 4
-\end{bmatrix} = B\end{split}\]</div>
-<p>Este sistema pode ser resolvido por substituição direta, obtendo <span class="math notranslate nohighlight">\(Y = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}\)</span>.</p>
+\end{bmatrix} = \mathbf{b}\end{split}\]</div>
+<p>Este sistema pode ser resolvido por substituição direta, obtendo <span class="math notranslate nohighlight">\(\mathbf{y} = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}\)</span>.</p>
 <ul class="simple">
-<li><p>Agora que encontramos <span class="math notranslate nohighlight">\(Y\)</span>, concluímos o procedimento resolvendo <span class="math notranslate nohighlight">\(UX = Y\)</span> para <span class="math notranslate nohighlight">\(X\)</span>. Ou seja, resolvemos:</p></li>
+<li><p>Agora que encontramos <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, concluímos o procedimento resolvendo <span class="math notranslate nohighlight">\(\mathbf{U}\mathbf{x} = \mathbf{y}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Ou seja, resolvemos:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-UX = \begin{bmatrix}
+\mathbf{U}\mathbf{x} = \begin{bmatrix}
 1 &amp; 2 &amp; 4\\
 0 &amp; 2 &amp; 2\\
 0 &amp; 0 &amp; 3
@@ -817,9 +817,9 @@ UX = \begin{bmatrix}
 \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = 
 \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}
 \end{split}\]</div>
-<p>Realizando a substituição regressiva (baixo para cima; da direita para a esquerda), obtemos a solução do problema.</p>
+<p>Realizando a substituição regressiva (baixo para cima; direita para esquerda), obtemos a solução do problema.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}X = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\mathbf{x} = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}\end{split}\]</div>
 <p>Abaixo, temos uma implementação de uma fatoração LU sem pivoteamento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
