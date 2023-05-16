@@ -1,5 +1,5 @@
 format: jb-book
-root: conteudo.ipynb
+root: conteudo
 parts:
 - caption: Cadernos
   numbered: true
@@ -28,7 +28,7 @@ parts:
   - file: aula-21-solucoes-edo
   - file: aula-22-metodo-euler
   - file: aula-23-taylor-rungeKutta
-- caption: Code sessions
+- caption: Code Sessions
   chapters:
   - file: codeSession-1-bisect
   - file: codeSession-2-newton
@@ -39,7 +39,7 @@ parts:
   - file: codeSession-7-fit
   - file: codeSession-8-integrate
   - file: codeSession-9-solve_ivp
-- caption: Exercícios resolvidos
+- caption: Exercícios Resolvidos
   chapters:
   - file: lista-1-solucoes
   - file: lista-2-solucoes

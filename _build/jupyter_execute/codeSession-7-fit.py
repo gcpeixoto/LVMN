@@ -2,11 +2,14 @@
 # coding: utf-8
 
 # # Code session 7
+# 
+# ## Escopo
+# 
+# - Teoria da Aproximação > Ajuste de Curvas
 
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import numpy as np 
 import matplotlib.pyplot as plt 
 
@@ -22,23 +25,18 @@ import matplotlib.pyplot as plt
 # 1. o primeiro conjunto de dados `x` (lista ou objeto tipo _array_)
 # 2. o segundo conjunto de dados `y` (lista ou objeto tipo _array_)
 # 
-# Os argumentos de saída são:
+# Os argumentos de saída principais são
 # 
 # - `slope`: coeficiente angular da reta obtida pela regressão linear
 # - `intercept`: coeficiente linear da reta obtida pela regressão linear
 # - `rvalue`: valor do coeficiente de correlação
-# - `pvalue`: valor- p de teste de hipótese
-# - `stderror`: medida de erro
+# - `pvalue`: valor-_p_ do teste de hipótese
 # 
-# Não utilizaremos os 2 últimos aqui. 
+# Por enquanto, desconsideraremos o valor-_p_.
 # 
 # **Nota:** para obter o valor do _coeficiente de determinação_ $R^2$, o valor de `rvalue` deve ser elevado ao quadrado, i.e. `R2 = rvalue**2.`
 # 
-# Como importá-la? 
-# 
-# ```python 
-# from scipy.stats import linregress
-# ```
+# Como importar a função?
 
 # In[2]:
 
@@ -132,7 +130,7 @@ plt.annotate('y= {0:.2f} + {1:.2f}x'.format(b,a),(2080,11),fontsize=12,c='r');
 
 
 n = M.size # número de amostras
-m = 2 # número de parâmetros. 
+m = 2 # número de parâmetros
 
 
 # O cálculo de $S$ pode ser feito da seguinte maneira:

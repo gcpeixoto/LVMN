@@ -85,6 +85,7 @@ for k in T:
     plt.ylabel('$y(t)$')
 
 
+
 # **Exemplo:** Resolver numericamente o PVI
 # 
 # $$\begin{cases}
@@ -129,6 +130,7 @@ for k in T:
     plt.title(s)
     plt.xlabel('$t$') 
     plt.ylabel('$y(t)$')
+
 
 
 # In[62]:

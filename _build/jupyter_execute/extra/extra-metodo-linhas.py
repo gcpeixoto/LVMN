@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Método das Linhas 
+# # Método das Linhas 
 
 # In[1]:
 

@@ -60,3 +60,4 @@ print(b2)
 print('Diferença no numerador: ' + str(-b - b2))
 print('Erro absoluto na solução: ' + str(abs(x2 - x2b)))
 
+

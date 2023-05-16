@@ -5,6 +5,8 @@
 # 
 # O LVMN é constituído de uma coleção de materiais digitais para cursos de graduação em ciências exatas, computacionais e engenharias que possuam disciplinas de métodos numéricos ou afins em seus currículos. 
 # 
+# ## Curso
+# 
 # Este conteúdo é ensinado na disciplina _Cálculo Numérico_ (GDCOC0072) ministrada pelo [Prof. Gustavo Oliveira](https://gcpeixoto.github.io) (UFPB/CI/DCC). O material começou a ser desenvolvido pelo professor no âmbito do [Projeto Numbiosis](http://numbiosis.ci.ufpb.br/pt/inicio/) em 2017 e recebeu suporte do Programa Institucional de Monitoria até o ano de 2020.
 # 
 # Aplicações específicas em Javascript que simulam diversos métodos do curso foram desenvolvidas pelo egresso [Vinícius Veríssimo](https://github.com/Vnicius) e estão disponíveis [aqui](https://vnicius.github.io/numbiosis/).

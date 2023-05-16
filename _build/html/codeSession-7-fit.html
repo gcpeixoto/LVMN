@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-edoSuperior.html">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-sistemasEDO.html">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/codeSession-7-fit.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/codeSession-7-fit.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/codeSession-7-fit.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -604,6 +568,11 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#escopo">
+   Escopo
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regressao-linear">
    Regressão Linear
@@ -705,6 +674,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#escopo">
+   Escopo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regressao-linear">
    Regressão Linear
   </a>
@@ -797,15 +771,20 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="code-session-7">
 <h1>Code session 7<a class="headerlink" href="#code-session-7" title="Permalink to this headline">#</a></h1>
+<section id="escopo">
+<h2>Escopo<a class="headerlink" href="#escopo" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Teoria da Aproximação &gt; Ajuste de Curvas</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 <section id="regressao-linear">
 <h2>Regressão Linear<a class="headerlink" href="#regressao-linear" title="Permalink to this headline">#</a></h2>
 <section id="linregress">
@@ -816,20 +795,16 @@ title="Print to PDF"
 <li><p>o primeiro conjunto de dados <code class="docutils literal notranslate"><span class="pre">x</span></code> (lista ou objeto tipo <em>array</em>)</p></li>
 <li><p>o segundo conjunto de dados <code class="docutils literal notranslate"><span class="pre">y</span></code> (lista ou objeto tipo <em>array</em>)</p></li>
 </ol>
-<p>Os argumentos de saída são:</p>
+<p>Os argumentos de saída principais são</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">slope</span></code>: coeficiente angular da reta obtida pela regressão linear</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">intercept</span></code>: coeficiente linear da reta obtida pela regressão linear</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rvalue</span></code>: valor do coeficiente de correlação</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code>: valor- p de teste de hipótese</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stderror</span></code>: medida de erro</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code>: valor-<em>p</em> do teste de hipótese</p></li>
 </ul>
-<p>Não utilizaremos os 2 últimos aqui.</p>
+<p>Por enquanto, desconsideraremos o valor-<em>p</em>.</p>
 <p><strong>Nota:</strong> para obter o valor do <em>coeficiente de determinação</em> <span class="math notranslate nohighlight">\(R^2\)</span>, o valor de <code class="docutils literal notranslate"><span class="pre">rvalue</span></code> deve ser elevado ao quadrado, i.e. <code class="docutils literal notranslate"><span class="pre">R2</span> <span class="pre">=</span> <span class="pre">rvalue**2.</span></code></p>
-<p>Como importá-la?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
-</pre></div>
-</div>
+<p>Como importar a função?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
@@ -985,7 +960,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">size</span> <span class="c1"># número de amostras</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># número de parâmetros. </span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># número de parâmetros</span>
 </pre></div>
 </div>
 </div>
@@ -1244,7 +1219,7 @@ title="Print to PDF"
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1290,7 +1265,7 @@ title="Print to PDF"
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

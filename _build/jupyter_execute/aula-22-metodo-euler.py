@@ -292,6 +292,7 @@ for i in range(len(y)):
 
 
 
+
 # ## Problemas
 # 
 # 1) Resolva os seguintes problemas usando o método de Euler com passos $h = 0.2,0.1,0.05$. Compute o erro relativo usando a solução exata $y(t)$. Para valores selecionados de $t$, observe a razão com que o erro diminui à medida que $h$ é reduzido pela metade. 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## EDOs de ordem superior (redução de ordem) 
+# # EDOs de ordem superior (redução de ordem) 
 # 
 # EDOs de ordem superior podem ser reescritas como sistemas de EDOs de primeira ordem. A fim de verificarmos como isto pode ser feito, consideremos, inicialmente o caso geral de uma EDO de segunda ordem. 
 # 
@@ -20,7 +20,7 @@
 # y_2(t_0) = y_0'
 # \end{cases}$$
 
-# ### Movimento pendular simples
+# ## Movimento pendular simples
 # 
 # Como exemplo (simplificado) prático derivado de uma EDO de segunda ordem, temos o movimento de um pêndulo submetido apenas à força gravitacional como mostra a figura abaixo. O pêndulo de massa $m$ fica pendurado por uma corda de comprimento $l$ e se move em relação ao eixo $\theta = 0$. O movimento é completamente descrito com a especificação da posição inicial $\theta(0) = \theta_0$ e a velocidade angular inicial $\theta'(0) = \theta_0'$.
 
@@ -57,7 +57,7 @@ plt.annotate('$\\theta$',xy=(0.52,0.72),fontsize=14);
 # y_2(0) = \theta'(0) = \theta_0'
 # \end{cases}$$
 
-# ### Hipótese de ângulos pequenos 
+# ## Hipótese de ângulos pequenos 
 # 
 # No movimento pendular, se $\theta$ for considerado muito pequeno, podemos dizer que $\theta \approx {\rm sen}(\theta)$. Logo, a EDO de segunda ordem reduz-se a 
 # 
@@ -73,7 +73,7 @@ plt.annotate('$\\theta$',xy=(0.52,0.72),fontsize=14);
 # 
 # Vale dizer que a solução analítica para este caso é dada por $\theta(t) = \theta_0 \cos \left( \sqrt{\dfrac{g}{l}} t \right)$.
 
-# ### Caso geral de ordem $m$
+# ## Caso geral de ordem $m$
 # 
 # De modo similar, uma EDO de ordem $m$ pode gerar um sistema de EDOs de ordem 1. Considerando o PVI generalizado 
 # $$\begin{cases}
@@ -234,7 +234,7 @@ legend(loc=3,fontsize=10)
 # \end{cases}$$
 # Solução analítica: $y(t) = 3\cos(t) + {\rm sen}(t) + \exp(-2t){\rm sen}(3t)$.
 
-# ## Problemas 
+# ## Problemas
 
 # **Problema:** Converta o seguinte sistema de EDOs de 2a. ordem para um sistema maior de EDOs de primeira ordem. Este sistema surge do estudo da atração gravitacional de uma massa por outra:
 # 

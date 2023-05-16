@@ -458,7 +458,7 @@ q.subs(w_sol).simplify()
 # 
 # Abaixo, temos alguns exemplos: 
 
-# #### Integração dupla
+# ### Integração dupla
 # 
 # Neste exemplo, integramos 
 # $$\int_0^1\int_0^1 e^{-x^2 - y^2} \, dx dy$$
@@ -469,7 +469,7 @@ q.subs(w_sol).simplify()
 integrate.dblquad(lambda x, y: np.exp(-x**2-y**2), 0, 1, lambda x: 0, lambda x: 1)
 
 
-# #### Integração tripla
+# ### Integração tripla
 # 
 # Neste exemplo, integramos 
 # $$\int_0^1\int_0^1\int_0^1 e^{-x^2 - y^2 - z^2} \, dx dy dz$$

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>35. Variações do Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>34. Variações do Método de Euler &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,12 +50,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="36. Estabilidade Numérica para o Método de Euler" href="extra-estabilidadeEuler.html" />
+    <link rel="next" title="35. Estabilidade Numérica para o Método de Euler" href="extra-estabilidadeEuler.html" />
     <link rel="prev" title="33. Campos de direção" href="extra-camposDirecaoEDO.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edoSuperior.html">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemasEDO.html">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-eulerMelhorado.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-eulerMelhorado.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/extra/extra-eulerMelhorado.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -606,19 +570,19 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-de-euler-melhorado">
-   35.1. Método de Euler Melhorado
+   34.1. Método de Euler Melhorado
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementacao-computacional">
-     35.1.1. Implementação computacional
+     34.1.1. Implementação computacional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-do-ponto-medio-ou-ponto-central">
-   35.2. Método do Ponto Médio (ou Ponto Central)
+   34.2. Método do Ponto Médio (ou Ponto Central)
   </a>
  </li>
 </ul>
@@ -642,19 +606,19 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-de-euler-melhorado">
-   35.1. Método de Euler Melhorado
+   34.1. Método de Euler Melhorado
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementacao-computacional">
-     35.1.1. Implementação computacional
+     34.1.1. Implementação computacional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-do-ponto-medio-ou-ponto-central">
-   35.2. Método do Ponto Médio (ou Ponto Central)
+   34.2. Método do Ponto Médio (ou Ponto Central)
   </a>
  </li>
 </ul>
@@ -668,9 +632,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="variacoes-do-metodo-de-euler">
-<h1><span class="section-number">35. </span>Variações do Método de Euler<a class="headerlink" href="#variacoes-do-metodo-de-euler" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">34. </span>Variações do Método de Euler<a class="headerlink" href="#variacoes-do-metodo-de-euler" title="Permalink to this headline">#</a></h1>
 <section id="metodo-de-euler-melhorado">
-<h2><span class="section-number">35.1. </span>Método de Euler Melhorado<a class="headerlink" href="#metodo-de-euler-melhorado" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">34.1. </span>Método de Euler Melhorado<a class="headerlink" href="#metodo-de-euler-melhorado" title="Permalink to this headline">#</a></h2>
 <p>O <em>Método de Euler Melhorado</em> (MEM) é uma técnica numérica explícita de passo simples usada para resolver EDOs que modifica o método explícito de Euler. O MEM usa uma <em>inclinação ponderada</em> com derivadas computadas em <span class="math notranslate nohighlight">\(t_i\)</span> e <span class="math notranslate nohighlight">\(t_{i+1}\)</span>. No início do intervalo, a inclinação é</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{dy}{dt}\Bigg|_{t = t_i} = f(t_i,y_i),\]</div>
@@ -694,14 +658,14 @@ w_0 &amp;= \alpha \\
 		{w}_{i+1} &amp;= w_i + \frac{h}{2}[f(t_i,w_i) + f(t_{i+1}, \tilde{w}_{i+1})], \quad i = 0,1,\dots,N-1.
 \end{align*}\]</div>
 <section id="implementacao-computacional">
-<h3><span class="section-number">35.1.1. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">34.1.1. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">#</a></h3>
 <p>O seguinte código implementa o MEM:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">def</span> <span class="nf">euler_melh</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">fun</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resolve o PVI y&#39; = f(t,y), t0 &lt;= t &lt;= tf, y(t0) = y0</span>
 <span class="sd">    com passo h usando o metodo de Euler melhorado. </span>
 <span class="sd">    </span>
@@ -734,7 +698,7 @@ w_0 &amp;= \alpha \\
 <span class="c1">### COPIA  </span>
 
 <span class="k">def</span> <span class="nf">euler_expl</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">fun</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resolve o PVI y&#39; = f(t,y), t0 &lt;= t &lt;= tf, y(t0) = y0</span>
 <span class="sd">    com passo h usando o metodo de Euler explicito. </span>
 <span class="sd">    </span>
@@ -810,7 +774,7 @@ h = 0.5
 </section>
 </section>
 <section id="metodo-do-ponto-medio-ou-ponto-central">
-<h2><span class="section-number">35.2. </span>Método do Ponto Médio (ou Ponto Central)<a class="headerlink" href="#metodo-do-ponto-medio-ou-ponto-central" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">34.2. </span>Método do Ponto Médio (ou Ponto Central)<a class="headerlink" href="#metodo-do-ponto-medio-ou-ponto-central" title="Permalink to this headline">#</a></h2>
 <p>O <em>Método do Ponto Médio</em> (MPM) é outra variação do Método de Euler e sua dedução é feita de maneira semelhante à anterior. Neste caso, a inclinação utilizada para o avanço é calculada no ponto médio <span class="math notranslate nohighlight">\(t_{i+1/2}\)</span> do passo discreto e dada pela expressão</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{dy}{dt}\Bigg|_{t = t_i + 1/2} = f( t_{i + 1/2}, y_{i+1/2})\]</div>
@@ -831,7 +795,7 @@ w_{i+1} &amp;=w_i + h f(t_m, w_m), \quad i = 0,1,\dots,N-1
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -864,7 +828,7 @@ w_{i+1} &amp;=w_i + h f(t_m, w_m), \quad i = 0,1,\dots,N-1
     <a class='right-next' id="next-link" href="extra-estabilidadeEuler.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">36. </span>Estabilidade Numérica para o Método de Euler</p>
+        <p class="prev-next-title"><span class="section-number">35. </span>Estabilidade Numérica para o Método de Euler</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -877,7 +841,7 @@ w_{i+1} &amp;=w_i + h f(t_m, w_m), \quad i = 0,1,\dots,N-1
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

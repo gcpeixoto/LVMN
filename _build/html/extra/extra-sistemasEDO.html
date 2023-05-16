@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>43. Sistemas de EDOs &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>39. Sistemas de EDOs &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,13 +50,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="44. Método das Linhas" href="extra-metodo-linhas.html" />
-    <link rel="prev" title="41. EDOs de ordem superior (redução de ordem)" href="extra-edoSuperior.html" />
+    <link rel="next" title="40. Método das Linhas" href="extra-metodo-linhas.html" />
+    <link rel="prev" title="38. EDOs de ordem superior (redução de ordem)" href="extra-edoSuperior.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-edoSuperior.html">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-sistemasEDO.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-sistemasEDO.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/extra/extra-sistemasEDO.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -606,7 +570,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-com-m-edos-de-primeira-ordem">
-   43.1. Sistema com
+   39.1. Sistema com
    <span class="math notranslate nohighlight">
     \(m\)
    </span>
@@ -615,19 +579,19 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-numericos-para-sistemas">
-   43.2. Métodos numéricos para sistemas
+   39.2. Métodos numéricos para sistemas
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementacao-computacional">
-     43.2.1. Implementação computacional
+     39.2.1. Implementação computacional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   43.3. Problemas
+   39.3. Problemas
   </a>
  </li>
 </ul>
@@ -651,7 +615,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-com-m-edos-de-primeira-ordem">
-   43.1. Sistema com
+   39.1. Sistema com
    <span class="math notranslate nohighlight">
     \(m\)
    </span>
@@ -660,19 +624,19 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-numericos-para-sistemas">
-   43.2. Métodos numéricos para sistemas
+   39.2. Métodos numéricos para sistemas
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementacao-computacional">
-     43.2.1. Implementação computacional
+     39.2.1. Implementação computacional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   43.3. Problemas
+   39.3. Problemas
   </a>
  </li>
 </ul>
@@ -686,7 +650,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="sistemas-de-edos">
-<h1><span class="section-number">43. </span>Sistemas de EDOs<a class="headerlink" href="#sistemas-de-edos" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">39. </span>Sistemas de EDOs<a class="headerlink" href="#sistemas-de-edos" title="Permalink to this headline">#</a></h1>
 <p>Embora EDOs escalares sejam responsáveis por descrever uma vasta quantidade de fenômenos naturais, muitas aplicações são melhor descritas através de um sistema de EDOs escalares ou de ordem superior. O tratamento numérico de EDOs de alta ordem baseia-se em uma conversão a sistemas de primeira ordem. Vejamos como escrever a forma geral de um sistema de duas EDOS de primeira ordem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -711,7 +675,7 @@ y_2(0)  &amp;=&amp; y_{2,0}
 \end{cases}\)</span>$</p>
 <p>com constantes <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D&gt;0\)</span> é conhecido como modelo <em>predador-presa</em>. A variável <span class="math notranslate nohighlight">\(t\)</span> é o tempo, <span class="math notranslate nohighlight">\(y_1(t)\)</span> o número de presas no tempo <span class="math notranslate nohighlight">\(t\)</span> (e.g. coelhos) e <span class="math notranslate nohighlight">\(y_2(t)\)</span> o número de predadores (e.g. raposas). Para apenas um tipo de predador e de presa, este modelo é uma aproximação razoável da realidade.</p>
 <section id="sistema-com-m-edos-de-primeira-ordem">
-<h2><span class="section-number">43.1. </span>Sistema com <span class="math notranslate nohighlight">\(m\)</span> EDOs de primeira ordem<a class="headerlink" href="#sistema-com-m-edos-de-primeira-ordem" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">39.1. </span>Sistema com <span class="math notranslate nohighlight">\(m\)</span> EDOs de primeira ordem<a class="headerlink" href="#sistema-com-m-edos-de-primeira-ordem" title="Permalink to this headline">#</a></h2>
 <p>Um PVI com <span class="math notranslate nohighlight">\(m\)</span> EDOs escalares é dado por</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -787,7 +751,7 @@ y_2
 \end{bmatrix}\end{split}\]</div>
 </section>
 <section id="metodos-numericos-para-sistemas">
-<h2><span class="section-number">43.2. </span>Métodos numéricos para sistemas<a class="headerlink" href="#metodos-numericos-para-sistemas" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">39.2. </span>Métodos numéricos para sistemas<a class="headerlink" href="#metodos-numericos-para-sistemas" title="Permalink to this headline">#</a></h2>
 <p>Tanto o método de Euler quanto outros métodos numéricos podem ser usados de forma similar para sistemas de EDOs quando aplicados a cada EDO individual. Para isto, lança-se mão da forma matriz/vetor, em que a derivação é essencialmente a mesma feita para o caso individual.</p>
 <p>Lembremos que a série de Taylor desenvolvida para o método de Euler é dada por:</p>
 <div class="math notranslate nohighlight">
@@ -796,7 +760,7 @@ y_2
 <div class="math notranslate nohighlight">
 \[{\bf y}_{n+1} = {\bf y}_{n} + h{\bf f}(t_n,{\bf y}_n), \ \ \ {\bf y}_0 = {\bf y}(0)\]</div>
 <section id="implementacao-computacional">
-<h3><span class="section-number">43.2.1. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">39.2.1. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">#</a></h3>
 <p>O seguinte código é uma implementação do método de Euler para resolver sistemas de EDOs. O usuário necessita especificar uma função adicional para determinar as EDOs como componentes de um vetor. Isto é feito pela função</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fsys</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -808,7 +772,7 @@ y_2
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">def</span> <span class="nf">euler_sys</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">f</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resolve o PVI de um sistema de EDOs escalares</span>
 <span class="sd">    y’ = f(t,y), t0 &lt;= t &lt;= b, y(t0)=y0 pelo metodo de Euler com tamanho de passo h.</span>
 <span class="sd">    O usuario deve fornecer um vetor f contendo as funcoes a serem avaliadas como </span>
@@ -880,7 +844,7 @@ y_2
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define funcao vetorial f(t,y)</span>
 <span class="k">def</span> <span class="nf">fsys</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Função definida pelo usuario para montar vetor das m funcoes fm(t,(y1,...,ym))</span>
 <span class="sd">    Em cada componente prescrevemos a funcao da EDO correspondente no sistema </span>
 <span class="sd">    de m EDOs. </span>
@@ -974,7 +938,7 @@ y_2
 </section>
 </section>
 <section id="problemas">
-<h2><span class="section-number">43.3. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">39.3. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">#</a></h2>
 <p><strong>Problema:</strong> considere o modelo de Lotka-Volterra com os parâmetros <span class="math notranslate nohighlight">\(A = 4\)</span>, <span class="math notranslate nohighlight">\(B = 1\)</span>, <span class="math notranslate nohighlight">\(C = 3\)</span> e <span class="math notranslate nohighlight">\(D = 1\)</span>. Usando o método de Euler, resolva-o para <span class="math notranslate nohighlight">\(0 \le t \le 5\)</span>. Use passos de <span class="math notranslate nohighlight">\(h = 0.001\)</span>, <span class="math notranslate nohighlight">\(0.0005\)</span> e <span class="math notranslate nohighlight">\(0.00025\)</span> e a condição inicial values <span class="math notranslate nohighlight">\(y_1(0) = 3\)</span>, <span class="math notranslate nohighlight">\(y_2(0) = 5\)</span>. Plote as funções <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> em função de <span class="math notranslate nohighlight">\(t\)</span> e, depois, plote o gráfico de <span class="math notranslate nohighlight">\(y_1\)</span> <em>versus</em> <span class="math notranslate nohighlight">\(y_2\)</span>. Comente os resultados.</p>
 <p><strong>Problema:</strong> Considere o esquema numérico</p>
 <div class="math notranslate nohighlight">
@@ -987,7 +951,7 @@ y_2
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1014,13 +978,13 @@ y_2
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">41. </span>EDOs de ordem superior (redução de ordem)</p>
+            <p class="prev-next-title"><span class="section-number">38. </span>EDOs de ordem superior (redução de ordem)</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="extra-metodo-linhas.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">44. </span>Método das Linhas</p>
+        <p class="prev-next-title"><span class="section-number">40. </span>Método das Linhas</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -1033,7 +997,7 @@ y_2
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

@@ -189,7 +189,7 @@ rz.falsa_posicao('x**3-9*x+3',0,1,1e-3,100,var)
 # 
 # **Sugestão:** use o método da bisseção e tolerância de $10^{-6}$.
 
-# #### Solução computacional
+# ### Solução computacional
 
 # In[17]:
 
@@ -228,7 +228,7 @@ print("Para {0:.2f} graus Celsius, a resistência é de {1:.2f} ohms".format(Tc,
 # 
 # **Sugestão:** usar método de Newton como função programada pelo estudante ou função residente.
 # 
-# #### Solução computacional:
+# ### Solução computacional
 # 
 # Resolver o problema $f(t) = 0$ com método de Newton.
 

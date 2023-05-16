@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# 
-# ## Campos de direção
-# 
+# # Campos de direção
+
 # _Campos de direção_ são úteis para entender o comportamento das soluções de uma EDO. O gráfico de uma solução da equação $y' = f(t,y)$ é aquele que, para todo ponto $(t,y)$ do plano, conhecemos a inclinação da curva $y(t)$, solução da EDO. Campos de direção podem ser plotados em Python através das funções `meshgrid`, do pacote `numpy`, e `quiver`, do pacote `matplotlib`.
 # 
 # **Exemplo** Consideremos a EDO $y'= y$. A inclinação é dada por $f(t,y) = y$ e é independente de $t$. Vamos gerar o diagrama do campo de direções para esta EDO pelo código a seguir.

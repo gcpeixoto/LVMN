@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Método de Euler Implícito
+# # Método de Euler Implícito
 # 
 # A forma do _Método de Euler Implícito_ (MEI) é similar àquela do MEE, exceto por uma característica distintiva. Em vez de a inclinação utilizada para avanço ser tomada em $t_i$, ela é tomada em $t_{i+1}$. Isto é, o processo numérico avança com a estimativa $f(t_{i+1},y_{i+1})$ e não $f(t_i,y_i)$. O fato de usar esta inclinação ainda desconhecida é a razão de o método ser denominado "implícito". O esquema numérico resultante é o processo iterativo: 
 # 
@@ -125,7 +125,6 @@ plt.legend();
 # ## Método Trapezoidal
 
 # In[5]:
-
 
 
 def trapezoidal(t0,tf,y0,h,f,tol):

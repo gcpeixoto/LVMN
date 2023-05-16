@@ -25,7 +25,8 @@ n = 3
 x = sy.Symbol('x');       
 
 # coeficientes do polinomio
-a = [ sy.Symbol('a'+ str(i))      for i in range(0,n+1) ] 
+a = [ sy.Symbol('a'+ str(i)) \
+     for i in range(0,n+1) ] 
 
 # forma aninhada simbolica
 p, dp = 0, 0

@@ -94,6 +94,7 @@ for y0 in [0.5,1,2,5]:
     plt.title('$h=0.001$')
 
 
+
 # **Exercício:** Repita o mesmo experimento numérico anterior para o PVI 
 # 
 # $$\begin{cases}

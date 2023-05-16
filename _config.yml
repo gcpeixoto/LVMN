@@ -4,7 +4,7 @@
 title: "Métodos Numéricos para Ciências Computacionais e Engenharia"
 author: Prof. Gustavo Oliveira
 logo: "styles/numbiosis.png" # Leave it with "" for none
-copyright: "2022"
+copyright: "2023"
 exclude_patterns: [_build,Thumds.db,.DS_Store,"**.ipynb_checkpoints","/rise/*.ipynb","README.md"]
 
 # Change this to "on" to have notebooks executed
@@ -69,13 +69,13 @@ html:
 # LAUNCH BUTTON SETTINGS
 launch_buttons:
   notebook_interface        : jupyterlab  # The interface interactive links will activate ["classic", "jupyterlab"]
-  binderhub_url             : "https://mybinder.org"  # The URL of the BinderHub (e.g., https://mybinder.org)
+  binderhub_url             : ""  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
-  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
   colab_url                 : "https://colab.research.google.com" # The URL of Google Colab
   
 repository:
-  url                       : "https://github.com/gcpeixoto/ipynb-lab-metodos-numericos"  # The URL to your book's repository
+  url                       : "https://github.com/gcpeixoto/LVMN"  # The URL to your book's repository
   path_to_book              : ""  # A path to your book's folder, relative to the repository root.
   branch                    : "" # master  # Which branch of the repository should be used when creating links
 

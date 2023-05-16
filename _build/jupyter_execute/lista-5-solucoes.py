@@ -137,7 +137,7 @@ def resolve_ajuste(x,y,g):
 
 # b) 
 # 
-# $$g_1(x) = x²$$$$ g_2(x)=x$$$$ g_3(x)=1$$ 
+# $g_1(x) = x^2$; $g_2(x)=x$; $g_3(x)=1$ 
 # 
 # \begin{array}{c|cccccccc}
 # g_1 & 1 & 4 & 9 & 16 & 25 & 36 & 49 & 64 \\
@@ -228,7 +228,7 @@ p = resolve_ajuste(x,y,g)
 # #### Metodologia matemática
 # 
 
-# $$g_1(x) = 1$$$$ g_2(x)=x$$$$ g_3(x)=x²$$ $$ g_4(x)=x³$$
+# $g_1(x) = 1$; $g_2(x)=x$; $g_3(x)=x^2$; $g_4(x)=x^3$
 # 
 # \begin{array}{c|cccccc}
 # g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 \\
@@ -309,7 +309,7 @@ np.sum((p(x)-y)**2)
 
 # #### Metodologia matemática 
 # 
-# $$g_1(x) = 1$$$$ g_2(x)=x$$
+# $g_1(x) = 1$; $g_2(x)=x$
 # 
 # \begin{array}{c|cccccccc}
 # g_1 & 1 & 1 & 1& 1& 1 & 1 & 1 & 1&1\\
@@ -418,7 +418,7 @@ plt.plot(altura,p(altura),altura,(altura - p2[0])/p2[1])
 
 # ## solucao-L5-Q5-a
 
-# #### AJUSTE POR RETA
+# ### AJUSTE POR RETA
 
 # In[14]:
 
@@ -484,8 +484,6 @@ ax.fill_between(ano,150*v1,200*v1,facecolor='r',alpha=0.1)
 # In[17]:
 
 
-
-
 # plotagem
 fig,ax = plt.subplots(1,1)
 p = resolve_ajuste(ano,hab,2)
@@ -519,6 +517,7 @@ np.shape(lim100)
 print('Marca de 100 milhões de pessoas: ' + str(anos[lim100[0][0]]))
 print('Marca de 150 milhões de pessoas: ' + str(anos[lim150[0][0]]))
 print('Marca de 200 milhões de pessoas: ' + str(anos[lim200[0][0]]))
+
 
 
 # In[19]:

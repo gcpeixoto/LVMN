@@ -3,12 +3,6 @@
 
 # # Code session 6
 
-# In[1]:
-
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # ## `interp1d`
 # 
 # A classe `interp1d` do submódulo `scipy.interpolate` pode ser usada como uma estrutura genérica para o cálculo de interpolação unidimensional do tipo $y_k = f(x_k)$.

@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Métodos de Adams-Bashfort
+# # Métodos de Adams-Bashfort
 
-# In[21]:
+# In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 from numpy import *
 from matplotlib.pyplot import *
 
@@ -32,8 +31,8 @@ def adams_bashfort_2nd_order(t0,tf,y0,h,fun):
     '''
 
     # malha numerica  
-    n = round((tf - t0)/h) + 1
-    t = linspace(t0,t0+(n-1)*h,n)
+    n = np.round((tf - t0)/h) + 1
+    t = np.linspace(t0,t0+(n-1)*h,n)
     y = np.zeros(n)
 
     y[0] = y0 # condicao inicial 
