@@ -1,17 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 7
-# 
-# ## Escopo
-# 
-# - Teoria da Aproximação > Ajuste de Curvas
+# # _Code Session 7_: Ajuste de Curvas
 
 # In[1]:
 
 
 import numpy as np 
 import matplotlib.pyplot as plt 
+import matplotlib as mpl
+
+mpl.rcParams['figure.figsize'] = (6,4)
 
 
 # ## Regressão Linear
@@ -67,48 +66,47 @@ from scipy.stats import linregress
 
 # ### Resolução
 
-# Vamos ler o arquivo de dados e convertê-lo em uma matriz.
+# Vamos ler o arquivo de dados e converter diretamente a matriz de dados em dois _arrays_, um para valores de massa e outro para consumo.
 
-# In[5]:
-
-
-# fname: nome do arquivo
-# delimiter: separador dos dados 
-# skiprows: ignora linhas do arquivo (aqui, estamos removendo a primeira)
-# usecols: colunas a serem lidas (aqui, estamos lendo a 2a. e 3a. colunas)
-dados = np.loadtxt(fname='file-cs7-autos.csv',delimiter=',',skiprows=1,usecols=(1,2))
-print(dados)
+# In[3]:
 
 
-# Armazenamos os _arrays_ devidamente:
-
-# In[6]:
-
-
-M = dados[:,0] # massa
-C = dados[:,1] # consumo
-
-
-# Fazemos a regressão linear:
-
-# In[7]:
+M, C = np.loadtxt(fname='file-cs7-autos.csv', # nome do arquivo
+                  delimiter=',', # separador dos dados
+                  skiprows=1, # ignora 1a. linha do arquivo
+                  usecols=(1,2), # lê apenas 2a. e 3a. colunas
+                  unpack=True # desempactamento
+                  ) 
 
 
-a,b,R, p_value, std_err = linregress(M,C)
+# Em seguida, fazemos a regressão linear:
+
+# In[4]:
+
+
+a, b, R, _, _ = linregress(M,C)
 print(f'Regressão linear executada com a = {a:.3f}, b = {b:.3f} e R2 = {R*R:.2f}')
 
 
 # Enfim, podemos visualizar o resultado: 
 
-# In[8]:
+# In[5]:
 
 
-C2 = b + a*M # ajuste
-mod = plt.plot(M,C2,'r:'); # modelo
-med = plt.scatter(M,C); # medição
-plt.legend({'modelo de ajuste':mod, 'medição':med}); # legenda
+# ajuste
+C2 = a*M + b
 
-plt.annotate('y= {0:.2f} + {1:.2f}x'.format(b,a),(2080,11),fontsize=12,c='r');
+# figura
+fig, ax = plt.subplots(constrained_layout=True)
+ax.plot(M,C2,'r--',alpha=0.6,label='modelo')
+ax.scatter(M,C,label='medição')
+ax.legend()
+ax.set_xlabel('massa [kg]')
+ax.set_ylabel('consumo [km/L]')
+ax.annotate(f'y = {b:.2f} - {-a:.2f}x',
+            (2180,10),
+            fontsize=12,
+            c='r');
 
 
 # ## Medindo o desvio padrão do ajuste por mínimos quadrados 
@@ -126,24 +124,26 @@ plt.annotate('y= {0:.2f} + {1:.2f}x'.format(b,a),(2080,11),fontsize=12,c='r');
 # 
 # Sabemos que $m=2$. Agora, resta usar $n$ e calcular $S$. Isto é tudo de que precisamos para calcular $\sigma$ para o nosso problema. 
 
-# In[10]:
+# In[6]:
 
 
 n = M.size # número de amostras
 m = 2 # número de parâmetros
+print(f'n = {n:.0f}')
 
 
 # O cálculo de $S$ pode ser feito da seguinte maneira:
 
-# In[11]:
+# In[7]:
 
 
-S = np.sum( (C - C2)*(C - C2) ) # soma dos quadrados (resíduos)
+S = np.dot(C - C2, C - C2) # soma dos quadrados (resíduos)
+print(f'S = {S:.3f}')
 
 
 # Enfim, $\sigma$ será dado por:
 
-# In[12]:
+# In[8]:
 
 
 sigma = np.sqrt(S/(n-m)) # desvio padrão
@@ -190,7 +190,7 @@ print(f'σ = {sigma:.3f}')
 # 
 # Uma vez que já temos as variáveis armazenadas na memória, basta criarmos os ajustes.
 
-# In[13]:
+# In[9]:
 
 
 p2 = np.polyfit(M,C,2)
@@ -199,40 +199,48 @@ p4 = np.polyfit(M,C,4)
 p5 = np.polyfit(M,C,5) 
 
 
+# Nota: o código abaixo realiza o mesmo, de forma compacta.
+
+# In[10]:
+
+
+for g in range(2,6):
+    exec(f'p{g} = np.polyfit(M,C,g)')
+
+
 # Para imprimir a lista dos coeficientes, basta fazer:
 
-# In[14]:
+# In[11]:
 
 
-print(p2)
-print(p3)
-print(p4)
-print(p5)
+for p in [p2, p3, p4, p5]:
+    print(*p, sep=', ', end='\n')
 
 
 # Para plotarmos as curvas, devemos nos atentar para o grau dos modelos. Podemos criá-las da seguinte forma:
 
-# In[22]:
+# In[12]:
 
 
+# modelos
 C22 = p2[0]*M**2 + p2[1]*M    + p2[2] # modelo quadrático
 C23 = p3[0]*M**3 + p3[1]*M**2 + p3[2]*M    + p3[3] # modelo cúbico
 C24 = p4[0]*M**4 + p4[1]*M**3 + p4[2]*M**2 + p4[3]*M    + p4[4] # modelo de quarta ordem
 C25 = p5[0]*M**5 + p5[1]*M**4 + p5[2]*M**3 + p5[3]*M**2 + p5[4]*M + p5[5] # modelo de quinta ordem
 
-plt.figure(figsize=(8,5))
-plt.grid(True)
-med = plt.plot(M,C,'o', ms=6); # medição
-mod2 = plt.plot(M,C22,'rs',ms=8, markerfacecolor='None'); # modelo 2
-mod3 = plt.plot(M,C23,'gd',ms=8, markerfacecolor='None'); # modelo 3
-mod4 = plt.plot(M,C24,'cv',ms=8, markerfacecolor='None'); # modelo 4
-mod5 = plt.plot(M,C25,'m*',ms=8, markerfacecolor='None'); # modelo 5
+# plotagem
+fig, ax = plt.subplots(constrained_layout=True)
+ax.grid(True)
 
-plt.legend(('medição',
-           'ajuste 2a. ordem',
-           'ajuste 3a. ordem',
-           'ajuste 4a. ordem',
-           'ajuste 5a. ordem'));
+ax.plot(M,C,  'ko',ms=6, mfc='black', label='dado') 
+ax.plot(M,C22,'rs',ms=8, mfc='None', label='Ord2') 
+ax.plot(M,C23,'gd',ms=8, mfc='None', label='Ord3')
+ax.plot(M,C24,'cv',ms=8, mfc='None', label='Ord4')
+ax.plot(M,C25,'m*',ms=8, mfc='None', label='Ord5') 
+
+ax.set_xlabel('massa [kg]')
+ax.set_ylabel('consumo [km/L]')
+ax.legend(loc='best');
 
 
 # #### Exercício complementar 
@@ -247,19 +255,20 @@ plt.legend(('medição',
 
 # Primeiramente, vamos ler o arquivo.
 
-# In[26]:
+# In[13]:
 
 
-dados = np.loadtxt(fname='file-cs7-radiacao.csv',delimiter=',',skiprows=1)
+t, g = np.loadtxt(fname='file-cs7-radiacao.csv',
+                   delimiter=',',
+                   skiprows=1,
+                   unpack=True)
 
 
-# Agora, vamos coletar os dados e plotá-los apenas para verificar o comportamento da dispersão.
+# Agora, vamos plotar os dados apenas para verificar o comportamento da dispersão.
 
-# In[27]:
+# In[14]:
 
 
-t = dados[:,0]
-g = dados[:,1]
 plt.plot(t,g,'o');
 
 
@@ -275,7 +284,7 @@ plt.plot(t,g,'o');
 # 
 # Agora, plotando a dispersão no plano $(t,z)$, verificamos se a curva é aproximadamente uma reta.  
 
-# In[28]:
+# In[15]:
 
 
 z = np.log(g/t)
@@ -286,16 +295,16 @@ plt.plot(t,z);
 
 # Computando a regressão linear, temos:
 
-# In[29]:
+# In[21]:
 
 
-b,x,R, p_value, std_err = linregress(t,z)
+b,x,R,_,_ = linregress(t,z)
 print(f'Regressão linear executada com inclinação = {b:.3f}, interceptação = {x:.3f} e R2 = {R*R:.2f}')
 
 
 # Vemos que, de fato, as variáveis têm uma altíssima correlação, visto que $R^2 \approx 1$. Agora, para plotar o modelo de ajuste, recuperamos o valor de $a$ operando inversamente e o usamos na curva do modelo para comparar com os dados experimentais.
 
-# In[30]:
+# In[17]:
 
 
 a = np.exp(x); # recuperando parâmetro de ajuste
@@ -317,7 +326,7 @@ plt.legend(('experimento','ajuste'));
 
 # Vamos resolver este problema usando a função `fsolve` do módulo `scipy.optimize`, mas antes precisamos passar a ela uma estimativa inicial. Rapidamente, façamos uma análise gráfica da curva $f(t_m)$ para $t_m = [0,2]$ (este intervalo é obtido após algumas plotagens prévias).
 
-# In[32]:
+# In[18]:
 
 
 f = lambda tm: mod(tm) - 0.5*g[0]
@@ -327,7 +336,7 @@ plt.plot(ttm,f(ttm),ttm,0*f(ttm));
 
 # Existem duas raízes no intervalo. Porém, observando os valores tabelados de $t$, é fácil ver que o valor para a condição inicial deve ser maior do que $t_0 = 0.5$ e, portanto, mais próximo da segunda raiz no gráfico. Então, escolhamos para `fsolve` o valor inicial de $t_m^0 = 1.25$.
 
-# In[33]:
+# In[19]:
 
 
 from scipy.optimize import fsolve 
@@ -338,7 +347,7 @@ print(f'Meia-vida localizada em tm = {tm[0]:.3f}.')
 
 # Uma última verificação mostra que este valor de $t_m$ é condizente com os dados experimentais, pois o seguinte erro é pequeno.
 
-# In[34]:
+# In[20]:
 
 
 mod(tm) - 0.5*g[0]
