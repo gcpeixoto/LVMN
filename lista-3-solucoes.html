@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-edoSuperior.html">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-sistemasEDO.html">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/lista-3-solucoes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/lista-3-solucoes.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/lista-3-solucoes.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -852,7 +816,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Funções Implementadas</span>
 
 <span class="k">def</span> <span class="nf">gauss_simples</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss sem pivotamento.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss sem pivotamento.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gauss_simples(AB)</span>
@@ -889,7 +853,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">gauss_pivparc</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss com pivotamento parcial.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss com pivotamento parcial.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gauss_pivparc(AB)</span>
@@ -929,7 +893,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">gaussjordan</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss-Jordan simples.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss-Jordan simples.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussjordan(AB)</span>
@@ -954,7 +918,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">AB</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">lu_solver</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de decomposição LU.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de decomposição LU.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         L, U, X = lu_solver(AB)</span>
@@ -1011,7 +975,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">cholesky</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método LU, por decomposição de Cholesky.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método LU, por decomposição de Cholesky.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         C = cholesky(AB)</span>
@@ -1077,8 +1041,8 @@ title="Print to PDF"
 <section id="questao-1">
 <h3>Questão 1<a class="headerlink" href="#questao-1" title="Permalink to this headline">#</a></h3>
 <p>Escreva o seguinte conjunto de equações na forma matricial:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c884cd1a-19c6-4510-9eb6-3274a592a2d1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c884cd1a-19c6-4510-9eb6-3274a592a2d1" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-54250ecb-6ac0-4dab-9dd3-ef810dedffc0">
+<span class="eqno">(1)<a class="headerlink" href="#equation-54250ecb-6ac0-4dab-9dd3-ef810dedffc0" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8 &amp;= 6x_3 + 2x_2 \\
 2 − x_1 &amp;= x_3 \\
 5x_2 + x_1 &amp;= 13
@@ -1124,8 +1088,8 @@ Logo, o produto entre A e sua transposta é:
 <section id="questao-2">
 <h3>Questão 2<a class="headerlink" href="#questao-2" title="Permalink to this headline">#</a></h3>
 <p>Use o metodo gráfico para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62110547-a7c9-44fe-bd48-47387dc87455">
-<span class="eqno">(2)<a class="headerlink" href="#equation-62110547-a7c9-44fe-bd48-47387dc87455" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-886eb30f-4ef8-440e-9090-9f83d3d9abcb">
+<span class="eqno">(2)<a class="headerlink" href="#equation-886eb30f-4ef8-440e-9090-9f83d3d9abcb" title="Permalink to this equation">#</a></span>\[\begin{align} 
 4x_1 − 8x_2 &amp;= −24 \\
 −x_1 + 6x_2 &amp;= 34
 \end{align}\]</div>
@@ -1163,8 +1127,8 @@ Logo, o produto entre A e sua transposta é:
 <section id="questao-3">
 <h3>Questão 3<a class="headerlink" href="#questao-3" title="Permalink to this headline">#</a></h3>
 <p>Para o conjunto de equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85c7a4f8-e4d2-4741-8d94-3d540c403e0e">
-<span class="eqno">(3)<a class="headerlink" href="#equation-85c7a4f8-e4d2-4741-8d94-3d540c403e0e" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-c4866534-893b-4ef6-92a0-d8249ba1e9f7">
+<span class="eqno">(3)<a class="headerlink" href="#equation-c4866534-893b-4ef6-92a0-d8249ba1e9f7" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_2 + 5x_3 &amp;= 9 \\
 2x_1 + x_2 + x_3 &amp;= 9 \\
 3x_1 + x_2 &amp;= 10
@@ -1209,8 +1173,8 @@ Logo, o produto entre A e sua transposta é:
 <section id="questao-4">
 <h3>Questão 4<a class="headerlink" href="#questao-4" title="Permalink to this headline">#</a></h3>
 <p>Dadas as equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc5c298b-cc9c-4d2c-abb6-4bbe698e1328">
-<span class="eqno">(4)<a class="headerlink" href="#equation-bc5c298b-cc9c-4d2c-abb6-4bbe698e1328" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-b47967fe-79be-441b-98ba-7ead1fa64228">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b47967fe-79be-441b-98ba-7ead1fa64228" title="Permalink to this equation">#</a></span>\[\begin{align} 
 10x_1 + 2x_2 − x_3 &amp;= 27 \\
 −3x_1 − 6x_2 + 2x_3 &amp;= −61.5 \\
 x_1 + 5x_2 + 5x_3 &amp;= −21.5
@@ -1284,8 +1248,8 @@ A solução do problema é:
 <section id="questao-5">
 <h3>Questão 5<a class="headerlink" href="#questao-5" title="Permalink to this headline">#</a></h3>
 <p>Use Eliminação de Gauss com pivotamento parcial para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1963c1e4-152e-4b3b-88e6-00a41892e9c9">
-<span class="eqno">(5)<a class="headerlink" href="#equation-1963c1e4-152e-4b3b-88e6-00a41892e9c9" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-59785b47-1ccb-4287-8b05-2447988fbde3">
+<span class="eqno">(5)<a class="headerlink" href="#equation-59785b47-1ccb-4287-8b05-2447988fbde3" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8x_1 + 2x_2 − 2x_3 &amp;= −2 \\
 10x_1 + 2x_2 − 4x_3 &amp;= 4 \\
 12x_1 + 2x_2 + 2x_3 &amp;= 6
@@ -1314,8 +1278,8 @@ A solução do problema é:
 <section id="questao-6">
 <h3>Questão 6<a class="headerlink" href="#questao-6" title="Permalink to this headline">#</a></h3>
 <p>Dadas as equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e067b557-a293-4278-8cd6-2a40c36b91d5">
-<span class="eqno">(6)<a class="headerlink" href="#equation-e067b557-a293-4278-8cd6-2a40c36b91d5" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-3fd2856e-9cf9-497d-9903-88e72631d9ed">
+<span class="eqno">(6)<a class="headerlink" href="#equation-3fd2856e-9cf9-497d-9903-88e72631d9ed" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 − 6x_2 − x_3 &amp;= −38 \\
 −3x_1 − x_2 + 7x_3 &amp;= 34 \\
 −8x_1 + x_2 − 2x_3 &amp;= −20
@@ -1344,8 +1308,8 @@ A solução do problema é:
 <section id="questao-7">
 <h3>Questão 7<a class="headerlink" href="#questao-7" title="Permalink to this headline">#</a></h3>
 <p>Use Eliminação de Gauss-Jordan para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12a229ad-415e-4da5-983e-b92f145a59ea">
-<span class="eqno">(7)<a class="headerlink" href="#equation-12a229ad-415e-4da5-983e-b92f145a59ea" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-41a1431b-020d-4d17-a539-927252e1e4ee">
+<span class="eqno">(7)<a class="headerlink" href="#equation-41a1431b-020d-4d17-a539-927252e1e4ee" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 + x_2 − x_3 &amp;= 1 \\
 5x_1 + 2x_2 + 2x_3 &amp;= −4 \\
 3x_1 + x_2 + x_3 &amp;= 5
@@ -1371,8 +1335,8 @@ A solução do problema é:
 <section id="questao-8">
 <h3>Questão 8<a class="headerlink" href="#questao-8" title="Permalink to this headline">#</a></h3>
 <p>Resolva:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-624d246b-aba1-46fb-b166-b0f5aaedb403">
-<span class="eqno">(8)<a class="headerlink" href="#equation-624d246b-aba1-46fb-b166-b0f5aaedb403" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bea18eae-391c-48a6-a5a2-4535a3eae06e">
+<span class="eqno">(8)<a class="headerlink" href="#equation-bea18eae-391c-48a6-a5a2-4535a3eae06e" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_1 + x_2 − x_3 &amp;= −3 \\
 6x_1 + 2x_2 + 2x_3 &amp;= 2 \\
 −3x_1 + 4x_2 + x_3 &amp;= 1
@@ -1425,8 +1389,8 @@ x_1 + x_2 − x_3 &amp;= −3 \\
 <section id="questao-9">
 <h3>Questão 9<a class="headerlink" href="#questao-9" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU sem pivotamento (usando a definição A = LU):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a802930d-fbb1-4721-a4e3-5df13e4bc15d">
-<span class="eqno">(9)<a class="headerlink" href="#equation-a802930d-fbb1-4721-a4e3-5df13e4bc15d" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-cb1a0898-8955-42cf-9140-16a4bdafd982">
+<span class="eqno">(9)<a class="headerlink" href="#equation-cb1a0898-8955-42cf-9140-16a4bdafd982" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8x_1 + 4x_2 − x_3 &amp;= 11 \\
 −2x_1 + 5x_2 + x_3 &amp;= 4 \\
 2x_1 − x_2 + 6x_3 &amp;= 7
@@ -1477,8 +1441,8 @@ O produto entre A e sua inversa é:
 <section id="questao-10">
 <h3>Questão 10<a class="headerlink" href="#questao-10" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU com pivotamento parcial.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d560408-c49a-4f1f-9622-d7039e45f48f">
-<span class="eqno">(10)<a class="headerlink" href="#equation-4d560408-c49a-4f1f-9622-d7039e45f48f" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-43f25a28-b172-4af6-a108-67ced487d423">
+<span class="eqno">(10)<a class="headerlink" href="#equation-43f25a28-b172-4af6-a108-67ced487d423" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 − 6x_2 − x_3 &amp;= −38 \\
 −3x_1 − x_2 + 7x_3 &amp;= −34 \\
 −8x_1 + x_2 − 2x_3 &amp;= −20
@@ -1541,8 +1505,8 @@ O produto entre A e sua inversa é:
 <section id="questao-11">
 <h3>Questão 11<a class="headerlink" href="#questao-11" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f281eab8-3715-4bda-9270-aea2e5d00ca2">
-<span class="eqno">(11)<a class="headerlink" href="#equation-f281eab8-3715-4bda-9270-aea2e5d00ca2" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-b834cbc0-89f2-4531-977e-4d67e4ba92ad">
+<span class="eqno">(11)<a class="headerlink" href="#equation-b834cbc0-89f2-4531-977e-4d67e4ba92ad" title="Permalink to this equation">#</a></span>\[\begin{align} 
 10x_1 + 2x_2 − x_3 &amp;= 27 \\
 −3x_1 − 6x_2 + 2x_3 &amp;= −61.5 \\
 x_1 + x_2 + 5x_3 &amp;= −21.5
@@ -1883,7 +1847,7 @@ A solução do sistema é:
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1929,7 +1893,7 @@ A solução do sistema é:
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>41. EDOs de ordem superior (redução de ordem) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>38. EDOs de ordem superior (redução de ordem) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,13 +50,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="43. Sistemas de EDOs" href="extra-sistemasEDO.html" />
-    <link rel="prev" title="40. Métodos de Adams-Bashfort" href="extra-multistep-adamsBashfort.html" />
+    <link rel="next" title="39. Sistemas de EDOs" href="extra-sistemasEDO.html" />
+    <link rel="prev" title="37. Métodos de Adams-Bashfort" href="extra-multistep-adamsBashfort.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerMelhorado.html">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-sistemasEDO.html">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/extra/extra-edoSuperior.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/extra/extra-edoSuperior.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/extra/extra-edoSuperior.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -604,34 +568,27 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   41. EDOs de ordem superior (redução de ordem)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#movimento-pendular-simples">
+   38.1. Movimento pendular simples
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#movimento-pendular-simples">
-     41.1. Movimento pendular simples
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hipotese-de-angulos-pequenos">
-     41.2. Hipótese de ângulos pequenos
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#caso-geral-de-ordem-m">
-     41.3. Caso geral de ordem
-     <span class="math notranslate nohighlight">
-      \(m\)
-     </span>
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hipotese-de-angulos-pequenos">
+   38.2. Hipótese de ângulos pequenos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caso-geral-de-ordem-m">
+   38.3. Caso geral de ordem
+   <span class="math notranslate nohighlight">
+    \(m\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   42. Problemas
+   38.4. Problemas
   </a>
  </li>
 </ul>
@@ -653,34 +610,27 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   41. EDOs de ordem superior (redução de ordem)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#movimento-pendular-simples">
+   38.1. Movimento pendular simples
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#movimento-pendular-simples">
-     41.1. Movimento pendular simples
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hipotese-de-angulos-pequenos">
-     41.2. Hipótese de ângulos pequenos
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#caso-geral-de-ordem-m">
-     41.3. Caso geral de ordem
-     <span class="math notranslate nohighlight">
-      \(m\)
-     </span>
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hipotese-de-angulos-pequenos">
+   38.2. Hipótese de ângulos pequenos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caso-geral-de-ordem-m">
+   38.3. Caso geral de ordem
+   <span class="math notranslate nohighlight">
+    \(m\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problemas">
-   42. Problemas
+   38.4. Problemas
   </a>
  </li>
 </ul>
@@ -693,8 +643,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="edos-de-ordem-superior-reducao-de-ordem">
-<h1><span class="section-number">41. </span>EDOs de ordem superior (redução de ordem)<a class="headerlink" href="#edos-de-ordem-superior-reducao-de-ordem" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="edos-de-ordem-superior-reducao-de-ordem">
+<h1><span class="section-number">38. </span>EDOs de ordem superior (redução de ordem)<a class="headerlink" href="#edos-de-ordem-superior-reducao-de-ordem" title="Permalink to this headline">#</a></h1>
 <p>EDOs de ordem superior podem ser reescritas como sistemas de EDOs de primeira ordem. A fim de verificarmos como isto pode ser feito, consideremos, inicialmente o caso geral de uma EDO de segunda ordem.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -711,7 +661,7 @@ y_1(t_0) = y_0 \\
 y_2(t_0) = y_0'
 \end{cases}\end{split}\]</div>
 <section id="movimento-pendular-simples">
-<h2><span class="section-number">41.1. </span>Movimento pendular simples<a class="headerlink" href="#movimento-pendular-simples" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">38.1. </span>Movimento pendular simples<a class="headerlink" href="#movimento-pendular-simples" title="Permalink to this headline">#</a></h2>
 <p>Como exemplo (simplificado) prático derivado de uma EDO de segunda ordem, temos o movimento de um pêndulo submetido apenas à força gravitacional como mostra a figura abaixo. O pêndulo de massa <span class="math notranslate nohighlight">\(m\)</span> fica pendurado por uma corda de comprimento <span class="math notranslate nohighlight">\(l\)</span> e se move em relação ao eixo <span class="math notranslate nohighlight">\(\theta = 0\)</span>. O movimento é completamente descrito com a especificação da posição inicial <span class="math notranslate nohighlight">\(\theta(0) = \theta_0\)</span> e a velocidade angular inicial <span class="math notranslate nohighlight">\(\theta'(0) = \theta_0'\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -750,7 +700,7 @@ y_2(0) = \theta'(0) = \theta_0'
 \end{cases}\)</span>$</p>
 </section>
 <section id="hipotese-de-angulos-pequenos">
-<h2><span class="section-number">41.2. </span>Hipótese de ângulos pequenos<a class="headerlink" href="#hipotese-de-angulos-pequenos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">38.2. </span>Hipótese de ângulos pequenos<a class="headerlink" href="#hipotese-de-angulos-pequenos" title="Permalink to this headline">#</a></h2>
 <p>No movimento pendular, se <span class="math notranslate nohighlight">\(\theta\)</span> for considerado muito pequeno, podemos dizer que <span class="math notranslate nohighlight">\(\theta \approx {\rm sen}(\theta)\)</span>. Logo, a EDO de segunda ordem reduz-se a</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{d^2 \theta}{dt^2} + \dfrac{g}{l}\theta = 0,\]</div>
@@ -764,7 +714,7 @@ y_2(0) = \theta'(0) = \theta_0'
 <p>Vale dizer que a solução analítica para este caso é dada por <span class="math notranslate nohighlight">\(\theta(t) = \theta_0 \cos \left( \sqrt{\dfrac{g}{l}} t \right)\)</span>.</p>
 </section>
 <section id="caso-geral-de-ordem-m">
-<h2><span class="section-number">41.3. </span>Caso geral de ordem <span class="math notranslate nohighlight">\(m\)</span><a class="headerlink" href="#caso-geral-de-ordem-m" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">38.3. </span>Caso geral de ordem <span class="math notranslate nohighlight">\(m\)</span><a class="headerlink" href="#caso-geral-de-ordem-m" title="Permalink to this headline">#</a></h2>
 <p>De modo similar, uma EDO de ordem <span class="math notranslate nohighlight">\(m\)</span> pode gerar um sistema de EDOs de ordem 1. Considerando o PVI generalizado
 $<span class="math notranslate nohighlight">\(\begin{cases}
 \dfrac{d^m y(t)}{dt^m} = f(t,y,y',\ldots,y^{(m-1)}) \\
@@ -814,7 +764,7 @@ y_3(0) = -1.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">def</span> <span class="nf">euler_sys</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">f</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resolve o PVI de um sistema de EDOs escalares</span>
 <span class="sd">    y’ = f(t,y), t0 &lt;= t &lt;= b, y(t0)=y0 pelo metodo de Euler com tamanho de passo h.</span>
 <span class="sd">    O usuario deve fornecer um vetor f contendo as funcoes a serem avaliadas como </span>
@@ -932,9 +882,8 @@ y(0) = 3, y'(0) = 4, y''(0) = 3
 \end{cases}\end{split}\]</div>
 <p>Solução analítica: <span class="math notranslate nohighlight">\(y(t) = 3\cos(t) + {\rm sen}(t) + \exp(-2t){\rm sen}(3t)\)</span>.</p>
 </section>
-</section>
 <section id="problemas">
-<h1><span class="section-number">42. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">#</a></h1>
+<h2><span class="section-number">38.4. </span>Problemas<a class="headerlink" href="#problemas" title="Permalink to this headline">#</a></h2>
 <p><strong>Problema:</strong> Converta o seguinte sistema de EDOs de 2a. ordem para um sistema maior de EDOs de primeira ordem. Este sistema surge do estudo da atração gravitacional de uma massa por outra:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
@@ -945,12 +894,13 @@ z''(t) = \dfrac{-cz(t)}{r(t)^3},
 <p>onde <span class="math notranslate nohighlight">\(c\)</span> é uma constante positiva e <span class="math notranslate nohighlight">\(r(t) = [x(t)^2 + y(t)^2 + z(t)^2]^{1/2}\)</span>, com <span class="math notranslate nohighlight">\(t\)</span> denotando o tempo.</p>
 <p><strong>Problema:</strong> Resolva o problema do pêndulo numericamente pelo método de Euler. Considere <span class="math notranslate nohighlight">\(l = 1\)</span> e <span class="math notranslate nohighlight">\(g = 32.2 \, pés/s^2\)</span>. Como valores iniciais, escolha <span class="math notranslate nohighlight">\(0 &lt; \theta(0) \le \pi/2\)</span> e <span class="math notranslate nohighlight">\(\theta'(0) = 1\)</span>. Experimente vários valores de <span class="math notranslate nohighlight">\(h\)</span> de modo a obter erros pequenos. Plote os gráficos <span class="math notranslate nohighlight">\(t \, vs. \, \theta(t)\)</span>, <span class="math notranslate nohighlight">\(t \, vs. \theta'(t)\)</span> e <span class="math notranslate nohighlight">\(\theta(t) \, vs. \theta'(t)\)</span>. O movimento parece periódico no tempo? (Use a hipótese de pequenos ângulos.)</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -977,13 +927,13 @@ z''(t) = \dfrac{-cz(t)}{r(t)^3},
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">40. </span>Métodos de Adams-Bashfort</p>
+            <p class="prev-next-title"><span class="section-number">37. </span>Métodos de Adams-Bashfort</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="extra-sistemasEDO.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">43. </span>Sistemas de EDOs</p>
+        <p class="prev-next-title"><span class="section-number">39. </span>Sistemas de EDOs</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -996,7 +946,7 @@ z''(t) = \dfrac{-cz(t)}{r(t)^3},
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

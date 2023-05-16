@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Code sessions
+  Code Sessions
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -297,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Exercícios resolvidos
+  Exercícios Resolvidos
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -374,37 +374,37 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   35. Variações do Método de Euler
+   34. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   36. Estabilidade Numérica para o Método de Euler
+   35. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   37. Método de Euler Implícito
+   36. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   40. Métodos de Adams-Bashfort
+   37. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-edoSuperior.html">
-   41. EDOs de ordem superior (redução de ordem)
+   38. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-sistemasEDO.html">
-   43. Sistemas de EDOs
+   39. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   44. Método das Linhas
+   40. Método das Linhas
   </a>
  </li>
 </ul>
@@ -466,25 +466,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/gcpeixoto/ipynb-lab-metodos-numericos/master?urlpath=lab/tree/lista-4-solucoes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/ipynb-lab-metodos-numericos/blob/master/lista-4-solucoes.ipynb"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/lista-4-solucoes.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -498,24 +480,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -845,7 +809,7 @@ title="Print to PDF"
 <span class="c1"># Solução de Sistemas</span>
 
 <span class="k">def</span> <span class="nf">gaussjacobi</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Jacobi.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Jacobi.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussjacobi(AB,ER,X0)</span>
@@ -888,7 +852,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">gaussseidel</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Função que realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Seidel.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Função que realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Seidel.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussseidel(AB,ER,X0)</span>
@@ -931,7 +895,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">Xs</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Função que realiza o cálculo da matriz jacobiana.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza o cálculo da matriz jacobiana.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         J = jacobian(F,Xs)</span>
@@ -954,7 +918,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">J</span>
 
 <span class="k">def</span> <span class="nf">newtonnaolin</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">Xs</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Função que realiza o cálculo de um sistema não-linear através do método de iterativo de Newton.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza o cálculo de um sistema não-linear através do método de iterativo de Newton.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = newtonnaolin(F,Xs,ER,X0)</span>
@@ -1009,7 +973,7 @@ title="Print to PDF"
 <span class="c1"># Interpolação</span>
 
 <span class="k">def</span> <span class="nf">int_newton</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método das diferenças divididas</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método das diferenças divididas</span>
 <span class="sd">    de Newton.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
@@ -1055,7 +1019,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">int_lagrange</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método de Lagrange.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método de Lagrange.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         y0 = int_lagrange(X, Y, x0)</span>
@@ -1915,7 +1879,7 @@ A estimativa de f(0.25) é: 2.1201875
     {
         requestKernel: true,
         binderOptions: {
-            repo: "gcpeixoto/ipynb-lab-metodos-numericos",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1961,7 +1925,7 @@ A estimativa de f(0.25) é: 2.1201875
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>
