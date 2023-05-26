@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -281,7 +281,10 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-7-fit.html">
-   Code session 7
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
   </a>
  </li>
  <li class="toctree-l1">
@@ -572,46 +575,44 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">
    2.1. Unidade Lógica e Aritmética
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#um-caso-curioso">
-     2.1.1. Um caso curioso
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#casos-curiosos">
+   2.2. Casos curiosos
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-binario">
-   2.2. Sistema binário
+   2.3. Sistema binário
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercicios-de-conversao-numerica">
-     2.2.1. Exercícios de conversão numérica
+     2.3.1. Exercícios de conversão numérica
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#maquina-binaria">
-   2.3. Máquina binária
+   2.4. Máquina binária
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-de-ponto-flutuante">
-   2.4. Sistema de ponto flutuante
+   2.5. Sistema de ponto flutuante
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-reta-perfurada">
-     2.4.1. A reta “perfurada”
+     2.5.1. A reta “perfurada”
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulador-de-mathbb-f">
-   2.5. Simulador de
+   2.6. Simulador de
    <span class="math notranslate nohighlight">
     \(\mathbb{F}\)
    </span>
@@ -619,7 +620,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
-   2.6. Limites de máquina para ponto flutuante
+   2.7. Limites de máquina para ponto flutuante
   </a>
  </li>
 </ul>
@@ -645,46 +646,44 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">
    2.1. Unidade Lógica e Aritmética
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#um-caso-curioso">
-     2.1.1. Um caso curioso
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#casos-curiosos">
+   2.2. Casos curiosos
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-binario">
-   2.2. Sistema binário
+   2.3. Sistema binário
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercicios-de-conversao-numerica">
-     2.2.1. Exercícios de conversão numérica
+     2.3.1. Exercícios de conversão numérica
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#maquina-binaria">
-   2.3. Máquina binária
+   2.4. Máquina binária
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistema-de-ponto-flutuante">
-   2.4. Sistema de ponto flutuante
+   2.5. Sistema de ponto flutuante
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-reta-perfurada">
-     2.4.1. A reta “perfurada”
+     2.5.1. A reta “perfurada”
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulador-de-mathbb-f">
-   2.5. Simulador de
+   2.6. Simulador de
    <span class="math notranslate nohighlight">
     \(\mathbb{F}\)
    </span>
@@ -692,7 +691,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
-   2.6. Limites de máquina para ponto flutuante
+   2.7. Limites de máquina para ponto flutuante
   </a>
  </li>
 </ul>
@@ -714,8 +713,9 @@ title="Print to PDF"
 <h2><span class="section-number">2.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Permalink to this headline">#</a></h2>
 <p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados. A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
 <p>Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.</p>
-<section id="um-caso-curioso">
-<h3><span class="section-number">2.1.1. </span>Um caso curioso<a class="headerlink" href="#um-caso-curioso" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="casos-curiosos">
+<h2><span class="section-number">2.2. </span>Casos curiosos<a class="headerlink" href="#casos-curiosos" title="Permalink to this headline">#</a></h2>
 <p>Sabemos que a fração <span class="math notranslate nohighlight">\(1/3 \approx 0.3333...\ldots\)</span> é uma dízima. O seu triplo equivale a <span class="math notranslate nohighlight">\(0.9999...\)</span>, mas vejamos o seguinte exemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -755,13 +755,69 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</section>
+<p>Vejamos agora o caso de séries equivalentes. Consideremos a série (descendente, do menor para o maior)</p>
+<div class="math notranslate nohighlight">
+\[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n}\]</div>
+<p>e a sua versão escrita como uma somatória invertida (ascendente, do menor para o maior), ou seja,</p>
+<div class="math notranslate nohighlight">
+\[S_A(n) = \sum_{k=n}^1 \frac{1}{k} = \frac{1}{n} + 1 + \frac{1}{n-1} + \ldots + \frac{1}{2} + 1\]</div>
+<p>É evidente que <span class="math notranslate nohighlight">\(S_A(n)\)</span> e <span class="math notranslate nohighlight">\(S_D(n)\)</span> são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de <span class="math notranslate nohighlight">\(n\)</span> e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
+
+<span class="c1"># define séries</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">S_D</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_D</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>        
+         
+    <span class="n">S_A</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_A</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>       
+    
+    <span class="c1"># diferença    </span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">S_D</span> <span class="o">-</span> <span class="n">S_A</span>
+    
+    <span class="k">return</span> <span class="n">S_D</span><span class="p">,</span> <span class="n">S_A</span><span class="p">,</span> <span class="n">E</span>
+    
+<span class="c1"># cria objeto para tabela</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;E(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># loop de teste</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">sd</span><span class="p">,</span> <span class="n">sa</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">tbl</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+   
+<span class="c1"># imprime tabela</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+------------------------+
+|   n    |       S_A(n)       |       S_D(n)       |          E(n)          |
++--------+--------------------+--------------------+------------------------+
+|   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
+|  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
+|  1000  | 7.485470860550343  | 7.485470860550341  | 2.6645352591003757e-15 |
+| 10000  | 9.787606036044348  | 9.787606036044386  | -3.730349362740526e-14 |
+| 100000 | 12.090146129863335 | 12.090146129863408 | -7.283063041541027e-14 |
++--------+--------------------+--------------------+------------------------+
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="sistema-binario">
-<h2><span class="section-number">2.2. </span>Sistema binário<a class="headerlink" href="#sistema-binario" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.3. </span>Sistema binário<a class="headerlink" href="#sistema-binario" title="Permalink to this headline">#</a></h2>
 <p>Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.</p>
 <section id="exercicios-de-conversao-numerica">
-<h3><span class="section-number">2.2.1. </span>Exercícios de conversão numérica<a class="headerlink" href="#exercicios-de-conversao-numerica" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>Exercícios de conversão numérica<a class="headerlink" href="#exercicios-de-conversao-numerica" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (100)_2 -&gt; base 10</span>
@@ -867,7 +923,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="maquina-binaria">
-<h2><span class="section-number">2.3. </span>Máquina binária<a class="headerlink" href="#maquina-binaria" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.4. </span>Máquina binária<a class="headerlink" href="#maquina-binaria" title="Permalink to this headline">#</a></h2>
 <p>O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: <a class="reference external" href="https://vnicius.github.io/numbiosis/conversor/index.html">https://vnicius.github.io/numbiosis/conversor/index.html</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -955,9 +1011,9 @@ title="Print to PDF"
 </div>
 </section>
 <section id="sistema-de-ponto-flutuante">
-<h2><span class="section-number">2.4. </span>Sistema de ponto flutuante<a class="headerlink" href="#sistema-de-ponto-flutuante" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.5. </span>Sistema de ponto flutuante<a class="headerlink" href="#sistema-de-ponto-flutuante" title="Permalink to this headline">#</a></h2>
 <section id="a-reta-perfurada">
-<h3><span class="section-number">2.4.1. </span>A reta “perfurada”<a class="headerlink" href="#a-reta-perfurada" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.5.1. </span>A reta “perfurada”<a class="headerlink" href="#a-reta-perfurada" title="Permalink to this headline">#</a></h3>
 <p>Como temos estudado, a matemática computacional opera no domínio <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>). Vejamos um exemplo:</p>
 <p><strong>Exemplo</strong>: Considere o sistema de ponto flutuante <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span>. Determinemos todos os seus números representáveis:</p>
 <p>Como a base é <span class="math notranslate nohighlight">\(2\)</span>, os dígitos possíveis são <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span> com mantissas:</p>
@@ -1041,14 +1097,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_16_0.png" src="_images/aula-01-ponto-flutuante_16_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_18_0.png" src="_images/aula-01-ponto-flutuante_18_0.png" />
 </div>
 </div>
 <p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.</p>
 </section>
 </section>
 <section id="simulador-de-mathbb-f">
-<h2><span class="section-number">2.5. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.6. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1088,12 +1144,12 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.]
 </pre></div>
 </div>
-<img alt="_images/aula-01-ponto-flutuante_19_1.png" src="_images/aula-01-ponto-flutuante_19_1.png" />
+<img alt="_images/aula-01-ponto-flutuante_21_1.png" src="_images/aula-01-ponto-flutuante_21_1.png" />
 </div>
 </div>
 </section>
 <section id="limites-de-maquina-para-ponto-flutuante">
-<h2><span class="section-number">2.6. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.7. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
@@ -1157,7 +1213,7 @@ número de bits na mantissa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_22_0.png" src="_images/aula-01-ponto-flutuante_22_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_24_0.png" src="_images/aula-01-ponto-flutuante_24_0.png" />
 </div>
 </div>
 </section>

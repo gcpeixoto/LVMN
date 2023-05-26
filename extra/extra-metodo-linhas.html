@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -280,7 +280,10 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../codeSession-7-fit.html">
-   Code session 7
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
   </a>
  </li>
  <li class="toctree-l1">
@@ -585,7 +588,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">met_linhas_euler</span><span class="p">(</span><span class="n">d0</span><span class="p">,</span><span class="n">d1</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">t0</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Usa o metodo das linhas para resolver</span>
 <span class="sd">    ut = uxx + G(x,t), 0 &lt; x &lt; 1, 0 &lt; t &lt; T</span>
 <span class="sd">    com C.C. </span>
