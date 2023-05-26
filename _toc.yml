@@ -63,3 +63,4 @@ parts:
   - file: extra/extra-edoSuperior
   - file: extra/extra-sistemasEDO
   - file: extra/extra-metodo-linhas
+  - file: extra/extra-docstrings

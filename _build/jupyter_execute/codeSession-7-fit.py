@@ -71,6 +71,7 @@ from scipy.stats import linregress
 # In[3]:
 
 
+
 M, C = np.loadtxt(fname='file-cs7-autos.csv', # nome do arquivo
                   delimiter=',', # separador dos dados
                   skiprows=1, # ignora 1a. linha do arquivo

@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -281,7 +281,10 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-7-fit.html">
-   Code session 7
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
   </a>
  </li>
  <li class="toctree-l1">
@@ -809,7 +812,7 @@ title="Print to PDF"
 <span class="c1"># Solução de Sistemas</span>
 
 <span class="k">def</span> <span class="nf">gaussjacobi</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Jacobi.</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Jacobi.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussjacobi(AB,ER,X0)</span>
@@ -852,7 +855,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">gaussseidel</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Função que realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Seidel.</span>
+    <span class="sd">&#39;&#39;&#39; Função que realiza o cálculo de um sistema linear através do método de iterativo de Gauss-Seidel.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussseidel(AB,ER,X0)</span>
@@ -895,7 +898,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">X</span>
 
 <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">Xs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza o cálculo da matriz jacobiana.</span>
+    <span class="sd">&#39;&#39;&#39;Função que realiza o cálculo da matriz jacobiana.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         J = jacobian(F,Xs)</span>
@@ -918,7 +921,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="n">J</span>
 
 <span class="k">def</span> <span class="nf">newtonnaolin</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">Xs</span><span class="p">,</span><span class="n">ER</span><span class="p">,</span><span class="n">X0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza o cálculo de um sistema não-linear através do método de iterativo de Newton.</span>
+    <span class="sd">&#39;&#39;&#39;Função que realiza o cálculo de um sistema não-linear através do método de iterativo de Newton.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = newtonnaolin(F,Xs,ER,X0)</span>
@@ -973,7 +976,7 @@ title="Print to PDF"
 <span class="c1"># Interpolação</span>
 
 <span class="k">def</span> <span class="nf">int_newton</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método das diferenças divididas</span>
+    <span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método das diferenças divididas</span>
 <span class="sd">    de Newton.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
@@ -1019,7 +1022,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">int_lagrange</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método de Lagrange.</span>
+    <span class="sd">&#39;&#39;&#39;Função que realiza a interpolação de grau n de n+1 pontos dados, utilizando o método de Lagrange.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         y0 = int_lagrange(X, Y, x0)</span>

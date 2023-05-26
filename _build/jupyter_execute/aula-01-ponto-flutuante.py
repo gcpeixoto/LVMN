@@ -15,7 +15,7 @@
 # 
 # Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.
 
-# ### Um caso curioso
+# ## Casos curiosos
 # 
 # Sabemos que a fração $1/3 \approx 0.3333...\ldots$ é uma dízima. O seu triplo equivale a $0.9999...$, mas vejamos o seguinte exemplo:
 
@@ -38,6 +38,53 @@
 
 
 0.3 + 0.3 + 0.3
+
+
+# Vejamos agora o caso de séries equivalentes. Consideremos a série (descendente, do menor para o maior)
+# 
+# $$S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n}$$
+# 
+# e a sua versão escrita como uma somatória invertida (ascendente, do menor para o maior), ou seja,
+# 
+# $$S_A(n) = \sum_{k=n}^1 \frac{1}{k} = \frac{1}{n} + 1 + \frac{1}{n-1} + \ldots + \frac{1}{2} + 1$$
+# 
+# É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
+# 
+
+# In[41]:
+
+
+from prettytable import PrettyTable as pt
+
+# define séries
+def S(n):
+    
+    S_D = 0
+    for k in range(1,n+1):
+        S_D += 1/k        
+         
+    S_A = 0
+    for k in range(n,0,-1):
+        S_A += 1/k       
+    
+    # diferença    
+    E = S_D - S_A
+    
+    return S_D, S_A, E
+    
+# cria objeto para tabela
+tbl = pt()
+tbl.field_names = ['n','S_A(n)','S_D(n)','E(n)']
+tbl.align = 'c'
+
+# loop de teste
+for n in [10**1, 10**2, 10**3, 10**4,10**5]:
+    sd, sa, e = S(n)    
+    row = [n,sd,sa,e]
+    tbl.add_row(row)
+   
+# imprime tabela
+print(tbl)
 
 
 # ## Sistema binário
