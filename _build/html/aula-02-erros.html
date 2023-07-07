@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+   1. Modelagem matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -337,6 +337,83 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: fórmulas de Newton-Cotes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Extra
  </span>
 </p>
@@ -408,6 +485,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
    40. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   41. Documentação de código
   </a>
  </li>
 </ul>
@@ -593,6 +675,61 @@ title="Print to PDF"
    3.3. Propagação de erros
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos">
+   3.4. Exemplos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-relativo-percentual">
+     3.4.1. Erro relativo percentual
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       3.4.1.1. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-maximo">
+     3.4.2. Erro máximo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.4.2.1. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#truncamento-e-arredondamento">
+     3.4.3. Truncamento e arredondamento
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3.4.3.1. Solução
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aproximacao-por-truncamento">
+         3.4.3.1.1. Aproximação por Truncamento
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aproximacao-por-arredondamento">
+         3.4.3.1.2. Aproximação por Arredondamento
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -633,6 +770,61 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#propagacao-de-erros">
    3.3. Propagação de erros
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos">
+   3.4. Exemplos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-relativo-percentual">
+     3.4.1. Erro relativo percentual
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       3.4.1.1. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-maximo">
+     3.4.2. Erro máximo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.4.2.1. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#truncamento-e-arredondamento">
+     3.4.3. Truncamento e arredondamento
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3.4.3.1. Solução
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aproximacao-por-truncamento">
+         3.4.3.1.1. Aproximação por Truncamento
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aproximacao-por-arredondamento">
+         3.4.3.1.2. Aproximação por Arredondamento
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -929,6 +1121,83 @@ caso 2: 0.00524752
 </div>
 </div>
 </div>
+</section>
+<section id="exemplos">
+<h2><span class="section-number">3.4. </span>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
+<section id="erro-relativo-percentual">
+<h3><span class="section-number">3.4.1. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h3>
+<p>Dois estudantes medem a altura h da sala de aula com dois instrumentos de medida diferentes e encontram, respectivamente <span class="math notranslate nohighlight">\(h_1 = 2.965 \pm 0.001 \, m\)</span> e <span class="math notranslate nohighlight">\(h_2 = 2.964 \pm 0.002\, m\)</span>. Qual o erro relativo percentual cometido por cada um?</p>
+<section id="solucao">
+<h4><span class="section-number">3.4.1.1. </span>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h4>
+<p>O valor exato <span class="math notranslate nohighlight">\(h\)</span> não é conhecido. O primeiro estudante tem um instrumento cujo erro máximo cometido é <span class="math notranslate nohighlight">\(EA_1 = 0.001 \, m\)</span>; o segundo, <span class="math notranslate nohighlight">\(EA_2 = 0.002 \, m\)</span>. Notemos que pelas expressões <span class="math notranslate nohighlight">\(EA_1 = | h - h_1 |\)</span> e <span class="math notranslate nohighlight">\(EA_2 = | h - h_2 |\)</span>, os erros absolutos não são diretamente computáveis. Logo, temos que usar limitantes de erro.</p>
+<p>Assim, os erros relativos são computados com base nos limitantes e nos valores medidos (aproximados). Portanto,</p>
+<div class="math notranslate nohighlight">
+\[ER_1 = (EA_1/2.965) \times 100\% = (0.001/2.965) \times 100\% = 0.0337\%\]</div>
+<div class="math notranslate nohighlight">
+\[ER_2 = (EA_2/2.964) \times 100\% = (0.002/2.964) \times 100\% = 0.0675\%\]</div>
+</section>
+</section>
+<section id="erro-maximo">
+<h3><span class="section-number">3.4.2. </span>Erro máximo<a class="headerlink" href="#erro-maximo" title="Permalink to this headline">#</a></h3>
+<p>Uma sala de formato retangular foi medida e foram obtidos 8 m e 12 m como sendo sua largura e seu comprimento, respectivamente. Sabendo que o erro cometido em cada uma dessas medições foi de no máximo 2 cm, determine o erro máximo cometido no cálculo de sua área.</p>
+<section id="id1">
+<h4><span class="section-number">3.4.2.1. </span>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>Sejam:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a'\)</span>: largura aproximada (obtida pela medição)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b'\)</span>: comprimento aproximado (obtido pela medição)</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span>:  largura exata da sala;</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span>:  comprimento exato da sala</p></li>
+<li><p><span class="math notranslate nohighlight">\(A'\)</span>: área aproximada da sala;</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span>:  área exata</p></li>
+</ul>
+<p>São dados <span class="math notranslate nohighlight">\(a' = 8m\)</span> e <span class="math notranslate nohighlight">\(b' = 12 \, m\)</span>. Portanto, <span class="math notranslate nohighlight">\(A' = a'b' = 8.12 = 96 \, m^2\)</span>.</p>
+<p>Por hipótese, <span class="math notranslate nohighlight">\(EA_a = |a-a'| \leq 2 \, cm\)</span> e <span class="math notranslate nohighlight">\(EA_b = |b−b'| \leq 2 \, cm\)</span>.</p>
+<p>Ou seja, <span class="math notranslate nohighlight">\(|a−8| \leq 0.02 \, m\)</span> e <span class="math notranslate nohighlight">\(|b−12| \leq 0.02 \, m\)</span>, que equivalem a
+$<span class="math notranslate nohighlight">\(−0.02 \leq a−8 \leq 0.02 \Rightarrow\)</span><span class="math notranslate nohighlight">\( 
+\)</span><span class="math notranslate nohighlight">\(8−0.02 \leq a \leq 8+0.02 \Rightarrow\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(7.98 \leq a \leq 8.02 \quad(i)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{e}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(−0.02 \leq b−12 \leq 0.02 \Rightarrow\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(12−0.02 \leq b \leq 12+0.02 \Rightarrow\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(11.98 \leq b \leq 12.02 \quad (ii).\)</span>$</p>
+<p>Multiplicando (i) e (ii), obtemos:
+$<span class="math notranslate nohighlight">\(95.6004 \leq ab \leq 96.4004 \Rightarrow \\
+  95.6004 \leq A \leq 96.4004 \Rightarrow \\
+  A \in [95.6004, 96.4004].\)</span>$</p>
+<p>Como <span class="math notranslate nohighlight">\(A'\)</span> também pertence ao intervalo, a maior distância entre <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(A'\)</span> ocorre quando <span class="math notranslate nohighlight">\(A\)</span> for uma das extremidades do intervalo. Portanto, como
+$<span class="math notranslate nohighlight">\(|96.0000 − 95.6004| = 0.3960 \, m^2,\)</span>$</p>
+<p>o erro máximo no cálculo da área é de
+$<span class="math notranslate nohighlight">\(|96.0000 − 96.4004| = 0.4004 \, m^2.\)</span>$</p>
+</section>
+</section>
+<section id="truncamento-e-arredondamento">
+<h3><span class="section-number">3.4.3. </span>Truncamento e arredondamento<a class="headerlink" href="#truncamento-e-arredondamento" title="Permalink to this headline">#</a></h3>
+<p>Considere o sistema <span class="math notranslate nohighlight">\(\mathbb{F}(10,4,−3,3)\)</span>. Isto é, a representação exata de um númeor real deve ter a forma: <span class="math notranslate nohighlight">\(\pm 0.d_1d_2d_3d_4 \times 10^e\)</span>, com <span class="math notranslate nohighlight">\(d_1 \neq 0\)</span> e <span class="math notranslate nohighlight">\(e \in \{−3,−2,−1,0,1,2,3\}\)</span>. Sejam <span class="math notranslate nohighlight">\(x = 0.2345 \times 10^3\)</span> e <span class="math notranslate nohighlight">\(y = 0.7000 \times 10^{−1}\)</span>.</p>
+<p>Sabemos que <span class="math notranslate nohighlight">\(x + y = 234.5 + 0.07 = 234.57\)</span>. No entanto, este resultado não pode ser representado neste sistema, pois para isto precisaríamos de cinco dígitos! No caso, seria <span class="math notranslate nohighlight">\(x + y = 0.2345{7} \times 10^3.\)</span></p>
+<p>Como aproximar a soma <span class="math notranslate nohighlight">\(s = x + y\)</span>, de tal forma que seja possível representá-la nesse sistema de ponto flutuante?</p>
+<section id="id2">
+<h4><span class="section-number">3.4.3.1. </span>Solução<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<p>Determine os erros.</p>
+<p>Temos <span class="math notranslate nohighlight">\(d_1 = 2, d_2 = 3,d_3 = 4,d_4 = 5\)</span> e <span class="math notranslate nohighlight">\(d_5 = 7\)</span>.</p>
+<section id="aproximacao-por-truncamento">
+<h5><span class="section-number">3.4.3.1.1. </span>Aproximação por Truncamento<a class="headerlink" href="#aproximacao-por-truncamento" title="Permalink to this headline">#</a></h5>
+<p>Despreze o quinto dígito (<span class="math notranslate nohighlight">\(d_5 = 7\)</span>) para obter <span class="math notranslate nohighlight">\(\bar{s} = 0.2345 \times 10^3 = 234.5\)</span>.</p>
+<p>Neste caso, o Erro Absoluto é:<span class="math notranslate nohighlight">\(|EA_s|=|s−\bar{s}|=
+|234.57−234.5|=0.07\)</span>.</p>
+<p>O valor absoluto do Erro Relativo é: <span class="math notranslate nohighlight">\(|ER_s| = \frac{0.07}{234.5} \approx 0.2985 \times 10^{−3}.\)</span></p>
+</section>
+<section id="aproximacao-por-arredondamento">
+<h5><span class="section-number">3.4.3.1.2. </span>Aproximação por Arredondamento<a class="headerlink" href="#aproximacao-por-arredondamento" title="Permalink to this headline">#</a></h5>
+<p>O quinto dígito (<span class="math notranslate nohighlight">\(d_5 = 7\)</span>) é levado em conta, assim provocando uma modificação no quarto dígito (<span class="math notranslate nohighlight">\(d_4 = 5\)</span>). Como <span class="math notranslate nohighlight">\(7 \geq 5\)</span>, soma-se <span class="math notranslate nohighlight">\(0.5 \times 10^{−4} = 0.00005\)</span> a <span class="math notranslate nohighlight">\(s\)</span>, obtendo-se:
+$<span class="math notranslate nohighlight">\(\bar{s} = 0.23462\times 10^3.\)</span>$</p>
+<p>Daí, trunca-se <span class="math notranslate nohighlight">\(\bar{s}\)</span> no quarto novo dígito.</p>
+<p>A aproximação de <span class="math notranslate nohighlight">\(s\)</span> por arredondamento é <span class="math notranslate nohighlight">\(\bar{s} = 0.2346\times 10^3\)</span>.</p>
+<p>Neste caso o Erro Absoluto é: <span class="math notranslate nohighlight">\(|EA_s|=|s−\bar{s}|=|234.57−234.6|=0.03.\)</span></p>
+<p>O Erro Relativo é: <span class="math notranslate nohighlight">\(|ER_s| = \frac{0.03}{234.6} \approx 0.1278\times 10^{−3}.\)</span></p>
+</section>
+</section>
+</section>
 </section>
 </section>
 

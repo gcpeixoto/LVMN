@@ -91,7 +91,7 @@
 
 # ## _Conteúdo Extra_
 # 
-# _Notebooks_ com conteúdos complementares não contemplados no curso regular.
+# Materiais complementares não contemplados no curso regular ou não explorados com maior detalhamento.
 # 
 # - [Números em ponto flutuante e seus problemas](extra/extra-pontoFlutuante.ipynb)
 # - [Malhas numéricas](extra/extra-malhasNumericas.ipynb)
@@ -105,6 +105,11 @@
 # - [Sistemas de EDOs](extra/extra-sistemasEDO.ipynb)
 # - [Transformada de Fourier](extra/extra-fft.ipynb)
 # - [Otimização de código](extra/extra-numba.ipynb)
+# - [Documentação de código](extra/extra-docstrings.ipynb)
+
+# ## _Recortes_
+# 
+# Materiais contendo curiosidades ou anedotas sobre tópicos variados. Vide tópicos na barra lateral de navegação.
 
 # ## Livro complementar
 # 

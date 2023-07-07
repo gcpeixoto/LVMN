@@ -217,3 +217,96 @@ print('\ncaso 1: {0:5g}'.format(s))
 
 print('caso 2: {0:5g}'.format(1/np.exp(v)))
 
+
+# ## Exemplos
+# 
+# ### Erro relativo percentual
+# 
+# Dois estudantes medem a altura h da sala de aula com dois instrumentos de medida diferentes e encontram, respectivamente $h_1 = 2.965 \pm 0.001 \, m$ e $h_2 = 2.964 \pm 0.002\, m$. Qual o erro relativo percentual cometido por cada um? 
+# 
+# #### Solução 
+# 
+# O valor exato $h$ não é conhecido. O primeiro estudante tem um instrumento cujo erro máximo cometido é $EA_1 = 0.001 \, m$; o segundo, $EA_2 = 0.002 \, m$. Notemos que pelas expressões $EA_1 = | h - h_1 |$ e $EA_2 = | h - h_2 |$, os erros absolutos não são diretamente computáveis. Logo, temos que usar limitantes de erro. 
+# 
+# Assim, os erros relativos são computados com base nos limitantes e nos valores medidos (aproximados). Portanto,  
+# 
+# $$ER_1 = (EA_1/2.965) \times 100\% = (0.001/2.965) \times 100\% = 0.0337\%$$
+# 
+# $$ER_2 = (EA_2/2.964) \times 100\% = (0.002/2.964) \times 100\% = 0.0675\%$$
+
+# ### Erro máximo
+# 
+# Uma sala de formato retangular foi medida e foram obtidos 8 m e 12 m como sendo sua largura e seu comprimento, respectivamente. Sabendo que o erro cometido em cada uma dessas medições foi de no máximo 2 cm, determine o erro máximo cometido no cálculo de sua área. 
+# 
+# #### Solução
+# 
+# Sejam:
+# 
+# - $a'$: largura aproximada (obtida pela medição)
+# - $b'$: comprimento aproximado (obtido pela medição) 
+# - $a$:  largura exata da sala; 
+# - $b$:  comprimento exato da sala
+# - $A'$: área aproximada da sala; 
+# - $A$:  área exata 
+# 
+# São dados $a' = 8m$ e $b' = 12 \, m$. Portanto, $A' = a'b' = 8.12 = 96 \, m^2$. 
+# 
+# Por hipótese, $EA_a = |a-a'| \leq 2 \, cm$ e $EA_b = |b−b'| \leq 2 \, cm$. 
+# 
+# Ou seja, $|a−8| \leq 0.02 \, m$ e $|b−12| \leq 0.02 \, m$, que equivalem a 
+# $$−0.02 \leq a−8 \leq 0.02 \Rightarrow$$ 
+# $$8−0.02 \leq a \leq 8+0.02 \Rightarrow$$
+# $$7.98 \leq a \leq 8.02 \quad(i)$$
+# $$\text{e}$$
+# $$−0.02 \leq b−12 \leq 0.02 \Rightarrow$$
+# $$12−0.02 \leq b \leq 12+0.02 \Rightarrow$$
+# $$11.98 \leq b \leq 12.02 \quad (ii).$$ 
+# 
+# Multiplicando (i) e (ii), obtemos: 
+# $$95.6004 \leq ab \leq 96.4004 \Rightarrow \\
+#   95.6004 \leq A \leq 96.4004 \Rightarrow \\
+#   A \in [95.6004, 96.4004].$$ 
+#   
+# Como $A'$ também pertence ao intervalo, a maior distância entre $A$ e $A'$ ocorre quando $A$ for uma das extremidades do intervalo. Portanto, como 
+# $$|96.0000 − 95.6004| = 0.3960 \, m^2,$$ 
+# 
+# o erro máximo no cálculo da área é de 
+# $$|96.0000 − 96.4004| = 0.4004 \, m^2.$$ 
+
+# ### Truncamento e arredondamento
+# 
+# Considere o sistema $\mathbb{F}(10,4,−3,3)$. Isto é, a representação exata de um númeor real deve ter a forma: $\pm 0.d_1d_2d_3d_4 \times 10^e$, com $d_1 \neq 0$ e $e \in \{−3,−2,−1,0,1,2,3\}$. Sejam $x = 0.2345 \times 10^3$ e $y = 0.7000 \times 10^{−1}$.
+# 
+# Sabemos que $x + y = 234.5 + 0.07 = 234.57$. No entanto, este resultado não pode ser representado neste sistema, pois para isto precisaríamos de cinco dígitos! No caso, seria $x + y = 0.2345{7} \times 10^3.$
+# 
+# Como aproximar a soma $s = x + y$, de tal forma que seja possível representá-la nesse sistema de ponto flutuante?
+# 
+# #### Solução 
+# 
+# Determine os erros.
+# 
+# Temos $d_1 = 2, d_2 = 3,d_3 = 4,d_4 = 5$ e $d_5 = 7$. 
+# 
+# ##### Aproximação por Truncamento 
+# 
+# Despreze o quinto dígito ($d_5 = 7$) para obter $\bar{s} = 0.2345 \times 10^3 = 234.5$. 
+# 
+# Neste caso, o Erro Absoluto é:$|EA_s|=|s−\bar{s}|=
+# |234.57−234.5|=0.07$. 
+# 
+# O valor absoluto do Erro Relativo é: $|ER_s| = \frac{0.07}{234.5} \approx 0.2985 \times 10^{−3}.$
+# 
+# ##### Aproximação por Arredondamento 
+# 
+# O quinto dígito ($d_5 = 7$) é levado em conta, assim provocando uma modificação no quarto dígito ($d_4 = 5$). Como $7 \geq 5$, soma-se $0.5 \times 10^{−4} = 0.00005$ a $s$, obtendo-se: 
+# $$\bar{s} = 0.23462\times 10^3.$$
+# 
+# Daí, trunca-se $\bar{s}$ no quarto novo dígito. 
+# 
+# A aproximação de $s$ por arredondamento é $\bar{s} = 0.2346\times 10^3$.
+# 
+# Neste caso o Erro Absoluto é: $|EA_s|=|s−\bar{s}|=|234.57−234.6|=0.03.$
+# 
+# O Erro Relativo é: $|ER_s| = \frac{0.03}{234.6} \approx 0.1278\times 10^{−3}.$
+
+# 

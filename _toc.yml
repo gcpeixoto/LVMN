@@ -47,6 +47,23 @@ parts:
   - file: lista-4-solucoes
   - file: lista-5-solucoes
   - file: lista-6-solucoes
+- caption: Recortes
+  chapters:
+  - file: clippings/clipping-01-analise-numerica
+  - file: clippings/clipping-02-programacao-software
+  - file: clippings/clipping-03-padrao-ieee-754
+  - file: clippings/clipping-04-digitos-significativos-precisao-acuracia
+  - file: clippings/clipping-05-desastre-patriot
+  - file: clippings/clipping-06-definicoes-erros
+  - file: clippings/clipping-07-erros-medicao-esfigmomanometro
+  - file: clippings/clipping-08-enganos-erros-incerteza
+  - file: clippings/clipping-09-decimal-fractions
+  - file: clippings/clipping-10-hpc
+  - file: clippings/clipping-11-newton-raphson-raizes-multiplas
+  - file: clippings/clipping-12-condicionamento-normas-matrizes
+  - file: clippings/clipping-13-erro-interpolacao
+  - file: clippings/clipping-14-projecao-ortogonal-equacoes-normais
+  - file: clippings/clipping-15-formulas-newton-cotes
 - caption: Extra
   numbered: true
   chapters:

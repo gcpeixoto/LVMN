@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Modelagem Matemática em Ciências Computacionais e Engenharias
+# # Modelagem matemática em Ciências Computacionais e Engenharias
 # 
 # Ao deparar-se com um problema real, profissionais envolvidos nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo à uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de _método_. 
 # 
@@ -57,72 +57,156 @@
 # 
 # $$v(t) = \dfrac{gm}{c}(1 - e^{-(c/m)t}).$$
 # 
-# Como veremos adiante em um estado de caso real apresentado por Yan Ferreira, esta função cresce exponencialmente até atingir uma estabilização na _velocidade terminal_.
+# Como veremos adiante em um estado de caso real apresentado por Yan Ferreira, esta função cresce monotonicamente até estabilizar-se na _velocidade terminal_.
+
+# ## Temas de interesse
+# 
+# Todo o conteúdo de um curso básico sobre métodos numéricos tem por base alguma teoria matemática útil para resolver problemas que se encaixam nos temas discutidos abaixo. 
+
+# ### Raízes de equações não-lineares
+# 
+# Procuramos pelo(s) valor(es) de uma variável ou parâmetro que satisfaz(em) uma equação não-linear. Utilizamos métodos para localizar os chamados "zeros" da função e os aplicamos a diversos projetos onde aparecem equações impossíveis de serem resolvidas de forma explícita. Em geral, problemas nesta classe, em uma dimensão, para uma função $f$ não linear, podem ser descritos como:
+# 
+# $$\text{Encontre } x, \text{tal que } f(x) = 0, \text{para} \  x \in I \subset \mathbb{R}.$$
+
+# ### Sistemas de equações em n-dimensões
+# 
+# Procuramos por vetores cujas componentes satisfazem simultaneamente a um sistema de $n$ equações lineares ou não-lineares. Nesta classe de problemas, em geral, uma matriz $\textbf{A}$ representa a estrutura interconectada de um sistema físico (estruturas mecânicas, circuitos elétricos, malhas hídricas etc.) e um vetor $\textbf{b}$ representa as condições impostas ao sistema (cargas, tensões, pressões etc.). No caso de um sistema linear $n\times n$, um problema recorrente é descrito por:
+# 
+# $$\text{Encontre } \textbf{x}_{n \times 1} \in I \subset \mathbb{R}^n, \text{tal que } \textbf{A}_{n \times n} \textbf{x}_{n \times 1} = \textbf{b}_{n \times 1}.$$
+
+# ### Ajuste de curvas
+# 
+# Procuramos por equações que expressam curvas (retas, parábolas, exponenciais etc.) que explicam o comportamento de dados que puderam ser medidos experimentalmente e/ou foram estruturados na forma de tabelas. Problemas de ajuste de curvas competem à uma área denominada _Teoria da Aproximação_ e são divididos em duas categorias: _regressão_ e _interpolação_. Regressões são empregadas a casos onde há um grau significativo de erro associado aos dados ou quando se busca uma descrição "média" de como eles se comportam. Por outro lado, interpolações são usadas quando desejamos encontrar valores intermediários desconhecidos a partir de valores "vizinhos" conhecidos e, principalmente, quando os dados são relativamente livres de ruídos. Como esta classe de problemas associa-se fortemente a planilhas, uma forma simplificada de descrever suas aplicações é por meio de pares de dados. Assim, um problema típico de ajuste de curvas seria o seguinte:
+# 	
+# $$\text{Dados } \{(x_i,y_i)\}_{i = 1}^n, \text{determine } \phi, \text{tal que } y_i = \phi(x_i) + {\epsilon}_i.$$
+# 	
+# Se $\epsilon_i \neq 0, \forall i$, o problema é de interpolação. Senão, é de regressão.  
+
+# ### Integração numérica
+# 
+# buscamos o valor aproximado da quantidade interpretada como "área sob a curva". Em sentido aplicado, integrações numéricas são realizadas quando a função integrando não admite uma antiderivada, ou quando não é simples de obtê-la por meios conhecidos (ex. integração por partes, substituição, frações parciais). Podem existir inúmeras situações onde a integração numérica é necessária, principalmente no cálculo de centroides, volumes, vazões, energia, entre outros. O problema geral da integração numérica é:
+# 
+# 	$$\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.$$
+# 
+# Entretanto, para casos práticos, a dimensão máxima para o integrando costuma ser 3, de modo que basta aprendermos a calcular integrais simples, duplas e triplas.
+
+# ### Diferenciação numérica e equações diferenciais ordinárias (EDOs)
+# 
+# Os problemas de EDOs atrelam-se aos mais diversos fenômenos físicos e leis que os governam. Geralmente, as taxas de variação de uma quantidade são mais importantes do que a quantidade em si. Métodos numéricos para EDOs utilizam _derivadas numéricas_ e são aplicados para fazer predições populacionais, estudar aceleração de corpos,  estimar transferências de quantidades (movimento, massa, calor etc.). Dois tipos de problemas surgem baseados em EDO: problemas de valor inicial (PVIs) e problemas valor de contorno (PVCs). PVIs partem do conhecimento de uma condição inicial para o sistema físico e os métodos numéricos ajudam a descobrir o comportamento posterior do sistema. PVCs são aplicados a problemas em que um dado domínio deve obedecer a certas restrições em sua fronteira ou borda (ex. fluxo de calor dependente da posição, temperatura fixa). Um exemplo de problema cuja solução da EDO dá-se por um algoritmo de "passo simples" seria:
+# 
+# 	$$\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.$$ 
+
+# ### Equações diferenciais parciais (EDPs)
+# 
+# Assim como EDOs, EDPs aplicam-se à modelagem de diversos fenômenos e leis físicas em que as taxas de variação de uma certa quantidade dependem de duas ou mais variáveis independentes. EDPs permeiam quase que a totalidade dos modelos complexos da realidade nas ciências exatas cujas variações ocorrem, especialmente no espaço ou no espaço-tempo (ex. comportamento de fluidos, processos químicos, fenômenos biológicos). Métodos numéricos para EDPs resolvem problemas como o seguinte:
+# 
+# $$\text{Dada } f(x,y), \text{encontre } u(x,y) \text{ tal que } \dfrac{\partial^2 u}{\partial x^2} + \dfrac{\partial^2 u}{\partial x^2} = f(x,y), \ \ \forall (x,y) \in \mathbb{R}^2.$$
 
 # ## O salto de paraquedas de Yan e Celso 
 # 
-# Como exemplo, veremos a análise do salto de paraquedas de Yan com seu irmão Celso. Vamos calcular a aceleração que seria atingida por Yan desde o salto até o momento da abertura de seu paraquedas. Na época do salto, Yan estava com 65 kg e o ar apresentava um coeficiente de arrasto estimado em 12,5 kg/s.
+# Podemos estudar os saltos de paraquedas de Yan e de Celso, seu irmão, calculando a velocidade atingida por eles desde o salto até o momento da abertura do paraquedas. Na época em que saltou de paraquedas, Yan estava com 65 kg e o ar apresentava um coeficiente de arrasto estimado em 12,5 kg/s.
 # 
-# Utilizando a fórmula dada, podemos calcular a velocidade atingida por Yan em relação ao tempo. A seguir, criamos um pequeno programa para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
+# Utilizando a fórmula acima, podemos calcular a velocidade atingida por Yan em relação ao tempo. Vejamos como escrever um simples programa para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
 
-# In[1]:
+# In[3]:
 
 
 # velocidade no salto de Yan
 from numpy import exp
-import matplotlib.pyplot as plt
+from matplotlib.pyplot import subplots
 
-arr_yan = 11*[0]
-contador = 0
-while contador <= 10:
-    a = ((9.8 * 65)/12.5)*(1 - exp(-(12.5/65)*contador))   
-    arr_yan[contador] = a
-    print(f'{contador}: {a:.4f} m/s')
-    contador += 1
+v_yan = []
+t = 0
+while t <= 10:
+    v = ((9.8 * 65)/12.5)*(1 - exp(-(12.5/65)*t))   
+    v_yan.append(v)
+    print(f'v(t={t}) = {v:.4f} [m/s]')
+    t += 1
 else:
-    print('-> Abertura do paraquedas.')
+    print('--> Abertura do paraquedas.')
     
 # plotagem    
-fig, ax = plt.subplots(figsize=(8,4))
-ax.plot(arr_yan,'o-g')
-ax.set_xlabel('tempo')
-ax.set_ylabel('velocidade')
+fig, ax = subplots(figsize=(8,4))
+ax.plot(v_yan,'o-g')
+ax.set_xlabel('tempo [s]')
+ax.set_ylabel('velocidade [m/s]')
+ax.set_title('Salto de Yan')
 ax.grid()
 
 
-# Porém, Celso, irmão de Yan, também saltou com ele, em separado. Celso, tem mais 20kg a mais do que Yan. Então, vamos ver como a massa influenciou a velocidade no salto de Celso e comparas as curvas.
+# Porém, Celso, irmão de Yan, também saltou com ele, em separado. Celso, tem mais 20kg a mais do que Yan. Então, vamos ver como a massa influenciou a velocidade no salto de Celso e comparas as curvas. Podemos usar o mesmo programa, porém alterar o valor da massa.
 
-# In[2]:
+# In[14]:
 
 
 # velocidade no salto de Yan
+from numpy import exp
+from matplotlib.pyplot import subplots
 
-
-from math import exp
-import matplotlib.pyplot as plt
-
-arr_celso = arr_yan[:]
-contador = 0
-while (contador <= 10):       
-    b = ((9.8 * 85)/12.5)*(1- exp(-(12.5/85)*contador))   
-    arr_celso[contador] = b
-    print(f'{contador}: {a:.4f} m/s')
-    contador += 1
+v_celso = []
+t = 0
+while t <= 10:
+    v = ((9.8 * (85))/12.5)*(1 - exp(-(12.5/85)*t))   
+    v_celso.append(v)
+    print(f'v(t={t}) = {v:.4f} [m/s]')
+    t += 1
 else:
-    print('==> Abertura do paraquedas')
-
-# plotagem
-fig, ax = plt.subplots(figsize=(8,4))    
-ax.plot(arr_yan,'o-g')
-ax.plot(arr_celso,'o-',c='gray')
-ax.set_xlabel('tempo')
-ax.set_ylabel('velocidade')
+    print('--> Abertura do paraquedas.')
+    
+# plotagem    
+fig, ax = subplots(figsize=(8,4))
+ax.plot(v_celso,'o-b')
+ax.set_xlabel('tempo [s]')
+ax.set_ylabel('velocidade [m/s]')
+ax.set_title('Salto de Celso')
 ax.grid()
 
 
-# Podemos observar que quanto maior a massa, maior é a velocidade atingida. Por esta razão, Celso chegou ao solo antes de Yan.
+# Nossos cálculos mostram que, para 10 segundos, Yan e Celso atingiram velocidades de cerca de 43,51 m/s e 51,33 m/s, respectivamente. Em outras palavras, com 30% a mais de massa, Celso teve sua velocidade acrescida de 18% em relação à de Yan. Por isso, certamente chegou ao solo antes de seu irmão. 
 # 
-# Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação _estruturada_ e _modular_. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os pacotes (ou **módulos**) _math_ e _numpy_ para invocarmos a função exponencial `exp` e as funções para plotagens gráficas.
+# Uma forma de aperfeiçoar o que fizemos seria escrever um código único, válido não só para os saltos de Yan e Celso, mas também para qualquer outra pessoa. Considerando a mesma condição do ambiente, seria mais ou menos assim:
+
+# In[1]:
+
+
+from numpy import arange, exp
+from matplotlib.pyplot import subplots
+
+def v(m,dt,T):
+
+    # intervalo e velocidade
+    t = arange(0,T+dt,dt)
+    v = ((9.8 * m)/12.5)*(1 - exp(-(12.5/m)*t))   
+    
+    # impressão
+    for ti in t:        
+        print(f'v(t={ti}) = {v[ti]:.4f} [m/s]')
+    print('--> Abertura do paraquedas.')
+    
+    # retorno
+    return t,v
+    
+
+# cálculo para Yan, Celso
+t_yan, v_yan = v(65,1,10)
+t_celso, v_celso = v(85,1,10)
+
+    
+# plotagem    
+fig, ax = subplots(figsize=(8,4))
+ax.plot(t_yan,v_yan,'o-g',label='Yan')
+ax.plot(t_celso,v_celso,'o-b',label='Celso')
+ax.set_xlabel('tempo [s]')
+ax.set_ylabel('velocidade [m/s]')
+ax.set_title('Saltos de Yan e Celso')
+ax.legend()
+ax.grid()
+
+
+# 
+# Este breve exemplo nos mostra a implementação de um modelo matemático em Python, onde utilizamos partes de programação _estruturada_ e _modular_. Estruturada, no sentido das instruções e modular no sentido de que aproveitamos os _módulos_ `numpy` e `matplotlib` para invocarmos a função exponencial `exp` e as funções de plotagem gráfica, especialmente `plot`.
+# 
 
 # ### Deslocamento até a abertura do paraquedas
 # 
@@ -132,7 +216,7 @@ ax.grid()
 # 
 # em cada caso para computar esses deslocamentos. No Python, podemos fazer isso com o código abaixo (que você entenderá mais tarde como fazer).
 
-# In[3]:
+# In[17]:
 
 
 from sympy import symbols, exp, integrate
@@ -145,8 +229,8 @@ v = g*m/c*(1 - exp(-c/m*t))
 s1 = integrate(v,(t,0,10)).subs({'m':65.0,'g':9.8,'c':12.5})
 s2 = integrate(v,(t,0,10)).subs({'m':85.0,'g':9.8,'c':12.5})
 
-print(f'Yan voou incríveis DY = {s1:2f} metros em 10 segundos!')
-print(f'Yan voou incríveis DY = {s2:2f} metros em 10 segundos!')
+print(f'Yan voou incríveis DY = {s1:.2f} metros em 10 segundos!')
+print(f'Celso voou incríveis DC = {s2:.2f} metros em 10 segundos!')
 
 
 # ## Programação estruturada e modular
@@ -271,7 +355,11 @@ plt.fill(Px,Py,color='green',alpha=0.4);
 
 # ## O quarto paradigma da ciência
 # 
-# **Nota:** o texto desta seção pode ser encontrado em sua forma expandida neste [link](https://tril.ci.ufpb.br/2021/10/16/engenharia-computacional-para-um-mundo-centrado-em-dados/).
+# 
+# Métodos numéricos tradicionais têm sido cada vez mais hibridizados em associados com algoritmos e técnicas aderentes ao domínio dos sistemas inteligentes, principalmente com o aprendizado de máquina. Muitos conceitos nativos da computação numérica são explorados também no escopo da inteligência artificial, temas que são vistos como a crista da onda do quarto paradigma da ciência: a datificação. 
+# 
+# O texto a seguir, que discorre essencialmente sobre a emergência de um novo "modo de se computar coisas" através do que se conhece por _engenharia computacional centrada em dados_, pode ser encontrado em sua forma expandida [clicando aqui](https://tril.ci.ufpb.br/2021/10/16/engenharia-computacional-para-um-mundo-centrado-em-dados/).
+# 
 
 # Durante uma palestra proferida na Califórnia em 2009 para o _Computer Science and Telecommunications Board – National Research Council (NRC- CSTB)_, o renomado cientista da computação Jerry Nicholas “Jim” Gray (1944 – 2012), pontuou o surgimento do quarto paradigma da ciência. Ao utilizar o termo “eScience”, Gray queria dizer que a exploração científica seria grandemente influenciada pelo uso intensivo dos dados nos anos vindouros.
 # 
@@ -336,7 +424,7 @@ plt.fill(Px,Py,color='green',alpha=0.4);
 # aperfeiçoar o projeto de sistemas de ventilação interior, bem como de exaustão e filtração visando conforto e segurança hospitalar;
 # projetar equipamentos respiratórios, dispositivos para esterilização, purificação e produção de vacinas.
 
-# ## Considerações finais
+# ## Frontispício
 # 
 # A datificação está se consolidando como o quarto paradigma da ciência e a engenharia será cada vez mais influenciada por uma cultura baseada em dados. No [TRIL Lab](http://tril.ci.ufpb.br), defendemos uma formação estratégica e trabalhamos para que nossos alunos e colaboradores se adaptem a um cenário que demanda cada vez mais habilidades flexíveis e interdisciplinaridade. Em um mundo centrado em dados, a engenharia computacional terá um leque incomensurável de oportunidades, compreendendo, modelando e resolvendo problemas de engenharia do mundo real.
 # 
