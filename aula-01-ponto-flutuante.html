@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="3. Erros numéricos e seus efeitos" href="aula-02-erros.html" />
-    <link rel="prev" title="1. Modelagem Matemática em Ciências Computacionais e Engenharias" href="aula-00-modelagem-programacao.html" />
+    <link rel="prev" title="1. Modelagem matemática em Ciências Computacionais e Engenharias" href="aula-00-modelagem-programacao.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+   1. Modelagem matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -337,6 +337,83 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: fórmulas de Newton-Cotes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Extra
  </span>
 </p>
@@ -408,6 +485,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
    40. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   41. Documentação de código
   </a>
  </li>
 </ul>
@@ -622,6 +704,91 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
    2.7. Limites de máquina para ponto flutuante
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#como-enxergar-o-epsilon-m">
+     2.7.1. Como “enxergar” o
+     <span class="math notranslate nohighlight">
+      \(\epsilon_M\)
+     </span>
+     ?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos">
+   2.8. Exemplos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sistema-de-16-bits">
+     2.8.1. Sistema de 16 bits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limites-de-underflow-e-overflow">
+     2.8.2. Limites de
+     <em>
+      underflow
+     </em>
+     e
+     <em>
+      overflow
+     </em>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-i-numero-representavel-x-numero-nao-representavel">
+       2.8.2.1. Caso I: número representável x número não representável
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-ii-numero-nao-representavel-por-causa-de-underflow">
+       2.8.2.2. Caso II: número não representável por causa de
+       <em>
+        underflow
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-iii-numero-nao-representavel-por-causa-de-overflow">
+       2.8.2.3. Caso III: número não representável por causa de
+       <em>
+        overflow
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       2.8.2.4. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maior-e-menor-numero-representavel">
+     2.8.3. Maior e menor número representável
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.8.4. Solução
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplo">
+   2.9. Exemplo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2.9.1. Solução
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -693,6 +860,91 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
    2.7. Limites de máquina para ponto flutuante
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#como-enxergar-o-epsilon-m">
+     2.7.1. Como “enxergar” o
+     <span class="math notranslate nohighlight">
+      \(\epsilon_M\)
+     </span>
+     ?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos">
+   2.8. Exemplos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sistema-de-16-bits">
+     2.8.1. Sistema de 16 bits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limites-de-underflow-e-overflow">
+     2.8.2. Limites de
+     <em>
+      underflow
+     </em>
+     e
+     <em>
+      overflow
+     </em>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-i-numero-representavel-x-numero-nao-representavel">
+       2.8.2.1. Caso I: número representável x número não representável
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-ii-numero-nao-representavel-por-causa-de-underflow">
+       2.8.2.2. Caso II: número não representável por causa de
+       <em>
+        underflow
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caso-iii-numero-nao-representavel-por-causa-de-overflow">
+       2.8.2.3. Caso III: número não representável por causa de
+       <em>
+        overflow
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       2.8.2.4. Solução
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maior-e-menor-numero-representavel">
+     2.8.3. Maior e menor número representável
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.8.4. Solução
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplo">
+   2.9. Exemplo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2.9.1. Solução
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -707,8 +959,8 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="aritmetica-de-ponto-flutuante-e-conversao-numerica">
 <h1><span class="section-number">2. </span>Aritmética de ponto flutuante e conversão numérica<a class="headerlink" href="#aritmetica-de-ponto-flutuante-e-conversao-numerica" title="Permalink to this headline">#</a></h1>
 <p>Computadores representam números inteiros de maneira exata. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados <em>números em ponto flutuante.</em></p>
-<p>O interesse da aritmética computacional resume-se em dois pontos principais: i) a representação de números no formato de máquina (binário) e ii) a construção de algoritmos que realizam as operações fundamentais (adição, subtração, multiplicação e divisão). Em linhas gerais, métodos numéricos resultam de algoritmos sofisticados que operam essas meras quatro operações.</p>
-<p>Atualmente, o padrão IEEE 754 é o mais amplamente utilizado nos processadores modernos, constituindo arquiteturas de 32 ou 64 bits.</p>
+<p>O interesse da aritmética computacional resume-se em dois pontos principais: i) a representação de números no formato de máquina (binário) e ii) a construção de algoritmos que realizam as operações fundamentais (adição, subtração, multiplicação e divisão). Em linhas gerais, métodos numéricos resultam de algoritmos sofisticados que utilizam essas quatro operações.</p>
+<p>Atualmente, o padrão IEEE 754 é o mais amplamente seguido pelos fabricantes de processadores modernos. O documento orienta sobre como números em ponto flutuante devem ser representados, operados e comportar-se em qualquer arquitetura, seja de 16, 32, 64 ou mesmo 128 bits. A última atualização do padrão, cujo ano de origem é 1985, ocorreu em 2019 e está documentada neste <a class="reference external" href="https://ieeexplore.ieee.org/document/8766229">artigo</a>.</p>
 <section id="unidade-logica-e-aritmetica">
 <h2><span class="section-number">2.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Permalink to this headline">#</a></h2>
 <p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados. A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
@@ -755,7 +1007,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Vejamos agora o caso de séries equivalentes. Consideremos a série (descendente, do menor para o maior)</p>
+<p>Vejamos agora o caso de séries numéricas equivalentes. Consideremos a série (descendente, do menor para o maior)</p>
 <div class="math notranslate nohighlight">
 \[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n}\]</div>
 <p>e a sua versão escrita como uma somatória invertida (ascendente, do menor para o maior), ou seja,</p>
@@ -784,7 +1036,7 @@ title="Print to PDF"
     
 <span class="c1"># cria objeto para tabela</span>
 <span class="n">tbl</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
-<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;E(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n) - S_A(n)&#39;</span><span class="p">]</span>
 <span class="n">tbl</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
 
 <span class="c1"># loop de teste</span>
@@ -800,7 +1052,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+------------------------+
-|   n    |       S_A(n)       |       S_D(n)       |          E(n)          |
+|   n    |       S_A(n)       |       S_D(n)       |    S_D(n) - S_A(n)     |
 +--------+--------------------+--------------------+------------------------+
 |   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
 |  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
@@ -812,6 +1064,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, da ordem de <span class="math notranslate nohighlight">\(10^{-14}\)</span> ou <span class="math notranslate nohighlight">\(10^{-16}\)</span>, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos.</p>
 </section>
 <section id="sistema-binario">
 <h2><span class="section-number">2.3. </span>Sistema binário<a class="headerlink" href="#sistema-binario" title="Permalink to this headline">#</a></h2>
@@ -834,13 +1087,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-4
-0b100
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -856,13 +1102,6 @@ title="Print to PDF"
 <span class="n">c</span> <span class="o">=</span> <span class="nb">oct</span><span class="p">(</span><span class="mi">146</span><span class="p">)</span>
 <span class="c1"># obs: note que &#39;0o&#39; indica que o número é octal</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>146
-146
-0o222
 </pre></div>
 </div>
 </div>
@@ -885,13 +1124,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10980
-10980
-0o222
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -904,17 +1136,6 @@ title="Print to PDF"
 <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">4</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; | 2&#39;</span> <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;  –––&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">4</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Esquema de divisões sucessivas:
-
-4 | 2
-   –––
-0   2 | 2
-       –––
-    0   1
 </pre></div>
 </div>
 </div>
@@ -1000,11 +1221,6 @@ title="Print to PDF"
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*** MÁQUINA BINÁRIA ***
 </pre></div>
 </div>
 </div>
@@ -1096,9 +1312,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_18_0.png" src="_images/aula-01-ponto-flutuante_18_0.png" />
-</div>
 </div>
 <p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.</p>
 </section>
@@ -1139,12 +1352,6 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.]
-</pre></div>
-</div>
-<img alt="_images/aula-01-ponto-flutuante_21_1.png" src="_images/aula-01-ponto-flutuante_21_1.png" />
 </div>
 </div>
 </section>
@@ -1187,20 +1394,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epsilon de máquina do numpy - 64 bits
-2.220446049250313e-16
-número máximo representável
-1.7976931348623157e+308
-número mínimo representável
--1.7976931348623157e+308
-número de bits no expoente
-11
-número de bits na mantissa
-52
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1212,10 +1405,147 @@ número de bits na mantissa
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_24_0.png" src="_images/aula-01-ponto-flutuante_24_0.png" />
 </div>
-</div>
+<section id="como-enxergar-o-epsilon-m">
+<h3><span class="section-number">2.7.1. </span>Como “enxergar” o <span class="math notranslate nohighlight">\(\epsilon_M\)</span>?<a class="headerlink" href="#como-enxergar-o-epsilon-m" title="Permalink to this headline">#</a></h3>
+<p>A unidade de arredondamento, <span class="math notranslate nohighlight">\(\epsilon_M\)</span>, comumente chamada de “épsilon de máquina”, é definida como o menor número do sistema computacional tal que</p>
+<div class="math notranslate nohighlight">
+\[1.0 + \epsilon_M &gt; 1.0.\]</div>
+<p>Esta inequação também pode ser lida da seguinte forma: <span class="math notranslate nohighlight">\(\epsilon_M\)</span> é a diferença entre a unidade e o próximo número mais próximo dela representável pela máquina.</p>
+<p>Para entender isto, vamos usar um sistema hipotético de 8 bits, no qual cada número é representado por uma sequencia de até 8 dígitos binários. Em um sistema de 8 bits, uma “palavra” (termo da Arquitetura Computacional) armazena um número real da seguinte forma:</p>
+<ul class="simple">
+<li><p>o primeiro bit é reservado para o sinal do número</p></li>
+<li><p>os próximos 3 bits são reservados para o expoente (com <em>bias</em>)</p></li>
+<li><p>os últimos 4 bits são reservados para a mantissa.</p></li>
+</ul>
+<p>Neste sistema, a unidade <span class="math notranslate nohighlight">\((1)_{10}\)</span> é representada em forma binária por: <span class="math notranslate nohighlight">\(00110000\)</span>.</p>
+<p>O próximo número de máquina neste sistema seria <span class="math notranslate nohighlight">\(00110001\)</span>, que equivale a <span class="math notranslate nohighlight">\((1.0625)_{10}\)</span>.</p>
+<p>Portanto, para este sistema <span class="math notranslate nohighlight">\(\epsilon_M = (1.0625)_{10} - (1)_{10} = 0.0625\)</span>.</p>
+<p>Explicando um pouco mais…</p>
+<p>Para 8 bits, o <em>bias</em> é o quociente inteiro resultante da divisão de <span class="math notranslate nohighlight">\((2^3 - 1)/2 = 3\)</span>. Então, usando a expressão de ponto flutuante</p>
+<div class="math notranslate nohighlight">
+\[x = (-1)^s \, 2^{(c-bias)} \, (1 + f),\]</div>
+<p>temos que</p>
+<p><span class="math notranslate nohighlight">\(c = 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 3\)</span> (esquerda para a direita, correspondendo às posições 2,3 e 4). Como o número é positivo, <span class="math notranslate nohighlight">\(s = 0\)</span>. A mantissa corresponde às 4 últimas caixas, que são zero, i.e. <span class="math notranslate nohighlight">\(f = 0\)</span>.</p>
+<p>Por fim, <span class="math notranslate nohighlight">\(x = (-1)^0 \, 2^{(3-3)} \, (1+0) = 1\)</span> e a representação de 8 bits de 1 é <span class="math notranslate nohighlight">\(00110000\)</span>.</p>
+<p>Para <span class="math notranslate nohighlight">\(\epsilon_M\)</span>, note que o próximo número tem uma contribuição de <span class="math notranslate nohighlight">\(2^{-4} = 0.0625\)</span>. Ou seja, a mantissa decresce para a direita <span class="math notranslate nohighlight">\(2^{-1}, 2^{-2}, 2^{-3}, 2^{-4}\)</span>. O ponto “decimal” (radix) fica implícito e o expoente cresce para a esquerda, <span class="math notranslate nohighlight">\(2^0, 2^1\)</span>, e <span class="math notranslate nohighlight">\(2^2\)</span>.</p>
+<p>Em seguida, o próximo número representável (depois de <span class="math notranslate nohighlight">\(1.0625\)</span>) teria uma contribuição de <span class="math notranslate nohighlight">\(2^{-4} + 2^{-3} = 0.1875\)</span>, sendo, pois, <span class="math notranslate nohighlight">\(1.1875\)</span>. Evidentemente, <span class="math notranslate nohighlight">\(1.1875 - 1.0625 = 0.125\)</span>, mas <span class="math notranslate nohighlight">\(\epsilon_M &lt; 0.125\)</span>. Isto mostra que a unidade de arredondamento não equivale a uma “distância” no sentido dos números reais como se vê na representação de reta perfurada.</p>
+</section>
+</section>
+<section id="exemplos">
+<h2><span class="section-number">2.8. </span>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
+<section id="sistema-de-16-bits">
+<h3><span class="section-number">2.8.1. </span>Sistema de 16 bits<a class="headerlink" href="#sistema-de-16-bits" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Comporta faixa de binários de <span class="math notranslate nohighlight">\(0000000000000000\)</span> a <span class="math notranslate nohighlight">\(1111111111111111\)</span></p></li>
+<li><p>Limite superior: <span class="math notranslate nohighlight">\((1 \times 2^{14}) + (1 \times 2^{13}) + \ldots + (1 \times 2^1) + (1 \times 2^0) = 32767\)</span></p></li>
+<li><p>Uma vez que <span class="math notranslate nohighlight">\(+0 = 0000000000000000\)</span>, <span class="math notranslate nohighlight">\(-0 = 1000000000000000\)</span> é um negativo a mais</p></li>
+<li><p>Intervalo de inteiros representáveis: <span class="math notranslate nohighlight">\([-32768,32767]\)</span></p></li>
+</ul>
+</section>
+<section id="limites-de-underflow-e-overflow">
+<h3><span class="section-number">2.8.2. </span>Limites de <em>underflow</em> e <em>overflow</em><a class="headerlink" href="#limites-de-underflow-e-overflow" title="Permalink to this headline">#</a></h3>
+<p>Para o sistema <span class="math notranslate nohighlight">\(\mathbb{F}(10,3,-5,5)\)</span>, vejamos os seguintes casos:</p>
+<section id="caso-i-numero-representavel-x-numero-nao-representavel">
+<h4><span class="section-number">2.8.2.1. </span>Caso I: número representável x número não representável<a class="headerlink" href="#caso-i-numero-representavel-x-numero-nao-representavel" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x = 235.89 = 0.23589 \times 10^3\)</span> (5 dígitos na mantissa)</p></li>
+<li><p><span class="math notranslate nohighlight">\(0.235 \times 10^3\)</span> e <span class="math notranslate nohighlight">\(0.236 \times 10^3\)</span> são representáveis</p></li>
+<li><p><span class="math notranslate nohighlight">\(0.23589 \times 10^3\)</span> não é representável (perda de dígitos significativos)</p></li>
+</ul>
+</section>
+<section id="caso-ii-numero-nao-representavel-por-causa-de-underflow">
+<h4><span class="section-number">2.8.2.2. </span>Caso II: número não representável por causa de <em>underflow</em><a class="headerlink" href="#caso-ii-numero-nao-representavel-por-causa-de-underflow" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x = 0.654 \times 10^{-7}\)</span> (expoente rompeu o limite <span class="math notranslate nohighlight">\(L=-5\)</span>)</p></li>
+</ul>
+</section>
+<section id="caso-iii-numero-nao-representavel-por-causa-de-overflow">
+<h4><span class="section-number">2.8.2.3. </span>Caso III: número não representável por causa de <em>overflow</em><a class="headerlink" href="#caso-iii-numero-nao-representavel-por-causa-de-overflow" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x = 0.923 \times 10^{12}\)</span> (expoente rompeu o limite <span class="math notranslate nohighlight">\(U=5\)</span>)</p></li>
+</ul>
+<p>Considere <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span>. Represente os seguintes números, dados na base <span class="math notranslate nohighlight">\(10\)</span>, neste sistema de ponto flutuante normalizado.</p>
+<p>a) <span class="math notranslate nohighlight">\(x = 0.25\)</span></p>
+<p>b) <span class="math notranslate nohighlight">\(x = 3.5\)</span></p>
+<p>c) <span class="math notranslate nohighlight">\(x = 0.125\)</span></p>
+<p>d) <span class="math notranslate nohighlight">\(x = 4\)</span></p>
+<p>e) <span class="math notranslate nohighlight">\(x = 0.3\)</span></p>
+</section>
+<section id="solucao">
+<h4><span class="section-number">2.8.2.4. </span>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h4>
+<p>Devemos ter <span class="math notranslate nohighlight">\(x = \pm 0.d_1d_2d_3 \times 2^e\)</span>, com <span class="math notranslate nohighlight">\(d_1 =1\)</span>, <span class="math notranslate nohighlight">\(d_2 \in \left\{0, 1\right\}\)</span>, <span class="math notranslate nohighlight">\(d_3 \in \left\{0, 1\right\}\)</span>
+e <span class="math notranslate nohighlight">\(e \in \left\{-1, 0, 1, 2 \right\}\)</span>.</p>
+<p>a) <span class="math notranslate nohighlight">\(x = 0.25\)</span></p>
+<p>Note que, <span class="math notranslate nohighlight">\((0.25)_{10} = (0.01)_2 = 0.1 \times 2^{-1}\)</span>, i.e. <span class="math notranslate nohighlight">\(d_1 = 1\)</span> e <span class="math notranslate nohighlight">\( e  = -1\)</span>. Logo, a representação de <span class="math notranslate nohighlight">\(x\)</span> neste sistema de ponto flutuante é: <span class="math notranslate nohighlight">\(x = + \,0.100 \times 2^{-1}\)</span>.</p>
+<p>b) <span class="math notranslate nohighlight">\( x = 3.5\)</span></p>
+<p>Aqui: <span class="math notranslate nohighlight">\((3.5)_{10} = (11.1)_2 = 0.111 \times 2^{2}\)</span>, i.e. <span class="math notranslate nohighlight">\(d_1 = 1\)</span> e <span class="math notranslate nohighlight">\(e = 2\)</span>. Como <span class="math notranslate nohighlight">\(2_{10} = (10)_2\)</span>, a representação de <span class="math notranslate nohighlight">\(x\)</span> neste sistema de ponto flutuante é: <span class="math notranslate nohighlight">\(x = + \, 0.111 \times 2^{10}\)</span>.</p>
+<p>c) <span class="math notranslate nohighlight">\(x = 0.125\)</span></p>
+<p>Aqui: <span class="math notranslate nohighlight">\((0.125)_{10} = (0.001)_2 = 0.1 \times 2^{-2}\)</span> , i.e, <span class="math notranslate nohighlight">\(d_1 = 1\)</span> e <span class="math notranslate nohighlight">\(e = -2\)</span>. Como <span class="math notranslate nohighlight">\(e &lt; L = -1\)</span>,
+temos <em>underflow</em> (não representável).</p>
+<p>d) <span class="math notranslate nohighlight">\(x = 4\)</span></p>
+<p>Note que, <span class="math notranslate nohighlight">\((4)_{10} = (100)_2 = 0.1\times 2^{3}\)</span>, i.e <span class="math notranslate nohighlight">\(d_1 = 1\)</span> e <span class="math notranslate nohighlight">\(e = 3\)</span>. Como <span class="math notranslate nohighlight">\(e &gt; U = 2\)</span>, temos
+<em>overflow</em> (não representável).</p>
+<p>e) <span class="math notranslate nohighlight">\(x = 0.3\)</span></p>
+<p>Note que, <span class="math notranslate nohighlight">\((0.3)_{10} = (0.0\,1001\,1001\dots)_2 =(0.1001\,1001\dots)\times 2^{-1}\)</span>, i.e. <span class="math notranslate nohighlight">\(d_1 = 1\)</span> e <span class="math notranslate nohighlight">\(e = {-1}\)</span>. Como devemos ter apenas 3 dígitos, este número <strong>não é representável</strong> neste sistema de ponto flutuante.</p>
+<p>Se truncarmos em 3 dígitos, então temos uma aproximação para <span class="math notranslate nohighlight">\(x\)</span> dada por
+$<span class="math notranslate nohighlight">\(0.100 \times 2^{-1} =(0.0100)_2 = \\
+0\times \frac{1}{2} + 1\times \frac{1}{4} + 0 \times \frac{1}{8}+ 0 \times \frac{1}{16} + 0 \times \frac{1}{32} = \\ (0.25)_{10} \ne (0.3)_{10}.\)</span>$</p>
+</section>
+</section>
+<section id="maior-e-menor-numero-representavel">
+<h3><span class="section-number">2.8.3. </span>Maior e menor número representável<a class="headerlink" href="#maior-e-menor-numero-representavel" title="Permalink to this headline">#</a></h3>
+<p>Considerando o mesmo sistema de ponto flutuante do exemplo anterior, determinar:</p>
+<p>a) O menor número real positivo representável neste sistema</p>
+<p>b) O maior número real positivo representável neste sistema</p>
+</section>
+<section id="id1">
+<h3><span class="section-number">2.8.4. </span>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>O menor número real positivo representável neste sistema é</p>
+<div class="math notranslate nohighlight">
+\[x_{min} = 0.100\times 2^{-1} = (0.010)_{2} = 0\times \frac{1}{2} + 1 \times \frac{1}{4} = (0.25)_{10}.\]</div>
+<p>O maior número real positivo representável neste sistema é
+$<span class="math notranslate nohighlight">\(x_{max} = 0.111\times 2^2 = (11.1)_{2} = 1\times 2^1 + 1 \times 2^0 + 1\times \frac{1}{2} =(3.5)_{10}.\)</span>$</p>
+<p>Lembre que no Exemplo 1.4, c), com <span class="math notranslate nohighlight">\(x = (0.125)_{10}\)</span>, e no Exemplo 1.4 d), com <span class="math notranslate nohighlight">\( x = 4_{10}\)</span>, tivemos
+situações de <em>underflow</em> e <em>overflow</em>, respectivamente.</p>
+<p>Já no Exemplo anterior, e), com <span class="math notranslate nohighlight">\(x = (0.3)_{10}\)</span>, tivemos  truncamento/aproximação.</p>
+</section>
+</section>
+<section id="exemplo">
+<h2><span class="section-number">2.9. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
+<p>Determinar todos os números reais que são <em>representáveis exatamente</em> no sistema do Exemplo 1.3, i.e.  <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span>.</p>
+<section id="id2">
+<h3><span class="section-number">2.9.1. </span>Solução<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Como <span class="math notranslate nohighlight">\( t = 3 \)</span>, as possíveis mantissas não nulas são: <span class="math notranslate nohighlight">\( (0.100)_2, (0.101)_2, (0.110)_2 \)</span> e <span class="math notranslate nohighlight">\((0.111)_2 \)</span>.
+Como <span class="math notranslate nohighlight">\(L=−1\)</span> e <span class="math notranslate nohighlight">\(U=2\)</span>, os possíveis expoentes são: <span class="math notranslate nohighlight">\(−1 0,1\)</span> e <span class="math notranslate nohighlight">\(2\)</span>. Assim, os números positivos
+com representação exata são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(0.100)_2 \times 2^{-1} = \frac{1}{2} \times 2^{-1} = (0.25)_{10} = x_{min} \\
+(0.100)_2 \times 2^{-1} = \frac{1}{2} \times 2^{-1} = (0.5)_{10} \\
+(0.100)_2 \times 2^1    = \frac{1}{2} \times 2^1    = (1.0)_{10} \\
+(0.100)_2 \times 2^2    = \frac{1}{2} \times 2^2    = (2.0)_{10} \\
+\phantom{2} \\
+(0.101)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{8} \right) \times 2^{-1} = (0.3125)_{10} \\
+(0.101)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{8} \right) \times 2^{-1} = (0.625)_{10} \\
+(0.101)_2 \times 2^1    = \left( \frac{1}{2} + \frac{1}{8} \right) \times 2^1    = (1.25)_{10} \\
+(0.101)_2 \times 2^2    = \left( \frac{1}{2} + \frac{1}{8} \right) \times 2^2    = (2.5)_{10} \\
+\phantom{2} \\
+(0.110)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{4} \right) \times 2^{-1} = (0.375)_{10} \\
+(0.110)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{4} \right) \times 2^{-1} = (0.75)_{10} \\
+(0.110)_2 \times 2^1    = \left( \frac{1}{2} + \frac{1}{4} \right) \times 2^1    = (1.5)_{10} \\
+(0.110)_2 \times 2^2    = \left( \frac{1}{2} + \frac{1}{4} \right) \times 2^2    = (3.0)_{10} \\
+\phantom{2} \\
+(0.111)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{4} + \frac{1}{8} \right) \times 2^{-1} = (0.4375)_{10} \\
+(0.111)_2 \times 2^{-1} = \left( \frac{1}{2} + \frac{1}{4} + \frac{1}{8} \right) \times 2^{-1} = (0.875)_{10} \\
+(0.111)_2 \times 2^1    = \left( \frac{1}{2} + \frac{1}{4} + \frac{1}{8} \right) \times 2^1    = (1.75)_{10} \\
+(0.111)_2 \times 2^2    = \left( \frac{1}{2} + \frac{1}{4} + \frac{1}{8} \right) \times 2^2    = (3.5)_{10} = x_{max} \\
+\end{split}\]</div>
+<p>Portanto, temos apenas <strong>33</strong> números reais <em>representáveis exatamente</em> neste sistema.
+Todos os acima e os negativos, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[0.0, \pm 0.25, \pm 0.3125, \dots, \pm 3.5\]</div>
+</section>
 </section>
 </section>
 
@@ -1250,7 +1580,7 @@ número de bits na mantissa
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Modelagem matemática em Ciências Computacionais e Engenharias</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="aula-02-erros.html" title="next page">
