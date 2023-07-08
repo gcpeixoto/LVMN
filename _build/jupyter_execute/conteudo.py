@@ -68,15 +68,15 @@
 # 
 # _Notebooks_ com um compêndio de funções de utilidade predefinidas em módulos Python para resolução direta de problemas aplicados às ciências matemáticas, computacionais e engenharias.
 # 
-# - [Code session 1 - bisect](codeSession-1-bisect.ipynb)
-# - [Code session 2 - newton](codeSession-2-newton.ipynb)
-# - [Code session 3 - roots](codeSession-3-polyval.ipynb)
-# - [Code session 4 - fsolve](codeSession-4-fsolve.ipynb)
-# - [Code session 5 - solve](codeSession-5-solve.ipynb)
-# - [Code session 6 - interp](codeSession-6-interp.ipynb)
-# - [Code session 7 - fit](codeSession-7-fit.ipynb)
-# - [Code session 8 - integrate](codeSession-8-integrate.ipynb)
-# - [Code session 9 - solve_ivp](codeSession-9-solve_ivp.ipynb)
+# - [Code session 1 - bisect](code-sessions/codeSession-1-bisect.ipynb)
+# - [Code session 2 - newton](code-sessions/codeSession-2-newton.ipynb)
+# - [Code session 3 - roots](code-sessions/codeSession-3-polyval.ipynb)
+# - [Code session 4 - fsolve](code-sessions/codeSession-4-fsolve.ipynb)
+# - [Code session 5 - solve](code-sessions/codeSession-5-solve.ipynb)
+# - [Code session 6 - interp](code-sessions/codeSession-6-interp.ipynb)
+# - [Code session 7 - fit](code-sessions/codeSession-7-fit.ipynb)
+# - [Code session 8 - integrate](code-sessions/codeSession-8-integrate.ipynb)
+# - [Code session 9 - solve_ivp](code-sessions/codeSession-9-solve_ivp.ipynb)
 # 
 # ## _Listas de exercícios_
 # 

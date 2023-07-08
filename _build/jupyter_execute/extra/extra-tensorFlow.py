@@ -105,15 +105,3 @@ with tf.compat.v1.Session() as sess:
 v1 = tf.Variable(2)
 print(v1)
 
-
-# In[81]:
-
-
-v1[0] = 3
-
-
-# In[ ]:
-
-
-
-

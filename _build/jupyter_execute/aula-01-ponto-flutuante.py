@@ -17,22 +17,24 @@
 
 # ## Casos curiosos
 # 
-# Sabemos que a fração $1/3 \approx 0.3333...\ldots$ é uma dízima. O seu triplo equivale a $0.9999...$, mas vejamos o seguinte exemplo:
+# A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos que ocorrem devido à representação finita de números pelo computador.
+# 
+# 
+# - A fração $1/3 \approx 0.3333\ldots$ é uma dízima. O seu triplo é?
 
-# In[6]:
+# In[66]:
 
 
 1/3
 
 
-# In[7]:
+# In[65]:
 
 
-# o resultado é 1!
 1/3 + 1/3 + 1/3
 
 
-# Outro caso curioso, em que o valor final é uma aproximação, é o seguinte:
+# - A soma $0.3 + 0.3 + 0.3$ difere de $0.9$.
 
 # In[8]:
 
@@ -40,7 +42,27 @@
 0.3 + 0.3 + 0.3
 
 
-# Vejamos agora o caso de séries numéricas equivalentes. Consideremos a série (descendente, do menor para o maior)
+# - $1/10 + 1/10 + 1/10 \neq 3/10$
+
+# In[69]:
+
+
+1/10 + 1/10 + 1/10 == 3/10
+
+
+# - Multiplicação por fracionários
+
+# In[104]:
+
+
+# note a variabilidade de dígitos após o ponto
+for x in [0.3, 0.33, 0.333, 0.3333, 0.33333, 0.333333, 0.3333333, 0.333333333]:
+    print(f'3*{x}'.ljust(13,' '),'=', 3*x, sep=' ')
+
+
+# - Séries numéricas
+
+# Consideremos a série (descendente, do menor para o maior)
 # 
 # $$S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n}$$
 # 
@@ -89,11 +111,71 @@ print(tbl)
 
 # Como se percebe pela última coluna, os valores produzidos pelas somas para $n > 10$ não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, da ordem de $10^{-14}$ ou $10^{-16}$, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos. 
 
-# ## Sistema binário
+# ## A finitude explicada
 # 
-# Simples exercícios de conversão numérica para introduzi-lo à computação numérica com Python.
+# Os casos acima possuem uma razão comum: a capacidade finita dos computadores para representar números fracionários. Vamos analisar de modo breve o caso da fração 1/10 sem nos aprofundar em detalhes.
 # 
-# ### Exercícios de conversão numérica
+# Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.
+
+# In[105]:
+
+
+# imprime número com 55 dígitos
+print(format(0.1,'.55f'))
+
+
+# Notemos que tentar aumentar os dígitos não produzirá significância:
+
+# In[106]:
+
+
+# imprime número com 60 dígitos
+print(format(0.1,'.60f'))
+
+
+# In[107]:
+
+
+# imprime número com 80 dígitos
+print(format(0.1,'.80f'))
+
+
+# Portanto, quando somamos 1/10 + 1/10 + 1/10 vemos um número diferente de 3/10.
+
+# In[108]:
+
+
+# imprime número com 55 dígitos
+print(format(0.1 + 0.1 + 0.1,'.55f'))
+
+
+# ## Notação científica
+# 
+# Números em ponto flutuante são a versão computacional da notação científica. Escrevemos um número decimal em notação científica da seguinte forma:
+# 
+# $$x = f \times 10^e,$$
+# 
+# com a fração (ou mantissa) $f$ determinando a precisão e o expoente $e$ a ordem de grandeza. Pontos flutuantes admitem $f$ na forma _normalizada_, isto é, menor do que 1. A tabela abaixo mostra alguns exemplos de como usamos essas notações.
+# 
+# 
+# | Número decimal | Notação científica | Repr. ponto flutuante
+# |:---------------|--------------------|------:|
+# |$2.65$ | $2.65 \times 10^0$ | $0.265 \times 10^1$|
+# |$0.0000012$ | $1.2 \times 10^{-6}$ | $0.12 \times 10^{-5}$|
+# |$4532$ | $4.532 \times 10^{3}$ | $0.4532 \times 10^{4}$|
+# 
+# Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:
+
+# In[113]:
+
+
+2.65e0, 1.2e-6, 0.4532e4
+
+
+# ## Conversão numérica entre sistemas
+# 
+# Nesta seção são dados exemplos de como converter números entre os sistemas mais comuns: binário, decimal e hexadecimal.
+# 
 
 # In[ ]:
 
@@ -146,22 +228,6 @@ c = oct(146)
 print(c)
 
 
-# In[ ]:
-
-
-"Brincando com Python e divisões sucessivas"
-
-print('Esquema de divisões sucessivas:\n')
-
-print( str(4) + ' | 2')
-print( str( len(str(4))*' ') + '  –––')
-print( str( 4 % 2) + '   ' + str(4 // 2) + ' | 2' )
-print( str( 5*len(str(4))*' ') + '  –––')
-print( str( 4*len(str(4))*' ') + str(4 % 2 % 2) + '   ' + str(4 // 2 // 2))
-
-
-# **Exercício:** estude a codificação do esquema acima. O que os operadores `//` e `%` estão fazendo?
-
 # ## Máquina binária 
 # 
 # O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
@@ -171,11 +237,9 @@ print( str( 4*len(str(4))*' ') + str(4 % 2 % 2) + '   ' + str(4 // 2 // 2))
 
 """
 Converte inteiro para binário
-por divisões sucessivas.
+por divisões sucessvvvas.
 ! Confronte com a função residente 'bin()'
 """
-
-
 def int2bin(N):
 
     b = [] # lista auxiliar
@@ -244,11 +308,11 @@ if __name__ == "__main__":
     main()
 
 
-# ## Sistema de ponto flutuante 
+# ## Visualizando um sistema de ponto flutuante 
 # 
 # ### A reta "perfurada" 
 # 
-# Como temos estudado, a matemática computacional opera no domínio $\mathbb{F}$, de pontos flutuantes, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
+# A matemática computacional opera no domínio $\mathbb{F}$ de números em ponto flutuante, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
 # 
 # **Exemplo**: Considere o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$. Determinemos todos os seus números representáveis:
 # 
@@ -300,6 +364,8 @@ plot(x,16*[0],'o');
 # Isto é, $\mathbb{F}$ é uma reta "perfurada", para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.
 
 # ## Simulador de $\mathbb{F}$
+# 
+# O código abaixa gera uma reta perfurada para o sistema computacional de interesse.
 
 # In[ ]:
 
@@ -307,7 +373,6 @@ plot(x,16*[0],'o');
 import numpy as np
 import matplotlib.pyplot as plt
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 def simulacao_F(b,t,L,U):
     x = []
@@ -338,7 +403,9 @@ plt.scatter(Y,X,c='r',marker='+');
 
 # ## Limites de máquina para ponto flutuante
 
-# In[ ]:
+# Os seguintes parâmetros ajudam-nos a entender os limites de máquina am Python.
+
+# In[114]:
 
 
 import numpy as np 
@@ -375,19 +442,20 @@ print('número de bits na mantissa')
 print(np.finfo(float).nmant)
 
 
-# In[ ]:
+# In[117]:
 
 
-from matplotlib.pyplot import plot
+from matplotlib.pyplot import subplots
 
+fig, ax = subplots(figsize=(6,4),constrained_layout=True)
 x = np.linspace(1e-15,1e-20,num=100)
 f = ((1+x)-1)/x
-plot(x,f);
+ax.plot(x,f);
 
 
-# ### Como "enxergar" o $\epsilon_M$?
+# ### O épsilon de máquina
 # 
-# A unidade de arredondamento, $\epsilon_M$, comumente chamada de "épsilon de máquina", é definida como o menor número do sistema computacional tal que
+# A unidade de arredondamedssdnto, $\epsilon_M$, comumente chamada de "épsilon de máquina", é definida como o menor número do sistema computacional tal que
 # 
 # $$1.0 + \epsilon_M > 1.0.$$
 # 
@@ -421,7 +489,7 @@ plot(x,f);
 # 
 # Em seguida, o próximo número representável (depois de $1.0625$) teria uma contribuição de $2^{-4} + 2^{-3} = 0.1875$, sendo, pois, $1.1875$. Evidentemente, $1.1875 - 1.0625 = 0.125$, mas $\epsilon_M < 0.125$. Isto mostra que a unidade de arredondamento não equivale a uma "distância" no sentido dos números reais como se vê na representação de reta perfurada. 
 
-# ## Exemplos 
+# ## Exemplos
 # 
 # ### Sistema de 16 bits
 # 
@@ -500,7 +568,7 @@ plot(x,f);
 # 
 # b) O maior número real positivo representável neste sistema
 # 
-# ### Solução
+# #### Solução
 # 
 # O menor número real positivo representável neste sistema é 
 # 
@@ -514,11 +582,11 @@ plot(x,f);
 # 
 # Já no Exemplo anterior, e), com $x = (0.3)_{10}$, tivemos  truncamento/aproximação.
 
-# ## Exemplo
+# ### Números representáveis
 # 
-# Determinar todos os números reais que são *representáveis exatamente* no sistema do Exemplo 1.3, i.e.  $\mathbb{F}(2,3,-1,2)$.
+# Determinar todos os números reais que são *representáveis exatamente* no sistema $\mathbb{F}(2,3,-1,2)$.
 # 
-# ### Solução
+# #### Solução
 # 
 # Como $ t = 3 $, as possíveis mantissas não nulas são: $ (0.100)_2, (0.101)_2, (0.110)_2 $ e $(0.111)_2 $.
 # Como $L=−1$ e $U=2$, os possíveis expoentes são: $−1 0,1$ e $2$. Assim, os números positivos 
