@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008 
+# # Recorte 3: Padrão de Ponto Flutuante IEEE 754
 # 
 # O texto a seguir é um excerto do artigo _IEEE Standard for Floating Point Numbers_, de Rajaraman, V., publicado na Resonance 21.1 (2016): 11-30, com adaptações.
 # 
 # 
-# ```admonition{warning}
+# ```{admonition} Nota
 # O padrão em vigor é o 754-2019, o qual está documentado neste [artigo](https://ieeexplore.ieee.org/document/8766229).
 # ```
 # 

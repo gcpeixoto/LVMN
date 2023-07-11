@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>Recorte 3: Padrão de Ponto Flutuante IEEE 754 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Recorte 4: Dígitos significativos, precisão e acurácia" href="clipping-04-digitos-significativos-precisao-acuracia.html" />
-    <link rel="prev" title="Recorte 1: Breve Histórico da Análise Numérica" href="clipping-01-analise-numerica.html" />
+    <link rel="prev" title="Recorte 2: Programação e Software" href="clipping-02-programacao-software.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,7 +129,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,37 +250,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-1-bisect.html">
+  <a class="reference internal" href="../code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-2-newton.html">
+  <a class="reference internal" href="../code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-3-polyval.html">
+  <a class="reference internal" href="../code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-4-fsolve.html">
+  <a class="reference internal" href="../code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-5-solve.html">
+  <a class="reference internal" href="../code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-6-interp.html">
+  <a class="reference internal" href="../code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-7-fit.html">
+  <a class="reference internal" href="../code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -288,12 +288,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-8-integrate.html">
+  <a class="reference internal" href="../code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -346,9 +346,17 @@ const thebe_selector_output = ".output, .cell_output"
    Recorte 1: Breve Histórico da Análise Numérica
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="clipping-15-formulas-newton-cotes.html">
-   Recorte 15: fórmulas de Newton-Cotes
+   Recorte 15: Fórmulas de Newton-Cotes
   </a>
  </li>
 </ul>
@@ -677,7 +685,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008</h1>
+                <h1>Recorte 3: Padrão de Ponto Flutuante IEEE 754</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -712,11 +720,12 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="recorte-3-padrao-de-ponto-flutuante-ieee-754-2008">
-<h1>Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008<a class="headerlink" href="#recorte-3-padrao-de-ponto-flutuante-ieee-754-2008" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="recorte-3-padrao-de-ponto-flutuante-ieee-754">
+<h1>Recorte 3: Padrão de Ponto Flutuante IEEE 754<a class="headerlink" href="#recorte-3-padrao-de-ponto-flutuante-ieee-754" title="Permalink to this headline">#</a></h1>
 <p>O texto a seguir é um excerto do artigo <em>IEEE Standard for Floating Point Numbers</em>, de Rajaraman, V., publicado na Resonance 21.1 (2016): 11-30, com adaptações.</p>
-<div class="highlight-admonition{warning} notranslate"><div class="highlight"><pre><span></span>O padrão em vigor é o 754-2019, o qual está documentado neste [artigo](https://ieeexplore.ieee.org/document/8766229).
-</pre></div>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>O padrão em vigor é o 754-2019, o qual está documentado neste <a class="reference external" href="https://ieeexplore.ieee.org/document/8766229">artigo</a>.</p>
 </div>
 <section id="o-antigo-padrao-ieee-754-1985">
 <h2>O antigo padrão IEEE 754-1985<a class="headerlink" href="#o-antigo-padrao-ieee-754-1985" title="Permalink to this headline">#</a></h2>
@@ -782,11 +791,11 @@ onde <span class="math notranslate nohighlight">\(f\)</span> tem pelo menos 1 (c
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="clipping-01-analise-numerica.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="clipping-02-programacao-software.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Recorte 1: Breve Histórico da Análise Numérica</p>
+            <p class="prev-next-title">Recorte 2: Programação e <em>Software</em></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="clipping-04-digitos-significativos-precisao-acuracia.html" title="next page">

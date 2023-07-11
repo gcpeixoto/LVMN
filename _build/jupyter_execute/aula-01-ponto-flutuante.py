@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Aritmética de ponto flutuante e conversão numérica
+# # Aritmética computacional
 # 
 # Computadores representam números inteiros de maneira exata. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados _números em ponto flutuante._
 # 
@@ -22,13 +22,13 @@
 # 
 # - A fração $1/3 \approx 0.3333\ldots$ é uma dízima. O seu triplo é?
 
-# In[66]:
+# In[107]:
 
 
 1/3
 
 
-# In[65]:
+# In[108]:
 
 
 1/3 + 1/3 + 1/3
@@ -36,7 +36,7 @@
 
 # - A soma $0.3 + 0.3 + 0.3$ difere de $0.9$.
 
-# In[8]:
+# In[109]:
 
 
 0.3 + 0.3 + 0.3
@@ -44,7 +44,7 @@
 
 # - $1/10 + 1/10 + 1/10 \neq 3/10$
 
-# In[69]:
+# In[110]:
 
 
 1/10 + 1/10 + 1/10 == 3/10
@@ -52,7 +52,7 @@
 
 # - Multiplicação por fracionários
 
-# In[104]:
+# In[111]:
 
 
 # note a variabilidade de dígitos após o ponto
@@ -73,7 +73,7 @@ for x in [0.3, 0.33, 0.333, 0.3333, 0.33333, 0.333333, 0.3333333, 0.333333333]:
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 # 
 
-# In[1]:
+# In[112]:
 
 
 from prettytable import PrettyTable as pt
@@ -117,7 +117,7 @@ print(tbl)
 # 
 # Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.
 
-# In[105]:
+# In[113]:
 
 
 # imprime número com 55 dígitos
@@ -126,14 +126,14 @@ print(format(0.1,'.55f'))
 
 # Notemos que tentar aumentar os dígitos não produzirá significância:
 
-# In[106]:
+# In[114]:
 
 
 # imprime número com 60 dígitos
 print(format(0.1,'.60f'))
 
 
-# In[107]:
+# In[115]:
 
 
 # imprime número com 80 dígitos
@@ -142,7 +142,7 @@ print(format(0.1,'.80f'))
 
 # Portanto, quando somamos 1/10 + 1/10 + 1/10 vemos um número diferente de 3/10.
 
-# In[108]:
+# In[116]:
 
 
 # imprime número com 55 dígitos
@@ -166,7 +166,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:
 
-# In[113]:
+# In[117]:
 
 
 2.65e0, 1.2e-6, 0.4532e4
@@ -177,7 +177,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # Nesta seção são dados exemplos de como converter números entre os sistemas mais comuns: binário, decimal e hexadecimal.
 # 
 
-# In[ ]:
+# In[118]:
 
 
 # (100)_2 -> base 10
@@ -193,7 +193,7 @@ c = bin(4)
 print(c)
 
 
-# In[ ]:
+# In[119]:
 
 
 # (222)_8
@@ -210,7 +210,7 @@ c = oct(146)
 print(c)
 
 
-# In[ ]:
+# In[120]:
 
 
 # (2AE4)_16
@@ -232,7 +232,7 @@ print(c)
 # 
 # O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
 
-# In[ ]:
+# In[121]:
 
 
 """
@@ -312,9 +312,9 @@ if __name__ == "__main__":
 # 
 # ### A reta "perfurada" 
 # 
-# A matemática computacional opera no domínio $\mathbb{F}$ de números em ponto flutuante, ao invés de trabalhar com números reais (conjunto $\mathbb{R}$). Vejamos um exemplo: 
+# Em vez de operar sobre o conjunto dos números reais (conjunto $\mathbb{R}$), a matemática computacional está definida no domínio $\mathbb{F}$, o conjunto dos números em ponto flutuante representáveis pela máquina. Vejamos um exemplo.
 # 
-# **Exemplo**: Considere o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$. Determinemos todos os seus números representáveis:
+# Considerando o sistema de ponto flutuante $\mathbb{F}(2,3,-1,2)$, determinemos todos os seus números representáveis.
 # 
 # Como a base é $2$, os dígitos possíveis são $0$ e $1$ com mantissas: 
 # 
@@ -329,7 +329,6 @@ if __name__ == "__main__":
 # - $(0.100 \times 2^{0})_{2} = (0.1)_2 = 0.2^0 + 1.2^{-1} = 1/2$
 # - $(0.100 \times 2^{1})_{2} = (1.0)_2 = 1.2^0 + 0.2^{-1} = 1$
 # - $(0.100 \times 2^{2})_{2} = (10.0)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2$
-# 
 # 
 # - $(0.101 \times 2^{-1})_{2} = (0.0101)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} + 0.2^{-3} + 1.2^{-4}= 5/16$
 # - $(0.101 \times 2^{0})_{2} = (0.101)_2 = 0.2^0 + 1.2^{-1} + 0.2^{-2} + 1.2^{-3} = 5/8$
@@ -350,15 +349,26 @@ if __name__ == "__main__":
 # 
 # Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-# In[ ]:
+# In[122]:
 
 
-from matplotlib.pyplot import plot
+from matplotlib.pyplot import subplots
+import matplotlib.ticker as mticker
+from fractions import Fraction
+
 x = [1/4,1/2,1,2,5/16,5/8,5/4,5/2,3/8,3/4,3/2,3,7/16,7/8,7/4,7/2]
 x = sorted(x)
 
-plot(x,16*[0],':')
-plot(x,16*[0],'o');
+fig, ax = subplots(figsize=(8,1),constrained_layout=True)
+ax.plot(x,16*[0],':')
+ax.plot(x,16*[0],'o');
+ax.spines['top'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.get_yaxis().set_visible(False)
+ax.xaxis.set_major_locator(mticker.FixedLocator(x))
+ax.set_xticklabels([str(Fraction(xi)) for xi in x],fontsize=5)
+ax.set_xlim([0.23,3.6]);
 
 
 # Isto é, $\mathbb{F}$ é uma reta "perfurada", para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.
@@ -367,7 +377,7 @@ plot(x,16*[0],'o');
 # 
 # O código abaixa gera uma reta perfurada para o sistema computacional de interesse.
 
-# In[ ]:
+# In[123]:
 
 
 import numpy as np
@@ -378,7 +388,6 @@ def simulacao_F(b,t,L,U):
     x = []
     epsm = b**(1-t) # epsilon de máquina
     M = np.arange(1.,b-epsm,epsm)
-    print(M)
 
     E = 1
     for e in range(0,U+1):
@@ -398,14 +407,18 @@ def simulacao_F(b,t,L,U):
 Y = simulacao_F(2,2,-3,2)
 X = np.zeros(Y.shape)
 
-plt.scatter(Y,X,c='r',marker='+');
+
+# plotagem
+fig, ax = subplots(figsize=(8,1),constrained_layout=True)
+ax.scatter(Y,X,marker='o');
+ax.get_yaxis().set_visible(False)
 
 
 # ## Limites de máquina para ponto flutuante
 
 # Os seguintes parâmetros ajudam-nos a entender os limites de máquina am Python.
 
-# In[114]:
+# In[124]:
 
 
 import numpy as np 
@@ -440,17 +453,6 @@ print(np.finfo(float).nexp)
 # número de bits na mantissa
 print('número de bits na mantissa')
 print(np.finfo(float).nmant)
-
-
-# In[117]:
-
-
-from matplotlib.pyplot import subplots
-
-fig, ax = subplots(figsize=(6,4),constrained_layout=True)
-x = np.linspace(1e-15,1e-20,num=100)
-f = ((1+x)-1)/x
-ax.plot(x,f);
 
 
 # ### O épsilon de máquina
@@ -488,6 +490,122 @@ ax.plot(x,f);
 # Para $\epsilon_M$, note que o próximo número tem uma contribuição de $2^{-4} = 0.0625$. Ou seja, a mantissa decresce para a direita $2^{-1}, 2^{-2}, 2^{-3}, 2^{-4}$. O ponto "decimal" (radix) fica implícito e o expoente cresce para a esquerda, $2^0, 2^1$, e $2^2$.
 # 
 # Em seguida, o próximo número representável (depois de $1.0625$) teria uma contribuição de $2^{-4} + 2^{-3} = 0.1875$, sendo, pois, $1.1875$. Evidentemente, $1.1875 - 1.0625 = 0.125$, mas $\epsilon_M < 0.125$. Isto mostra que a unidade de arredondamento não equivale a uma "distância" no sentido dos números reais como se vê na representação de reta perfurada. 
+
+# ### Sensibilidade
+# 
+# O efeito de $\epsilon_M$ em cálculos pode ser mostrado na figura abaixo. Quando subtraímos 1 de valores de $\epsilon$ cada vez menores, a subtração no denominador da fração
+# 
+# $$f(\epsilon) = \dfrac{ (1 + \epsilon) - 1}{\epsilon}$$
+# 
+# começa a se aproximar de zero por cancelamento subtrativo e o valor de $f$ torna-se cada vez mais instável até cair a "zero".
+
+# In[125]:
+
+
+from matplotlib.pyplot import subplots
+from numpy import linspace,finfo
+
+fig, ax = subplots(figsize=(6,3),constrained_layout=True)
+
+e = linspace(1e-17,1e-12,num=200)
+f = ((1+e)-1)/e
+ax.loglog(e,f)
+ax.axhline(y=1,ls=':',c=[0.6,0.6,0.6])
+ax.axvline(x=finfo(float).eps,ls=':',c=[0.6,0.6,0.6])
+ax.set_xlabel('$\epsilon$',fontsize=10)
+ax.set_ylabel('$[(1+\epsilon)-1)] / \epsilon$',fontsize=10)
+ax.set_title('Variação relativa a $\epsilon \\to \epsilon_M $');
+
+
+# ## Valores especiais
+# 
+# O padrão IEEE 754 traz alguns valores especiais para representar cadeias de bits especiais. São eles:
+# 
+# - _NaN_ (_not a number_): representa um valor que é um erro.
+# - _Inf_ (_infinity_): representa o infinito (em ambos os sentidos, positivo e negativo).
+# 
+# A partir desses valores especiais, operáveis pelo módulo _numpy_ com `numpy.nan` e `numpy.inf`, respectivamente, podemos imitar operações matemáticas "equivalentes". Primeiramente, façamos:
+
+# In[126]:
+
+
+from numpy import nan, inf
+
+
+# 
+# ### Operações especiais
+# 
+# - $n \div \pm \infty \to \pm 0, n \in \mathbb{F}$
+
+# In[127]:
+
+
+2.1/inf, -4/inf, 5.2/-inf, 6/-inf
+
+
+# - $\pm \infty \times \pm \infty \to \pm \infty$
+
+# In[128]:
+
+
+inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
+
+
+# - $n \div \pm 0 \to \ \ !, n \in \mathbb{F}^{*}$
+
+# In[129]:
+
+
+1/0, -2/0, 3/(-0), 4/(-0)
+
+
+# - $n \times \pm \infty \to \pm \infty, n \in \mathbb{F}$
+
+# In[130]:
+
+
+1*inf, -2*inf, 3.1112*(-inf), -111*(-inf)
+
+
+# - $\pm \infty \pm \infty \to \pm \infty \vee \text{nan}$
+
+# In[131]:
+
+
+inf + inf, inf - inf, - inf + inf, -inf - inf 
+
+
+# - $\pm 0 \div \pm 0 \to \ \ !$
+
+# In[132]:
+
+
+0/-0
+
+
+# - $\pm \infty \div \pm \infty \to \text{nan}$
+
+# In[133]:
+
+
+inf/inf, inf/-inf, -inf/inf, -inf/-inf
+
+
+# - $\pm \infty \times 0 \to \text{nan}$
+
+# In[134]:
+
+
+inf*0, -inf*0
+
+
+# - $\text{nan} \neq \text{nan}$
+
+# In[135]:
+
+
+nan == nan, nan != nan
+
 
 # ## Exemplos
 # 
