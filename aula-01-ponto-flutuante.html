@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Erros numéricos e seus efeitos" href="aula-02-erros.html" />
+    <link rel="next" title="3. Erros e seus efeitos" href="aula-02-erros.html" />
     <link rel="prev" title="1. Modelagem matemática em Ciências Computacionais e Engenharias" href="aula-00-modelagem-programacao.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -134,7 +134,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -1094,67 +1094,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Séries numéricas</p></li>
-</ul>
-<p>Consideremos a série (descendente, do menor para o maior)</p>
-<div class="math notranslate nohighlight">
-\[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n}\]</div>
-<p>e a sua versão escrita como uma somatória invertida (ascendente, do menor para o maior), ou seja,</p>
-<div class="math notranslate nohighlight">
-\[S_A(n) = \sum_{k=n}^1 \frac{1}{k} = \frac{1}{n} + 1 + \frac{1}{n-1} + \ldots + \frac{1}{2} + 1\]</div>
-<p>É evidente que <span class="math notranslate nohighlight">\(S_A(n)\)</span> e <span class="math notranslate nohighlight">\(S_D(n)\)</span> são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de <span class="math notranslate nohighlight">\(n\)</span> e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
-
-<span class="c1"># define séries</span>
-<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    
-    <span class="n">S_D</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">S_D</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>        
-         
-    <span class="n">S_A</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">S_A</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>       
-    
-    <span class="c1"># diferença    </span>
-    <span class="n">E</span> <span class="o">=</span> <span class="n">S_D</span> <span class="o">-</span> <span class="n">S_A</span>
-    
-    <span class="k">return</span> <span class="n">S_D</span><span class="p">,</span> <span class="n">S_A</span><span class="p">,</span> <span class="n">E</span>
-    
-<span class="c1"># cria objeto para tabela</span>
-<span class="n">tbl</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
-<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n) - S_A(n)&#39;</span><span class="p">]</span>
-<span class="n">tbl</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
-
-<span class="c1"># loop de teste</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
-    <span class="n">sd</span><span class="p">,</span> <span class="n">sa</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
-    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
-    <span class="n">tbl</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-   
-<span class="c1"># imprime tabela</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+------------------------+
-|   n    |       S_A(n)       |       S_D(n)       |    S_D(n) - S_A(n)     |
-+--------+--------------------+--------------------+------------------------+
-|   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
-|  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
-|  1000  | 7.485470860550343  | 7.485470860550341  | 2.6645352591003757e-15 |
-| 10000  | 9.787606036044348  | 9.787606036044386  | -3.730349362740526e-14 |
-| 100000 | 12.090146129863335 | 12.090146129863408 | -7.283063041541027e-14 |
-+--------+--------------------+--------------------+------------------------+
-</pre></div>
-</div>
-</div>
-</div>
-<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, da ordem de <span class="math notranslate nohighlight">\(10^{-14}\)</span> ou <span class="math notranslate nohighlight">\(10^{-16}\)</span>, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos.</p>
 </section>
 <section id="a-finitude-explicada">
 <h2><span class="section-number">2.3. </span>A finitude explicada<a class="headerlink" href="#a-finitude-explicada" title="Permalink to this headline">#</a></h2>
@@ -1499,7 +1438,7 @@ title="Print to PDF"
 <p>Na reta real, esses valores ficariam dispostos da seguinte forma:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_31_0.png" src="_images/aula-01-ponto-flutuante_31_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_27_0.png" src="_images/aula-01-ponto-flutuante_27_0.png" />
 </div>
 </div>
 <p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes e mais o 0 são representáveis. Logo, o conjunto contém apenas 33 elementos.</p>
@@ -1546,7 +1485,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_34_0.png" src="_images/aula-01-ponto-flutuante_34_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_30_0.png" src="_images/aula-01-ponto-flutuante_30_0.png" />
 </div>
 </div>
 </section>
@@ -1638,7 +1577,7 @@ número de bits na mantissa
 <p>começa a se aproximar de zero por cancelamento subtrativo e o valor de <span class="math notranslate nohighlight">\(f\)</span> torna-se cada vez mais instável até cair a “zero”.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_40_0.png" src="_images/aula-01-ponto-flutuante_40_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_36_0.png" src="_images/aula-01-ponto-flutuante_36_0.png" />
 </div>
 </div>
 </section>
@@ -1702,7 +1641,7 @@ número de bits na mantissa
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">gustavo</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">courses</span><span class="o">/</span><span class="n">calculo</span><span class="o">-</span><span class="n">numerico</span><span class="o">/</span><span class="n">LVMN</span><span class="o">/</span><span class="n">aula</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="n">ponto</span><span class="o">-</span><span class="n">flutuante</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">49</span> <span class="ow">in</span> <span class="mi">1</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">gustavo</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">courses</span><span class="o">/</span><span class="n">calculo</span><span class="o">-</span><span class="n">numerico</span><span class="o">/</span><span class="n">LVMN</span><span class="o">/</span><span class="n">aula</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="n">ponto</span><span class="o">-</span><span class="n">flutuante</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">45</span> <span class="ow">in</span> <span class="mi">1</span>
 <span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-01-ponto-flutuante.ipynb#Y115sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="ne">ZeroDivisionError</span>: division by zero
@@ -1961,7 +1900,7 @@ Todos os acima e os negativos, i.e.:</p>
     <a class='right-next' id="next-link" href="aula-02-erros.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Erros numéricos e seus efeitos</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Erros e seus efeitos</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

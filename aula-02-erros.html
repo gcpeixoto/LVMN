@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Erros numéricos e seus efeitos &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>3. Erros e seus efeitos &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -134,7 +134,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -356,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -665,76 +665,108 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#motivacao">
    3.1. Motivação
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-na-avaliacao-de-polinomios">
+   3.2. Erros na avaliação de polinômios
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#funcao-de-airy">
-     3.1.1. Função de Airy
+     3.2.1. Função de Airy
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#erro-de-cancelamento">
-   3.2. Erro de cancelamento
+   3.3. Erro de cancelamento
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#propagacao-de-erros">
-   3.3. Propagação de erros
+   3.4. Propagação de erros
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exemplos">
-   3.4. Exemplos
+   3.5. Exemplos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-percentual">
-     3.4.1. Erro relativo percentual
+     3.5.1. Erro relativo percentual
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#solucao">
-       3.4.1.1. Solução
+       3.5.1.1. Solução
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-maximo">
-     3.4.2. Erro máximo
+     3.5.2. Erro máximo
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id1">
-       3.4.2.1. Solução
+       3.5.2.1. Solução
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#truncamento-e-arredondamento">
-     3.4.3. Truncamento e arredondamento
+     3.5.3. Truncamento e arredondamento
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       3.4.3.1. Solução
+       3.5.3.1. Solução
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#aproximacao-por-truncamento">
-         3.4.3.1.1. Aproximação por Truncamento
+         3.5.3.1.1. Aproximação por Truncamento
         </a>
        </li>
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#aproximacao-por-arredondamento">
-         3.4.3.1.2. Aproximação por Arredondamento
+         3.5.3.1.2. Aproximação por Arredondamento
         </a>
        </li>
       </ul>
      </li>
     </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
+   3.6. Definições de erro em aprendizagem de máquina
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.6.1. Erro quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.6.2. Erro absoluto médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">
+     3.6.3. Erro absoluto médio percentual
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
+     3.6.4. Erro logarítmico quadrático médio
+    </a>
    </li>
   </ul>
  </li>
@@ -747,7 +779,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Erros numéricos e seus efeitos</h1>
+                <h1>Erros e seus efeitos</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -761,76 +793,108 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#motivacao">
    3.1. Motivação
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-na-avaliacao-de-polinomios">
+   3.2. Erros na avaliação de polinômios
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#funcao-de-airy">
-     3.1.1. Função de Airy
+     3.2.1. Função de Airy
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#erro-de-cancelamento">
-   3.2. Erro de cancelamento
+   3.3. Erro de cancelamento
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#propagacao-de-erros">
-   3.3. Propagação de erros
+   3.4. Propagação de erros
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exemplos">
-   3.4. Exemplos
+   3.5. Exemplos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-percentual">
-     3.4.1. Erro relativo percentual
+     3.5.1. Erro relativo percentual
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#solucao">
-       3.4.1.1. Solução
+       3.5.1.1. Solução
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-maximo">
-     3.4.2. Erro máximo
+     3.5.2. Erro máximo
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id1">
-       3.4.2.1. Solução
+       3.5.2.1. Solução
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#truncamento-e-arredondamento">
-     3.4.3. Truncamento e arredondamento
+     3.5.3. Truncamento e arredondamento
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
-       3.4.3.1. Solução
+       3.5.3.1. Solução
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#aproximacao-por-truncamento">
-         3.4.3.1.1. Aproximação por Truncamento
+         3.5.3.1.1. Aproximação por Truncamento
         </a>
        </li>
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#aproximacao-por-arredondamento">
-         3.4.3.1.2. Aproximação por Arredondamento
+         3.5.3.1.2. Aproximação por Arredondamento
         </a>
        </li>
       </ul>
      </li>
     </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
+   3.6. Definições de erro em aprendizagem de máquina
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.6.1. Erro quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.6.2. Erro absoluto médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">
+     3.6.3. Erro absoluto médio percentual
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
+     3.6.4. Erro logarítmico quadrático médio
+    </a>
    </li>
   </ul>
  </li>
@@ -844,11 +908,242 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="erros-numericos-e-seus-efeitos">
-<h1><span class="section-number">3. </span>Erros numéricos e seus efeitos<a class="headerlink" href="#erros-numericos-e-seus-efeitos" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="erros-e-seus-efeitos">
+<h1><span class="section-number">3. </span>Erros e seus efeitos<a class="headerlink" href="#erros-e-seus-efeitos" title="Permalink to this headline">#</a></h1>
+<p>Diferentemente da infindável capacidade humana para raciocinar, imaginar e criar, computadores, como máquinas de calcular, são limitados em memória e em habilidades aritméticas. Diante disso, pelo menos três situações simplificadoras ocorrem:</p>
+<ul class="simple">
+<li><p>o contínuo torna-se <em>discreto</em>;</p></li>
+<li><p>o infinito reduz-se ao <em>finito</em> e</p></li>
+<li><p>a exatidão limita-se à <em>aproximação</em>.</p></li>
+</ul>
+<p>Algumas idéias impactadas por essas simplificações, por sua vez, tornam-se inadmissíveis em sentido estrito. Por exemplo:</p>
+<ul class="simple">
+<li><p>números reais convertem-se em números aproximados;</p></li>
+<li><p>limites são exibidos através de sequências;</p></li>
+<li><p>derivadas são aproximadas por quocientes de diferenças finitas;</p></li>
+<li><p>integrais definidas são calculáveis por meio de somas finitas.</p></li>
+</ul>
+<p>Por isso é comum chamar o processo de transferência de cálculos contínuos para cômputos discretos de <em>discretização</em>.</p>
+<p>Quando tratamos da resolução numérica de problemas realistas formulados com auxílio da Matemática, qual seja o campo do conhecimento, é quase impossível desviar-se do <em>erro</em>. Erros subsistem em qualquer formulação que tente explicar o funcionamento exato de um fenômeno, em geral, estudado pelas ciências naturais.</p>
+<p>De forma abstrata, se um fenômeno físico <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> pode ser descrito por um modelo matemático <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> cuja solução exata é <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, a impossibilidade de obtê-la
+sugere pelo menos uma solução aproximada <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span>, tal que <span class="math notranslate nohighlight">\(\mathcal{S} = \mathcal{S}' + \mathcal{E}\)</span>. Então, diremos que <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> é o <em>erro</em>. De outro modo, <span class="math notranslate nohighlight">\(\mathcal{E} = \mathcal{S} - \mathcal{S}'\)</span>.</p>
+<p>Neste capítulo, estudaremos as diversas formas assumidas por <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> quando <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span> é implementável por meio de métodos numéricos. Evidentemente, pode haver mais de uma forma de obter <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span>. Além disso, em situações difícies, é preciso estabelecer, com rigor, se <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> existe e se é única. Todavia, não discutiremos os procedimentos teóricos de verificação em profundidade.</p>
 <section id="motivacao">
 <h2><span class="section-number">3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">#</a></h2>
-<p><strong>Exemplo</strong>: Avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = x^3 - 6x^2 + 4x - 0.1\)</span>
+<p>Como forma de demonstrar que cômputos podem ter resultados distintos, consideremos a somatória (descendente, da maior para a menor parcela)</p>
+<div class="math notranslate nohighlight">
+\[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n},\]</div>
+<p>e a sua versão escrita de forma “refletida” (ascendente, da menor para a maior parcela), ou seja,</p>
+<div class="math notranslate nohighlight">
+\[S_A(n) = \sum_{k=n}^1 \frac{1}{k} = \frac{1}{n} + 1 + \frac{1}{n-1} + \ldots + \frac{1}{2} + 1.\]</div>
+<p>É evidente que <span class="math notranslate nohighlight">\(S_A(n)\)</span> e <span class="math notranslate nohighlight">\(S_D(n)\)</span> são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de <span class="math notranslate nohighlight">\(n\)</span> e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
+
+<span class="c1"># define séries</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">S_D</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_D</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>        
+         
+    <span class="n">S_A</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_A</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>       
+    
+    <span class="c1"># diferença    </span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">S_D</span> <span class="o">-</span> <span class="n">S_A</span>
+    
+    <span class="k">return</span> <span class="n">S_D</span><span class="p">,</span> <span class="n">S_A</span><span class="p">,</span> <span class="n">E</span>
+    
+<span class="c1"># cria objeto para tabela</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n) - S_A(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># loop de teste</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">sd</span><span class="p">,</span> <span class="n">sa</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">tbl</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+   
+<span class="c1"># imprime tabela</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+------------------------+
+|   n    |       S_A(n)       |       S_D(n)       |    S_D(n) - S_A(n)     |
++--------+--------------------+--------------------+------------------------+
+|   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
+|  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
+|  1000  | 7.485470860550343  | 7.485470860550341  | 2.6645352591003757e-15 |
+| 10000  | 9.787606036044348  | 9.787606036044386  | -3.730349362740526e-14 |
+| 100000 | 12.090146129863335 | 12.090146129863408 | -7.283063041541027e-14 |
++--------+--------------------+--------------------+------------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos.</p>
+<p>O fato de <span class="math notranslate nohighlight">\(S_A(n) - S_D(n) &gt; 0\)</span> caracteriza um “erro” de magnitude <span class="math notranslate nohighlight">\(\epsilon\)</span>, visto que, se <span class="math notranslate nohighlight">\(S_A(n)\)</span> fosse tomado como o valor exato, <span class="math notranslate nohighlight">\(S_D(n) = S_A(n) + \epsilon\)</span> seria uma aproximação para <span class="math notranslate nohighlight">\(S_A(n)\)</span>. Inversamente, se <span class="math notranslate nohighlight">\(S_D(n)\)</span> fosse tomado como o valor exato, <span class="math notranslate nohighlight">\(S_A(n) = S_D(n) + \epsilon\)</span> seria uma aproximação para <span class="math notranslate nohighlight">\(S_D(n)\)</span>.</p>
+<p>Naturalmente, se tomássemos a versão <em>infinita</em> de <span class="math notranslate nohighlight">\(S_D\)</span> (ou <span class="math notranslate nohighlight">\(S_A\)</span>), chamando-a apenas de <span class="math notranslate nohighlight">\(S\)</span> e substituindo <span class="math notranslate nohighlight">\(n\)</span> por <span class="math notranslate nohighlight">\(\infty\)</span>, isto é,</p>
+<div class="math notranslate nohighlight">
+\[S = \sum_{k=1}^{\infty} \frac{1}{k},\]</div>
+<p>tanto <span class="math notranslate nohighlight">\(S_D(n)\)</span> e <span class="math notranslate nohighlight">\(S_A(n)\)</span> seriam consideradas <em>aproximações</em> para <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Supondo que somente <span class="math notranslate nohighlight">\(S_D(n)\)</span> é a forma correta de “chegar perto” de <span class="math notranslate nohighlight">\(S\)</span>, a implicação</p>
+<div class="math notranslate nohighlight">
+\[S = S_D(n) + \epsilon_n \Rightarrow \epsilon_n = S - S_D(n)\]</div>
+<p>revelaria o acréscimo <span class="math notranslate nohighlight">\(\epsilon_n\)</span> como uma quantidade não-nula coexistindo com o valor finito <span class="math notranslate nohighlight">\(n\)</span>. Uma vez que computadores são incapazes de calcular somas infinitas por limitação de memória, <span class="math notranslate nohighlight">\(\epsilon_n\)</span> define um tipo de <em>erro</em>. Este erro é inerente ao processo de cálculo aproximado de séries infinitas. Além disso, ele dependerá de <span class="math notranslate nohighlight">\(n\)</span>, ou seja, da quantidade de termos utilizados na soma <span class="math notranslate nohighlight">\(S_D\)</span> para aproximar o real valor de <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Entretanto, estamos ainda diante de um problema de difícil tratamento, visto que a soma <span class="math notranslate nohighlight">\(S\)</span> só pode ser obtida aproximadamente, pois <span class="math notranslate nohighlight">\(\sum_{k=1}^{\infty} \frac{1}{k}\)</span> não é convergente. Logo, é impossível estabelecer um valor “exato” para <span class="math notranslate nohighlight">\(S\)</span>, a fim de compará-lo com suas aproximações. Caso intentássemos medir discrepâncias no cálculo desta série, teríamos que adotar um valor já aproximado para cumprir o papel de exato e utilizar outros valores também aproximados como “aproximações de uma aproximação”. Embora pareça estranho e paradoxal, o que acontece em muitas situações práticas quando lidamos com um <em>processo iterativo</em> ou de <em>aproximações sucessivas</em> é justamente isso.</p>
+<p>Vamos tomar os valores da tabela de <span class="math notranslate nohighlight">\(S_D(n)\)</span>. Suponhamos que <span class="math notranslate nohighlight">\(S_D(100000) = 12.090146129863408\)</span> assumisse o papel de valor “exato” de <span class="math notranslate nohighlight">\(S\)</span>. Fosse este o caso, poderíamos calcular pelo menos quatro erros:</p>
+<div class="math notranslate nohighlight">
+\[E_{10000} = S_D(100000) - S_D(10000) = 2.3025400938190224\]</div>
+<div class="math notranslate nohighlight">
+\[E_{1000} = S_D(100000) - S_D(1000) = 4.604675269313067\]</div>
+<div class="math notranslate nohighlight">
+\[E_{100} = S_D(100000) - S_D(100) = 6.902768612223786\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10} = S_D(100000) - S_D(10) = 9.161177875895154\]</div>
+<p>Para obter cada valor acima, poderíamos escrever:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.</span>
+<span class="c1"># Em Python, cada um é acessível por indexação na forma [i][2]</span>
+
+<span class="n">E_100000</span> <span class="o">=</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>           <span class="c1"># i = 4</span>
+<span class="n">E_10000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># i = 3</span>
+<span class="n">E_1000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># i = 2</span>
+<span class="n">E_100</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># i = 1</span>
+<span class="n">E_10</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># i = 0</span>
+
+<span class="c1"># Impressão de valores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.090146129863408
+2.3025400938190224
+4.604675269313067
+6.902768612223786
+9.161177875895154
+</pre></div>
+</div>
+</div>
+</div>
+<p>Não é difícil ver que o valor de <span class="math notranslate nohighlight">\(E\)</span> em relação a <span class="math notranslate nohighlight">\(S_D(100000)\)</span> aumenta quando tomamos valores de <span class="math notranslate nohighlight">\(n\)</span> cada vez menores. Em outras palavras, nossas aproximações de um valor supostamente exato (aproximado) tornam-se cada vez mais pobres quando não dispomos de parcelas suficientes para somar. Além disso, usar <span class="math notranslate nohighlight">\(S_D(100000)\)</span> como ponto de referência não é nada confiável, já que ele apenas fará com que tenhamos uma sensação ilusória de exatidão.</p>
+<p>Se, em vez de uma série divergente, escolhermos outra, convergente, poderemos fazer cálculos de erro tomando como referência um valor definitivamente exato. Então, consideremos a série</p>
+<div class="math notranslate nohighlight">
+\[S_2 = \sum_{k=1}^{\infty} \frac{1}{k^2}\]</div>
+<p>A série <span class="math notranslate nohighlight">\(S_2\)</span> ficou conhecida como <a class="reference external" href="https://en.wikipedia.org/wiki/Basel_problem"><em>Problema de Basel</em></a>, proposto em 1650 pelo matemático italiano Pietro Mengoli, e solucionado por Leonhard Euler em 1734 – <em>Basel</em> é o nome de uma cidade da Suíça, onde Euler nasceu. Graças a Euler e a teoria matemática operante nos bastidores, existe certeza suficiente de que <span class="math notranslate nohighlight">\(S_2 = \frac{\pi^2}{6}\)</span>.</p>
+<p>Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de <span class="math notranslate nohighlight">\(S_2(n)\)</span> com <span class="math notranslate nohighlight">\(n\)</span> crescente até o limite de 100.000, até porque não temos como computar <span class="math notranslate nohighlight">\(S_2\)</span> <em>ad infinitum</em>. Então, vejamos um código similar:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="c1"># define série</span>
+<span class="k">def</span> <span class="nf">S2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">S_2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_2</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="o">**</span><span class="mi">2</span>        
+             
+    <span class="c1"># valor exato</span>
+    <span class="n">S_2ex</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> 
+    
+    <span class="c1"># diferença    </span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">S_2ex</span> <span class="o">-</span> <span class="n">S_2</span>
+    
+    <span class="k">return</span> <span class="n">S_2ex</span><span class="p">,</span> <span class="n">S_2</span><span class="p">,</span> <span class="n">E</span>
+    
+<span class="c1"># cria objeto para tabela</span>
+<span class="n">tbl2</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
+<span class="n">tbl2</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_2&#39;</span><span class="p">,</span><span class="s1">&#39;S_2(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_2 - S_2(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl2</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># loop de teste</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">s2</span><span class="p">,</span> <span class="n">s2n</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="n">s2n</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">tbl2</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+   
+<span class="c1"># imprime tabela</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbl2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+-----------------------+
+|   n    |        S_2         |       S_2(n)       |      S_2 - S_2(n)     |
++--------+--------------------+--------------------+-----------------------+
+|   10   | 1.6449340668482264 | 1.5497677311665408 |  0.09516633568168564  |
+|  100   | 1.6449340668482264 | 1.6349839001848923 |  0.009950166663334148 |
+|  1000  | 1.6449340668482264 | 1.6439345666815615 | 0.0009995001666649461 |
+| 10000  | 1.6449340668482264 | 1.6448340718480652 | 9.999500016122376e-05 |
+| 100000 | 1.6449340668482264 | 1.6449240668982423 | 9.999949984074163e-06 |
++--------+--------------------+--------------------+-----------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Neste caso, a diferença existente na última coluna caracteriza, de fato, o <em>erro real</em> entre o valor exato <span class="math notranslate nohighlight">\(S_2\)</span> e suas aproximações, de modo que, neste caso,</p>
+<div class="math notranslate nohighlight">
+\[E_{100000} = \frac{\pi^2}{6} - S_2(100000) = 0.000009999949984074163\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10000} = \frac{\pi^2}{6} - S_2(10000) = 0.00009999500016122376\]</div>
+<div class="math notranslate nohighlight">
+\[E_{1000} = \frac{\pi^2}{6} - S_2(1000) = 0.0009995001666649461\]</div>
+<div class="math notranslate nohighlight">
+\[E_{100} = \frac{\pi^2}{6} - S_2(100) = 0.009950166663334148\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10} = \frac{\pi^2}{6} - S_2(10) = 0.09516633568168564\]</div>
+<p>A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de <span class="math notranslate nohighlight">\(n\)</span> aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é <span class="math notranslate nohighlight">\(\pi^2/6 \approx 1.6449340668482264\)</span>. Para obtermos os valores dos erros, um código similar poderia ser implementado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Expressões do erro real</span>
+<span class="n">E_100000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># i = 4</span>
+<span class="n">E_10000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># i = 3</span>
+<span class="n">E_1000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># i = 2</span>
+<span class="n">E_100</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># i = 1</span>
+<span class="n">E_10</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># i = 0</span>
+
+<span class="c1"># Impressão</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.999949984074163e-06
+9.999500016122376e-05
+0.0009995001666649461
+0.009950166663334148
+0.09516633568168564
+</pre></div>
+</div>
+</div>
+</div>
+<p>Talvez não tenha sido percebido por você, mas, até aqui, já tratamos, conceitualmente, de três tipificações de erro, a saber:</p>
+<ol class="simple">
+<li><p><em>erro de truncamento</em>, quando limitamos o número de termos de uma expansão infinita, tornando-a finita.</p></li>
+<li><p><em>erro real aproximado</em> (ou <em>erro verdadeiro aproximado</em>), quando assumimos que o valor exato da expansão infinita (série divergente) é a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>, com <span class="math notranslate nohighlight">\(n\)</span> muito grande, mas finito, e calculamos a diferença entre este valor e a soma obtida até uma parcela anterior à <span class="math notranslate nohighlight">\(n\)</span>-ésima;</p></li>
+<li><p><em>erro real</em> (ou <em>erro verdadeiro</em>), quando calculamos a diferença entre a soma exata (série convergente) e a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>Curioso, não? E não para por aí! Ainda há outras definições de erro. Veremos mais algumas no decorrer do curso.</p>
+</section>
+<section id="erros-na-avaliacao-de-polinomios">
+<h2><span class="section-number">3.2. </span>Erros na avaliação de polinômios<a class="headerlink" href="#erros-na-avaliacao-de-polinomios" title="Permalink to this headline">#</a></h2>
+<p>Consideremos avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = x^3 - 6x^2 + 4x - 0.1\)</span>
 no ponto <span class="math notranslate nohighlight">\(x=5.24\)</span> e comparar com o resultado exato.</p>
 <p>Vamos fazer o seguinte:</p>
 <ol class="simple">
@@ -859,7 +1154,7 @@ no ponto <span class="math notranslate nohighlight">\(x=5.24\)</span> e comparar
 <p>Faça as suas contas! Suponhamos que seja -0.007776.</p>
 <p><strong>Passo 2</strong></p>
 <p>Vamos “imitar” as contas feitas na mão…</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parcelas </span>
 
@@ -1010,11 +1305,11 @@ Px: (com arredondamento): -0.01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_14_0.png" src="_images/aula-02-erros_14_0.png" />
+<img alt="_images/aula-02-erros_28_0.png" src="_images/aula-02-erros_28_0.png" />
 </div>
 </div>
 <section id="funcao-de-airy">
-<h3><span class="section-number">3.1.1. </span>Função de Airy<a class="headerlink" href="#funcao-de-airy" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Função de Airy<a class="headerlink" href="#funcao-de-airy" title="Permalink to this headline">#</a></h3>
 <p>A função de Airy é solução da equação de Schrödinger da mecânica quântica. Muda o comportamento de oscilatório para exponencial.</p>
 <p>Abaixo, vamos criar uma função aproximada (perturbada) para a função de Airy (assumindo-a como uma aproximação daquela que é exata) e outra para calcular diretamente o erro relativo para valores dessas funções.</p>
 <div class="cell docutils container">
@@ -1067,21 +1362,21 @@ onde <span class="math notranslate nohighlight">\(f_{ex}(x)\)</span> é o valor 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_20_0.png" src="_images/aula-02-erros_20_0.png" />
-<img alt="_images/aula-02-erros_20_1.png" src="_images/aula-02-erros_20_1.png" />
+<img alt="_images/aula-02-erros_34_0.png" src="_images/aula-02-erros_34_0.png" />
+<img alt="_images/aula-02-erros_34_1.png" src="_images/aula-02-erros_34_1.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="erro-de-cancelamento">
-<h2><span class="section-number">3.2. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">#</a></h2>
 <p>Ocorre quando números de grandezas próximas são subtraídos. No exemplo, a seguir, induzimos uma divisão por zero usando o valor do épsilon de máquina <span class="math notranslate nohighlight">\(\epsilon_m\)</span> ao fazer</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{1}{(1 + 0.25\epsilon_m) - 1}\]</div>
 <p>Isto ocorre porque o denominador sofre um <em>cancelamento subtrativo</em>, quando, para a matemática precisa, deveria valer <span class="math notranslate nohighlight">\(0.25\epsilon_m\)</span>.</p>
 </section>
 <section id="propagacao-de-erros">
-<h2><span class="section-number">3.3. </span>Propagação de erros<a class="headerlink" href="#propagacao-de-erros" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>Propagação de erros<a class="headerlink" href="#propagacao-de-erros" title="Permalink to this headline">#</a></h2>
 <p>Vamos comparar duas situações. Calcular</p>
 <div class="math notranslate nohighlight">
 \[e^{-v} = \sum_{i=0}^{\infty} (-1)^i \frac{v^i}{i!}\]</div>
@@ -1131,12 +1426,12 @@ caso 2: 0.00524752
 </div>
 </section>
 <section id="exemplos">
-<h2><span class="section-number">3.4. </span>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
 <section id="erro-relativo-percentual">
-<h3><span class="section-number">3.4.1. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.5.1. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h3>
 <p>Dois estudantes medem a altura h da sala de aula com dois instrumentos de medida diferentes e encontram, respectivamente <span class="math notranslate nohighlight">\(h_1 = 2.965 \pm 0.001 \, m\)</span> e <span class="math notranslate nohighlight">\(h_2 = 2.964 \pm 0.002\, m\)</span>. Qual o erro relativo percentual cometido por cada um?</p>
 <section id="solucao">
-<h4><span class="section-number">3.4.1.1. </span>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">3.5.1.1. </span>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h4>
 <p>O valor exato <span class="math notranslate nohighlight">\(h\)</span> não é conhecido. O primeiro estudante tem um instrumento cujo erro máximo cometido é <span class="math notranslate nohighlight">\(EA_1 = 0.001 \, m\)</span>; o segundo, <span class="math notranslate nohighlight">\(EA_2 = 0.002 \, m\)</span>. Notemos que pelas expressões <span class="math notranslate nohighlight">\(EA_1 = | h - h_1 |\)</span> e <span class="math notranslate nohighlight">\(EA_2 = | h - h_2 |\)</span>, os erros absolutos não são diretamente computáveis. Logo, temos que usar limitantes de erro.</p>
 <p>Assim, os erros relativos são computados com base nos limitantes e nos valores medidos (aproximados). Portanto,</p>
 <div class="math notranslate nohighlight">
@@ -1146,10 +1441,10 @@ caso 2: 0.00524752
 </section>
 </section>
 <section id="erro-maximo">
-<h3><span class="section-number">3.4.2. </span>Erro máximo<a class="headerlink" href="#erro-maximo" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.5.2. </span>Erro máximo<a class="headerlink" href="#erro-maximo" title="Permalink to this headline">#</a></h3>
 <p>Uma sala de formato retangular foi medida e foram obtidos 8 m e 12 m como sendo sua largura e seu comprimento, respectivamente. Sabendo que o erro cometido em cada uma dessas medições foi de no máximo 2 cm, determine o erro máximo cometido no cálculo de sua área.</p>
 <section id="id1">
-<h4><span class="section-number">3.4.2.1. </span>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">3.5.2.1. </span>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <p>Sejam:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(a'\)</span>: largura aproximada (obtida pela medição)</p></li>
@@ -1180,23 +1475,23 @@ $<span class="math notranslate nohighlight">\(|96.0000 − 96.4004| = 0.4004 \, 
 </section>
 </section>
 <section id="truncamento-e-arredondamento">
-<h3><span class="section-number">3.4.3. </span>Truncamento e arredondamento<a class="headerlink" href="#truncamento-e-arredondamento" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.5.3. </span>Truncamento e arredondamento<a class="headerlink" href="#truncamento-e-arredondamento" title="Permalink to this headline">#</a></h3>
 <p>Considere o sistema <span class="math notranslate nohighlight">\(\mathbb{F}(10,4,−3,3)\)</span>. Isto é, a representação exata de um númeor real deve ter a forma: <span class="math notranslate nohighlight">\(\pm 0.d_1d_2d_3d_4 \times 10^e\)</span>, com <span class="math notranslate nohighlight">\(d_1 \neq 0\)</span> e <span class="math notranslate nohighlight">\(e \in \{−3,−2,−1,0,1,2,3\}\)</span>. Sejam <span class="math notranslate nohighlight">\(x = 0.2345 \times 10^3\)</span> e <span class="math notranslate nohighlight">\(y = 0.7000 \times 10^{−1}\)</span>.</p>
 <p>Sabemos que <span class="math notranslate nohighlight">\(x + y = 234.5 + 0.07 = 234.57\)</span>. No entanto, este resultado não pode ser representado neste sistema, pois para isto precisaríamos de cinco dígitos! No caso, seria <span class="math notranslate nohighlight">\(x + y = 0.2345{7} \times 10^3.\)</span></p>
 <p>Como aproximar a soma <span class="math notranslate nohighlight">\(s = x + y\)</span>, de tal forma que seja possível representá-la nesse sistema de ponto flutuante?</p>
 <section id="id2">
-<h4><span class="section-number">3.4.3.1. </span>Solução<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">3.5.3.1. </span>Solução<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>Determine os erros.</p>
 <p>Temos <span class="math notranslate nohighlight">\(d_1 = 2, d_2 = 3,d_3 = 4,d_4 = 5\)</span> e <span class="math notranslate nohighlight">\(d_5 = 7\)</span>.</p>
 <section id="aproximacao-por-truncamento">
-<h5><span class="section-number">3.4.3.1.1. </span>Aproximação por Truncamento<a class="headerlink" href="#aproximacao-por-truncamento" title="Permalink to this headline">#</a></h5>
+<h5><span class="section-number">3.5.3.1.1. </span>Aproximação por Truncamento<a class="headerlink" href="#aproximacao-por-truncamento" title="Permalink to this headline">#</a></h5>
 <p>Despreze o quinto dígito (<span class="math notranslate nohighlight">\(d_5 = 7\)</span>) para obter <span class="math notranslate nohighlight">\(\bar{s} = 0.2345 \times 10^3 = 234.5\)</span>.</p>
 <p>Neste caso, o Erro Absoluto é:<span class="math notranslate nohighlight">\(|EA_s|=|s−\bar{s}|=
 |234.57−234.5|=0.07\)</span>.</p>
 <p>O valor absoluto do Erro Relativo é: <span class="math notranslate nohighlight">\(|ER_s| = \frac{0.07}{234.5} \approx 0.2985 \times 10^{−3}.\)</span></p>
 </section>
 <section id="aproximacao-por-arredondamento">
-<h5><span class="section-number">3.4.3.1.2. </span>Aproximação por Arredondamento<a class="headerlink" href="#aproximacao-por-arredondamento" title="Permalink to this headline">#</a></h5>
+<h5><span class="section-number">3.5.3.1.2. </span>Aproximação por Arredondamento<a class="headerlink" href="#aproximacao-por-arredondamento" title="Permalink to this headline">#</a></h5>
 <p>O quinto dígito (<span class="math notranslate nohighlight">\(d_5 = 7\)</span>) é levado em conta, assim provocando uma modificação no quarto dígito (<span class="math notranslate nohighlight">\(d_4 = 5\)</span>). Como <span class="math notranslate nohighlight">\(7 \geq 5\)</span>, soma-se <span class="math notranslate nohighlight">\(0.5 \times 10^{−4} = 0.00005\)</span> a <span class="math notranslate nohighlight">\(s\)</span>, obtendo-se:
 $<span class="math notranslate nohighlight">\(\bar{s} = 0.23462\times 10^3.\)</span>$</p>
 <p>Daí, trunca-se <span class="math notranslate nohighlight">\(\bar{s}\)</span> no quarto novo dígito.</p>
@@ -1205,6 +1500,34 @@ $<span class="math notranslate nohighlight">\(\bar{s} = 0.23462\times 10^3.\)</s
 <p>O Erro Relativo é: <span class="math notranslate nohighlight">\(|ER_s| = \frac{0.03}{234.6} \approx 0.1278\times 10^{−3}.\)</span></p>
 </section>
 </section>
+</section>
+</section>
+<section id="definicoes-de-erro-em-aprendizagem-de-maquina">
+<h2><span class="section-number">3.6. </span>Definições de erro em aprendizagem de máquina<a class="headerlink" href="#definicoes-de-erro-em-aprendizagem-de-maquina" title="Permalink to this headline">#</a></h2>
+<p>No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de <em>perda</em> (<em>loss function</em>) entre pixels de uma imagem legendada como <em>ground truth</em> (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, <span class="math notranslate nohighlight">\(y_i\)</span> é o valor do gabarito (exato), <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> é o valor aproximado e <span class="math notranslate nohighlight">\(n\)</span> é o número de pontos de amostragem.</p>
+<section id="erro-quadratico-medio">
+<h3><span class="section-number">3.6.1. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSE = \dfrac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2\]</div>
+</section>
+<section id="erro-absoluto-medio">
+<h3><span class="section-number">3.6.2. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAE = \dfrac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|\]</div>
+</section>
+<section id="erro-absoluto-medio-percentual">
+<h3><span class="section-number">3.6.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Permalink to this headline">#</a></h3>
+<p>O erro absoluto médio percentual (<em>mean absolute percentage error</em>, MAPE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |y_i - \hat{y}_i| }{ | y_i | } \times 100\]</div>
+</section>
+<section id="erro-logaritmico-quadratico-medio">
+<h3><span class="section-number">3.6.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1+ y_i) - \log(1 + \hat{y}_i) ]^2\]</div>
 </section>
 </section>
 </section>
