@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Aritmética de ponto flutuante e conversão numérica" href="aula-01-ponto-flutuante.html" />
+    <link rel="next" title="2. Aritmética computacional" href="aula-01-ponto-flutuante.html" />
     <link rel="prev" title="Laboratório Virtual de Métodos Numéricos - LVMN" href="conteudo.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -129,12 +129,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,37 +250,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-1-bisect.html">
+  <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-2-newton.html">
+  <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-3-polyval.html">
+  <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-4-fsolve.html">
+  <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-5-solve.html">
+  <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-6-interp.html">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-7-fit.html">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -288,12 +288,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-8-integrate.html">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -347,8 +347,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
-   Recorte 15: fórmulas de Newton-Cotes
+   Recorte 15: Fórmulas de Newton-Cotes
   </a>
  </li>
 </ul>
@@ -1003,17 +1011,15 @@ title="Print to PDF"
 <section id="integracao-numerica">
 <h3><span class="section-number">1.2.4. </span>Integração numérica<a class="headerlink" href="#integracao-numerica" title="Permalink to this headline">#</a></h3>
 <p>buscamos o valor aproximado da quantidade interpretada como “área sob a curva”. Em sentido aplicado, integrações numéricas são realizadas quando a função integrando não admite uma antiderivada, ou quando não é simples de obtê-la por meios conhecidos (ex. integração por partes, substituição, frações parciais). Podem existir inúmeras situações onde a integração numérica é necessária, principalmente no cálculo de centroides, volumes, vazões, energia, entre outros. O problema geral da integração numérica é:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.$$
-</pre></div>
-</div>
+<div class="math notranslate nohighlight">
+\[\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.\]</div>
 <p>Entretanto, para casos práticos, a dimensão máxima para o integrando costuma ser 3, de modo que basta aprendermos a calcular integrais simples, duplas e triplas.</p>
 </section>
 <section id="diferenciacao-numerica-e-equacoes-diferenciais-ordinarias-edos">
 <h3><span class="section-number">1.2.5. </span>Diferenciação numérica e equações diferenciais ordinárias (EDOs)<a class="headerlink" href="#diferenciacao-numerica-e-equacoes-diferenciais-ordinarias-edos" title="Permalink to this headline">#</a></h3>
 <p>Os problemas de EDOs atrelam-se aos mais diversos fenômenos físicos e leis que os governam. Geralmente, as taxas de variação de uma quantidade são mais importantes do que a quantidade em si. Métodos numéricos para EDOs utilizam <em>derivadas numéricas</em> e são aplicados para fazer predições populacionais, estudar aceleração de corpos,  estimar transferências de quantidades (movimento, massa, calor etc.). Dois tipos de problemas surgem baseados em EDO: problemas de valor inicial (PVIs) e problemas valor de contorno (PVCs). PVIs partem do conhecimento de uma condição inicial para o sistema físico e os métodos numéricos ajudam a descobrir o comportamento posterior do sistema. PVCs são aplicados a problemas em que um dado domínio deve obedecer a certas restrições em sua fronteira ou borda (ex. fluxo de calor dependente da posição, temperatura fixa). Um exemplo de problema cuja solução da EDO dá-se por um algoritmo de “passo simples” seria:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.$$ 
-</pre></div>
-</div>
+<div class="math notranslate nohighlight">
+\[\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.\]</div>
 </section>
 <section id="equacoes-diferenciais-parciais-edps">
 <h3><span class="section-number">1.2.6. </span>Equações diferenciais parciais (EDPs)<a class="headerlink" href="#equacoes-diferenciais-parciais-edps" title="Permalink to this headline">#</a></h3>
@@ -1449,7 +1455,7 @@ projetar equipamentos respiratórios, dispositivos para esterilização, purific
     <a class='right-next' id="next-link" href="aula-01-ponto-flutuante.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Aritmética de ponto flutuante e conversão numérica</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Aritmética computacional</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
