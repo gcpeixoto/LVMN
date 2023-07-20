@@ -3,11 +3,11 @@
 
 # # Recorte 6: Definições de erro
 # 
-# ## Erro verdadeiro ou absoluto
+# ## Erro absoluto
 # 
-# O _erro absoluto_ pode ser também denominado como _erro verdadeiro_ e dado por 
+# O _erro absoluto_ é computado pelo módulo do _erro real_ (ou verdadeiro) e dado por 
 # 
-# $$E_v = \text{valor verdadeiro} - \text{valor aproximado},$$
+# $$E_v = | \text{valor verdadeiro} - \text{valor aproximado}|,$$
 # 
 # onde o subscrito $v$ significa _verdadeiro_.  
 # 
