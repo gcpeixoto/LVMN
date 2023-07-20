@@ -129,12 +129,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,37 +250,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-1-bisect.html">
+  <a class="reference internal" href="../code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-2-newton.html">
+  <a class="reference internal" href="../code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-3-polyval.html">
+  <a class="reference internal" href="../code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-4-fsolve.html">
+  <a class="reference internal" href="../code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-5-solve.html">
+  <a class="reference internal" href="../code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-6-interp.html">
+  <a class="reference internal" href="../code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-7-fit.html">
+  <a class="reference internal" href="../code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -288,12 +288,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-8-integrate.html">
+  <a class="reference internal" href="../code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -347,8 +347,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="clipping-15-formulas-newton-cotes.html">
-   Recorte 15: fórmulas de Newton-Cotes
+   Recorte 15: Fórmulas de Newton-Cotes
   </a>
  </li>
 </ul>
@@ -654,8 +662,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#erro-verdadeiro-ou-absoluto">
-   Erro verdadeiro ou absoluto
+  <a class="reference internal nav-link" href="#erro-absoluto">
+   Erro absoluto
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -693,8 +701,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#erro-verdadeiro-ou-absoluto">
-   Erro verdadeiro ou absoluto
+  <a class="reference internal nav-link" href="#erro-absoluto">
+   Erro absoluto
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -724,11 +732,11 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="recorte-6-definicoes-de-erro">
 <h1>Recorte 6: Definições de erro<a class="headerlink" href="#recorte-6-definicoes-de-erro" title="Permalink to this headline">#</a></h1>
-<section id="erro-verdadeiro-ou-absoluto">
-<h2>Erro verdadeiro ou absoluto<a class="headerlink" href="#erro-verdadeiro-ou-absoluto" title="Permalink to this headline">#</a></h2>
-<p>O <em>erro absoluto</em> pode ser também denominado como <em>erro verdadeiro</em> e dado por</p>
+<section id="erro-absoluto">
+<h2>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Permalink to this headline">#</a></h2>
+<p>O <em>erro absoluto</em> é computado pelo módulo do <em>erro real</em> (ou verdadeiro) e dado por</p>
 <div class="math notranslate nohighlight">
-\[E_v = \text{valor verdadeiro} - \text{valor aproximado},\]</div>
+\[E_v = | \text{valor verdadeiro} - \text{valor aproximado}|,\]</div>
 <p>onde o subscrito <span class="math notranslate nohighlight">\(v\)</span> significa <em>verdadeiro</em>.</p>
 <p>No entanto, o grande defeito do erro absoluto é não levar em conta a <strong>ordem de grandeza</strong> dos valores envolvidos no seu cálculo. Então, para levarmos em conta a ordem de grandeza, devemos normalizá-lo.</p>
 </section>
