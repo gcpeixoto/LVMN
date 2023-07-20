@@ -37,7 +37,7 @@
 # 
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 
-# In[61]:
+# In[24]:
 
 
 from prettytable import PrettyTable as pt
@@ -101,7 +101,7 @@ print(tbl)
 # 
 # Para obter cada valor acima, poderíamos escrever:
 
-# In[62]:
+# In[25]:
 
 
 # O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.
@@ -131,7 +131,7 @@ print(E_10)
 # 
 # Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de $S_2(n)$ com $n$ crescente até o limite de 100.000, até porque não temos como computar $S_2$ _ad infinitum_. Então, vejamos um código similar:
 
-# In[77]:
+# In[26]:
 
 
 from math import pi
@@ -176,7 +176,7 @@ print(tbl2)
 
 # A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de $n$ aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é $\pi^2/6 \approx 1.6449340668482264$. Para obtermos os valores dos erros, um código similar poderia ser implementado:
 
-# In[64]:
+# In[27]:
 
 
 # Expressões do erro real
@@ -202,311 +202,299 @@ print(E_10)
 
 # Curioso, não? E não para por aí! Ainda há outras definições de erro. Veremos mais algumas no decorrer do curso.
 
-# ## Erros na avaliação de polinômios
+# ## Tipos de erros
 
-# Consideremos avaliar o polinômio $P(x) = x^3 - 6x^2 + 4x - 0.1$
-# no ponto $x=5.24$ e comparar com o resultado exato.
+# Consideremos avaliar o polinômio $P(x) = 0.172x^3 - 0.878x^2 + 0.042x + 0.583$
+# no ponto $x=79.9$.
 # 
 # Vamos fazer o seguinte:
 # 
-# 1. Com uma calculadora, computar o valor de $P(5.24)$ e assuma que este é seu valor exato.
+# 1. Assumir que $82132.957032$ seja o valor exato para o polinômio em $x = 79.9$.
+# 2. Calcular $P(79.9)$ utilizando duas formas.
+
+# In[28]:
+
+
+# Código para gerar polinômio cúbico com raízes reais
+
+from numpy import random
+from sympy.abc import x, a, b, c, d
+from sympy import roots, lambdify
+
+# Semente aleatória
+random.seed(1)
+
+# Um polinômio do terceiro grau terá as 3 raízes reais e distintas
+# se o discriminante for > 0. Aqui, criamos um polinômio que 
+# satisfaz tais condições por busca aleatória
+Delta = -1
+a,b,c,d = 0,0,0,0
+while Delta <= 0:
+    A,B,C,D = random.randn(1,4)[0,:]
+    Delta = -27*A**2*D**2 + 18*A*B*C*D -4*A*C**3 - 4*B**3*D + B**2*C**2
+    a,b,c,d = A,B,C,D
+    
+# Polinômio cúbico simbólico
+P3 = a*x**3 + b*x**2 + c*x + d
+
+# Polinômio cúbico numérico
+P3n = lambdify(x,P3,'numpy')
+
+# Raízes simbólicas
+r = list(roots(P3,x).keys())
+r1 = r[0]
+r2 = r[1]
+r3 = r[2]
+
+# Raízes numéricas com os valores encontrados
+r1n = r1.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
+r2n = r2.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
+r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
+
+#print(P3)
+#P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
+
+
+# In[29]:
+
+
+# Valor
+x = 79.9
+
+# Forma padrão
+Px = 0.172*x**3 - 0.878*x**2 + 0.042*x + 0.583
+
+# Forma estruturada (Hörner)
+PHx = x*(x*(0.172*x - 0.878) + 0.042) + 0.583 
+
+# Impressão
+print(f'P({x}) = {Px:.14f}')
+print(f'PH({x}) = {PHx:.14f}')
+    
+
+
+# Como se vê, a partir da 7a. casa decimal, começamos a notar uma leve diferença do valor do polinômio, embora ambas as formas, padrão de Hörner (estruturada), sejam matematicamente equivalentes. Embora os valores sejam próximos, a forma estruturada é uma opção menos _custosa_, sob o ponto de vista computacional, visto que ela possui menos avaliações de operações aritméticas.
 # 
-# 2. Calcular $P(5.24)$ usando arredondamento com dois dígitos de precisão.
+# A forma polinomial padrão, escrita de maneira ampliada, resulta em 
 # 
-# **Passo 1**
+# $$P(x) = 0.172{\color{red}.}x{\color{red}.}x{\color{red}.}x {\color{blue}-} 0.878{\color{red}.}x{\color{red}.}x {\color{blue}+} 0.042{\color{red}.}x {\color{blue}+} 0.583,$$
 # 
-# Faça as suas contas! Suponhamos que seja -0.007776.
+# ao passo que a forma de Hörner é escrita como:
 # 
-# **Passo 2**
+# $$P_H(x) = x{\color{red}.}(x{\color{red}.}(0.172{\color{red}.}x {\color{blue}-} 0.878) {\color{blue}+} 0.042) {\color{blue}+} 0.583$$
 # 
-# Vamos "imitar" as contas feitas na mão... 
-
-# In[65]:
-
-
-# parcelas 
-
-p1 = 5.24**3
-print('p1: {0:.20g}'.format(p1)) # 20 dígitos significativos
-print('p1 (com arredondamento): {0:.2f}'.format(p1)) 
-
-print('\n')
-
-p2 = - 6*5.24**2
-print('p2: {0:.20g}'.format(p2))
-print('p2 (com arredondamento): {0:.2f}'.format(p2))
-
-print('\n')
-
-p3 = 4*5.24
-print('p3: {0:.20g}'.format(p3))
-print('p3 (com arredondamento): {0:.2f}'.format(p3))
-
-print('\n')
-
-p4 = - 0.1
-print('p4: {0:.20g}'.format(p4))
-print('p4 (com arredondamento): {0:.2f}'.format(p4))
-
-print('\n')
-
-Px = p1 + p2 + p3 + p4
-print('Px: {0:.20g}'.format(Px))
-print('Px: (com arredondamento): {0:.2f}'.format(Px))
-
-
-# **Conclusão:** o cálculo com dois dígitos afeta o resultado drasticamente!
-
-# Agora, vamos comparar o resultado de se avaliar $P(5.24)$ com as duas formas do polinômio e 16 dígitos de precisão:
-
-# In[66]:
-
-
-# ponto de análise
-x = 5.24
-
-# P1(x) 
-P1x = x**3 - 6*x**2 + 4*x - 0.1 
-print('{0:.16f}'.format(P1x))
-
-# P2(x) 
-P2x = x*(x*(x - 6) + 4) - 0.1 # forma estruturada (forma de Hörner)
-print('{0:.16f}'.format(P2x))
-
-
-# O que temos acima? Dois valores levemente distintos. Se computarmos os erros absoluto e relativo entre esses valores e nosso valor supostamente assumido como exato, teríamos: 
+# Qual é a diferença entre ambas? O número de multiplicações (vermelho) e adições/subtrações (azul) é diferente. Enquanto na forma $P(x)$, temos 6 multiplicações e 3 adições/subtrações, a forma $P_H(x)$ reduz as operações para 3 multiplicações e 3 adições/subtrações. Isso é o mesmo que dizer que o número de operações aritméticas de multiplicação foi reduzido em 50%!
 # 
-# **Erros absolutos**
+# A conclusão é: a avaliação de polinômios pela forma de Hörner é mais lucrativa e propensa a um erro menor.
 
-# In[67]:
+# ### Erro real
 
-
-x_exato = -0.007776
-EA1 = abs(P1x - x_exato)
-print(EA1)
-
-EA2 = abs(P2x - x_exato)
-print(EA2)
-
-
-# Claro que $EA_1 > EA_2$. Entretanto, podemos verificar pelo seguinte teste lógico:
-
-# In[68]:
-
-
-# teste é verdadeiro
-EA1 > EA2
-
-
-# **Erros relativos**
+# O erro real (ou verdadeiro), $E$, não sinalizado, entre o valor 
+# exato $x$ e o aproximado $\hat{x}$ é dado por:
 # 
-# Os erros relativos também podem ser computados como:
-
-# In[69]:
-
-
-ER1 = EA1/abs(x_exato)
-print(ER1)
-
-ER2 = EA2/abs(x_exato)
-print(ER2)
-
-
-# **Gráfico de $P(x)$**
-
-# In[70]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-# eixo x com 20 pontos
-x = np.linspace(-3,3,num=20,endpoint=True)
-
-# plotagem de P1(x) e P2(x)
-P1x = lambda x: x**3 - 6*x**2 + 4*x - 0.1
-P2x = lambda x: x*(x*(x - 6) + 4) - 0.1
-plt.plot(x,P1x(x),'r',x,P2x(x),'bo');
-
-
-# ### Função de Airy
+# $$E = \hat{x} - x.$$
 # 
-# A função de Airy é solução da equação de Schrödinger da mecânica quântica. Muda o comportamento de oscilatório para exponencial.
+# Note que, por convenção, se $E > 0$, erramos por superestimação ("excesso"). Por outro lado, se $E < 0$, erramos por subestimação ("omissão").
 # 
-# Abaixo, vamos criar uma função aproximada (perturbada) para a função de Airy (assumindo-a como uma aproximação daquela que é exata) e outra para calcular diretamente o erro relativo para valores dessas funções.
+# Calculamos o erro real operando com diferença simples. 
+# 
+# Utilizando o exemplo da seção anterior, temos:
+
+# In[30]:
+
+
+# Valor exato
+Px_ex = 82132.957032
+
+# Erro real (forma padrão)
+E_P = Px - Px_ex
+print(E_P)
+
+# Erro real (forma de Hörner)
+E_PH = PHx - Px_ex
+print(E_PH)
+
+
+# ### Erro absoluto
+# 
+# O erro absoluto, $EA$, é a versão sinalizada de $E$. Dado por
+# 
+# $$EA = | \hat{x} - x |,$$
+# 
+# ele ignora a condição de subestimação ou superestimação e se atém à diferença absoluta entre o valor exato e o valor aproximado.
+# 
+# A função módulo, $f(x) = | x |$, pode ser diretamente calculada com `abs`.
+
+# In[31]:
+
+
+# Erro absoluto (forma padrão)
+EA_P = abs(Px - Px_ex)
+print(EA_P)
+
+# Erro absoluto (forma de Hörner)
+EA_PH = abs(PHx - Px_ex)
+print(EA_PH)
+
+
+# É evidente que $E_{PH} > E_P$. Entretanto, podemos verificar isso pelo seguinte teste lógico:
+
+# In[32]:
+
+
+# O teste é verdadeiro
+EA_PH > EA_P
+
+
+# ### Erro relativo
+# 
+# O erro relativo, $ER$, aperfeiçoa a idea de erro absoluto a partir do momento que passa a considerar a ordem de grandeza das quantidades envolvidas, mensurando uma variação que se limita ao valor exato. Assim,
+# 
+# $$ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|} = 1 - 
+# \dfrac{ |\hat{x}| }{|x|}.$$
+
+# Os erros relativos podem ser computados como:
+
+# In[33]:
+
+
+ER_P = EA_P/abs(Px_ex)
+print(ER_P)
+
+ER_PH = EA_PH/abs(Px_ex)
+print(ER_PH)
+
+
+# ### Erro relativo percentual
+# 
+# O erro relativo percentual é outra forma útil de expressar a disparidade relativa entre valores. Ele é definido por:
+# 
+# $$ER_{\%} = ER \times 100\% = \left(1 - 
+# \dfrac{ |\hat{x}| }{|x|} \right) \times 100\%.$$
+# 
+# Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:
+
+# In[34]:
+
+
+ER_Pp = ER_P * 100
+print(f'{ER_Pp:e} %')
+
+ER_PHp = ER_PH * 100
+print(f'{ER_PHp:e} %')
+
+
+# ### Erro relativo aproximado (_benchmark_)
+# 
+# Como vimos no exemplo motivacional deste capítulo, há casos (a maioria deles) em que não dispomos de valores exatos (obtidos por soluções analíticas, por exemplo), sendo possível estimar erros relativos apenas aproximadamente usando um _valor de referência_. Costuma-se chamar este valor de _benchmark_. Definido o _benchmark_ por $x'$, o _erro relativo aproximado_ é dado:
+#  
+# $$ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|} = 1 - 
+# \dfrac{ |\hat{x}| }{|x'|}.$$
+# 
+# 
+# No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou $P(x=79.9)$ ou $P_H(x=79.9)$ deveria ser adotado como _benchmark_. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:
+
+# In[35]:
+
+
+ER_ =  abs(PHx - Px)/abs(PHx)
+print(f'{ER_:e}')
+
+
+# ### Erro relativo aproximado percentual
+# 
+# O erro relativo aproximado percentual é, meramente, a versão percentual do erro relativo aproximado, logo, dado por
+# 
+# $$ER'_{\%} = ER' \times 100 \%.$$
+
+# ### Erro de cancelamento
+# 
+# O erro de cancelamento ocorre quando números de grandezas próximas são subtraídos. Como exemplo de situação crítica, induzimos uma divisão por zero usando o valor do épsilon de máquina $\epsilon_M$ ao fazer 
+# 
+# $$\dfrac{1}{(1 + 0.25\epsilon_M) - 1}.$$
+# 
+# Isto ocorre porque o denominador sofre um _cancelamento subtrativo_ Uma vez que $0.25\epsilon_M < \epsilon_M$, a operação $0.25\epsilon_M$ não produz efeito sobre 1, de modo que a computação encontra um "limbo". Para a matemática exata, a operação deveria ser "diferente de zero".
+
+# In[36]:
+
+
+# inf
+from numpy import finfo
+from warnings import filterwarnings; 
+filterwarnings("ignore")
+
+e = finfo(float).eps
+1/(1 + 0.25*e - 1)
+
+
+# ### Erros de truncamento e de arredondamento
+# 
+# O erro de truncamento está relacionado ao "corte" abrupto de dígitos de precisão em um valor numérico ou de parcelas em uma expansão infinita. No início do capítulo, exemplificamos como uma série pode ser aproximada truncando um ou mais termos de sua expansão. 
+# 
+# No caso de números, o truncamento ocorre quando se ignora o valor da $k+1$-ésima casa decimal para finalidades de aproximação até a $k$-ésima casa. Por exemplo, se $x = 13.4256$, a aproximação de $x$ por truncamento até a terceira casa seria $x = 13.425$. O dígito 6 é ignorado nos cálculos. 
+# 
+# No caso do arredondamento, o $k$-ésimo dígito é somado de 1 se o dígito da $k+1$-ésima casa for maior ou igual a 5. A aproximação de $x$ por arredondamento até a terceira casa seria $x = 13.426$, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.
+
+# ## Exemplo aplicado: erros pontuais na função de Airy
+# 
+# A função de Airy é solução da equação de Schrödinger da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma simulação.
+# 
+# Criaremos uma função "perturbada" que desempenhará o papel de função de Airy aproximada, enquanto menteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.
 # 
 
-# In[71]:
+# In[37]:
 
 
 from scipy import special
-import matplotlib.pyplot as plt 
+import numpy as np
 
-# eixo x 
+# Eixo das abscissas
 x = np.linspace(-10, -2, 100)
 
-# funções de Airy e derivadas (solução exata)
-ai, aip, bi, bip = special.airy(x)
+# Funções de Airy e suas derivadas (solução exata)
+A, aip, bi, bip = special.airy(x)
 
-# função de Airy (fazendo papel de solução aproximada)
-ai2 = 1.1*ai + 0.05*np.cos(x) 
+# Função de Airy perturbada
+A_ = 1.152*A + 0.056*np.cos(x) 
 
 
-# Podemos usar o conceito de _função anônima_ para calcular diretamente o **erro relativo percentual** para cada ponto $x$:
+# Podemos usar o conceito de _função anônima_ (`lambda`) para calcular diretamente o erro relativo percentual para cada ponto $x$. Assim, seja:
 # 
-# $$ER_p(x) = \frac{\mid \ f_{aprox}(x) - f_{ex}(x) \ \mid}{\mid \ f_{ex}(x) \ \mid},$$
+# $$ER_{\text{Airy}}(x) = \frac{\mid \ \hat{A}(x) - A(x) \ \mid}{\mid \ A(x) \ \mid},$$
 # 
-# onde $f_{aprox}(x)$ é o valor da função aproximada (de Airy) e 
-# onde $f_{ex}(x)$ é o valor da função exata (de Airy).
+# onde $\hat{A}(x)$ é a função de Airy aproximada e $A(x)$ é a função de Airy exata. Então:
 
-# In[72]:
+# In[38]:
 
 
-# define função anônima para erro relativo
-r = lambda fex,faprox: (np.abs(fex-faprox)/np.abs(fex))/100
+# Define função anônima para erro relativo
+ai = lambda f,f_: (abs(f_ - f)/abs(f)) *100
 
 # calcula erro relativo para função de Airy e sua aproximação
-rel = r(ai,ai2)
+E_airy = ai(A,A_)
 
 
 # A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
 
-# In[73]:
+# In[39]:
 
 
-# plotagens 
-plt.plot(x, ai, 'r', label='sol exata')
-plt.plot(x, ai2, 'b', label='sol aprox')
-plt.grid()
-plt.legend(loc='upper right')
-plt.show()
+# Plotagem das funções 
+from matplotlib.pyplot import plot, grid, legend
 
-plt.plot(x,rel,'-', label='err rel %')
-plt.grid()
-plt.legend(loc='upper right');
+plot(x, A, 'k', label='Airy exata')
+plot(x, A_, 'r', label='Airy aprox.')
+grid()
+legend(loc='upper right');
 
 
-# ## Erro de cancelamento
-# 
-# Ocorre quando números de grandezas próximas são subtraídos. No exemplo, a seguir, induzimos uma divisão por zero usando o valor do épsilon de máquina $\epsilon_m$ ao fazer 
-# 
-# $$\dfrac{1}{(1 + 0.25\epsilon_m) - 1}$$
-# 
-# Isto ocorre porque o denominador sofre um _cancelamento subtrativo_, quando, para a matemática precisa, deveria valer $0.25\epsilon_m$.
-
-# ## Propagação de erros
-# 
-# Vamos comparar duas situações. Calcular 
-# 
-# $$e^{-v} = \sum_{i=0}^{\infty} (-1)^i \frac{v^i}{i!}$$
-# 
-# e comparar com a identidade $$e^{-v} = \dfrac{1}{e^v}.$$
-
-# In[74]:
+# In[40]:
 
 
-# somatória (primeiros 20 termos)
-v = 5.25
-s = 0
-for i in range(20):    
-    print('{0:5g}'.format(s))    
-    s += ((-1)**i*v**i)/np.math.factorial(i)
+# Plotagem do erro 
+plot(x, E_airy)
+grid()
 
-print('\ncaso 1: {0:5g}'.format(s))    
-
-print('caso 2: {0:5g}'.format(1/np.exp(v)))
-
-
-# ## Exemplos
-# 
-# ### Erro relativo percentual
-# 
-# Dois estudantes medem a altura h da sala de aula com dois instrumentos de medida diferentes e encontram, respectivamente $h_1 = 2.965 \pm 0.001 \, m$ e $h_2 = 2.964 \pm 0.002\, m$. Qual o erro relativo percentual cometido por cada um? 
-# 
-# #### Solução 
-# 
-# O valor exato $h$ não é conhecido. O primeiro estudante tem um instrumento cujo erro máximo cometido é $EA_1 = 0.001 \, m$; o segundo, $EA_2 = 0.002 \, m$. Notemos que pelas expressões $EA_1 = | h - h_1 |$ e $EA_2 = | h - h_2 |$, os erros absolutos não são diretamente computáveis. Logo, temos que usar limitantes de erro. 
-# 
-# Assim, os erros relativos são computados com base nos limitantes e nos valores medidos (aproximados). Portanto,  
-# 
-# $$ER_1 = (EA_1/2.965) \times 100\% = (0.001/2.965) \times 100\% = 0.0337\%$$
-# 
-# $$ER_2 = (EA_2/2.964) \times 100\% = (0.002/2.964) \times 100\% = 0.0675\%$$
-
-# ### Erro máximo
-# 
-# Uma sala de formato retangular foi medida e foram obtidos 8 m e 12 m como sendo sua largura e seu comprimento, respectivamente. Sabendo que o erro cometido em cada uma dessas medições foi de no máximo 2 cm, determine o erro máximo cometido no cálculo de sua área. 
-# 
-# #### Solução
-# 
-# Sejam:
-# 
-# - $a'$: largura aproximada (obtida pela medição)
-# - $b'$: comprimento aproximado (obtido pela medição) 
-# - $a$:  largura exata da sala; 
-# - $b$:  comprimento exato da sala
-# - $A'$: área aproximada da sala; 
-# - $A$:  área exata 
-# 
-# São dados $a' = 8m$ e $b' = 12 \, m$. Portanto, $A' = a'b' = 8.12 = 96 \, m^2$. 
-# 
-# Por hipótese, $EA_a = |a-a'| \leq 2 \, cm$ e $EA_b = |b−b'| \leq 2 \, cm$. 
-# 
-# Ou seja, $|a−8| \leq 0.02 \, m$ e $|b−12| \leq 0.02 \, m$, que equivalem a 
-# $$−0.02 \leq a−8 \leq 0.02 \Rightarrow$$ 
-# $$8−0.02 \leq a \leq 8+0.02 \Rightarrow$$
-# $$7.98 \leq a \leq 8.02 \quad(i)$$
-# $$\text{e}$$
-# $$−0.02 \leq b−12 \leq 0.02 \Rightarrow$$
-# $$12−0.02 \leq b \leq 12+0.02 \Rightarrow$$
-# $$11.98 \leq b \leq 12.02 \quad (ii).$$ 
-# 
-# Multiplicando (i) e (ii), obtemos: 
-# $$95.6004 \leq ab \leq 96.4004 \Rightarrow \\
-#   95.6004 \leq A \leq 96.4004 \Rightarrow \\
-#   A \in [95.6004, 96.4004].$$ 
-#   
-# Como $A'$ também pertence ao intervalo, a maior distância entre $A$ e $A'$ ocorre quando $A$ for uma das extremidades do intervalo. Portanto, como 
-# $$|96.0000 − 95.6004| = 0.3960 \, m^2,$$ 
-# 
-# o erro máximo no cálculo da área é de 
-# $$|96.0000 − 96.4004| = 0.4004 \, m^2.$$ 
-
-# ### Truncamento e arredondamento
-# 
-# Considere o sistema $\mathbb{F}(10,4,−3,3)$. Isto é, a representação exata de um númeor real deve ter a forma: $\pm 0.d_1d_2d_3d_4 \times 10^e$, com $d_1 \neq 0$ e $e \in \{−3,−2,−1,0,1,2,3\}$. Sejam $x = 0.2345 \times 10^3$ e $y = 0.7000 \times 10^{−1}$.
-# 
-# Sabemos que $x + y = 234.5 + 0.07 = 234.57$. No entanto, este resultado não pode ser representado neste sistema, pois para isto precisaríamos de cinco dígitos! No caso, seria $x + y = 0.2345{7} \times 10^3.$
-# 
-# Como aproximar a soma $s = x + y$, de tal forma que seja possível representá-la nesse sistema de ponto flutuante?
-# 
-# #### Solução 
-# 
-# Determine os erros.
-# 
-# Temos $d_1 = 2, d_2 = 3,d_3 = 4,d_4 = 5$ e $d_5 = 7$. 
-# 
-# ##### Aproximação por Truncamento 
-# 
-# Despreze o quinto dígito ($d_5 = 7$) para obter $\bar{s} = 0.2345 \times 10^3 = 234.5$. 
-# 
-# Neste caso, o Erro Absoluto é:$|EA_s|=|s−\bar{s}|=
-# |234.57−234.5|=0.07$. 
-# 
-# O valor absoluto do Erro Relativo é: $|ER_s| = \frac{0.07}{234.5} \approx 0.2985 \times 10^{−3}.$
-# 
-# ##### Aproximação por Arredondamento 
-# 
-# O quinto dígito ($d_5 = 7$) é levado em conta, assim provocando uma modificação no quarto dígito ($d_4 = 5$). Como $7 \geq 5$, soma-se $0.5 \times 10^{−4} = 0.00005$ a $s$, obtendo-se: 
-# $$\bar{s} = 0.23462\times 10^3.$$
-# 
-# Daí, trunca-se $\bar{s}$ no quarto novo dígito. 
-# 
-# A aproximação de $s$ por arredondamento é $\bar{s} = 0.2346\times 10^3$.
-# 
-# Neste caso o Erro Absoluto é: $|EA_s|=|s−\bar{s}|=|234.57−234.6|=0.03.$
-# 
-# O Erro Relativo é: $|ER_s| = \frac{0.03}{234.6} \approx 0.1278\times 10^{−3}.$
 
 # ## Definições de erro em aprendizagem de máquina
 # 

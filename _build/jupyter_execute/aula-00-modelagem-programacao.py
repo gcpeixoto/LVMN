@@ -87,7 +87,7 @@
 # 
 # buscamos o valor aproximado da quantidade interpretada como "área sob a curva". Em sentido aplicado, integrações numéricas são realizadas quando a função integrando não admite uma antiderivada, ou quando não é simples de obtê-la por meios conhecidos (ex. integração por partes, substituição, frações parciais). Podem existir inúmeras situações onde a integração numérica é necessária, principalmente no cálculo de centroides, volumes, vazões, energia, entre outros. O problema geral da integração numérica é:
 # 
-# 	$$\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.$$
+# $$\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.$$
 # 
 # Entretanto, para casos práticos, a dimensão máxima para o integrando costuma ser 3, de modo que basta aprendermos a calcular integrais simples, duplas e triplas.
 
@@ -95,7 +95,7 @@
 # 
 # Os problemas de EDOs atrelam-se aos mais diversos fenômenos físicos e leis que os governam. Geralmente, as taxas de variação de uma quantidade são mais importantes do que a quantidade em si. Métodos numéricos para EDOs utilizam _derivadas numéricas_ e são aplicados para fazer predições populacionais, estudar aceleração de corpos,  estimar transferências de quantidades (movimento, massa, calor etc.). Dois tipos de problemas surgem baseados em EDO: problemas de valor inicial (PVIs) e problemas valor de contorno (PVCs). PVIs partem do conhecimento de uma condição inicial para o sistema físico e os métodos numéricos ajudam a descobrir o comportamento posterior do sistema. PVCs são aplicados a problemas em que um dado domínio deve obedecer a certas restrições em sua fronteira ou borda (ex. fluxo de calor dependente da posição, temperatura fixa). Um exemplo de problema cuja solução da EDO dá-se por um algoritmo de "passo simples" seria:
 # 
-# 	$$\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.$$ 
+# $$\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.$$ 
 
 # ### Equações diferenciais parciais (EDPs)
 # 
@@ -109,7 +109,7 @@
 # 
 # Utilizando a fórmula acima, podemos calcular a velocidade atingida por Yan em relação ao tempo. Vejamos como escrever um simples programa para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
 
-# In[3]:
+# In[1]:
 
 
 # velocidade no salto de Yan
