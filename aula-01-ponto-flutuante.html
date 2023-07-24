@@ -1185,12 +1185,12 @@ title="Print to PDF"
 <p>Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.65e0</span><span class="p">,</span> <span class="mf">1.2e-6</span><span class="p">,</span> <span class="mf">0.4532e4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.65e0</span><span class="p">,</span> <span class="mf">1.2e-6</span><span class="p">,</span> <span class="mf">0.4532e4</span><span class="p">,</span> <span class="mf">1e1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.65, 1.2e-06, 4532.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.65, 1.2e-06, 4532.0, 10.0)
 </pre></div>
 </div>
 </div>
@@ -1473,7 +1473,7 @@ title="Print to PDF"
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">yy</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">]),</span><span class="n">xx</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">x</span>
 
-<span class="n">Y</span> <span class="o">=</span> <span class="n">simulacao_F</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">simulacao_F</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 
