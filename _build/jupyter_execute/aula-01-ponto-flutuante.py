@@ -22,13 +22,13 @@
 # 
 # - A fração $1/3 \approx 0.3333\ldots$ é uma dízima. O seu triplo é?
 
-# In[136]:
+# In[1]:
 
 
 1/3
 
 
-# In[137]:
+# In[3]:
 
 
 1/3 + 1/3 + 1/3
@@ -36,7 +36,7 @@
 
 # - A soma $0.3 + 0.3 + 0.3$ difere de $0.9$.
 
-# In[138]:
+# In[4]:
 
 
 0.3 + 0.3 + 0.3
@@ -52,7 +52,7 @@
 
 # - Multiplicação por fracionários
 
-# In[140]:
+# In[5]:
 
 
 # note a variabilidade de dígitos após o ponto
@@ -115,10 +115,10 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:
 
-# In[145]:
+# In[6]:
 
 
-2.65e0, 1.2e-6, 0.4532e4
+2.65e0, 1.2e-6, 0.4532e4, 1e1
 
 
 # ## Conversão numérica entre sistemas
@@ -298,7 +298,7 @@ if __name__ == "__main__":
 # 
 # Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-# In[150]:
+# In[7]:
 
 
 from matplotlib.pyplot import subplots
@@ -326,7 +326,7 @@ ax.set_xlim([0.23,3.6]);
 # 
 # O código abaixa gera uma reta perfurada para o sistema computacional de interesse.
 
-# In[151]:
+# In[10]:
 
 
 import numpy as np
@@ -353,7 +353,7 @@ def simulacao_F(b,t,L,U):
     x = np.concatenate([yy,np.array([0.]),xx])
     return x
 
-Y = simulacao_F(2,2,-3,2)
+Y = simulacao_F(2,4,-3,5)
 X = np.zeros(Y.shape)
 
 
@@ -475,7 +475,7 @@ ax.set_title('Variação relativa a $\epsilon \\to \epsilon_M $');
 # 
 # A partir desses valores especiais, operáveis pelo módulo _numpy_ com `numpy.nan` e `numpy.inf`, respectivamente, podemos imitar operações matemáticas "equivalentes". Primeiramente, façamos:
 
-# In[154]:
+# In[11]:
 
 
 from numpy import nan, inf
