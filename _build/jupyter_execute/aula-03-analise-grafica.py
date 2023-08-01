@@ -56,7 +56,7 @@
 
 # A análise gráfica serve para visualizar o comportamento da função e verificar aproximadamente onde há possíveis raízes. Este processo é conhecido como _localização_.
 
-# In[1]:
+# In[7]:
 
 
 import numpy as np
@@ -69,7 +69,7 @@ m = 70.0
 g = 9.81
 
 
-# In[2]:
+# In[8]:
 
 
 # Localização
@@ -90,7 +90,7 @@ plt.grid(True)
 # 
 # Nos gráficos abaixo, 
 
-# In[3]:
+# In[9]:
 
 
 # Refinamento
@@ -103,7 +103,7 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[4]:
+# In[10]:
 
 
 # Refinamento
@@ -116,7 +116,7 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[5]:
+# In[11]:
 
 
 # Refinamento
@@ -129,11 +129,11 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[6]:
+# In[14]:
 
 
 # Refinamento
-a,b = 15.1,15.2
+a,b = 15.12,15.14
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 

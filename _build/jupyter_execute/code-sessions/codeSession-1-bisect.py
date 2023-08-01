@@ -3,9 +3,12 @@
 
 # # Code session 1
 
-# In[1]:
+# O propósito desta _Code Session_ é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função `bisect` do módulo `scipy.optimize`. Em particular, resolvemos alguns com aplicações à Física e à Mecânica.
+
+# In[6]:
 
 
+# Importação de módulos auxiliares
 import numpy as np 
 import matplotlib.pyplot as plt 
 
@@ -14,8 +17,7 @@ import matplotlib.pyplot as plt
 # 
 # `bisect`
 # 
-# A função `bisect` localiza a raiz de uma função dentro de um intervalo dado usando o método da bisseção. 
-# Os argumentos de entrada obrigatórios desta função são: 
+# A função `bisect` localiza a raiz de uma função dentro de um intervalo dado usando o método da bisseção. Os argumentos de entrada obrigatórios de `bisect` são: 
 # 
 # 1. a função-alvo `f` (contínua)
 # 2. o limite esquerdo `a`
@@ -29,98 +31,92 @@ import matplotlib.pyplot as plt
 # 
 # O argumento de saída é:
 # 
-# - `x0`: a estimativa para a raiz de `f`
-# 
-# Como importá-la? 
-# 
-# ```python 
-# from scipy.optimize import bisect
-# ```
+# - `x`: a estimativa para a raiz de `f`
 
-# In[2]:
+# In[7]:
 
 
+# Importação de bisect
 from scipy.optimize import bisect
 
 
 # ### Problema 1
 # 
-# Encontre a menor raiz positiva (real) de $x^{3} - 3.23x^{2} - 5.54x + 9.84 = 0$  pelo método da bisseção.
+# Encontre a menor raiz positiva (real) de $f(x) = x^{3} - 3.23x^{2} - 5.54x + 9.84$.
 
 # #### Resolução
 
-# In[3]:
+# In[8]:
 
 
-# função
+# Definição da função polinomial
 def f(x): 
     return x**3 - 3.23*x**2 - 5.54*x + 9.84
 
 
-# In[4]:
+# In[10]:
 
 
-# analise gráfica 
+# Analise gráfica simples
 x = np.linspace(-4,5)
-plt.plot(x,f(x));
-plt.axhline(y=0,color='r');
-plt.axvline(x=0,color='r');
+plt.plot(x,f(x))
+plt.axhline(y=0,color='r', linestyle=':');
+plt.axvline(x=0,color='r', linestyle=':');
 
 
 # Pelo gráfico, vemos que a menor raiz positiva está localizada no intervalo $(0,2]$. Vamos determiná-la utilizando este intervalo de confinamento. 
 
-# In[5]:
+# In[13]:
 
 
-# resolução com bisect 
+# Resolução com bisect 
 
-x = bisect(f,0,2) # raiz 
-
-print('Raiz: x = %f' % x)
+x = bisect(f,0,2) # raiz
+print(f'Raiz: x = {x:.6f}') # impressão de valor
 
 
 # ### Problema 2
 # 
-# Determine a menor raiz não nula positiva de $\cosh(x) \cos(x) - 1 = 0$ dentro do intervalo $(4,5)$.
+# Determine a raiz de menor módulo de $\cosh(x) \cos(x) - 1 = 0$.
 
 # #### Resolução
 # 
 # Sigamos o procedimento aprendido com `bisect`. 
 
-# In[6]:
+# In[30]:
 
 
-# função
+# Definição da função transcendental
 def f(x): 
     return np.cosh(x)*np.cos(x) - 1 
 
 
-# In[7]:
+# In[32]:
 
 
-# analise gráfica 
-x = np.linspace(4,5)
+# Analise gráfica 
+x = np.linspace(-5,5)
 plt.plot(x,f(x));
-plt.axhline(y=0,color='r');
+plt.axhline(y=0,color='r',linestyle=':');
+plt.axvline(x=0,color='r',linestyle=':');
 
 
-# In[8]:
+# In[34]:
 
 
-# resolução com bisect 
+# Resolução
 
-x = bisect(f,4,5) # raiz 
-
-print('Raiz: x = %f' % x)
+x = bisect(f,-5,-4) # raiz de menor módulo 
+print(f'Raiz: x = {x:.6f}') # impressão de valor
 
 
 # ### Problema 3
 # 
-# Uma raiz da equação $\tan(x) - \tanh(x) = 0$ encontra-se em $(7.0,7.4)$. Determine esta raiz com três casas decimais de precisão pelo método da bisseção.
+# Determine a raiz da equação $\tan(x) - \tanh(x) = 0$ que encontra-se em $(7.0,7.4)$. Determine esta raiz com três casas decimais de precisão pelo método da bisseção.
 
 # #### Resolução
 
-# In[9]:
+# In[35]:
 
 
 # função
@@ -128,23 +124,43 @@ def f(x):
     return np.tan(x) - np.tanh(x)
 
 
-# In[10]:
+# Como o processo de análise gráfica é repetitivo, podemos criar outra função auxiliar dedicada à plotagem para refinamento.
+
+# In[45]:
 
 
-# analise gráfica 
-x = np.linspace(7,7.4)
-plt.plot(x,f(x));
-plt.axhline(y=0,color='r');
+def aux_plot(a,b,fun):
+    """Função auxiliar de plotagem
+    
+    Parâmetros: 
+        a: limite inferior de plotagem (float)
+        b: limite superior de plotagem (float)
+        fun: função a ser plotada (function)
+
+    Retorno: 
+        None
+    """
+    x = np.linspace(a,b,100)
+    plt.plot(x,f(x))
+    plt.axhline(y=0,color='r',linestyle=':');
+    
+
+
+# In[63]:
+
+
+# Analise gráfica 
+aux_plot(6.5,7.5,f) # intervalo estendido
 
 
 # Para obter as 3 casas decimas, vamos imprimir o valor final com 3 casas decimais. 
 
-# In[11]:
+# In[66]:
 
 
-x = bisect(f,7,7.4) # raiz 
-
-print('Raiz: x = %.3f' % x)
+# Resolução
+x = bisect(f,7.0,7.4) # raiz de menor módulo 
+print(f'Raiz: x = {x:.3f}') # impressão de valor
 
 
 # ### Problema 4
@@ -153,7 +169,7 @@ print('Raiz: x = %.3f' % x)
 
 # #### Resolução
 
-# In[12]:
+# In[68]:
 
 
 # função
@@ -161,76 +177,70 @@ def f(x):
     return np.sin(x) + np.cos(x) - 1
 
 
-# In[13]:
+# In[69]:
 
 
-# analise gráfica 
-x = np.linspace(-2,2)
-plt.plot(x,f(x));
-plt.axhline(y=0);
+# Analise gráfica 
+aux_plot(-2,2,f)
 
 
 # A análise gráfica mostra duas raízes. Vamos encontrar uma de cada vez.
 
-# In[14]:
+# In[82]:
 
 
-# resolução com bisect 
+# Resolução
 
 x1 = bisect(f,-2,1) # raiz 1  
 x2 = bisect(f,1,2) # raiz 2 
 
-print('Raízes: x1 = %f; x2 = %f' % (x1,x2))
+print(f'Raízes: x1 = {x1:e}; x2 = {x2:e}')
 
 
 # ### Problema 5
 # 
-# Determine todas as raízes reais de $P(x) = x^4 + 0.9x^3 - 2.3x^2 + 3.6x - 25.2$
+# Determine todas as raízes reais de $f(x) = x^4 + 0.9x^3 - 2.3x^2 + 3.6x - 25.2$
 
 # #### Resolução
 
-# In[15]:
+# In[86]:
 
 
 # função 
-def P(x):
+def f(x):
     return x**4 + 0.9*x**3 - 2.3*x**2 + 3.6*x - 25.2
 
 
-# In[16]:
+# In[89]:
 
 
-# define função para analise gráfica 
-def analise_grafica(xrange,f):
-    plt.plot(xrange,f(xrange));
-    plt.axhline(y=0);
+# Analise gráfica 
+aux_plot(-100,100,f)
 
 
-# In[17]:
+# In[91]:
 
 
-# analise gráfica 1
-xrange = np.linspace(-10,10)
-analise_grafica(xrange,P)
+# Refinamento
+aux_plot(-20,20,f)
 
 
-# In[18]:
+# In[92]:
 
 
-# refinamento
-xrange = np.linspace(-5,5)
-analise_grafica(xrange,P)
+# Refinamento
+aux_plot(-5,5,f)
 
 
-# In[19]:
+# In[93]:
 
 
-# resolução com bisect 
+# Resolução
 
-x1 = bisect(P,-4,-2) # raiz 1  
-x2 = bisect(P,1,3) # raiz 2 
+x1 = bisect(f,-4,-2) # raiz 1  
+x2 = bisect(f,1,3) # raiz 2 
 
-print('Raízes: x1 = %f; x2 = %f' % (x1,x2))
+print(f'Raízes: x1 = {x1:e}; x2 = {x2:e}')
 
 
 # ### Problema 6
@@ -243,7 +253,7 @@ print('Raízes: x1 = %f; x2 = %f' % (x1,x2))
 
 # #### Resolução
 
-# In[20]:
+# In[94]:
 
 
 # parâmetros do problema
@@ -257,28 +267,24 @@ g = 9.8
 f = lambda theta: x*np.tan(theta) - 0.5*(x**2*g/v0**2)*(1/(np.cos(theta)**2)) + h - y
 
 
-# In[21]:
+# In[95]:
 
 
-# análise gráfica
-th = np.linspace(0,0.95*np.pi/2,50)
-plt.plot(th,f(th));
-plt.axhline(y=0,color='r');
+# Análise gráfica
+aux_plot(0,0.96*np.pi/2,f)
 
 
-# In[22]:
+# In[96]:
 
 
-# análise gráfica - 2
-th = np.linspace(0,np.pi/4,50)
-plt.plot(th,f(th));
-plt.axhline(y=0,color='r');
+# Refinamento
+aux_plot(0,np.pi/4,f)
 
 
-# In[23]:
+# In[98]:
 
 
-# resolução por bisseção
+# Resolução
 xr = bisect(f,0.1,0.6)
 print('Ângulo de lançamento: %.2f graus' % np.rad2deg(xr))
 
@@ -295,7 +301,7 @@ print('Ângulo de lançamento: %.2f graus' % np.rad2deg(xr))
 # 
 # Para este problema, definiremos duas funções, uma auxiliar, que chamaremos `a`, e a função `f(h)` que reescreve a equação de Bernoulli acima em função de $h$. 
 
-# In[24]:
+# In[99]:
 
 
 # função para cálculo de parâmetros
@@ -311,7 +317,7 @@ def f(h):
 
 # Note que a função `a` é apenas uma conveniência para o cálculo do termo comum envolvendo a vazão e para construírmos uma generalização para os dados de entrada. Em seguida, definiremos os parâmetros de entrada do problema. 
 
-# In[25]:
+# In[100]:
 
 
 # parâmetros de entrada
@@ -324,35 +330,32 @@ H = 0.075 # m
 
 # A partir daí, podemos realizar a análise gráfica para verificar o comportamento de `f(h)`.
 
-# In[26]:
+# In[101]:
 
 
-# análise gráfica
-h = np.linspace(0.1,6,num=100)
-plt.plot(h,f(h),h,f(h)*0);
+# Análise gráfica
+aux_plot(0.1,6,f)
 
 
 # Ampliemos a localização.
 
-# In[27]:
+# In[102]:
 
 
-# análise gráfica
-h = np.linspace(0.25,0.6,num=100)
-plt.plot(h,f(h),h,f(h)*0);
+aux_plot(0.25,0.6,f)
 
 
 # Verificamos que `f(h)` admite duas soluções. Vamos determinar cada uma delas. 
 
-# In[28]:
+# In[104]:
 
 
-# solução  
+# Resolução  
 h1 = bisect(f,0.25,0.32)
-print('Raiz: h1 = %f' % h1)
+print(f'Raiz: h1 = {h1:.8f}')
 
 h2 = bisect(f,0.4,0.55)
-print('Raiz: h2 = %f' % h2)
+print(f'Raiz: h2 = {h2:.8f}')
 
 
 # **Nota:** as duas soluções viáveis dizem respeito ao regime de escoamento no canal aberto. Enquanto $h_1$ é um limite para escoamento supercrítico (rápido), $h_2$ é um limite para escoamento subcrítico (lento).
@@ -371,7 +374,7 @@ print('Raiz: h2 = %f' % h2)
 # 
 # Seguiremos a mesma ideia utilizada no Problema 7. Primeiramente, construímos uma função auxiliar para calcular parâmetros e, em seguida, definimos uma função `f(t)`.  
 
-# In[29]:
+# In[106]:
 
 
 # função para cálculo de parâmetros
@@ -386,7 +389,7 @@ def f(t):
 
 # Definimos os parâmetros do problema.
 
-# In[30]:
+# In[107]:
 
 
 # parâmetros de entrada
@@ -399,17 +402,16 @@ v = 335.0 # m/s
 
 # Utilizaremos a análise gráfica para determinar o intervalo de refinamento da raiz. 
 
-# In[31]:
+# In[108]:
 
 
-# análise gráfica
-t = np.linspace(0.5,100,num=100)
-plt.plot(t,f(t),t,f(t)*0);
+# Análise gráfica
+aux_plot(0.5,100,f)
 
 
 # Podemos verificar que a raiz está entre 60 e 80 segundos. Utilizaremos estes limitantes. 
 
-# In[32]:
+# In[109]:
 
 
 # solução  
