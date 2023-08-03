@@ -3,153 +3,144 @@
 
 # # Implementação do método de Newton
 
-# - Analisar a dependência da estimativa inicial. 
-# - Executar o código duas vezes: para $x_0=0.0$ e $x_0=1.0$ em $f(x) = -0.9x^2 + 1.7x + 2.5$.
+# Neste capítulo, utilizamos uma implementação própria do método de Newton para resolver equações não-lineares unidimensionais. O algoritmo é limitado para a entrada de funções matemáticas.
+# 
+# Para ser executado, o método `newton` requer 5 parâmetros: 
+# 
+# - a estimativa inicial, representada pela variável `x0`;
+# - a função $f(x)$ propriamente dita, representada por `f`;
+# - a derivada $f'(x)$, representada por `df`;
+# - o erro relativo assumido, representado por `tol`;
+# - o número máximo de iterações $N$ para tentativa de solução, representado por `nmax`.
 
-# In[2]:
+# In[14]:
 
 
-# Método de Newton
-
-from numpy import linspace
+import inspect, re
+import numpy as np
 from matplotlib.pyplot import plot
+from prettytable import PrettyTable as pt
 
-def newton(x0,f,df,tol,nmax,var,plotar):
+def newton(x0,f,df,tol,N):
+    """Algoritmo para determinação de raízes pelo método de Newton.
 
-    f = eval('lambda x:' + f)
-    df = eval('lambda x:' + df)
+    Parâmetros: 
+        x0: estimativa inicial
+        f: string dependendo de uma variável, i.e., a função-alvo
+            (e.g., 'x**2 - 1', 'x**2*cos(x)', etc.) 
+        df: string dependendo de uma variável, i.e., a derivada da função-alvo
+        tol: erro desejado (tolerância)
+        N: número máximo de iterações a repetir
 
+    Retorno: 
+        xm: raiz da funcao    
+    """
+
+    # construtor de tabela
+    table = pt()
+    
+    # substitui expressões da string pelas chamadas das funções do numpy
+    f = re.sub('(sin|sinh|cos|cosh|tan|tanh|exp|log|sqrt|log10|arcsin|arccos|arctan|arcsinh|arccosh|arctanh)', r'np.\1', f)
+    df = re.sub('(sin|sinh|cos|cosh|tan|tanh|exp|log|sqrt|log10|arcsin|arccos|arctan|arcsinh|arccosh|arctanh)', r'np.\1', df)
+    
+    # identifica a variável independente em f
+    var = re.search(r'([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))', f).group(1)
+    
+    # cria função
+    f = eval('lambda ' + var + ' :' + f)
+    
+    # checa se a função é de uma variável, senão lança erro        
+    try: 
+        len(inspect.getfullargspec(f).args) - 1 > 0
+    except:
+        raise ValueError('O código é válido apenas para uma variável.')
+    finally:
+        # cria função derivada
+        df = eval('lambda ' + var + ' :' + df)
+    
     it = 0 # contador de iteracoes
+    
+    # cabeçalho de tabela
+    table.field_names = ['i','x','f(x)','f\'(x)','ER']
 
     # imprime estimativa inicial
-    print('Estimativa inicial: x0 = {0}\n'.format(x0))  
+    print(f'Estimativa inicial: x0 = {x0:.6f}\n')  
 
     # Loop 
-    for i in range(0,nmax):
+    for i in range(0,N):
         
         x = x0 - f(x0)/df(x0) # funcao de iteracao 
         
         e = abs(x-x0)/abs(x) # erro
         
         # tabela
-        print('{0:d}  {1:f}  {2:f}  {3:f}  {4:e}'.format(i,x,f(x),df(x),e))
+        # impressão de tabela
+        table.add_row([i,np.round(x,8),np.round(f(x),8),np.round(df(x),4),f'{e:e}'])
+        table.align = 'c';      
         
         if e < tol:
             break
         x0 = x                
         
-    if i == nmax:
-        print('Solução não obtida em {0:d} iterações'.format(nmax))
+    print(table)
+       
+    if i == N:
+        print(f'Solução não obtida em {N:d} iterações')
     else:
-        print('Solução obtida: x = {0:.10f}'.format(x))
+        print(f'Solução obtida: x = {x:.6f}')
 
-    # plotagem
-    if plotar:        
-        delta = 3*x
-        dom = linspace(x-delta,x+delta,30)
-        plot(dom,f(dom),x,f(x),'ro')
 
     return x
-      
-    
-# parametros    
-x0 = 0. # estimativa inicial
-tol = 1e-3 # tolerancia
-nmax = 100 # numero maximo de iteracoes
-f = '-0.9*x**2 + 1.7*x + 2.5'   # funcao
-df = '-1.8*x + 1.7'   # derivada dafuncao
-var = 'x'
-plotar = True
-
-# chamada da função
-xm = newton(x0,f,df,tol,nmax,var,plotar)
 
 
-# In[3]:
-
-
-# chamada da função
-xm = newton(1.0,f,df,tol,nmax,var,plotar)
-
-
-# ## Desafio
+# ## Exemplo
 # 
-# 1. Generalize o código acima para que a expressão da derivada seja calculada diretamenta e não manualmente. (dica: use computação simbólica)
-# 2. Resolva o problema aplicado abaixo com este método ou desenvolva o seu para resolver e compare com a função residente do `scipy`.
+# Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
-# ### Problema aplicado
+# In[16]:
+
+
+# Chamada da função
+xm = newton(-0.1,
+            '-arccos(x) + 4*sin(x) + 1.7',
+            '4*cos(x) - 1/(1 - x**2)**1/2',
+            1e-3,
+            30)
+
+
+# ## Exemplo
 # 
-# Um jogador de futebol americano está prestes a fazer um lançamento para outro jogador de seu time. O lançador tem uma altura de 1,82 m e o outro jogador está afastado de 18,2 m. A expressão que descreve o movimento da bola é a familiar equação da física que descreve o movimento de um projétil:
+# Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
+
+# Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função $h(z)$. Vamos encontrá-la utilizando o módulo de computação simbólica `sympy`.
+
+# In[19]:
+
+
+# Importa variável z como símbolo
+from sympy.abc import z 
+import sympy as sym
+
+# Derivada
+dh = sym.diff(-z/(1 - 2*z) - sym.tan(z+1))
+
+# Impressão
+print(dh)
+
+
+# A partir daí, utilizamos a expressão normalmente na função.
+
+# In[20]:
+
+
+zm = newton(5,
+            'z/(1 - 2*z) - tan(z+1)',
+            '-2*z/(1 - 2*z)**2 - tan(z + 1)**2 - 1 - 1/(1 - 2*z)',
+            1e-5,30)
+
+
+# Compare a quantidade de iterações obtidas com o mesmo exemplo resolvido com o algoritmo da bisseção.
+
+# ## Tarefa
 # 
-# $$y = x\tan(\theta) - \dfrac{1}{2}\dfrac{x^2 g}{v_0^2}\dfrac{1}{\cos^2(\theta)} + h,$$
-# 
-# onde $x$ e $y$ são as distâncias horizontal e verical, respectivamente, $g=9,8 \, m/s^2$ é a aceleração da gravidade, $v_0$ é a velocidade inicial da bola quando deixa a mão do lançador e $\theta$ é o Ângulo que a bola faz com o eixo horizontal nesse mesmo instante. Para $v_0 = 15,2 \, m/s$, $x = 18,2 \, m$, $h = 1,82 \, m$ e $y = 2,1 \, m$, determine o ângulo $\theta$ no qual o jogador deve lançar a bola. 
-
-# ### Solução por função residente
-# 
-# - Importar módulos
-# - Definir função $f(\theta)$
-
-# In[4]:
-
-
-from scipy.optimize import newton 
-import numpy as np
-import matplotlib.pyplot as plt
-
-v0 = 15.2
-x = 18.2
-h = 1.82
-y = 2.1
-g = 9.8
-
-# f(theta) = 0
-f = lambda theta: x*np.tan(theta) - 0.5*(x**2*g/v0**2)*(1/(np.cos(theta)**2)) + h - y
-
-
-# ## Localização 
-
-# In[5]:
-
-
-th = np.linspace(0.1,1.4,100,True)
-plt.plot(th,f(th))
-plt.xlabel('angulo');
-
-
-# In[6]:
-
-
-th = np.linspace(0.4,0.8,100,True)
-plt.plot(th,f(th))
-plt.xlabel('angulo');
-
-
-# In[7]:
-
-
-th = np.linspace(0.45,0.47,100,True)
-plt.plot(th,f(th))
-plt.xlabel('angulo');
-
-
-# ## Refinamento
-# 
-# Para a função residente, nem é preciso fazer um processo de localização prolongado de modo a entrar com uma estimativa inicial muito próxima. Plotar a função até um intervalo razoável já é suficiente para ter uma noção sobre onde a raiz está. 
-# 
-# Quanto à escolha da estimativa inicial, ainda que seja "mal feita", o método poderá encontrar a raiz de modo rápido, pois sua programação é robusta. 
-# 
-# Vejamos então, qual é a raiz com uma estimativa inicial de 0.47.
-
-# In[8]:
-
-
-ang = newton(f,0.47)
-ang
-
-
-# In[9]:
-
-
-np.rad2deg(ang)
-
+# - Generalize o código acima para que a expressão da derivada seja calculada diretamenta por computação simbólica sem intervenção manual.
