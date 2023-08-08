@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>19. Polinômio Interpolador de Newton (Diferenças Divididas) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>18. Polinômio Interpolador de Newton (Diferenças Divididas) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="20. Ajuste de Curvas por Mínimos Quadrados" href="aula-16-minimos-quadrados.html" />
-    <link rel="prev" title="17. Polinômio Interpolador de Lagrange" href="aula-14-interpolacao-lagrange.html" />
+    <link rel="next" title="19. Ajuste de Curvas por Mínimos Quadrados" href="aula-16-minimos-quadrados.html" />
+    <link rel="prev" title="16. Polinômio Interpolador de Lagrange" href="aula-14-interpolacao-lagrange.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,17 +124,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem Matemática em Ciências Computacionais e Engenharias
+   1. Modelagem matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,98 +148,93 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-09-eliminacao-gauss.html">
-   10. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
+   9. Álgebra linear com Python: Eliminação Gaussiana e Condicionamento
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-10-fatoracao-lu.html">
-   12. Fatoração LU com Python
+   11. Fatoração LU com Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-11-cholesky.html">
-   13. Fatoração de Cholesky
+   12. Fatoração de Cholesky
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-12-jacobi.html">
-   14. Método de Jacobi-Richardson
+   13. Método de Jacobi-Richardson
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-13-newton-nao-linear.html">
-   15. Método de Newton para sistemas não-lineares
+   14. Método de Newton para sistemas não-lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-14-interpolacao-lagrange.html">
-   17. Polinômio Interpolador de Lagrange
+   16. Polinômio Interpolador de Lagrange
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   19. Polinômio Interpolador de Newton (Diferenças Divididas)
+   18. Polinômio Interpolador de Newton (Diferenças Divididas)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-16-minimos-quadrados.html">
-   20. Ajuste de Curvas por Mínimos Quadrados
+   19. Ajuste de Curvas por Mínimos Quadrados
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-17-ajusteNaoLinear.html">
-   21. Ajuste de curvas: caso não-linear
+   20. Ajuste de curvas: caso não-linear
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-18-integracao-newtonCotes.html">
-   22. Integração Numérica: Regras de Newton-Cotes
+   21. Integração Numérica: Regras de Newton-Cotes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-19-quadratura-gaussiana.html">
-   23. Integração Numérica: Quadratura Gaussiana
+   22. Integração Numérica: Quadratura Gaussiana
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-20-diferenciacao-numerica.html">
-   24. Diferenciação Numérica
+   23. Diferenciação Numérica
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-21-solucoes-edo.html">
-   25. Introdução à solução numérica de EDOs
+   24. Introdução à solução numérica de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-22-metodo-euler.html">
-   26. Método de Euler
+   25. Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-23-taylor-rungeKutta.html">
-   27. Métodos de Taylor de Ordem Superior
+   26. Métodos de Taylor de Ordem Superior
   </a>
  </li>
 </ul>
@@ -250,37 +245,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-1-bisect.html">
+  <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-2-newton.html">
+  <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-3-polyval.html">
+  <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-4-fsolve.html">
+  <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-5-solve.html">
+  <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-6-interp.html">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-7-fit.html">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -288,12 +283,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-8-integrate.html">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -337,28 +332,113 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Extra
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   28. Números em ponto flutuante e seus problemas
+   27. Números em ponto flutuante e seus problemas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-fft.html">
-   29. Processamento de sinais
+   28. Processamento de sinais
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-numba.html">
-   30. Otimização de código
+   29. Otimização de código
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
-   31. Plotagem com
+   30. Plotagem com
    <em>
     matplotlib
    </em>
@@ -367,47 +447,52 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   32. Malhas numéricas
+   31. Malhas numéricas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
-   33. Campos de direção
+   32. Campos de direção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   34. Variações do Método de Euler
+   33. Variações do Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   35. Estabilidade Numérica para o Método de Euler
+   34. Estabilidade Numérica para o Método de Euler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   36. Método de Euler Implícito
+   35. Método de Euler Implícito
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   37. Métodos de Adams-Bashfort
+   36. Métodos de Adams-Bashfort
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-edoSuperior.html">
-   38. EDOs de ordem superior (redução de ordem)
+   37. EDOs de ordem superior (redução de ordem)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-sistemasEDO.html">
-   39. Sistemas de EDOs
+   38. Sistemas de EDOs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   40. Método das Linhas
+   39. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   40. Documentação de código
   </a>
  </li>
 </ul>
@@ -573,44 +658,44 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacao-linear">
-   19.1. Interpolação Linear
+   18.1. Interpolação Linear
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacao-quadratica">
-   19.2. Interpolação Quadrática
+   18.2. Interpolação Quadrática
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#forma-geral-dos-polinomios-interpoladores-de-newton">
-   19.3. Forma Geral dos Polinômios Interpoladores de Newton
+   18.3. Forma Geral dos Polinômios Interpoladores de Newton
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#funcoes-de-base-de-newton">
-   19.4. Funções de Base de Newton
+   18.4. Funções de Base de Newton
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exemplo">
-     19.4.1. Exemplo:
+     18.4.1. Exemplo:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     19.4.2. Exemplo:
+     18.4.2. Exemplo:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     19.4.3. Exemplo:
+     18.4.3. Exemplo:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparacao-zoom">
-   19.5. Comparação (zoom)
+   18.5. Comparação (zoom)
   </a>
  </li>
 </ul>
@@ -634,44 +719,44 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacao-linear">
-   19.1. Interpolação Linear
+   18.1. Interpolação Linear
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacao-quadratica">
-   19.2. Interpolação Quadrática
+   18.2. Interpolação Quadrática
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#forma-geral-dos-polinomios-interpoladores-de-newton">
-   19.3. Forma Geral dos Polinômios Interpoladores de Newton
+   18.3. Forma Geral dos Polinômios Interpoladores de Newton
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#funcoes-de-base-de-newton">
-   19.4. Funções de Base de Newton
+   18.4. Funções de Base de Newton
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exemplo">
-     19.4.1. Exemplo:
+     18.4.1. Exemplo:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     19.4.2. Exemplo:
+     18.4.2. Exemplo:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     19.4.3. Exemplo:
+     18.4.3. Exemplo:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparacao-zoom">
-   19.5. Comparação (zoom)
+   18.5. Comparação (zoom)
   </a>
  </li>
 </ul>
@@ -685,9 +770,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="polinomio-interpolador-de-newton-diferencas-divididas">
-<h1><span class="section-number">19. </span>Polinômio Interpolador de Newton (Diferenças Divididas)<a class="headerlink" href="#polinomio-interpolador-de-newton-diferencas-divididas" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">18. </span>Polinômio Interpolador de Newton (Diferenças Divididas)<a class="headerlink" href="#polinomio-interpolador-de-newton-diferencas-divididas" title="Permalink to this headline">#</a></h1>
 <section id="interpolacao-linear">
-<h2><span class="section-number">19.1. </span>Interpolação Linear<a class="headerlink" href="#interpolacao-linear" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.1. </span>Interpolação Linear<a class="headerlink" href="#interpolacao-linear" title="Permalink to this headline">#</a></h2>
 <p>Excluindo-se o caso de função constante, a forma mais simples de interpolação é ligar dois pontos dados com uma reta. Usando semelhança de triângulos entre nós e valores de função, obtemos</p>
 <div class="math notranslate nohighlight">
 \[ \dfrac{f_1(x) − f(x_0)}{x − x_0} = \dfrac{f(x_1) − f(x_0)}{x_1 − x_0} \]</div>
@@ -697,7 +782,7 @@ title="Print to PDF"
 <p>A notação <span class="math notranslate nohighlight">\(f_1(x)\)</span> indica que esse é um polinômio interpolador de primeiro grau. Observe que, além de representar a inclinação da reta ligando os pontos, o termo <span class="math notranslate nohighlight">\([f(x_1) − f(x_0)]/(x_1 − x_0)\)</span> é uma aproximação por diferenças divididas da primeira derivada.</p>
 </section>
 <section id="interpolacao-quadratica">
-<h2><span class="section-number">19.2. </span>Interpolação Quadrática<a class="headerlink" href="#interpolacao-quadratica" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.2. </span>Interpolação Quadrática<a class="headerlink" href="#interpolacao-quadratica" title="Permalink to this headline">#</a></h2>
 <p>Com três pontos, a interpolação quadrática é obtida a partir de</p>
 <div class="math notranslate nohighlight">
 \[ f_2(x) = b_0 + b_1(x − x_0) + b_2(x − x_0)(x − x_1) \qquad (2) \]</div>
@@ -713,7 +798,7 @@ title="Print to PDF"
 \[ b_2 = \dfrac{\dfrac{f(x_2) − f(x_1)}{x_2 − x_1} − \dfrac{f(x_1) − f(x_0)}{x_1 − x_0}}{x_2 − x_0} \qquad (5) \]</div>
 </section>
 <section id="forma-geral-dos-polinomios-interpoladores-de-newton">
-<h2><span class="section-number">19.3. </span>Forma Geral dos Polinômios Interpoladores de Newton<a class="headerlink" href="#forma-geral-dos-polinomios-interpoladores-de-newton" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.3. </span>Forma Geral dos Polinômios Interpoladores de Newton<a class="headerlink" href="#forma-geral-dos-polinomios-interpoladores-de-newton" title="Permalink to this headline">#</a></h2>
 <p>A análise anterior pode ser generalizada para ajustar um polinômio de grau <span class="math notranslate nohighlight">\(n\)</span> a <span class="math notranslate nohighlight">\(n + 1\)</span> pontos dados. O polinômio de grau <span class="math notranslate nohighlight">\(n\)</span> é</p>
 <div class="math notranslate nohighlight">
 \[ f_n(x) = b_0 + b_1(x − x_0) + \dots + b_n(x − x_0)(x − x_1) \dots (x − x_{n − 1}) \qquad (6) \]</div>
@@ -737,7 +822,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 \[ f[x_n, x_{n − 1}, \dots , x_1, x_0] = \dfrac{f[x_n, x_{n − 1}, \dots , x_1] − f[x_{n − 1}, x_{n − 2}, \dots , x_0]}{x_n − x_0} \]</div>
 </section>
 <section id="funcoes-de-base-de-newton">
-<h2><span class="section-number">19.4. </span>Funções de Base de Newton<a class="headerlink" href="#funcoes-de-base-de-newton" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.4. </span>Funções de Base de Newton<a class="headerlink" href="#funcoes-de-base-de-newton" title="Permalink to this headline">#</a></h2>
 <p>Código gerador de funções de base de Newton de grau <span class="math notranslate nohighlight">\(n\)</span> por computação simbólica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -838,7 +923,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 <section id="exemplo">
-<h3><span class="section-number">19.4.1. </span>Exemplo:<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">18.4.1. </span>Exemplo:<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 1 <span class="math notranslate nohighlight">\(P_1(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
 <thead>
@@ -922,7 +1007,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </section>
 <section id="id1">
-<h3><span class="section-number">19.4.2. </span>Exemplo:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">18.4.2. </span>Exemplo:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 2 <span class="math notranslate nohighlight">\(P_2(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1005,7 +1090,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </section>
 <section id="id2">
-<h3><span class="section-number">19.4.3. </span>Exemplo:<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">18.4.3. </span>Exemplo:<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>Encontre o polinômio interpolador de Newton de ordem 3 <span class="math notranslate nohighlight">\(P_3(x)\)</span> para a tabela abaixo</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1123,7 +1208,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </section>
 </section>
 <section id="comparacao-zoom">
-<h2><span class="section-number">19.5. </span>Comparação (zoom)<a class="headerlink" href="#comparacao-zoom" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.5. </span>Comparação (zoom)<a class="headerlink" href="#comparacao-zoom" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interpoladores</span>
@@ -1179,13 +1264,13 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">17. </span>Polinômio Interpolador de Lagrange</p>
+            <p class="prev-next-title"><span class="section-number">16. </span>Polinômio Interpolador de Lagrange</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="aula-16-minimos-quadrados.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>Ajuste de Curvas por Mínimos Quadrados</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Ajuste de Curvas por Mínimos Quadrados</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
