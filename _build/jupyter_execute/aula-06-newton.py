@@ -13,7 +13,7 @@
 # - o erro relativo assumido, representado por `tol`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `nmax`.
 
-# In[14]:
+# In[19]:
 
 
 import inspect, re
@@ -33,7 +33,7 @@ def newton(x0,f,df,tol,N):
         N: número máximo de iterações a repetir
 
     Retorno: 
-        xm: raiz da funcao    
+        x: aproximação para a raiz da função    
     """
 
     # construtor de tabela
@@ -114,7 +114,7 @@ xm = newton(-0.1,
 
 # Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função $h(z)$. Vamos encontrá-la utilizando o módulo de computação simbólica `sympy`.
 
-# In[19]:
+# In[46]:
 
 
 # Importa variável z como símbolo
@@ -130,7 +130,7 @@ print(dh)
 
 # A partir daí, utilizamos a expressão normalmente na função.
 
-# In[20]:
+# In[47]:
 
 
 zm = newton(5,

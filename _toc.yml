@@ -9,7 +9,7 @@ parts:
   - file: aula-02-erros
   - file: aula-03-analise-grafica
   - file: aula-04-bissecao
-  - file: aula-05-ponto-fixo
+  #- file: aula-05-ponto-fixo
   - file: aula-06-newton
   - file: aula-07-secante
   - file: aula-08-muller

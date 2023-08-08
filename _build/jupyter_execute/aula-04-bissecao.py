@@ -34,8 +34,9 @@ def bissecao(f,a,b,tol,N):
         N: número máximo de iterações a repetir
 
     Retorno: 
-        xm: raiz da funcao    
+        x: aproximação para a raiz da função   
     """
+    
     # construtor de tabela
     table = pt()
     

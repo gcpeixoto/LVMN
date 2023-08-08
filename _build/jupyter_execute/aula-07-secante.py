@@ -3,142 +3,145 @@
 
 # # Implementação do método da secante 
 
-# In[2]:
+# Neste capítulo, utilizamos uma implementação própria do método da secante para resolver equações não-lineares unidimensionais. O algoritmo é capaz de lidar com uma quantidade razoável de funções matemáticas.
+# 
+# Para ser executado, o método `secante` requer 5 parâmetros: 
+# 
+# - estimativas iniciais `xa` e `xb`;
+# - a função $f(x)$ propriamente dita, representada por `f`;
+# - o erro relativo desejado $ER$, representado por `tol`;
+# - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
+
+# In[40]:
 
 
-# Método da Secante
+import inspect, re
+import numpy as np
+import matplotlib.pyplot as plt
+from prettytable import PrettyTable as pt
 
-from numpy import linspace
-from matplotlib.pyplot import plot
+def secante(xa,xb,f,tol,N):
+    """Algoritmo para determinação de raízes pelo método da secante.
 
-def secante(xa,xb,f,tol,nmax,var,plotar):
+    Parâmetros: 
+        f: string dependendo de uma variável, i.e., a função-alvo
+            (e.g., 'x**2 - 1', 'x**2*cos(x)', etc.) 
+        xa: 1a. estimativa 
+        xb: 2a. estimativa        
+        tol: erro relativo desejado (tolerância)
+        N: número máximo de iterações a repetir
 
-    f = eval('lambda x:' + f)
+    Retorno: 
+        x: aproximação para a raiz da função
+    """
 
-    # imprime estimativas iniciais
-    print('Estimativas iniciais: xa = {0}; xb = {1} \n'.format(xa,xb))  
+    # construtor de tabela
+    table = pt()
+    
+    # substitui expressões da string pelas chamadas das funções do numpy
+    f = re.sub('(sin|sinh|cos|cosh|tan|tanh|exp|log|sqrt|log10|arcsin|arccos|arctan|arcsinh|arccosh|arctanh)', r'np.\1', f)    
+    
+    # identifica a variável independente em f
+    var = re.search(r'([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))', f).group(1)
+    
+    # cria função
+    f = eval('lambda ' + var + ' :' + f)
+    
+    # checa se a função é de uma variável, senão lança erro        
+    try: 
+        len(inspect.getfullargspec(f).args) - 1 > 0
+    except:
+        raise ValueError('O código é válido apenas para uma variável.')
+    
+    it = 0 # contador de iteracoes
+    
+    # cabeçalho de tabela
+    table.field_names = ['i','x','f(x)','ER']
+
+    # imprime estimativa inicial
+    print(f'Estimativas iniciais: xa = {xa:.6f}; xb = {xb:.6f}\n')  
 
     # Loop 
-    for i in range(0,nmax):
+    for i in range(0,N):
         
         x = (xa*f(xb) - xb*f(xa))/(f(xb) - f(xa))
-                        
+        
         e = abs(x-xb)/abs(x) # erro
         
         # tabela
-        print('{0:d}  {1:f}  {2:f}  {3:e}'.format(i,x,f(x),e))
+        # impressão de tabela
+        table.add_row([i,np.round(x,8),np.round(f(x),8),f'{e:e}'])
+        table.align = 'c';      
         
         if e < tol:
             break
         xa = xb
-        xb = x
+        xb = x                
         
-    if i == nmax:
-        print('Solução não obtida em {0:d} iterações'.format(nmax))
+    print(table)
+       
+    if i == N:
+        print(f'Solução não obtida em {N:d} iterações')
     else:
-        print('Solução obtida: x = {0:.10f}'.format(x))
-
-    # plotagem
-    if plotar:        
-        delta = 3*x
-        dom = linspace(x-delta,x+delta,30)
-        plot(dom,f(dom),x,f(x),'ro')
+        print(f'Solução obtida: x = {x:.6f}')
 
     return x
-      
-    
-# parametros    
-xa = 1.0 # estimativa inicial 1
-xb = 2.0 # estimativa inicial 2
-tol = 1e-3 # tolerancia
-nmax = 100 # numero maximo de iteracoes
-f = '-0.9*x**2 + 1.7*x + 2.5'   # funcao
-var = 'x'
-plotar = True
-
-# chamada da função
-xm = secante(xa,xb,f,tol,nmax,var,plotar)
 
 
 # ## Problema
 # 
-# Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 5e^{-x}$, pelo método das secantes com erro inferior a $10^{-2}$. 
+# Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 2e^{-2x}$, pelo método das secantes com erro inferior a $10^{-2}$. 
 
 # ### Resolução
 
-# Para obtermos os valores iniciais $x_0$ e $x_1$ necessários para iniciar o processo iterativo, dividimos a equação original $f(x) = 0$ em outras duas $y_1$ e $y_2$, com $y_1 = \sqrt{x}$ e $y_2(x) = e^{-x}$, que colocadas no mesmo gráfico, produzem uma interseção próximo a $x = 1.5$. Assim, podemos escolher duas estimativas iniciais próximas deste valor. Podemos escolher $x_0 = 1.4$ e $x_1=1.5$.
+# Para obter os valores iniciais $x_0$ e $x_1$ necessários ao processo iterativo do método das secantes, fazemos a análise gráfica.
 
-# In[3]:
-
-
-from numpy import sqrt, exp
-from matplotlib.pyplot import plot,legend
-
-fx = lambda x: sqrt(x) - 5*exp(-x) 
-
-x = linspace(0,3,100)
-plot(x,fx(x),label='$f(x) = x^{1/2} - 5e^{-x}$');
-plot(x,sqrt(x),label='$y_1(x) = x^{1/2}$');
-plot(x,5*exp(-x),label='$y_2(x) = 5e^{-x}$');
-plot(x,fx(x)*0,'--');
-legend();
+# In[27]:
 
 
-# Vejamos o valor de $f(x=1.5)$.
-
-# In[4]:
-
-
-fx(1.5)
-
-
-# Vamos montar uma função anônima para computar o valor da interseção da secante com o eixo $x$, a saber:
-
-# In[5]:
+def f(x):
+    return np.sqrt(x) - 2*np.exp(-2*x) 
+  
+x = np.linspace(0,3,100)
+plt.figure(figsize=(6,3))
+plt.plot(x,f(x),label='$f(x) = \\sqrt{x} - 2e^{-2x}$');
+plt.axhline(y=0,color='r',linestyle=':')
+plt.legend();
 
 
-xm = lambda a,b: ( a*fx(b) - b*fx(a) ) / (fx(b) - fx(a) )
+# Verificamos que a raiz encontra-se próxima a $0.5$
+
+# In[28]:
 
 
-# Vamos usar os nosso valores estimados: 
-
-# In[6]:
+f(0.5)
 
 
-x0 = 1.4
-x1 = 1.5
-x2 = round(xm(x0,x1),3) 
-print(x2)
+# Assim, podemos escolher duas estimativas iniciais próximas deste valor, digamos $x_0 = 0.5 - \delta x$ e $x_1 = 0.5 + \delta x$, com $\delta x = 10^{-1}$.
+
+# In[30]:
 
 
-# Agora, usamos este novo valor e o anterior.
-
-# In[7]:
-
-
-x3 = round(xm(x1,x2),3)
-print(x3)
+x0, dx = 0.5, 1e-2
+x = secante(x0 - dx,x0 + dx,'sqrt(x) - 2*exp(-2*x)',1e-5,100)
 
 
-# Calculemos o erro relativo entre as estimativas $x_1$ e $x_2$:
+# ## Exemplo
+# 
+# Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
-# In[8]:
-
-
-err = lambda a,b: abs(a - b)/abs(a)
-e1 = err(x2,x1)
-print(round(e1,3))
-print("{0:e}".format(e1))
+# In[31]:
 
 
-# Agora, calculemos o erro relativo entre as estimativas $x_2$ e $x_3$:
-
-# In[9]:
-
-
-e2 = err(x3,x2)
-print(round(e2,3))
-print("{0:e}".format(e2))
+x0, dx = -0.1, 1e-3
+x = secantes(x0 - dx,x0 + dx,'-arccos(x) + 4*sin(x) + 1.7',1e-3,20)
 
 
-# O erro está diminuindo. Além disso, o valor da raiz está se estabilizando em torno de 1.430. Isto significa que as estimativas iniciais foram muito boas. Com efeito, o uso das interseções proporcionou uma boa escolha.
+# Resolvemos usando outras estimativas iniciais.
+
+# In[39]:
+
+
+x0, dx = -0.9, 1e-3
+x = secantes(x0 - dx,x0 + dx,'-arccos(x) + 4*sin(x) + 1.7',1e-3,20)
+
