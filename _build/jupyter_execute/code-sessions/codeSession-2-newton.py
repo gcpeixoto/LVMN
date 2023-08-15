@@ -3,7 +3,7 @@
 
 # # Code session 2
 
-# In[1]:
+# In[4]:
 
 
 import numpy as np
@@ -53,10 +53,13 @@ from scipy.optimize import newton
 
 # Definimos a função e sua primeira derivada.
 
-# In[3]:
+# In[6]:
 
 
-# função
+# função anônima
+g = lambda x: x**3 - 3.23*x**2 - 5.54*x + 9.84
+
+# função (User-Defined Function)
 def f(x): 
     return x**3 - 3.23*x**2 - 5.54*x + 9.84
 
@@ -65,9 +68,23 @@ def df(x):
     return 3*x**2 - 2*3.23*x - 5.54
 
 
+# In[135]:
+
+
+fig, ax = plt.subplots()
+#ax.plot(0,1,'or')
+#ax.plot([1,-1],[0,-2],'-k')
+
+#dominio = np.linspace(0,3,100)
+#imagem = np.sqrt(dominio)
+#ax.plot(dominio,imagem,c='#de4f10',markevery=3,markersize=10)
+#ax.plot(dominio,1-imagem,c='#de4f10',markevery=3,markersize=10)
+ax.axis('off');
+
+
 # Realizamos a análise gráfica.
 
-# In[4]:
+# In[109]:
 
 
 # analise gráfica 
@@ -76,25 +93,30 @@ plt.plot(x,f(x));
 plt.plot(x,df(x));
 plt.axhline(y=0,color='k',ls='--');
 plt.axvline(x=0,color='r',ls='--');
-plt.legend(['$f(x)$','$f\'(x)$','$y=0$','x=0']);
+plt.legend(['$f(x)$','$f\'(x)$','$y=0$','$x=0$'],
+           loc='upper right',
+           ncol=1,
+           bbox_to_anchor = (0,0));
 
+
+# $f(x)$
 
 # Vamos realizar um estudo de diferentes estimativas iniciais e ver o que acontece.
 
 # ##### Estimativa inicial: $x_0 = -1$
 
-# In[5]:
+# In[111]:
 
 
 # resolução com newton 
 x0 = -1.
-x = newton(f,x0,df) # raiz 
+x = newton(f,x0) # raiz 
 print('Raiz: x = %f' % x)
 
 
 # ##### Estimativa inicial: $x_0 = 0$
 
-# In[6]:
+# In[113]:
 
 
 # resolução com newton 
@@ -105,7 +127,7 @@ print('Raiz: x = %f' % x)
 
 # ##### Estimativa inicial: $x_0 = 3$
 
-# In[7]:
+# In[114]:
 
 
 # resolução com newton 

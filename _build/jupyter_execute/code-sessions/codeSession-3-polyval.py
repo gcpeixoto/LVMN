@@ -46,15 +46,15 @@ import matplotlib.pyplot as plt
 
 # Para tornar claro, em primeiro lugar, vamos inserir os coeficientes de $P(x)$ em um _array_ chamado `p`. 
 
-# In[2]:
+# In[20]:
 
 
-p = np.array([3,7,-36,20])
+p = np.array([9,8,7,5,3,2,-1,-3.2,-4/5,])
 
 
 # Em seguida, fazemos: 
 
-# In[3]:
+# In[21]:
 
 
 x = np.roots(p)
@@ -62,21 +62,27 @@ x = np.roots(p)
 
 # Podemos imprimir as raízes da seguinte forma:
 
-# In[4]:
+# In[22]:
 
 
-for i, v in enumerate(x):
+for (i, v) in enumerate(x):
     print(f'Raiz {i}: {v}')
+
+
+# In[ ]:
+
+
+
 
 
 # ### `polyval` 
 # 
 # Podemos usar a função `polyval` do `numpy` para avaliar $P(x)$ em $x = x_0$. Verifiquemos, analiticamente, se as raízes anteriores satisfazem realmente o polinômio dado.
 
-# In[5]:
+# In[23]:
 
 
-for i in x:
+for i in x: 
     v = np.polyval(p,i)
     print(f'P(x) = {v}')
 
@@ -85,7 +91,7 @@ for i in x:
 
 # Podemos também fazer uma verificação geométrica plotando o polinômio e suas raízes. 
 
-# In[6]:
+# In[24]:
 
 
 xx = np.linspace(np.min(x)-0.5,np.max(x)+0.5)

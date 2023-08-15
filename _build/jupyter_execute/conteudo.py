@@ -30,14 +30,14 @@
 # ### II. Determinação de raízes
 # 
 # - [Aula 03 - Análise gráfica](aula-03-analise-grafica.ipynb)
-# - [Aula 04 - Bisseção](aula-04-bissecao.ipynb)
-# - [Aula 05 - Ponto fixo](aula-05-ponto-fixo.ipynb)
-# - [Aula 06 - Newton](aula-06-newton.ipynb)
-# - [Aula 07 - Secante](aula-07-secante.ipynb)
-# - [Aula 08 - Müller](aula-08-muller.ipynb)
+# - [Aula 04 - Bisseção](aula-04-bissecao.ipynb) <!-- - [Aula 05 - Ponto fixo](aula-05-ponto-fixo.ipynb) -->
+# - [Aula 05 - Newton](aula-06-newton.ipynb)
+# - [Aula 06 - Secante](aula-07-secante.ipynb)
+# - [Aula 07 - Müller](aula-08-muller.ipynb)
 # 
 # ### III. Solução de sistemas de equações
 # 
+# - [Aula 08 - Elementos de Álgebra Linear Computacional](aula-08a-matrizes-vetores.ipynb)
 # - [Aula 09 - Eliminação Gaussiana](aula-09-eliminacao-gauss.ipynb)
 # - [Aula 10 - Fatoração LU](aula-10-fatoracao-lu.ipynb)
 # - [Aula 11 - Cholesky](aula-11-cholesky.ipynb)

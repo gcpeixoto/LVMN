@@ -13,6 +13,7 @@ parts:
   - file: aula-06-newton
   - file: aula-07-secante
   - file: aula-08-muller
+  - file: aula-08a-matrizes-vetores
   - file: aula-09-eliminacao-gauss
   - file: aula-10-fatoracao-lu
   - file: aula-11-cholesky

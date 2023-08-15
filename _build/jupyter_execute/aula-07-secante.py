@@ -12,7 +12,7 @@
 # - o erro relativo desejado $ER$, representado por `tol`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
 
-# In[40]:
+# In[2]:
 
 
 import inspect, re
@@ -90,7 +90,7 @@ def secante(xa,xb,f,tol,N):
 
 # ## Problema
 # 
-# Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 2e^{-2x}$, pelo método das secantes com erro inferior a $10^{-2}$. 
+# Determinar a raiz positiva da equação: $f(x) = \sqrt{x} - 2e^{-2x}$, pelo método das secantes com erro inferior a $10^{-5}$. 
 
 # ### Resolução
 
@@ -119,10 +119,10 @@ f(0.5)
 
 # Assim, podemos escolher duas estimativas iniciais próximas deste valor, digamos $x_0 = 0.5 - \delta x$ e $x_1 = 0.5 + \delta x$, com $\delta x = 10^{-1}$.
 
-# In[30]:
+# In[4]:
 
 
-x0, dx = 0.5, 1e-2
+x0, dx = 0.5, 1e-1
 x = secante(x0 - dx,x0 + dx,'sqrt(x) - 2*exp(-2*x)',1e-5,100)
 
 
@@ -130,11 +130,11 @@ x = secante(x0 - dx,x0 + dx,'sqrt(x) - 2*exp(-2*x)',1e-5,100)
 # 
 # Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
-# In[31]:
+# In[10]:
 
 
-x0, dx = -0.1, 1e-3
-x = secantes(x0 - dx,x0 + dx,'-arccos(x) + 4*sin(x) + 1.7',1e-3,20)
+x0, dx = -0.8, 1e-1
+x = secante(x0 - dx,x0 + dx,'-arccos(x) + 4*sin(x) + 1.7',1e-3,20)
 
 
 # Resolvemos usando outras estimativas iniciais.
