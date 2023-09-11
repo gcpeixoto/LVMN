@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Álgebra Linear com Python
+# # Álgebra Linear Computacional básica
 
 # ## Objetivos
 # 
 # - Associar conceitos abstratos de Álgebra Linear a estruturas computacionais; 
 # - Realizar operações básicas com vetores e matrizes;
 # - Saber como resolver sistemas lineares de pequeno porte;
+# - Calcular autovalores e autovetores em matrizes reais;
 
 # ## Introdução
 # 
-# Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador e como construir alguns tipos de matrizes especiais. A manipulação de matrizes e vetores é essencial em muitas ciências, principalmente para resolver sistemas de equações oriundas de problemas lineares, ou não-lineares, em cujo caso adotam-se processos de \emph{linearização}. Problemas físicos de alta complexidade em geral modelados por equações diferenciais, por exemplo, são reduzidos a sistemas de equações algébricas estruturáveis por meio de matrizes.
+# Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador. A manipulação de matrizes e vetores é essencial em muitas ciências, principalmente para resolver sistemas lineares. 
 # 
-# Em ciências computacionais, matrizes são estruturas capazes de armazenar informações bidimensionais, tridimensionais, ou mesmo em dimensões maiores, e são a opção usual para lidar com imagens (figuras, fotografias etc.), dados volumétricos (_voxels_, gêmeos digitais etc.) e até quadros de filmes (_frames_). Em particular, podem representar operações geométricas gerais, tais como translações, rotações, estiramentos e várias composições de movimento aplicáveis em biomecânica, esportes, engenharia de materiais, mecânica automotiva, entre outras áreas. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da _Álgebra Linear Computacional_.
+# As matrizes são utilizadas na computação para armazenar informações bidimensionais. Em particular, podem representar translação, rotação, escalonamento e sistemas de equações. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da _Álgebra Linear Computacional_.
 
 # ## Matrizes e vetores
 # 
@@ -49,10 +50,10 @@
 # O _NumPy_ possui uma classe especial para se trabalhar com matrizes e vetores em uma ou duas dimensões, a saber o tipo `matrix`, ou `mat`. Com objetos `matrix`, as  operações particulares de multiplicação matriz-matriz ou matriz-vetor comportam-se diferentemente daquelas na classe `ndarray`. Neste texto, abordaremos apenas os tipos `ndarray` porque são aplicáveis também a matrizes multidimensionais.
 # ```
 
-# In[2]:
+# In[3]:
 
 
-import numpy as np 
+import numpy as np
 
 u = np.array([3,-2,9])
 v = np.array([-2,4,0])
@@ -69,11 +70,13 @@ print(u), print(v), print(w);
 
 # Observe que os vetores devem ser escritos como "coluna".
 
-# In[2]:
+# In[4]:
 
 
 A = np.array([[3,-2,1],[-2,4,0],[9,0,0]])
 print(A)
+
+print(A.T)
 
 
 # **Exemplo.** Represente computacionalmente a matriz 
@@ -88,7 +91,7 @@ print(A)
 
 # Vamos escrever linha por linha.
 
-# In[3]:
+# In[5]:
 
 
 L1 = np.array([2,-2]) # linha 1
@@ -101,7 +104,7 @@ print(A2)
 
 # Diretamente, poderíamos também definir: 
 
-# In[4]:
+# In[6]:
 
 
 A3 = np.array([[2,-2],[4,1],[2,1]])
@@ -114,7 +117,7 @@ print(A3)
 # 
 # Matrizes e vetores podem ser transpostos com `.T`:
 
-# In[5]:
+# In[7]:
 
 
 A2T = A2.T
@@ -123,7 +126,7 @@ print(A2T)
 
 # Assim, com as variáveis antes definidas, poderíamos, equivalentemente, fazer para ${\bf A}$:
 
-# In[6]:
+# In[8]:
 
 
 # modo 2: matriz transposta
@@ -135,7 +138,7 @@ print(At)
 # 
 # Podemos verificar a igualdade entre matrizes como
 
-# In[7]:
+# In[9]:
 
 
 A == At
@@ -143,7 +146,7 @@ A == At
 
 # No caso de vetores:
 
-# In[8]:
+# In[10]:
 
 
 # vetor "linha" não difere
@@ -159,7 +162,7 @@ u == u.T
 
 # **Exemplo:** $\vec{u} \pm \vec{v}$
 
-# In[9]:
+# In[11]:
 
 
 # adição 
@@ -178,7 +181,7 @@ print(sub)
 # \vec{u} & 2\vec{u} & 3\vec{v} \\
 # \end{bmatrix}$$    
 
-# In[10]:
+# In[12]:
 
 
 # adição
@@ -192,11 +195,21 @@ sub2 = A - B
 print(sub2)
 
 
+# In[13]:
+
+
+A = np.array([[-1,2],[3,4]])
+print(A)
+print(2*A)
+
+print(A/(2*A))
+
+
 # ### Produto interno
 # 
 # O produto interno $\langle \vec{u}, \vec{v}\rangle$ é computado com `.dot`:
 
-# In[11]:
+# In[14]:
 
 
 pi = np.dot(u,v)
@@ -206,11 +219,23 @@ pi2 = np.dot(np.array([3,1]),np.array([-1,-1]))
 print(pi2)
 
 
+# Uma segunda forma, mais imediata, emprega o operador infixo `@`:
+
+# In[16]:
+
+
+pii = u @ v
+print(pii)
+
+pii2 = np.array([3,1]) @ np.array([-1,-1])
+print(pii2)
+
+
 # ### Norma de vetor
 # 
 # A norma $||\vec{u}||$ de um vetor $\vec{u}$ é calculada como:
 
-# In[12]:
+# In[40]:
 
 
 np.sqrt(np.dot(u,u))
@@ -228,7 +253,7 @@ np.sqrt(np.dot(u,u))
 np.dot(A,B)
 
 
-# In[14]:
+# In[42]:
 
 
 # uso recomendado para a operação tradicional
@@ -239,7 +264,7 @@ np.matmul(A,B)
 # 
 # Neste caso, sendo ${\vec{\vec A}}$ (dois símbolos indicam que a matriz é uma grandeza de ordem 2, ao passo que o vetor é de ordem 1 e aqui usamos para consistência de notação) e ${\vec{b}}$ uma matriz $m \times n$ e um vetor $n \times 1$, respectivamente, o produto $\vec{\vec{A}}\vec{b}$ é dado por:
 
-# In[15]:
+# In[43]:
 
 
 b = np.array([3,4,1])
@@ -251,7 +276,7 @@ np.dot(A,b)
 # 
 # Para outras operações, devemos utilizar o submódulo `numpy.linalg`. Para importá-lo com o _alias_ `lin`, fazemos:
 
-# In[16]:
+# In[44]:
 
 
 import numpy.linalg as lin
@@ -261,7 +286,7 @@ import numpy.linalg as lin
 # 
 # O determinante de ${\bf A}$ é dado por $\det({\bf A})$ e pode ser computado pela função `det`.
 
-# In[17]:
+# In[45]:
 
 
 # calculando o determinante da matriz
@@ -274,7 +299,7 @@ print(det)
 # A inversa de uma matriz é dada por ${\bf A}^{-1}$, onde ${\bf A}{\bf A}^{-1}={\bf I}$, e ${\bf I}$ é a matriz identidade.
 # Para usar esta função, devemos fazer:
 
-# In[18]:
+# In[46]:
 
 
 B2 = np.array([[1,2,3],
@@ -298,12 +323,12 @@ print(np.matmul(B3,B2))
 # 
 # para $a = -4$, $b = 1$, $c = 1/2$, $d = 3$, $e = 5$ e $f = 10$,  
 
-# In[19]:
+# In[1]:
 
 
-A = np.array([[-4,1],[1/2,3]])
+A = np.array([[-4,1],[3, 5]])
 
-b = np.array([5,10]).T
+b = np.array([1/2,10])
 
 # solução
 x = lin.solve(A, b)
@@ -314,7 +339,7 @@ print(x)
 # 
 # A inversa de uma matriz (faça esta operação apenas para matrizes quadradas de pequena dimensão) pode ser encontrada como:
 
-# In[20]:
+# In[48]:
 
 
 Ainv = lin.inv(A)
@@ -323,7 +348,7 @@ print(Ainv)
 
 # Para realizar uma "prova real" da solução do sistema anterior, poderíamos fazer:
 
-# In[21]:
+# In[49]:
 
 
 x2 = np.dot(lin.inv(A), b)
@@ -340,7 +365,7 @@ x == x2
 
 # Isto ocorre devido a erros numéricos. Um teste mais adequado deve computar a norma do vetor "erro", dado por ${\bf e} = \bf{b} - \bf{A}\bf{x}$. A norma pode ser calculada diretamente com:
 
-# In[23]:
+# In[50]:
 
 
 e = b - np.dot(A,x)
@@ -359,7 +384,7 @@ lin.norm(e)
 # 
 # Para criar uma matriz nula de ordem _m x n_, usamos `zeros`.
 
-# In[24]:
+# In[51]:
 
 
 m,n = 3,4
@@ -370,7 +395,7 @@ np.zeros((m,n))
 # 
 # Uma matriz identidade (quadrada) de ordem _p_ é criada com `eye`.
 
-# In[25]:
+# In[52]:
 
 
 p = 4
@@ -381,7 +406,7 @@ np.eye(p)
 # 
 # Uma matriz composta apenas de valores 1 de ordem _m x n_ pode ser criada com `ones`:
 
-# In[26]:
+# In[57]:
 
 
 np.ones((3,5))
@@ -391,7 +416,7 @@ np.ones((3,5))
 # 
 # A matriz triangular inferior de uma dada matriz pode ser criada com `tril`. Note que podemos também defini-la explicitamente, linha a linha.
 
-# In[27]:
+# In[58]:
 
 
 # os valores correspondentes
@@ -417,50 +442,31 @@ np.triu(B)
 B == np.tril(B) + np.triu(B)
 
 
-# ### Densa
+# ## Autovalores e autovetores
 # 
-# Uma matriz densa é aquela em que a maioria de suas entradas são diferentes de zero.
-
-# In[16]:
-
-
-np.random.seed(11) # para reprodutibilidade
-np.random.random((3,3))
-
-
-# In[17]:
-
-
-np.random.random((5,5))
-
-
-# ### Esparsa
+# Um vetor ${\bf v} \in V$, ${\bf v} \neq {\bf 0}$ é vetor próprio de ${\bf A}$ se existir $\lambda \in \mathbb{R}$ tal que 
 # 
-# Uma matriz esparsa é aquela em que a maioria de suas entradas é nula. Embora não exista um limiar que defina quando uma matriz torna-se esparsa, esta medida pode ser estimada pelo seu _grau de esparsidade_, dado pela razão entre o número de entradas nulas pelo número de entradas não-nulas. Todavia, como o _grau de esparsidade_ também é subjetivo, via de regra, a esparsidade ocorrerá se mais da metade das entradas da matriz for composta de zeros.
+# $${\bf Av}=\lambda {\bf v}.$$
+# 
+# O número real $\lambda$ é denominado valor próprio (autovalor) de ${\bf A}$ associado ao vetor próprio (autovetor) ${\bf v}$.
 
-# #### Criando matriz esparsa via CSR
-
-# In[26]:
-
-
-import scipy.sparse as ss
-
-# usa o método Compressed Sparse Row (CSR)
-s1 = ss.csc_array(np.ones(4))
-print(s1)
+# In[30]:
 
 
-# In[27]:
+A = np.array([[2,1],
+              [1,-5]])
 
+w, v = lin.eig(A)
+a,b = w
 
-s2 = ss.csr_matrix([[-2, 2, 0], [0, 0, 3], [0, 0, 5]])
-s2
+# autovalores
+print(a,b)
 
+# autovetor 1
+print(v[:,0])
 
-# In[28]:
-
-
-print(s2)
+# autovetor 2
+print(v[:,1])
 
 
 # ## Somas e valores extremos 
@@ -499,11 +505,14 @@ np.sum(O)
 O.sum()
 
 
-# In[35]:
+# In[68]:
 
 
 # soma por linha 
-np.sum(O,axis=0)
+
+M = np.array( [ [ [ [-1,0],[1,0] ], [ [-1,0],[1,0] ]] ])
+
+np.sum(M,axis=2)
 
 
 # In[36]:
@@ -578,7 +587,7 @@ np.max(O2)
 O2.min()
 
 
-# In[46]:
+# In[69]:
 
 
 O2.max()

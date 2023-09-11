@@ -121,7 +121,7 @@
 # 2 & 1 & 1
 # \end{bmatrix}
 # \begin{bmatrix}
-# x_1 \\ x_2 \\ x_3
+# y_1 \\ y_2 \\ y_3
 # \end{bmatrix} =
 # \begin{bmatrix}
 # 3 \\ 13 \\ 4
