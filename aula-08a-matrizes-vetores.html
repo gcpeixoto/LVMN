@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9. Álgebra Linear com Python &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>9. Álgebra Linear Computacional básica &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Álgebra Linear com Python
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -782,28 +782,16 @@ title="Print to PDF"
      9.6.5. Triangular superior
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#densa">
-     9.6.6. Densa
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#esparsa">
-     9.6.7. Esparsa
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#criando-matriz-esparsa-via-csr">
-       9.6.7.1. Criando matriz esparsa via CSR
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   9.7. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#somas-e-valores-extremos">
-   9.7. Somas e valores extremos
+   9.8. Somas e valores extremos
   </a>
  </li>
 </ul>
@@ -815,7 +803,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Álgebra Linear com Python</h1>
+                <h1>Álgebra Linear Computacional básica</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -946,28 +934,16 @@ title="Print to PDF"
      9.6.5. Triangular superior
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#densa">
-     9.6.6. Densa
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#esparsa">
-     9.6.7. Esparsa
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#criando-matriz-esparsa-via-csr">
-       9.6.7.1. Criando matriz esparsa via CSR
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   9.7. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#somas-e-valores-extremos">
-   9.7. Somas e valores extremos
+   9.8. Somas e valores extremos
   </a>
  </li>
 </ul>
@@ -980,20 +956,21 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-com-python">
-<h1><span class="section-number">9. </span>Álgebra Linear com Python<a class="headerlink" href="#algebra-linear-com-python" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-computacional-basica">
+<h1><span class="section-number">9. </span>Álgebra Linear Computacional básica<a class="headerlink" href="#algebra-linear-computacional-basica" title="Permalink to this headline">#</a></h1>
 <section id="objetivos">
 <h2><span class="section-number">9.1. </span>Objetivos<a class="headerlink" href="#objetivos" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Associar conceitos abstratos de Álgebra Linear a estruturas computacionais;</p></li>
 <li><p>Realizar operações básicas com vetores e matrizes;</p></li>
 <li><p>Saber como resolver sistemas lineares de pequeno porte;</p></li>
+<li><p>Calcular autovalores e autovetores em matrizes reais;</p></li>
 </ul>
 </section>
 <section id="introducao">
 <h2><span class="section-number">9.2. </span>Introdução<a class="headerlink" href="#introducao" title="Permalink to this headline">#</a></h2>
-<p>Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador e como construir alguns tipos de matrizes especiais. A manipulação de matrizes e vetores é essencial em muitas ciências, principalmente para resolver sistemas de equações oriundas de problemas lineares, ou não-lineares, em cujo caso adotam-se processos de \emph{linearização}. Problemas físicos de alta complexidade em geral modelados por equações diferenciais, por exemplo, são reduzidos a sistemas de equações algébricas estruturáveis por meio de matrizes.</p>
-<p>Em ciências computacionais, matrizes são estruturas capazes de armazenar informações bidimensionais, tridimensionais, ou mesmo em dimensões maiores, e são a opção usual para lidar com imagens (figuras, fotografias etc.), dados volumétricos (<em>voxels</em>, gêmeos digitais etc.) e até quadros de filmes (<em>frames</em>). Em particular, podem representar operações geométricas gerais, tais como translações, rotações, estiramentos e várias composições de movimento aplicáveis em biomecânica, esportes, engenharia de materiais, mecânica automotiva, entre outras áreas. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da <em>Álgebra Linear Computacional</em>.</p>
+<p>Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador. A manipulação de matrizes e vetores é essencial em muitas ciências, principalmente para resolver sistemas lineares.</p>
+<p>As matrizes são utilizadas na computação para armazenar informações bidimensionais. Em particular, podem representar translação, rotação, escalonamento e sistemas de equações. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da <em>Álgebra Linear Computacional</em>.</p>
 </section>
 <section id="matrizes-e-vetores">
 <h2><span class="section-number">9.3. </span>Matrizes e vetores<a class="headerlink" href="#matrizes-e-vetores" title="Permalink to this headline">#</a></h2>
@@ -1026,7 +1003,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -1054,6 +1031,8 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,6 +1040,9 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 3 -2  1]
  [-2  4  0]
  [ 9  0  0]]
+[[ 3 -2  9]
+ [-2  4  0]
+ [ 1  0  0]]
 </pre></div>
 </div>
 </div>
@@ -1235,6 +1217,27 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1  2]
+ [ 3  4]]
+[[-2  4]
+ [ 6  8]]
+[[0.5 0.5]
+ [0.5 0.5]]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="produto-interno">
 <h3><span class="section-number">9.4.2. </span>Produto interno<a class="headerlink" href="#produto-interno" title="Permalink to this headline">#</a></h3>
@@ -1246,6 +1249,24 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 
 <span class="n">pi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pi2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-14
+-4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uma segunda forma, mais imediata, emprega o operador infixo <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pii</span> <span class="o">=</span> <span class="n">u</span> <span class="o">@</span> <span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pii</span><span class="p">)</span>
+
+<span class="n">pii2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pii2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1300,9 +1321,8 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 22,  44, -42],
-       [-14, -28,  60],
-       [ 27,  54, -54]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[25.66666667, 22.        ],
+       [33.        , 80.66666667]])
 </pre></div>
 </div>
 </div>
@@ -1320,7 +1340,16 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 10, 27])
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13773</span><span class="o">/</span><span class="mf">88528875.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="ne">ValueError</span>: shapes (2,2) and (3,) not aligned: 2 (dim 1) != 3 (dim 0)
 </pre></div>
 </div>
 </div>
@@ -1349,7 +1378,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-36.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-10.000000000000002
 </pre></div>
 </div>
 </div>
@@ -1371,9 +1400,9 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00000000e+00 -5.55111512e-16  0.00000000e+00]
- [ 1.11022302e-16  1.00000000e+00  0.00000000e+00]
- [ 0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.00000000e+00 2.22044605e-16 0.00000000e+00]
+ [1.11022302e-16 1.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
 </pre></div>
 </div>
 </div>
@@ -1391,9 +1420,9 @@ dx + ey = f
 <p>para <span class="math notranslate nohighlight">\(a = -4\)</span>, <span class="math notranslate nohighlight">\(b = 1\)</span>, <span class="math notranslate nohighlight">\(c = 1/2\)</span>, <span class="math notranslate nohighlight">\(d = 3\)</span>, <span class="math notranslate nohighlight">\(e = 5\)</span> e <span class="math notranslate nohighlight">\(f = 10\)</span>,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
 
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 
 <span class="c1"># solução</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -1402,7 +1431,14 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.4  3.4]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">gustavo</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">courses</span><span class="o">/</span><span class="n">calculo</span><span class="o">-</span><span class="n">numerico</span><span class="o">/</span><span class="n">LVMN</span><span class="o">/</span><span class="n">aula</span><span class="o">-</span><span class="mi">08</span><span class="n">a</span><span class="o">-</span><span class="n">matrizes</span><span class="o">-</span><span class="n">vetores</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">51</span> <span class="ow">in</span> <span class="mi">1</span>
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=2&#39;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=4&#39;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="c1"># solução</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1544,9 +1580,8 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  0,  0],
-       [-2, -4,  0],
-       [ 9, 18,  0]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.66666667,  0.        ],
+       [11.        , 14.66666667]])
 </pre></div>
 </div>
 </div>
@@ -1585,99 +1620,43 @@ dx + ey = f
 </div>
 </div>
 </section>
-<section id="densa">
-<h3><span class="section-number">9.6.6. </span>Densa<a class="headerlink" href="#densa" title="Permalink to this headline">#</a></h3>
-<p>Uma matriz densa é aquela em que a maioria de suas entradas são diferentes de zero.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="c1"># para reprodutibilidade</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.18026969, 0.01947524, 0.46321853],
-       [0.72493393, 0.4202036 , 0.4854271 ],
-       [0.01278081, 0.48737161, 0.94180665]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.85079509, 0.72996447, 0.10873607, 0.89390417, 0.85715425],
-       [0.16508662, 0.63233401, 0.02048361, 0.11673727, 0.31636731],
-       [0.15791231, 0.75897959, 0.81827536, 0.34462449, 0.3187988 ],
-       [0.11166123, 0.08395314, 0.71272594, 0.5995434 , 0.05567368],
-       [0.47979728, 0.40167648, 0.847979  , 0.71784918, 0.60206405]])
-</pre></div>
-</div>
-</div>
-</div>
 </section>
-<section id="esparsa">
-<h3><span class="section-number">9.6.7. </span>Esparsa<a class="headerlink" href="#esparsa" title="Permalink to this headline">#</a></h3>
-<p>Uma matriz esparsa é aquela em que a maioria de suas entradas é nula. Embora não exista um limiar que defina quando uma matriz torna-se esparsa, esta medida pode ser estimada pelo seu <em>grau de esparsidade</em>, dado pela razão entre o número de entradas nulas pelo número de entradas não-nulas. Todavia, como o <em>grau de esparsidade</em> também é subjetivo, via de regra, a esparsidade ocorrerá se mais da metade das entradas da matriz for composta de zeros.</p>
-<section id="criando-matriz-esparsa-via-csr">
-<h4><span class="section-number">9.6.7.1. </span>Criando matriz esparsa via CSR<a class="headerlink" href="#criando-matriz-esparsa-via-csr" title="Permalink to this headline">#</a></h4>
+<section id="autovalores-e-autovetores">
+<h2><span class="section-number">9.7. </span>Autovalores e autovetores<a class="headerlink" href="#autovalores-e-autovetores" title="Permalink to this headline">#</a></h2>
+<p>Um vetor <span class="math notranslate nohighlight">\({\bf v} \in V\)</span>, <span class="math notranslate nohighlight">\({\bf v} \neq {\bf 0}\)</span> é vetor próprio de <span class="math notranslate nohighlight">\({\bf A}\)</span> se existir <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[{\bf Av}=\lambda {\bf v}.\]</div>
+<p>O número real <span class="math notranslate nohighlight">\(\lambda\)</span> é denominado valor próprio (autovalor) de <span class="math notranslate nohighlight">\({\bf A}\)</span> associado ao vetor próprio (autovetor) <span class="math notranslate nohighlight">\({\bf v}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">ss</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
 
-<span class="c1"># usa o método Compressed Sparse Row (CSR)</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">csc_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">w</span>
+
+<span class="c1"># autovalores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># autovetor 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># autovetor 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (0, 0)	1.0
-  (0, 1)	1.0
-  (0, 2)	1.0
-  (0, 3)	1.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1400549446402595 -5.1400549446402595
+[0.99033427 0.13870121]
+[-0.13870121  0.99033427]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
-<span class="n">s2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;3x3 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 4 stored elements in Compressed Sparse Row format&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (0, 0)	-2
-  (0, 1)	2
-  (1, 2)	3
-  (2, 2)	5
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
 </section>
 <section id="somas-e-valores-extremos">
-<h2><span class="section-number">9.7. </span>Somas e valores extremos<a class="headerlink" href="#somas-e-valores-extremos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.8. </span>Somas e valores extremos<a class="headerlink" href="#somas-e-valores-extremos" title="Permalink to this headline">#</a></h2>
 <p>Podemos calcular somas de elementos de matrizes e vetores de maneiras diferentes. Para matrizes, em particular, há soma total, por linha, ou por coluna.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1738,12 +1717,16 @@ dx + ey = f
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># soma por linha </span>
-<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">O</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">]]</span> <span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5., 5., 5.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0, 0],
+        [0, 0]]])
 </pre></div>
 </div>
 </div>
@@ -1886,7 +1869,12 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13773</span><span class="o">/</span><span class="mf">3156693447.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">O2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;O2&#39; is not defined
 </pre></div>
 </div>
 </div>
