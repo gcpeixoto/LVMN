@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Método da Iteração Linear (Ponto Fixo) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>Método da Iteração Linear (Ponto Fixo) &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,13 +50,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Implementação do método de Newton" href="aula-06-newton.html" />
-    <link rel="prev" title="5. Implementação do método da bisseção" href="aula-04-bissecao.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +119,7 @@ const thebe_selector_output = ".output, .cell_output"
   Cadernos
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
    1. Modelagem Matemática em Ciências Computacionais e Engenharias
@@ -129,12 +127,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -147,24 +145,24 @@ const thebe_selector_output = ".output, .cell_output"
    5. Implementação do método da bisseção
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,37 +248,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-1-bisect.html">
+  <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-2-newton.html">
+  <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-3-polyval.html">
+  <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-4-fsolve.html">
+  <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-5-solve.html">
+  <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-6-interp.html">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-7-fit.html">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -288,12 +286,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-8-integrate.html">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -332,6 +330,91 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="lista-6-solucoes.html">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
   </a>
  </li>
 </ul>
@@ -408,6 +491,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
    40. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   41. Documentação de código
   </a>
  </li>
 </ul>
@@ -573,22 +661,22 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exemplo">
-   6.1. Exemplo
+   Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   6.2. Exemplo
+   Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementacao-do-metodo-do-ponto-fixo">
-   6.3. Implementação do método do ponto fixo
+   Implementação do método do ponto fixo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estudo-de-caso-f-x-x-2-x-6">
-   6.4. Estudo de caso:
+   Estudo de caso:
    <span class="math notranslate nohighlight">
     \(f(x) = x^2 + x - 6\)
    </span>
@@ -615,22 +703,22 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exemplo">
-   6.1. Exemplo
+   Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   6.2. Exemplo
+   Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementacao-do-metodo-do-ponto-fixo">
-   6.3. Implementação do método do ponto fixo
+   Implementação do método do ponto fixo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estudo-de-caso-f-x-x-2-x-6">
-   6.4. Estudo de caso:
+   Estudo de caso:
    <span class="math notranslate nohighlight">
     \(f(x) = x^2 + x - 6\)
    </span>
@@ -647,7 +735,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="metodo-da-iteracao-linear-ponto-fixo">
-<h1><span class="section-number">6. </span>Método da Iteração Linear (Ponto Fixo)<a class="headerlink" href="#metodo-da-iteracao-linear-ponto-fixo" title="Permalink to this headline">#</a></h1>
+<h1>Método da Iteração Linear (Ponto Fixo)<a class="headerlink" href="#metodo-da-iteracao-linear-ponto-fixo" title="Permalink to this headline">#</a></h1>
 <p>Este notebook explora aspectos do método da <em>iteração linear</em>, ou também chamado de método do <em>ponto fixo</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -658,7 +746,7 @@ title="Print to PDF"
 </div>
 </div>
 <section id="exemplo">
-<h2><span class="section-number">6.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
+<h2>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
 <p>Estudamos a função <span class="math notranslate nohighlight">\(f(x) = x^2 + x - 6\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,7 +779,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">6.2. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Estudamos a função <span class="math notranslate nohighlight">\(f(x) = \exp(x) -x\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -711,11 +799,11 @@ title="Print to PDF"
 </div>
 </section>
 <section id="implementacao-do-metodo-do-ponto-fixo">
-<h2><span class="section-number">6.3. </span>Implementação do método do ponto fixo<a class="headerlink" href="#implementacao-do-metodo-do-ponto-fixo" title="Permalink to this headline">#</a></h2>
+<h2>Implementação do método do ponto fixo<a class="headerlink" href="#implementacao-do-metodo-do-ponto-fixo" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ponto_fixo</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">tol</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">vis</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    Resolve problema de determinacao de raizes pelo </span>
 <span class="sd">    metodo do ponto fixo (iteracao linear).</span>
 <span class="sd">    </span>
@@ -777,7 +865,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="estudo-de-caso-f-x-x-2-x-6">
-<h2><span class="section-number">6.4. </span>Estudo de caso: <span class="math notranslate nohighlight">\(f(x) = x^2 + x - 6\)</span><a class="headerlink" href="#estudo-de-caso-f-x-x-2-x-6" title="Permalink to this headline">#</a></h2>
+<h2>Estudo de caso: <span class="math notranslate nohighlight">\(f(x) = x^2 + x - 6\)</span><a class="headerlink" href="#estudo-de-caso-f-x-x-2-x-6" title="Permalink to this headline">#</a></h2>
 <p>Função de iteração: <span class="math notranslate nohighlight">\(g(x) = \sqrt{6 - x}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -876,20 +964,6 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="aula-04-bissecao.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Implementação do método da bisseção</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="aula-06-newton.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Implementação do método de Newton</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>

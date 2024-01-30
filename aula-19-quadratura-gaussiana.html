@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08a-matrizes-vetores.html">
-   9. Elementos de Álgebra Linear Computacional
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -951,7 +951,7 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># número de pontos de quadratura</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="c1"># pontos e pesos</span>
 <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        
@@ -959,7 +959,66 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 </div>
 </div>
 </div>
-<p>Isto é, para a regra de 2 pontos, os nós de Gauss-Legendre são</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">5.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">5.1</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">QG2</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">QG3</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">QG4</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+<span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="n">pesos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">QG</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">pontos</span><span class="p">,</span><span class="n">pesos</span><span class="p">)</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  
+    
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="n">pesos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">pontos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;QG</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">QG</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>QG1 = 30.642493444253617
+QG2 = 291.9238277183161
+QG3 = 456.0422383934014
+QG4 = 488.96142750746253
+QG5 = 492.48121331764094
+QG6 = 492.71920635748165
+QG7 = 492.7303338909227
+QG8 = 492.73071525454685
+QG9 = 492.73072524440545
+QG10 = 492.7307254508673
+QG11 = 492.7307254543184
+QG12 = 492.73072545436776
+QG13 = 492.73072545436753
+QG14 = 492.73072545436855
+QG15 = 492.7307254543701
+QG16 = 492.73072545436673
+QG17 = 492.7307254543697
+QG18 = 492.7307254543684
+QG19 = 492.73072545437
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pontos</span><span class="p">)</span>
@@ -967,8 +1026,10 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.96028986 -0.79666648 -0.52553241 -0.18343464  0.18343464  0.52553241
-  0.79666648  0.96028986]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.9931286  -0.96397193 -0.91223443 -0.83911697 -0.74633191 -0.63605368
+ -0.510867   -0.37370609 -0.22778585 -0.07652652  0.07652652  0.22778585
+  0.37370609  0.510867    0.63605368  0.74633191  0.83911697  0.91223443
+  0.96397193  0.9931286 ]
 </pre></div>
 </div>
 </div>
@@ -981,8 +1042,10 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.10122854 0.22238103 0.31370665 0.36268378 0.36268378 0.31370665
- 0.22238103 0.10122854]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.01761401 0.04060143 0.06267205 0.08327674 0.10193012 0.11819453
+ 0.13168864 0.14209611 0.14917299 0.15275339 0.15275339 0.14917299
+ 0.14209611 0.13168864 0.11819453 0.10193012 0.08327674 0.06267205
+ 0.04060143 0.01761401]
 </pre></div>
 </div>
 </div>
@@ -995,7 +1058,7 @@ I \cong c_0 f(x_0) + c_1 f(x_1) + \dots + c_{n−1} f(x_{n−1}) \qquad (12)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-19-quadratura-gaussiana_10_0.png" src="_images/aula-19-quadratura-gaussiana_10_0.png" />
+<img alt="_images/aula-19-quadratura-gaussiana_11_0.png" src="_images/aula-19-quadratura-gaussiana_11_0.png" />
 </div>
 </div>
 <section id="tabela-de-pesos-pontos-quadratura-de-gauss-legendre">
@@ -1256,7 +1319,7 @@ REGRA DE 16 PONTO(S):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-19-quadratura-gaussiana_18_0.png" src="_images/aula-19-quadratura-gaussiana_18_0.png" />
+<img alt="_images/aula-19-quadratura-gaussiana_19_0.png" src="_images/aula-19-quadratura-gaussiana_19_0.png" />
 </div>
 </div>
 <section id="tarefa">

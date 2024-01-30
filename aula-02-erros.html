@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -1352,7 +1352,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define função anônima para erro relativo</span>
-<span class="n">ai</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">f_</span><span class="p">:</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f_</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="o">*</span><span class="mi">100</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">f_</span><span class="p">:</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f_</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
 
 <span class="c1"># calcula erro relativo para função de Airy e sua aproximação</span>
 <span class="n">E_airy</span> <span class="o">=</span> <span class="n">ai</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A_</span><span class="p">)</span>
@@ -1416,6 +1416,10 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 <p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1+ y_i) - \log(1 + \hat{y}_i) ]^2\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade</p>
+<p>Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo <a class="reference external" href="https://www.mdpi.com/2220-9964/9/1/24">Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation</a>.</p>
+</div>
 </section>
 </section>
 </section>

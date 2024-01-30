@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -794,7 +794,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="analise-grafica-de-funcoes-nao-lineares">
 <h1><span class="section-number">4. </span>Análise gráfica de funções não lineares<a class="headerlink" href="#analise-grafica-de-funcoes-nao-lineares" title="Permalink to this headline">#</a></h1>
-<p>Saber realizar plotagens básicas para analisar o comportamento de funções-alvo (aquelas para as quais procuramos raízes) é essencial para a compreensão de métodos intervalares e abertos que usam aproximações sucessivas.</p>
+<p>Saber realizar plotagens básicas para analisar o comportamento de funções-alvo (aquelas para as quais procuramos raízes) é essencial para a compreensão de métodos baseados em aproximações sucessivas.</p>
 <p>Neste capítulo, abordaremos os seguintes tópicos:</p>
 <ul class="simple">
 <li><p>plotagem básica de funções matemáticas com <em>matplotlib</em>;</p></li>
@@ -852,9 +852,9 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Localização</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">20</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">15.12</span><span class="p">,</span><span class="mf">15.13</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="n">v</span> <span class="c1"># f(c) = 0</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">*</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
@@ -865,7 +865,7 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_5_0.png" src="_images/aula-03-analise-grafica_5_0.png" />
+<img alt="_images/aula-03-analise-grafica_6_0.png" src="_images/aula-03-analise-grafica_6_0.png" />
 </div>
 </div>
 </section>
@@ -887,7 +887,7 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_7_0.png" src="_images/aula-03-analise-grafica_7_0.png" />
+<img alt="_images/aula-03-analise-grafica_8_0.png" src="_images/aula-03-analise-grafica_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -904,7 +904,7 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_8_0.png" src="_images/aula-03-analise-grafica_8_0.png" />
+<img alt="_images/aula-03-analise-grafica_9_0.png" src="_images/aula-03-analise-grafica_9_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -921,7 +921,7 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_9_0.png" src="_images/aula-03-analise-grafica_9_0.png" />
+<img alt="_images/aula-03-analise-grafica_10_0.png" src="_images/aula-03-analise-grafica_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -938,7 +938,7 @@ f: \mathbb{R}^n \to \mathbb{R} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_10_0.png" src="_images/aula-03-analise-grafica_10_0.png" />
+<img alt="_images/aula-03-analise-grafica_11_0.png" src="_images/aula-03-analise-grafica_11_0.png" />
 </div>
 </div>
 <p>Apenas com esses refinamentos, já é possível determinar a raiz única com um erro absoluto de 0.02 unidades, visto que ela está entre 15.12 e 15.14. Além disso, note como, neste intervalo, a curvatura da função não é mais identificável. Isso mostra que no intervalo <span class="math notranslate nohighlight">\(15.10 \leq c \leq 15.20\)</span> <span class="math notranslate nohighlight">\(f\)</span> é praticamente “linear”.</p>
@@ -1017,7 +1017,7 @@ x(28) = 0.0039
 x(29) = -0.0033
 </pre></div>
 </div>
-<img alt="_images/aula-03-analise-grafica_15_1.png" src="_images/aula-03-analise-grafica_15_1.png" />
+<img alt="_images/aula-03-analise-grafica_16_1.png" src="_images/aula-03-analise-grafica_16_1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1062,7 +1062,7 @@ y(8) = 0.7314
 y(9) = 12.3047
 </pre></div>
 </div>
-<img alt="_images/aula-03-analise-grafica_17_1.png" src="_images/aula-03-analise-grafica_17_1.png" />
+<img alt="_images/aula-03-analise-grafica_18_1.png" src="_images/aula-03-analise-grafica_18_1.png" />
 </div>
 </div>
 </section>
@@ -1098,7 +1098,7 @@ y(9) = 12.3047
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_22_0.png" src="_images/aula-03-analise-grafica_22_0.png" />
+<img alt="_images/aula-03-analise-grafica_23_0.png" src="_images/aula-03-analise-grafica_23_0.png" />
 </div>
 </div>
 <p>Nesta plotagem, vemos claramente que a função possui duas raizes: uma próxima de <span class="math notranslate nohighlight">\(x = 0.5\)</span> e outra em <span class="math notranslate nohighlight">\(x = \pi/6\)</span>.</p>
@@ -1145,7 +1145,7 @@ y(9) = 12.3047
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_28_0.png" src="_images/aula-03-analise-grafica_28_0.png" />
+<img alt="_images/aula-03-analise-grafica_29_0.png" src="_images/aula-03-analise-grafica_29_0.png" />
 </div>
 </div>
 <p>Conseguimos enxergar mais uma raiz. Agora, plotemos um pouco mais ampliado entre [3.6,3.7].</p>
@@ -1157,7 +1157,7 @@ y(9) = 12.3047
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_30_0.png" src="_images/aula-03-analise-grafica_30_0.png" />
+<img alt="_images/aula-03-analise-grafica_31_0.png" src="_images/aula-03-analise-grafica_31_0.png" />
 </div>
 </div>
 <p>Dessa forma, podemos identificar que, de fato existe uma quarta raiz.</p>
@@ -1174,7 +1174,7 @@ y(9) = 12.3047
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-03-analise-grafica_33_0.png" src="_images/aula-03-analise-grafica_33_0.png" />
+<img alt="_images/aula-03-analise-grafica_34_0.png" src="_images/aula-03-analise-grafica_34_0.png" />
 </div>
 </div>
 </section>

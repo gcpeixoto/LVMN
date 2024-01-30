@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -124,17 +124,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -356,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -827,10 +827,18 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># atribuindo colunas da matriz de dados em h e T</span>
-<span class="n">h</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;file-cs6-entalpia.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">h</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;../file-cs6-entalpia.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># temperatura em milhares de Kelvin</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mf">1e3</span><span class="o">*</span><span class="n">T</span> 
+
+<span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 5000.,  7500., 10000., 12500., 15000., 17500., 20000., 22500.,
+       25000., 27500., 30000.])
 </pre></div>
 </div>
 </div>
@@ -852,8 +860,6 @@ title="Print to PDF"
 
 <span class="c1"># valores interpolados</span>
 <span class="n">hi</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> 
-
-<span class="n">hi</span> 
 </pre></div>
 </div>
 </div>
@@ -873,10 +879,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># métodos de interpolação</span>
-<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">,</span> <span class="s1">&#39;slinear&#39;</span><span class="p">,</span> <span class="s1">&#39;quadratic&#39;</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span><span class="s1">&#39;zero&#39;</span><span class="p">,</span><span class="s1">&#39;slinear&#39;</span><span class="p">,</span> <span class="s1">&#39;quadratic&#39;</span><span class="p">,</span><span class="s1">&#39;cubic&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 
 <span class="c1"># objetos de interpolação para cada método </span>
 <span class="n">F</span> <span class="o">=</span> <span class="p">[</span><span class="n">interp1d</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">m</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
 
 <span class="c1"># valores interpolados</span>
 <span class="n">him</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">F</span><span class="p">]</span>
@@ -885,7 +892,7 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;tabelado&#39;</span><span class="p">);</span>
 
 <span class="c1"># plotagem dos métodos</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">him</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
 <span class="c1"># legenda</span>
@@ -894,7 +901,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-6-interp_12_0.png" src="../_images/codeSession-6-interp_12_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331e54130&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331e541d0&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331e54220&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff33199e810&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331e51450&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331dd06d0&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331dbc130&gt;, &lt;scipy.interpolate._interpolate.interp1d object at 0x7ff331a6ff90&gt;]
+</pre></div>
+</div>
+<img alt="../_images/codeSession-6-interp_12_1.png" src="../_images/codeSession-6-interp_12_1.png" />
 </div>
 </div>
 <p>Até aqui, já cumprimos os dois primeiros requisitos do problema. Para o terceiro, usaremos as informações pré-computadas na lista <code class="docutils literal notranslate"><span class="pre">F</span></code> para estimar os valores de entalpia quando <span class="math notranslate nohighlight">\(T = 15150 \, ^{\circ} K\)</span>. Teremos os seguintes três valores:</p>
@@ -908,7 +918,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array(61.), array(63.406), array(62.60353522)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array(61.),
+ array(63.406),
+ array(62.60353522),
+ array(62.64452478),
+ array(62.63805504),
+ array(62.68643145),
+ array(62.73084339)]
 </pre></div>
 </div>
 </div>

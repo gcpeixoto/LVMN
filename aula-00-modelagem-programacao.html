@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Modelagem matemática em Ciências Computacionais e Engenharias &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>1. Modelagem Matemática em Ciências Computacionais e Engenharias &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,8 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -797,7 +797,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Modelagem matemática em Ciências Computacionais e Engenharias</h1>
+                <h1>Modelagem Matemática em Ciências Computacionais e Engenharias</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -945,15 +945,16 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="modelagem-matematica-em-ciencias-computacionais-e-engenharias">
-<h1><span class="section-number">1. </span>Modelagem matemática em Ciências Computacionais e Engenharias<a class="headerlink" href="#modelagem-matematica-em-ciencias-computacionais-e-engenharias" title="Permalink to this headline">#</a></h1>
-<p>Ao deparar-se com um problema real, profissionais envolvidos nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo à uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de <em>método</em>.</p>
-<p>Alguns exemplos de perguntas que eventualmente surgiriam em domínios específicos do conhecimento são:</p>
+<h1><span class="section-number">1. </span>Modelagem Matemática em Ciências Computacionais e Engenharias<a class="headerlink" href="#modelagem-matematica-em-ciencias-computacionais-e-engenharias" title="Permalink to this headline">#</a></h1>
+<p>Ao deparar-se com um problema real, profissionais com envolvimento nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo a uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de <em>método</em>.</p>
+<p>Alguns exemplos de perguntas que eventualmente surgiriam em domínios específicos do conhecimento como base para a resolução de um problema são:</p>
 <ul class="simple">
 <li><p>que carga máxima seria admissível para um elevador de edifício-garagem de 15 andares, de maneira que seus cabos, mecanismos e estrutura de elevação não sejam danificados por excesso de tensão? (Engenharia Civil)</p></li>
 <li><p>quantos mililitros de um fármaco anti-alérgico poderiam ser injetados por minuto na corrente sanguínea de um indivíduo de modo que não haja efeitos colaterais de overdose? (Biologia)</p></li>
 <li><p>que magnitude mínima de pressão seria necessária para mover um fluido refrigerante por um nanotubo de um componente eletrônico aquecido de maneira a resfriá-lo em 2% de sua temperatura operacional? (Engenharia Mecânica)</p></li>
+<li><p>qual o tempo de vida útil de um microprocessador operando 16 horas por dia em alto clock sob voltagem de 1.46v e resfriamento contínuo? (Engenharia da Computação)</p></li>
 </ul>
-<p>Evidentemente, perguntas como essas podem ser extremamente difíceis de responder, sendo necessário o envolvimento de uma equipe multidisciplinar, com experiência em variados assuntos. A primeira das perguntas pode envolver profissionais especializados em ciência dos materiais, eletrônica e pneumática; a segunda, matemáticos aplicados, cardiologistas e químicos; a terceira, físicos, analistas de energia e estatísticos.</p>
+<p>Evidentemente, perguntas como essas podem ser extremamente difíceis de responder, sendo necessário o envolvimento de uma equipe multidisciplinar, com experiência em variados assuntos, para se chegar a um denominador comum, ao menos pela via consensual. A primeira das perguntas pode envolver profissionais especializados em ciência dos materiais, eletrônica e pneumática; a segunda, matemáticos aplicados e cardiologistas; a terceira, físicos, analistas de energia e estatísticos; a última, engenheiros elétricos e químicos.</p>
 <p>Resolver um problema científico no mundo atual requer não apenas conhecimento teórico e prático, mas também outras habilidades como a capacidade de pensar computacionalmente e resolver problemas utilizando o enorme potencial da computação de alto desempenho. Na verdade, a maioria dos problemas atuais não pode ser resolvida sem a intervenção de métodos numéricos. Há, certamente, um amplo leque de opções metodológicas para resolvê-los. Entretanto, em linhas gerais, são quatro as fases de resolução de um problema aplicado, como mostra a  <a class="reference internal" href="#passos-modelagem"><span class="std std-numref">Fig. 1.1</span></a>.</p>
 <figure class="align-default" id="passos-modelagem">
 <a class="reference internal image-reference" href="_images/passos-modelagem.png"><img alt="_images/passos-modelagem.png" src="_images/passos-modelagem.png" style="width: 700px;" /></a>
@@ -1252,7 +1253,7 @@ Nosso módulo poderia ser salvo em um arquivo chamado <code class="docutils lite
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">class</span> <span class="nc">Ponto</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Classe que implementa pontos no espaço 2D.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
