@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 5
-
-# In[6]:
-
-
-import numpy as np
-
+# # _Code Session_ 5: Sistemas Lineares
 
 # ## `linalg.solve`
 # 
@@ -21,12 +15,6 @@ import numpy as np
 # O argumento de saída é:
 # 
 # - `x`: o vetor-solução do sistema.
-# 
-# Como importá-la? 
-# 
-# ```python 
-# from numpy.linalg import solve
-# ```
 
 # In[7]:
 

@@ -46,7 +46,7 @@
 # 
 # em que, para a regra dos trapézios, a altura média é a média dos valores da função nas extremidades, ou $[f (a) + f (b)]/2$, conforme Equação (2).
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -58,7 +58,7 @@ from scipy import integrate
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[2]:
+# In[3]:
 
 
 # Representação geométrica da regra do trapézio
@@ -108,7 +108,7 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 # I = \dfrac{h}{2} \left[ f(x_0) + 2 \sum _{i = 1} ^{n - 1} f(x_i) + f(x_n) \right] \qquad (4)
 # $$
 
-# In[3]:
+# In[4]:
 
 
 # Representação geométrica da aplicação múltipla da regra do trapézio
@@ -155,7 +155,7 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 # h = \dfrac{b − a}{2} \qquad (6)
 # $$
 
-# In[4]:
+# In[5]:
 
 
 # Descrição gráfica da regra 1/3 de Simpson: ela consiste em tomar a área sob uma parábola ligando três pontos
@@ -237,7 +237,7 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 # 
 # Essa equação é chamada regra 3/8 de Simpson porque $h$ é multiplicada por 3/8.
 
-# In[5]:
+# In[6]:
 
 
 # Descrição gráfica da regra 3/8 de Simpson: ela consiste em tomar a área sob uma equação cúbica ligando quatro pontos
@@ -278,7 +278,7 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 
 # ## Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas
 
-# In[6]:
+# In[8]:
 
 
 ''' Newton-Cotes: Regra do Trapezio

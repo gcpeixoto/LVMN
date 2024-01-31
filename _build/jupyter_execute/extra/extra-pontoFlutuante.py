@@ -188,7 +188,7 @@ print(compare_float(10.111,10.1111,1e-6))
 # #### Visualizadores interativos de números no padrão IEEE 754
 # 
 # - [IEEE 754 Visualization](https://bartaz.github.io/ieee754-visualization/)
-# - [Float exposed]
+# - [float.exposed](https://float.exposed/)
 # 
 # #### Exemplos de comparação de números em ponto flutuante
 # 

@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="28. Números em ponto flutuante e seus problemas" href="extra/extra-pontoFlutuante.html" />
+    <link rel="next" title="Recorte 1: Breve Histórico da Análise Numérica" href="clippings/clipping-01-analise-numerica.html" />
     <link rel="prev" title="Lista de Exercícios 5" href="lista-5-solucoes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -127,12 +127,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -146,23 +146,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -248,37 +248,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-1-bisect.html">
+  <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
    Code session 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-2-newton.html">
+  <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
    Code session 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-3-polyval.html">
+  <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
    Code session 3
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-4-fsolve.html">
+  <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
    Code session 4
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-5-solve.html">
+  <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
    Code session 5
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-6-interp.html">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
    Code session 6
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-7-fit.html">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
    <em>
     Code Session 7
    </em>
@@ -286,12 +286,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-8-integrate.html">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
    Code session 8
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="codeSession-9-solve_ivp.html">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
    Code session 9
   </a>
  </li>
@@ -330,6 +330,91 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
   </a>
  </li>
 </ul>
@@ -406,6 +491,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="extra/extra-metodo-linhas.html">
    40. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   41. Documentação de código
   </a>
  </li>
 </ul>
@@ -980,10 +1070,10 @@ Aproximação y(1.6) = 3.042921559591501
             <p class="prev-next-title">Lista de Exercícios 5</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="extra/extra-pontoFlutuante.html" title="next page">
+    <a class='right-next' id="next-link" href="clippings/clipping-01-analise-numerica.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">28. </span>Números em ponto flutuante e seus problemas</p>
+        <p class="prev-next-title">Recorte 1: Breve Histórico da Análise Numérica</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

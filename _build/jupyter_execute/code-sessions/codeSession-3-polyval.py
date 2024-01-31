@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 3
+# # _Code Session_ 3: Raízes de Polinômios
 
 # In[1]:
 
 
-import numpy as np 
-import matplotlib.pyplot as plt 
+import numpy as np, matplotlib.pyplot as plt 
 
 
 # ## Determinação de raízes de polinômios
@@ -26,17 +25,6 @@ import matplotlib.pyplot as plt
 # 
 # - `x`: _array_ com as raízes de $P(x)$.
 # 
-# Como importá-la? 
-# 
-# ```python 
-# from numpy import roots
-# ```
-# 
-# Porém, como já fizemos uma importação do `numpy` acima, basta utilizarmos 
-# 
-# ```python 
-# np.roots(p)
-# ```
 
 # ### Problema 1 
 # 

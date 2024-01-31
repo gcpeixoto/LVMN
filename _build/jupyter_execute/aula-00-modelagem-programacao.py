@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Modelagem matemática em Ciências Computacionais e Engenharias
+# # Modelagem Matemática em Ciências Computacionais e Engenharias
 # 
-# Ao deparar-se com um problema real, profissionais envolvidos nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo à uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de _método_. 
+# Ao deparar-se com um problema real, profissionais com envolvimento nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo a uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de _método_. 
 # 
-# Alguns exemplos de perguntas que eventualmente surgiriam em domínios específicos do conhecimento são:
+# Alguns exemplos de perguntas que eventualmente surgiriam em domínios específicos do conhecimento como base para a resolução de um problema são:
 # 
 # - que carga máxima seria admissível para um elevador de edifício-garagem de 15 andares, de maneira que seus cabos, mecanismos e estrutura de elevação não sejam danificados por excesso de tensão? (Engenharia Civil)
 # - quantos mililitros de um fármaco anti-alérgico poderiam ser injetados por minuto na corrente sanguínea de um indivíduo de modo que não haja efeitos colaterais de overdose? (Biologia)
 # - que magnitude mínima de pressão seria necessária para mover um fluido refrigerante por um nanotubo de um componente eletrônico aquecido de maneira a resfriá-lo em 2% de sua temperatura operacional? (Engenharia Mecânica)
+# - qual o tempo de vida útil de um microprocessador operando 16 horas por dia em alto clock sob voltagem de 1.46v e resfriamento contínuo? (Engenharia da Computação) 
 # 
-# Evidentemente, perguntas como essas podem ser extremamente difíceis de responder, sendo necessário o envolvimento de uma equipe multidisciplinar, com experiência em variados assuntos. A primeira das perguntas pode envolver profissionais especializados em ciência dos materiais, eletrônica e pneumática; a segunda, matemáticos aplicados, cardiologistas e químicos; a terceira, físicos, analistas de energia e estatísticos.
+# Evidentemente, perguntas como essas podem ser extremamente difíceis de responder, sendo necessário o envolvimento de uma equipe multidisciplinar, com experiência em variados assuntos, para se chegar a um denominador comum, ao menos pela via consensual. A primeira das perguntas pode envolver profissionais especializados em ciência dos materiais, eletrônica e pneumática; a segunda, matemáticos aplicados e cardiologistas; a terceira, físicos, analistas de energia e estatísticos; a última, engenheiros elétricos e químicos.
 # 
 # Resolver um problema científico no mundo atual requer não apenas conhecimento teórico e prático, mas também outras habilidades como a capacidade de pensar computacionalmente e resolver problemas utilizando o enorme potencial da computação de alto desempenho. Na verdade, a maioria dos problemas atuais não pode ser resolvida sem a intervenção de métodos numéricos. Há, certamente, um amplo leque de opções metodológicas para resolvê-los. Entretanto, em linhas gerais, são quatro as fases de resolução de um problema aplicado, como mostra a  {numref}`passos-modelagem`.
 # 

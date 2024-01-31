@@ -1,27 +1,27 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 2
+# # _Code Session_ 2: Newton
 
-# In[4]:
+# O propósito desta _Code Session_ é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função `newton` do módulo `scipy.optimize`. Replicaremos alguns problemas da _Code Session_ 1 e faremos algumas adições.
+
+# In[12]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt 
-import sympy as sy
+# Importação de módulos
+import numpy as np, matplotlib.pyplot as plt, sympy as sy
 
 
 # ## Determinação de raízes
 
 # ## `newton`
 # 
-# A função `newton` localiza a raiz de uma função dentro de um intervalo dado usando o método de Newton. 
-# Os argumentos de entrada obrigatórios desta função são: 
+# A função `newton` localiza a raiz de uma função dentro de um intervalo dado usando o método de Newton, sob especificação da primeira derivada. Os argumentos de entrada obrigatórios desta função são: 
 # 
 # 1. a função-alvo `f` (contínua)
 # 2. a estimativa inicial `x0`
 # 
-# Parâmetros opcionais relevantes são: 
+# Os parâmetros opcionais relevantes são: 
 # 
 # - `fprime`: a derivada da função, quando disponível. Caso ela não seja especificada, o _método da secante_ é usado. 
 # - `fprime2`: a segunda derivada da função, quando disponível. Se ela for especificada, o _método de Halley_ é usado. 
@@ -32,17 +32,12 @@ import sympy as sy
 # O argumento de saída é:
 # 
 # - `x`: a estimativa para a raiz de `f`
-# 
-# Como importá-la? 
-# 
-# ```python 
-# from scipy.optimize import newton
-# ```
 
-# In[2]:
+# In[3]:
 
 
-from scipy.optimize import newton 
+# Importação de 'newton'
+from scipy.optimize import newton
 
 
 # ### Problema 1
@@ -53,13 +48,10 @@ from scipy.optimize import newton
 
 # Definimos a função e sua primeira derivada.
 
-# In[6]:
+# In[4]:
 
 
-# função anônima
-g = lambda x: x**3 - 3.23*x**2 - 5.54*x + 9.84
-
-# função (User-Defined Function)
+# Função primitiva
 def f(x): 
     return x**3 - 3.23*x**2 - 5.54*x + 9.84
 
@@ -68,58 +60,37 @@ def df(x):
     return 3*x**2 - 2*3.23*x - 5.54
 
 
-# In[135]:
-
-
-fig, ax = plt.subplots()
-#ax.plot(0,1,'or')
-#ax.plot([1,-1],[0,-2],'-k')
-
-#dominio = np.linspace(0,3,100)
-#imagem = np.sqrt(dominio)
-#ax.plot(dominio,imagem,c='#de4f10',markevery=3,markersize=10)
-#ax.plot(dominio,1-imagem,c='#de4f10',markevery=3,markersize=10)
-ax.axis('off');
-
-
 # Realizamos a análise gráfica.
 
-# In[109]:
+# In[14]:
 
 
-# analise gráfica 
+# Análise gráfica 
 x = np.linspace(-4,5)
-plt.plot(x,f(x));
-plt.plot(x,df(x));
-plt.axhline(y=0,color='k',ls='--');
-plt.axvline(x=0,color='r',ls='--');
-plt.legend(['$f(x)$','$f\'(x)$','$y=0$','$x=0$'],
-           loc='upper right',
-           ncol=1,
-           bbox_to_anchor = (0,0));
+plt.plot(x,f(x))
+plt.plot(x,df(x))
+plt.axhline(y=0,color='k',ls='--')
+plt.legend(['$f(x)$','$f\'(x)$','$y=0$'],
+           loc='lower right');
 
-
-# $f(x)$
 
 # Vamos realizar um estudo de diferentes estimativas iniciais e ver o que acontece.
 
 # ##### Estimativa inicial: $x_0 = -1$
 
-# In[111]:
+# In[16]:
 
 
-# resolução com newton 
 x0 = -1.
-x = newton(f,x0) # raiz 
+x = newton(f,x0,df) # raiz 
 print('Raiz: x = %f' % x)
 
 
 # ##### Estimativa inicial: $x_0 = 0$
 
-# In[113]:
+# In[17]:
 
 
-# resolução com newton 
 x0 = 0.
 x = newton(f,x0,df) # raiz 
 print('Raiz: x = %f' % x)
@@ -127,10 +98,9 @@ print('Raiz: x = %f' % x)
 
 # ##### Estimativa inicial: $x_0 = 3$
 
-# In[114]:
+# In[18]:
 
 
-# resolução com newton 
 x0 = 3.
 x = newton(f,x0,df) # raiz 
 print('Raiz: x = %f' % x)
@@ -147,23 +117,23 @@ print('Raiz: x = %f' % x)
 # In[8]:
 
 
-# função
+# Função (anônima)
 f = lambda x: np.cosh(x)*np.cos(x) - 1 
 
 
-# Para computar a primeira derivada, vamos utilizar computação simbólica. Veja no início deste notebook que inserimos a instrução
+# Para computar a primeira derivada, utilizaremos computação simbólica. Veja no início deste notebook que inserimos a instrução
+# a seguir para chamar objetos do módulo `sympy`.
 # 
 # ```python
 # import sympy as sy
 # ```
 # 
-# a qual nos permitirá utilizar objetos do módulo `sympy`.
-# 
 # Em primeiro lugar, devemos estabelecer uma variável simbólica `xs`.
 
-# In[9]:
+# In[19]:
 
 
+# Variável simbólica
 xs = sy.Symbol('x')
 
 
@@ -226,8 +196,8 @@ x = newton(f,x0,df) # raiz
 print('Raiz: x = %f' % x)
 
 
-# ## _Homework_ 
+# ## Tarefas 
 # 
 # 1. Reproduza os Problemas de 3 a 8 da _Code Session 1_ resolvendo com o método `newton`.
 # 2. Para os casos possíveis, determine a derivada. Caso contrário, utilize como método da Secante. 
-# 3. Pesquise sobre o método de Halley e aplique-o aos problemas usando também a função `newton`, mas avaliando-a também com a segunda derivada. 
+# 3. Pesquise sobre o método de Halley e aplique-o aos problemas usando a função `newton`, mas avaliando-a também com a segunda derivada. 

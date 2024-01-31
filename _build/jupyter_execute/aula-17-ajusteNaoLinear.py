@@ -3,7 +3,7 @@
 
 # # Ajuste de curvas: caso não-linear
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np 
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 # ## Motivação: comportamento de fluidos lei de potência
 
-# In[2]:
+# In[3]:
 
 
 gamma = np.linspace(0,1,20,True)
@@ -52,7 +52,7 @@ plt.tick_params(axis='both',which='both',labelbottom=False,labelleft=False)
 
 # Plotando o gráfico de dispersão:
 
-# In[3]:
+# In[4]:
 
 
 x = np.array([1.2,2.8,4.3,5.4,6.8,7.9])
@@ -68,18 +68,18 @@ plt.plot(x,y,'o');
 # 
 # Plotemos a dispersão $(x,Y)$.
 
-# In[13]:
+# In[21]:
 
 
 Y = np.log(y)
-plt.plot(x,Y);
+plt.plot(x,Y,'d');
 
 
 # O teste do alinhamento nos diz que a função de ajuste é adequada para a regressão linear. 
 
 # **Regressão linear:** façamos a regressão linear para buscar os parâmetros $b$ e $Z$ do modelo linearizado.
 
-# In[5]:
+# In[22]:
 
 
 from scipy.stats import linregress
@@ -92,7 +92,7 @@ print(f'Inclinação = {b:.3f}; offset = {Z:.3f}; R2 = {R*R:.3f}.')
 
 # **Comparação entre dados experimentais e ajustados:** plotaremos agora a dispersão e o modelo ajustado.
 
-# In[10]:
+# In[23]:
 
 
 a = np.exp(Z) # recupera o valor de a 
@@ -105,7 +105,7 @@ plt.legend(('amostras','ajuste'));
 
 # **Estimando valores não tabelados:** visto que o modelo exponencial se acomoda bem aos dados experimentais, agora podemos estimar valores que são desconhecidos, tais como $x = 3.2$ ou $x = 7.5$.
 
-# In[7]:
+# In[25]:
 
 
 xp = np.array([3.2,7.5]) # valores procurados

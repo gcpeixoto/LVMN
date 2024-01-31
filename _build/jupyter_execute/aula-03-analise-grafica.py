@@ -3,7 +3,7 @@
 
 # # Análise gráfica de funções não lineares
 # 
-# Saber realizar plotagens básicas para analisar o comportamento de funções-alvo (aquelas para as quais procuramos raízes) é essencial para a compreensão de métodos intervalares e abertos que usam aproximações sucessivas.
+# Saber realizar plotagens básicas para analisar o comportamento de funções-alvo (aquelas para as quais procuramos raízes) é essencial para a compreensão de métodos baseados em aproximações sucessivas.
 # 
 # Neste capítulo, abordaremos os seguintes tópicos: 
 # 
@@ -49,14 +49,82 @@
 # 
 # significaria que a análise é _unidimensional_ sobre a variável $x_k$ nos parâmetros $x_1$ a $x_n$, excluindo-se $x_k$.
 # 
-# 
 # Para o nosso exemplo, $n=4$, $y = v$, a variável independente $x_k$ é o coeficiente de arrasto $c$ – note que $k$ pode ser qualquer valor entre 1 e 4 –, $f$ é a expressão matemática $\dfrac{gm}{c}(1 - e^{-(c/m)t})$ e os demais símbolos $x_j$, para $j \neq k$, são os parâmetros.
+# 
+# A visualização de "cortes" paralelos aos eixos coordenados que são resultantes da fixação de uma variável (feito parâmetro) e da liberação de outra para um caso em que $f$ é bivariada está disponível abaixo. Interagindo-se com o mouse, somos capazes de reconhecer que $f(x_1,x_2)$ para $x_1$ ou $x_2$ fixado – de modo exclusivo – recai em uma função univariada, assim podendo ser estudada pelas ferramentas aprendidas neste curso.
+
+# In[17]:
+
+
+from plotly.offline import plot
+from IPython.display import display, HTML
+import plotly.graph_objects as go
+import numpy as np
+
+# Define the function f(x, y) (you can replace this with your own function)
+def f(x, y):
+    return np.sin(x) + np.cos(y)
+
+# Generate data for the function surface plot
+x_values = np.linspace(-2, 0, 100)
+y_values = np.linspace(0, 5, 100)
+x_mesh, y_mesh = np.meshgrid(x_values, y_values)
+z_values = f(x_mesh, y_mesh)
+
+# Create a surface plot for the function
+fig = go.Figure(data=[go.Surface(z=z_values)])
+
+fig.update_traces(showscale=False,
+                  hoverinfo='skip',
+                  colorscale='Viridis',opacity=0.6)
+
+# Update layout for better presentation
+fig.update_layout(    
+    template='simple_white',
+    title='Análise de função de duas variáveis',
+    width=600,
+    height=400,
+    margin=dict(l=40, r=40, b=40, t=40),
+    scene=dict(
+        xaxis_title='x1',
+        yaxis_title='x2',
+        zaxis_title='y',
+        xaxis=dict(
+            showgrid=False,
+            zeroline=False,
+            showline=False,
+            gridcolor='#bdbdbd',
+            gridwidth=2,
+            zerolinecolor='#969696',
+            zerolinewidth=4,
+            linecolor='#636363',
+            linewidth=6,
+            nticks=3,
+            tickmode='linear',
+            tick0=x_values[0],
+            dtick=51),
+        yaxis=dict(
+            nticks=3,
+            tickmode='linear',
+            tick0=y_values[0],
+            dtick=51)
+        
+    )
+)
+
+
+# In[18]:
+
+
+plot(fig, show_link=False,filename='figs/analise-grafica.html')
+display(HTML('figs/analise-grafica.html'))
+
 
 # ### Análise gráfica do coeficiente de arrasto
 
 # A análise gráfica serve para visualizar o comportamento da função e verificar aproximadamente onde há possíveis raízes. Este processo é conhecido como _localização_.
 
-# In[7]:
+# In[19]:
 
 
 import numpy as np
@@ -69,18 +137,18 @@ m = 70.0
 g = 9.81
 
 
-# In[8]:
+# In[20]:
 
 
 # Localização
-a,b = 1,20
-c = np.linspace(a,b,20)
-f = g*m/c*(1 - np.exp(-c/m*t)) - v
+a,b = 5,20
+c = np.linspace(a,b,100)
+f = g*m/c*(1 - np.exp(-c/m*t)) - v # f(c) = 0
 
 plt.plot(c,f,'g-',c,c*0,'r--');
 plt.xlabel('c')
 plt.ylabel('f(c)')
-plt.title('Variação do coef. de arrasto')
+plt.title('Variação do coeficiente de arrasto')
 plt.grid(True)
 
 
@@ -90,7 +158,7 @@ plt.grid(True)
 # 
 # Nos gráficos abaixo, 
 
-# In[9]:
+# In[21]:
 
 
 # Refinamento
@@ -103,7 +171,7 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[10]:
+# In[22]:
 
 
 # Refinamento
@@ -116,7 +184,7 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[11]:
+# In[23]:
 
 
 # Refinamento
@@ -129,7 +197,7 @@ plt.plot(c,0*c,'r--')
 plt.grid()
 
 
-# In[14]:
+# In[24]:
 
 
 # Refinamento
@@ -161,7 +229,7 @@ plt.grid()
 
 # - $\phi_1 = \dfrac{ (x^{(k-1)})^{1/2}}{\pi} - x^{(k-1)}, \ \  x^{(0)} = 1, \ \ k < N$
 
-# In[7]:
+# In[25]:
 
 
 # No. de elementos
@@ -188,7 +256,7 @@ plt.legend(loc='upper right');
 
 # - $\phi_2 = \dfrac{k}{x^{(k-1)}}, \ \  x^{(0)} = 1/5, \ \ k < 10$
 
-# In[8]:
+# In[26]:
 
 
 from math import factorial
@@ -241,7 +309,7 @@ plt.legend(loc='center right');
 
 # Vamos plotar esta função apenas para visualizar seu comportamento.
 
-# In[9]:
+# In[27]:
 
 
 from numpy import exp, cos
@@ -255,7 +323,7 @@ plt.plot(x,f(x),'g'); plt.grid()
 # 
 # Implementemos o algoritmo.
 
-# In[10]:
+# In[28]:
 
 
 def forca_bruta(f,a,b,n):
@@ -274,7 +342,7 @@ def forca_bruta(f,a,b,n):
 
 # Agora aplicamos o algoritmo na mesma função.
 
-# In[11]:
+# In[29]:
 
 
 a,b,n = 0,4,1000
@@ -284,7 +352,7 @@ print(raizes)
 
 # Temos, na verdade, 4 raízes! Plotemos o gráfico ampliado no intervalo [2.5,3.8].
 
-# In[15]:
+# In[30]:
 
 
 x2 = np.linspace(2.5,3.8,100)
@@ -293,7 +361,7 @@ plt.plot(x2,f(x2),'g',x2,0*f(x2),'r:'); plt.grid()
 
 # Conseguimos enxergar mais uma raiz. Agora, plotemos um pouco mais ampliado entre [3.6,3.7].
 
-# In[16]:
+# In[31]:
 
 
 x3 = np.linspace(3.6,3.7,100)
@@ -304,7 +372,7 @@ plt.plot(x3,f(x3),'g',x3,0*f(x3),'r:'); plt.grid()
 
 # Este exemplo mostrou uma aplicação do método de força bruta para determinação de raízes. Para finalizar, podemos embelezar o gráfico.
 
-# In[14]:
+# In[32]:
 
 
 r = np.array(raizes) # vetoriza a lista

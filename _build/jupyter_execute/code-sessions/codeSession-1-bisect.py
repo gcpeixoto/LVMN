@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 1
+# # _Code Session_ 1: Bisseção
 
 # O propósito desta _Code Session_ é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função `bisect` do módulo `scipy.optimize`. Em particular, resolvemos alguns com aplicações à Física e à Mecânica.
 
@@ -9,8 +9,7 @@
 
 
 # Importação de módulos auxiliares
-import numpy as np 
-import matplotlib.pyplot as plt 
+import numpy as np, matplotlib.pyplot as plt
 
 
 # ## Determinação de raízes
@@ -23,7 +22,7 @@ import matplotlib.pyplot as plt
 # 2. o limite esquerdo `a`
 # 3. o limite direito `b`
 # 
-# Parâmetros opcionais relevantes são: 
+# Os parâmetros opcionais relevantes são: 
 # 
 # - `xtol`: tolerância (padrão: 2e-12)
 # - `maxiter`: número máximo de iterações (padrão: 100)
@@ -69,8 +68,7 @@ plt.axvline(x=0,color='r', linestyle=':');
 # In[13]:
 
 
-# Resolução com bisect 
-
+# Resolução com bisect
 x = bisect(f,0,2) # raiz
 print(f'Raiz: x = {x:.6f}') # impressão de valor
 
@@ -105,7 +103,6 @@ plt.axvline(x=0,color='r',linestyle=':');
 
 
 # Resolução
-
 x = bisect(f,-5,-4) # raiz de menor módulo 
 print(f'Raiz: x = {x:.6f}') # impressão de valor
 

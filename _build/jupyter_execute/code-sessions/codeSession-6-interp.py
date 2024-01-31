@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 6
+# # _Code Session_ 6: Interpolação
 
 # ## `interp1d`
 # 
@@ -64,19 +64,21 @@ from scipy.interpolate import interp1d
 # 
 # Em primeiro lugar, vamos ler a tabela de dados, atribuir os valores tabelados em arrays e corrigir os valores de temperatura pelo fator 1000.
 
-# In[3]:
+# In[9]:
 
 
 # atribuindo colunas da matriz de dados em h e T
-h, T = np.loadtxt('file-cs6-entalpia.csv', delimiter=',', skiprows=1, unpack=True)
+h, T = np.loadtxt('../file-cs6-entalpia.csv', delimiter=',', skiprows=1, unpack=True)
 
 # temperatura em milhares de Kelvin
 T = 1e3*T 
 
+T
+
 
 # Criamos um array para o intervalo de temperaturas desejado para interpolação usando `arange`. Notemos que esta função exige um deslocamento do valor do incremento no último elemento do array, isto é, 30000 + 500 = 30500.
 
-# In[11]:
+# In[10]:
 
 
 # array de temperaturas com incremento de 500 K
@@ -85,7 +87,7 @@ t = np.arange(5000.0,30500.0,500)
 
 # Em seguida, usamos os valores tabelados para posterior aplicação de `interp1d` sobre `t` como uma função e imprimimos os valores interpolados de entalpia:
 
-# In[16]:
+# In[12]:
 
 
 # montagem da interpolação
@@ -94,19 +96,18 @@ f = interp1d(T,h)
 # valores interpolados
 hi = f(t) 
 
-hi 
-
 
 # Vamos determinar os valores interpolados para cada método de interpolação e plotá-los juntamente com o gráfico de dispersão dos valores tabelados.
 
-# In[26]:
+# In[34]:
 
 
 # métodos de interpolação
-m = ['nearest', 'zero', 'slinear', 'quadratic']
+m = ['nearest','zero','slinear', 'quadratic','cubic',5,7,9]
 
 # objetos de interpolação para cada método 
 F = [interp1d(T,h,kind=k) for k in m]
+print(F)
 
 # valores interpolados
 him = [f(t) for f in F]
@@ -115,7 +116,7 @@ him = [f(t) for f in F]
 plt.plot(T,h,'*',label='tabelado');
 
 # plotagem dos métodos
-for i in range(4):
+for i in range(len(m)):
     plt.plot(t,him[i],label=m[i])
 
 # legenda
@@ -124,7 +125,7 @@ plt.legend();
 
 # Até aqui, já cumprimos os dois primeiros requisitos do problema. Para o terceiro, usaremos as informações pré-computadas na lista `F` para estimar os valores de entalpia quando $T = 15150 \, ^{\circ} K$. Teremos os seguintes três valores:
 
-# In[27]:
+# In[35]:
 
 
 # calcula h(15150) para os métodos 'zero', 'slinear' e 'quadratic'

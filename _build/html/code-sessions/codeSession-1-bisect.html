@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Code session 1 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>Code Session 1: Bisseção &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Code session 2" href="codeSession-2-newton.html" />
+    <link rel="next" title="Code Session 2: Newton" href="codeSession-2-newton.html" />
     <link rel="prev" title="27. Métodos de Taylor de Ordem Superior" href="../aula-23-taylor-rungeKutta.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -773,7 +797,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Code session 1</h1>
+                <h1>Code Session 1: Bisseção</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -896,14 +920,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="code-session-1">
-<h1>Code session 1<a class="headerlink" href="#code-session-1" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="code-session-1-bissecao">
+<h1><em>Code Session</em> 1: Bisseção<a class="headerlink" href="#code-session-1-bissecao" title="Permalink to this headline">#</a></h1>
 <p>O propósito desta <em>Code Session</em> é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função <code class="docutils literal notranslate"><span class="pre">bisect</span></code> do módulo <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>. Em particular, resolvemos alguns com aplicações à Física e à Mecânica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importação de módulos auxiliares</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -917,7 +940,7 @@ title="Print to PDF"
 <li><p>o limite esquerdo <code class="docutils literal notranslate"><span class="pre">a</span></code></p></li>
 <li><p>o limite direito <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
 </ol>
-<p>Parâmetros opcionais relevantes são:</p>
+<p>Os parâmetros opcionais relevantes são:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">xtol</span></code>: tolerância (padrão: 2e-12)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">maxiter</span></code>: número máximo de iterações (padrão: 100)</p></li>
@@ -966,8 +989,7 @@ title="Print to PDF"
 <p>Pelo gráfico, vemos que a menor raiz positiva está localizada no intervalo <span class="math notranslate nohighlight">\((0,2]\)</span>. Vamos determiná-la utilizando este intervalo de confinamento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resolução com bisect </span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resolução com bisect</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># raiz</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Raiz: x = </span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># impressão de valor</span>
 </pre></div>
@@ -1013,7 +1035,6 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resolução</span>
-
 <span class="n">x</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># raiz de menor módulo </span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Raiz: x = </span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># impressão de valor</span>
 </pre></div>
@@ -1452,7 +1473,7 @@ Raiz: h2 = 0.49575512
     <a class='right-next' id="next-link" href="codeSession-2-newton.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code session 2</p>
+        <p class="prev-next-title"><em>Code Session</em> 2: Newton</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Code session 8" href="codeSession-8-integrate.html" />
-    <link rel="prev" title="Code session 6" href="codeSession-6-interp.html" />
+    <link rel="next" title="Code Session 8: Integração" href="codeSession-8-integrate.html" />
+    <link rel="prev" title="Code Session 6: Interpolação" href="codeSession-6-interp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,17 +124,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-01-ponto-flutuante.html">
-   2. Aritmética de ponto flutuante e conversão numérica
+   2. Aritmética computacional
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-02-erros.html">
-   3. Erros numéricos e seus efeitos
+   3. Erros e seus efeitos
   </a>
  </li>
  <li class="toctree-l1">
@@ -148,23 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-ponto-fixo.html">
-   6. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../aula-06-newton.html">
-   7. Implementação do método de Newton
+   6. Implementação do método de Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-07-secante.html">
-   8. Implementação do método da secante
+   7. Implementação do método da secante
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-08-muller.html">
-   9. Raízes de polinômios com o método de Müller
+   8. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-08a-matrizes-vetores.html">
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -356,7 +380,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754-2008
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
   </a>
  </li>
  <li class="toctree-l1">
@@ -958,10 +982,34 @@ title="Print to PDF"
 </section>
 <section id="resolucao">
 <h3>Resolução<a class="headerlink" href="#resolucao" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="s1">&#39;../file-cs7-autos.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>modelo,massa (kg),C (km/litro)
+Focus,1198,11.90
+Crown Victoria,1715,6.80
+Expedition,2530,5.53
+Explorer,2014,6.38
+F-150,2136,5.53
+Fusion,1492,8.50
+Taurus,1652,7.65
+Fit,1168,13.60
+Accord,1492,9.78
+CR-V,1602,8.93
+Civic,1192,11.90
+Ridgeline,2045,6.38
+</pre></div>
+</div>
+</div>
+</div>
 <p>Vamos ler o arquivo de dados e converter diretamente a matriz de dados em dois <em>arrays</em>, um para valores de massa e outro para consumo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;file-cs7-autos.csv&#39;</span><span class="p">,</span> <span class="c1"># nome do arquivo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;../file-cs7-autos.csv&#39;</span><span class="p">,</span> <span class="c1"># nome do arquivo</span>
                   <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="c1"># separador dos dados</span>
                   <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># ignora 1a. linha do arquivo</span>
                   <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="c1"># lê apenas 2a. e 3a. colunas</span>
@@ -1006,7 +1054,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_11_0.png" src="../_images/codeSession-7-fit_11_0.png" />
+<img alt="../_images/codeSession-7-fit_12_0.png" src="../_images/codeSession-7-fit_12_0.png" />
 </div>
 </div>
 </section>
@@ -1122,10 +1170,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.26020025147922e-06, -0.024582932608247954, 34.199195235449785
--1.8913566501291917e-09, 1.5605099762467595e-05, -0.042755657987265716, 44.42791127371574
-3.371763317253436e-12, -2.6652321095633632e-08, 8.210414248644541e-05, -0.12006675173251578, 77.22226942331238
--3.1285341167796784e-14, 2.861327357969736e-10, -1.0320518728761647e-06, 0.0018399061432963538, -1.6309631822628878, 587.8122971523667
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.26020025147925e-06, -0.024582932608248086, 34.199195235449906
+-1.8913566501289084e-09, 1.5605099762465975e-05, -0.04275565798726278, 44.427911273714024
+3.371763317273691e-12, -2.6652321095782617e-08, 8.210414248684593e-05, -0.12006675173298169, 77.22226942351008
+-3.128534116773908e-14, 2.8613273579644486e-10, -1.0320518728742421e-06, 0.001839906143292905, -1.6309631822598512, 587.8122971513164
 </pre></div>
 </div>
 </div>
@@ -1156,7 +1204,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_27_0.png" src="../_images/codeSession-7-fit_27_0.png" />
+<img alt="../_images/codeSession-7-fit_28_0.png" src="../_images/codeSession-7-fit_28_0.png" />
 </div>
 </div>
 </section>
@@ -1173,7 +1221,7 @@ title="Print to PDF"
 <p>Primeiramente, vamos ler o arquivo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;file-cs7-radiacao.csv&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;../file-cs7-radiacao.csv&#39;</span><span class="p">,</span>
                    <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
                    <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1181,15 +1229,27 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Agora, vamos plotar os dados apenas para verificar o comportamento da dispersão.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">g</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_34_0.png" src="../_images/codeSession-7-fit_34_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.5, 1. , 1.5, 2. , 2.5]), array([0.541, 0.398, 0.232, 0.106, 0.052]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora, vamos plotar os dados apenas para verificar o comportamento da dispersão.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="s1">&#39;o-&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/codeSession-7-fit_36_0.png" src="../_images/codeSession-7-fit_36_0.png" />
 </div>
 </div>
 </section>
@@ -1210,7 +1270,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_36_0.png" src="../_images/codeSession-7-fit_36_0.png" />
+<img alt="../_images/codeSession-7-fit_38_0.png" src="../_images/codeSession-7-fit_38_0.png" />
 </div>
 </div>
 <p>Como se vê, o teste de alinhamento mostra que a função exponencial é um modelo não-linear satisfatório para modelar o comportamento físico em questão.</p>
@@ -1241,7 +1301,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_41_0.png" src="../_images/codeSession-7-fit_41_0.png" />
+<img alt="../_images/codeSession-7-fit_43_0.png" src="../_images/codeSession-7-fit_43_0.png" />
 </div>
 </div>
 <p>O modelo está bem ajustado. Para estimar a meia-vida da substância, devemos encontrar o instante de tempo <span class="math notranslate nohighlight">\(t_m\)</span>  tal que <span class="math notranslate nohighlight">\(\gamma(t_m) = 0.5\gamma_0\)</span>. Então, notemos que:</p>
@@ -1260,7 +1320,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-7-fit_44_0.png" src="../_images/codeSession-7-fit_44_0.png" />
+<img alt="../_images/codeSession-7-fit_46_0.png" src="../_images/codeSession-7-fit_46_0.png" />
 </div>
 </div>
 <p>Existem duas raízes no intervalo. Porém, observando os valores tabelados de <span class="math notranslate nohighlight">\(t\)</span>, é fácil ver que o valor para a condição inicial deve ser maior do que <span class="math notranslate nohighlight">\(t_0 = 0.5\)</span> e, portanto, mais próximo da segunda raiz no gráfico. Então, escolhamos para <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> o valor inicial de <span class="math notranslate nohighlight">\(t_m^0 = 1.25\)</span>.</p>
@@ -1328,13 +1388,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Code session 6</p>
+            <p class="prev-next-title"><em>Code Session</em> 6: Interpolação</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="codeSession-8-integrate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code session 8</p>
+        <p class="prev-next-title"><em>Code Session</em> 8: Integração</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

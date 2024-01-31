@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 4
+# # _Code Session_ 4: Raízes de Equações
 
 # ## `fsolve`
 # 
@@ -17,8 +17,7 @@
 # In[1]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt 
+import numpy as np, matplotlib.pyplot as plt 
 from scipy.optimize import fsolve 
 
 t = 12.0

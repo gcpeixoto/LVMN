@@ -133,7 +133,7 @@
 # 
 # Este exemplo lê um arquivo CSV, plota o gráfico de dispersão, compara modelos e formata os dados para visualização.
 
-# In[1]:
+# In[3]:
 
 
 import pandas as pd
@@ -169,6 +169,7 @@ f.line(x,y,color='green')
 
 # estimando o valor da populacao em 1975 e 1982 por interpolacao
 p = interpolate.interp1d(x, y)
+
 xx = [1975,1982]
 yy = p(xx)
 print("População obtida por interpolação linear em: 1975 = {:d}; 1982 = {:d}; ".format(int(yy[0]),int(yy[1])))
@@ -184,7 +185,13 @@ output_notebook()
 show(f)
 
 
-# In[2]:
+# In[11]:
+
+
+
+
+
+# In[12]:
 
 
 df.set_index('ano')
@@ -194,7 +201,7 @@ df.set_index('ano')
 # 
 # Vamos resolver um problema de regressão linear por meio das equações normais passo a passo. Em primeiro lugar, importemos os módulos de computação numérica e de plotagem. 
 
-# In[3]:
+# In[16]:
 
 
 # importação de módulos 
@@ -226,7 +233,7 @@ y = np.array([0.5,2.5,2.0,4.0]) # diâmetro
 
 # Agora, calculamos os coeficientes linear $\alpha_0$ e angular $\alpha_1$ pelas fórmulas das equações normais vistas em aula.
 
-# In[5]:
+# In[18]:
 
 
 m = np.size(x)
@@ -236,7 +243,7 @@ alpha0 = np.mean(y) - alpha1*np.mean(x)
 
 # Podemos agora escrever a equação da reta de regressão usando o _array_ `x` como abscissa. Este será o nosso _modelo de ajuste_.
 
-# In[6]:
+# In[24]:
 
 
 y2 = alpha0 + alpha1*x
@@ -244,12 +251,13 @@ y2 = alpha0 + alpha1*x
 
 # Enfim, plotamos o gráfico de dispersão dos valores _medidos_ juntamente com o _modelo de ajuste_ da seguinte forma:
 
-# In[7]:
+# In[27]:
 
 
 mod = plt.plot(x,y2,'r:'); # modelo
 med = plt.scatter(x,y,c='b'); # medição
 plt.legend({'modelo de ajuste':mod, 'medição':med}); # legenda
+#plt.legend({'medição':med}); # legenda
 
 # esta linha adiciona a equação de ajuste ao gráfico na posição (x,y) = (2.8,0.8)
 # com fonte tamanho 14 e cor RGB = [0.4,0.5,0.4].

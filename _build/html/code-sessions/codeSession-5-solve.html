@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Code session 5 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>Code Session 5: Sistemas Lineares &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Code session 6" href="codeSession-6-interp.html" />
-    <link rel="prev" title="Code session 4" href="codeSession-4-fsolve.html" />
+    <link rel="next" title="Code Session 6: Interpolação" href="codeSession-6-interp.html" />
+    <link rel="prev" title="Code Session 4" href="codeSession-4-fsolve.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -722,7 +746,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Code session 5</h1>
+                <h1>Code Session 5: Sistemas Lineares</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -794,15 +818,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="code-session-5">
-<h1>Code session 5<a class="headerlink" href="#code-session-5" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="code-session-5-sistemas-lineares">
+<h1><em>Code Session</em> 5: Sistemas Lineares<a class="headerlink" href="#code-session-5-sistemas-lineares" title="Permalink to this headline">#</a></h1>
 <section id="linalg-solve">
 <h2><code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code><a class="headerlink" href="#linalg-solve" title="Permalink to this headline">#</a></h2>
 <p>A função <code class="docutils literal notranslate"><span class="pre">solve</span></code> é o método mais simples disponibilizado pelos módulos <code class="docutils literal notranslate"><span class="pre">numpy</span></code> e <code class="docutils literal notranslate"><span class="pre">scipy</span></code> para resolver sistemas matriciais lineares. Como a função pertence ao escopo da Álgebra Linear, ela está localizada em submódulo chamado <code class="docutils literal notranslate"><span class="pre">linalg</span></code>. <code class="docutils literal notranslate"><span class="pre">solve</span></code> calculará a solução exata do sistema como um método direto se a matriz do sistema for determinada (quadrada e sem colunas linearmente dependentes). Se a matriz for singular, o método retorna um erro. Se for de posto deficiente, o método resolve o sistema linear usando um algoritmo de mínimos quadrados.</p>
@@ -815,10 +832,6 @@ title="Print to PDF"
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: o vetor-solução do sistema.</p></li>
 </ul>
-<p>Como importá-la?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
@@ -1134,13 +1147,13 @@ Para o valor de resistência R = 15 ohms: i1 = 2.54545 A, i2 = 1.38182 A, i3 = 4
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Code session 4</p>
+            <p class="prev-next-title"><em>Code Session</em> 4</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="codeSession-6-interp.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code session 6</p>
+        <p class="prev-next-title"><em>Code Session</em> 6: Interpolação</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

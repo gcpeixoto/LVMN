@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Code session 2 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>Code Session 2: Newton &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Code session 3" href="codeSession-3-polyval.html" />
-    <link rel="prev" title="Code session 1" href="codeSession-1-bisect.html" />
+    <link rel="next" title="Code Session 3: Raízes de Polinômios" href="codeSession-3-polyval.html" />
+    <link rel="prev" title="Code Session 1: Bisseção" href="codeSession-1-bisect.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../aula-08a-matrizes-vetores.html">
-   9. Elementos de Álgebra Linear Computacional
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -728,10 +752,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homework">
-   <em>
-    Homework
-   </em>
+  <a class="reference internal nav-link" href="#tarefas">
+   Tarefas
   </a>
  </li>
 </ul>
@@ -743,7 +765,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Code session 2</h1>
+                <h1>Code Session 2: Newton</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -820,10 +842,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homework">
-   <em>
-    Homework
-   </em>
+  <a class="reference internal nav-link" href="#tarefas">
+   Tarefas
   </a>
  </li>
 </ul>
@@ -836,13 +856,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="code-session-2">
-<h1>Code session 2<a class="headerlink" href="#code-session-2" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="code-session-2-newton">
+<h1><em>Code Session</em> 2: Newton<a class="headerlink" href="#code-session-2-newton" title="Permalink to this headline">#</a></h1>
+<p>O propósito desta <em>Code Session</em> é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função <code class="docutils literal notranslate"><span class="pre">newton</span></code> do módulo <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>. Replicaremos alguns problemas da <em>Code Session</em> 1 e faremos algumas adições.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importação de módulos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span><span class="o">,</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
 </pre></div>
 </div>
 </div>
@@ -852,13 +872,12 @@ title="Print to PDF"
 </section>
 <section id="newton">
 <h2><code class="docutils literal notranslate"><span class="pre">newton</span></code><a class="headerlink" href="#newton" title="Permalink to this headline">#</a></h2>
-<p>A função <code class="docutils literal notranslate"><span class="pre">newton</span></code> localiza a raiz de uma função dentro de um intervalo dado usando o método de Newton.
-Os argumentos de entrada obrigatórios desta função são:</p>
+<p>A função <code class="docutils literal notranslate"><span class="pre">newton</span></code> localiza a raiz de uma função dentro de um intervalo dado usando o método de Newton, sob especificação da primeira derivada. Os argumentos de entrada obrigatórios desta função são:</p>
 <ol class="simple">
 <li><p>a função-alvo <code class="docutils literal notranslate"><span class="pre">f</span></code> (contínua)</p></li>
 <li><p>a estimativa inicial <code class="docutils literal notranslate"><span class="pre">x0</span></code></p></li>
 </ol>
-<p>Parâmetros opcionais relevantes são:</p>
+<p>Os parâmetros opcionais relevantes são:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fprime</span></code>: a derivada da função, quando disponível. Caso ela não seja especificada, o <em>método da secante</em> é usado.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fprime2</span></code>: a segunda derivada da função, quando disponível. Se ela for especificada, o <em>método de Halley</em> é usado.</p></li>
@@ -870,13 +889,10 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: a estimativa para a raiz de <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
 </ul>
-<p>Como importá-la?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importação de &#39;newton&#39;</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
 </pre></div>
 </div>
 </div>
@@ -889,10 +905,7 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <p>Definimos a função e sua primeira derivada.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># função anônima</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">3.23</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">5.54</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">9.84</span>
-
-<span class="c1"># função (User-Defined Function)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Função primitiva</span>
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
     <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">3.23</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">5.54</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">9.84</span>
 
@@ -903,40 +916,16 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="c1">#ax.plot(0,1,&#39;or&#39;)</span>
-<span class="c1">#ax.plot([1,-1],[0,-2],&#39;-k&#39;)</span>
-
-<span class="c1">#dominio = np.linspace(0,3,100)</span>
-<span class="c1">#imagem = np.sqrt(dominio)</span>
-<span class="c1">#ax.plot(dominio,imagem,c=&#39;#de4f10&#39;,markevery=3,markersize=10)</span>
-<span class="c1">#ax.plot(dominio,1-imagem,c=&#39;#de4f10&#39;,markevery=3,markersize=10)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff0a44a3820&gt;]
-</pre></div>
-</div>
-<img alt="../_images/codeSession-2-newton_9_1.png" src="../_images/codeSession-2-newton_9_1.png" />
-</div>
-</div>
 <p>Realizamos a análise gráfica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analise gráfica </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Análise gráfica </span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">,</span><span class="s1">&#39;$f</span><span class="se">\&#39;</span><span class="s1">(x)$&#39;</span><span class="p">,</span><span class="s1">&#39;$y=0$&#39;</span><span class="p">,</span><span class="s1">&#39;$x=0$&#39;</span><span class="p">],</span>
-           <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
-           <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-           <span class="n">bbox_to_anchor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">,</span><span class="s1">&#39;$f</span><span class="se">\&#39;</span><span class="s1">(x)$&#39;</span><span class="p">,</span><span class="s1">&#39;$y=0$&#39;</span><span class="p">],</span>
+           <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -944,15 +933,13 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <img alt="../_images/codeSession-2-newton_11_0.png" src="../_images/codeSession-2-newton_11_0.png" />
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(f(x)\)</span></p>
 <p>Vamos realizar um estudo de diferentes estimativas iniciais e ver o que acontece.</p>
 <section id="estimativa-inicial-x-0-1">
 <h5>Estimativa inicial: <span class="math notranslate nohighlight">\(x_0 = -1\)</span><a class="headerlink" href="#estimativa-inicial-x-0-1" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resolução com newton </span>
-<span class="n">x0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">)</span> <span class="c1"># raiz </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">df</span><span class="p">)</span> <span class="c1"># raiz </span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Raiz: x = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -968,8 +955,7 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <h5>Estimativa inicial: <span class="math notranslate nohighlight">\(x_0 = 0\)</span><a class="headerlink" href="#estimativa-inicial-x-0-0" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resolução com newton </span>
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">df</span><span class="p">)</span> <span class="c1"># raiz </span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Raiz: x = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -986,8 +972,7 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <h5>Estimativa inicial: <span class="math notranslate nohighlight">\(x_0 = 3\)</span><a class="headerlink" href="#estimativa-inicial-x-0-3" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resolução com newton </span>
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">3.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="mf">3.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">df</span><span class="p">)</span> <span class="c1"># raiz </span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Raiz: x = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -1010,21 +995,22 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 <p>Primeiramente, vamos escrever a função <code class="docutils literal notranslate"><span class="pre">f(x)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># função</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Função (anônima)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Para computar a primeira derivada, vamos utilizar computação simbólica. Veja no início deste notebook que inserimos a instrução</p>
+<p>Para computar a primeira derivada, utilizaremos computação simbólica. Veja no início deste notebook que inserimos a instrução
+a seguir para chamar objetos do módulo <code class="docutils literal notranslate"><span class="pre">sympy</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
 </pre></div>
 </div>
-<p>a qual nos permitirá utilizar objetos do módulo <code class="docutils literal notranslate"><span class="pre">sympy</span></code>.</p>
 <p>Em primeiro lugar, devemos estabelecer uma variável simbólica <code class="docutils literal notranslate"><span class="pre">xs</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variável simbólica</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1090,7 +1076,7 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/codeSession-2-newton_35_0.png" src="../_images/codeSession-2-newton_35_0.png" />
+<img alt="../_images/codeSession-2-newton_34_0.png" src="../_images/codeSession-2-newton_34_0.png" />
 </div>
 </div>
 <p>Agora, vamos resolver optando pela estimativa inicial <span class="math notranslate nohighlight">\(x_0 = 4.9\)</span>.</p>
@@ -1112,12 +1098,12 @@ Os argumentos de entrada obrigatórios desta função são:</p>
 </section>
 </section>
 </section>
-<section id="homework">
-<h2><em>Homework</em><a class="headerlink" href="#homework" title="Permalink to this headline">#</a></h2>
+<section id="tarefas">
+<h2>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p>Reproduza os Problemas de 3 a 8 da <em>Code Session 1</em> resolvendo com o método <code class="docutils literal notranslate"><span class="pre">newton</span></code>.</p></li>
 <li><p>Para os casos possíveis, determine a derivada. Caso contrário, utilize como método da Secante.</p></li>
-<li><p>Pesquise sobre o método de Halley e aplique-o aos problemas usando também a função <code class="docutils literal notranslate"><span class="pre">newton</span></code>, mas avaliando-a também com a segunda derivada.</p></li>
+<li><p>Pesquise sobre o método de Halley e aplique-o aos problemas usando a função <code class="docutils literal notranslate"><span class="pre">newton</span></code>, mas avaliando-a também com a segunda derivada.</p></li>
 </ol>
 </section>
 </section>
@@ -1153,13 +1139,13 @@ Os argumentos de entrada obrigatórios desta função são:</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Code session 1</p>
+            <p class="prev-next-title"><em>Code Session</em> 1: Bisseção</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="codeSession-3-polyval.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code session 3</p>
+        <p class="prev-next-title"><em>Code Session</em> 3: Raízes de Polinômios</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 9
+# # _Code Session_ 9: Método de Euler
 
-# In[7]:
+# In[ ]:
 
 
-import numpy as np 
-import matplotlib.pyplot as plt
+import numpy as np, matplotlib.pyplot as plt
 
 
 # A integração numérica de uma EDO pode ser realizada em Python utilizando a função `solve_ivp` do módulo `scipy.integrate`.
@@ -26,12 +25,6 @@ import matplotlib.pyplot as plt
 # 
 # - `sol.t`: retorna os valores do domínio
 # - `sol.y`: retorna os valores da solução numérica
-# 
-# Como importá-la? 
-# 
-# ```python 
-# from scipy.integrate import solve_ivp
-# ```
 
 # In[22]:
 

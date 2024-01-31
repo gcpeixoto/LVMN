@@ -67,7 +67,7 @@
 # 
 # Código gerador de funções de base de Newton de grau $n$ por computação simbólica.
 
-# In[1]:
+# In[25]:
 
 
 from sympy import Symbol
@@ -106,7 +106,7 @@ def N_nj(X,j):
     return N
 
 
-# In[2]:
+# In[28]:
 
 
 import numpy as np
@@ -114,7 +114,7 @@ import matplotlib.pyplot as plt
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 # número de nós de interpolação: interpolação de (n-1)-ésimo grau
-n = 5
+n = 8
 
 # domínio de interpolação
 x0,x1 = -1,1
@@ -236,6 +236,35 @@ P1(xp)
 # |2|-1|
 # 
 # Compute o valor de $P_2(0.35)$.
+
+# In[94]:
+
+
+# leitura de planilha / dataset
+x,y = np.loadtxt('t.txt',unpack=True)
+
+x = np.concatenate( (x, [0.5]) )
+y = np.concatenate( (y, [-4.2]) )
+
+for i in range(len(x)):
+    exec(f'x{i} = {x[i]}')
+    exec(f'y{i} = {y[i]}')
+
+
+DD0 = y0 # f[x0]
+DD1 = (y1 - y0)/(x1 - x0) # f[x0,x1]
+DD2 =  ( (y2 - y1)/(x2 - x1) - (y1 - y0)/(x1 - x0) ) / ( x2 - x0 )
+DD3 =  ( ( (y3 - y2)/(x3 - x2) - (y2 - y1)/(x2 - x1) ) / ( x3 - x1 ) - DD2 ) / (x3 - x0)
+
+# interpolante
+PIN_2 = lambda x: DD0 + DD1*(x - x0) + DD2*(x - x0)*(x - x1)
+PIN_3 = lambda x: PIN_2(x) + DD3*(x - x0)*(x - x1)*(x - x2)
+
+plt.plot(x,y*0,'vr',ms=10, alpha=1)
+xx = np.linspace(x.min(),x.max(),180)
+plt.plot(xx,PIN_3(xx),'sg',ms = 20, alpha=0.2)
+plt.plot(x,y,'oy',ms=10, alpha=1)
+
 
 # In[5]:
 
@@ -394,4 +423,38 @@ plt.axvline(xp,0,max(YP),c='r',ls='dashed')
 
 plt.grid()
 plt.legend(loc='best');
+
+
+# In[11]:
+
+
+import sympy as sym
+from sympy.abc import x
+
+P3x = 512 + 63*(x-2015) - 2.34*(x-2015)*(x-2017) - 2.45*(x-2015)*(x-2017)*(x-2020)
+P3xn = sym.lambdify(x, P3x) 
+
+
+# In[24]:
+
+
+x = np.array([2015,2017,2020,2022])
+y = np.array([512,638,792,700])
+
+xn = np.linspace(2015,2022,num=100)
+
+plt.plot(x,y,'o')
+plt.plot(xn,P3xn(xn))
+
+xx = 2021
+yy = P3xn(xx)
+plt.plot(xx,yy,'sg')
+plt.axvline(x=xx)
+print(f'Censo em {xx} = {yy}')
+
+
+# In[ ]:
+
+
+
 

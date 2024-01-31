@@ -37,7 +37,7 @@
 # 
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 
-# In[24]:
+# In[1]:
 
 
 from prettytable import PrettyTable as pt
@@ -212,7 +212,7 @@ print(E_10)
 # 1. Assumir que $82132.957032$ seja o valor exato para o polinômio em $x = 79.9$.
 # 2. Calcular $P(79.9)$ utilizando duas formas.
 
-# In[28]:
+# In[8]:
 
 
 # Código para gerar polinômio cúbico com raízes reais
@@ -255,7 +255,7 @@ r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 #P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
 
 
-# In[29]:
+# In[9]:
 
 
 # Valor
@@ -300,7 +300,7 @@ print(f'PH({x}) = {PHx:.14f}')
 # 
 # Utilizando o exemplo da seção anterior, temos:
 
-# In[30]:
+# In[10]:
 
 
 # Valor exato
@@ -325,7 +325,7 @@ print(E_PH)
 # 
 # A função módulo, $f(x) = | x |$, pode ser diretamente calculada com `abs`.
 
-# In[31]:
+# In[11]:
 
 
 # Erro absoluto (forma padrão)
@@ -355,7 +355,7 @@ EA_PH > EA_P
 
 # Os erros relativos podem ser computados como:
 
-# In[33]:
+# In[16]:
 
 
 ER_P = EA_P/abs(Px_ex)
@@ -374,7 +374,7 @@ print(ER_PH)
 # 
 # Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:
 
-# In[34]:
+# In[23]:
 
 
 ER_Pp = ER_P * 100
@@ -415,7 +415,7 @@ print(f'{ER_:e}')
 # 
 # Isto ocorre porque o denominador sofre um _cancelamento subtrativo_ Uma vez que $0.25\epsilon_M < \epsilon_M$, a operação $0.25\epsilon_M$ não produz efeito sobre 1, de modo que a computação encontra um "limbo". Para a matemática exata, a operação deveria ser "diferente de zero".
 
-# In[36]:
+# In[24]:
 
 
 # inf
@@ -468,7 +468,7 @@ A_ = 1.152*A + 0.056*np.cos(x)
 
 
 # Define função anônima para erro relativo
-ai = lambda f,f_: (abs(f_ - f)/abs(f)) *100
+ai = lambda f,f_: (abs(f_ - f)/abs(f))*100
 
 # calcula erro relativo para função de Airy e sua aproximação
 E_airy = ai(A,A_)
@@ -523,3 +523,9 @@ grid()
 # O erro logarítmico quadrático médio (_mean squared logarithmic error_, MSLE) é definido como:
 # 
 # $$MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1+ y_i) - \log(1 + \hat{y}_i) ]^2$$
+
+# ```{admonition} Curiosidade
+# :class: dropdown
+# 
+# Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo [Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation](https://www.mdpi.com/2220-9964/9/1/24).
+# ```

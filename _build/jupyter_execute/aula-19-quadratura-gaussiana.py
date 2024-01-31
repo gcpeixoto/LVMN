@@ -13,7 +13,7 @@
 # 
 # Em particular, daremos enfoque à chamada *Quadratura de Gauss-Legendre*.
 
-# In[1]:
+# In[2]:
 
 
 import matplotlib.pyplot as plt
@@ -21,7 +21,7 @@ import numpy.polynomial.legendre as leg
 import numpy as np
 
 
-# In[2]:
+# In[3]:
 
 
 def f(x):
@@ -163,19 +163,53 @@ plt.axhline(y=0,color='k',linewidth=0.6,linestyle='--');
 # 
 # Vamos implementar abaixo o código para gerar a tabela de pontos (nós) e pesos para integração numérica consoante as fórmulas de quadratura de **Gauss-Legendre**. 
 
-# In[3]:
+# In[29]:
 
 
 # número de pontos de quadratura
-n = 8
+n = 20
 
 # pontos e pesos
 (pontos,pesos) = leg.leggauss(n)        
 
 
-# Isto é, para a regra de 2 pontos, os nós de Gauss-Legendre são
+# In[27]:
 
-# In[4]:
+
+def F(t):
+    return 5.1*np.exp(5.1*t + 1.1)
+
+def QG2(F):
+    (pontos,pesos) = leg.leggauss(2)  
+    print(pontos,pesos)
+    return pesos[0]*F(pontos[0]) + pesos[1]*F(pontos[1])
+
+def QG3(F):
+    (pontos,pesos) = leg.leggauss(3)  
+    print(pontos,pesos)
+    return pesos[0]*F(pontos[0]) + pesos[1]*F(pontos[1]) + pesos[2]*F(pontos[2])
+
+def QG4(F):
+    (pontos,pesos) = leg.leggauss(4)  
+    print(pontos,pesos)
+    return pesos[0]*F(pontos[0]) + pesos[1]*F(pontos[1]) \
++ pesos[2]*F(pontos[2]) + pesos[3]*F(pontos[3])
+
+
+def QG(F,n):
+    (pontos,pesos) = leg.leggauss(n)  
+    
+    s = 0
+    for i in range(n):
+        s += pesos[i]*F(pontos[i])
+
+    return s
+
+for i in range(1,20):
+    print(f'QG{i} = {QG(F,i)}')
+
+Isto é, para a regra de 2 pontos, os nós de Gauss-Legendre são
+# In[30]:
 
 
 print(pontos)
@@ -183,13 +217,13 @@ print(pontos)
 
 # e os pesos correspondentes são:
 
-# In[5]:
+# In[31]:
 
 
 print(pesos)
 
 
-# In[6]:
+# In[32]:
 
 
 plt.plot(pontos,pesos)

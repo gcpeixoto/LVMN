@@ -37,7 +37,7 @@ mpl.rcParams['figure.figsize'] = (6,4)
 # 
 # Como importar a função?
 
-# In[2]:
+# In[9]:
 
 
 from scipy.stats import linregress
@@ -66,13 +66,19 @@ from scipy.stats import linregress
 
 # ### Resolução
 
+# In[10]:
+
+
+cat '../file-cs7-autos.csv'
+
+
 # Vamos ler o arquivo de dados e converter diretamente a matriz de dados em dois _arrays_, um para valores de massa e outro para consumo.
 
-# In[3]:
+# In[11]:
 
 
 
-M, C = np.loadtxt(fname='file-cs7-autos.csv', # nome do arquivo
+M, C = np.loadtxt(fname='../file-cs7-autos.csv', # nome do arquivo
                   delimiter=',', # separador dos dados
                   skiprows=1, # ignora 1a. linha do arquivo
                   usecols=(1,2), # lê apenas 2a. e 3a. colunas
@@ -82,7 +88,7 @@ M, C = np.loadtxt(fname='file-cs7-autos.csv', # nome do arquivo
 
 # Em seguida, fazemos a regressão linear:
 
-# In[4]:
+# In[12]:
 
 
 a, b, R, _, _ = linregress(M,C)
@@ -191,7 +197,7 @@ print(f'σ = {sigma:.3f}')
 # 
 # Uma vez que já temos as variáveis armazenadas na memória, basta criarmos os ajustes.
 
-# In[9]:
+# In[13]:
 
 
 p2 = np.polyfit(M,C,2)
@@ -202,7 +208,7 @@ p5 = np.polyfit(M,C,5)
 
 # Nota: o código abaixo realiza o mesmo, de forma compacta.
 
-# In[10]:
+# In[14]:
 
 
 for g in range(2,6):
@@ -211,7 +217,7 @@ for g in range(2,6):
 
 # Para imprimir a lista dos coeficientes, basta fazer:
 
-# In[11]:
+# In[15]:
 
 
 for p in [p2, p3, p4, p5]:
@@ -220,7 +226,7 @@ for p in [p2, p3, p4, p5]:
 
 # Para plotarmos as curvas, devemos nos atentar para o grau dos modelos. Podemos criá-las da seguinte forma:
 
-# In[12]:
+# In[24]:
 
 
 # modelos
@@ -256,21 +262,27 @@ ax.legend(loc='best');
 
 # Primeiramente, vamos ler o arquivo.
 
-# In[13]:
+# In[25]:
 
 
-t, g = np.loadtxt(fname='file-cs7-radiacao.csv',
+t, g = np.loadtxt(fname='../file-cs7-radiacao.csv',
                    delimiter=',',
                    skiprows=1,
                    unpack=True)
 
 
+# In[27]:
+
+
+t,g
+
+
 # Agora, vamos plotar os dados apenas para verificar o comportamento da dispersão.
 
-# In[14]:
+# In[28]:
 
 
-plt.plot(t,g,'o');
+plt.plot(t,g,'o-');
 
 
 # #### Teste de alinhamento 
@@ -285,7 +297,7 @@ plt.plot(t,g,'o');
 # 
 # Agora, plotando a dispersão no plano $(t,z)$, verificamos se a curva é aproximadamente uma reta.  
 
-# In[15]:
+# In[31]:
 
 
 z = np.log(g/t)
@@ -296,7 +308,7 @@ plt.plot(t,z);
 
 # Computando a regressão linear, temos:
 
-# In[21]:
+# In[32]:
 
 
 b,x,R,_,_ = linregress(t,z)
@@ -305,7 +317,7 @@ print(f'Regressão linear executada com inclinação = {b:.3f}, interceptação 
 
 # Vemos que, de fato, as variáveis têm uma altíssima correlação, visto que $R^2 \approx 1$. Agora, para plotar o modelo de ajuste, recuperamos o valor de $a$ operando inversamente e o usamos na curva do modelo para comparar com os dados experimentais.
 
-# In[17]:
+# In[33]:
 
 
 a = np.exp(x); # recuperando parâmetro de ajuste
@@ -327,7 +339,7 @@ plt.legend(('experimento','ajuste'));
 
 # Vamos resolver este problema usando a função `fsolve` do módulo `scipy.optimize`, mas antes precisamos passar a ela uma estimativa inicial. Rapidamente, façamos uma análise gráfica da curva $f(t_m)$ para $t_m = [0,2]$ (este intervalo é obtido após algumas plotagens prévias).
 
-# In[18]:
+# In[34]:
 
 
 f = lambda tm: mod(tm) - 0.5*g[0]
@@ -337,7 +349,7 @@ plt.plot(ttm,f(ttm),ttm,0*f(ttm));
 
 # Existem duas raízes no intervalo. Porém, observando os valores tabelados de $t$, é fácil ver que o valor para a condição inicial deve ser maior do que $t_0 = 0.5$ e, portanto, mais próximo da segunda raiz no gráfico. Então, escolhamos para `fsolve` o valor inicial de $t_m^0 = 1.25$.
 
-# In[19]:
+# In[35]:
 
 
 from scipy.optimize import fsolve 

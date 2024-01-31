@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code session 8
+# # _Code Session_ 8: Integração
 
-# In[1]:
+# In[6]:
 
 
 import numpy as np 
@@ -33,7 +33,7 @@ import matplotlib.pyplot as plt
 # from scipy.integrate import quad
 # ```
 
-# In[2]:
+# In[7]:
 
 
 from scipy.integrate import quad
@@ -51,7 +51,7 @@ from scipy.integrate import quad
 # 
 # Em primeiro lugar, fazemos os cálculos diretos da integral para os distintos valores de $\tau$.
 
-# In[22]:
+# In[8]:
 
 
 # cálculo direto das integrais caso a caso
@@ -74,7 +74,7 @@ errs = np.asarray(errs)
 
 # Vemos que o valor das integrais é muito sensível. Para realizar uma comparação mais interessante, utilizaremos um cálculo relativo tomando o valor em $h(15)$ como referência.
 
-# In[23]:
+# In[9]:
 
 
 plt.stem(theta0, (vals - vals[0])/vals[0], use_line_collection=True);
@@ -98,7 +98,7 @@ plt.ylabel('erro relativo');
 # 
 # Neste caso, basta passarmos os valores iniciais e finais para computar a integral. 
 
-# In[27]:
+# In[10]:
 
 
 i0, t0, beta = 1.0, 0.05, 0.2 # parâmetros iniciais
@@ -120,7 +120,7 @@ print(f'Corrente RMS = {i_rms:g} A')
 # 
 # Vamos utilizar a função $i(t)$ do Problema 2 e estimar sua integral no intervalo $t = [0,5]$ utilizando a regra do trapézio generalizada.
 
-# In[36]:
+# In[11]:
 
 
 # Visualização
@@ -132,7 +132,7 @@ plt.xlabel('$t$')
 plt.ylabel('$i(t)$');
 
 
-# In[7]:
+# In[12]:
 
 
 from scipy.integrate import cumtrapz
@@ -154,7 +154,7 @@ print(f'Integral por Trapézio = {T:g}')
 # 
 # Vamos utilizar a função $i(t)$ do Problema 2 e estimar sua integral no intervalo $t = [0,5]$ utilizando a QG para várias ordens (controladas pelo argumento `miniter`). 
 
-# In[8]:
+# In[25]:
 
 
 from scipy.integrate import quadrature

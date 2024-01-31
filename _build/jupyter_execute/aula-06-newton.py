@@ -16,8 +16,7 @@
 # In[19]:
 
 
-import inspect, re
-import numpy as np
+import inspect, re, numpy as np
 from matplotlib.pyplot import plot
 from prettytable import PrettyTable as pt
 

@@ -22,7 +22,7 @@
 # 
 # - A fração $1/3 \approx 0.3333\ldots$ é uma dízima. O seu triplo é?
 
-# In[1]:
+# In[2]:
 
 
 1/3
@@ -115,7 +115,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:
 
-# In[6]:
+# In[9]:
 
 
 2.65e0, 1.2e-6, 0.4532e4, 1e1
@@ -181,7 +181,7 @@ print(c)
 # 
 # O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
 
-# In[149]:
+# In[10]:
 
 
 """
@@ -475,7 +475,7 @@ ax.set_title('Variação relativa a $\epsilon \\to \epsilon_M $');
 # 
 # A partir desses valores especiais, operáveis pelo módulo _numpy_ com `numpy.nan` e `numpy.inf`, respectivamente, podemos imitar operações matemáticas "equivalentes". Primeiramente, façamos:
 
-# In[11]:
+# In[19]:
 
 
 from numpy import nan, inf
@@ -534,7 +534,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm \infty \div \pm \infty \to \text{nan}$
 
-# In[ ]:
+# In[20]:
 
 
 inf/inf, inf/-inf, -inf/inf, -inf/-inf

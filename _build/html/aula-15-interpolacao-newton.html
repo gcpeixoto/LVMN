@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem matemática em Ciências Computacionais e Engenharias
+   1. Modelagem Matemática em Ciências Computacionais e Engenharias
   </a>
  </li>
  <li class="toctree-l1">
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-08a-matrizes-vetores.html">
-   9. Elementos de Álgebra Linear Computacional
+   9. Álgebra Linear Computacional básica
   </a>
  </li>
  <li class="toctree-l1">
@@ -876,7 +876,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="c1"># número de nós de interpolação: interpolação de (n-1)-ésimo grau</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
 
 <span class="c1"># domínio de interpolação</span>
 <span class="n">x0</span><span class="p">,</span><span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
@@ -1035,6 +1035,42 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 <p>Compute o valor de <span class="math notranslate nohighlight">\(P_2(0.35)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leitura de planilha / dataset</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;t.txt&#39;</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">])</span> <span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.2</span><span class="p">])</span> <span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">DD0</span> <span class="o">=</span> <span class="n">y0</span> <span class="c1"># f[x0]</span>
+<span class="n">DD1</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="c1"># f[x0,x1]</span>
+<span class="n">DD2</span> <span class="o">=</span>  <span class="p">(</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x0</span> <span class="p">)</span>
+<span class="n">DD3</span> <span class="o">=</span>  <span class="p">(</span> <span class="p">(</span> <span class="p">(</span><span class="n">y3</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="n">x3</span> <span class="o">-</span> <span class="n">x1</span> <span class="p">)</span> <span class="o">-</span> <span class="n">DD2</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+
+<span class="c1"># interpolante</span>
+<span class="n">PIN_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DD0</span> <span class="o">+</span> <span class="n">DD1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="n">DD2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">PIN_3</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">PIN_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">DD3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">*</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;vr&#39;</span><span class="p">,</span><span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">PIN_3</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="s1">&#39;sg&#39;</span><span class="p">,</span><span class="n">ms</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;oy&#39;</span><span class="p">,</span><span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf49e808b0&gt;]
+</pre></div>
+</div>
+<img alt="_images/aula-15-interpolacao-newton_8_1.png" src="_images/aula-15-interpolacao-newton_8_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interpolação quadrática</span>
 
 <span class="c1"># Usando tabela DD: </span>
@@ -1078,7 +1114,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-15-interpolacao-newton_8_0.png" src="_images/aula-15-interpolacao-newton_8_0.png" />
+<img alt="_images/aula-15-interpolacao-newton_9_0.png" src="_images/aula-15-interpolacao-newton_9_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1163,7 +1199,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-15-interpolacao-newton_11_0.png" src="_images/aula-15-interpolacao-newton_11_0.png" />
+<img alt="_images/aula-15-interpolacao-newton_12_0.png" src="_images/aula-15-interpolacao-newton_12_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1207,7 +1243,7 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-15-interpolacao-newton_13_0.png" src="_images/aula-15-interpolacao-newton_13_0.png" />
+<img alt="_images/aula-15-interpolacao-newton_14_0.png" src="_images/aula-15-interpolacao-newton_14_0.png" />
 </div>
 </div>
 </section>
@@ -1232,7 +1268,48 @@ b_n = f[x_n, x_{n - 1}, \dots , x_1, x_0] \qquad (10)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-15-interpolacao-newton_15_0.png" src="_images/aula-15-interpolacao-newton_15_0.png" />
+<img alt="_images/aula-15-interpolacao-newton_16_0.png" src="_images/aula-15-interpolacao-newton_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+<span class="n">P3x</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">+</span> <span class="mi">63</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2015</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.34</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2015</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2017</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.45</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2015</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2017</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">P3xn</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P3x</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20092402659.2048
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2015</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2022</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">512</span><span class="p">,</span><span class="mi">638</span><span class="p">,</span><span class="mi">792</span><span class="p">,</span><span class="mi">700</span><span class="p">])</span>
+
+<span class="n">xn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">2022</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xn</span><span class="p">,</span><span class="n">P3xn</span><span class="p">(</span><span class="n">xn</span><span class="p">))</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="mi">2021</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">P3xn</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="s1">&#39;sg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Censo em </span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">yy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Censo em 2021 = 775.0400000000081
+</pre></div>
+</div>
+<img alt="_images/aula-15-interpolacao-newton_18_1.png" src="_images/aula-15-interpolacao-newton_18_1.png" />
 </div>
 </div>
 </section>
