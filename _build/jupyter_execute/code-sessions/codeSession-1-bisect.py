@@ -3,20 +3,18 @@
 
 # # _Code Session_ 1: Bisseção
 
-# O propósito desta _Code Session_ é resolver problemas de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função `bisect` do módulo `scipy.optimize`. Em particular, resolvemos alguns com aplicações à Física e à Mecânica.
+# O propósito desta _Code Session_ é resolver problemas aplicados de determinação de raízes de equações não lineares polinomiais e transcendentais utilizando a função `bisect` do módulo `scipy.optimize`.
 
-# In[6]:
+# In[1]:
 
 
-# Importação de módulos auxiliares
+# Importação de módulos (boilerplate)
 import numpy as np, matplotlib.pyplot as plt
 
 
-# ## Determinação de raízes
+# ## A função `bisect`
 # 
-# `bisect`
-# 
-# A função `bisect` localiza a raiz de uma função dentro de um intervalo dado usando o método da bisseção. Os argumentos de entrada obrigatórios de `bisect` são: 
+# A função `bisect` localiza a raiz de uma função dentro de um intervalo dado usando o método da bisseção, ressalvada a hipótese de que satisfaz o Teorema de Bolzano no intervalo. Os argumentos de entrada obrigatórios de `bisect` são: 
 # 
 # 1. a função-alvo `f` (contínua)
 # 2. o limite esquerdo `a`
@@ -26,13 +24,14 @@ import numpy as np, matplotlib.pyplot as plt
 # 
 # - `xtol`: tolerância (padrão: 2e-12)
 # - `maxiter`: número máximo de iterações (padrão: 100)
-# - `disp`: mostra erro se algoritmo não convergir (padrão: True) 
+# - `disp`: mostra erro se algoritmo não convergir (padrão: True)
+# - `full_output`: mostra informações completas sobre a execução da função
 # 
-# O argumento de saída é:
+# O parâmetro de saída é:
 # 
 # - `x`: a estimativa para a raiz de `f`
 
-# In[7]:
+# In[2]:
 
 
 # Importação de bisect
@@ -45,7 +44,7 @@ from scipy.optimize import bisect
 
 # #### Resolução
 
-# In[8]:
+# In[3]:
 
 
 # Definição da função polinomial
@@ -53,7 +52,7 @@ def f(x):
     return x**3 - 3.23*x**2 - 5.54*x + 9.84
 
 
-# In[10]:
+# In[4]:
 
 
 # Analise gráfica simples
@@ -65,12 +64,21 @@ plt.axvline(x=0,color='r', linestyle=':');
 
 # Pelo gráfico, vemos que a menor raiz positiva está localizada no intervalo $(0,2]$. Vamos determiná-la utilizando este intervalo de confinamento. 
 
-# In[13]:
+# In[5]:
 
 
 # Resolução com bisect
 x = bisect(f,0,2) # raiz
 print(f'Raiz: x = {x:.6f}') # impressão de valor
+
+
+# A mesma execução com `full_output=True` retornaria:
+
+# In[6]:
+
+
+x = bisect(f,0,2,full_output=True) # tupla 
+x
 
 
 # ### Problema 2
@@ -81,7 +89,7 @@ print(f'Raiz: x = {x:.6f}') # impressão de valor
 # 
 # Sigamos o procedimento aprendido com `bisect`. 
 
-# In[30]:
+# In[7]:
 
 
 # Definição da função transcendental
@@ -89,7 +97,7 @@ def f(x):
     return np.cosh(x)*np.cos(x) - 1 
 
 
-# In[32]:
+# In[8]:
 
 
 # Analise gráfica 
@@ -99,7 +107,7 @@ plt.axhline(y=0,color='r',linestyle=':');
 plt.axvline(x=0,color='r',linestyle=':');
 
 
-# In[34]:
+# In[9]:
 
 
 # Resolução
@@ -113,7 +121,7 @@ print(f'Raiz: x = {x:.6f}') # impressão de valor
 
 # #### Resolução
 
-# In[35]:
+# In[10]:
 
 
 # função
@@ -123,7 +131,7 @@ def f(x):
 
 # Como o processo de análise gráfica é repetitivo, podemos criar outra função auxiliar dedicada à plotagem para refinamento.
 
-# In[45]:
+# In[11]:
 
 
 def aux_plot(a,b,fun):
@@ -143,7 +151,7 @@ def aux_plot(a,b,fun):
     
 
 
-# In[63]:
+# In[12]:
 
 
 # Analise gráfica 
@@ -152,7 +160,7 @@ aux_plot(6.5,7.5,f) # intervalo estendido
 
 # Para obter as 3 casas decimas, vamos imprimir o valor final com 3 casas decimais. 
 
-# In[66]:
+# In[13]:
 
 
 # Resolução
@@ -166,7 +174,7 @@ print(f'Raiz: x = {x:.3f}') # impressão de valor
 
 # #### Resolução
 
-# In[68]:
+# In[14]:
 
 
 # função
@@ -174,7 +182,7 @@ def f(x):
     return np.sin(x) + np.cos(x) - 1
 
 
-# In[69]:
+# In[15]:
 
 
 # Analise gráfica 
@@ -183,7 +191,7 @@ aux_plot(-2,2,f)
 
 # A análise gráfica mostra duas raízes. Vamos encontrar uma de cada vez.
 
-# In[82]:
+# In[16]:
 
 
 # Resolução
@@ -200,7 +208,7 @@ print(f'Raízes: x1 = {x1:e}; x2 = {x2:e}')
 
 # #### Resolução
 
-# In[86]:
+# In[17]:
 
 
 # função 
@@ -208,28 +216,28 @@ def f(x):
     return x**4 + 0.9*x**3 - 2.3*x**2 + 3.6*x - 25.2
 
 
-# In[89]:
+# In[18]:
 
 
 # Analise gráfica 
 aux_plot(-100,100,f)
 
 
-# In[91]:
+# In[19]:
 
 
 # Refinamento
 aux_plot(-20,20,f)
 
 
-# In[92]:
+# In[20]:
 
 
 # Refinamento
 aux_plot(-5,5,f)
 
 
-# In[93]:
+# In[21]:
 
 
 # Resolução
@@ -250,7 +258,7 @@ print(f'Raízes: x1 = {x1:e}; x2 = {x2:e}')
 
 # #### Resolução
 
-# In[94]:
+# In[22]:
 
 
 # parâmetros do problema
@@ -264,21 +272,21 @@ g = 9.8
 f = lambda theta: x*np.tan(theta) - 0.5*(x**2*g/v0**2)*(1/(np.cos(theta)**2)) + h - y
 
 
-# In[95]:
+# In[23]:
 
 
 # Análise gráfica
 aux_plot(0,0.96*np.pi/2,f)
 
 
-# In[96]:
+# In[24]:
 
 
 # Refinamento
 aux_plot(0,np.pi/4,f)
 
 
-# In[98]:
+# In[25]:
 
 
 # Resolução
@@ -298,7 +306,7 @@ print('Ângulo de lançamento: %.2f graus' % np.rad2deg(xr))
 # 
 # Para este problema, definiremos duas funções, uma auxiliar, que chamaremos `a`, e a função `f(h)` que reescreve a equação de Bernoulli acima em função de $h$. 
 
-# In[99]:
+# In[26]:
 
 
 # função para cálculo de parâmetros
@@ -314,7 +322,7 @@ def f(h):
 
 # Note que a função `a` é apenas uma conveniência para o cálculo do termo comum envolvendo a vazão e para construírmos uma generalização para os dados de entrada. Em seguida, definiremos os parâmetros de entrada do problema. 
 
-# In[100]:
+# In[27]:
 
 
 # parâmetros de entrada
@@ -327,7 +335,7 @@ H = 0.075 # m
 
 # A partir daí, podemos realizar a análise gráfica para verificar o comportamento de `f(h)`.
 
-# In[101]:
+# In[28]:
 
 
 # Análise gráfica
@@ -336,7 +344,7 @@ aux_plot(0.1,6,f)
 
 # Ampliemos a localização.
 
-# In[102]:
+# In[29]:
 
 
 aux_plot(0.25,0.6,f)
@@ -344,7 +352,7 @@ aux_plot(0.25,0.6,f)
 
 # Verificamos que `f(h)` admite duas soluções. Vamos determinar cada uma delas. 
 
-# In[104]:
+# In[30]:
 
 
 # Resolução  
@@ -371,7 +379,7 @@ print(f'Raiz: h2 = {h2:.8f}')
 # 
 # Seguiremos a mesma ideia utilizada no Problema 7. Primeiramente, construímos uma função auxiliar para calcular parâmetros e, em seguida, definimos uma função `f(t)`.  
 
-# In[106]:
+# In[31]:
 
 
 # função para cálculo de parâmetros
@@ -386,7 +394,7 @@ def f(t):
 
 # Definimos os parâmetros do problema.
 
-# In[107]:
+# In[32]:
 
 
 # parâmetros de entrada
@@ -399,7 +407,7 @@ v = 335.0 # m/s
 
 # Utilizaremos a análise gráfica para determinar o intervalo de refinamento da raiz. 
 
-# In[108]:
+# In[33]:
 
 
 # Análise gráfica
@@ -408,12 +416,12 @@ aux_plot(0.5,100,f)
 
 # Podemos verificar que a raiz está entre 60 e 80 segundos. Utilizaremos estes limitantes. 
 
-# In[109]:
+# In[34]:
 
 
 # solução  
 tr = bisect(f,60,80)
-print('Raiz: tr = %.2f s = %.2f min' % (tr,tr/60) )
+print(f'Raiz: tr = {tr:.2f}s = {tr // 60:g}min {tr % 60:.2f}s')
 
 
-# O foguete rompe a barreira do som em 1 minuto e 18 segundos!
+# O foguete rompe a barreira do som em pouco mais de 1 minuto!
