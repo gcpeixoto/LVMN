@@ -3,27 +3,23 @@
 
 # # Erros e seus efeitos
 # 
-# Diferentemente da infindável capacidade humana para raciocinar, imaginar e criar, computadores, como máquinas de calcular, são limitados em memória e em habilidades aritméticas. Diante disso, pelo menos três situações simplificadoras ocorrem:
+# ## Introdução
 # 
-# - o contínuo torna-se _discreto_;
-# - o infinito reduz-se ao _finito_ e 
-# - a exatidão limita-se à _aproximação_.
+# Credita-se a Alexander Pope (1688 - 1744), poeta inglês, a autoria do provérbio: _"errar é humano; perdoar é divino"_ [[phrases.org.uk]](https://www.phrases.org.uk/meanings/to-err-is-human.html). Apesar de sua motivação, no século XVIII, ser o apontamento da indelével falibilidade humana, esta máxima tem uma tênue relação com os diversos tipos de erros que persistem em cálculos realizados por máquinas. Desde os primórdios dos computadores mecânicos e eletrônicos, a precisão e a confiabilidade dos cálculos têm estado no centro das atenções e ambas são afetadas pelas discrepâncias entre números reais, infinitos e contínuos, e suas representações em máquina, finitas e discretas. Nas décadas de 1940 e 1950, houve uma clara percepção de que o sistema de ponto fixo, até então utilizado, era bastante limitado para dar precisão aos cálculos e que o aparato de _hardware_ disponível na época era incapaz de lidar com situações de "sobrecarga" (_overflow_) ou "subfluxo" (_underflow_). Em outras palavras, representar números muito pequenos ou muito grandes, como $10^{-30}$ ou $543.671^3$, era algo impensável.
 # 
-# Algumas idéias impactadas por essas simplificações, por sua vez, tornam-se inadmissíveis em sentido estrito. Por exemplo:
+# ```{figure} figs/errare-ai.png
+# ---
+# width: 400px
+# name: fig-errareai
+# ---
 # 
-# - números reais convertem-se em números aproximados;
-# - limites são exibidos através de sequências;
-# - derivadas são aproximadas por quocientes de diferenças finitas;
-# - integrais definidas são calculáveis por meio de somas finitas.
+# ```
 # 
-# Por isso é comum chamar o processo de transferência de cálculos contínuos para cômputos discretos de _discretização_. 
+# Com a introdução da aritmética de ponto flutuante nos anos 1950 e 1960, os computadores passaram a representar uma quantidade significativa de números. Porém, o preço que se pagou por esse progresso foi a aparição de novos tipos de erros, como os erros de arredondamento, que ocorrem quando os números são aproximados para caber no formato de ponto flutuante. Mesmo com a implantação do padrão IEEE-754 em 1985, o qual uniformizou a representação e a manipulação de números em ponto flutuante, os erros inerentes não foram eliminados. 
 # 
-# Quando tratamos da resolução numérica de problemas realistas formulados com auxílio da Matemática, qual seja o campo do conhecimento, é quase impossível desviar-se do _erro_. Erros subsistem em qualquer formulação que tente explicar o funcionamento exato de um fenômeno, em geral, estudado pelas ciências naturais.
+# A pesquisa em computação científica e de alto desempenho continua ativa e revelando que os erros são obstinados e há campo para expansão do conhecimento. Recentemente, um grupo de espanhois trouxe perspectivas promissoras para o formato _posit64_ [[Mallasén et al., 2023]](https://arxiv.org/pdf/2305.06946), uma alternativa potencialmente superior ao padrão IEEE-754. Através de diversos testes, eles concluíram  que o sistema, baseado na arquitetura RISC-V (quinta geração da _Reduced Instruction Set Computer_), oferece maior precisão, resiliência a erros de arredondamento e eficiência de armazenamento.
 # 
-# De forma abstrata, se um fenômeno físico $\mathcal{F}$ pode ser descrito por um modelo matemático $\mathcal{M}$ cuja solução exata é $\mathcal{S}$, a impossibilidade de obtê-la
-# sugere pelo menos uma solução aproximada $\mathcal{S}'$, tal que $\mathcal{S} = \mathcal{S}' + \mathcal{E}$. Então, diremos que $\mathcal{E}$ é o _erro_. De outro modo, $\mathcal{E} = \mathcal{S} - \mathcal{S}'$.
-# 
-# Neste capítulo, estudaremos as diversas formas assumidas por $\mathcal{E}$ quando $\mathcal{S}'$ é implementável por meio de métodos numéricos. Evidentemente, pode haver mais de uma forma de obter $\mathcal{S}'$. Além disso, em situações difícies, é preciso estabelecer, com rigor, se $\mathcal{S}$ existe e se é única. Todavia, não discutiremos os procedimentos teóricos de verificação em profundidade.
+# Neste capítulo, discutiremos algumas definições de erros computacionais e como eles se manifestam ou se propagam em cálculos numéricos aplicáveis a qualquer área do conhecimento. Historicamente, erros computacionais tiveram impacto profundo na Guerra do Golfo, no caso do desvio de rota do míssil Patriot [{ref}`clipping-patriot`], em programas espaciais, no caso da explosão do Ariane V, e até em plataformas de petróleo, no caso dos prejuízos de milhões de dólares no projeto norueguês Sleipner (veja alguns casos [[UMontreal]](https://www.iro.umontreal.ca/~mignotte/IFT2425/Disasters.html)).
 
 # ## Motivação
 
@@ -73,9 +69,7 @@ for n in [10**1, 10**2, 10**3, 10**4, 10**5]:
 print(tbl)
 
 
-# Como se percebe pela última coluna, os valores produzidos pelas somas para $n > 10$ não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos. 
-# 
-# O fato de $S_A(n) - S_D(n) > 0$ caracteriza um "erro" de magnitude $\epsilon$, visto que, se $S_A(n)$ fosse tomado como o valor exato, $S_D(n) = S_A(n) + \epsilon$ seria uma aproximação para $S_A(n)$. Inversamente, se $S_D(n)$ fosse tomado como o valor exato, $S_A(n) = S_D(n) + \epsilon$ seria uma aproximação para $S_D(n)$.
+# Como se percebe pela última coluna, os valores produzidos pelas somas para $n > 10$ não são exatamente iguais. Embora existam diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos. Ter-se $S_A(n) - S_D(n) \neq 0$ equivale a admitir a presença de um "erro" – ainda que ele seja pequeno e desprezível – cuja magnitude depende da escolha de $n$.
 
 # 
 # Naturalmente, se tomássemos a versão _infinita_ de $S_D$ (ou $S_A$), chamando-a apenas de $S$ e substituindo $n$ por $\infty$, isto é, 
@@ -101,7 +95,7 @@ print(tbl)
 # 
 # Para obter cada valor acima, poderíamos escrever:
 
-# In[25]:
+# In[2]:
 
 
 # O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.
@@ -131,7 +125,7 @@ print(E_10)
 # 
 # Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de $S_2(n)$ com $n$ crescente até o limite de 100.000, até porque não temos como computar $S_2$ _ad infinitum_. Então, vejamos um código similar:
 
-# In[26]:
+# In[3]:
 
 
 from math import pi
@@ -176,7 +170,7 @@ print(tbl2)
 
 # A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de $n$ aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é $\pi^2/6 \approx 1.6449340668482264$. Para obtermos os valores dos erros, um código similar poderia ser implementado:
 
-# In[27]:
+# In[4]:
 
 
 # Expressões do erro real
@@ -212,7 +206,7 @@ print(E_10)
 # 1. Assumir que $82132.957032$ seja o valor exato para o polinômio em $x = 79.9$.
 # 2. Calcular $P(79.9)$ utilizando duas formas.
 
-# In[8]:
+# In[5]:
 
 
 # Código para gerar polinômio cúbico com raízes reais
@@ -255,7 +249,7 @@ r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 #P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
 
 
-# In[9]:
+# In[6]:
 
 
 # Valor
@@ -300,7 +294,7 @@ print(f'PH({x}) = {PHx:.14f}')
 # 
 # Utilizando o exemplo da seção anterior, temos:
 
-# In[10]:
+# In[7]:
 
 
 # Valor exato
@@ -325,7 +319,7 @@ print(E_PH)
 # 
 # A função módulo, $f(x) = | x |$, pode ser diretamente calculada com `abs`.
 
-# In[11]:
+# In[8]:
 
 
 # Erro absoluto (forma padrão)
@@ -339,7 +333,7 @@ print(EA_PH)
 
 # É evidente que $E_{PH} > E_P$. Entretanto, podemos verificar isso pelo seguinte teste lógico:
 
-# In[32]:
+# In[9]:
 
 
 # O teste é verdadeiro
@@ -350,12 +344,15 @@ EA_PH > EA_P
 # 
 # O erro relativo, $ER$, aperfeiçoa a idea de erro absoluto a partir do momento que passa a considerar a ordem de grandeza das quantidades envolvidas, mensurando uma variação que se limita ao valor exato. Assim,
 # 
-# $$ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|} = 1 - 
-# \dfrac{ |\hat{x}| }{|x|}.$$
+# $$ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|}.$$
+# 
+# expressão que, devido à simetria da função módulo, pode ainda ser expandida para 
+# $$ER = \dfrac{ | x - \hat{x} | }{|x|} = 
+# \dfrac{|x(1 - \frac{\hat{x}}{x})|}{|x|} = \dfrac{|x| |1 - \frac{\hat{x}}{x}|}{|x|} = \bigg|1 - \frac{\hat{x}}{x}\bigg|.$$
 
 # Os erros relativos podem ser computados como:
 
-# In[16]:
+# In[10]:
 
 
 ER_P = EA_P/abs(Px_ex)
@@ -369,12 +366,11 @@ print(ER_PH)
 # 
 # O erro relativo percentual é outra forma útil de expressar a disparidade relativa entre valores. Ele é definido por:
 # 
-# $$ER_{\%} = ER \times 100\% = \left(1 - 
-# \dfrac{ |\hat{x}| }{|x|} \right) \times 100\%.$$
+# $$ER_{\%} = ER \times 100\% = \bigg|1 - \frac{\hat{x}}{x}\bigg| \times 100\%.$$
 # 
 # Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:
 
-# In[23]:
+# In[11]:
 
 
 ER_Pp = ER_P * 100
@@ -388,13 +384,12 @@ print(f'{ER_PHp:e} %')
 # 
 # Como vimos no exemplo motivacional deste capítulo, há casos (a maioria deles) em que não dispomos de valores exatos (obtidos por soluções analíticas, por exemplo), sendo possível estimar erros relativos apenas aproximadamente usando um _valor de referência_. Costuma-se chamar este valor de _benchmark_. Definido o _benchmark_ por $x'$, o _erro relativo aproximado_ é dado:
 #  
-# $$ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|} = 1 - 
-# \dfrac{ |\hat{x}| }{|x'|}.$$
+# $$ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|}.$$
 # 
 # 
 # No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou $P(x=79.9)$ ou $P_H(x=79.9)$ deveria ser adotado como _benchmark_. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:
 
-# In[35]:
+# In[12]:
 
 
 ER_ =  abs(PHx - Px)/abs(PHx)
@@ -415,7 +410,7 @@ print(f'{ER_:e}')
 # 
 # Isto ocorre porque o denominador sofre um _cancelamento subtrativo_ Uma vez que $0.25\epsilon_M < \epsilon_M$, a operação $0.25\epsilon_M$ não produz efeito sobre 1, de modo que a computação encontra um "limbo". Para a matemática exata, a operação deveria ser "diferente de zero".
 
-# In[24]:
+# In[13]:
 
 
 # inf
@@ -435,14 +430,45 @@ e = finfo(float).eps
 # 
 # No caso do arredondamento, o $k$-ésimo dígito é somado de 1 se o dígito da $k+1$-ésima casa for maior ou igual a 5. A aproximação de $x$ por arredondamento até a terceira casa seria $x = 13.426$, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.
 
-# ## Exemplo aplicado: erros pontuais na função de Airy
+# ## Definições de erro em aprendizagem de máquina
+# 
+# No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de _perda_ (_loss function_) entre pixels de uma imagem legendada como _ground truth_ (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, $x_i$ é o valor do gabarito (exato), $\hat{x_i}$ é o valor aproximado e $n$ é o número de pontos de amostragem.
+# ### Erro quadrático médio
+# 
+# O erro quadrático médio (_mean squared error_, MSE) é definido como:
+# 
+# $$MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2$$
+# ### Erro absoluto médio
+# 
+# O erro absoluto médio (_mean absolute error_, MAE) é definido como:
+# 
+# $$MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|$$
+# ### Erro absoluto médio percentual
+# 
+# O erro absoluto médio percentual (_mean absolute percentage error_, MAPE) é definido como:
+# 
+# $$MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |x_i - \hat{x}_i| }{ | x_i | } \times 100$$
+# ### Erro logarítmico quadrático médio 
+# 
+# O erro logarítmico quadrático médio (_mean squared logarithmic error_, MSLE) é definido como:
+# 
+# $$MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2$$
+# ```{admonition} Curiosidade
+# :class: dropdown
+# 
+# Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo [Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation](https://www.mdpi.com/2220-9964/9/1/24).
+# ```
+
+# ## Exemplos aplicados
+# 
+# ### Erros pontuais na função de Airy
 # 
 # A função de Airy é solução da equação de Schrödinger da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma simulação.
 # 
 # Criaremos uma função "perturbada" que desempenhará o papel de função de Airy aproximada, enquanto menteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.
 # 
 
-# In[37]:
+# In[14]:
 
 
 from scipy import special
@@ -464,7 +490,7 @@ A_ = 1.152*A + 0.056*np.cos(x)
 # 
 # onde $\hat{A}(x)$ é a função de Airy aproximada e $A(x)$ é a função de Airy exata. Então:
 
-# In[38]:
+# In[15]:
 
 
 # Define função anônima para erro relativo
@@ -476,7 +502,7 @@ E_airy = ai(A,A_)
 
 # A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
 
-# In[39]:
+# In[16]:
 
 
 # Plotagem das funções 
@@ -488,7 +514,7 @@ grid()
 legend(loc='upper right');
 
 
-# In[40]:
+# In[17]:
 
 
 # Plotagem do erro 
@@ -496,36 +522,58 @@ plot(x, E_airy)
 grid()
 
 
-# ## Definições de erro em aprendizagem de máquina
+# ### Avaliação de algoritmos de ordenação
 # 
-# No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de _perda_ (_loss function_) entre pixels de uma imagem legendada como _ground truth_ (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, $y_i$ é o valor do gabarito (exato), $\hat{y_i}$ é o valor aproximado e $n$ é o número de pontos de amostragem.
+# Vamos considerar um cenário em que estamos avaliando a eficiência de dois algoritmos de ordenação: o algoritmo de ordenação por inserção (_insertion sort_) e o algoritmo de ordenação rápida (_quick sort_). Suponha que temos um conjunto de dados com 10.000 elementos e queremos comparar o tempo de execução teórico e o medido para ambos os algoritmos.
+# 
+# Consideremos: 
+# 
+# - $x$: tempo de execução teórico do algoritmo.
+# - $\hat{x}$: tempo de execução medido do algoritmo.
+# - $ER = 1 - \dfrac{\hat{x}}{x}$
+# 
+# O _insertion sort_ possui complexidade teórica de $O(n^2)$. Consideremos que o tempo teórico para 10.000 elementos seja de 50 segundos. O _quick sort_ possui complexidade teórica de $O(n \, \log \, n)$. Consideremos que o tempo teórico para 10.000 elementos seja de 2 segundos.
+# 
+# Após executar os algoritmos em uma máquina específica, suponhamos que tenhamos obtido os seguintes tempos de execução:
+# 
+# - _insertion sort_: 55 segundos.
+# - _quick sort_: 2.5 segundos.
+# 
+# O cálculo do erro relativo mostra que:
+# 
+# - _insertion sort_: $ER = 1 - \frac{55}{50} = 1 - 1.1 = -0.1 = -10\%$
+# - _quick sort_: $ER = 1 - \frac{2.5}{2} = 1 - 1.25 = -0.25 = -25\%$.
+# 
+# Ou seja, para o _insertion sort_, o erro relativo de -10% indica que o algoritmo demorou 10% mais do que o esperado, o que pode ser atribuído a fatores como sobrecarga de processamento ou otimizações que não foram realizadas. Para o _quick sort_, o erro relativo de -25% indica que o algoritmo demorou 25% mais do que o esperado, sugerindo que o algoritmo pode não ter se comportado da melhor maneira para este conjunto de dados específico, ou que a implementação usada não foi a mais eficiente.
+# 
+# Esses cálculos de erro relativo são essenciais para avaliar o desempenho dos algoritmos em ambientes reais, comparando-os com as expectativas teóricas. Eles ajudam a identificar discrepâncias que podem surgir devido a vários fatores, como características do hardware, implementações específicas do algoritmo, e peculiaridades dos dados de entrada.
 
-# ### Erro quadrático médio
+# ### Erros de precificação imobiliária por redes neurais
 # 
-# O erro quadrático médio (_mean squared error_, MSE) é definido como:
+# Vamos considerar um cenário onde estamos treinando uma rede neural para prever preços de imóveis com base em características como área, número de quartos, localização, etc. Para avaliar o desempenho da rede neural, usaremos o MSE e o MAE.
 # 
-# $$MSE = \dfrac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2$$
-
-# ### Erro absoluto médio
+# 1. **Dados do Conjunto de Treinamento e Teste**
+#    - Temos um conjunto de dados com 1.000 amostras de preços de imóveis.
 # 
-# O erro absoluto médio (_mean absolute error_, MAE) é definido como:
+# 2. **Treinamento da Rede Neural**
+#    - A rede neural é treinada com um conjunto de treinamento e avaliada com um conjunto de teste.
 # 
-# $$MAE = \dfrac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|$$
-
-# ### Erro absoluto médio percentual
+# 3. **Resultados do Conjunto de Teste**
+#    - Valores reais dos preços dos imóveis: $\mathbf{x} = [200 \ \ 300 \ \ 250 \ \ 500 \ \ 400]^T$
+#    - Valores previstos pela rede neural $\mathbf{\hat{x}} = [210 \ \ 290 \ \ 240 \ \ 520 \ \ 410]^T$
 # 
-# O erro absoluto médio percentual (_mean absolute percentage error_, MAPE) é definido como:
+# 4. **Cálculo do MSE**
+# $\text{MSE} = \frac{1}{5} \left[ (200 - 210)^2 + (300 - 290)^2 + (250 - 240)^2 + (500 - 520)^2 + (400 - 410)^2 \right]$
+# $\text{MSE} = \frac{1}{5} \left[ 100 + 100 + 100 + 400 + 100 \right] = \frac{1}{5} \times 800 = 160$
 # 
-# $$MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |y_i - \hat{y}_i| }{ | y_i | } \times 100$$
-
-# ### Erro logarítmico quadrático médio 
+# 5. **Cálculo do MAE**
+# $\text{MAE} = \frac{1}{5} \left[ |200 - 210| + |300 - 290| + |250 - 240| + |500 - 520| + |400 - 410| \right]$
+# $\text{MAE} = \frac{1}{5} \left[ 10 + 10 + 10 + 20 + 10 \right] = \frac{1}{5} \times 60 = 12$
 # 
-# O erro logarítmico quadrático médio (_mean squared logarithmic error_, MSLE) é definido como:
+# 6. **Interpretação dos Resultados**
+#    - **MSE**: Um valor de 160 indica que, em média, os quadrados dos erros são relativamente altos. Como o MSE penaliza mais fortemente os grandes erros, este valor sugere que há algumas previsões com grandes discrepâncias.
+#    - **MAE**: Um valor de 12 indica que, em média, os erros absolutos entre as previsões e os valores reais são de 12 unidades monetárias. O MAE sendo menor que o MSE sugere que a maioria dos erros são pequenos, mas existem alguns grandes erros que estão influenciando o MSE.
+#    - **Ajuste do Modelo**: Se o MSE for muito maior que o MAE, isto pode indicar a presença de outliers que estão afetando negativamente o desempenho do modelo. Nesse caso, pode ser útil investigar os outliers e ajustar o modelo ou os dados de treinamento.
 # 
-# $$MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1+ y_i) - \log(1 + \hat{y}_i) ]^2$$
-
-# ```{admonition} Curiosidade
-# :class: dropdown
-# 
-# Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo [Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation](https://www.mdpi.com/2220-9964/9/1/24).
-# ```
+# 7. **Avaliação de Desempenho**
+# Ambas as métricas são úteis para avaliar a precisão do modelo, mas cada uma tem suas vantagens. O MSE é mais sensível a grandes erros, enquanto o MAE é mais intuitivo e menos sensível a outliers. O uso de MSE e MAE permite uma avaliação completa do desempenho de uma rede neural. Enquanto o MSE fornece uma visão detalhada dos erros grandes, o MAE oferece uma métrica mais robusta contra outliers, facilitando a interpretação dos resultados e a melhoria do modelo.

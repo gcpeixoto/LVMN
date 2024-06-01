@@ -192,8 +192,7 @@ def QG3(F):
 def QG4(F):
     (pontos,pesos) = leg.leggauss(4)  
     print(pontos,pesos)
-    return pesos[0]*F(pontos[0]) + pesos[1]*F(pontos[1]) \
-+ pesos[2]*F(pontos[2]) + pesos[3]*F(pontos[3])
+    return pesos[0]*F(pontos[0]) + pesos[1]*F(pontos[1]) + pesos[2]*F(pontos[2]) + pesos[3]*F(pontos[3])
 
 
 def QG(F,n):

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (clipping-patriot)=
 # # Recorte 5: Um desastre motivado por erros numéricos
 # 
 # ## A falha da bateria americana _Patriot_ na Guerra do Golfo

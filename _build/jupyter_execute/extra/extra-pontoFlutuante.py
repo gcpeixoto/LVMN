@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (extra-float)=
 # # Números em ponto flutuante e seus problemas
 # 
 # Este capítulo é um compêndio sobre a representação numérica em computadores, sistema de ponto flutuante, bem como notas sobre causas de erros. O texto é essencialmente uma reprodução adaptada do conteúdo encontrado no site [floating-point-gui.de](https://floating-point-gui.de).

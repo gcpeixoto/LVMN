@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Code session 1" href="code-sessions/codeSession-1-bisect.html" />
+    <link rel="next" title="Code Session 1: Bisseção" href="code-sessions/codeSession-1-bisect.html" />
     <link rel="prev" title="26. Método de Euler" href="aula-22-metodo-euler.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4: Raízes de Equações
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -729,12 +753,12 @@ title="Print to PDF"
 <p>Métodos que usam o desenvolvimento em série de Taylor de <span class="math notranslate nohighlight">\(y(t)\)</span> teoricamente fornecem solução para qualquer ED. Sob o ponto de vista computacional, Métodos de Taylor de ordem mais elevada são inaceitáveis, pois, exceto uma classe restrita de funções, o cálculo das derivadas totais é complicado.</p>
 <p>Estes métodos são obtidos retendo-se termos de ordem superior na série de Taylor. Por sua vez, o Método de Euler é um caso particular, como veremos a seguir, já que tem os termos de ordem <span class="math notranslate nohighlight">\(\geq 2\)</span> truncados na série.</p>
 <p>Suponhamos que <span class="math notranslate nohighlight">\(y(t)\)</span> a solução para o PVI
-$<span class="math notranslate nohighlight">\(\begin{cases}
+<span class="math notranslate nohighlight">\(\begin{cases}
 y' = f(t,y) \\
 a \leq t \leq b \\
 y(a) = \alpha
-\end{cases}\)</span><span class="math notranslate nohighlight">\(
-é de classe \)</span>\mathcal{C}^{n+1}<span class="math notranslate nohighlight">\(. Haja vista que a série de Taylor de \)</span>y(t)<span class="math notranslate nohighlight">\( em relação ao ponto \)</span>t_i<span class="math notranslate nohighlight">\( pode ser expandida até a ordem \)</span>n$ como</p>
+\end{cases}\)</span>
+é de classe <span class="math notranslate nohighlight">\(\mathcal{C}^{n+1}\)</span>. Haja vista que a série de Taylor de <span class="math notranslate nohighlight">\(y(t)\)</span> em relação ao ponto <span class="math notranslate nohighlight">\(t_i\)</span> pode ser expandida até a ordem <span class="math notranslate nohighlight">\(n\)</span> como</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 y(t_{i+1}) = y(t_i) + {h} y'(t) + \frac{ {h}^2 }{2} y''(t_i) + \dots + \frac{ {h}^n }{n!} y^{(n)}(t_i) + \frac{ {h}^{n+1} }{(n+1)!} y^{(n+1)}(\xi_i), 
@@ -919,7 +943,7 @@ h = 1,0.5,0.25,0.1
     <a class='right-next' id="next-link" href="code-sessions/codeSession-1-bisect.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code session 1</p>
+        <p class="prev-next-title"><em>Code Session</em> 1: Bisseção</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

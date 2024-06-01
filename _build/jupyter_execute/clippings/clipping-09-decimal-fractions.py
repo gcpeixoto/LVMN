@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (clipping-decimal)=
 # # Recorte 9: Aritmética exata e números racionais
 
 # Em Python, os módulos `decimal` e `fractions` oferecem alternativas para manipulação numérica por meio de aritmética exata e números racionais. Aqui temos aplicações simples de cada um.

@@ -61,7 +61,6 @@ def L_nj(X,j):
     return L
 
 
-
 # In[3]:
 
 

@@ -5,6 +5,14 @@
 
 # Neste capítulo, utilizamos uma implementação própria do método de Newton para resolver equações não-lineares unidimensionais. O algoritmo é limitado para a entrada de funções matemáticas.
 # 
+# ```{figure} figs/newton-ai.png
+# ---
+# width: 400px
+# name: fig-newtonai
+# ---
+# 
+# ```
+# 
 # Para ser executado, o método `newton` requer 5 parâmetros: 
 # 
 # - a estimativa inicial, representada pela variável `x0`;

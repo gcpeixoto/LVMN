@@ -1,29 +1,41 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Implementação do método da bisseção
+# # Método da Bisseção
 # 
-# Neste capítulo, utilizamos uma implementação própria do método da bisseção para resolver equações não-lineares unidimensionais. O algoritmo é capaz de lidar com uma quantidade razoável de funções matemáticas.
+# O método da bisseção é uma das técnicas mais fundamentais para busca de raízes de equações não-lineares. Robusto e de fácil implementação, ele está estruturado no Teorema do Valor Intermediário, que afirma que se uma função contínua $f(x)$ tem sinais opostos em dois pontos $a$ e $b$, condição que se verifica quando $f(a) f(b) < 0$ é verdadeira, então existe pelo menos uma raiz da função no intervalo $[a, b]$. Em termos simples, o método envolve dividir repetidamente o intervalo ao meio e selecionar o subintervalo onde a raiz deve estar, baseando-se nos sinais de $f$.
 # 
-# Para ser executado, o método `bissecao` requer 5 parâmetros: 
+# O método da bisseção tem garantia de convergência, desde que a função seja contínua e o intervalo inicial seja escolhido corretamente. No entanto, a convergência pode ser lenta em comparação com outros métodos, especialmente quando a função tem múltiplas raízes próximas. Neste capítulo, apresentaremos uma implementação caseira do método da bisseção para equações não-lineares unidimensionais. O algoritmo é capaz de lidar com as principais funções matemáticas da biblioteca `numpy`, possui alguns comandos para checagem de validade e usa a estrutura `while` para o laço do processo iterativo.
+# 
+# ```{figure} figs/while-ai.png
+# ---
+# width: 400px
+# name: fig-whileai
+# ---
+# Aplicação lúdica do laço while. "Enquanto o galo estiver com fome, dê milho para ele".
+# ```
+
+# ## Implementação de alogoritmo
+# 
+# Para ser executada, a função `bissecao` requer 5 parâmetros: 
 # 
 # - a função $f(x)$ propriamente dita, representada por `f`;
-# - o domínio de busca da raiz $[a,b]$, representado pelas estimativas iniciais `a` e `b`;
+# - o intervalo de busca da raiz $[a,b]$, representado pelas estimativas iniciais `a` e `b`;
 # - o erro absoluto desejado $EA_d$, representado por `e`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
 
-# In[1]:
+# In[3]:
 
 
-import inspect, re
+import inspect, re 
 import numpy as np
 from matplotlib.pyplot import plot
 from warnings import warn
 from prettytable import PrettyTable as pt
 
-
 def bissecao(f,a,b,tol,N):
-    """Algoritmo para determinação de raízes pelo método da bisseção.
+    """Algoritmo para determinação de raízes de equações não lineares 
+       unidimensionais pelo método da bisseção.
 
     Parâmetros: 
         f: string dependendo de uma variável, i.e., a função-alvo
@@ -67,7 +79,7 @@ def bissecao(f,a,b,tol,N):
     # no. iterações mínimo
     niter = int(np.ceil(np.log((b-a)/tol)/np.log(2)))
     if N < niter:
-        print(f'! São necessárias pelo menos {niter} iterações, mas N = {N}.\n')
+        print(f'São necessárias pelo menos {niter} iterações, mas N = {N}.\n')
 
     
     # cabeçalho de tabela
@@ -115,13 +127,35 @@ def bissecao(f,a,b,tol,N):
     return xm
 
 
-# ## Exemplo
+# Note que o cerne desta função é o trecho abaixo. O resto do código é constituído de algumas especializações e comandos acessórios.
 # 
-# Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
+# ```python
+# while abs(a-b) > tol and (not done and N != 0):    
+#     
+#     # avalia a função no ponto médio
+#     fxm = f(xm) 
+# 
+#     if fa*fxm < 0:      # Raiz esta à esquerda de xm
+#         b = xm
+#         fb = fxm
+#         xm = (a+b)/2
+#     elif fxm*fb < 0:    # Raiz esta à direita de xm
+#         a = xm
+#         fa = fxm
+#         xm = (a+b)/2
+#     else:               # Achamos a raiz
+#         done = True            
+# 
+#     N -= 1              # Atualiza passo
+#     i += 1              # Atualiza contador
+
+# ## Exemplos resolvidos
+# 
+# **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-# In[2]:
+# In[4]:
 
 
 x = np.linspace(-0.2,1,100)
@@ -145,9 +179,7 @@ xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,40)
 xm
 
 
-# ## Exemplo
-# 
-# Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
+# **Exemplo:** Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
@@ -184,11 +216,9 @@ zm = bissecao('z/(1 - 2*z) - tan(z+1)',4,6,1e-5,20)
 zm
 
 
-# ## Exemplo aplicado
+# Por fim, vamos aplicar nosso método da bisseção ao problema do paraquedista apresentado no capítulo introdutório para buscar o coeficiente de arrasto adequado para os parâmetros de projeto impostos. 
 # 
-# Vamos aplicar nosso método da bisseção ao problema do paraquedista apresentado no capítulo introdutório para buscar o coeficiente de arrasto adequado para os parâmetros de projeto impostos. 
-
-# - Primeiramente, vamos definir uma função para retornar a equação particular.
+# Primeiramente, definiremos uma função para retornar a equação particular.
 
 # In[11]:
 
@@ -231,7 +261,7 @@ def eq_paraq(tempo,massa,vel,grav):
     return (fs,fn)
 
 
-# - Em seguida, inserimos os valores de entrada para teste. 
+# Em seguida, inserimos valores de entrada para teste. 
 
 # In[12]:
 
@@ -243,7 +273,7 @@ tempo, massa, vel, grav = 12, 70, 42, 9.81
 fs,fn = eq_paraq(tempo,massa,vel,grav)
 
 
-# - O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.
+# O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.
 
 # In[13]:
 
@@ -252,7 +282,7 @@ c = np.linspace(1,20)
 plot(c,fn(c),c,0*c);
 
 
-# - Por fim, aplicamos o método.
+# Encerrando, chamamos a função.
 
 # In[14]:
 
@@ -260,7 +290,7 @@ plot(c,fn(c),c,0*c);
 cm = bissecao(str(fs),14,17.0,1e-4,20)
 
 
-# O coeficiente de arrasto aproximado para este caso é dado por:
+# Como se vê, o coeficiente de arrasto aproximado para este caso é dado por:
 
 # In[15]:
 
@@ -268,21 +298,25 @@ cm = bissecao(str(fs),14,17.0,1e-4,20)
 cm
 
 
-# ## Exercícios
+# ## Tarefas
 # 
-# 1. Repita a análise anterior alterando os parâmetros de projeto de salto para paraquedistas de diferentes massas e com duração de salto até a velocidade terminal variáveis. Faça a análise gráfica e busque aproximações.
+# - Repita a análise anterior alterando os parâmetros de projeto de salto para paraquedistas de diferentes massas e com duração de salto até a velocidade terminal variáveis. Faça a análise gráfica e busque aproximações.
 # 
-# 2. Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `if`).
+# - Programe uma nova função para executar o método da falsa posição ou estenda o código anterior para uma nova função que contemple os dois casos (sugestão: use `if`).
 
 # ## Problema proposto 
 # 
-# Uma reação química reversível $2A+B \iff C$ pode ser caracterizada pela relação de equilíbrio $K = \dfrac{c_c}{c_a^2c_b}$, onde a nomenclatura $c_i$ representa a concentração do constituinte $i$. Suponha que $x$ é o número de moles de $C$ que são produzidos. A conservação da massa pode ser usada para reformular a relação de equilíbrio como
+# Uma reação química reversível 
+# $$2A+B \iff C$$ 
 # 
-# $$K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x)},$$
+# pode ser caracterizada pela relação de equilíbrio $K = \frac{c_c}{c_a^2c_b}$, onde $c_i$ representa a concentração do constituinte $i$. Suponha que:
 # 
-# onde o subscrito $0$ designa a concentração inicial de cada constituinte. Considere $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$ e faça o que se pede:
+# - $x$ é o número de moles de $C$ que são produzidos
+# - a conservação da massa pode ser usada para reformular a relação de equilíbrio como $K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x)}$, onde o subscrito $0$ designa a concentração inicial de cada constituinte. 
+# - $K = 0,016$, $c_{a,0} = 42$, $c_{b,0} = 28$ e $c_{c,0} = 4$.
 # 
+# Dispondo dessas informações:
 # 
-# 1. Faça a análise gráfica do problema.
-# 2. Com base em no item anterior, escolha aproximações $x_l$ e $x_r$ adequadas e adote $\epsilon_s = 0,5\%$ como erro. (Vide clipping _Definições de erro_ para entender $\epsilon_s$.)
-# 3. Aplique o método da bisseção para determinar uma aproximação para $x$.
+# 1. Faça a análise gráfica do modelo matemático do problema.
+# 2. Defina o(s)intervalo(s) adequados(s) de localização da raiz.
+# 3. Aplique o método da bisseção para determinar uma aproximação para $x$ com erro inferior a $10^{-5}$.

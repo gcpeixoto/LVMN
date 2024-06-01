@@ -3,21 +3,29 @@
 
 # # Aritmética computacional
 # 
-# Computadores representam números inteiros de maneira exata. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados _números em ponto flutuante._
+# Computadores representam números inteiros de maneira exata [{ref}`clipping-decimal`]. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados _números em ponto flutuante._
 # 
 # O interesse da aritmética computacional resume-se em dois pontos principais: i) a representação de números no formato de máquina (binário) e ii) a construção de algoritmos que realizam as operações fundamentais (adição, subtração, multiplicação e divisão). Em linhas gerais, métodos numéricos resultam de algoritmos sofisticados que utilizam essas quatro operações. 
 # 
-# Atualmente, o padrão IEEE 754 é o mais amplamente seguido pelos fabricantes de processadores modernos. O documento orienta sobre como números em ponto flutuante devem ser representados, operados e comportar-se em qualquer arquitetura, seja de 16, 32, 64 ou mesmo 128 bits. A última atualização do padrão, cujo ano de origem é 1985, ocorreu em 2019 e está documentada neste [artigo](https://ieeexplore.ieee.org/document/8766229).
+# Atualmente, o padrão IEEE 754 [{ref}`clipping-ieee754`] é o mais amplamente seguido pelos fabricantes de processadores modernos. O documento orienta sobre como números em ponto flutuante devem ser representados, operados e comportar-se em qualquer arquitetura, seja de 16, 32, 64 ou mesmo 128 bits. A última atualização do padrão, cujo ano de origem é 1985, ocorreu em 2019 [[IEEE 754-2019]](https://ieeexplore.ieee.org/document/8766229).
 
 # ## Unidade Lógica e Aritmética
 # 
-# A _Unidade Lógica e Aritmética_ (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados. A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (`and`, `or`, `not`).
+# A _Unidade Lógica e Aritmética_ (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados ({numref}`fig-ula`). A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (`and`, `or`, `not`).
 # 
 # Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.
+# 
+# ```{figure} figs/ula-ai.png
+# ---
+# width: 400px
+# name: fig-ula
+# ---
+# Ilustração de um chip de computador destacando as interconexões responsáveis por operações lógicas, aritméticas e troca de informação com a unidade de controle.
+# ```
 
 # ## Casos curiosos
 # 
-# A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos que ocorrem devido à representação finita de números pelo computador.
+# A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos que ocorrem devido à representação finita de números pelo computador. Outras indagações sobre ponto flutuante são respondidas em [{ref}`extra-float`].
 # 
 # 
 # - A fração $1/3 \approx 0.3333\ldots$ é uma dízima. O seu triplo é?
@@ -365,43 +373,86 @@ ax.get_yaxis().set_visible(False)
 
 # ## Limites de máquina para ponto flutuante
 
-# Os seguintes parâmetros ajudam-nos a entender os limites de máquina am Python.
+# Em Python, podemos utilizar diferentes sistemas de ponto flutuante. Cada um possui suas particularidades. Os mais comuns são:
+# 
+# - `float16` (meia precisão): ideal para aplicações onde a velocidade e o uso de memória são críticos, como em inferências de aprendizado profundo em dispositivos com recursos limitados.
+# - `float32` (precisão simples): comumente usado em jogos, gráficos, e muitas aplicações de aprendizado de máquina devido ao bom equilíbrio entre precisão e eficiência.
+# - `float64` (precisão dupla; _alias_ para `float`): essencial para simulações científicas, finanças e outras áreas onde a precisão é crucial e a memória não é preocupação.
+# 
+# O `numpy` suporta todos os três na maioria dos computadores de hoje ({numref}`Tabela %s <tbl-float>`). 
 
-# In[152]:
+# ```{table} Comparativo entre sistemas de ponto flutuante
+# :name: tbl-float
+# 
+# | Atributo              | `float16`                  | `float32`                  | `float64`                  |
+# |:-----------------------|:----------------------------|:----------------------------|:----------------------------|
+# | **Tamanho**           | 16 bits (2 bytes)          | 32 bits (4 bytes)          | 64 bits (8 bytes)          |
+# | **Precisão**          | Baixa                      | Moderada                   | Alta                       |
+# | **Intervalo de Valores** | $\approx 5.96 \times 10^{-8}$ a $6.55 \times 10^{4} $ | $\approx 1.18 \times 10^{-38} $ a $3.4 \times 10^{38} $ | $\approx 2.23 \times 10^{-308} $ a $1.8 \times 10^{308} $ |
+# | **Bits de Sinal**     | 1                          | 1                          | 1                          |
+# | **Bits de Expoente**  | 5                          | 8                          | 11                         |
+# | **Bits de Mantissa**  | 10                         | 23                         | 52                         |
+# | **Uso de Memória**    | Muito baixo                | Moderado                   | Alto                       |
+# | **Aplicações**        | Aprendizado profundo em dispositivos de recursos limitados | Gráficos de computador, simulações científicas, aprendizado de máquina | Cálculos científicos, engenharia, finanças de alta precisão |
+# | **Exemplo de Valores** | $3.140625$ para representar aproximadamente $\pi$ | $3.1415927$ para representar aproximadamente $\pi$ | $3.141592653589793$ para representar aproximadamente $\pi$ |
+# | **Vantagens**         | Usa menos memória e é mais rápido em termos de computação. Ideal para aplicações onde a memória é restrita e a precisão pode ser sacrificada. | Oferece um bom equilíbrio entre precisão e uso de memória. Amplamente utilizado em gráficos e aprendizado de máquina. | Alta precisão e amplo intervalo dinâmico. Ideal para cálculos científicos e de engenharia onde a precisão é crucial. |
+# | **Desvantagens**      | Precisão muito limitada, o que pode levar a erros significativos em cálculos complexos. | Pode não ser suficientemente preciso para cálculos científicos muito precisos. | Usa mais memória e pode ser mais lento em termos de computação comparado com float16 e float32. |
+# ```
+
+# A seguinte função imprime os valores dos principais atributos de `numpy.finfo` que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.
+
+# In[36]:
 
 
 import numpy as np 
 
-# limites de máquina para ponto flutuante
-#help(np.finfo)
+def print_attribute(dtype: str, attrib: str) -> None:
+    """
+    Imprime informações de atributo para os sistemas de ponto flutuante \
+        de 16, 32 e 64 bits operados pelo numpy
+        
+    Atributos relevantes: 
+    
+        - eps: menor valor x, tal que 1.0 + x > 1.0 (epsilon de máquina)
+        - max: maior número finito que pode ser representado pelo tipo de dado de ponto flutuante.
+        - min: menor número finito negativo que pode ser representado pelo tipo de dado de ponto flutuante.
+        - tiny: menor número positivo normalizado que pode ser representado.
+        - nexp: número de bits no expoente       
+        - nmant: número de bits na mantissa
+    """
+    
+    # checagem de sistema permitido
+    assert dtype in ['float16', 'float32', 'float64'], 'Sistema não permitido!'
+    
+    # impressão    
+    print(f'{attrib}:')
+    exec(f'print(np.finfo(np.{dtype}).{attrib})')
 
-# epsilon de máquina para tipo float (64 bits)
-print('Epsilon de máquina do numpy - 64 bits')
-print(np.finfo(float).eps)
+# # função para calculo do epsilon: erro relativo
+# def eps_mach(func=float):
+#     eps = func(1)
+#     while func(1) + func(eps) != func(1):
+#         epsf = eps
+#         eps = func(eps) / func(2)
+#     return epsf
 
-# função para calculo do epsilon: erro relativo
-def eps_mach(func=float):
-    eps = func(1)
-    while func(1) + func(eps) != func(1):
-        epsf = eps
-        eps = func(eps) / func(2)
-    return epsf
 
-# número máximo representável 
-print('número máximo representável')
-print(np.finfo(float).max)
+# A partir daí, podemos verificar os valores para cada sistema individualmente:
 
-# número mínimo representável 
-print('número mínimo representável') 
-print(np.finfo(float).min)
+# In[39]:
 
-# número de bits no expoente 
-print('número de bits no expoente') 
-print(np.finfo(float).nexp)
 
-# número de bits na mantissa
-print('número de bits na mantissa')
-print(np.finfo(float).nmant)
+print('--- float16 \n')
+for attrib in ['eps', 'max', 'min', 'tiny', 'nexp', 'nmant']:
+    print_attribute('float16', attrib)
+    
+print('\n--- float32 \n')
+for attrib in ['eps', 'max', 'min', 'tiny', 'nexp', 'nmant']:
+    print_attribute('float32', attrib)
+    
+print('\n--- float64 (float) \n')
+for attrib in ['eps', 'max', 'min', 'tiny', 'nexp', 'nmant']:
+    print_attribute('float64', attrib)
 
 
 # ### O épsilon de máquina

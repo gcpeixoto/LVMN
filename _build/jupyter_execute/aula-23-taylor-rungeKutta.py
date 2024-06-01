@@ -8,11 +8,11 @@
 # Estes métodos são obtidos retendo-se termos de ordem superior na série de Taylor. Por sua vez, o Método de Euler é um caso particular, como veremos a seguir, já que tem os termos de ordem $\geq 2$ truncados na série.
 # 
 # Suponhamos que $y(t)$ a solução para o PVI
-# $$\begin{cases}
+# $\begin{cases}
 # y' = f(t,y) \\
 # a \leq t \leq b \\
 # y(a) = \alpha
-# \end{cases}$$
+# \end{cases}$
 # é de classe $\mathcal{C}^{n+1}$. Haja vista que a série de Taylor de $y(t)$ em relação ao ponto $t_i$ pode ser expandida até a ordem $n$ como
 # \begin{equation*}
 # y(t_{i+1}) = y(t_i) + {h} y'(t) + \frac{ {h}^2 }{2} y''(t_i) + \dots + \frac{ {h}^n }{n!} y^{(n)}(t_i) + \frac{ {h}^{n+1} }{(n+1)!} y^{(n+1)}(\xi_i), 

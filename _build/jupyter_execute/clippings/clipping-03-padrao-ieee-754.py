@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (clipping-ieee754)=
 # # Recorte 3: Padrão de Ponto Flutuante IEEE 754
 # 
 # O texto a seguir é um excerto do artigo _IEEE Standard for Floating Point Numbers_, de Rajaraman, V., publicado na Resonance 21.1 (2016): 11-30, com adaptações.
