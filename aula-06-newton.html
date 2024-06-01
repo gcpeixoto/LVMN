@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Implementação do método de Newton &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    <title>6. Método de Newton &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. Implementação do método da secante" href="aula-07-secante.html" />
-    <link rel="prev" title="5. Implementação do método da bisseção" href="aula-04-bissecao.html" />
+    <link rel="prev" title="5. Método da Bisseção" href="aula-04-bissecao.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,12 +144,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementação do método da bisseção
+   5. Método da Bisseção
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Implementação do método de Newton
+   6. Método de Newton
   </a>
  </li>
  <li class="toctree-l1">
@@ -686,18 +686,30 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo">
-   6.1. Exemplo
+  <a class="reference internal nav-link" href="#implementacao-do-algoritmo">
+   6.1. Implementação do algoritmo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+  <a class="reference internal nav-link" href="#exemplo">
    6.2. Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   6.3. Exemplo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
+     6.3.1. Método de Newton modificado para otimização
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefa">
-   6.3. Tarefa
+   6.4. Tarefa
   </a>
  </li>
 </ul>
@@ -709,7 +721,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Implementação do método de Newton</h1>
+                <h1>Método de Newton</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -720,18 +732,30 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo">
-   6.1. Exemplo
+  <a class="reference internal nav-link" href="#implementacao-do-algoritmo">
+   6.1. Implementação do algoritmo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+  <a class="reference internal nav-link" href="#exemplo">
    6.2. Exemplo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   6.3. Exemplo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
+     6.3.1. Método de Newton modificado para otimização
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefa">
-   6.3. Tarefa
+   6.4. Tarefa
   </a>
  </li>
 </ul>
@@ -744,12 +768,27 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="implementacao-do-metodo-de-newton">
-<h1><span class="section-number">6. </span>Implementação do método de Newton<a class="headerlink" href="#implementacao-do-metodo-de-newton" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="metodo-de-newton">
+<h1><span class="section-number">6. </span>Método de Newton<a class="headerlink" href="#metodo-de-newton" title="Permalink to this headline">#</a></h1>
+<p>O Método de Newton, também conhecido como Método das Tangentes, é uma técnica numérica amplamente utilizada para encontrar aproximações das raízes de funções reais. Desenvolvido por Isaac Newton, esse método é conhecido por sua eficiência e rapidez na convergência, especialmente quando a aproximação inicial está próxima da raiz verdadeira.</p>
+<p>O Método de Newton se baseia na ideia de usar a tangente da função em um ponto inicial para encontrar uma melhor aproximação da raiz. A fórmula iterativa do método é dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{(k+1)} = x^{(k)} - \dfrac{ f(x^{(k)} )}{ f'(x^{(k)}) }
+\]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x^{(k)}\)</span> é a aproximação atual.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x^{(k)})\)</span> é o valor atual da função.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(x^{(k)})\)</span> é o valor atual da primeira derivada da função.</p></li>
+</ul>
+<p>A ideia é que a interseção da tangente à curva <span class="math notranslate nohighlight">\(f(x)\)</span> no ponto <span class="math notranslate nohighlight">\(x^{(k)}\)</span> com o eixo <span class="math notranslate nohighlight">\(x\)</span> fornece uma nova aproximação <span class="math notranslate nohighlight">\(x^{(k)+1}\)</span>. O Método de Newton é uma ferramenta essencial no arsenal de métodos numéricos, oferecendo uma abordagem eficiente e poderosa para a solução de uma ampla variedade de problemas matemáticos.</p>
 <p>Neste capítulo, utilizamos uma implementação própria do método de Newton para resolver equações não-lineares unidimensionais. O algoritmo é limitado para a entrada de funções matemáticas.</p>
 <figure class="align-default" id="fig-newtonai">
 <a class="reference internal image-reference" href="_images/newton-ai.png"><img alt="_images/newton-ai.png" src="_images/newton-ai.png" style="width: 400px;" /></a>
 </figure>
+<section id="implementacao-do-algoritmo">
+<h2><span class="section-number">6.1. </span>Implementação do algoritmo<a class="headerlink" href="#implementacao-do-algoritmo" title="Permalink to this headline">#</a></h2>
 <p>Para ser executado, o método <code class="docutils literal notranslate"><span class="pre">newton</span></code> requer 5 parâmetros:</p>
 <ul class="simple">
 <li><p>a estimativa inicial, representada pela variável <code class="docutils literal notranslate"><span class="pre">x0</span></code>;</p></li>
@@ -758,7 +797,7 @@ title="Print to PDF"
 <li><p>o erro relativo assumido, representado por <code class="docutils literal notranslate"><span class="pre">tol</span></code>;</p></li>
 <li><p>o número máximo de iterações <span class="math notranslate nohighlight">\(N\)</span> para tentativa de solução, representado por <code class="docutils literal notranslate"><span class="pre">nmax</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span>
@@ -838,8 +877,9 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
 <section id="exemplo">
-<h2><span class="section-number">6.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">6.2. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
 <p>Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -877,7 +917,7 @@ Solução obtida: x = -0.025836
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">6.2. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">6.3. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([1,8]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
 <p>Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função <span class="math notranslate nohighlight">\(h(z)\)</span>. Vamos encontrá-la utilizando o módulo de computação simbólica <code class="docutils literal notranslate"><span class="pre">sympy</span></code>.</p>
 <div class="cell docutils container">
@@ -927,11 +967,61 @@ Solução obtida: x = 4.773843
 </div>
 </div>
 <p>Compare a quantidade de iterações obtidas com o mesmo exemplo resolvido com o algoritmo da bisseção.</p>
+<section id="metodo-de-newton-modificado-para-otimizacao">
+<h3><span class="section-number">6.3.1. </span>Método de Newton modificado para otimização<a class="headerlink" href="#metodo-de-newton-modificado-para-otimizacao" title="Permalink to this headline">#</a></h3>
+<p>O método de Newton pode ser expandido até a segunda ordem usada para encontrar o ponto mínimo ou máximo de uma função diferenciável. Em uma dimensão, o raciocínio é como segue:</p>
+<ol>
+<li><p><strong>Função Objetivo</strong>:
+Seja <span class="math notranslate nohighlight">\(f(x)\)</span> uma função escalar diferenciável cujo mínimo queremos encontrar.</p></li>
+<li><p><strong>Expansão de Taylor de Segunda Ordem</strong>:
+Expandimos <span class="math notranslate nohighlight">\(f(x)\)</span> em torno de um ponto <span class="math notranslate nohighlight">\(x^{(k)}\)</span> usando a série de Taylor até a segunda ordem:</p>
+<div class="math notranslate nohighlight">
+\[
+   f(x) \approx f(x^{(k)}) + f'(x^{(k)}) (x - x^{(k)}) + \frac{1}{2} f''(x^{(k)}) (x - x^{(k)})^2,
+   \]</div>
+<p>onde <span class="math notranslate nohighlight">\(f'(x^{(k)})\)</span> é a primeira derivada (gradiente) de <span class="math notranslate nohighlight">\(f\)</span> em <span class="math notranslate nohighlight">\(x^{(k)}\)</span> e <span class="math notranslate nohighlight">\(f''(x^{(k)})\)</span> é a segunda derivada (Hessiana) de <span class="math notranslate nohighlight">\(f\)</span> em <span class="math notranslate nohighlight">\(x^{(k)}\)</span>.</p>
+</li>
+<li><p><strong>Condição de Otimização</strong>:
+Para encontrar o ponto <span class="math notranslate nohighlight">\(x\)</span> que minimiza <span class="math notranslate nohighlight">\(f(x)\)</span>, devemos encontrar um ponto onde a derivada da função seja zero. Definimos a direção de descida <span class="math notranslate nohighlight">\(t\)</span> como <span class="math notranslate nohighlight">\(x - x^{(k)}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   f(x^{(k+1)}) \approx f(x^{(k)}) + f'(x^{(k)}) t + \frac{1}{2} f''(x^{(k)}) t^2
+   \]</div>
+</li>
+<li><p><strong>Derivada da Expansão</strong>:
+Para minimizar <span class="math notranslate nohighlight">\(f(x)\)</span>, tomamos a derivada da expressão acima em relação a <span class="math notranslate nohighlight">\(t\)</span> e igualamos a zero:</p>
+<div class="math notranslate nohighlight">
+\[
+   \frac{d}{dt}\left[ f(x^{(k)}) + f'(x^{(k)}) t + \frac{1}{2} f''(x^{(k)}) t^2 \right] = 0
+   \]</div>
+<p>Uma vez que <span class="math notranslate nohighlight">\(f(x^{(k)})\)</span> não depende de <span class="math notranslate nohighlight">\(t\)</span>, é uma constante. Assim obtemos:</p>
+<div class="math notranslate nohighlight">
+\[
+   f'(x^{(k)}) + f''(x^{(k)}) t = 0
+   \]</div>
+</li>
+<li><p><strong>Solução para a direção <span class="math notranslate nohighlight">\(t\)</span></strong>:
+Resolvendo para <span class="math notranslate nohighlight">\(t\)</span>, temos:</p>
+<div class="math notranslate nohighlight">
+\[
+   t = -\frac{f'(x^{(k)})}{f''(x^{(k)})}
+   \]</div>
+</li>
+<li><p><strong>Atualização da Iteração</strong>:
+A próxima aproximação <span class="math notranslate nohighlight">\(x^{(k+1)}\)</span> é obtida somando <span class="math notranslate nohighlight">\(t\)</span> ao ponto atual <span class="math notranslate nohighlight">\(x^{(k)}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   x^{(k+1)} = x^{(k)} + t = x^{(k)} - \frac{f'(x^{(k)})}{f''(x^{(k)})}
+   \]</div>
+</li>
+</ol>
+<p>A derivada <span class="math notranslate nohighlight">\(f'(x^{(k)})\)</span> indica a inclinação da função em <span class="math notranslate nohighlight">\(x^{(k)}\)</span>. A segunda derivada <span class="math notranslate nohighlight">\(f''(x^{(k)})\)</span> fornece informações sobre a curvatura da função. Se <span class="math notranslate nohighlight">\(f''(x^{(k)}) &gt; 0\)</span>, estamos em um ponto onde a função está curvando para cima (mínimo local), enquanto <span class="math notranslate nohighlight">\(f''(x^{(k)}) &lt; 0\)</span> indica um ponto onde a função está curvando para baixo (máximo local). O passo <span class="math notranslate nohighlight">\(t\)</span> determina a magnitude e a direção do ajuste necessário para aproximar-se do ponto de mínimo (ou máximo).</p>
+</section>
 </section>
 <section id="tarefa">
-<h2><span class="section-number">6.3. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">6.4. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Generalize o código acima para que a expressão da derivada seja calculada diretamenta por computação simbólica sem intervenção manual.</p></li>
+<li><p>Crie um código genérico para que a(s) derivada(s) seja(m) calculada(s) diretamenta por computação simbólica, sem intervenção manual, quando for possível.</p></li>
 </ul>
 </section>
 </section>
@@ -967,7 +1057,7 @@ Solução obtida: x = 4.773843
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Implementação do método da bisseção</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Método da Bisseção</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="aula-07-secante.html" title="next page">
