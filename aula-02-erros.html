@@ -144,12 +144,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementação do método da bisseção
+   5. Método da Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   6. Implementação do método de Newton
+   6. Método de Newton
   </a>
  </li>
  <li class="toctree-l1">
@@ -747,18 +747,18 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
-   3.4. Definições de erro em aprendizagem de máquina
+  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizado-de-maquina">
+   3.4. Definições de erro em aprendizado de máquina
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erro-quadratico-medio">
-     3.4.1. Erro quadrático médio
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.4.1. Erro absoluto médio
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erro-absoluto-medio">
-     3.4.2. Erro absoluto médio
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.4.2. Erro quadrático médio
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -769,6 +769,20 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
      3.4.4. Erro logarítmico quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">
+     3.4.5. Erro induzido pela norma
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     e erro máximo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculando-o-desempenho">
+     3.4.6. Calculando o desempenho
     </a>
    </li>
   </ul>
@@ -876,18 +890,18 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
-   3.4. Definições de erro em aprendizagem de máquina
+  <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizado-de-maquina">
+   3.4. Definições de erro em aprendizado de máquina
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erro-quadratico-medio">
-     3.4.1. Erro quadrático médio
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.4.1. Erro absoluto médio
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erro-absoluto-medio">
-     3.4.2. Erro absoluto médio
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.4.2. Erro quadrático médio
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -898,6 +912,20 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
      3.4.4. Erro logarítmico quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">
+     3.4.5. Erro induzido pela norma
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     e erro máximo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculando-o-desempenho">
+     3.4.6. Calculando o desempenho
     </a>
    </li>
   </ul>
@@ -1383,20 +1411,21 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 <p>No caso do arredondamento, o <span class="math notranslate nohighlight">\(k\)</span>-ésimo dígito é somado de 1 se o dígito da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa for maior ou igual a 5. A aproximação de <span class="math notranslate nohighlight">\(x\)</span> por arredondamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.426\)</span>, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.</p>
 </section>
 </section>
-<section id="definicoes-de-erro-em-aprendizagem-de-maquina">
-<h2><span class="section-number">3.4. </span>Definições de erro em aprendizagem de máquina<a class="headerlink" href="#definicoes-de-erro-em-aprendizagem-de-maquina" title="Permalink to this headline">#</a></h2>
-<p>No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de <em>perda</em> (<em>loss function</em>) entre pixels de uma imagem legendada como <em>ground truth</em> (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, <span class="math notranslate nohighlight">\(x_i\)</span> é o valor do gabarito (exato), <span class="math notranslate nohighlight">\(\hat{x_i}\)</span> é o valor aproximado e <span class="math notranslate nohighlight">\(n\)</span> é o número de pontos de amostragem.</p>
-<section id="erro-quadratico-medio">
-<h3><span class="section-number">3.4.1. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
-<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
-<div class="math notranslate nohighlight">
-\[MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2\]</div>
-</section>
+<section id="definicoes-de-erro-em-aprendizado-de-maquina">
+<h2><span class="section-number">3.4. </span>Definições de erro em aprendizado de máquina<a class="headerlink" href="#definicoes-de-erro-em-aprendizado-de-maquina" title="Permalink to this headline">#</a></h2>
+<p>No século XXI, muito se tem falado em aprendizado de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto. Todavia, a conotação de “erro” nesta área costuma ser a de uma <em>métrica de desempenho</em>, pois busca medir o desempenho dos algoritmos ao operarem sobre conjuntos de dados. Essas métricas tendem a expressar distâncias entre valores reais e valores preditos. A seguir, exploraremos algumas dessas métricas sob o ponto de vista de vetores no espaço de <span class="math notranslate nohighlight">\(n\)</span> dimensões. Em todas as fórmulas, <span class="math notranslate nohighlight">\(\bf{x}\)</span> é o vetor de dados reais, cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(x_i\)</span>, e <span class="math notranslate nohighlight">\(\bf{\hat{x}}\)</span> é o vetor de dados preditos (aproximados), cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(\hat{x_i}\)</span>. Assim, <span class="math notranslate nohighlight">\(n\)</span> reflete o número de pontos de amostragem.</p>
 <section id="erro-absoluto-medio">
-<h3><span class="section-number">3.4.2. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
 <p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|\]</div>
+<p>O MAE é útil quando queremos minimizar a soma das diferenças absolutas.</p>
+</section>
+<section id="erro-quadratico-medio">
+<h3><span class="section-number">3.4.2. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2\]</div>
 </section>
 <section id="erro-absoluto-medio-percentual">
 <h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Permalink to this headline">#</a></h3>
@@ -1409,10 +1438,89 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 <p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2\]</div>
+</section>
+<section id="erro-induzido-pela-norma-p-e-erro-maximo">
+<h3><span class="section-number">3.4.5. </span>Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo<a class="headerlink" href="#erro-induzido-pela-norma-p-e-erro-maximo" title="Permalink to this headline">#</a></h3>
+<p>O MAE e o MSE, por exemplo, são casos particulares da definição genérica dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+E_p = || {\bf x} - {\bf \hat{x}} ||_p = \left( \sum_{i=1}^n |x_i - \hat{x}_i|^p \right)^{\frac{1}{p}}, \ \ 1 \le p &lt; \infty,
+\]</div>
+<p>para <span class="math notranslate nohighlight">\(p=1\)</span> e <span class="math notranslate nohighlight">\(p=2\)</span>, respectivamente. Em particular, a chamada “norma do máximo” é definida por</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| \}, 
+\]</div>
+<p>que mede a maior diferença absoluta entre o vetor de valores reais e o vetor de valores preditos.</p>
+<p>A norma <span class="math notranslate nohighlight">\(p\)</span> é chamada de <em>norma de Minkowski</em>. As diferentes normas decorrentes da escolha de <span class="math notranslate nohighlight">\(p\)</span> são usadas em contextos diferentes para medir mudanças específicas. Quanto maior é o valor de <span class="math notranslate nohighlight">\(p\)</span>, mais ela se concentra em captar discrepâncias maiores. Assim, normas menores são mais robustas a <em>outliers</em>. Quando <span class="math notranslate nohighlight">\(p=1\)</span>, temos a <em>norma de Manhattan</em>; quando <span class="math notranslate nohighlight">\(p=2\)</span>, temos a <em>norma Euclidiana</em>, bastante conhecida de outras disciplinas.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Curiosidade</p>
-<p>Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo <a class="reference external" href="https://www.mdpi.com/2220-9964/9/1/24">Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation</a>.</p>
+<p>Nos últimos anos, métodos de aprendizagem profunda vêm sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo <a class="reference external" href="https://www.mdpi.com/2220-9964/9/1/24">Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation</a>.</p>
 </div>
+</section>
+<section id="calculando-o-desempenho">
+<h3><span class="section-number">3.4.6. </span>Calculando o desempenho<a class="headerlink" href="#calculando-o-desempenho" title="Permalink to this headline">#</a></h3>
+<p>Usando a biblioteca <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, é possível utilizar funções já disponíveis no módulo <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code> para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para <span class="math notranslate nohighlight">\(n=4\)</span>. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">MSE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="k">as</span> <span class="n">MAE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">MAPE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span> <span class="k">as</span> <span class="n">MSLE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">pairwise_distances</span> <span class="k">as</span> <span class="n">pNorm</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">subplots</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">inset_axes</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mticker</span>
+
+<span class="c1"># conjunto de dados</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span> <span class="c1"># valores reais</span>
+<span class="n">xhat</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span> <span class="c1"># valores preditos</span>
+
+<span class="c1"># erros</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">MAE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">MSE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">mape</span> <span class="o">=</span> <span class="n">MAPE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">msle</span> <span class="o">=</span> <span class="n">MSLE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+
+<span class="c1"># normas de Minkowski</span>
+<span class="n">norms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span> <span class="c1"># valores p</span>
+
+<span class="c1"># calcula por matrizes de distâncias, mas armazena valor único</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">P</span><span class="p">:</span>
+    <span class="n">norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pNorm</span><span class="p">([</span><span class="n">x</span><span class="p">],[</span><span class="n">xhat</span><span class="p">],</span><span class="n">metric</span><span class="o">=</span><span class="s1">&#39;minkowski&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="c1"># gráficos</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;real&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;predito&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span><span class="s1">&#39;MSE&#39;</span><span class="p">,</span><span class="s1">&#39;MAPE&#39;</span><span class="p">,</span><span class="s1">&#39;MSLE&#39;</span><span class="p">],</span><span class="n">height</span><span class="o">=</span><span class="p">[</span><span class="n">mae</span><span class="p">,</span><span class="n">mse</span><span class="p">,</span><span class="n">mape</span><span class="p">,</span><span class="n">msle</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;métricas&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span><span class="n">norms</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:]))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;p=</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:])))</span>
+
+<span class="c1"># eixo embutido</span>
+<span class="n">axi</span> <span class="o">=</span> <span class="n">inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;40%&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span><span class="n">norms</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;p=</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">])))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;normas de Minkowski&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-02-erros_41_0.png" src="_images/aula-02-erros_41_0.png" />
+</div>
+</div>
+<p>Percebe-se que cada métrica retorna um valor diferente para o erro entre os valores exatos e os aproximados. Cabe ao usuário interpretar qual faz mais sentido para o conjunto de dados em análise.</p>
 </section>
 </section>
 <section id="exemplos-aplicados">
@@ -1467,7 +1575,7 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_44_0.png" src="_images/aula-02-erros_44_0.png" />
+<img alt="_images/aula-02-erros_48_0.png" src="_images/aula-02-erros_48_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1479,7 +1587,7 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_45_0.png" src="_images/aula-02-erros_45_0.png" />
+<img alt="_images/aula-02-erros_49_0.png" src="_images/aula-02-erros_49_0.png" />
 </div>
 </div>
 </section>

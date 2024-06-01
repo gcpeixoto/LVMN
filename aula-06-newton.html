@@ -691,25 +691,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo">
-   6.2. Exemplo
+  <a class="reference internal nav-link" href="#exemplos-resolvidos">
+   6.2. Exemplos resolvidos
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   6.3. Exemplo
+  <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
+   6.3. Método de Newton modificado para otimização
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
-     6.3.1. Método de Newton modificado para otimização
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-halley">
+   6.4. Método de Halley
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefa">
-   6.4. Tarefa
+   6.5. Tarefa
   </a>
  </li>
 </ul>
@@ -737,25 +735,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo">
-   6.2. Exemplo
+  <a class="reference internal nav-link" href="#exemplos-resolvidos">
+   6.2. Exemplos resolvidos
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   6.3. Exemplo
+  <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
+   6.3. Método de Newton modificado para otimização
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metodo-de-newton-modificado-para-otimizacao">
-     6.3.1. Método de Newton modificado para otimização
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-halley">
+   6.4. Método de Halley
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefa">
-   6.4. Tarefa
+   6.5. Tarefa
   </a>
  </li>
 </ul>
@@ -827,6 +823,7 @@ x^{(k+1)} = x^{(k)} - \dfrac{ f(x^{(k)} )}{ f'(x^{(k)}) }
     
     <span class="c1"># identifica a variável independente em f</span>
     <span class="n">var</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
     
     <span class="c1"># cria função</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;lambda &#39;</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s1">&#39; :&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
@@ -878,9 +875,9 @@ x^{(k+1)} = x^{(k)} - \dfrac{ f(x^{(k)} )}{ f'(x^{(k)}) }
 </div>
 </div>
 </section>
-<section id="exemplo">
-<h2><span class="section-number">6.2. </span>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
-<p>Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
+<section id="exemplos-resolvidos">
+<h2><span class="section-number">6.2. </span>Exemplos resolvidos<a class="headerlink" href="#exemplos-resolvidos" title="Permalink to this headline">#</a></h2>
+<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, para <span class="math notranslate nohighlight">\(f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7\)</span>, no intervalo <span class="math notranslate nohighlight">\(-0.2 \le x \le 1.0\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-3}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chamada da função</span>
@@ -915,10 +912,7 @@ Solução obtida: x = -0.025836
 </div>
 </div>
 </div>
-</section>
-<section id="id1">
-<h2><span class="section-number">6.3. </span>Exemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<p>Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([1,8]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
+<p><strong>Exemplo:</strong> Resolva o problema <span class="math notranslate nohighlight">\(h(z) = 0\)</span>, para <span class="math notranslate nohighlight">\(h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)\)</span>, no intervalo <span class="math notranslate nohighlight">\([1,8]\)</span> e <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span>.</p>
 <p>Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função <span class="math notranslate nohighlight">\(h(z)\)</span>. Vamos encontrá-la utilizando o módulo de computação simbólica <code class="docutils literal notranslate"><span class="pre">sympy</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,8 +961,9 @@ Solução obtida: x = 4.773843
 </div>
 </div>
 <p>Compare a quantidade de iterações obtidas com o mesmo exemplo resolvido com o algoritmo da bisseção.</p>
+</section>
 <section id="metodo-de-newton-modificado-para-otimizacao">
-<h3><span class="section-number">6.3.1. </span>Método de Newton modificado para otimização<a class="headerlink" href="#metodo-de-newton-modificado-para-otimizacao" title="Permalink to this headline">#</a></h3>
+<h2><span class="section-number">6.3. </span>Método de Newton modificado para otimização<a class="headerlink" href="#metodo-de-newton-modificado-para-otimizacao" title="Permalink to this headline">#</a></h2>
 <p>O método de Newton pode ser expandido até a segunda ordem usada para encontrar o ponto mínimo ou máximo de uma função diferenciável. Em uma dimensão, o raciocínio é como segue:</p>
 <ol>
 <li><p><strong>Função Objetivo</strong>:
@@ -1017,11 +1012,38 @@ A próxima aproximação <span class="math notranslate nohighlight">\(x^{(k+1)}\
 </ol>
 <p>A derivada <span class="math notranslate nohighlight">\(f'(x^{(k)})\)</span> indica a inclinação da função em <span class="math notranslate nohighlight">\(x^{(k)}\)</span>. A segunda derivada <span class="math notranslate nohighlight">\(f''(x^{(k)})\)</span> fornece informações sobre a curvatura da função. Se <span class="math notranslate nohighlight">\(f''(x^{(k)}) &gt; 0\)</span>, estamos em um ponto onde a função está curvando para cima (mínimo local), enquanto <span class="math notranslate nohighlight">\(f''(x^{(k)}) &lt; 0\)</span> indica um ponto onde a função está curvando para baixo (máximo local). O passo <span class="math notranslate nohighlight">\(t\)</span> determina a magnitude e a direção do ajuste necessário para aproximar-se do ponto de mínimo (ou máximo).</p>
 </section>
+<section id="metodo-de-halley">
+<h2><span class="section-number">6.4. </span>Método de Halley<a class="headerlink" href="#metodo-de-halley" title="Permalink to this headline">#</a></h2>
+<p>O método de Halley é uma extensão do método de Newton e utiliza até a terceira derivada da função. Enquanto o método de Newton tem convergência quadrática, o método de Halley converge mais rapidamente e alcança convergência cúbica, pois usa mais informações sobre a curvatura da função. De maneira similar ao que já fizemos, vamos derivar a fórmula partindo diretamente da expansão de Taylor:</p>
+<ol class="simple">
+<li><p><strong>Expansão de Taylor</strong>:
+Expandimos a função <span class="math notranslate nohighlight">\(f(x)\)</span> em torno de um ponto <span class="math notranslate nohighlight">\(x^{(k)}\)</span>:
+$<span class="math notranslate nohighlight">\(
+f(x) \approx f(x^{(k)}) + f'(x^{(k)}) (x - x^{(k)}) + \frac{1}{2} f''(x^{(k)}) (x - x^{(k)})^2 + \frac{1}{6} f'''(x^{(k)})(x - x^{(k)})^3,
+\)</span>$</p></li>
+<li><p><strong>Estimativa da Raiz</strong>:
+Supondo que <span class="math notranslate nohighlight">\(x^{(k+1)} = x^{(k)} + \Delta x\)</span> é a nova estimativa da raiz, então queremos <span class="math notranslate nohighlight">\(f(x^{(k+1)}) = 0 \)</span>. Substituindo <span class="math notranslate nohighlight">\(\Delta x = x^{(k+1)} - x^{(k)}\)</span> na expansão de Taylor e igualando a zero, temos:
+$<span class="math notranslate nohighlight">\(
+f(x^{(k)}) + f'(x^{(k)})\Delta x + \frac{1}{2} f''(x^{(k)})(\Delta x)^2 + \frac{1}{6} f'''(x^{(k)})(\Delta x)^3 = 0
+\)</span>$</p></li>
+<li><p><strong>Isolando <span class="math notranslate nohighlight">\(\Delta x \)</span></strong>:
+A solução para <span class="math notranslate nohighlight">\(\Delta x\)</span> (que nos dá a atualização para <span class="math notranslate nohighlight">\(x\)</span>) é dada pela fórmula:
+$<span class="math notranslate nohighlight">\(
+\Delta x = -\frac{f(x^{(k)})}{f'(x^{(k)})} \left( \frac{2}{2 - \frac{f(x^{(k)}) f''(x^{(k)})}{f'(x^{(k)})^2}} \right)
+\)</span>$</p></li>
+<li><p><strong>Iteração do Método de Halley</strong>:
+A fórmula iterativa do método de Halley é então:
+$<span class="math notranslate nohighlight">\(
+x^{(k+1)} = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})} \left( \frac{2}{2 - \frac{f(x^{(k)}) f''(x^{(k)})}{f'(x^{(k)})^2}} \right)
+\)</span>$</p></li>
+</ol>
+<p>As vantagens do método de Halley sobre o método de Newton são a taxa de convergência e o alcance de uma solução mais precisa com menos iterações em comparação. Por outro lado, o cálculo das derivadas de ordem superior pode ser computacionalmente custoso e complexo, especialmente para funções complicadas. A precisão do método também depende da precisão das derivadas de segunda e terceira ordem. Portanto, erros nessas derivadas podem afetar a convergência e a precisão da solução.</p>
 </section>
 <section id="tarefa">
-<h2><span class="section-number">6.4. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">6.5. </span>Tarefa<a class="headerlink" href="#tarefa" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Crie um código genérico para que a(s) derivada(s) seja(m) calculada(s) diretamenta por computação simbólica, sem intervenção manual, quando for possível.</p></li>
+<li><p>Crie um código genérico que implemente o algoritmo do método de Newton de modo que a derivada seja calculada diretamenta por computação simbólica, sem intervenção manual, quando for possível.</p></li>
+<li><p>Faça uma implementação do método de Newton para otimização e uma para o método de Halley. Em seguida, incorpore a capacidade de cálculo das derivadas de maneira automática.</p></li>
 </ul>
 </section>
 </section>
