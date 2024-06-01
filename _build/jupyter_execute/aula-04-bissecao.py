@@ -12,7 +12,6 @@
 # width: 400px
 # name: fig-whileai
 # ---
-# Aplicação lúdica do laço while. "Enquanto o galo estiver com fome, dê milho para ele".
 # ```
 
 # ## Implementação de alogoritmo
@@ -306,10 +305,7 @@ cm
 
 # ## Problema proposto 
 # 
-# Uma reação química reversível 
-# $$2A+B \iff C$$ 
-# 
-# pode ser caracterizada pela relação de equilíbrio $K = \frac{c_c}{c_a^2c_b}$, onde $c_i$ representa a concentração do constituinte $i$. Suponha que:
+# Uma reação química reversível $2A+B \iff C$ pode ser caracterizada pela relação de equilíbrio $K = \frac{c_c}{c_a^2c_b}$, onde $c_i$ representa a concentração do constituinte $i$. Suponha que:
 # 
 # - $x$ é o número de moles de $C$ que são produzidos
 # - a conservação da massa pode ser usada para reformular a relação de equilíbrio como $K = \dfrac{(c_{c,0} + x)}{(c_{a,0} - 2x)^2 (c_{b,0} - x)}$, onde o subscrito $0$ designa a concentração inicial de cada constituinte. 
@@ -320,3 +316,5 @@ cm
 # 1. Faça a análise gráfica do modelo matemático do problema.
 # 2. Defina o(s)intervalo(s) adequados(s) de localização da raiz.
 # 3. Aplique o método da bisseção para determinar uma aproximação para $x$ com erro inferior a $10^{-5}$.
+
+# 

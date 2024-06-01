@@ -137,7 +137,7 @@ display(HTML('figs/analise-grafica.html'))
 # A plotagem básica de funções matemáticas via _matplotlib_ pode ser realizada pela simples chamada de `plt.plot(x,y)`, quando `plt` é o _placeholder_ da biblioteca `pyplot`. As variáveis de código `x` e `y` funcionam como domínio e contradomínio.
 # ```
 
-# Vejamos como realizar a plotagem da função $y = f(c; t,v,m,g)$. Observe que, sendo $c$ a única variável e, além disso, a variável independente, podemos, sem prejuízo, escrever $y = f(c)$, ressalvada a fixação dos demais parâmetros. Neste caso, a imagem desta função, $y$, não necessariamente possui um sentido físico e não temos que nos preocupar em interpretar o que ela significa. O importante é identificar se há um ou mais valores de$c$que produzem uma imagem nula. Em caso positivo, teremos encontrado uma ou mais raízes de$f$.
+# Vejamos como realizar a plotagem da função $y = f(c; t,v,m,g)$. Observe que, sendo $c$ a única variável e, além disso, a variável independente, podemos, sem prejuízo, escrever $y = f(c)$, ressalvada a fixação dos demais parâmetros. Neste caso, a imagem desta função, $y$, não necessariamente possui um sentido físico e não temos que nos preocupar em interpretar o que ela significa. O importante é identificar se há um ou mais valores de$c$que produzem uma imagem nula. Em caso positivo, teremos encontrado uma ou mais raízes de $f$.
 # 
 # Em outras palavras, as perguntas que queremos responder são: 
 # 
@@ -506,7 +506,7 @@ plt.legend(loc='center right');
 # 
 # $$f(x) \approx \dfrac{ y_{i+1} - y_i }{ x_{i+1} - x_i }(x - x_i) + y_i.$$
 # 
-# Logo,$f(x) = 0$implica que a raiz é 
+# Logo, $f(x) = 0$ implica que a raiz é 
 # 
 # $$x = x_i - \dfrac{ x_{i+1} - x_i }{ y_{i+1} - y_i }y_i.$$
 
@@ -585,7 +585,50 @@ plt.plot(x,0*f(x),'r:',x,f(x),'g-',r,np.zeros(4),'ok',)
 plt.xlabel('$x$',fontsize=14)
 plt.ylabel('$f(x)$',fontsize=14)        
 plt.grid()
-plt.title('Raízes de$e^{-x^2}\cos(3x)$');
+plt.title('Raízes de $e^{-x^2}\cos(3x)$');
+
+
+# ## Receitas prontas para visuais
+# 
+# Na análise gráfica de funções não lineares, alguns elementos úteis para as plotagens são:
+# 
+# - o gráfico da função $f(x)$ sob análise;
+# - o gráfico da função $g(x) = 0$ ou o gradeado do plano Cartesiano;
+# - as legendas dos eixos;
+# - o intervalo de estimativas iniciais;
+# 
+# Um bloco de código baseado em `matplotlib` replicável que contempla tudo isso é fornecido a seguir:
+
+# In[43]:
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-1,2) # domínio de análise
+f = np.exp(-x**2)*np.cos(3*x) # função-alvo
+
+fig, ax = plt.subplots(figsize=(6,4), constrained_layout=True) # figura
+#ax.grid(axis='both') # gradeado
+ax.plot(x,f,label='$f(x)$') # plotagem
+ax.axhline(y=0, ls=':', color='orange', label='$y=0$') # g(x) = 0
+ax.set_xlabel('$x$')
+ax.set_ylabel('$y$')
+ax.set_title('Exemplo de plotagem para análise gráfica')
+
+# 1o. intervalo de busca
+ax.plot(-0.7,0,'|',c='k')
+ax.plot(-0.4,0,'|',c='k')
+
+# 2o. intervalo de busca
+ax.plot(0.4,0,'|',c='r')
+ax.plot(0.7,0,'|',c='r')
+
+# 3o. intervalo de busca
+ax.plot(1.4,0,'|',c='m')
+ax.plot(1.7,0,'|',c='m')
+
+ax.legend();
 
 
 # ## Tarefas
