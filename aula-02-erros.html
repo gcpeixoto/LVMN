@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Análise gráfica de funções não lineares" href="aula-03-analise-grafica.html" />
+    <link rel="next" title="4. Análise gráfica e aproximações sucessivas" href="aula-03-analise-grafica.html" />
     <link rel="prev" title="2. Aritmética computacional" href="aula-01-ponto-flutuante.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -139,7 +139,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Análise gráfica de funções não lineares
+   4. Análise gráfica e aproximações sucessivas
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4: Raízes de Equações
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -662,38 +686,43 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   3.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#motivacao">
-   3.1. Motivação
+   3.2. Motivação
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tipos-de-erros">
-   3.2. Tipos de erros
+   3.3. Tipos de erros
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-real">
-     3.2.1. Erro real
+     3.3.1. Erro real
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-absoluto">
-     3.2.2. Erro absoluto
+     3.3.2. Erro absoluto
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo">
-     3.2.3. Erro relativo
+     3.3.3. Erro relativo
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-percentual">
-     3.2.4. Erro relativo percentual
+     3.3.4. Erro relativo percentual
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">
-     3.2.5. Erro relativo aproximado (
+     3.3.5. Erro relativo aproximado (
      <em>
       benchmark
      </em>
@@ -702,25 +731,20 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">
-     3.2.6. Erro relativo aproximado percentual
+     3.3.6. Erro relativo aproximado percentual
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-de-cancelamento">
-     3.2.7. Erro de cancelamento
+     3.3.7. Erro de cancelamento
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">
-     3.2.8. Erros de truncamento e de arredondamento
+     3.3.8. Erros de truncamento e de arredondamento
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo-aplicado-erros-pontuais-na-funcao-de-airy">
-   3.3. Exemplo aplicado: erros pontuais na função de Airy
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
@@ -745,6 +769,28 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
      3.4.4. Erro logarítmico quadrático médio
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos-aplicados">
+   3.5. Exemplos aplicados
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">
+     3.5.1. Erros pontuais na função de Airy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">
+     3.5.2. Avaliação de algoritmos de ordenação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">
+     3.5.3. Erros de precificação imobiliária por redes neurais
     </a>
    </li>
   </ul>
@@ -769,38 +815,43 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   3.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#motivacao">
-   3.1. Motivação
+   3.2. Motivação
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tipos-de-erros">
-   3.2. Tipos de erros
+   3.3. Tipos de erros
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-real">
-     3.2.1. Erro real
+     3.3.1. Erro real
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-absoluto">
-     3.2.2. Erro absoluto
+     3.3.2. Erro absoluto
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo">
-     3.2.3. Erro relativo
+     3.3.3. Erro relativo
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-percentual">
-     3.2.4. Erro relativo percentual
+     3.3.4. Erro relativo percentual
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">
-     3.2.5. Erro relativo aproximado (
+     3.3.5. Erro relativo aproximado (
      <em>
       benchmark
      </em>
@@ -809,25 +860,20 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">
-     3.2.6. Erro relativo aproximado percentual
+     3.3.6. Erro relativo aproximado percentual
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erro-de-cancelamento">
-     3.2.7. Erro de cancelamento
+     3.3.7. Erro de cancelamento
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">
-     3.2.8. Erros de truncamento e de arredondamento
+     3.3.8. Erros de truncamento e de arredondamento
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplo-aplicado-erros-pontuais-na-funcao-de-airy">
-   3.3. Exemplo aplicado: erros pontuais na função de Airy
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definicoes-de-erro-em-aprendizagem-de-maquina">
@@ -856,6 +902,28 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplos-aplicados">
+   3.5. Exemplos aplicados
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">
+     3.5.1. Erros pontuais na função de Airy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">
+     3.5.2. Avaliação de algoritmos de ordenação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">
+     3.5.3. Erros de precificação imobiliária por redes neurais
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -868,26 +936,18 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="erros-e-seus-efeitos">
 <h1><span class="section-number">3. </span>Erros e seus efeitos<a class="headerlink" href="#erros-e-seus-efeitos" title="Permalink to this headline">#</a></h1>
-<p>Diferentemente da infindável capacidade humana para raciocinar, imaginar e criar, computadores, como máquinas de calcular, são limitados em memória e em habilidades aritméticas. Diante disso, pelo menos três situações simplificadoras ocorrem:</p>
-<ul class="simple">
-<li><p>o contínuo torna-se <em>discreto</em>;</p></li>
-<li><p>o infinito reduz-se ao <em>finito</em> e</p></li>
-<li><p>a exatidão limita-se à <em>aproximação</em>.</p></li>
-</ul>
-<p>Algumas idéias impactadas por essas simplificações, por sua vez, tornam-se inadmissíveis em sentido estrito. Por exemplo:</p>
-<ul class="simple">
-<li><p>números reais convertem-se em números aproximados;</p></li>
-<li><p>limites são exibidos através de sequências;</p></li>
-<li><p>derivadas são aproximadas por quocientes de diferenças finitas;</p></li>
-<li><p>integrais definidas são calculáveis por meio de somas finitas.</p></li>
-</ul>
-<p>Por isso é comum chamar o processo de transferência de cálculos contínuos para cômputos discretos de <em>discretização</em>.</p>
-<p>Quando tratamos da resolução numérica de problemas realistas formulados com auxílio da Matemática, qual seja o campo do conhecimento, é quase impossível desviar-se do <em>erro</em>. Erros subsistem em qualquer formulação que tente explicar o funcionamento exato de um fenômeno, em geral, estudado pelas ciências naturais.</p>
-<p>De forma abstrata, se um fenômeno físico <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> pode ser descrito por um modelo matemático <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> cuja solução exata é <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, a impossibilidade de obtê-la
-sugere pelo menos uma solução aproximada <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span>, tal que <span class="math notranslate nohighlight">\(\mathcal{S} = \mathcal{S}' + \mathcal{E}\)</span>. Então, diremos que <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> é o <em>erro</em>. De outro modo, <span class="math notranslate nohighlight">\(\mathcal{E} = \mathcal{S} - \mathcal{S}'\)</span>.</p>
-<p>Neste capítulo, estudaremos as diversas formas assumidas por <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> quando <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span> é implementável por meio de métodos numéricos. Evidentemente, pode haver mais de uma forma de obter <span class="math notranslate nohighlight">\(\mathcal{S}'\)</span>. Além disso, em situações difícies, é preciso estabelecer, com rigor, se <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> existe e se é única. Todavia, não discutiremos os procedimentos teóricos de verificação em profundidade.</p>
+<section id="introducao">
+<h2><span class="section-number">3.1. </span>Introdução<a class="headerlink" href="#introducao" title="Permalink to this headline">#</a></h2>
+<p>Credita-se a Alexander Pope (1688 - 1744), poeta inglês, a autoria do provérbio: <em>“errar é humano; perdoar é divino”</em> <a class="reference external" href="https://www.phrases.org.uk/meanings/to-err-is-human.html">[phrases.org.uk]</a>. Apesar de sua motivação, no século XVIII, ser o apontamento da indelével falibilidade humana, esta máxima tem uma tênue relação com os diversos tipos de erros que persistem em cálculos realizados por máquinas. Desde os primórdios dos computadores mecânicos e eletrônicos, a precisão e a confiabilidade dos cálculos têm estado no centro das atenções e ambas são afetadas pelas discrepâncias entre números reais, infinitos e contínuos, e suas representações em máquina, finitas e discretas. Nas décadas de 1940 e 1950, houve uma clara percepção de que o sistema de ponto fixo, até então utilizado, era bastante limitado para dar precisão aos cálculos e que o aparato de <em>hardware</em> disponível na época era incapaz de lidar com situações de “sobrecarga” (<em>overflow</em>) ou “subfluxo” (<em>underflow</em>). Em outras palavras, representar números muito pequenos ou muito grandes, como <span class="math notranslate nohighlight">\(10^{-30}\)</span> ou <span class="math notranslate nohighlight">\(543.671^3\)</span>, era algo impensável.</p>
+<figure class="align-default" id="fig-errareai">
+<a class="reference internal image-reference" href="_images/errare-ai.png"><img alt="_images/errare-ai.png" src="_images/errare-ai.png" style="width: 400px;" /></a>
+</figure>
+<p>Com a introdução da aritmética de ponto flutuante nos anos 1950 e 1960, os computadores passaram a representar uma quantidade significativa de números. Porém, o preço que se pagou por esse progresso foi a aparição de novos tipos de erros, como os erros de arredondamento, que ocorrem quando os números são aproximados para caber no formato de ponto flutuante. Mesmo com a implantação do padrão IEEE-754 em 1985, o qual uniformizou a representação e a manipulação de números em ponto flutuante, os erros inerentes não foram eliminados.</p>
+<p>A pesquisa em computação científica e de alto desempenho continua ativa e revelando que os erros são obstinados e há campo para expansão do conhecimento. Recentemente, um grupo de espanhois trouxe perspectivas promissoras para o formato <em>posit64</em> <a class="reference external" href="https://arxiv.org/pdf/2305.06946">[Mallasén et al., 2023]</a>, uma alternativa potencialmente superior ao padrão IEEE-754. Através de diversos testes, eles concluíram  que o sistema, baseado na arquitetura RISC-V (quinta geração da <em>Reduced Instruction Set Computer</em>), oferece maior precisão, resiliência a erros de arredondamento e eficiência de armazenamento.</p>
+<p>Neste capítulo, discutiremos algumas definições de erros computacionais e como eles se manifestam ou se propagam em cálculos numéricos aplicáveis a qualquer área do conhecimento. Historicamente, erros computacionais tiveram impacto profundo na Guerra do Golfo, no caso do desvio de rota do míssil Patriot [<a class="reference internal" href="clippings/clipping-05-desastre-patriot.html#clipping-patriot"><span class="std std-ref">Recorte 5: Um desastre motivado por erros numéricos</span></a>], em programas espaciais, no caso da explosão do Ariane V, e até em plataformas de petróleo, no caso dos prejuízos de milhões de dólares no projeto norueguês Sleipner (veja alguns casos <a class="reference external" href="https://www.iro.umontreal.ca/~mignotte/IFT2425/Disasters.html">[UMontreal]</a>).</p>
+</section>
 <section id="motivacao">
-<h2><span class="section-number">3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.2. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">#</a></h2>
 <p>Como forma de demonstrar que cômputos podem ter resultados distintos, consideremos a somatória (descendente, da maior para a menor parcela)</p>
 <div class="math notranslate nohighlight">
 \[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n},\]</div>
@@ -945,8 +1005,7 @@ sugere pelo menos uma solução aproximada <span class="math notranslate nohighl
 </div>
 </div>
 </div>
-<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora exista diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos.</p>
-<p>O fato de <span class="math notranslate nohighlight">\(S_A(n) - S_D(n) &gt; 0\)</span> caracteriza um “erro” de magnitude <span class="math notranslate nohighlight">\(\epsilon\)</span>, visto que, se <span class="math notranslate nohighlight">\(S_A(n)\)</span> fosse tomado como o valor exato, <span class="math notranslate nohighlight">\(S_D(n) = S_A(n) + \epsilon\)</span> seria uma aproximação para <span class="math notranslate nohighlight">\(S_A(n)\)</span>. Inversamente, se <span class="math notranslate nohighlight">\(S_D(n)\)</span> fosse tomado como o valor exato, <span class="math notranslate nohighlight">\(S_A(n) = S_D(n) + \epsilon\)</span> seria uma aproximação para <span class="math notranslate nohighlight">\(S_D(n)\)</span>.</p>
+<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora existam diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos. Ter-se <span class="math notranslate nohighlight">\(S_A(n) - S_D(n) \neq 0\)</span> equivale a admitir a presença de um “erro” – ainda que ele seja pequeno e desprezível – cuja magnitude depende da escolha de <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>Naturalmente, se tomássemos a versão <em>infinita</em> de <span class="math notranslate nohighlight">\(S_D\)</span> (ou <span class="math notranslate nohighlight">\(S_A\)</span>), chamando-a apenas de <span class="math notranslate nohighlight">\(S\)</span> e substituindo <span class="math notranslate nohighlight">\(n\)</span> por <span class="math notranslate nohighlight">\(\infty\)</span>, isto é,</p>
 <div class="math notranslate nohighlight">
 \[S = \sum_{k=1}^{\infty} \frac{1}{k},\]</div>
@@ -1100,7 +1159,7 @@ sugere pelo menos uma solução aproximada <span class="math notranslate nohighl
 <p>Curioso, não? E não para por aí! Ainda há outras definições de erro. Veremos mais algumas no decorrer do curso.</p>
 </section>
 <section id="tipos-de-erros">
-<h2><span class="section-number">3.2. </span>Tipos de erros<a class="headerlink" href="#tipos-de-erros" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Tipos de erros<a class="headerlink" href="#tipos-de-erros" title="Permalink to this headline">#</a></h2>
 <p>Consideremos avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = 0.172x^3 - 0.878x^2 + 0.042x + 0.583\)</span>
 no ponto <span class="math notranslate nohighlight">\(x=79.9\)</span>.</p>
 <p>Vamos fazer o seguinte:</p>
@@ -1143,7 +1202,7 @@ PH(79.9) = 82132.95064799999818
 <p>Qual é a diferença entre ambas? O número de multiplicações (vermelho) e adições/subtrações (azul) é diferente. Enquanto na forma <span class="math notranslate nohighlight">\(P(x)\)</span>, temos 6 multiplicações e 3 adições/subtrações, a forma <span class="math notranslate nohighlight">\(P_H(x)\)</span> reduz as operações para 3 multiplicações e 3 adições/subtrações. Isso é o mesmo que dizer que o número de operações aritméticas de multiplicação foi reduzido em 50%!</p>
 <p>A conclusão é: a avaliação de polinômios pela forma de Hörner é mais lucrativa e propensa a um erro menor.</p>
 <section id="erro-real">
-<h3><span class="section-number">3.2.1. </span>Erro real<a class="headerlink" href="#erro-real" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Erro real<a class="headerlink" href="#erro-real" title="Permalink to this headline">#</a></h3>
 <p>O erro real (ou verdadeiro), <span class="math notranslate nohighlight">\(E\)</span>, não sinalizado, entre o valor
 exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <span class="math notranslate nohighlight">\(\hat{x}\)</span> é dado por:</p>
 <div class="math notranslate nohighlight">
@@ -1175,7 +1234,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-absoluto">
-<h3><span class="section-number">3.2.2. </span>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.2. </span>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Permalink to this headline">#</a></h3>
 <p>O erro absoluto, <span class="math notranslate nohighlight">\(EA\)</span>, é a versão sinalizada de <span class="math notranslate nohighlight">\(E\)</span>. Dado por</p>
 <div class="math notranslate nohighlight">
 \[EA = | \hat{x} - x |,\]</div>
@@ -1216,11 +1275,13 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-relativo">
-<h3><span class="section-number">3.2.3. </span>Erro relativo<a class="headerlink" href="#erro-relativo" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.3. </span>Erro relativo<a class="headerlink" href="#erro-relativo" title="Permalink to this headline">#</a></h3>
 <p>O erro relativo, <span class="math notranslate nohighlight">\(ER\)</span>, aperfeiçoa a idea de erro absoluto a partir do momento que passa a considerar a ordem de grandeza das quantidades envolvidas, mensurando uma variação que se limita ao valor exato. Assim,</p>
 <div class="math notranslate nohighlight">
-\[ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|} = 1 - 
-\dfrac{ |\hat{x}| }{|x|}.\]</div>
+\[ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|}.\]</div>
+<p>expressão que, devido à simetria da função módulo, pode ainda ser expandida para
+$<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|} = 
+\dfrac{|x(1 - \frac{\hat{x}}{x})|}{|x|} = \dfrac{|x| |1 - \frac{\hat{x}}{x}|}{|x|} = \bigg|1 - \frac{\hat{x}}{x}\bigg|.\)</span>$</p>
 <p>Os erros relativos podem ser computados como:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1241,11 +1302,10 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-relativo-percentual">
-<h3><span class="section-number">3.2.4. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.4. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h3>
 <p>O erro relativo percentual é outra forma útil de expressar a disparidade relativa entre valores. Ele é definido por:</p>
 <div class="math notranslate nohighlight">
-\[ER_{\%} = ER \times 100\% = \left(1 - 
-\dfrac{ |\hat{x}| }{|x|} \right) \times 100\%.\]</div>
+\[ER_{\%} = ER \times 100\% = \bigg|1 - \frac{\hat{x}}{x}\bigg| \times 100\%.\]</div>
 <p>Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1266,11 +1326,10 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-relativo-aproximado-benchmark">
-<h3><span class="section-number">3.2.5. </span>Erro relativo aproximado (<em>benchmark</em>)<a class="headerlink" href="#erro-relativo-aproximado-benchmark" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.5. </span>Erro relativo aproximado (<em>benchmark</em>)<a class="headerlink" href="#erro-relativo-aproximado-benchmark" title="Permalink to this headline">#</a></h3>
 <p>Como vimos no exemplo motivacional deste capítulo, há casos (a maioria deles) em que não dispomos de valores exatos (obtidos por soluções analíticas, por exemplo), sendo possível estimar erros relativos apenas aproximadamente usando um <em>valor de referência</em>. Costuma-se chamar este valor de <em>benchmark</em>. Definido o <em>benchmark</em> por <span class="math notranslate nohighlight">\(x'\)</span>, o <em>erro relativo aproximado</em> é dado:</p>
 <div class="math notranslate nohighlight">
-\[ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|} = 1 - 
-\dfrac{ |\hat{x}| }{|x'|}.\]</div>
+\[ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|}.\]</div>
 <p>No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou <span class="math notranslate nohighlight">\(P(x=79.9)\)</span> ou <span class="math notranslate nohighlight">\(P_H(x=79.9)\)</span> deveria ser adotado como <em>benchmark</em>. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1287,13 +1346,13 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-relativo-aproximado-percentual">
-<h3><span class="section-number">3.2.6. </span>Erro relativo aproximado percentual<a class="headerlink" href="#erro-relativo-aproximado-percentual" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.6. </span>Erro relativo aproximado percentual<a class="headerlink" href="#erro-relativo-aproximado-percentual" title="Permalink to this headline">#</a></h3>
 <p>O erro relativo aproximado percentual é, meramente, a versão percentual do erro relativo aproximado, logo, dado por</p>
 <div class="math notranslate nohighlight">
 \[ER'_{\%} = ER' \times 100 \%.\]</div>
 </section>
 <section id="erro-de-cancelamento">
-<h3><span class="section-number">3.2.7. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.7. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">#</a></h3>
 <p>O erro de cancelamento ocorre quando números de grandezas próximas são subtraídos. Como exemplo de situação crítica, induzimos uma divisão por zero usando o valor do épsilon de máquina <span class="math notranslate nohighlight">\(\epsilon_M\)</span> ao fazer</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{1}{(1 + 0.25\epsilon_M) - 1}.\]</div>
@@ -1318,14 +1377,48 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erros-de-truncamento-e-de-arredondamento">
-<h3><span class="section-number">3.2.8. </span>Erros de truncamento e de arredondamento<a class="headerlink" href="#erros-de-truncamento-e-de-arredondamento" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.8. </span>Erros de truncamento e de arredondamento<a class="headerlink" href="#erros-de-truncamento-e-de-arredondamento" title="Permalink to this headline">#</a></h3>
 <p>O erro de truncamento está relacionado ao “corte” abrupto de dígitos de precisão em um valor numérico ou de parcelas em uma expansão infinita. No início do capítulo, exemplificamos como uma série pode ser aproximada truncando um ou mais termos de sua expansão.</p>
 <p>No caso de números, o truncamento ocorre quando se ignora o valor da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa decimal para finalidades de aproximação até a <span class="math notranslate nohighlight">\(k\)</span>-ésima casa. Por exemplo, se <span class="math notranslate nohighlight">\(x = 13.4256\)</span>, a aproximação de <span class="math notranslate nohighlight">\(x\)</span> por truncamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.425\)</span>. O dígito 6 é ignorado nos cálculos.</p>
 <p>No caso do arredondamento, o <span class="math notranslate nohighlight">\(k\)</span>-ésimo dígito é somado de 1 se o dígito da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa for maior ou igual a 5. A aproximação de <span class="math notranslate nohighlight">\(x\)</span> por arredondamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.426\)</span>, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.</p>
 </section>
 </section>
-<section id="exemplo-aplicado-erros-pontuais-na-funcao-de-airy">
-<h2><span class="section-number">3.3. </span>Exemplo aplicado: erros pontuais na função de Airy<a class="headerlink" href="#exemplo-aplicado-erros-pontuais-na-funcao-de-airy" title="Permalink to this headline">#</a></h2>
+<section id="definicoes-de-erro-em-aprendizagem-de-maquina">
+<h2><span class="section-number">3.4. </span>Definições de erro em aprendizagem de máquina<a class="headerlink" href="#definicoes-de-erro-em-aprendizagem-de-maquina" title="Permalink to this headline">#</a></h2>
+<p>No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de <em>perda</em> (<em>loss function</em>) entre pixels de uma imagem legendada como <em>ground truth</em> (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, <span class="math notranslate nohighlight">\(x_i\)</span> é o valor do gabarito (exato), <span class="math notranslate nohighlight">\(\hat{x_i}\)</span> é o valor aproximado e <span class="math notranslate nohighlight">\(n\)</span> é o número de pontos de amostragem.</p>
+<section id="erro-quadratico-medio">
+<h3><span class="section-number">3.4.1. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2\]</div>
+</section>
+<section id="erro-absoluto-medio">
+<h3><span class="section-number">3.4.2. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|\]</div>
+</section>
+<section id="erro-absoluto-medio-percentual">
+<h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Permalink to this headline">#</a></h3>
+<p>O erro absoluto médio percentual (<em>mean absolute percentage error</em>, MAPE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |x_i - \hat{x}_i| }{ | x_i | } \times 100\]</div>
+</section>
+<section id="erro-logaritmico-quadratico-medio">
+<h3><span class="section-number">3.4.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Permalink to this headline">#</a></h3>
+<p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade</p>
+<p>Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo <a class="reference external" href="https://www.mdpi.com/2220-9964/9/1/24">Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation</a>.</p>
+</div>
+</section>
+</section>
+<section id="exemplos-aplicados">
+<h2><span class="section-number">3.5. </span>Exemplos aplicados<a class="headerlink" href="#exemplos-aplicados" title="Permalink to this headline">#</a></h2>
+<section id="erros-pontuais-na-funcao-de-airy">
+<h3><span class="section-number">3.5.1. </span>Erros pontuais na função de Airy<a class="headerlink" href="#erros-pontuais-na-funcao-de-airy" title="Permalink to this headline">#</a></h3>
 <p>A função de Airy é solução da equação de Schrödinger da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma simulação.</p>
 <p>Criaremos uma função “perturbada” que desempenhará o papel de função de Airy aproximada, enquanto menteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.</p>
 <div class="cell docutils container">
@@ -1374,7 +1467,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_43_0.png" src="_images/aula-02-erros_43_0.png" />
+<img alt="_images/aula-02-erros_44_0.png" src="_images/aula-02-erros_44_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1386,40 +1479,69 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aula-02-erros_44_0.png" src="_images/aula-02-erros_44_0.png" />
+<img alt="_images/aula-02-erros_45_0.png" src="_images/aula-02-erros_45_0.png" />
 </div>
 </div>
 </section>
-<section id="definicoes-de-erro-em-aprendizagem-de-maquina">
-<h2><span class="section-number">3.4. </span>Definições de erro em aprendizagem de máquina<a class="headerlink" href="#definicoes-de-erro-em-aprendizagem-de-maquina" title="Permalink to this headline">#</a></h2>
-<p>No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de <em>perda</em> (<em>loss function</em>) entre pixels de uma imagem legendada como <em>ground truth</em> (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, <span class="math notranslate nohighlight">\(y_i\)</span> é o valor do gabarito (exato), <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> é o valor aproximado e <span class="math notranslate nohighlight">\(n\)</span> é o número de pontos de amostragem.</p>
-<section id="erro-quadratico-medio">
-<h3><span class="section-number">3.4.1. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
-<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
-<div class="math notranslate nohighlight">
-\[MSE = \dfrac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2\]</div>
+<section id="avaliacao-de-algoritmos-de-ordenacao">
+<h3><span class="section-number">3.5.2. </span>Avaliação de algoritmos de ordenação<a class="headerlink" href="#avaliacao-de-algoritmos-de-ordenacao" title="Permalink to this headline">#</a></h3>
+<p>Vamos considerar um cenário em que estamos avaliando a eficiência de dois algoritmos de ordenação: o algoritmo de ordenação por inserção (<em>insertion sort</em>) e o algoritmo de ordenação rápida (<em>quick sort</em>). Suponha que temos um conjunto de dados com 10.000 elementos e queremos comparar o tempo de execução teórico e o medido para ambos os algoritmos.</p>
+<p>Consideremos:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span>: tempo de execução teórico do algoritmo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}\)</span>: tempo de execução medido do algoritmo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(ER = 1 - \dfrac{\hat{x}}{x}\)</span></p></li>
+</ul>
+<p>O <em>insertion sort</em> possui complexidade teórica de <span class="math notranslate nohighlight">\(O(n^2)\)</span>. Consideremos que o tempo teórico para 10.000 elementos seja de 50 segundos. O <em>quick sort</em> possui complexidade teórica de <span class="math notranslate nohighlight">\(O(n \, \log \, n)\)</span>. Consideremos que o tempo teórico para 10.000 elementos seja de 2 segundos.</p>
+<p>Após executar os algoritmos em uma máquina específica, suponhamos que tenhamos obtido os seguintes tempos de execução:</p>
+<ul class="simple">
+<li><p><em>insertion sort</em>: 55 segundos.</p></li>
+<li><p><em>quick sort</em>: 2.5 segundos.</p></li>
+</ul>
+<p>O cálculo do erro relativo mostra que:</p>
+<ul class="simple">
+<li><p><em>insertion sort</em>: <span class="math notranslate nohighlight">\(ER = 1 - \frac{55}{50} = 1 - 1.1 = -0.1 = -10\%\)</span></p></li>
+<li><p><em>quick sort</em>: <span class="math notranslate nohighlight">\(ER = 1 - \frac{2.5}{2} = 1 - 1.25 = -0.25 = -25\%\)</span>.</p></li>
+</ul>
+<p>Ou seja, para o <em>insertion sort</em>, o erro relativo de -10% indica que o algoritmo demorou 10% mais do que o esperado, o que pode ser atribuído a fatores como sobrecarga de processamento ou otimizações que não foram realizadas. Para o <em>quick sort</em>, o erro relativo de -25% indica que o algoritmo demorou 25% mais do que o esperado, sugerindo que o algoritmo pode não ter se comportado da melhor maneira para este conjunto de dados específico, ou que a implementação usada não foi a mais eficiente.</p>
+<p>Esses cálculos de erro relativo são essenciais para avaliar o desempenho dos algoritmos em ambientes reais, comparando-os com as expectativas teóricas. Eles ajudam a identificar discrepâncias que podem surgir devido a vários fatores, como características do hardware, implementações específicas do algoritmo, e peculiaridades dos dados de entrada.</p>
 </section>
-<section id="erro-absoluto-medio">
-<h3><span class="section-number">3.4.2. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
-<p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
-<div class="math notranslate nohighlight">
-\[MAE = \dfrac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|\]</div>
-</section>
-<section id="erro-absoluto-medio-percentual">
-<h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Permalink to this headline">#</a></h3>
-<p>O erro absoluto médio percentual (<em>mean absolute percentage error</em>, MAPE) é definido como:</p>
-<div class="math notranslate nohighlight">
-\[MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |y_i - \hat{y}_i| }{ | y_i | } \times 100\]</div>
-</section>
-<section id="erro-logaritmico-quadratico-medio">
-<h3><span class="section-number">3.4.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Permalink to this headline">#</a></h3>
-<p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
-<div class="math notranslate nohighlight">
-\[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1+ y_i) - \log(1 + \hat{y}_i) ]^2\]</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Curiosidade</p>
-<p>Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo <a class="reference external" href="https://www.mdpi.com/2220-9964/9/1/24">Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation</a>.</p>
-</div>
+<section id="erros-de-precificacao-imobiliaria-por-redes-neurais">
+<h3><span class="section-number">3.5.3. </span>Erros de precificação imobiliária por redes neurais<a class="headerlink" href="#erros-de-precificacao-imobiliaria-por-redes-neurais" title="Permalink to this headline">#</a></h3>
+<p>Vamos considerar um cenário onde estamos treinando uma rede neural para prever preços de imóveis com base em características como área, número de quartos, localização, etc. Para avaliar o desempenho da rede neural, usaremos o MSE e o MAE.</p>
+<ol class="simple">
+<li><p><strong>Dados do Conjunto de Treinamento e Teste</strong></p>
+<ul class="simple">
+<li><p>Temos um conjunto de dados com 1.000 amostras de preços de imóveis.</p></li>
+</ul>
+</li>
+<li><p><strong>Treinamento da Rede Neural</strong></p>
+<ul class="simple">
+<li><p>A rede neural é treinada com um conjunto de treinamento e avaliada com um conjunto de teste.</p></li>
+</ul>
+</li>
+<li><p><strong>Resultados do Conjunto de Teste</strong></p>
+<ul class="simple">
+<li><p>Valores reais dos preços dos imóveis: <span class="math notranslate nohighlight">\(\mathbf{x} = [200 \ \ 300 \ \ 250 \ \ 500 \ \ 400]^T\)</span></p></li>
+<li><p>Valores previstos pela rede neural <span class="math notranslate nohighlight">\(\mathbf{\hat{x}} = [210 \ \ 290 \ \ 240 \ \ 520 \ \ 410]^T\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Cálculo do MSE</strong>
+<span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ (200 - 210)^2 + (300 - 290)^2 + (250 - 240)^2 + (500 - 520)^2 + (400 - 410)^2 \right]\)</span>
+<span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ 100 + 100 + 100 + 400 + 100 \right] = \frac{1}{5} \times 800 = 160\)</span></p></li>
+<li><p><strong>Cálculo do MAE</strong>
+<span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ |200 - 210| + |300 - 290| + |250 - 240| + |500 - 520| + |400 - 410| \right]\)</span>
+<span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ 10 + 10 + 10 + 20 + 10 \right] = \frac{1}{5} \times 60 = 12\)</span></p></li>
+<li><p><strong>Interpretação dos Resultados</strong></p>
+<ul class="simple">
+<li><p><strong>MSE</strong>: Um valor de 160 indica que, em média, os quadrados dos erros são relativamente altos. Como o MSE penaliza mais fortemente os grandes erros, este valor sugere que há algumas previsões com grandes discrepâncias.</p></li>
+<li><p><strong>MAE</strong>: Um valor de 12 indica que, em média, os erros absolutos entre as previsões e os valores reais são de 12 unidades monetárias. O MAE sendo menor que o MSE sugere que a maioria dos erros são pequenos, mas existem alguns grandes erros que estão influenciando o MSE.</p></li>
+<li><p><strong>Ajuste do Modelo</strong>: Se o MSE for muito maior que o MAE, isto pode indicar a presença de outliers que estão afetando negativamente o desempenho do modelo. Nesse caso, pode ser útil investigar os outliers e ajustar o modelo ou os dados de treinamento.</p></li>
+</ul>
+</li>
+<li><p><strong>Avaliação de Desempenho</strong>
+Ambas as métricas são úteis para avaliar a precisão do modelo, mas cada uma tem suas vantagens. O MSE é mais sensível a grandes erros, enquanto o MAE é mais intuitivo e menos sensível a outliers. O uso de MSE e MAE permite uma avaliação completa do desempenho de uma rede neural. Enquanto o MSE fornece uma visão detalhada dos erros grandes, o MAE oferece uma métrica mais robusta contra outliers, facilitando a interpretação dos resultados e a melhoria do modelo.</p></li>
+</ol>
 </section>
 </section>
 </section>
@@ -1461,7 +1583,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
     <a class='right-next' id="next-link" href="aula-03-analise-grafica.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Análise gráfica de funções não lineares</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Análise gráfica e aproximações sucessivas</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

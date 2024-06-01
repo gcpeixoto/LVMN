@@ -251,32 +251,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-1-bisect.html">
-   Code session 1
+   <em>
+    Code Session
+   </em>
+   1: Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-2-newton.html">
-   Code session 2
+   <em>
+    Code Session
+   </em>
+   2: Newton
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-3-polyval.html">
-   Code session 3
+   <em>
+    Code Session
+   </em>
+   3: Raízes de Polinômios
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-4-fsolve.html">
-   Code session 4
+   <em>
+    Code Session
+   </em>
+   4: Raízes de Equações
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-5-solve.html">
-   Code session 5
+   <em>
+    Code Session
+   </em>
+   5: Sistemas Lineares
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
-   Code session 6
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
   </a>
  </li>
  <li class="toctree-l1">
@@ -289,12 +307,18 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
-   Code session 8
+   <em>
+    Code Session
+   </em>
+   8: Integração
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
-   Code session 9
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
   </a>
  </li>
 </ul>
@@ -1002,17 +1026,23 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="aritmetica-computacional">
 <h1><span class="section-number">2. </span>Aritmética computacional<a class="headerlink" href="#aritmetica-computacional" title="Permalink to this headline">#</a></h1>
-<p>Computadores representam números inteiros de maneira exata. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados <em>números em ponto flutuante.</em></p>
+<p>Computadores representam números inteiros de maneira exata [<a class="reference internal" href="clippings/clipping-09-decimal-fractions.html#clipping-decimal"><span class="std std-ref">Recorte 9: Aritmética exata e números racionais</span></a>]. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados <em>números em ponto flutuante.</em></p>
 <p>O interesse da aritmética computacional resume-se em dois pontos principais: i) a representação de números no formato de máquina (binário) e ii) a construção de algoritmos que realizam as operações fundamentais (adição, subtração, multiplicação e divisão). Em linhas gerais, métodos numéricos resultam de algoritmos sofisticados que utilizam essas quatro operações.</p>
-<p>Atualmente, o padrão IEEE 754 é o mais amplamente seguido pelos fabricantes de processadores modernos. O documento orienta sobre como números em ponto flutuante devem ser representados, operados e comportar-se em qualquer arquitetura, seja de 16, 32, 64 ou mesmo 128 bits. A última atualização do padrão, cujo ano de origem é 1985, ocorreu em 2019 e está documentada neste <a class="reference external" href="https://ieeexplore.ieee.org/document/8766229">artigo</a>.</p>
+<p>Atualmente, o padrão IEEE 754 [<a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html#clipping-ieee754"><span class="std std-ref">Recorte 3: Padrão de Ponto Flutuante IEEE 754</span></a>] é o mais amplamente seguido pelos fabricantes de processadores modernos. O documento orienta sobre como números em ponto flutuante devem ser representados, operados e comportar-se em qualquer arquitetura, seja de 16, 32, 64 ou mesmo 128 bits. A última atualização do padrão, cujo ano de origem é 1985, ocorreu em 2019 <a class="reference external" href="https://ieeexplore.ieee.org/document/8766229">[IEEE 754-2019]</a>.</p>
 <section id="unidade-logica-e-aritmetica">
 <h2><span class="section-number">2.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Permalink to this headline">#</a></h2>
-<p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados. A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
+<p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados (<a class="reference internal" href="#fig-ula"><span class="std std-numref">Fig. 2.1</span></a>). A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
 <p>Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.</p>
+<figure class="align-default" id="fig-ula">
+<a class="reference internal image-reference" href="_images/ula-ai.png"><img alt="_images/ula-ai.png" src="_images/ula-ai.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Ilustração de um chip de computador destacando as interconexões responsáveis por operações lógicas, aritméticas e troca de informação com a unidade de controle.</span><a class="headerlink" href="#fig-ula" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="casos-curiosos">
 <h2><span class="section-number">2.2. </span>Casos curiosos<a class="headerlink" href="#casos-curiosos" title="Permalink to this headline">#</a></h2>
-<p>A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos que ocorrem devido à representação finita de números pelo computador.</p>
+<p>A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos que ocorrem devido à representação finita de números pelo computador. Outras indagações sobre ponto flutuante são respondidas em [<a class="reference internal" href="extra/extra-pontoFlutuante.html#extra-float"><span class="std std-ref">Números em ponto flutuante e seus problemas</span></a>].</p>
 <ul class="simple">
 <li><p>A fração <span class="math notranslate nohighlight">\(1/3 \approx 0.3333\ldots\)</span> é uma dízima. O seu triplo é?</p></li>
 </ul>
@@ -1491,54 +1521,179 @@ title="Print to PDF"
 </section>
 <section id="limites-de-maquina-para-ponto-flutuante">
 <h2><span class="section-number">2.9. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">#</a></h2>
-<p>Os seguintes parâmetros ajudam-nos a entender os limites de máquina am Python.</p>
-<div class="cell docutils container">
+<p>Em Python, podemos utilizar diferentes sistemas de ponto flutuante. Cada um possui suas particularidades. Os mais comuns são:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code> (meia precisão): ideal para aplicações onde a velocidade e o uso de memória são críticos, como em inferências de aprendizado profundo em dispositivos com recursos limitados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code> (precisão simples): comumente usado em jogos, gráficos, e muitas aplicações de aprendizado de máquina devido ao bom equilíbrio entre precisão e eficiência.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code> (precisão dupla; <em>alias</em> para <code class="docutils literal notranslate"><span class="pre">float</span></code>): essencial para simulações científicas, finanças e outras áreas onde a precisão é crucial e a memória não é preocupação.</p></li>
+</ul>
+<p>O <code class="docutils literal notranslate"><span class="pre">numpy</span></code> suporta todos os três na maioria dos computadores de hoje (<a class="reference internal" href="#tbl-float"><span class="std std-numref">Tabela 2.1</span></a>).</p>
+<table class="colwidths-auto table" id="tbl-float">
+<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Comparativo entre sistemas de ponto flutuante</span><a class="headerlink" href="#tbl-float" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Atributo</p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float16</span></code></p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float32</span></code></p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float64</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><strong>Tamanho</strong></p></td>
+<td class="text-align:left"><p>16 bits (2 bytes)</p></td>
+<td class="text-align:left"><p>32 bits (4 bytes)</p></td>
+<td class="text-align:left"><p>64 bits (8 bytes)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Precisão</strong></p></td>
+<td class="text-align:left"><p>Baixa</p></td>
+<td class="text-align:left"><p>Moderada</p></td>
+<td class="text-align:left"><p>Alta</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Intervalo de Valores</strong></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 5.96 \times 10^{-8}\)</span> a <span class="math notranslate nohighlight">\(6.55 \times 10^{4} \)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 1.18 \times 10^{-38} \)</span> a <span class="math notranslate nohighlight">\(3.4 \times 10^{38} \)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 2.23 \times 10^{-308} \)</span> a <span class="math notranslate nohighlight">\(1.8 \times 10^{308} \)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Bits de Sinal</strong></p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Bits de Expoente</strong></p></td>
+<td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>11</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Bits de Mantissa</strong></p></td>
+<td class="text-align:left"><p>10</p></td>
+<td class="text-align:left"><p>23</p></td>
+<td class="text-align:left"><p>52</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Uso de Memória</strong></p></td>
+<td class="text-align:left"><p>Muito baixo</p></td>
+<td class="text-align:left"><p>Moderado</p></td>
+<td class="text-align:left"><p>Alto</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Aplicações</strong></p></td>
+<td class="text-align:left"><p>Aprendizado profundo em dispositivos de recursos limitados</p></td>
+<td class="text-align:left"><p>Gráficos de computador, simulações científicas, aprendizado de máquina</p></td>
+<td class="text-align:left"><p>Cálculos científicos, engenharia, finanças de alta precisão</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Exemplo de Valores</strong></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.140625\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.1415927\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.141592653589793\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Vantagens</strong></p></td>
+<td class="text-align:left"><p>Usa menos memória e é mais rápido em termos de computação. Ideal para aplicações onde a memória é restrita e a precisão pode ser sacrificada.</p></td>
+<td class="text-align:left"><p>Oferece um bom equilíbrio entre precisão e uso de memória. Amplamente utilizado em gráficos e aprendizado de máquina.</p></td>
+<td class="text-align:left"><p>Alta precisão e amplo intervalo dinâmico. Ideal para cálculos científicos e de engenharia onde a precisão é crucial.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Desvantagens</strong></p></td>
+<td class="text-align:left"><p>Precisão muito limitada, o que pode levar a erros significativos em cálculos complexos.</p></td>
+<td class="text-align:left"><p>Pode não ser suficientemente preciso para cálculos científicos muito precisos.</p></td>
+<td class="text-align:left"><p>Usa mais memória e pode ser mais lento em termos de computação comparado com float16 e float32.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A seguinte função imprime os valores dos principais atributos de <code class="docutils literal notranslate"><span class="pre">numpy.finfo</span></code> que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
 
-<span class="c1"># limites de máquina para ponto flutuante</span>
-<span class="c1">#help(np.finfo)</span>
+<span class="k">def</span> <span class="nf">print_attribute</span><span class="p">(</span><span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrib</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Imprime informações de atributo para os sistemas de ponto flutuante \</span>
+<span class="sd">        de 16, 32 e 64 bits operados pelo numpy</span>
+<span class="sd">        </span>
+<span class="sd">    Atributos relevantes: </span>
+<span class="sd">    </span>
+<span class="sd">        - eps: menor valor x, tal que 1.0 + x &gt; 1.0 (epsilon de máquina)</span>
+<span class="sd">        - max: maior número finito que pode ser representado pelo tipo de dado de ponto flutuante.</span>
+<span class="sd">        - min: menor número finito negativo que pode ser representado pelo tipo de dado de ponto flutuante.</span>
+<span class="sd">        - tiny: menor número positivo normalizado que pode ser representado.</span>
+<span class="sd">        - nexp: número de bits no expoente       </span>
+<span class="sd">        - nmant: número de bits na mantissa</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># checagem de sistema permitido</span>
+    <span class="k">assert</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;float16&#39;</span><span class="p">,</span> <span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">],</span> <span class="s1">&#39;Sistema não permitido!&#39;</span>
+    
+    <span class="c1"># impressão    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">attrib</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+    <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;print(np.finfo(np.</span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s1">).</span><span class="si">{</span><span class="n">attrib</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># epsilon de máquina para tipo float (64 bits)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epsilon de máquina do numpy - 64 bits&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
-
-<span class="c1"># função para calculo do epsilon: erro relativo</span>
-<span class="k">def</span> <span class="nf">eps_mach</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">!=</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">epsf</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">/</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">epsf</span>
-
-<span class="c1"># número máximo representável </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número máximo representável&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
-
-<span class="c1"># número mínimo representável </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número mínimo representável&#39;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">)</span>
-
-<span class="c1"># número de bits no expoente </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número de bits no expoente&#39;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">nexp</span><span class="p">)</span>
-
-<span class="c1"># número de bits na mantissa</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número de bits na mantissa&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">nmant</span><span class="p">)</span>
+<span class="c1"># # função para calculo do epsilon: erro relativo</span>
+<span class="c1"># def eps_mach(func=float):</span>
+<span class="c1">#     eps = func(1)</span>
+<span class="c1">#     while func(1) + func(eps) != func(1):</span>
+<span class="c1">#         epsf = eps</span>
+<span class="c1">#         eps = func(eps) / func(2)</span>
+<span class="c1">#     return epsf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A partir daí, podemos verificar os valores para cada sistema individualmente:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--- float16 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float16&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">--- float32 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">--- float64 (float) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epsilon de máquina do numpy - 64 bits
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- float16 
+
+eps:
+0.000977
+max:
+65500.0
+min:
+-65500.0
+tiny:
+6.104e-05
+nexp:
+5
+nmant:
+10
+
+--- float32 
+
+eps:
+1.1920929e-07
+max:
+3.4028235e+38
+min:
+-3.4028235e+38
+tiny:
+1.1754944e-38
+nexp:
+8
+nmant:
+23
+
+--- float64 (float) 
+
+eps:
 2.220446049250313e-16
-número máximo representável
+max:
 1.7976931348623157e+308
-número mínimo representável
+min:
 -1.7976931348623157e+308
-número de bits no expoente
+tiny:
+2.2250738585072014e-308
+nexp:
 11
-número de bits na mantissa
+nmant:
 52
 </pre></div>
 </div>
@@ -1577,7 +1732,7 @@ número de bits na mantissa
 <p>começa a se aproximar de zero por cancelamento subtrativo e o valor de <span class="math notranslate nohighlight">\(f\)</span> torna-se cada vez mais instável até cair a “zero”.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/aula-01-ponto-flutuante_36_0.png" src="_images/aula-01-ponto-flutuante_36_0.png" />
+<img alt="_images/aula-01-ponto-flutuante_40_0.png" src="_images/aula-01-ponto-flutuante_40_0.png" />
 </div>
 </div>
 </section>
