@@ -1,8 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Implementação do método de Newton
-
+# # Método de Newton
+# 
+# O Método de Newton, também conhecido como Método das Tangentes, é uma técnica numérica amplamente utilizada para encontrar aproximações das raízes de funções reais. Desenvolvido por Isaac Newton, esse método é conhecido por sua eficiência e rapidez na convergência, especialmente quando a aproximação inicial está próxima da raiz verdadeira.
+# 
+# O Método de Newton se baseia na ideia de usar a tangente da função em um ponto inicial para encontrar uma melhor aproximação da raiz. A fórmula iterativa do método é dada por:
+# 
+# $$
+# x^{(k+1)} = x^{(k)} - \dfrac{ f(x^{(k)} )}{ f'(x^{(k)}) }
+# $$
+# 
+# onde:
+# - $x^{(k)}$ é a aproximação atual.
+# - $f(x^{(k)})$ é o valor atual da função.
+# - $f'(x^{(k)})$ é o valor atual da primeira derivada da função.
+# 
+# A ideia é que a interseção da tangente à curva $f(x)$ no ponto $x^{(k)}$ com o eixo $x$ fornece uma nova aproximação $x^{(k)+1}$. O Método de Newton é uma ferramenta essencial no arsenal de métodos numéricos, oferecendo uma abordagem eficiente e poderosa para a solução de uma ampla variedade de problemas matemáticos.
+# 
 # Neste capítulo, utilizamos uma implementação própria do método de Newton para resolver equações não-lineares unidimensionais. O algoritmo é limitado para a entrada de funções matemáticas.
 # 
 # ```{figure} figs/newton-ai.png
@@ -12,7 +27,9 @@
 # ---
 # 
 # ```
-# 
+
+# ## Implementação do algoritmo
+
 # Para ser executado, o método `newton` requer 5 parâmetros: 
 # 
 # - a estimativa inicial, representada pela variável `x0`;
@@ -148,6 +165,58 @@ zm = newton(5,
 
 # Compare a quantidade de iterações obtidas com o mesmo exemplo resolvido com o algoritmo da bisseção.
 
+# ### Método de Newton modificado para otimização 
+# 
+# O método de Newton pode ser expandido até a segunda ordem usada para encontrar o ponto mínimo ou máximo de uma função diferenciável. Em uma dimensão, o raciocínio é como segue:
+# 
+# 1. **Função Objetivo**:
+#    Seja $f(x)$ uma função escalar diferenciável cujo mínimo queremos encontrar.
+# 
+# 2. **Expansão de Taylor de Segunda Ordem**:
+#    Expandimos $f(x)$ em torno de um ponto $x^{(k)}$ usando a série de Taylor até a segunda ordem:
+#    
+#    $$
+#    f(x) \approx f(x^{(k)}) + f'(x^{(k)}) (x - x^{(k)}) + \frac{1}{2} f''(x^{(k)}) (x - x^{(k)})^2,
+#    $$
+#    
+#    onde $f'(x^{(k)})$ é a primeira derivada (gradiente) de $f$ em $x^{(k)}$ e $f''(x^{(k)})$ é a segunda derivada (Hessiana) de $f$ em $x^{(k)}$.
+# 
+# 3. **Condição de Otimização**:
+#    Para encontrar o ponto $x$ que minimiza $f(x)$, devemos encontrar um ponto onde a derivada da função seja zero. Definimos a direção de descida $t$ como $x - x^{(k)}$:
+#    
+#    $$
+#    f(x^{(k+1)}) \approx f(x^{(k)}) + f'(x^{(k)}) t + \frac{1}{2} f''(x^{(k)}) t^2
+#    $$
+#    
+# 4. **Derivada da Expansão**:
+#    Para minimizar $f(x)$, tomamos a derivada da expressão acima em relação a $t$ e igualamos a zero:
+#    
+#    $$
+#    \frac{d}{dt}\left[ f(x^{(k)}) + f'(x^{(k)}) t + \frac{1}{2} f''(x^{(k)}) t^2 \right] = 0
+#    $$
+#    
+#    Uma vez que $f(x^{(k)})$ não depende de $t$, é uma constante. Assim obtemos:
+#   
+#    $$
+#    f'(x^{(k)}) + f''(x^{(k)}) t = 0
+#    $$
+# 
+# 5. **Solução para a direção $t$**:
+#    Resolvendo para $t$, temos:
+#    
+#    $$
+#    t = -\frac{f'(x^{(k)})}{f''(x^{(k)})}
+#    $$
+# 
+# 6. **Atualização da Iteração**:
+#    A próxima aproximação $x^{(k+1)}$ é obtida somando $t$ ao ponto atual $x^{(k)}$:
+#    
+#    $$
+#    x^{(k+1)} = x^{(k)} + t = x^{(k)} - \frac{f'(x^{(k)})}{f''(x^{(k)})}
+#    $$
+# 
+# A derivada $f'(x^{(k)})$ indica a inclinação da função em $x^{(k)}$. A segunda derivada $f''(x^{(k)})$ fornece informações sobre a curvatura da função. Se $f''(x^{(k)}) > 0$, estamos em um ponto onde a função está curvando para cima (mínimo local), enquanto $f''(x^{(k)}) < 0$ indica um ponto onde a função está curvando para baixo (máximo local). O passo $t$ determina a magnitude e a direção do ajuste necessário para aproximar-se do ponto de mínimo (ou máximo).
+
 # ## Tarefa
 # 
-# - Generalize o código acima para que a expressão da derivada seja calculada diretamenta por computação simbólica sem intervenção manual.
+# - Crie um código genérico para que a(s) derivada(s) seja(m) calculada(s) diretamenta por computação simbólica, sem intervenção manual, quando for possível.
