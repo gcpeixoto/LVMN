@@ -430,34 +430,121 @@ e = finfo(float).eps
 # 
 # No caso do arredondamento, o $k$-ésimo dígito é somado de 1 se o dígito da $k+1$-ésima casa for maior ou igual a 5. A aproximação de $x$ por arredondamento até a terceira casa seria $x = 13.426$, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.
 
-# ## Definições de erro em aprendizagem de máquina
+# ## Definições de erro em aprendizado de máquina
 # 
-# No século XXI, muito se tem falado em aprendizagem de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto, quando o interesse é medir erros em conjuntos de dados. Por exemplo, no campo das redes neurais convolucionais, o cálculo da função de _perda_ (_loss function_) entre pixels de uma imagem legendada como _ground truth_ (gabarito) e de outra imagem processada, é geralmente realizado por meio de expressões que caracterizam erros. A seguir, exploraremos algumas dessas métricas. Em todos os cálculos, $x_i$ é o valor do gabarito (exato), $\hat{x_i}$ é o valor aproximado e $n$ é o número de pontos de amostragem.
-# ### Erro quadrático médio
+# No século XXI, muito se tem falado em aprendizado de máquina, inteligência artificial e dados. Diversas definições de erro também existem neste contexto. Todavia, a conotação de "erro" nesta área costuma ser a de uma _métrica de desempenho_, pois busca medir o desempenho dos algoritmos ao operarem sobre conjuntos de dados. Essas métricas tendem a expressar distâncias entre valores reais e valores preditos. A seguir, exploraremos algumas dessas métricas sob o ponto de vista de vetores no espaço de $n$ dimensões. Em todas as fórmulas, $\bf{x}$ é o vetor de dados reais, cuja $i$-ésima componente é representada por $x_i$, e $\bf{\hat{x}}$ é o vetor de dados preditos (aproximados), cuja $i$-ésima componente é representada por $\hat{x_i}$. Assim, $n$ reflete o número de pontos de amostragem.
 # 
-# O erro quadrático médio (_mean squared error_, MSE) é definido como:
-# 
-# $$MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2$$
 # ### Erro absoluto médio
 # 
 # O erro absoluto médio (_mean absolute error_, MAE) é definido como:
 # 
 # $$MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|$$
+# 
+# O MAE é útil quando queremos minimizar a soma das diferenças absolutas.
+# 
+# ### Erro quadrático médio
+# 
+# O erro quadrático médio (_mean squared error_, MSE) é definido como:
+# 
+# $$MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2$$
+# 
 # ### Erro absoluto médio percentual
 # 
 # O erro absoluto médio percentual (_mean absolute percentage error_, MAPE) é definido como:
 # 
 # $$MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |x_i - \hat{x}_i| }{ | x_i | } \times 100$$
+# 
 # ### Erro logarítmico quadrático médio 
 # 
 # O erro logarítmico quadrático médio (_mean squared logarithmic error_, MSLE) é definido como:
 # 
 # $$MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2$$
+# 
+# ### Erro induzido pela norma $p$ e erro máximo
+# 
+# O MAE e o MSE, por exemplo, são casos particulares da definição genérica dada por:
+# 
+# $$
+# E_p = || {\bf x} - {\bf \hat{x}} ||_p = \left( \sum_{i=1}^n |x_i - \hat{x}_i|^p \right)^{\frac{1}{p}}, \ \ 1 \le p < \infty,
+# $$
+# 
+# para $p=1$ e $p=2$, respectivamente. Em particular, a chamada "norma do máximo" é definida por
+# 
+# $$
+# E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| \}, 
+# $$
+# 
+# que mede a maior diferença absoluta entre o vetor de valores reais e o vetor de valores preditos.
+# 
+# A norma $p$ é chamada de _norma de Minkowski_. As diferentes normas decorrentes da escolha de $p$ são usadas em contextos diferentes para medir mudanças específicas. Quanto maior é o valor de $p$, mais ela se concentra em captar discrepâncias maiores. Assim, normas menores são mais robustas a _outliers_. Quando $p=1$, temos a _norma de Manhattan_; quando $p=2$, temos a _norma Euclidiana_, bastante conhecida de outras disciplinas.
+
+# 
 # ```{admonition} Curiosidade
 # :class: dropdown
 # 
-# Nos últimos anos, métodos de aprendizagem profunda vem sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo [Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation](https://www.mdpi.com/2220-9964/9/1/24).
+# Nos últimos anos, métodos de aprendizagem profunda vêm sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja o artigo [Identification of Salt Deposits on Seismic Images Using Deep Learning Method for Semantic Segmentation](https://www.mdpi.com/2220-9964/9/1/24).
 # ```
+
+# ### Calculando o desempenho
+# 
+# Usando a biblioteca `scikit-learn`, é possível utilizar funções já disponíveis no módulo `sklearn.metrics` para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para $n=4$. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.
+
+# In[116]:
+
+
+from sklearn.metrics import mean_squared_error as MSE
+from sklearn.metrics import mean_absolute_error as MAE
+from sklearn.metrics import mean_absolute_percentage_error as MAPE
+from sklearn.metrics import mean_squared_log_error as MSLE
+from sklearn.metrics.pairwise import pairwise_distances as pNorm
+
+from numpy import array
+from matplotlib.pyplot import subplots
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+import matplotlib.ticker as mticker
+
+# conjunto de dados
+x = array([3.0, 1.7, 4.0, 7.0]) # valores reais
+xhat = array([2.8, 1.4, 3.0, 8.0]) # valores preditos
+
+# erros
+mae = MAE(x,xhat)
+mse = MSE(x,xhat)
+mape = MAPE(x,xhat)
+msle = MSLE(x,xhat)
+
+# normas de Minkowski
+norms = []
+P = [0.5, 0.8, 1.2, 4.0, 6.0, 10.0] # valores p
+
+# calcula por matrizes de distâncias, mas armazena valor único
+for p in P:
+    norms.append(pNorm([x],[xhat],metric='minkowski',p=p).ravel()[0])
+
+
+# gráficos
+fig, ax = subplots(1,3,figsize=(13,3),constrained_layout=True)
+ax[0].plot(x,x,'k:',lw=1.0)
+ax[0].plot(x,xhat,'o')
+ax[0].set_xlabel('real'); ax[0].set_ylabel('predito')
+
+ax[1].bar(x=['MAE','MSE','MAPE','MSLE'],height=[mae,mse,mape,msle])
+ax[1].set_xlabel('métricas'); ax[1].set_ylabel('erro')
+
+ax[2].plot(P[3:],norms[3:],'s')
+ax[2].xaxis.set_major_locator(mticker.FixedLocator(P[3:]))
+ax[2].set_xticklabels(list(map(lambda x: f'p={x:.1f}',P[3:])))
+
+# eixo embutido
+axi = inset_axes(ax[2],width="50%", height="40%", loc="upper right")
+axi.plot(P[:3],norms[:3],'s')
+axi.xaxis.set_major_locator(mticker.FixedLocator(P[:3]))
+axi.set_xticklabels(list(map(lambda x: f'p={x:.1f}',P[:3])))
+
+ax[2].set_xlabel('normas de Minkowski'); ax[1].set_ylabel('erro');
+
+
+# Percebe-se que cada métrica retorna um valor diferente para o erro entre os valores exatos e os aproximados. Cabe ao usuário interpretar qual faz mais sentido para o conjunto de dados em análise.
 
 # ## Exemplos aplicados
 # 

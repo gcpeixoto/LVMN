@@ -38,7 +38,7 @@
 # - o erro relativo assumido, representado por `tol`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `nmax`.
 
-# In[19]:
+# In[15]:
 
 
 import inspect, re, numpy as np
@@ -69,6 +69,7 @@ def newton(x0,f,df,tol,N):
     
     # identifica a variável independente em f
     var = re.search(r'([a-zA-Z][\w]*) ?([\+\-\/*]|$|\))', f).group(1)
+
     
     # cria função
     f = eval('lambda ' + var + ' :' + f)
@@ -117,9 +118,9 @@ def newton(x0,f,df,tol,N):
     return x
 
 
-# ## Exemplo
+# ## Exemplos resolvidos
 # 
-# Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
+# **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
 # In[16]:
 
@@ -132,13 +133,11 @@ xm = newton(-0.1,
             30)
 
 
-# ## Exemplo
-# 
-# Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
+# **Exemplo:** Resolva o problema $h(z) = 0$, para $h(z) = -z(1-2z)^{-1} - \text{tan}(z+1)$, no intervalo $[1,8]$ e $\epsilon = 10^{-5}$.
 
 # Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função $h(z)$. Vamos encontrá-la utilizando o módulo de computação simbólica `sympy`.
 
-# In[46]:
+# In[3]:
 
 
 # Importa variável z como símbolo
@@ -154,7 +153,7 @@ print(dh)
 
 # A partir daí, utilizamos a expressão normalmente na função.
 
-# In[47]:
+# In[4]:
 
 
 zm = newton(5,
@@ -165,7 +164,7 @@ zm = newton(5,
 
 # Compare a quantidade de iterações obtidas com o mesmo exemplo resolvido com o algoritmo da bisseção.
 
-# ### Método de Newton modificado para otimização 
+# ## Método de Newton modificado para otimização 
 # 
 # O método de Newton pode ser expandido até a segunda ordem usada para encontrar o ponto mínimo ou máximo de uma função diferenciável. Em uma dimensão, o raciocínio é como segue:
 # 
@@ -217,6 +216,37 @@ zm = newton(5,
 # 
 # A derivada $f'(x^{(k)})$ indica a inclinação da função em $x^{(k)}$. A segunda derivada $f''(x^{(k)})$ fornece informações sobre a curvatura da função. Se $f''(x^{(k)}) > 0$, estamos em um ponto onde a função está curvando para cima (mínimo local), enquanto $f''(x^{(k)}) < 0$ indica um ponto onde a função está curvando para baixo (máximo local). O passo $t$ determina a magnitude e a direção do ajuste necessário para aproximar-se do ponto de mínimo (ou máximo).
 
+# ## Método de Halley
+# 
+# O método de Halley é uma extensão do método de Newton e utiliza até a terceira derivada da função. Enquanto o método de Newton tem convergência quadrática, o método de Halley converge mais rapidamente e alcança convergência cúbica, pois usa mais informações sobre a curvatura da função. De maneira similar ao que já fizemos, vamos derivar a fórmula partindo diretamente da expansão de Taylor:
+# 
+# 1. **Expansão de Taylor**:
+#    Expandimos a função $f(x)$ em torno de um ponto $x^{(k)}$:
+#    $$
+#    f(x) \approx f(x^{(k)}) + f'(x^{(k)}) (x - x^{(k)}) + \frac{1}{2} f''(x^{(k)}) (x - x^{(k)})^2 + \frac{1}{6} f'''(x^{(k)})(x - x^{(k)})^3,
+#    $$
+# 
+# 2. **Estimativa da Raiz**:
+#    Supondo que $x^{(k+1)} = x^{(k)} + \Delta x$ é a nova estimativa da raiz, então queremos $f(x^{(k+1)}) = 0 $. Substituindo $\Delta x = x^{(k+1)} - x^{(k)}$ na expansão de Taylor e igualando a zero, temos:
+#    $$
+#    f(x^{(k)}) + f'(x^{(k)})\Delta x + \frac{1}{2} f''(x^{(k)})(\Delta x)^2 + \frac{1}{6} f'''(x^{(k)})(\Delta x)^3 = 0
+#    $$
+# 
+# 3. **Isolando $\Delta x $**:
+#    A solução para $\Delta x$ (que nos dá a atualização para $x$) é dada pela fórmula:
+#    $$
+#    \Delta x = -\frac{f(x^{(k)})}{f'(x^{(k)})} \left( \frac{2}{2 - \frac{f(x^{(k)}) f''(x^{(k)})}{f'(x^{(k)})^2}} \right)
+#    $$
+# 
+# 4. **Iteração do Método de Halley**:
+#    A fórmula iterativa do método de Halley é então:
+#    $$
+#    x^{(k+1)} = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})} \left( \frac{2}{2 - \frac{f(x^{(k)}) f''(x^{(k)})}{f'(x^{(k)})^2}} \right)
+#    $$
+# 
+# As vantagens do método de Halley sobre o método de Newton são a taxa de convergência e o alcance de uma solução mais precisa com menos iterações em comparação. Por outro lado, o cálculo das derivadas de ordem superior pode ser computacionalmente custoso e complexo, especialmente para funções complicadas. A precisão do método também depende da precisão das derivadas de segunda e terceira ordem. Portanto, erros nessas derivadas podem afetar a convergência e a precisão da solução.
+
 # ## Tarefa
 # 
-# - Crie um código genérico para que a(s) derivada(s) seja(m) calculada(s) diretamenta por computação simbólica, sem intervenção manual, quando for possível.
+# - Crie um código genérico que implemente o algoritmo do método de Newton de modo que a derivada seja calculada diretamenta por computação simbólica, sem intervenção manual, quando for possível.
+# - Faça uma implementação do método de Newton para otimização e uma para o método de Halley. Em seguida, incorpore a capacidade de cálculo das derivadas de maneira automática.
