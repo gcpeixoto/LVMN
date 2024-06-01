@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/numbiosis.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Implementação do método da bisseção" href="aula-04-bissecao.html" />
+    <link rel="next" title="5. Método da Bisseção" href="aula-04-bissecao.html" />
     <link rel="prev" title="3. Erros e seus efeitos" href="aula-02-erros.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementação do método da bisseção
+   5. Método da Bisseção
   </a>
  </li>
  <li class="toctree-l1">
@@ -751,8 +751,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#receitas-prontas-para-visuais">
+   4.4. Receitas prontas para visuais
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefas">
-   4.4. Tarefas
+   4.5. Tarefas
   </a>
  </li>
 </ul>
@@ -840,8 +845,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#receitas-prontas-para-visuais">
+   4.4. Receitas prontas para visuais
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tarefas">
-   4.4. Tarefas
+   4.5. Tarefas
   </a>
  </li>
 </ul>
@@ -985,7 +995,7 @@ e.exports=function(t){return null!=t&&(n(t)||function(t){return"function"==typeo
 <p class="admonition-title">Dica</p>
 <p>A plotagem básica de funções matemáticas via <em>matplotlib</em> pode ser realizada pela simples chamada de <code class="docutils literal notranslate"><span class="pre">plt.plot(x,y)</span></code>, quando <code class="docutils literal notranslate"><span class="pre">plt</span></code> é o <em>placeholder</em> da biblioteca <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>. As variáveis de código <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> funcionam como domínio e contradomínio.</p>
 </div>
-<p>Vejamos como realizar a plotagem da função <span class="math notranslate nohighlight">\(y = f(c; t,v,m,g)\)</span>. Observe que, sendo <span class="math notranslate nohighlight">\(c\)</span> a única variável e, além disso, a variável independente, podemos, sem prejuízo, escrever <span class="math notranslate nohighlight">\(y = f(c)\)</span>, ressalvada a fixação dos demais parâmetros. Neste caso, a imagem desta função, <span class="math notranslate nohighlight">\(y\)</span>, não necessariamente possui um sentido físico e não temos que nos preocupar em interpretar o que ela significa. O importante é identificar se há um ou mais valores de<span class="math notranslate nohighlight">\(c\)</span>que produzem uma imagem nula. Em caso positivo, teremos encontrado uma ou mais raízes de<span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Vejamos como realizar a plotagem da função <span class="math notranslate nohighlight">\(y = f(c; t,v,m,g)\)</span>. Observe que, sendo <span class="math notranslate nohighlight">\(c\)</span> a única variável e, além disso, a variável independente, podemos, sem prejuízo, escrever <span class="math notranslate nohighlight">\(y = f(c)\)</span>, ressalvada a fixação dos demais parâmetros. Neste caso, a imagem desta função, <span class="math notranslate nohighlight">\(y\)</span>, não necessariamente possui um sentido físico e não temos que nos preocupar em interpretar o que ela significa. O importante é identificar se há um ou mais valores de<span class="math notranslate nohighlight">\(c\)</span>que produzem uma imagem nula. Em caso positivo, teremos encontrado uma ou mais raízes de <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>Em outras palavras, as perguntas que queremos responder são:</p>
 <ul class="simple">
 <li><p>Existe algum coeficiente de arrasto que produz o cenário determinado pelos parâmetros?</p></li>
@@ -1499,7 +1509,7 @@ y(9) = 12.3047
 <p><strong>Algoritmo.</strong> Dado um conjunto de <span class="math notranslate nohighlight">\(n+1\)</span> pontos <span class="math notranslate nohighlight">\((x_i,y_i)\)</span>, <span class="math notranslate nohighlight">\(y_i = f(x_i), \, i = 0,\ldots,n\)</span>, onde <span class="math notranslate nohighlight">\(x_0 &lt; \ldots &lt; x_n\)</span>. Verificamos se <span class="math notranslate nohighlight">\(y_i &lt; 0\)</span> e se <span class="math notranslate nohighlight">\(y_{i+1} &gt; 0\)</span>. Uma expressão compacta para esta checagem é o teste <span class="math notranslate nohighlight">\(y_i \, y_{i+1} &lt; 0\)</span>. Se o produto for negativo, então a raiz de <span class="math notranslate nohighlight">\(f\)</span> está no intervalo <span class="math notranslate nohighlight">\([x_i,x_{i+1}]\)</span>. Assumindo uma variação linear entre os pontos, temos a aproximação</p>
 <div class="math notranslate nohighlight">
 \[f(x) \approx \dfrac{ y_{i+1} - y_i }{ x_{i+1} - x_i }(x - x_i) + y_i.\]</div>
-<p>Logo,<span class="math notranslate nohighlight">\(f(x) = 0\)</span>implica que a raiz é</p>
+<p>Logo, <span class="math notranslate nohighlight">\(f(x) = 0\)</span> implica que a raiz é</p>
 <div class="math notranslate nohighlight">
 \[x = x_i - \dfrac{ x_{i+1} - x_i }{ y_{i+1} - y_i }y_i.\]</div>
 <p><strong>Exemplo.</strong> Encontre a raiz da função <span class="math notranslate nohighlight">\(f(x) = \exp(-x^2)\cos(3x)\)</span> usando o algoritmo de força bruta.</p>
@@ -1586,7 +1596,7 @@ y(9) = 12.3047
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>        
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Raízes de$e^{-x^2}\cos(3x)$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Raízes de $e^{-x^2}\cos(3x)$&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1596,8 +1606,55 @@ y(9) = 12.3047
 </div>
 </section>
 </section>
+<section id="receitas-prontas-para-visuais">
+<h2><span class="section-number">4.4. </span>Receitas prontas para visuais<a class="headerlink" href="#receitas-prontas-para-visuais" title="Permalink to this headline">#</a></h2>
+<p>Na análise gráfica de funções não lineares, alguns elementos úteis para as plotagens são:</p>
+<ul class="simple">
+<li><p>o gráfico da função <span class="math notranslate nohighlight">\(f(x)\)</span> sob análise;</p></li>
+<li><p>o gráfico da função <span class="math notranslate nohighlight">\(g(x) = 0\)</span> ou o gradeado do plano Cartesiano;</p></li>
+<li><p>as legendas dos eixos;</p></li>
+<li><p>o intervalo de estimativas iniciais;</p></li>
+</ul>
+<p>Um bloco de código baseado em <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> replicável que contempla tudo isso é fornecido a seguir:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># domínio de análise</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="c1"># função-alvo</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># figura</span>
+<span class="c1">#ax.grid(axis=&#39;both&#39;) # gradeado</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span> <span class="c1"># plotagem</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y=0$&#39;</span><span class="p">)</span> <span class="c1"># g(x) = 0</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Exemplo de plotagem para análise gráfica&#39;</span><span class="p">)</span>
+
+<span class="c1"># 1o. intervalo de busca</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2o. intervalo de busca</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3o. intervalo de busca</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aula-03-analise-grafica_47_0.png" src="_images/aula-03-analise-grafica_47_0.png" />
+</div>
+</div>
+</section>
 <section id="tarefas">
-<h2><span class="section-number">4.4. </span>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.5. </span>Tarefas<a class="headerlink" href="#tarefas" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Faça a implementação computacional do algoritmo da “força bruta”.</p></li>
 <li><p>Verifique a correção e aperfeiçoe a mini-classe para simulações de salto e use o mesmo raciocínio para criar uma classe própria aplicável a outro modelo matemático.</p></li>
@@ -1642,7 +1699,7 @@ y(9) = 12.3047
     <a class='right-next' id="next-link" href="aula-04-bissecao.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Implementação do método da bisseção</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Método da Bisseção</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
