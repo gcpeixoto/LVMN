@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[66]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Erros e seus efeitos
 # 
 # ## Introdução
@@ -33,7 +40,7 @@
 # 
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 
-# In[1]:
+# In[67]:
 
 
 from prettytable import PrettyTable as pt
@@ -95,7 +102,7 @@ print(tbl)
 # 
 # Para obter cada valor acima, poderíamos escrever:
 
-# In[2]:
+# In[68]:
 
 
 # O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.
@@ -125,7 +132,7 @@ print(E_10)
 # 
 # Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de $S_2(n)$ com $n$ crescente até o limite de 100.000, até porque não temos como computar $S_2$ _ad infinitum_. Então, vejamos um código similar:
 
-# In[3]:
+# In[69]:
 
 
 from math import pi
@@ -170,7 +177,7 @@ print(tbl2)
 
 # A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de $n$ aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é $\pi^2/6 \approx 1.6449340668482264$. Para obtermos os valores dos erros, um código similar poderia ser implementado:
 
-# In[4]:
+# In[70]:
 
 
 # Expressões do erro real
@@ -206,7 +213,7 @@ print(E_10)
 # 1. Assumir que $82132.957032$ seja o valor exato para o polinômio em $x = 79.9$.
 # 2. Calcular $P(79.9)$ utilizando duas formas.
 
-# In[5]:
+# In[71]:
 
 
 # Código para gerar polinômio cúbico com raízes reais
@@ -249,7 +256,7 @@ r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 #P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
 
 
-# In[6]:
+# In[72]:
 
 
 # Valor
@@ -294,7 +301,7 @@ print(f'PH({x}) = {PHx:.14f}')
 # 
 # Utilizando o exemplo da seção anterior, temos:
 
-# In[7]:
+# In[73]:
 
 
 # Valor exato
@@ -319,7 +326,7 @@ print(E_PH)
 # 
 # A função módulo, $f(x) = | x |$, pode ser diretamente calculada com `abs`.
 
-# In[8]:
+# In[74]:
 
 
 # Erro absoluto (forma padrão)
@@ -333,7 +340,7 @@ print(EA_PH)
 
 # É evidente que $E_{PH} > E_P$. Entretanto, podemos verificar isso pelo seguinte teste lógico:
 
-# In[9]:
+# In[75]:
 
 
 # O teste é verdadeiro
@@ -352,7 +359,7 @@ EA_PH > EA_P
 
 # Os erros relativos podem ser computados como:
 
-# In[10]:
+# In[76]:
 
 
 ER_P = EA_P/abs(Px_ex)
@@ -370,7 +377,7 @@ print(ER_PH)
 # 
 # Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:
 
-# In[11]:
+# In[77]:
 
 
 ER_Pp = ER_P * 100
@@ -389,7 +396,7 @@ print(f'{ER_PHp:e} %')
 # 
 # No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou $P(x=79.9)$ ou $P_H(x=79.9)$ deveria ser adotado como _benchmark_. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:
 
-# In[12]:
+# In[78]:
 
 
 ER_ =  abs(PHx - Px)/abs(PHx)
@@ -410,7 +417,7 @@ print(f'{ER_:e}')
 # 
 # Isto ocorre porque o denominador sofre um _cancelamento subtrativo_ Uma vez que $0.25\epsilon_M < \epsilon_M$, a operação $0.25\epsilon_M$ não produz efeito sobre 1, de modo que a computação encontra um "limbo". Para a matemática exata, a operação deveria ser "diferente de zero".
 
-# In[13]:
+# In[79]:
 
 
 # inf
@@ -489,7 +496,7 @@ e = finfo(float).eps
 # 
 # Usando a biblioteca `scikit-learn`, é possível utilizar funções já disponíveis no módulo `sklearn.metrics` para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para $n=4$. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.
 
-# In[116]:
+# In[80]:
 
 
 from sklearn.metrics import mean_squared_error as MSE
@@ -525,19 +532,19 @@ for p in P:
 # gráficos
 fig, ax = subplots(1,3,figsize=(13,3),constrained_layout=True)
 ax[0].plot(x,x,'k:',lw=1.0)
-ax[0].plot(x,xhat,'o')
+ax[0].plot(x,xhat,'og')
 ax[0].set_xlabel('real'); ax[0].set_ylabel('predito')
 
-ax[1].bar(x=['MAE','MSE','MAPE','MSLE'],height=[mae,mse,mape,msle])
+ax[1].bar(x=['MAE','MSE','MAPE','MSLE'],height=[mae,mse,mape,msle],color='g')
 ax[1].set_xlabel('métricas'); ax[1].set_ylabel('erro')
 
-ax[2].plot(P[3:],norms[3:],'s')
+ax[2].plot(P[3:],norms[3:],'sg')
 ax[2].xaxis.set_major_locator(mticker.FixedLocator(P[3:]))
 ax[2].set_xticklabels(list(map(lambda x: f'p={x:.1f}',P[3:])))
 
 # eixo embutido
 axi = inset_axes(ax[2],width="50%", height="40%", loc="upper right")
-axi.plot(P[:3],norms[:3],'s')
+axi.plot(P[:3],norms[:3],'sg')
 axi.xaxis.set_major_locator(mticker.FixedLocator(P[:3]))
 axi.set_xticklabels(list(map(lambda x: f'p={x:.1f}',P[:3])))
 
@@ -555,7 +562,7 @@ ax[2].set_xlabel('normas de Minkowski'); ax[1].set_ylabel('erro');
 # Criaremos uma função "perturbada" que desempenhará o papel de função de Airy aproximada, enquanto menteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.
 # 
 
-# In[14]:
+# In[81]:
 
 
 from scipy import special
@@ -577,7 +584,7 @@ A_ = 1.152*A + 0.056*np.cos(x)
 # 
 # onde $\hat{A}(x)$ é a função de Airy aproximada e $A(x)$ é a função de Airy exata. Então:
 
-# In[15]:
+# In[82]:
 
 
 # Define função anônima para erro relativo
@@ -589,24 +596,22 @@ E_airy = ai(A,A_)
 
 # A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
 
-# In[16]:
+# In[83]:
 
 
 # Plotagem das funções 
 from matplotlib.pyplot import plot, grid, legend
 
-plot(x, A, 'k', label='Airy exata')
-plot(x, A_, 'r', label='Airy aprox.')
-grid()
+plot(x, A, 'g-', label='Airy exata')
+plot(x, A_, 'g:', label='Airy aprox.')
 legend(loc='upper right');
 
 
-# In[17]:
+# In[84]:
 
 
 # Plotagem do erro 
-plot(x, E_airy)
-grid()
+plot(x, E_airy,'g')
 
 
 # ### Avaliação de algoritmos de ordenação
@@ -664,3 +669,9 @@ grid()
 # 
 # 7. **Avaliação de Desempenho**
 # Ambas as métricas são úteis para avaliar a precisão do modelo, mas cada uma tem suas vantagens. O MSE é mais sensível a grandes erros, enquanto o MAE é mais intuitivo e menos sensível a outliers. O uso de MSE e MAE permite uma avaliação completa do desempenho de uma rede neural. Enquanto o MSE fornece uma visão detalhada dos erros grandes, o MAE oferece uma métrica mais robusta contra outliers, facilitando a interpretação dos resultados e a melhoria do modelo.
+
+# In[85]:
+
+
+plt.rcdefaults()
+

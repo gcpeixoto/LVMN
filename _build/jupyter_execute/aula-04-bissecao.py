@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Método da Bisseção
 # 
 # O método da bisseção é uma das técnicas mais fundamentais para busca de raízes de equações não-lineares. Robusto e de fácil implementação, ele está estruturado no Teorema do Valor Intermediário, que afirma que se uma função contínua $f(x)$ tem sinais opostos em dois pontos $a$ e $b$, condição que se verifica quando $f(a) f(b) < 0$ é verdadeira, então existe pelo menos uma raiz da função no intervalo $[a, b]$. Em termos simples, o método envolve dividir repetidamente o intervalo ao meio e selecionar o subintervalo onde a raiz deve estar, baseando-se nos sinais de $f$.
@@ -23,7 +30,7 @@
 # - o erro absoluto desejado $EA_d$, representado por `e`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
 
-# In[3]:
+# In[2]:
 
 
 import inspect, re 
@@ -154,16 +161,16 @@ def bissecao(f,a,b,tol,N):
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-# In[4]:
+# In[3]:
 
 
 x = np.linspace(-0.2,1,100)
-plot(x,-np.arccos(x) + 4*np.sin(x) + 1.7,x,0*x);
+plot(x,-np.arccos(x) + 4*np.sin(x) + 1.7,'g',x,0*x,'k:');
 
 
 # - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
-# In[3]:
+# In[4]:
 
 
 xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,40)
@@ -171,7 +178,7 @@ xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,40)
 
 # - A raiz aproximada $x^{*}$, tal que para $f(x^{*}) = 0$ no intervalo-alvo é mostrada na última linha da tabela. Isto é,
 
-# In[4]:
+# In[5]:
 
 
 # raiz aproximada
@@ -182,25 +189,25 @@ xm
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-# In[5]:
+# In[6]:
 
 
 z = np.linspace(1,8.5,100)
-plot(z,z/(1 - 2*z) - np.tan(z+1),z,0*z);
+plot(z,z/(1 - 2*z) - np.tan(z+1),'g',z,0*z,'k:');
 
 
 # - Neste caso, a função apresenta sensibilidades e mais de uma raiz no intervalo dado. Vamos buscar a raiz que está no subintervalo $[4,6]$. Para tanto, vamos deamplificar a plotagem.
 
-# In[6]:
+# In[7]:
 
 
 z = np.linspace(4,6,100)
-plot(z,z/(1 - 2*z) - np.tan(z+1),z,0*z);
+plot(z,z/(1 - 2*z) - np.tan(z+1),'g',z,0*z,'k:');
 
 
 # - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
-# In[7]:
+# In[8]:
 
 
 zm = bissecao('z/(1 - 2*z) - tan(z+1)',4,6,1e-5,20)
@@ -208,7 +215,7 @@ zm = bissecao('z/(1 - 2*z) - tan(z+1)',4,6,1e-5,20)
 
 # - A raiz aproximada $z^{*}$, tal que para $h(z^{*}) = 0$ é mostrada na última linha da tabela. Isto é,
 
-# In[8]:
+# In[9]:
 
 
 # raiz aproximada
@@ -219,7 +226,7 @@ zm
 # 
 # Primeiramente, definiremos uma função para retornar a equação particular.
 
-# In[11]:
+# In[10]:
 
 
 def eq_paraq(tempo,massa,vel,grav):
@@ -262,7 +269,7 @@ def eq_paraq(tempo,massa,vel,grav):
 
 # Em seguida, inserimos valores de entrada para teste. 
 
-# In[12]:
+# In[11]:
 
 
 # parâmetros de entrada
@@ -274,16 +281,16 @@ fs,fn = eq_paraq(tempo,massa,vel,grav)
 
 # O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.
 
-# In[13]:
+# In[12]:
 
 
 c = np.linspace(1,20)
-plot(c,fn(c),c,0*c);
+plot(c,fn(c),'g',c,0*c,'k:');
 
 
 # Encerrando, chamamos a função.
 
-# In[14]:
+# In[13]:
 
 
 cm = bissecao(str(fs),14,17.0,1e-4,20)
@@ -291,7 +298,7 @@ cm = bissecao(str(fs),14,17.0,1e-4,20)
 
 # Como se vê, o coeficiente de arrasto aproximado para este caso é dado por:
 
-# In[15]:
+# In[14]:
 
 
 cm
@@ -317,4 +324,8 @@ cm
 # 2. Defina o(s)intervalo(s) adequados(s) de localização da raiz.
 # 3. Aplique o método da bisseção para determinar uma aproximação para $x$ com erro inferior a $10^{-5}$.
 
-# 
+# In[15]:
+
+
+plt.rcdefaults()
+

@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -139,17 +140,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Análise gráfica de funções não lineares
+   4. Análise gráfica e aproximações sucessivas
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-04-bissecao.html">
-   5. Implementação do método da bisseção
+   5. Método da Bisseção
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="aula-06-newton.html">
-   6. Implementação do método de Newton
+   6. Método de Newton
   </a>
  </li>
  <li class="toctree-l1">
@@ -980,7 +981,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-computacional-basica">
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-computacional-basica">
 <h1><span class="section-number">9. </span>Álgebra Linear Computacional básica<a class="headerlink" href="#algebra-linear-computacional-basica" title="Permalink to this headline">#</a></h1>
 <section id="objetivos">
 <h2><span class="section-number">9.1. </span>Objetivos<a class="headerlink" href="#objetivos" title="Permalink to this headline">#</a></h2>
@@ -1055,8 +1058,6 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1064,9 +1065,6 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 3 -2  1]
  [-2  4  0]
  [ 9  0  0]]
-[[ 3 -2  9]
- [-2  4  0]
- [ 1  0  0]]
 </pre></div>
 </div>
 </div>
@@ -1241,27 +1239,6 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1  2]
- [ 3  4]]
-[[-2  4]
- [ 6  8]]
-[[0.5 0.5]
- [0.5 0.5]]
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="produto-interno">
 <h3><span class="section-number">9.4.2. </span>Produto interno<a class="headerlink" href="#produto-interno" title="Permalink to this headline">#</a></h3>
@@ -1345,8 +1322,9 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[25.66666667, 22.        ],
-       [33.        , 80.66666667]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 22,  44, -42],
+       [-14, -28,  60],
+       [ 27,  54, -54]])
 </pre></div>
 </div>
 </div>
@@ -1354,7 +1332,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </section>
 <section id="produto-entre-matriz-e-vetor">
 <h3><span class="section-number">9.4.5. </span>Produto entre matriz e vetor<a class="headerlink" href="#produto-entre-matriz-e-vetor" title="Permalink to this headline">#</a></h3>
-<p>Neste caso, sendo <span class="math notranslate nohighlight">\({\vec{\vec A}}\)</span> (dois símbolos indicam que a matriz é uma grandeza de ordem 2, ao passo que o vetor é de ordem 1 e aqui usamos para consistência de notação) e <span class="math notranslate nohighlight">\({\vec{b}}\)</span> uma matriz <span class="math notranslate nohighlight">\(m \times n\)</span> e um vetor <span class="math notranslate nohighlight">\(n \times 1\)</span>, respectivamente, o produto <span class="math notranslate nohighlight">\(\vec{\vec{A}}\vec{b}\)</span> é dado por:</p>
+<p>Neste caso, sendo <span class="math notranslate nohighlight">\({\vec{\vec A}}\)</span> (dois símbolos indicam que a matriz é uma grandeza de ordem 2, ao passo que o vetor é de ordem 1 e aqui usamos para consistência de notação) uma matriz <span class="math notranslate nohighlight">\(m \times n\)</span> e <span class="math notranslate nohighlight">\({\vec{b}}\)</span> e um vetor <span class="math notranslate nohighlight">\(n \times 1\)</span>, respectivamente, o produto <span class="math notranslate nohighlight">\(\vec{\vec{A}}\vec{b}\)</span> é dado por:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
@@ -1364,16 +1342,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13773</span><span class="o">/</span><span class="mf">88528875.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
-
-<span class="ne">ValueError</span>: shapes (2,2) and (3,) not aligned: 2 (dim 1) != 3 (dim 0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 10, 27])
 </pre></div>
 </div>
 </div>
@@ -1402,7 +1371,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-10.000000000000002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-36.0
 </pre></div>
 </div>
 </div>
@@ -1455,14 +1424,7 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">gustavo</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">courses</span><span class="o">/</span><span class="n">calculo</span><span class="o">-</span><span class="n">numerico</span><span class="o">/</span><span class="n">LVMN</span><span class="o">/</span><span class="n">aula</span><span class="o">-</span><span class="mi">08</span><span class="n">a</span><span class="o">-</span><span class="n">matrizes</span><span class="o">-</span><span class="n">vetores</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">51</span> <span class="ow">in</span> <span class="mi">1</span>
-<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
-      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=2&#39;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/Users/gustavo/Dropbox/courses/calculo-numerico/LVMN/aula-08a-matrizes-vetores.ipynb#Y101sZmlsZQ%3D%3D?line=4&#39;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="c1"># solução</span>
-
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.32608696 1.80434783]
 </pre></div>
 </div>
 </div>
@@ -1479,8 +1441,8 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.24  0.08]
- [ 0.04  0.32]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.2173913   0.04347826]
+ [ 0.13043478  0.17391304]]
 </pre></div>
 </div>
 </div>
@@ -1494,7 +1456,7 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.4  3.4]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.32608696 1.80434783]
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1469,7 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True])
 </pre></div>
 </div>
 </div>
@@ -1604,8 +1566,9 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.66666667,  0.        ],
-       [11.        , 14.66666667]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  0,  0],
+       [-2, -4,  0],
+       [ 9, 18,  0]])
 </pre></div>
 </div>
 </div>
@@ -1671,7 +1634,7 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1400549446402595 -5.1400549446402595
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1400549446402586 -5.1400549446402595
 [0.99033427 0.13870121]
 [-0.13870121  0.99033427]
 </pre></div>
@@ -1893,12 +1856,7 @@ dx + ey = f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13773</span><span class="o">/</span><span class="mf">3156693447.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">O2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;O2&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
 </pre></div>
 </div>
 </div>
@@ -1926,6 +1884,8 @@ dx + ey = f
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_remove-input docutils container">
 </div>
 </section>
 </section>
@@ -1980,7 +1940,7 @@ dx + ey = f
   
     By Prof. Gustavo Oliveira<br/>
   
-      &copy; Copyright 2023.<br/>
+      &copy; Copyright 2024.<br/>
 </p>
         </footer>
     </div>

@@ -127,6 +127,7 @@ plt.legend();
 # In[5]:
 
 
+
 def trapezoidal(t0,tf,y0,h,f,tol):
     
     n = round((tf - t0)/h) + 1

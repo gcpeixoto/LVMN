@@ -53,7 +53,7 @@
 
 # ```{figure} ../figs/precisao-acuracia.png
 # ---
-# name: fig-odometro
+# name: fig-prec
 # alt: Precisão vs. acurácia
 # align: center
 # width: 300px

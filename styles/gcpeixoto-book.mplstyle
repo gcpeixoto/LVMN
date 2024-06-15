@@ -1,23 +1,36 @@
 # gcpeixoto-book.mplstyle
 
-# AXES
-axes.titlesize: 16
-axes.labelsize: 14
-axes.edgecolor: (0.95, 0.85, 0.8)
-axes.labelcolor: (0.54,0.54,0.54)
-axes.linewidth: 1
-axes.spines.top: False
-axes.spines.right: False
-axes.spines.bottom: True
-axes.spines.left: True
+axes.facecolor     : (0.92,0.96,0.92)
+axes.edgecolor     : black
+axes.grid          : True
+axes.axisbelow     : True
+axes.labelcolor    : black
+axes.titlesize     : 12
+axes.labelsize     : 10
+axes.linewidth     : 1.0
+axes.spines.top    : False
+axes.spines.right  : False
+axes.spines.bottom : True
+axes.spines.left   : True
 
+figure.facecolor   : white
+figure.edgecolor   : white
 
-# GRID
-axes.grid: True
-grid.alpha: 0.5
-grid.linestyle: -
-grid.linewidth: 0.5
+grid.color         : white
+grid.linestyle     : -
+grid.linewidth     : 1.5
 
-# LINES
-lines.linewidth: 2
-lines.color: (0.75, 0.35, 0.1)
+xtick.color        : black
+ytick.color        : black
+
+lines.linewidth    : 1.5
+lines.markersize   : 6
+
+savefig.facecolor  : white
+savefig.edgecolor  : white
+savefig.transparent: False
+
+text.color         : black
+
+xtick.labelsize    : 8
+ytick.labelsize    : 8

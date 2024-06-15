@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Aritmética computacional
 # 
 # Computadores representam números inteiros de maneira exata [{ref}`clipping-decimal`]. Entretanto, números reais possuem apenas representações aproximadas e em quantidades finitas. A aritmética computacional comumente opera com números inteiros e com os chamados _números em ponto flutuante._
@@ -52,7 +59,7 @@
 
 # - $1/10 + 1/10 + 1/10 \neq 3/10$
 
-# In[139]:
+# In[5]:
 
 
 1/10 + 1/10 + 1/10 == 3/10
@@ -60,7 +67,7 @@
 
 # - Multiplicação por fracionários
 
-# In[5]:
+# In[6]:
 
 
 # note a variabilidade de dígitos após o ponto
@@ -74,7 +81,7 @@ for x in [0.3, 0.33, 0.333, 0.3333, 0.33333, 0.333333, 0.3333333, 0.333333333]:
 # 
 # Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.
 
-# In[141]:
+# In[7]:
 
 
 # imprime número com 55 dígitos
@@ -83,14 +90,14 @@ print(format(0.1,'.55f'))
 
 # Notemos que tentar aumentar os dígitos não produzirá significância:
 
-# In[142]:
+# In[8]:
 
 
 # imprime número com 60 dígitos
 print(format(0.1,'.60f'))
 
 
-# In[143]:
+# In[9]:
 
 
 # imprime número com 80 dígitos
@@ -99,7 +106,7 @@ print(format(0.1,'.80f'))
 
 # Portanto, quando somamos 1/10 + 1/10 + 1/10 vemos um número diferente de 3/10.
 
-# In[144]:
+# In[10]:
 
 
 # imprime número com 55 dígitos
@@ -123,7 +130,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Em termos de código, a notação científica em base 10 pode ser realizada da seguinte forma:
 
-# In[9]:
+# In[11]:
 
 
 2.65e0, 1.2e-6, 0.4532e4, 1e1
@@ -134,7 +141,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # Nesta seção são dados exemplos de como converter números entre os sistemas mais comuns: binário, decimal e hexadecimal.
 # 
 
-# In[146]:
+# In[12]:
 
 
 # (100)_2 -> base 10
@@ -150,7 +157,7 @@ c = bin(4)
 print(c)
 
 
-# In[147]:
+# In[13]:
 
 
 # (222)_8
@@ -167,7 +174,7 @@ c = oct(146)
 print(c)
 
 
-# In[148]:
+# In[14]:
 
 
 # (2AE4)_16
@@ -189,7 +196,7 @@ print(c)
 # 
 # O código abaixo é um protótipo para implementação de uma máquina binária. Uma versão muito mais robusta e melhor implementada pode ser vista aqui: https://vnicius.github.io/numbiosis/conversor/index.html.
 
-# In[10]:
+# In[15]:
 
 
 """
@@ -306,7 +313,7 @@ if __name__ == "__main__":
 # 
 # Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-# In[7]:
+# In[25]:
 
 
 from matplotlib.pyplot import subplots
@@ -317,8 +324,8 @@ x = [1/4,1/2,1,2,5/16,5/8,5/4,5/2,3/8,3/4,3/2,3,7/16,7/8,7/4,7/2]
 x = sorted(x)
 
 fig, ax = subplots(figsize=(8,1),constrained_layout=True)
-ax.plot(x,16*[0],':')
-ax.plot(x,16*[0],'o');
+ax.plot(x,16*[0],':k')
+ax.plot(x,16*[0],'og');
 ax.spines['top'].set_visible(False)
 ax.spines['left'].set_visible(False)
 ax.spines['right'].set_visible(False)
@@ -334,7 +341,7 @@ ax.set_xlim([0.23,3.6]);
 # 
 # O código abaixa gera uma reta perfurada para o sistema computacional de interesse.
 
-# In[10]:
+# In[28]:
 
 
 import numpy as np
@@ -367,7 +374,7 @@ X = np.zeros(Y.shape)
 
 # plotagem
 fig, ax = subplots(figsize=(8,1),constrained_layout=True)
-ax.scatter(Y,X,marker='o');
+ax.scatter(Y,X,marker='o',color='g');
 ax.get_yaxis().set_visible(False)
 
 
@@ -401,7 +408,7 @@ ax.get_yaxis().set_visible(False)
 
 # A seguinte função imprime os valores dos principais atributos de `numpy.finfo` que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.
 
-# In[36]:
+# In[18]:
 
 
 import numpy as np 
@@ -439,7 +446,7 @@ def print_attribute(dtype: str, attrib: str) -> None:
 
 # A partir daí, podemos verificar os valores para cada sistema individualmente:
 
-# In[39]:
+# In[19]:
 
 
 print('--- float16 \n')
@@ -499,7 +506,7 @@ for attrib in ['eps', 'max', 'min', 'tiny', 'nexp', 'nmant']:
 # 
 # começa a se aproximar de zero por cancelamento subtrativo e o valor de $f$ torna-se cada vez mais instável até cair a "zero".
 
-# In[153]:
+# In[29]:
 
 
 from matplotlib.pyplot import subplots
@@ -509,7 +516,7 @@ fig, ax = subplots(figsize=(6,3),constrained_layout=True)
 
 e = linspace(1e-17,1e-12,num=200)
 f = ((1+e)-1)/e
-ax.loglog(e,f)
+ax.loglog(e,f,'g')
 ax.axhline(y=1,ls=':',c=[0.6,0.6,0.6])
 ax.axvline(x=finfo(float).eps,ls=':',c=[0.6,0.6,0.6])
 ax.set_xlabel('$\epsilon$',fontsize=10)
@@ -526,7 +533,7 @@ ax.set_title('Variação relativa a $\epsilon \\to \epsilon_M $');
 # 
 # A partir desses valores especiais, operáveis pelo módulo _numpy_ com `numpy.nan` e `numpy.inf`, respectivamente, podemos imitar operações matemáticas "equivalentes". Primeiramente, façamos:
 
-# In[19]:
+# In[21]:
 
 
 from numpy import nan, inf
@@ -537,7 +544,7 @@ from numpy import nan, inf
 # 
 # - $n \div \pm \infty \to \pm 0, n \in \mathbb{F}$
 
-# In[155]:
+# In[22]:
 
 
 2.1/inf, -4/inf, 5.2/-inf, 6/-inf
@@ -545,7 +552,7 @@ from numpy import nan, inf
 
 # - $\pm \infty \times \pm \infty \to \pm \infty$
 
-# In[156]:
+# In[23]:
 
 
 inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
@@ -553,7 +560,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $n \div \pm 0 \to \ \ !, n \in \mathbb{F}^{*}$
 
-# In[157]:
+# In[24]:
 
 
 1/0, -2/0, 3/(-0), 4/(-0)
@@ -585,7 +592,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm \infty \div \pm \infty \to \text{nan}$
 
-# In[20]:
+# In[ ]:
 
 
 inf/inf, inf/-inf, -inf/inf, -inf/-inf
@@ -735,3 +742,9 @@ nan == nan, nan != nan
 # Todos os acima e os negativos, i.e.:
 # 
 # $$0.0, \pm 0.25, \pm 0.3125, \dots, \pm 3.5$$
+
+# In[ ]:
+
+
+plt.rcdefaults()
+

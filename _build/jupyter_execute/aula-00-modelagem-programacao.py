@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Modelagem Matemática em Ciências Computacionais e Engenharias
 # 
 # Ao deparar-se com um problema real, profissionais com envolvimento nos diversos setores da economia buscam as melhores estratégias existentes em seu campo de atuação para resolvê-lo. Supondo que um problema específico possua apenas uma solução e que pudéssemos assemelhá-lo a uma questão específica, a solução desse problema equivaleria à resposta para a pergunta e a forma de respondê-la à estratégia seguida para buscar a solução, a qual também poderíamos chamar de _método_. 
@@ -30,11 +37,11 @@
 # 
 # Um modelo matemático pode ser definido, de forma geral, como uma formulação ou equação que expressa as características essenciais de um sistema ou processo físico em termos matemáticos. A fórmula pode variar de uma simples relação algébrica a um conjunto grande e complicado de equações diferenciais. 
 # 
-# Por exemplo, com base em suas observações, Newton formulou sua segunda lei do movimento. Se escrevermos a taxa de variação temporal da velocidade pela derivada $\frac{dv}{dt}$ (em $m/s)$, um modelo matemático que obtemos para a segunda lei de Newton é
+# Por exemplo, com base em suas observações, Newton formulou sua segunda lei do movimento. Se escrevermos a taxa de variação temporal da velocidade pela derivada $\frac{d\vec{v}}{dt}$, um modelo matemático que obtemos para a segunda lei de Newton é
 # 
-# $$\dfrac{dv}{dt} = \dfrac{F}{m},$$
+# $$\dfrac{d\vec{v}}{dt} = \dfrac{\vec{F}}{m},$$
 # 
-# onde $F$ é a força resultante (em $N$) agindo sobre o corpo e $m$ a massa (em $kg$).
+# onde $\vec{F}$ é a força resultante agindo sobre o corpo e $m$ a massa.
 # 
 # Este modelo matemático, assim como vários outros, possui as seguintes características:
 # 
@@ -42,9 +49,9 @@
 # 
 # - representam uma idealização (simplificação) da realidade. Isto é, o modelo ignora alguns "detalhes" do processo natural e se concentra em suas manifestações essenciais;
 #  
-# - produzem resultados que podem ser reproduzidos e usados para propósitos de previsão. Por exemplo, se a força sobre um corpo e a sua massa forem conhecidas, o modelo pode ser usado para estimar a aceleração $a=\frac{dv}{dt}$ do corpo.
+# - produzem resultados que podem ser reproduzidos e usados para propósitos de previsão. Por exemplo, se a força sobre um corpo e a sua massa forem conhecidas, o modelo pode ser usado para estimar a aceleração $\vec{a}=\frac{d\vec{v}}{dt}$ do corpo.
 # 
-# Consideremos um paraquedista em queda livre. Durante seu movimento, duas forças principais atuam sobre ele. A força gravitacional $F_G$, com sentido para baixo, e a força da resistência do ar (arrasto) $F_D$, em sentido oposto. Se o sentido positivo for conferido à força gravitacional, podemos modelar a força resultante como
+# Consideremos um paraquedista em queda livre. Durante seu movimento, duas forças principais atuam sobre ele. A força gravitacional $\vec{F_G}$, com sentido para baixo, e a força da resistência do ar (arrasto) $\vec{F_D}$, em sentido oposto. Se o sentido positivo for conferido à força gravitacional e simplificarmos o movimento para apenas uma direção (equação vetorial reduzindo-se a uma equação escalar), podemos modelar a força resultante como
 # 
 # $$F = F_G - F_D = mg - cv,$$
 # 
@@ -68,41 +75,39 @@
 # 
 # Procuramos pelo(s) valor(es) de uma variável ou parâmetro que satisfaz(em) uma equação não-linear. Utilizamos métodos para localizar os chamados "zeros" da função e os aplicamos a diversos projetos onde aparecem equações impossíveis de serem resolvidas de forma explícita. Em geral, problemas nesta classe, em uma dimensão, para uma função $f$ não linear, podem ser descritos como:
 # 
-# $$\text{Encontre } x, \text{tal que } f(x) = 0, \text{para} \  x \in I \subset \mathbb{R}.$$
+# > encontre $x$, tal que $f(x) = 0$, para $x \in I \subset \mathbb{R}$.
 
 # ### Sistemas de equações em n-dimensões
 # 
 # Procuramos por vetores cujas componentes satisfazem simultaneamente a um sistema de $n$ equações lineares ou não-lineares. Nesta classe de problemas, em geral, uma matriz $\textbf{A}$ representa a estrutura interconectada de um sistema físico (estruturas mecânicas, circuitos elétricos, malhas hídricas etc.) e um vetor $\textbf{b}$ representa as condições impostas ao sistema (cargas, tensões, pressões etc.). No caso de um sistema linear $n\times n$, um problema recorrente é descrito por:
 # 
-# $$\text{Encontre } \textbf{x}_{n \times 1} \in I \subset \mathbb{R}^n, \text{tal que } \textbf{A}_{n \times n} \textbf{x}_{n \times 1} = \textbf{b}_{n \times 1}.$$
+# > encontre $\textbf{x}_{n \times 1} \in I \subset \mathbb{R}^n$, tal que $\textbf{A}_{n \times n} \textbf{x}_{n \times 1} = \textbf{b}_{n \times 1}.$
 
 # ### Ajuste de curvas
 # 
 # Procuramos por equações que expressam curvas (retas, parábolas, exponenciais etc.) que explicam o comportamento de dados que puderam ser medidos experimentalmente e/ou foram estruturados na forma de tabelas. Problemas de ajuste de curvas competem à uma área denominada _Teoria da Aproximação_ e são divididos em duas categorias: _regressão_ e _interpolação_. Regressões são empregadas a casos onde há um grau significativo de erro associado aos dados ou quando se busca uma descrição "média" de como eles se comportam. Por outro lado, interpolações são usadas quando desejamos encontrar valores intermediários desconhecidos a partir de valores "vizinhos" conhecidos e, principalmente, quando os dados são relativamente livres de ruídos. Como esta classe de problemas associa-se fortemente a planilhas, uma forma simplificada de descrever suas aplicações é por meio de pares de dados. Assim, um problema típico de ajuste de curvas seria o seguinte:
 # 	
-# $$\text{Dados } \{(x_i,y_i)\}_{i = 1}^n, \text{determine } \phi, \text{tal que } y_i = \phi(x_i) + {\epsilon}_i.$$
-# 	
-# Se $\epsilon_i \neq 0, \forall i$, o problema é de interpolação. Senão, é de regressão.  
+# > dada a dispersão de pontos $\{(x_i,y_i)\}_{i = 1}^n$, determine $\phi$, tal que $y_i = \phi(x_i) + {\epsilon}_i$, para $i = 1,2,\ldots,n$. Se $\epsilon_i = 0 \ \ \forall i$, o problema é de interpolação. Senão, é de regressão.  
 
 # ### Integração numérica
 # 
 # buscamos o valor aproximado da quantidade interpretada como "área sob a curva". Em sentido aplicado, integrações numéricas são realizadas quando a função integrando não admite uma antiderivada, ou quando não é simples de obtê-la por meios conhecidos (ex. integração por partes, substituição, frações parciais). Podem existir inúmeras situações onde a integração numérica é necessária, principalmente no cálculo de centroides, volumes, vazões, energia, entre outros. O problema geral da integração numérica é:
 # 
-# $$\text{Compute } I, \text{tal que } I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n.$$
+# > calcule $I$, tal que $I = \int_{a_1}^{b_1} \int_{a_2}^{b_2} \ldots \int_{a_n}^{b_n} f(x_1,x_2,\ldots,x_n) \, dx_1 \, dx_2 \ldots dx_n$.
 # 
-# Entretanto, para casos práticos, a dimensão máxima para o integrando costuma ser 3, de modo que basta aprendermos a calcular integrais simples, duplas e triplas.
+# Entretanto, para casos práticos, a dimensão máxima para o integrando costuma ser 3. Aprender a calcular integrais simples, duplas e triplas numericamente é suficiente para um enorme portfólio.
 
 # ### Diferenciação numérica e equações diferenciais ordinárias (EDOs)
 # 
 # Os problemas de EDOs atrelam-se aos mais diversos fenômenos físicos e leis que os governam. Geralmente, as taxas de variação de uma quantidade são mais importantes do que a quantidade em si. Métodos numéricos para EDOs utilizam _derivadas numéricas_ e são aplicados para fazer predições populacionais, estudar aceleração de corpos,  estimar transferências de quantidades (movimento, massa, calor etc.). Dois tipos de problemas surgem baseados em EDO: problemas de valor inicial (PVIs) e problemas valor de contorno (PVCs). PVIs partem do conhecimento de uma condição inicial para o sistema físico e os métodos numéricos ajudam a descobrir o comportamento posterior do sistema. PVCs são aplicados a problemas em que um dado domínio deve obedecer a certas restrições em sua fronteira ou borda (ex. fluxo de calor dependente da posição, temperatura fixa). Um exemplo de problema cuja solução da EDO dá-se por um algoritmo de "passo simples" seria:
 # 
-# $$\text{Dada} \dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y), \text{resolva para } y \text{ com } y_{i+1} = y_i + f(t_i,y_i)\Delta t.$$ 
+# > dada $\dfrac{dy}{dt} \approx \dfrac{\Delta y}{\Delta t} = f(t,y)$, resolva para $y$ com $y_{i+1} = y_i + f(t_i,y_i)\Delta t$. 
 
 # ### Equações diferenciais parciais (EDPs)
 # 
 # Assim como EDOs, EDPs aplicam-se à modelagem de diversos fenômenos e leis físicas em que as taxas de variação de uma certa quantidade dependem de duas ou mais variáveis independentes. EDPs permeiam quase que a totalidade dos modelos complexos da realidade nas ciências exatas cujas variações ocorrem, especialmente no espaço ou no espaço-tempo (ex. comportamento de fluidos, processos químicos, fenômenos biológicos). Métodos numéricos para EDPs resolvem problemas como o seguinte:
 # 
-# $$\text{Dada } f(x,y), \text{encontre } u(x,y) \text{ tal que } \dfrac{\partial^2 u}{\partial x^2} + \dfrac{\partial^2 u}{\partial x^2} = f(x,y), \ \ \forall (x,y) \in \mathbb{R}^2.$$
+# > dada $f(x,y)$, encontre $u(x,y)$ tal que $\dfrac{\partial^2 u}{\partial x^2} + \dfrac{\partial^2 u}{\partial x^2} = f(x,y), \ \ \forall (x,y) \in \mathbb{R}^2$.
 
 # ## O salto de paraquedas de Yan e Celso 
 # 
@@ -110,7 +115,7 @@
 # 
 # Utilizando a fórmula acima, podemos calcular a velocidade atingida por Yan em relação ao tempo. Vejamos como escrever um simples programa para calcular $v(t)$ nos 10 primeiros segundos do salto, que foi o tempo que Yan permaneceu em queda até a abertura do paraquedas.
 
-# In[1]:
+# In[2]:
 
 
 # velocidade no salto de Yan
@@ -132,13 +137,12 @@ fig, ax = subplots(figsize=(8,4))
 ax.plot(v_yan,'o-g')
 ax.set_xlabel('tempo [s]')
 ax.set_ylabel('velocidade [m/s]')
-ax.set_title('Salto de Yan')
-ax.grid()
+ax.set_title('Salto de Yan');
 
 
 # Porém, Celso, irmão de Yan, também saltou com ele, em separado. Celso, tem mais 20kg a mais do que Yan. Então, vamos ver como a massa influenciou a velocidade no salto de Celso e comparas as curvas. Podemos usar o mesmo programa, porém alterar o valor da massa.
 
-# In[14]:
+# In[3]:
 
 
 # velocidade no salto de Yan
@@ -157,18 +161,17 @@ else:
     
 # plotagem    
 fig, ax = subplots(figsize=(8,4))
-ax.plot(v_celso,'o-b')
+ax.plot(v_celso,'s-g')
 ax.set_xlabel('tempo [s]')
 ax.set_ylabel('velocidade [m/s]')
-ax.set_title('Salto de Celso')
-ax.grid()
+ax.set_title('Salto de Celso');
 
 
 # Nossos cálculos mostram que, para 10 segundos, Yan e Celso atingiram velocidades de cerca de 43,51 m/s e 51,33 m/s, respectivamente. Em outras palavras, com 30% a mais de massa, Celso teve sua velocidade acrescida de 18% em relação à de Yan. Por isso, certamente chegou ao solo antes de seu irmão. 
 # 
 # Uma forma de aperfeiçoar o que fizemos seria escrever um código único, válido não só para os saltos de Yan e Celso, mas também para qualquer outra pessoa. Considerando a mesma condição do ambiente, seria mais ou menos assim:
 
-# In[1]:
+# In[4]:
 
 
 from numpy import arange, exp
@@ -197,12 +200,11 @@ t_celso, v_celso = v(85,1,10)
 # plotagem    
 fig, ax = subplots(figsize=(8,4))
 ax.plot(t_yan,v_yan,'o-g',label='Yan')
-ax.plot(t_celso,v_celso,'o-b',label='Celso')
+ax.plot(t_celso,v_celso,'s-g',label='Celso')
 ax.set_xlabel('tempo [s]')
 ax.set_ylabel('velocidade [m/s]')
 ax.set_title('Saltos de Yan e Celso')
-ax.legend()
-ax.grid()
+ax.legend();
 
 
 # 
@@ -217,7 +219,7 @@ ax.grid()
 # 
 # em cada caso para computar esses deslocamentos. No Python, podemos fazer isso com o código abaixo (que você entenderá mais tarde como fazer).
 
-# In[17]:
+# In[5]:
 
 
 from sympy import symbols, exp, integrate
@@ -265,7 +267,7 @@ print(f'Celso voou incríveis DC = {s2:.2f} metros em 10 segundos!')
 # - imprimir o valor da área de um triângulo.
 # 
 
-# In[4]:
+# In[6]:
 
 
 # ponto.py
@@ -309,7 +311,7 @@ class Ponto:
 
 # #### Exemplo: usando a classe `ponto.py` para calcular a área de um triângulo retângulo
 
-# In[5]:
+# In[7]:
 
 
 # Cálculo da área para o triângulo 
@@ -321,7 +323,7 @@ P3 = Ponto(0.0,1.0)
 Ponto.imprime_area_triangulo(P1,P2,P3)
 
 
-# In[6]:
+# In[8]:
 
 
 # plotagem do triângulo
@@ -333,7 +335,7 @@ plt.gca().add_patch(pol);
 
 # #### Exemplo: usando a classe `ponto.py` para calcular a área de um triângulo qualquer
 
-# In[7]:
+# In[9]:
 
 
 # Cálculo da área para o triângulo 
@@ -430,3 +432,9 @@ plt.fill(Px,Py,color='green',alpha=0.4);
 # A datificação está se consolidando como o quarto paradigma da ciência e a engenharia será cada vez mais influenciada por uma cultura baseada em dados. No [TRIL Lab](http://tril.ci.ufpb.br), defendemos uma formação estratégica e trabalhamos para que nossos alunos e colaboradores se adaptem a um cenário que demanda cada vez mais habilidades flexíveis e interdisciplinaridade. Em um mundo centrado em dados, a engenharia computacional terá um leque incomensurável de oportunidades, compreendendo, modelando e resolvendo problemas de engenharia do mundo real.
 # 
 # O conteúdo deste livro tem o objetivo de proporcionar a nossos estudantes uma formação moderna e ampla em métodos numéricos com aplicações às ciências computacionais e engenharias. Entretanto, qualquer perfil profissional que se beneficie da computação científica terá nele um estímulo adicional para enveredar-se pelo frutífero e versátil universo das técnicas fundamentais da engenharia computacional.
+
+# In[10]:
+
+
+plt.rcdefaults()
+

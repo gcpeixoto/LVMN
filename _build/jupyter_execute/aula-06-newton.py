@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Método de Newton
 # 
 # O Método de Newton, também conhecido como Método das Tangentes, é uma técnica numérica amplamente utilizada para encontrar aproximações das raízes de funções reais. Desenvolvido por Isaac Newton, esse método é conhecido por sua eficiência e rapidez na convergência, especialmente quando a aproximação inicial está próxima da raiz verdadeira.
@@ -38,7 +45,7 @@
 # - o erro relativo assumido, representado por `tol`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `nmax`.
 
-# In[15]:
+# In[2]:
 
 
 import inspect, re, numpy as np
@@ -122,7 +129,7 @@ def newton(x0,f,df,tol,N):
 # 
 # **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
-# In[16]:
+# In[3]:
 
 
 # Chamada da função
@@ -137,7 +144,7 @@ xm = newton(-0.1,
 
 # Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função $h(z)$. Vamos encontrá-la utilizando o módulo de computação simbólica `sympy`.
 
-# In[3]:
+# In[4]:
 
 
 # Importa variável z como símbolo
@@ -153,7 +160,7 @@ print(dh)
 
 # A partir daí, utilizamos a expressão normalmente na função.
 
-# In[4]:
+# In[5]:
 
 
 zm = newton(5,
@@ -250,3 +257,9 @@ zm = newton(5,
 # 
 # - Crie um código genérico que implemente o algoritmo do método de Newton de modo que a derivada seja calculada diretamenta por computação simbólica, sem intervenção manual, quando for possível.
 # - Faça uma implementação do método de Newton para otimização e uma para o método de Halley. Em seguida, incorpore a capacidade de cálculo das derivadas de maneira automática.
+
+# In[6]:
+
+
+plt.rcdefaults()
+

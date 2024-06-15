@@ -484,6 +484,8 @@ ax.fill_between(ano,150*v1,200*v1,facecolor='r',alpha=0.1)
 # In[17]:
 
 
+
+
 # plotagem
 fig,ax = plt.subplots(1,1)
 p = resolve_ajuste(ano,hab,2)
@@ -517,7 +519,6 @@ np.shape(lim100)
 print('Marca de 100 milhões de pessoas: ' + str(anos[lim100[0][0]]))
 print('Marca de 150 milhões de pessoas: ' + str(anos[lim150[0][0]]))
 print('Marca de 200 milhões de pessoas: ' + str(anos[lim200[0][0]]))
-
 
 
 # In[19]:

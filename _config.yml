@@ -4,8 +4,8 @@
 title: "Métodos Numéricos para Ciências Computacionais e Engenharia"
 author: Prof. Gustavo Oliveira
 logo: "styles/numbiosis.png" # Leave it with "" for none
-copyright: "2023"
-exclude_patterns: [_build,Thumds.db,.DS_Store,"**.ipynb_checkpoints","/rise/*.ipynb","README.md"]
+copyright: "2024"
+exclude_patterns: [_build,Thumds.db,.DS_Store,"**.ipynb_checkpoints","/rise/*.ipynb","README.md","/etc/*"]
 
 # Change this to "on" to have notebooks executed
 execute:
@@ -84,3 +84,4 @@ sphinx:
   extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
   local_extensions          :   # A list of local extensions to load by sphinx specified by "name: path" items
   config                    :   # key-value pairs to directly over-ride the Sphinx configuration
+  

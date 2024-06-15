@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
+import matplotlib.pyplot as plt
+plt.style.use('styles/gcpeixoto-book.mplstyle')
+
+
 # # Análise gráfica e aproximações sucessivas
 # 
 # Saber realizar plotagens básicas para analisar o comportamento de funções-alvo (aquelas para as quais procuramos raízes) é essencial para a compreensão de métodos baseados em aproximações sucessivas.
@@ -28,19 +35,19 @@
 # 
 # ### Variáveis e parâmetros
 # 
-# Em nosso curso, tratamos da determinação de raízes de equações não-lineares em uma dimensão (1D). Isto significa que apenas uma variável é usada como dependente, embora a variável dependente possa requerer depender de outras quantidades para ser computada. No caso da função $v$ acima, o tempo$t$está sendo tomado como a única variável independente, ao passo que a aceleração da gravidade$g$, a massa$m$e o coeficiente de arrasto$c$tornam-se _parâmetros_. 
+# Em nosso curso, tratamos da determinação de raízes de equações não-lineares em uma dimensão (1D). Isto significa que apenas uma variável é usada como dependente, embora a variável dependente possa requerer depender de outras quantidades para ser computada. No caso da função $v$ acima, o tempo $t$ está sendo tomado como a única variável independente, ao passo que a aceleração da gravidade $g$, a massa $m$ e o coeficiente de arrasto $c$ tornam-se _parâmetros_. 
 # 
 # Aplicando-se uma notação matemática estendida, poderíamos escrever 
 # 
-# $$v = f({\color{red}t};{\color{blue}g},{\color{blue}m},{\color{blue}c}),$$
+# $$v = f({\color{red}t};{\color{green}g},{\color{green}m},{\color{green}c}),$$
 # 
 # onde destacamos a variável independente em vermelho e os parâmetros em azul, após o ponto-e-vírgula. Entretanto, qualquer um dos parâmetros poderia ser analisado sob o ponto de vista de variável, assumindo-se as outras quantidades como parâmetros. Para este mesmo exemplo, se quiséssemos estudar a dependência de $v$ por variação de$g$, teríamos de manter $m$, $c$ e $t$ _fixados_, obtendo uma forma tal que
 # 
-# $$v = f({\color{red}g};{\color{blue}m},{\color{blue}c},{\color{blue}t}).$$
+# $$v = f({\color{red}g};{\color{green}m},{\color{green}c},{\color{green}t}).$$
 # 
 # Se o mesmo raciocínio for utilizado para$c$, a forma 
 # 
-# $$v = f({\color{red}c};{\color{blue}t},{\color{blue}g},{\color{blue}m})$$
+# $$v = f({\color{red}c};{\color{green}t},{\color{green}g},{\color{green}m})$$
 # 
 # indicaria que$c$é a variável independente, enquanto $t$, $g$ e $m$ seriam parâmetros com um valor fixado e conhecido.
 # 
@@ -53,7 +60,7 @@
 # 
 # é a função não-linear a ser estudada, a forma
 # 
-# $$y = f({\color{red}x_k}; {\color{blue}x_1},{\color{blue}x_2},\ldots,{\color{blue}x_{k-1}},{\color{blue}x_{k+1}},\ldots,{\color{blue}x_{n-1}},{\color{blue}x_n})$$
+# $$y = f({\color{red}x_k}; {\color{green}x_1},{\color{green}x_2},\ldots,{\color{green}x_{k-1}},{\color{green}x_{k+1}},\ldots,{\color{green}x_{n-1}},{\color{green}x_n})$$
 # 
 # significaria que a análise é _unidimensional_ sobre a variável$x_k$nos parâmetros$x_1$a$x_n$, excluindo-se$x_k$.
 # 
@@ -61,7 +68,7 @@
 # 
 # A visualização de "cortes" paralelos aos eixos coordenados que resultam da fixação de uma variável (tornando-se parâmetro) e da liberação de outra para um caso em que $f$ é bivariada está disponível abaixo. Ao interagir com a representação visual somos capazes de reconhecer que $f(x_1,x_2)$ recai em uma função univariada se a variável $x_1$ ou $x_2$ for fixada – de modo exclusivo – , assim podendo ser estudada pelas ferramentas aprendidas neste curso.
 
-# In[1]:
+# In[2]:
 
 
 from plotly.offline import plot
@@ -121,7 +128,7 @@ fig.update_layout(
 )
 
 
-# In[2]:
+# In[3]:
 
 
 plot(fig, show_link=False,filename='figs/analise-grafica.html')
@@ -146,7 +153,7 @@ display(HTML('figs/analise-grafica.html'))
 # 
 # Vamos fazer experimentos numéricos e começar com alguns valores iniciais para os parâmetros.
 
-# In[3]:
+# In[4]:
 
 
 import numpy as np
@@ -159,7 +166,7 @@ m = 70.0
 g = 9.81
 
 
-# In[4]:
+# In[5]:
 
 
 # Localização
@@ -167,11 +174,10 @@ a,b = 5,20
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v # f(c) = 0
 
-plt.plot(c,f,'g-',c,c*0,'r--');
-plt.xlabel('c')
-plt.ylabel('f(c)')
-plt.title('Variação do coeficiente de arrasto')
-plt.grid(True)
+plt.plot(c,f,'g-',c,c*0,'k:');
+plt.xlabel('c');
+plt.ylabel('f(c)');
+plt.title('Variação do coeficiente de arrasto');
 
 
 # ### Refinamento
@@ -180,7 +186,7 @@ plt.grid(True)
 # 
 # Nos gráficos abaixo, produzimos uma espécie de refinamento apenas através de plotagens. Até aí, não há nada numérico acontecendo. Porém, isso nos ajuda a selecionar ainda melhor uma condição inicial para o processo iterativo subsequente.
 
-# In[5]:
+# In[6]:
 
 
 # Refinamento
@@ -188,12 +194,11 @@ a,b = 10,20
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-')
-plt.plot(c,0*c,'r--')
-plt.grid()
+plt.plot(c,f,'g-');
+plt.plot(c,0*c,'k:');
 
 
-# In[6]:
+# In[7]:
 
 
 # Refinamento
@@ -202,11 +207,10 @@ c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
 plt.plot(c,f,'g-')
-plt.plot(c,0*c,'r--')
-plt.grid()
+plt.plot(c,0*c,'k:');
 
 
-# In[7]:
+# In[8]:
 
 
 # Refinamento
@@ -214,12 +218,11 @@ a,b = 14.75,15.5
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-')
-plt.plot(c,0*c,'r--')
-plt.grid()
+plt.plot(c,f,'g-');
+plt.plot(c,0*c,'k:');
 
 
-# In[8]:
+# In[9]:
 
 
 # Refinamento
@@ -227,9 +230,8 @@ a,b = 15.12,15.14
 c = np.linspace(a,b,100)
 f = g*m/c*(1 - np.exp(-c/m*t)) - v
 
-plt.plot(c,f,'g-')
-plt.plot(c,0*c,'r--')
-plt.grid()
+plt.plot(c,f,'g-');
+plt.plot(c,0*c,'k:');
 
 
 # Apenas com esses refinamentos, já é possível determinar a raiz única com um erro absoluto de 0.02 unidades, visto que ela está entre 15.12 e 15.14. Além disso, note como, neste intervalo, a curvatura da função não é mais identificável. Isso mostra que, no intervalo $15.10 \leq c \leq 15.20$, $f$ é praticamente "linear". 
@@ -262,7 +264,7 @@ plt.grid()
 # - **Ampere** ($A$): Unidade de corrente elétrica. O ampere é definido pela força eletromagnética entre dois condutores paralelos infinitamente longos e de seção transversal desprezível.
 # - **Kelvin** ($K$): Unidade de temperatura termodinâmica. O kelvin é definido em termos da energia térmica absoluta (temperatura) e da constante de Boltzmann.
 # - **Mol** ($mol$): Unidade de quantidade de substância. O mol é definido pelo número de átomos em 12 gramas de carbono-12, o que corresponde ao número de Avogadro.
-# - **Candela** ($cd$): Unidade de intensidade luminosa. A candela é definida pela intensidade luminosa em uma direção específica de uma fonte que emite radiação monocromática de frequência$540 \times 10^{12}$Hz e tem uma intensidade radiante nessa direção de 1/683 watt por esterradiano.
+# - **Candela** ($cd$): Unidade de intensidade luminosa. A candela é definida pela intensidade luminosa em uma direção específica de uma fonte que emite radiação monocromática de frequência $540 \times 10^{12}$ Hz e tem uma intensidade radiante nessa direção de 1/683 watt por esterradiano.
 # 
 # As unidades básicas relacionam-se com unidades derivadas por meio de multiplicação e divisão, assim produzindo o grande conjunto de quantidades que usamos para quantificar os fenômenos de nosso universo ({numref}`fig-si`).
 # 
@@ -310,7 +312,7 @@ plt.grid()
 # 
 # A seguinte classe é um protótipo de código com maior carga de abstração para simulações genéricas do modelo de velocidade terminal do paraquedista. O propósito é criar plotagens diretas do comportamento de uma variável a partir de parâmetros pré-fixados pelo usuário.
 
-# In[45]:
+# In[10]:
 
 
 import numpy as np, matplotlib.pyplot as plt
@@ -396,7 +398,7 @@ class Parachute:
 # - Simulações para intervalo de massa em 4 durações de tempo diferentes:
 #     - Essa faixa de massa corresponde a de adultos?
 
-# In[51]:
+# In[11]:
 
 
 curves = []
@@ -409,7 +411,7 @@ plt.legend(handles=curves,bbox_to_anchor=(1,1));
 # - Simulações para coeficiente de arrasto em 4 acelerações gravitacionais diferentes:
 #     - Qual é a característica das atmosferas para eses casos?
 
-# In[50]:
+# In[12]:
 
 
 curves = []
@@ -434,7 +436,7 @@ plt.legend(handles=curves,bbox_to_anchor=(1.,1));
 
 # -$\phi_1 = \dfrac{ (x^{(k-1)})^{1/2}}{\pi} - x^{(k-1)}, \ \  x^{(0)} = 1, \ \ k < N$
 
-# In[9]:
+# In[13]:
 
 
 # No. de elementos
@@ -455,13 +457,12 @@ plt.plot(x,'go',label=r'$\dfrac{ (x^{(k)})^{1/2}}{\pi} - x^{(k)}$')
 plt.xticks(range(N))
 plt.xlabel('$x^{(k)}$',fontsize=12)
 plt.ylabel('$\phi_1^{(k)}$',fontsize=12)
-plt.grid(axis='both')
 plt.legend(loc='upper right');
 
 
 # -$\phi_2 = \dfrac{k}{x^{(k-1)}}, \ \  x^{(0)} = 1/5, \ \ k < 10$
 
-# In[10]:
+# In[14]:
 
 
 from math import factorial
@@ -483,7 +484,6 @@ plt.plot(y,'go',label=r'$\dfrac{k}{x^{(k-1)}}$')
 plt.xticks(range(N))
 plt.xlabel('$x^{(k)}$',fontsize=12)
 plt.ylabel('$\phi_2^{(k)}$',fontsize=12)
-plt.grid(axis='both')
 plt.legend(loc='center right');
 
 
@@ -514,21 +514,21 @@ plt.legend(loc='center right');
 
 # Vamos plotar esta função apenas para visualizar seu comportamento.
 
-# In[11]:
+# In[15]:
 
 
 from numpy import exp, cos
 
 f = lambda x: exp(-x**2)*cos(3*x)
 x = np.linspace(0,4,1000)
-plt.plot(x,f(x),'g'); plt.grid()
+plt.plot(x,f(x),'g');
 
 
 # Nesta plotagem, vemos claramente que a função possui duas raizes: uma próxima de $x = 0.5$ e outra em $x = \pi/6$. 
 # 
 # Implementemos o algoritmo.
 
-# In[12]:
+# In[16]:
 
 
 def forca_bruta(f,a,b,n):
@@ -547,7 +547,7 @@ def forca_bruta(f,a,b,n):
 
 # Agora aplicamos o algoritmo na mesma função.
 
-# In[13]:
+# In[17]:
 
 
 a,b,n = 0,4,1000
@@ -557,34 +557,33 @@ print(raizes)
 
 # Temos, na verdade, 4 raízes! Plotemos o gráfico ampliado no intervalo [2.5,3.8].
 
-# In[14]:
+# In[18]:
 
 
 x2 = np.linspace(2.5,3.8,100)
-plt.plot(x2,f(x2),'g',x2,0*f(x2),'r:'); plt.grid()
+plt.plot(x2,f(x2),'g',x2,0*f(x2),'k:');
 
 
 # Conseguimos enxergar mais uma raiz. Agora, plotemos um pouco mais ampliado entre [3.6,3.7].
 
-# In[15]:
+# In[19]:
 
 
 x3 = np.linspace(3.6,3.7,100)
-plt.plot(x3,f(x3),'g',x3,0*f(x3),'r:'); plt.grid()
+plt.plot(x3,f(x3),'g',x3,0*f(x3),'k:');
 
 
 # Dessa forma, podemos identificar que, de fato existe uma quarta raiz.
 
 # Este exemplo mostrou uma aplicação do método de força bruta para determinação de raízes. Para finalizar, podemos embelezar o gráfico.
 
-# In[16]:
+# In[20]:
 
 
 r = np.array(raizes) # vetoriza a lista
-plt.plot(x,0*f(x),'r:',x,f(x),'g-',r,np.zeros(4),'ok',)
+plt.plot(x,0*f(x),'k:',x,f(x),'g-',r,np.zeros(4),'og',)
 plt.xlabel('$x$',fontsize=14)
 plt.ylabel('$f(x)$',fontsize=14)        
-plt.grid()
 plt.title('Raízes de $e^{-x^2}\cos(3x)$');
 
 
@@ -599,7 +598,7 @@ plt.title('Raízes de $e^{-x^2}\cos(3x)$');
 # 
 # Um bloco de código baseado em `matplotlib` replicável que contempla tudo isso é fornecido a seguir:
 
-# In[43]:
+# In[21]:
 
 
 import matplotlib.pyplot as plt
@@ -610,23 +609,23 @@ f = np.exp(-x**2)*np.cos(3*x) # função-alvo
 
 fig, ax = plt.subplots(figsize=(6,4), constrained_layout=True) # figura
 #ax.grid(axis='both') # gradeado
-ax.plot(x,f,label='$f(x)$') # plotagem
-ax.axhline(y=0, ls=':', color='orange', label='$y=0$') # g(x) = 0
+ax.plot(x,f,'g',label='$f(x)$') # plotagem
+ax.axhline(y=0, ls=':', color='k', label='$y=0$') # g(x) = 0
 ax.set_xlabel('$x$')
 ax.set_ylabel('$y$')
 ax.set_title('Exemplo de plotagem para análise gráfica')
 
 # 1o. intervalo de busca
-ax.plot(-0.7,0,'|',c='k')
-ax.plot(-0.4,0,'|',c='k')
+ax.plot(-0.7,0,'|',c='k',ms=15)
+ax.plot(-0.4,0,'|',c='k',ms=15)
 
 # 2o. intervalo de busca
-ax.plot(0.4,0,'|',c='r')
-ax.plot(0.7,0,'|',c='r')
+ax.plot(0.4,0,'|',c='k',ms=15)
+ax.plot(0.7,0,'|',c='k',ms=15)
 
 # 3o. intervalo de busca
-ax.plot(1.4,0,'|',c='m')
-ax.plot(1.7,0,'|',c='m')
+ax.plot(1.4,0,'|',c='k',ms=15)
+ax.plot(1.7,0,'|',c='k',ms=15)
 
 ax.legend();
 
@@ -635,3 +634,9 @@ ax.legend();
 # 
 # - Faça a implementação computacional do algoritmo da "força bruta".
 # - Verifique a correção e aperfeiçoe a mini-classe para simulações de salto e use o mesmo raciocínio para criar uma classe própria aplicável a outro modelo matemático.
+
+# In[22]:
+
+
+plt.rcdefaults()
+
