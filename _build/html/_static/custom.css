@@ -3,6 +3,47 @@ p {
 }
 
 
+/* Chapter heading */
+div.chapter-thumb {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+div.chapter-oa {
+      flex: 1; 
+      padding: 20px;      
+      box-sizing: border-box;
+      margin-right: 10px; 
+      border: 2px solid  #4c9265; 
+      border-radius: 8px; 
+      align-items: center; /*Align vertically*/
+    }
+
+ div.chapter-oa h2 {
+      text-align: center;
+      font-weight: bold; 
+      font-size: 16px;  
+      color: #4c9265;
+      padding-top: 2px;
+      margin-top: 0;
+    }
+
+
+div.quote-box {    
+    text-align: right;
+    font-style: italic;
+    flex: 1; /* This makes the div take up 50% of the container */
+    padding: 20px;
+    background-color: #4c92651a;
+    box-sizing: border-box;
+    margin-left: 10px; /* Space between the divs */
+    border-radius: 8px;
+    align-items: center; /*Align vertically*/
+    
+}
+
 /* Table style */
 th, td {
     border: 1px solid #4c9265 !important; 
@@ -33,6 +74,7 @@ blockquote {
     border-bottom-left-radius: 20%;
     border-bottom-right-radius: 20%;
     text-align: center;
+    background-color: #4c92651a;
 }
   
 

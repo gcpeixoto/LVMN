@@ -1,0 +1,2216 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Do Contínuo ao Computável: Discretização e Erros Numéricos &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-02-erros';</script>
+    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes" href="aula-03-analise-grafica.html" />
+    <link rel="prev" title="2. Métodos Numéricos: Necessidade, Evolução e Profissão" href="aula-01-introMetnum.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="conteudo.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">23. Documentação de código</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-02-erros.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ipynb/aula-02-erros.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Do Contínuo ao Computável: Discretização e Erros Numéricos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetica-computacional">3.1. Aritmética computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">3.1.1. Unidade Lógica e Aritmética</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-curiosos">3.1.2. Casos curiosos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-finitude-explicada">3.1.2.1. A finitude explicada</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-cientifica">3.1.3. Notação científica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">3.2. Ponto flutuante: a reta “perfurada”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulador-de-mathbb-f">3.2.1. Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">3.2.2. Limites de máquina para ponto flutuante</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-epsilon-de-maquina">3.2.2.1. O épsilon de máquina</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidade-numerica">3.2.2.2. Sensibilidade numérica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-e-operacoes-especiais">3.2.3. Valores e operações especiais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-seus-efeitos">3.3. Erros e seus efeitos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">3.3.1. Motivação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-erros">3.3.2. Tipos de erros</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-real">3.3.2.1. Erro real</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto">3.3.2.2. Erro absoluto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo">3.3.2.3. Erro relativo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-percentual">3.3.2.4. Erro relativo percentual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">3.3.2.5. Erro relativo aproximado (<em>benchmark</em>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">3.3.2.6. Erro relativo aproximado percentual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-de-cancelamento">3.3.2.7. Erro de cancelamento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">3.3.2.8. Erros de truncamento e de arredondamento</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">3.4. Erros e funções de perda no contexto da inteligência artificial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio">3.4.1. Erro absoluto médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-quadratico-medio">3.4.2. Erro quadrático médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">3.4.3. Erro absoluto médio percentual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">3.4.4. Erro logarítmico quadrático médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">3.4.5. Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-o-desempenho">3.4.6. Calculando o desempenho</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">3.5. Aplicações</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">3.5.1. Erros pontuais na função de Airy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">3.5.2. Avaliação de algoritmos de ordenação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">3.5.3. Erros de precificação imobiliária por redes neurais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.6. Referências</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="do-continuo-ao-computavel-discretizacao-e-erros-numericos">
+<h1><span class="section-number">3. </span>Do Contínuo ao Computável: Discretização e Erros Numéricos<a class="headerlink" href="#do-continuo-ao-computavel-discretizacao-e-erros-numericos" title="Link to this heading">#</a></h1>
+<div class="chapter-thumb">
+    <div class="chapter-oa">
+        <h2>Objetivos de aprendizagem</h2>
+        <ul>
+        <li>Compreender a representação numérica em computadores, o sistema de ponto flutuante e os limites impostos pela finitude dos sistemas computacionais;</li>
+	    <li>Reconhecer situações de <em>overflow</em>, <em>underflow</em>, perda de precisão e outros casos especiais de operações numéricas;</li>
+	    <li>Analisar os diferentes tipos de erros computacionais e suas implicações na robustez e confiabilidade de algoritmos. </li>	    
+        </ul>
+    </div>        
+    <div class="quote-box">
+        <p><em> "Toda investigação cifra-se numa proporção comparativa fácil ou difícil. Eis a razão porque o infinito enquanto infinito, por subtrair-se a toda e qualquer proporção, é desconhecido." (Nicolau de Cusa, <em>De Docta Ignorantia</em>, 1440) 
+        </p></em>
+    </div>        
+</div>
+<p>Os computadores, em sua essência, operam sobre representações discretas e finitas da informação. Diferente do mundo físico e das formulações matemáticas clássicas, as quais, na maioria das vezes, pressupõem um universo contínuo e infinitamente preciso, os sistemas computacionais lidam com números armazenados em memória finita, com quantidade limitada de dígitos binários. Esse contraste entre o mundo contínuo e o mundo discreto estabelece a base para compreender os desafios e limitações presentes na implementação de modelos matemáticos por meio de algoritmos.</p>
+<p>Quando resolvemos numericamente problemas formulados na linguagem do Cálculo — que envolve conceitos como continuidade, derivadas e integrais —, precisamos realizar um processo chamado <em>discretização</em>. Esse processo consiste em transformar variáveis, domínios e operações contínuas em versões finitas e manipuláveis por algoritmos. Contudo, essa transformação introduz inevitavelmente erros computacionais, que podem ser classificados em diversas categorias: erros de arredondamento, decorrentes da representação finita dos números; erros de truncamento, provenientes da aproximação de processos infinitos (como séries ou integrais) por expressões finitas; e erros algorítmicos ou de método, que surgem das escolhas específicas dos procedimentos numéricos adotados.</p>
+<p>Compreender a origem, o comportamento e os impactos desses erros é fundamental para qualquer profissional que utiliza simulações numéricas ou algoritmos computacionais. Mais do que uma questão técnica, essa compreensão permite avaliar a confiabilidade dos resultados, projetar métodos mais robustos e, quando possível, minimizar os efeitos adversos da discretização. Em última análise, o estudo dos métodos numéricos é, em grande parte, um estudo sobre como transpor, com inteligência e controle, a fronteira que separa o contínuo idealizado da matemática do discreto real dos computadores.</p>
+<section id="aritmetica-computacional">
+<h2><span class="section-number">3.1. </span>Aritmética computacional<a class="headerlink" href="#aritmetica-computacional" title="Link to this heading">#</a></h2>
+<p>Computadores representam números inteiros de forma exata [<a class="reference internal" href="clippings/clipping-09-decimal-fractions.html#clipping-decimal"><span class="std std-ref">Recorte 9: Aritmética exata e números racionais</span></a>]. No entanto, a representação de números reais é sempre aproximada e limitada a um conjunto finito de valores. Essa limitação decorre da necessidade de codificar números contínuos em uma estrutura binária finita. A aritmética computacional, portanto, lida tanto com números inteiros quanto com os chamados números em ponto flutuante, que permitem representar aproximações de números reais.</p>
+<p>O estudo da aritmética computacional concentra-se em dois aspectos fundamentais:</p>
+<ol class="arabic simple">
+<li><p>a representação dos números no formato de máquina, isto é, em base binária, com precisão e alcance finitos; e</p></li>
+<li><p>o desenvolvimento de algoritmos capazes de realizar operações aritméticas fundamentais, como adição, subtração, multiplicação e divisão, de forma eficiente e consistente dentro dos limites impostos pelo hardware.</p></li>
+</ol>
+<p>Métodos numéricos são, essencialmente, algoritmos que utilizam essas quatro operações como blocos fundamentais, aplicando-as de forma estruturada e sofisticada para resolver problemas matemáticos de interesse científico e de engenharia. Atualmente, o padrão IEEE 754 [<a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html#clipping-ieee754"><span class="std std-ref">Recorte 3: Padrão de Ponto Flutuante IEEE 754</span></a>] é adotado globalmente pelos fabricantes de processadores. Esse padrão define as regras para a representação, as operações e os comportamentos dos números em ponto flutuante, assegurando portabilidade e previsibilidade dos cálculos entre diferentes arquiteturas, seja em 16, 32, 64 ou 128 bits. Sua primeira versão foi publicada em 1985, com a atualização mais recente ocorrendo em 2019 <span id="id1">[<a class="reference internal" href="#id7" title="Massimiliano Fasi and Mantas Mikaitis. Algorithms for stochastically rounded elementary arithmetic operations in ieee 754 floating-point arithmetic. IEEE Transactions on Emerging Topics in Computing, 9(3):1451–1466, 2021. doi:10.1109/IEEESTD.2019.8766229.">Fasi and Mikaitis, 2021</a>]</span>.</p>
+<section id="unidade-logica-e-aritmetica">
+<h3><span class="section-number">3.1.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Link to this heading">#</a></h3>
+<p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados (<a class="reference internal" href="#fig-ula"><span class="std std-numref">Fig. 3.1</span></a>). A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
+<p>Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.</p>
+<figure class="align-default" id="fig-ula">
+<a class="reference internal image-reference" href="../_images/ula-ai.png"><img alt="../_images/ula-ai.png" src="../_images/ula-ai.png" style="width: 250px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustração de um chip de computador destacando as interconexões responsáveis por operações lógicas, aritméticas e troca de informação com a unidade de controle.</span><a class="headerlink" href="#fig-ula" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="casos-curiosos">
+<h3><span class="section-number">3.1.2. </span>Casos curiosos<a class="headerlink" href="#casos-curiosos" title="Link to this heading">#</a></h3>
+<p>A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos (coloquialmentem) que ocorrem devido à representação finita de números pelo computador. Outras indagações sobre ponto flutuante são respondidas em [<a class="reference internal" href="extra/extra-pontoFlutuante.html#extra-float"><span class="std std-ref">Números em ponto flutuante e seus problemas</span></a>].</p>
+<ul class="simple">
+<li><p>A fração <span class="math notranslate nohighlight">\(1/3 = 0.3333\ldots\)</span> é uma dízima. O seu triplo é?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A soma <span class="math notranslate nohighlight">\(0.3 + 0.3 + 0.3\)</span> difere de <span class="math notranslate nohighlight">\(0.9\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(1/10 + 1/10 + 1/10 \neq 3/10\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="o">==</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Multiplicação por fracionários</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># note a variabilidade de dígitos após o ponto</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.333</span><span class="p">,</span> <span class="mf">0.3333</span><span class="p">,</span> <span class="mf">0.33333</span><span class="p">,</span> <span class="mf">0.333333</span><span class="p">,</span> <span class="mf">0.3333333</span><span class="p">,</span> <span class="mf">0.333333333</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;3*</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">),</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3*0.3         = 0.8999999999999999
+3*0.33        = 0.99
+3*0.333       = 0.9990000000000001
+3*0.3333      = 0.9999
+3*0.33333     = 0.99999
+3*0.333333    = 0.999999
+3*0.3333333   = 0.9999998999999999
+3*0.333333333 = 0.999999999
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a-finitude-explicada">
+<h4><span class="section-number">3.1.2.1. </span>A finitude explicada<a class="headerlink" href="#a-finitude-explicada" title="Link to this heading">#</a></h4>
+<p>Os casos acima possuem uma razão comum: a capacidade finita dos computadores para representar números fracionários. Vamos analisar de modo breve o caso da fração 1/10 sem nos aprofundar em detalhes.</p>
+<p>Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imprime número com 55 dígitos</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;.55f&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1000000000000000055511151231257827021181583404541015625
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notemos que tentar aumentar os dígitos não produzirá significância:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imprime número com 60 dígitos</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;.60f&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.100000000000000005551115123125782702118158340454101562500000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imprime número com 80 dígitos</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;.80f&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10000000000000000555111512312578270211815834045410156250000000000000000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Portanto, quando somamos 1/10 + 1/10 + 1/10 vemos um número diferente de 3/10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imprime número com 55 dígitos</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span><span class="s1">&#39;.55f&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3000000000000000444089209850062616169452667236328125000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="notacao-cientifica">
+<h3><span class="section-number">3.1.3. </span>Notação científica<a class="headerlink" href="#notacao-cientifica" title="Link to this heading">#</a></h3>
+<p>Números em ponto flutuante são a versão computacional da notação científica. Escrevemos um número decimal em notação científica da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[x = f \times 10^e,\]</div>
+<p>com a fração (ou mantissa) <span class="math notranslate nohighlight">\(f\)</span> determinando a precisão e o expoente <span class="math notranslate nohighlight">\(e\)</span> a ordem de grandeza. Pontos flutuantes admitem <span class="math notranslate nohighlight">\(f\)</span> na forma <em>normalizada</em>, isto é, menor do que 1. A tabela abaixo mostra alguns exemplos de como usamos essas notações.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Número decimal</p></th>
+<th class="head"><p>Notação científica</p></th>
+<th class="head text-right"><p>Repr. ponto flutuante</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(2.65\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2.65 \times 10^0\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(0.265 \times 10^1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000012\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1.2 \times 10^{-6}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(0.12 \times 10^{-5}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(4532\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(4.532 \times 10^{3}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(0.4532 \times 10^{4}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Em termos de código Python – e em outras linguagen smte, a notação científica em base 10 pode ser realizada da seguinte forma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.65e0</span><span class="p">,</span> <span class="mf">1.2e-6</span><span class="p">,</span> <span class="mf">4532e3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.65, 1.2e-06, 4532000.0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ponto-flutuante-a-reta-perfurada">
+<h2><span class="section-number">3.2. </span>Ponto flutuante: a reta “perfurada”<a class="headerlink" href="#ponto-flutuante-a-reta-perfurada" title="Link to this heading">#</a></h2>
+<p>Desde os primórdios dos computadores mecânicos e eletrônicos, a precisão e a confiabilidade dos cálculos têm estado no centro das atenções e ambas são afetadas pelas discrepâncias entre números reais, infinitos e contínuos, e suas representações em máquina, finitas e discretas. Nas décadas de 1940 e 1950, houve uma clara percepção de que o sistema de ponto fixo, até então utilizado, era bastante limitado para dar precisão aos cálculos e que o aparato de <em>hardware</em> disponível na época era incapaz de lidar com situações de “sobrecarga” (<em>overflow</em>) ou “subfluxo” (<em>underflow</em>). Em outras palavras, representar números muito pequenos ou muito grandes, como <span class="math notranslate nohighlight">\(10^{-30}\)</span> ou <span class="math notranslate nohighlight">\(543.671^3\)</span>, era algo impensável.</p>
+<p>Com a introdução da aritmética de ponto flutuante nos anos 1950 e 1960, os computadores passaram a representar uma quantidade significativa de números. Porém, o preço que se pagou por esse progresso foi a aparição de novos tipos de erros, como os erros de arredondamento, que ocorrem quando os números são aproximados para caber no formato de ponto flutuante. Mesmo com a implantação do padrão IEEE-754 em 1985, o qual uniformizou a representação e a manipulação de números em ponto flutuante, os erros inerentes não foram eliminados. A pesquisa em computação científica e de alto desempenho, reveladora de que os erros são obstinados, está bastante ativa e expandindo o conhecimento. Recentemente, um grupo de espanhois trouxe perspectivas promissoras para o formato <em>posit64</em> <span id="id2">[<a class="reference internal" href="#id8" title="David Mallasén, Alberto A Del Barrio, and Manuel Prieto-Matias. Big-percival: exploring the native use of 64-bit posit arithmetic in scientific computing. IEEE Transactions on Computers, 2024. doi:10.1109/TC.2024.3377890.">Mallasén <em>et al.</em>, 2024</a>]</span>, uma alternativa potencialmente superior ao padrão IEEE-754. Através de diversos testes, eles concluíram que o sistema baseado na arquitetura RISC-V (quinta geração da <em>Reduced Instruction Set Computer</em>), oferece maior precisão, resiliência a erros de arredondamento e eficiência de armazenamento.</p>
+<p>Em vez de operar sobre o conjunto dos números reais (conjunto <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>), a matemática computacional está definida no domínio <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, o conjunto dos números em ponto flutuante representáveis pela máquina. Vejamos um exemplo.</p>
+<p>Um sistema de ponto flutuante simplório em base binária, com apenas 3 dígitos de precisão e limites de <em>underflow</em> e <em>overflow</em> com expoentes variando de -1 a 2 possui 32 números representáveis, além do zero. Os 16 números positivos, derivados das mantissas <span class="math notranslate nohighlight">\(0.100\)</span>, <span class="math notranslate nohighlight">\(0.101\)</span>, <span class="math notranslate nohighlight">\(0.110\)</span> e <span class="math notranslate nohighlight">\(0.111\)</span>, são os seguintes:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((0.100 \times 2^{-1})_{2} = (0.01)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} = 1/4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.100 \times 2^{0})_{2} = (0.1)_2 = 0.2^0 + 1.2^{-1} = 1/2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.100 \times 2^{1})_{2} = (1.0)_2 = 1.2^0 + 0.2^{-1} = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.100 \times 2^{2})_{2} = (10.0)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{-1})_{2} = (0.0101)_2 = 0.2^0 + 0.2^{-1} + 1.2^{-2} + 0.2^{-3} + 1.2^{-4}= 5/16\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{0})_{2} = (0.101)_2 = 0.2^0 + 1.2^{-1} + 0.2^{-2} + 1.2^{-3} = 5/8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{1})_{2} = (1.01)_2 = 1.2^0 + 0.2^{-1} + 1.2^{-2} = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0.101 \times 2^{2})_{2} = (10.1)_2 = 1.2^1 + 0.2^{1} + 0.2^{-1} = 2\)</span></p></li>
+</ul>
+<p>(…)</p>
+<p>Prosseguindo para os números restantes, obtemos a seguinte tabela:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>m</p></th>
+<th class="head"><p>0.100</p></th>
+<th class="head"><p>0.101</p></th>
+<th class="head"><p>0.110</p></th>
+<th class="head"><p>0.111</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>e</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>-1</p></td>
+<td><p></p></td>
+<td><p>1/4</p></td>
+<td><p>5/16</p></td>
+<td><p>3/8</p></td>
+<td><p>7/16</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p></p></td>
+<td><p>1/2</p></td>
+<td><p>5/8</p></td>
+<td><p>3/4</p></td>
+<td><p>7/8</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p></p></td>
+<td><p>1</p></td>
+<td><p>5/4</p></td>
+<td><p>3/2</p></td>
+<td><p>7/4</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p></p></td>
+<td><p>2</p></td>
+<td><p>5/2</p></td>
+<td><p>3</p></td>
+<td><p>7/2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Na reta real, esses valores ficariam dispostos da seguinte forma:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/dc9cff4ae62abcff7d106634a654984f56848e58b1d444f8dfef15dbbbfd2d59.png" src="../_images/dc9cff4ae62abcff7d106634a654984f56848e58b1d444f8dfef15dbbbfd2d59.png" />
+</div>
+</div>
+<p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes (que seriam refletidos na origem para o extremo negativo) e mais o 0 são representáveis. Logo, esse sistema seria capaz de representar apenas 33 números.</p>
+<section id="simulador-de-mathbb-f">
+<h3><span class="section-number">3.2.1. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Link to this heading">#</a></h3>
+<p>Clássicamente, um sistema de ponto flutuante é descrito por <span class="math notranslate nohighlight">\(\mathbb{F}(b, t, L, U)\)</span>, onde <span class="math notranslate nohighlight">\(b\)</span> é a base (geralmente binária nos sistemas modernos), <span class="math notranslate nohighlight">\(t\)</span> são os dígitos significativos da mantissa, que determina a precisão, <span class="math notranslate nohighlight">\(L\)</span> é o menor expoente inteiro possível (que controal o limite de <em>underflow</em>) e <span class="math notranslate nohighlight">\(U\)</span> é o maior expoente inteiro possível (que controla o limite de <em>overflow</em>). No exemplo acima, o sistema é <span class="math notranslate nohighlight">\(\mathbb{F}(2, 3, -1, 2)\)</span>.</p>
+<p>O código abaixa gera uma reta perfurada para um sistema computacional de interesse.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">simulacao_F</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">epsm</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="c1"># epsilon de máquina</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="n">b</span><span class="o">-</span><span class="n">epsm</span><span class="p">,</span><span class="n">epsm</span><span class="p">)</span>
+
+    <span class="n">E</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">U</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">M</span><span class="o">*</span><span class="n">E</span><span class="p">])</span>
+        <span class="n">E</span> <span class="o">*=</span> <span class="n">b</span>    
+    <span class="n">E</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span><span class="n">M</span><span class="o">*</span><span class="n">E</span><span class="p">])</span>
+        <span class="n">E</span> <span class="o">/=</span> <span class="n">b</span>    
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">yy</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">]),</span><span class="n">xx</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">Y</span> <span class="o">=</span> <span class="n">simulacao_F</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+<span class="c1"># plotagem</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8ff9edcacc97cf45de310904c1222613313664b2f9c71e55ec9d8f6118f620f6.png" src="../_images/8ff9edcacc97cf45de310904c1222613313664b2f9c71e55ec9d8f6118f620f6.png" />
+</div>
+</div>
+</section>
+<section id="limites-de-maquina-para-ponto-flutuante">
+<h3><span class="section-number">3.2.2. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Link to this heading">#</a></h3>
+<p>Nos sistemas mais modernos, os parâmetros de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> crescem vertiginosamente com o aumento dos <em>bits</em> (<a class="reference internal" href="#tbl-f"><span class="std std-numref">Tabela 3.1</span></a>). A quantidade de números representáveis no Float64 é aproximadamente 1.84e19 apenas considerando os números normais.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="tbl-f">
+<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Parâmetros de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> para as arquiteturas modernas.</span><a class="headerlink" href="#tbl-f" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Formato</p></th>
+<th class="head"><p>Base (<span class="math notranslate nohighlight">\(b\)</span>)</p></th>
+<th class="head"><p>Dígitos significativos (<span class="math notranslate nohighlight">\(t\)</span>)</p></th>
+<th class="head"><p>Expoente inferior (<span class="math notranslate nohighlight">\(L\)</span>)</p></th>
+<th class="head text-right"><p>Expoente superior (<span class="math notranslate nohighlight">\(U\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>float16</p></td>
+<td><p>2</p></td>
+<td><p>11</p></td>
+<td><p>-14</p></td>
+<td class="text-right"><p>+15</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>float32</p></td>
+<td><p>2</p></td>
+<td><p>24</p></td>
+<td><p>-126</p></td>
+<td class="text-right"><p>+127</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>float64</p></td>
+<td><p>2</p></td>
+<td><p>53</p></td>
+<td><p>-1022</p></td>
+<td class="text-right"><p>+1023</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>float128 (*)</p></td>
+<td><p>2</p></td>
+<td><p>113</p></td>
+<td><p>-16382</p></td>
+<td class="text-right"><p>+16383</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(*) Nem todos os processadores oferecem suporte nativo para <code class="docutils literal notranslate"><span class="pre">float128</span></code>. É frequentemente implementado em software.</p>
+<p>Em Python, podemos utilizar diferentes sistemas de ponto flutuante. Cada um possui suas particularidades. Os mais comuns são:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code> (meia precisão): ideal para aplicações onde a velocidade e o uso de memória são críticos, como em inferências de aprendizado profundo em dispositivos com recursos limitados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code> (precisão simples): comumente usado em jogos, gráficos, e muitas aplicações de aprendizado de máquina devido ao bom equilíbrio entre precisão e eficiência.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code> (precisão dupla; <em>alias</em> para <code class="docutils literal notranslate"><span class="pre">float</span></code>): essencial para simulações científicas, finanças e outras áreas onde a precisão é crucial e a memória não é preocupação.</p></li>
+</ul>
+<p>O <code class="docutils literal notranslate"><span class="pre">numpy</span></code> suporta todos os três na maioria dos computadores de hoje (<a class="reference internal" href="#tbl-float"><span class="std std-numref">Tabela 3.2</span></a>).</p>
+<div class="pst-scrollable-table-container"><table class="table" id="tbl-float">
+<caption><span class="caption-number">Table 3.2 </span><span class="caption-text">Comparativo entre sistemas de ponto flutuante</span><a class="headerlink" href="#tbl-float" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Atributo</p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float16</span></code></p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float32</span></code></p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float64</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Tamanho</strong></p></td>
+<td class="text-left"><p>16 bits (2 bytes)</p></td>
+<td class="text-left"><p>32 bits (4 bytes)</p></td>
+<td class="text-left"><p>64 bits (8 bytes)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Precisão</strong></p></td>
+<td class="text-left"><p>Baixa</p></td>
+<td class="text-left"><p>Moderada</p></td>
+<td class="text-left"><p>Alta</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Intervalo de Valores</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 5.96 \times 10^{-8}\)</span> a <span class="math notranslate nohighlight">\(6.55 \times 10^{4} \)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 1.18 \times 10^{-38} \)</span> a <span class="math notranslate nohighlight">\(3.4 \times 10^{38} \)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 2.23 \times 10^{-308} \)</span> a <span class="math notranslate nohighlight">\(1.8 \times 10^{308} \)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Bits de Sinal</strong></p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Bits de Expoente</strong></p></td>
+<td class="text-left"><p>5</p></td>
+<td class="text-left"><p>8</p></td>
+<td class="text-left"><p>11</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Bits de Mantissa</strong></p></td>
+<td class="text-left"><p>10</p></td>
+<td class="text-left"><p>23</p></td>
+<td class="text-left"><p>52</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Uso de Memória</strong></p></td>
+<td class="text-left"><p>Muito baixo</p></td>
+<td class="text-left"><p>Moderado</p></td>
+<td class="text-left"><p>Alto</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Aplicações</strong></p></td>
+<td class="text-left"><p>Aprendizado profundo em dispositivos de recursos limitados</p></td>
+<td class="text-left"><p>Gráficos de computador, simulações científicas, aprendizado de máquina</p></td>
+<td class="text-left"><p>Cálculos científicos, engenharia, finanças de alta precisão</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Exemplo de Valores</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.140625\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1415927\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.141592653589793\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Vantagens</strong></p></td>
+<td class="text-left"><p>Usa menos memória e é mais rápido em termos de computação. Ideal para aplicações onde a memória é restrita e a precisão pode ser sacrificada.</p></td>
+<td class="text-left"><p>Oferece um bom equilíbrio entre precisão e uso de memória. Amplamente utilizado em gráficos e aprendizado de máquina.</p></td>
+<td class="text-left"><p>Alta precisão e amplo intervalo dinâmico. Ideal para cálculos científicos e de engenharia onde a precisão é crucial.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Desvantagens</strong></p></td>
+<td class="text-left"><p>Precisão muito limitada, o que pode levar a erros significativos em cálculos complexos.</p></td>
+<td class="text-left"><p>Pode não ser suficientemente preciso para cálculos científicos muito precisos.</p></td>
+<td class="text-left"><p>Usa mais memória e pode ser mais lento em termos de computação comparado com float16 e float32.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A seguinte função imprime os valores dos principais atributos de <code class="docutils literal notranslate"><span class="pre">numpy.finfo</span></code> que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_attribute</span><span class="p">(</span><span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrib</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Imprime informações de atributo para os sistemas de ponto flutuante \</span>
+<span class="sd">        de 16, 32 e 64 bits operados pelo numpy</span>
+<span class="sd">        </span>
+<span class="sd">    Atributos relevantes: </span>
+<span class="sd">    </span>
+<span class="sd">        - eps: menor valor x, tal que 1.0 + x &gt; 1.0 (epsilon de máquina)</span>
+<span class="sd">        - max: maior número finito que pode ser representado pelo tipo de dado de ponto flutuante.</span>
+<span class="sd">        - min: menor número finito negativo que pode ser representado pelo tipo de dado de ponto flutuante.</span>
+<span class="sd">        - tiny: menor número positivo normalizado que pode ser representado.</span>
+<span class="sd">        - nexp: número de bits no expoente       </span>
+<span class="sd">        - nmant: número de bits na mantissa</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># checagem de sistema permitido</span>
+    <span class="k">assert</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;float16&#39;</span><span class="p">,</span> <span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">],</span> <span class="s1">&#39;Sistema não permitido!&#39;</span>
+    
+    <span class="c1"># impressão    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">attrib</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+    <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;print(np.finfo(np.</span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s1">).</span><span class="si">{</span><span class="n">attrib</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>A partir daí, podemos verificar os valores para cada sistema individualmente:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--- float16 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float16&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">--- float32 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">--- float64 (float) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
+    <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- float16 
+
+eps:
+0.000977
+max:
+65500.0
+min:
+-65500.0
+tiny:
+6.104e-05
+nexp:
+5
+nmant:
+10
+
+--- float32 
+
+eps:
+1.1920929e-07
+max:
+3.4028235e+38
+min:
+-3.4028235e+38
+tiny:
+1.1754944e-38
+nexp:
+8
+nmant:
+23
+
+--- float64 (float) 
+
+eps:
+2.220446049250313e-16
+max:
+1.7976931348623157e+308
+min:
+-1.7976931348623157e+308
+tiny:
+2.2250738585072014e-308
+nexp:
+11
+nmant:
+52
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="o-epsilon-de-maquina">
+<h4><span class="section-number">3.2.2.1. </span>O épsilon de máquina<a class="headerlink" href="#o-epsilon-de-maquina" title="Link to this heading">#</a></h4>
+<p>A unidade de arredondamento, comumente chamada de “épsilon de máquina” E aqui denotada por <span class="math notranslate nohighlight">\(\epsilon_M\)</span>, é definida como o menor número positivo que, somado à unidade, produz um resultado diferente de 1 na máquina. Em termos matemáticos:</p>
+<div class="math notranslate nohighlight">
+\[1.0 + \epsilon_M &gt; 1.0\]</div>
+<p>De outra forma, essa definição pode ser interpretada como: <span class="math notranslate nohighlight">\(\epsilon_M\)</span> é a menor diferença entre 1 e o próximo número maior que pode ser representado no sistema numérico da máquina.</p>
+<p>Para ilustrar este conceito, consideremos um sistema hipotético de 8 bits, no qual cada número é codificado como uma sequência de 8 dígitos binários, segundo a seguinte estrutura:</p>
+<ul class="simple">
+<li><p>1 bit para o sinal;</p></li>
+<li><p>3 bits para o expoente (com bias);</p></li>
+<li><p>4 bits para a mantissa (ou parte fracionária).</p></li>
+</ul>
+<p>Neste sistema, o número 1 em base decimal é representado pelo binário 00110000. O próximo número representável é 00110001, que corresponde ao valor decimal 1.0625. Assim, o épsilon de máquina para este sistema é:</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_M = 1.0625 - 1 = 0.0625\]</div>
+<p>Para este cálculo, utilizamos a fórmula geral de ponto flutuante: <span class="math notranslate nohighlight">\(x = (-1)^s 2^{(c - \text{bias})} \cdot (1 + f)\)</span>.</p>
+<ul class="simple">
+<li><p>O bias, para 3 bits de expoente, é calculado como: <span class="math notranslate nohighlight">\(\text{bias} = \frac{2^3 - 1}{2} = 3\)</span></p></li>
+<li><p>No caso do número 1, os bits do expoente são 011, que correspondem ao valor: $ c = (0) 2^2 + (1) 2^1 + (1) 2^0 = 3</p></li>
+<li><p>Como o sinal é positivo <span class="math notranslate nohighlight">\((s = 0)\)</span> e a mantissa está zerada <span class="math notranslate nohighlight">\((f = 0)\)</span>, o cálculo resulta em: $x = (1) 2^{(3-3)} (1 + 0) = 1</p></li>
+</ul>
+<p>A representação binária 00110000 corresponde, portanto, ao número decimal 1.</p>
+<p>No próximo número representável, a menor alteração ocorre no <em>bit</em> menos significativo da mantissa, que vale <span class="math notranslate nohighlight">\(2^{-4} = 0.0625\)</span>. Isso significa que a sequência binária 00110001 representa: 1 + 0.0625 = 1.0625. Portanto, <span class="math notranslate nohighlight">\(\epsilon_M = 0.0625\)</span>. Se adicionarmos outro <em>bit</em> da mantissa (o segundo bit menos significativo), obteremos uma contribuição de <span class="math notranslate nohighlight">\(2^{-3} = 0.125\)</span>, que somada à anterior resulta em: 0.0625 + 0.125 = 0.1875. Assim, o número subsequente seria 1.1875, e a diferença entre 1.1875 e 1.0625 é 0.125, maior que <span class="math notranslate nohighlight">\(\epsilon_M\)</span>.</p>
+<p>Esse exemplo evidencia um ponto fundamental: a unidade de arredondamento (<span class="math notranslate nohighlight">\(\epsilon_M\)</span>) não corresponde a uma “distância constante” na reta dos números reais. A densidade dos números representáveis na máquina não é uniforme — ela depende diretamente do valor do expoente. Assim, embora <span class="math notranslate nohighlight">\(\epsilon_M\)</span> defina a menor diferença ao redor de 1, para números muito maiores ou muito menores, essa distância aumenta ou diminui exponencialmente, como a figura da reta perfurada anterior mostra.</p>
+</section>
+<section id="sensibilidade-numerica">
+<h4><span class="section-number">3.2.2.2. </span>Sensibilidade numérica<a class="headerlink" href="#sensibilidade-numerica" title="Link to this heading">#</a></h4>
+<p>A sensibilidade numérica mede o quanto a saída de um problema ou algoritmo é afetada por pequenas variações na entrada. Se pequenas perturbações nos dados de entrada causam grandes variações na saída, dizemos que o problema (ou o algoritmo) é sensível, ou seja, mal condicionado. Se, ao contrário, a saída varia pouco frente a pequenas perturbações, dizemos que o problema é bem condicionado, portanto, pouco sensível.</p>
+<p>Quando subtraímos 1 de valores de <span class="math notranslate nohighlight">\(\epsilon\)</span> cada vez menores, a subtração no denominador da fração</p>
+<div class="math notranslate nohighlight">
+\[f(\epsilon) = \dfrac{ (1 + \epsilon) - 1}{\epsilon}\]</div>
+<p>começa a se aproximar de zero por cancelamento subtrativo e o valor de <span class="math notranslate nohighlight">\(f\)</span> torna-se cada vez mais instável até cair a “zero”. O efeito de <span class="math notranslate nohighlight">\(\epsilon_M\)</span> em cálculos pode ser mostrado na figura abaixo.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/f7e3684c0865b130298db86fff11a53ca5193c94ebbe5997e6ae7b6cc8ec0e2d.png" src="../_images/f7e3684c0865b130298db86fff11a53ca5193c94ebbe5997e6ae7b6cc8ec0e2d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="valores-e-operacoes-especiais">
+<h3><span class="section-number">3.2.3. </span>Valores e operações especiais<a class="headerlink" href="#valores-e-operacoes-especiais" title="Link to this heading">#</a></h3>
+<p>O padrão IEEE 754 traz alguns valores especiais para representar cadeias de bits especiais. São eles:</p>
+<ul class="simple">
+<li><p><em>NaN</em> (<em>not a number</em>): representa um valor que é um erro.</p></li>
+<li><p><em>Inf</em> (<em>infinity</em>): representa o infinito (em ambos os sentidos, positivo e negativo).</p></li>
+</ul>
+<p>A partir desses valores especiais, operáveis pelo módulo <em>numpy</em> com <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code> e <code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>, respectivamente, podemos imitar operações matemáticas “equivalentes”. Primeiramente, façamos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">nan</span><span class="p">,</span> <span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida, analisemos qual é o comportamento de algumas operações especiais:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n \div \pm \infty \to \pm 0, \ \ n \in \mathbb{F}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.1</span><span class="o">/</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="n">inf</span><span class="p">,</span> <span class="mf">5.2</span><span class="o">/-</span><span class="n">inf</span><span class="p">,</span> <span class="mi">6</span><span class="o">/-</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, -0.0, -0.0, -0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm \infty \times \pm \infty \to \pm \infty\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf</span><span class="o">*</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">),</span> <span class="o">-</span><span class="n">inf</span><span class="o">*</span><span class="n">inf</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(inf, -inf, -inf, inf)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n \div \pm 0 \to \ \ !, \ \ n \in \mathbb{F}^{*}\)</span> (neste caso, teremos um erro de divisão por zero)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n \times \pm \infty \to \pm \infty, n \in \mathbb{F}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">*</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">inf</span><span class="p">,</span> <span class="mf">3.1112</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">),</span> <span class="o">-</span><span class="mi">111</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(inf, -inf, -inf, inf)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm \infty \pm \infty \to \pm \infty \vee \text{nan}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf</span> <span class="o">+</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span> <span class="o">-</span> <span class="n">inf</span><span class="p">,</span> <span class="o">-</span> <span class="n">inf</span> <span class="o">+</span> <span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span> <span class="o">-</span> <span class="n">inf</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(inf, nan, nan, -inf)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm 0 \div \pm 0 \to \ \ !\)</span> (neste caso, também teremos um erro de divisão por zero)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="o">/-</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">0</span><span class="o">/-</span><span class="mi">0</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm \infty \div \pm \infty \to \text{nan}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf</span><span class="o">/</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="o">/-</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span><span class="o">/</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span><span class="o">/-</span><span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(nan, nan, nan, nan)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm \infty \times 0 \to \text{nan}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf</span><span class="o">*</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">inf</span><span class="o">*</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(nan, nan)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{nan} \neq \text{nan}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nan</span> <span class="o">==</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span> <span class="o">!=</span> <span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(False, True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nan</span> <span class="o">+</span> <span class="n">inf</span> <span class="o">==</span> <span class="n">nan</span> <span class="o">+</span> <span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="erros-e-seus-efeitos">
+<h2><span class="section-number">3.3. </span>Erros e seus efeitos<a class="headerlink" href="#erros-e-seus-efeitos" title="Link to this heading">#</a></h2>
+<p>Credita-se a Alexander Pope (1688 - 1744), poeta inglês, a autoria do provérbio: <em>“errar é humano; perdoar é divino”</em> <a class="reference external" href="https://www.phrases.org.uk/meanings/to-err-is-human.html">[phrases.org.uk]</a>. Apesar de sua motivação, no século XVIII, ser o apontamento da indelével falibilidade humana – que Nicolau de Cusa (citado na epígrafe) via como elemento positivo para que a humanidade construa seu conhecimento gradativamente com percepção intelectual de sua insipiência –, esta máxima tem uma tênue relação com os diversos tipos de erros que persistem em cálculos realizados por máquinas. Discutiremos a seguir algumas definições de erros computacionais e como eles se manifestam ou se propagam em cálculos numéricos aplicáveis a qualquer área do conhecimento.</p>
+<figure class="align-default" id="fig-errareai">
+<a class="reference internal image-reference" href="../_images/errare-ai.png"><img alt="../_images/errare-ai.png" src="../_images/errare-ai.png" style="width: 250px;" />
+</a>
+</figure>
+<section id="motivacao">
+<h3><span class="section-number">3.3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Link to this heading">#</a></h3>
+<p>Como forma de demonstrar que cômputos podem ter resultados distintos, consideremos a somatória (descendente, da maior para a menor parcela)</p>
+<div class="math notranslate nohighlight">
+\[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n},\]</div>
+<p>e a sua versão escrita de forma “refletida” (ascendente, da menor para a maior parcela), ou seja,</p>
+<div class="math notranslate nohighlight">
+\[S_A(n) = \sum_{k=n}^1 \frac{1}{k} = \frac{1}{n} + 1 + \frac{1}{n-1} + \ldots + \frac{1}{2} + 1.\]</div>
+<p>É evidente que <span class="math notranslate nohighlight">\(S_A(n)\)</span> e <span class="math notranslate nohighlight">\(S_D(n)\)</span> são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de <span class="math notranslate nohighlight">\(n\)</span> e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prettytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
+
+<span class="c1"># define séries</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">S_D</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_D</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>        
+         
+    <span class="n">S_A</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_A</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span>       
+    
+    <span class="c1"># diferença    </span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">S_D</span> <span class="o">-</span> <span class="n">S_A</span>
+    
+    <span class="k">return</span> <span class="n">S_D</span><span class="p">,</span> <span class="n">S_A</span><span class="p">,</span> <span class="n">E</span>
+    
+<span class="c1"># cria objeto para tabela</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_A(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_D(n) - S_A(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># loop de teste</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">sd</span><span class="p">,</span> <span class="n">sa</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">tbl</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+   
+<span class="c1"># imprime tabela</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+------------------------+
+|   n    |       S_A(n)       |       S_D(n)       |    S_D(n) - S_A(n)     |
++--------+--------------------+--------------------+------------------------+
+|   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
+|  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
+|  1000  | 7.485470860550343  | 7.485470860550341  | 2.6645352591003757e-15 |
+| 10000  | 9.787606036044348  | 9.787606036044386  | -3.730349362740526e-14 |
+| 100000 | 12.090146129863335 | 12.090146129863408 | -7.283063041541027e-14 |
++--------+--------------------+--------------------+------------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se percebe pela última coluna, os valores produzidos pelas somas para <span class="math notranslate nohighlight">\(n &gt; 10\)</span> não são exatamente iguais. Embora existam diferenças ínfimas nos resultados, elas não são zero, assim indicando que a maneira como computamos expressões matemáticas cujos resultados são idênticos pode levar a resultados distintos. Ter-se <span class="math notranslate nohighlight">\(S_A(n) - S_D(n) \neq 0\)</span> equivale a admitir a presença de um “erro” – ainda que ele seja pequeno e desprezível – cuja magnitude depende da escolha de <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Naturalmente, se tomássemos a versão <em>infinita</em> de <span class="math notranslate nohighlight">\(S_D\)</span> (ou <span class="math notranslate nohighlight">\(S_A\)</span>), chamando-a apenas de <span class="math notranslate nohighlight">\(S\)</span> e substituindo <span class="math notranslate nohighlight">\(n\)</span> por <span class="math notranslate nohighlight">\(\infty\)</span>, isto é,</p>
+<div class="math notranslate nohighlight">
+\[S = \sum_{k=1}^{\infty} \frac{1}{k},\]</div>
+<p>tanto <span class="math notranslate nohighlight">\(S_D(n)\)</span> e <span class="math notranslate nohighlight">\(S_A(n)\)</span> seriam consideradas <em>aproximações</em> para <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Supondo que somente <span class="math notranslate nohighlight">\(S_D(n)\)</span> é a forma correta de “chegar perto” de <span class="math notranslate nohighlight">\(S\)</span>, a implicação</p>
+<div class="math notranslate nohighlight">
+\[S = S_D(n) + \epsilon_n \Rightarrow \epsilon_n = S - S_D(n)\]</div>
+<p>revelaria o acréscimo <span class="math notranslate nohighlight">\(\epsilon_n\)</span> como uma quantidade não-nula coexistindo com o valor finito <span class="math notranslate nohighlight">\(n\)</span>. Uma vez que computadores são incapazes de calcular somas infinitas por limitação de memória, <span class="math notranslate nohighlight">\(\epsilon_n\)</span> define um tipo de <em>erro</em>. Este erro é inerente ao processo de cálculo aproximado de séries infinitas. Além disso, ele dependerá de <span class="math notranslate nohighlight">\(n\)</span>, ou seja, da quantidade de termos utilizados na soma <span class="math notranslate nohighlight">\(S_D\)</span> para aproximar o real valor de <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>Entretanto, estamos ainda diante de um problema de difícil tratamento, visto que a soma <span class="math notranslate nohighlight">\(S\)</span> só pode ser obtida aproximadamente, pois <span class="math notranslate nohighlight">\(\sum_{k=1}^{\infty} \frac{1}{k}\)</span> não é convergente. Logo, é impossível estabelecer um valor “exato” para <span class="math notranslate nohighlight">\(S\)</span>, a fim de compará-lo com suas aproximações. Caso intentássemos medir discrepâncias no cálculo desta série, teríamos que adotar um valor já aproximado para cumprir o papel de exato e utilizar outros valores também aproximados como “aproximações de uma aproximação”. Embora pareça estranho e paradoxal, o que acontece em muitas situações práticas quando lidamos com um <em>processo iterativo</em> ou de <em>aproximações sucessivas</em> é justamente isso.</p>
+<p>Vamos tomar os valores da tabela de <span class="math notranslate nohighlight">\(S_D(n)\)</span>. Suponhamos que <span class="math notranslate nohighlight">\(S_D(100000) = 12.090146129863408\)</span> assumisse o papel de valor “exato” de <span class="math notranslate nohighlight">\(S\)</span>. Fosse este o caso, poderíamos calcular pelo menos quatro erros:</p>
+<div class="math notranslate nohighlight">
+\[E_{10000} = S_D(100000) - S_D(10000) = 2.3025400938190224\]</div>
+<div class="math notranslate nohighlight">
+\[E_{1000} = S_D(100000) - S_D(1000) = 4.604675269313067\]</div>
+<div class="math notranslate nohighlight">
+\[E_{100} = S_D(100000) - S_D(100) = 6.902768612223786\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10} = S_D(100000) - S_D(10) = 9.161177875895154\]</div>
+<p>Para obter cada valor acima, poderíamos escrever:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.</span>
+<span class="c1"># Em Python, cada um é acessível por indexação na forma [i][2]</span>
+
+<span class="n">E_100000</span> <span class="o">=</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>           <span class="c1"># i = 4</span>
+<span class="n">E_10000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># i = 3</span>
+<span class="n">E_1000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># i = 2</span>
+<span class="n">E_100</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># i = 1</span>
+<span class="n">E_10</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># i = 0</span>
+
+<span class="c1"># Impressão de valores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.090146129863408
+2.3025400938190224
+4.604675269313067
+6.902768612223786
+9.161177875895154
+</pre></div>
+</div>
+</div>
+</div>
+<p>Não é difícil ver que o valor de <span class="math notranslate nohighlight">\(E\)</span> em relação a <span class="math notranslate nohighlight">\(S_D(100000)\)</span> aumenta quando tomamos valores de <span class="math notranslate nohighlight">\(n\)</span> cada vez menores. Em outras palavras, nossas aproximações de um valor supostamente exato (aproximado) tornam-se cada vez mais pobres quando não dispomos de parcelas suficientes para somar. Além disso, usar <span class="math notranslate nohighlight">\(S_D(100000)\)</span> como ponto de referência não é nada confiável, já que ele apenas fará com que tenhamos uma sensação ilusória de exatidão.</p>
+<p>Se, em vez de uma série divergente, escolhermos outra, convergente, poderemos fazer cálculos de erro tomando como referência um valor definitivamente exato. Então, consideremos a série</p>
+<div class="math notranslate nohighlight">
+\[S_2 = \sum_{k=1}^{\infty} \frac{1}{k^2}\]</div>
+<p>A série <span class="math notranslate nohighlight">\(S_2\)</span> ficou conhecida como <a class="reference external" href="https://en.wikipedia.org/wiki/Basel_problem"><em>Problema de Basel</em></a>, proposto em 1650 pelo matemático italiano Pietro Mengoli, e solucionado por Leonhard Euler em 1734 – <em>Basel</em> é o nome de uma cidade da Suíça, onde Euler nasceu. Graças a Euler e a teoria matemática operante nos bastidores, existe certeza suficiente de que <span class="math notranslate nohighlight">\(S_2 = \frac{\pi^2}{6}\)</span>.</p>
+<p>Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de <span class="math notranslate nohighlight">\(S_2(n)\)</span> com <span class="math notranslate nohighlight">\(n\)</span> crescente até o limite de 100.000, até porque não temos como computar <span class="math notranslate nohighlight">\(S_2\)</span> <em>ad infinitum</em>. Então, vejamos um código similar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
+
+<span class="c1"># define série</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">S2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">S_2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">S_2</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="o">**</span><span class="mi">2</span>        
+             
+    <span class="c1"># valor exato</span>
+    <span class="n">S_2ex</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> 
+    
+    <span class="c1"># diferença    </span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">S_2ex</span> <span class="o">-</span> <span class="n">S_2</span>
+    
+    <span class="k">return</span> <span class="n">S_2ex</span><span class="p">,</span> <span class="n">S_2</span><span class="p">,</span> <span class="n">E</span>
+    
+<span class="c1"># cria objeto para tabela</span>
+<span class="n">tbl2</span> <span class="o">=</span> <span class="n">pt</span><span class="p">()</span>
+<span class="n">tbl2</span><span class="o">.</span><span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;S_2&#39;</span><span class="p">,</span><span class="s1">&#39;S_2(n)&#39;</span><span class="p">,</span><span class="s1">&#39;S_2 - S_2(n)&#39;</span><span class="p">]</span>
+<span class="n">tbl2</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># loop de teste</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">s2</span><span class="p">,</span> <span class="n">s2n</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="n">s2n</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">tbl2</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+   
+<span class="c1"># imprime tabela</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbl2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+-----------------------+
+|   n    |        S_2         |       S_2(n)       |      S_2 - S_2(n)     |
++--------+--------------------+--------------------+-----------------------+
+|   10   | 1.6449340668482264 | 1.5497677311665408 |  0.09516633568168564  |
+|  100   | 1.6449340668482264 | 1.6349839001848923 |  0.009950166663334148 |
+|  1000  | 1.6449340668482264 | 1.6439345666815615 | 0.0009995001666649461 |
+| 10000  | 1.6449340668482264 | 1.6448340718480652 | 9.999500016122376e-05 |
+| 100000 | 1.6449340668482264 | 1.6449240668982423 | 9.999949984074163e-06 |
++--------+--------------------+--------------------+-----------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Neste caso, a diferença existente na última coluna caracteriza, de fato, o <em>erro real</em> entre o valor exato <span class="math notranslate nohighlight">\(S_2\)</span> e suas aproximações, de modo que, neste caso,</p>
+<div class="math notranslate nohighlight">
+\[E_{100000} = \frac{\pi^2}{6} - S_2(100000) = 0.000009999949984074163\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10000} = \frac{\pi^2}{6} - S_2(10000) = 0.00009999500016122376\]</div>
+<div class="math notranslate nohighlight">
+\[E_{1000} = \frac{\pi^2}{6} - S_2(1000) = 0.0009995001666649461\]</div>
+<div class="math notranslate nohighlight">
+\[E_{100} = \frac{\pi^2}{6} - S_2(100) = 0.009950166663334148\]</div>
+<div class="math notranslate nohighlight">
+\[E_{10} = \frac{\pi^2}{6} - S_2(10) = 0.09516633568168564\]</div>
+<p>A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de <span class="math notranslate nohighlight">\(n\)</span> aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é <span class="math notranslate nohighlight">\(\pi^2/6 \approx 1.6449340668482264\)</span>. Para obtermos os valores dos erros, um código similar poderia ser implementado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Expressões do erro real</span>
+<span class="n">E_100000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># i = 4</span>
+<span class="n">E_10000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># i = 3</span>
+<span class="n">E_1000</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># i = 2</span>
+<span class="n">E_100</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># i = 1</span>
+<span class="n">E_10</span> <span class="o">=</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">-</span> <span class="n">tbl2</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># i = 0</span>
+
+<span class="c1"># Impressão</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.999949984074163e-06
+9.999500016122376e-05
+0.0009995001666649461
+0.009950166663334148
+0.09516633568168564
+</pre></div>
+</div>
+</div>
+</div>
+<p>Talvez não tenha sido percebido, mas, até aqui, já tratamos, conceitualmente, de três tipificações de erro, a saber:</p>
+<ol class="arabic simple">
+<li><p><em>erro de truncamento</em>, quando limitamos o número de termos de uma expansão infinita, tornando-a finita.</p></li>
+<li><p><em>erro real aproximado</em> (ou <em>erro verdadeiro aproximado</em>), quando assumimos que o valor exato da expansão infinita (série divergente) é a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>, com <span class="math notranslate nohighlight">\(n\)</span> muito grande, mas finito, e calculamos a diferença entre este valor e a soma obtida até uma parcela anterior à <span class="math notranslate nohighlight">\(n\)</span>-ésima;</p></li>
+<li><p><em>erro real</em> (ou <em>erro verdadeiro</em>), quando calculamos a diferença entre a soma exata (série convergente) e a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>Curioso, não? E não para por aí! Ainda há outras definições de erro. Veremos mais algumas no decorrer do curso.</p>
+</section>
+<section id="tipos-de-erros">
+<h3><span class="section-number">3.3.2. </span>Tipos de erros<a class="headerlink" href="#tipos-de-erros" title="Link to this heading">#</a></h3>
+<p>Consideremos avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = 0.172x^3 - 0.878x^2 + 0.042x + 0.583\)</span>
+no ponto <span class="math notranslate nohighlight">\(x=79.9\)</span>.</p>
+<p>Vamos fazer o seguinte:</p>
+<ol class="arabic simple">
+<li><p>Assumir que <span class="math notranslate nohighlight">\(82132.957032\)</span> seja o valor exato para o polinômio em <span class="math notranslate nohighlight">\(x = 79.9\)</span>.</p></li>
+<li><p>Calcular <span class="math notranslate nohighlight">\(P(79.9)\)</span> utilizando duas formas.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código para gerar polinômio cúbico com raízes reais</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">roots</span><span class="p">,</span> <span class="n">lambdify</span>
+
+<span class="c1"># Semente aleatória</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Um polinômio do terceiro grau terá as 3 raízes reais e distintas</span>
+<span class="c1"># se o discriminante for &gt; 0. Aqui, criamos um polinômio que </span>
+<span class="c1"># satisfaz tais condições por busca aleatória</span>
+<span class="n">Delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">Delta</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">,:]</span>
+    <span class="n">Delta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">18</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="o">*</span><span class="n">D</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">B</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">D</span> <span class="o">+</span> <span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span>
+    
+<span class="c1"># Polinômio cúbico simbólico</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span>
+
+<span class="c1"># Polinômio cúbico numérico</span>
+<span class="n">P3n</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">P3</span><span class="p">,</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Raízes simbólicas</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">roots</span><span class="p">(</span><span class="n">P3</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">r3</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Raízes numéricas com os valores encontrados</span>
+<span class="n">r1n</span> <span class="o">=</span> <span class="n">r1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">r2n</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">r3n</span> <span class="o">=</span> <span class="n">r3</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">#print(P3)</span>
+<span class="c1">#P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valor (comentários)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">79.9</span>
+
+<span class="c1"># Forma padrão</span>
+<span class="n">Px</span> <span class="o">=</span> <span class="mf">0.172</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">0.878</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.042</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.583</span>
+
+<span class="c1"># Forma estruturada (Hörner)</span>
+<span class="n">PHx</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mf">0.172</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.878</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.042</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.583</span> 
+
+<span class="c1"># Impressão</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">Px</span><span class="si">:</span><span class="s1">.14f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PH(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">PHx</span><span class="si">:</span><span class="s1">.14f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(79.9) = 82132.95064800001273
+PH(79.9) = 82132.95064799999818
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se vê, a partir da 7a. casa decimal, começamos a notar uma leve diferença do valor do polinômio, embora ambas as formas, padrão de Hörner (estruturada), sejam matematicamente equivalentes. Embora os valores sejam próximos, a forma estruturada é uma opção menos <em>custosa</em>, sob o ponto de vista computacional, visto que ela possui menos avaliações de operações aritméticas.</p>
+<p>A forma polinomial padrão, escrita de maneira ampliada, resulta em</p>
+<div class="math notranslate nohighlight">
+\[P(x) = 0.172{\color{red}.}x{\color{red}.}x{\color{red}.}x {\color{blue}-} 0.878{\color{red}.}x{\color{red}.}x {\color{blue}+} 0.042{\color{red}.}x {\color{blue}+} 0.583,\]</div>
+<p>ao passo que a forma de Hörner é escrita como:</p>
+<div class="math notranslate nohighlight">
+\[P_H(x) = x{\color{red}.}(x{\color{red}.}(0.172{\color{red}.}x {\color{blue}-} 0.878) {\color{blue}+} 0.042) {\color{blue}+} 0.583\]</div>
+<p>Qual é a diferença entre ambas? O número de multiplicações (vermelho) e adições/subtrações (azul) é diferente. Enquanto na forma <span class="math notranslate nohighlight">\(P(x)\)</span>, temos 6 multiplicações e 3 adições/subtrações, a forma <span class="math notranslate nohighlight">\(P_H(x)\)</span> reduz as operações para 3 multiplicações e 3 adições/subtrações. Isso é o mesmo que dizer que o número de operações aritméticas de multiplicação foi reduzido em 50%!</p>
+<p>A conclusão é: a avaliação de polinômios pela forma de Hörner é mais lucrativa e propensa a um erro menor.</p>
+<section id="erro-real">
+<h4><span class="section-number">3.3.2.1. </span>Erro real<a class="headerlink" href="#erro-real" title="Link to this heading">#</a></h4>
+<p>O erro real (ou verdadeiro), <span class="math notranslate nohighlight">\(E\)</span>, não sinalizado, entre o valor
+exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <span class="math notranslate nohighlight">\(\hat{x}\)</span> é dado por:</p>
+<div class="math notranslate nohighlight">
+\[E = \hat{x} - x.\]</div>
+<p>Note que, por convenção, se <span class="math notranslate nohighlight">\(E &gt; 0\)</span>, erramos por superestimação (“excesso”). Por outro lado, se <span class="math notranslate nohighlight">\(E &lt; 0\)</span>, erramos por subestimação (“omissão”).</p>
+<p>Calculamos o erro real operando com diferença simples.</p>
+<p>Utilizando o exemplo da seção anterior, temos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valor exato</span>
+<span class="n">Px_ex</span> <span class="o">=</span> <span class="mf">82132.957032</span>
+
+<span class="c1"># Erro real (forma padrão)</span>
+<span class="n">E_P</span> <span class="o">=</span> <span class="n">Px</span> <span class="o">-</span> <span class="n">Px_ex</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_P</span><span class="p">)</span>
+
+<span class="c1"># Erro real (forma de Hörner)</span>
+<span class="n">E_PH</span> <span class="o">=</span> <span class="n">PHx</span> <span class="o">-</span> <span class="n">Px_ex</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E_PH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0063839999929768965
+-0.006384000007528812
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-absoluto">
+<h4><span class="section-number">3.3.2.2. </span>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Link to this heading">#</a></h4>
+<p>O erro absoluto, <span class="math notranslate nohighlight">\(EA\)</span>, é a versão sinalizada de <span class="math notranslate nohighlight">\(E\)</span>. Dado por</p>
+<div class="math notranslate nohighlight">
+\[EA = | \hat{x} - x |,\]</div>
+<p>ele ignora a condição de subestimação ou superestimação e se atém à diferença absoluta entre o valor exato e o valor aproximado.</p>
+<p>A função módulo, <span class="math notranslate nohighlight">\(f(x) = | x |\)</span>, pode ser diretamente calculada com <code class="docutils literal notranslate"><span class="pre">abs</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erro absoluto (forma padrão)</span>
+<span class="n">EA_P</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Px</span> <span class="o">-</span> <span class="n">Px_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">EA_P</span><span class="p">)</span>
+
+<span class="c1"># Erro absoluto (forma de Hörner)</span>
+<span class="n">EA_PH</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">PHx</span> <span class="o">-</span> <span class="n">Px_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">EA_PH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0063839999929768965
+0.006384000007528812
+</pre></div>
+</div>
+</div>
+</div>
+<p>É evidente que <span class="math notranslate nohighlight">\(E_{PH} &gt; E_P\)</span>. Entretanto, podemos verificar isso pelo seguinte teste lógico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># O teste é verdadeiro</span>
+<span class="n">EA_PH</span> <span class="o">&gt;</span> <span class="n">EA_P</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-relativo">
+<h4><span class="section-number">3.3.2.3. </span>Erro relativo<a class="headerlink" href="#erro-relativo" title="Link to this heading">#</a></h4>
+<p>O erro relativo, <span class="math notranslate nohighlight">\(ER\)</span>, aperfeiçoa a idea de erro absoluto a partir do momento que passa a considerar a ordem de grandeza das quantidades envolvidas, mensurando uma variação que se limita ao valor exato. Assim,</p>
+<div class="math notranslate nohighlight">
+\[ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|}.\]</div>
+<p>expressão que, devido à simetria da função módulo, pode ainda ser expandida para
+$<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|} = 
+\dfrac{|x(1 - \frac{\hat{x}}{x})|}{|x|} = \dfrac{|x| |1 - \frac{\hat{x}}{x}|}{|x|} = \bigg|1 - \frac{\hat{x}}{x}\bigg|.\)</span>$</p>
+<p>Os erros relativos podem ser computados como:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER_P</span> <span class="o">=</span> <span class="n">EA_P</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">Px_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ER_P</span><span class="p">)</span>
+
+<span class="n">ER_PH</span> <span class="o">=</span> <span class="n">EA_PH</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">Px_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ER_PH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.772762875796146e-08
+7.772762893513656e-08
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-relativo-percentual">
+<h4><span class="section-number">3.3.2.4. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Link to this heading">#</a></h4>
+<p>O erro relativo percentual é outra forma útil de expressar a disparidade relativa entre valores. Ele é definido por:</p>
+<div class="math notranslate nohighlight">
+\[ER_{\%} = ER \times 100\% = \bigg|1 - \frac{\hat{x}}{x}\bigg| \times 100\%.\]</div>
+<p>Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER_Pp</span> <span class="o">=</span> <span class="n">ER_P</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ER_Pp</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
+
+<span class="n">ER_PHp</span> <span class="o">=</span> <span class="n">ER_PH</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ER_PHp</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.772763e-06 %
+7.772763e-06 %
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-relativo-aproximado-benchmark">
+<h4><span class="section-number">3.3.2.5. </span>Erro relativo aproximado (<em>benchmark</em>)<a class="headerlink" href="#erro-relativo-aproximado-benchmark" title="Link to this heading">#</a></h4>
+<p>Como vimos no exemplo motivacional deste capítulo, há casos (a maioria deles) em que não dispomos de valores exatos (obtidos por soluções analíticas, por exemplo), sendo possível estimar erros relativos apenas aproximadamente usando um <em>valor de referência</em>. Costuma-se chamar este valor de <em>benchmark</em>. Definido o <em>benchmark</em> por <span class="math notranslate nohighlight">\(x'\)</span>, o <em>erro relativo aproximado</em> é dado:</p>
+<div class="math notranslate nohighlight">
+\[ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|}.\]</div>
+<p>No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou <span class="math notranslate nohighlight">\(P(x=79.9)\)</span> ou <span class="math notranslate nohighlight">\(P_H(x=79.9)\)</span> deveria ser adotado como <em>benchmark</em>. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER_</span> <span class="o">=</span>  <span class="nb">abs</span><span class="p">(</span><span class="n">PHx</span> <span class="o">-</span> <span class="n">Px</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">PHx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ER_</span><span class="si">:</span><span class="s1">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.771751e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-relativo-aproximado-percentual">
+<h4><span class="section-number">3.3.2.6. </span>Erro relativo aproximado percentual<a class="headerlink" href="#erro-relativo-aproximado-percentual" title="Link to this heading">#</a></h4>
+<p>O erro relativo aproximado percentual é, meramente, a versão percentual do erro relativo aproximado, logo, dado por</p>
+<div class="math notranslate nohighlight">
+\[ER'_{\%} = ER' \times 100 \%.\]</div>
+</section>
+<section id="erro-de-cancelamento">
+<h4><span class="section-number">3.3.2.7. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Link to this heading">#</a></h4>
+<p>O erro de cancelamento ocorre quando números de grandezas próximas são subtraídos. Como exemplo de situação crítica, induzimos uma divisão por zero usando o valor do épsilon de máquina <span class="math notranslate nohighlight">\(\epsilon_M\)</span> ao fazer</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{(1 + 0.25\epsilon_M) - 1}.\]</div>
+<p>Isto ocorre porque o denominador sofre um <em>cancelamento subtrativo</em> Uma vez que <span class="math notranslate nohighlight">\(0.25\epsilon_M &lt; \epsilon_M\)</span>, a operação <span class="math notranslate nohighlight">\(0.25\epsilon_M\)</span> não produz efeito sobre 1, de modo que a computação encontra um “limbo”. Para a matemática exata, a operação deveria ser “diferente de zero”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">finfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">filterwarnings</span><span class="p">;</span> 
+<span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+<span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">e</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(inf)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">e</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.False_
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erros-de-truncamento-e-de-arredondamento">
+<h4><span class="section-number">3.3.2.8. </span>Erros de truncamento e de arredondamento<a class="headerlink" href="#erros-de-truncamento-e-de-arredondamento" title="Link to this heading">#</a></h4>
+<p>O erro de truncamento está relacionado ao “corte” abrupto de dígitos de precisão em um valor numérico ou de parcelas em uma expansão infinita. No início do capítulo, exemplificamos como uma série pode ser aproximada truncando um ou mais termos de sua expansão.</p>
+<p>No caso de números, o truncamento ocorre quando se ignora o valor da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa decimal para finalidades de aproximação até a <span class="math notranslate nohighlight">\(k\)</span>-ésima casa. Por exemplo, se <span class="math notranslate nohighlight">\(x = 13.4256\)</span>, a aproximação de <span class="math notranslate nohighlight">\(x\)</span> por truncamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.425\)</span>. O dígito 6 é ignorado nos cálculos.</p>
+<p>No caso do arredondamento, o <span class="math notranslate nohighlight">\(k\)</span>-ésimo dígito é somado de 1 se o dígito da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa for maior ou igual a 5. A aproximação de <span class="math notranslate nohighlight">\(x\)</span> por arredondamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.426\)</span>, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.</p>
+</section>
+</section>
+</section>
+<section id="erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">
+<h2><span class="section-number">3.4. </span>Erros e funções de perda no contexto da inteligência artificial<a class="headerlink" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial" title="Link to this heading">#</a></h2>
+<p>Diversas definições de erro também existem no contexto da inteligência artificial (IA). Todavia, em modelos de IA, o conceito de erro está profundamente vinculado à diferença entre a saída produzida por um modelo e um valor considerado verdadeiro, chamado de “gabarito” (<em>ground truth</em>). O gabarito representa o conhecimento correto sobre um fenômeno, seja a classificação correta de uma imagem, o preço real de um imóvel, ou a demanda energética observada em determinado dia. O modelo, por sua vez, gera uma saída predita — e a diferença entre predição e realidade constitui o erro.</p>
+<p>Essa diferença é quantificada por meio de uma <em>função de perda</em> (<em>loss function</em>), que mede o quão ruim uma predição foi em relação ao gabarito. Portanto, a conotação do erro nesse contexto é de uma <em>métrica de desempenho</em>. Várias métricas existem e tendem a expressar distâncias entre valores reais e valores preditos. A seguir, descrevemos algumas dessas métricas sob o ponto de vista de vetores no espaço de <span class="math notranslate nohighlight">\(n\)</span> dimensões. Em todas as fórmulas, <span class="math notranslate nohighlight">\(\bf{x}\)</span> é o vetor de dados reais, cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(x_i\)</span>, e <span class="math notranslate nohighlight">\(\bf{\hat{x}}\)</span> é o vetor de dados preditos (aproximados), cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(\hat{x_i}\)</span>. Assim, <span class="math notranslate nohighlight">\(n\)</span> reflete o número de pontos de amostragem.</p>
+<section id="erro-absoluto-medio">
+<h3><span class="section-number">3.4.1. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Link to this heading">#</a></h3>
+<p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|\]</div>
+<p>O MAE é útil quando queremos minimizar a soma das diferenças absolutas.</p>
+</section>
+<section id="erro-quadratico-medio">
+<h3><span class="section-number">3.4.2. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Link to this heading">#</a></h3>
+<p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2\]</div>
+</section>
+<section id="erro-absoluto-medio-percentual">
+<h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Link to this heading">#</a></h3>
+<p>O erro absoluto médio percentual (<em>mean absolute percentage error</em>, MAPE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |x_i - \hat{x}_i| }{ | x_i | } \times 100\]</div>
+</section>
+<section id="erro-logaritmico-quadratico-medio">
+<h3><span class="section-number">3.4.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Link to this heading">#</a></h3>
+<p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
+<div class="math notranslate nohighlight">
+\[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2\]</div>
+</section>
+<section id="erro-induzido-pela-norma-p-e-erro-maximo">
+<h3><span class="section-number">3.4.5. </span>Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo<a class="headerlink" href="#erro-induzido-pela-norma-p-e-erro-maximo" title="Link to this heading">#</a></h3>
+<p>O MAE e o MSE, por exemplo, são casos particulares da definição genérica dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+E_p = || {\bf x} - {\bf \hat{x}} ||_p = \left( \sum_{i=1}^n |x_i - \hat{x}_i|^p \right)^{\frac{1}{p}}, \ \ 1 \le p &lt; \infty,
+\]</div>
+<p>para <span class="math notranslate nohighlight">\(p=1\)</span> e <span class="math notranslate nohighlight">\(p=2\)</span>, respectivamente. Em particular, a chamada “norma do máximo” é definida por</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| \}, 
+\]</div>
+<p>que mede a maior diferença absoluta entre o vetor de valores reais e o vetor de valores preditos.</p>
+<p>A norma <span class="math notranslate nohighlight">\(p\)</span> é chamada de <em>norma de Minkowski</em>. As diferentes normas decorrentes da escolha de <span class="math notranslate nohighlight">\(p\)</span> são usadas em contextos diferentes para medir mudanças específicas. Quanto maior é o valor de <span class="math notranslate nohighlight">\(p\)</span>, mais ela se concentra em captar discrepâncias maiores. Assim, normas menores são mais robustas a <em>outliers</em>. Quando <span class="math notranslate nohighlight">\(p=1\)</span>, temos a <em>norma de Manhattan</em>; quando <span class="math notranslate nohighlight">\(p=2\)</span>, temos a <em>norma Euclidiana</em>, bastante conhecida de outras disciplinas.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade - IA aplicada ao armazenamento geológico de carbono</p>
+<p>Nos últimos anos, métodos de aprendizagem profunda vêm sendo aplicados à identificação automatizada de corpos salinos em imagens sísmicas tanto para finalidades de exploração de combustíveis fósseis, como também para armazenamento geológico de carbono. Em aplicações dessa natureza, o gabarito, em geral, é uma imagem interpretada por um geólogo profissional. Algoritmos de classificação, por sua vez, tentam delinear a mesma estrutura geológica obtida pelo humano baseando-se em métricas formuladas a partir de definições de erro como as que estudamos nesta seção. Para saber mais, veja os artigos: <span id="id3">[<a class="reference internal" href="#id9" title="Aleksandar Milosavljević. Identification of salt deposits on seismic images using deep learning method for semantic segmentation. ISPRS International Journal of Geo-Information, 9(1):24, 2020. doi:10.3390/ijgi9010024.">Milosavljević, 2020</a>]</span>, <span id="id4">[<a class="reference internal" href="#id10" title="Parisa Shokouhi, Vikas Kumar, Sumedha Prathipati, Seyyed A Hosseini, Clyde Lee Giles, and Daniel Kifer. Physics-informed deep learning for prediction of co2 storage site response. Journal of Contaminant Hydrology, 241:103835, 2021. doi:10.1016/j.jconhyd.2021.103835.">Shokouhi <em>et al.</em>, 2021</a>]</span> e <span id="id5">[<a class="reference internal" href="#id11" title="Yan-Wei Wang, Zhen-Xue Dai, Gui-Sheng Wang, Li Chen, Yu-Zhou Xia, and Yu-Hao Zhou. A hybrid physics-informed data-driven neural network for co2 storage in depleted shale reservoirs. Petroleum Science, 21(1):286–301, 2024. doi:10.1016/j.petsci.2023.08.032.">Wang <em>et al.</em>, 2024</a>]</span>.</p>
+</div>
+</section>
+<section id="calculando-o-desempenho">
+<h3><span class="section-number">3.4.6. </span>Calculando o desempenho<a class="headerlink" href="#calculando-o-desempenho" title="Link to this heading">#</a></h3>
+<p>Usando a biblioteca <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, é possível utilizar funções já disponíveis no módulo <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code> para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para <span class="math notranslate nohighlight">\(n=4\)</span>. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">MSE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="k">as</span> <span class="n">MAE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">MAPE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_log_error</span> <span class="k">as</span> <span class="n">MSLE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span> <span class="k">as</span> <span class="n">pNorm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">subplots</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1.inset_locator</span><span class="w"> </span><span class="kn">import</span> <span class="n">inset_axes</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
+
+<span class="c1"># conjunto de dados</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span> <span class="c1"># valores reais</span>
+<span class="n">xhat</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span> <span class="c1"># valores preditos</span>
+
+<span class="c1"># erros</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">MAE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">MSE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">mape</span> <span class="o">=</span> <span class="n">MAPE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+<span class="n">msle</span> <span class="o">=</span> <span class="n">MSLE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">)</span>
+
+<span class="c1"># normas de Minkowski</span>
+<span class="n">norms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span> <span class="c1"># valores p</span>
+
+<span class="c1"># calcula por matrizes de distâncias, mas armazena valor único</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">P</span><span class="p">:</span>
+    <span class="n">norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pNorm</span><span class="p">([</span><span class="n">x</span><span class="p">],[</span><span class="n">xhat</span><span class="p">],</span><span class="n">metric</span><span class="o">=</span><span class="s1">&#39;minkowski&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="c1"># gráficos</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xhat</span><span class="p">,</span><span class="s1">&#39;og&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;real&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;predito&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">,</span><span class="s1">&#39;MSE&#39;</span><span class="p">,</span><span class="s1">&#39;MAPE&#39;</span><span class="p">,</span><span class="s1">&#39;MSLE&#39;</span><span class="p">],</span><span class="n">height</span><span class="o">=</span><span class="p">[</span><span class="n">mae</span><span class="p">,</span><span class="n">mse</span><span class="p">,</span><span class="n">mape</span><span class="p">,</span><span class="n">msle</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;métricas&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span><span class="n">norms</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span><span class="s1">&#39;sg&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:]))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;p=</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">[</span><span class="mi">3</span><span class="p">:])))</span>
+
+<span class="c1"># eixo embutido</span>
+<span class="n">axi</span> <span class="o">=</span> <span class="n">inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;50%&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;40%&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span><span class="n">norms</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;sg&#39;</span><span class="p">)</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="n">axi</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;p=</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">P</span><span class="p">[:</span><span class="mi">3</span><span class="p">])))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;normas de Minkowski&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09c4b146ce0cd760263ce2e56b8258d7ca35e7ffd5dfd15929bc2a2020afb3a5.png" src="../_images/09c4b146ce0cd760263ce2e56b8258d7ca35e7ffd5dfd15929bc2a2020afb3a5.png" />
+</div>
+</div>
+<p>Percebe-se que cada métrica retorna um valor diferente para o erro entre os valores exatos e os aproximados. Cabe ao usuário interpretar qual faz mais sentido para o conjunto de dados em análise.</p>
+</section>
+</section>
+<section id="aplicacoes">
+<h2><span class="section-number">3.5. </span>Aplicações<a class="headerlink" href="#aplicacoes" title="Link to this heading">#</a></h2>
+<section id="erros-pontuais-na-funcao-de-airy">
+<h3><span class="section-number">3.5.1. </span>Erros pontuais na função de Airy<a class="headerlink" href="#erros-pontuais-na-funcao-de-airy" title="Link to this heading">#</a></h3>
+<p>A função de Airy é solução da <a class="reference external" href="https://pt.wikipedia.org/wiki/Equa%C3%A7%C3%A3o_de_Schr%C3%B6dinger">equação de Schrödinger</a> da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma função “perturbada” que simulará o papel de função de Airy aproximada, enquanto manteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">special</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Eixo das abscissas</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Funções de Airy e suas derivadas (solução exata)</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">aip</span><span class="p">,</span> <span class="n">bi</span><span class="p">,</span> <span class="n">bip</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">airy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Função de Airy perturbada</span>
+<span class="n">A_</span> <span class="o">=</span> <span class="mf">1.152</span><span class="o">*</span><span class="n">A</span> <span class="o">+</span> <span class="mf">0.056</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos usar o conceito de <em>função anônima</em> (<code class="docutils literal notranslate"><span class="pre">lambda</span></code>) para calcular diretamente o erro relativo percentual para cada ponto <span class="math notranslate nohighlight">\(x\)</span>. Assim, seja:</p>
+<div class="math notranslate nohighlight">
+\[ER_{\text{Airy}}(x) = \frac{\mid \ \hat{A}(x) - A(x) \ \mid}{\mid \ A(x) \ \mid},\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\hat{A}(x)\)</span> é a função de Airy aproximada e <span class="math notranslate nohighlight">\(A(x)\)</span> é a função de Airy exata. Então:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define função anônima para erro relativo</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">f_</span><span class="p">:</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f_</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="c1"># calcula erro relativo para função de Airy e sua aproximação</span>
+<span class="n">E_airy</span> <span class="o">=</span> <span class="n">ai</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotagem das funções </span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">legend</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Airy exata&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A_</span><span class="p">,</span> <span class="s1">&#39;g:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Airy aprox.&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e6af7424c9528f58f17902ec7aa091337d814ed069c61c4ea2805c9a327cf755.png" src="../_images/e6af7424c9528f58f17902ec7aa091337d814ed069c61c4ea2805c9a327cf755.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotagem do erro </span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">E_airy</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x186cb4f50&gt;]
+</pre></div>
+</div>
+<img alt="../_images/aa41e9a430c543babd206e17e7ffb621370341e52d86cd500e9576e8b8d05948.png" src="../_images/aa41e9a430c543babd206e17e7ffb621370341e52d86cd500e9576e8b8d05948.png" />
+</div>
+</div>
+</section>
+<section id="avaliacao-de-algoritmos-de-ordenacao">
+<h3><span class="section-number">3.5.2. </span>Avaliação de algoritmos de ordenação<a class="headerlink" href="#avaliacao-de-algoritmos-de-ordenacao" title="Link to this heading">#</a></h3>
+<p>Vamos considerar um cenário em que estamos avaliando a eficiência de dois algoritmos de ordenação: o algoritmo de ordenação por inserção (<em>insertion sort</em>) e o algoritmo de ordenação rápida (<em>quick sort</em>). Suponha que temos um conjunto de dados com 10.000 elementos e queremos comparar o tempo de execução teórico e o medido para ambos os algoritmos.</p>
+<p>Consideremos:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span>: tempo de execução teórico do algoritmo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}\)</span>: tempo de execução medido do algoritmo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(ER = 1 - \dfrac{\hat{x}}{x}\)</span></p></li>
+</ul>
+<p>O <em>insertion sort</em> possui complexidade teórica de <span class="math notranslate nohighlight">\(O(n^2)\)</span>. Consideremos que o tempo teórico para 10.000 elementos seja de 50 segundos. O <em>quick sort</em> possui complexidade teórica de <span class="math notranslate nohighlight">\(O(n \, \log \, n)\)</span>. Consideremos que o tempo teórico para 10.000 elementos seja de 2 segundos.</p>
+<p>Após executar os algoritmos em uma máquina específica, suponhamos que tenhamos obtido os seguintes tempos de execução:</p>
+<ul class="simple">
+<li><p><em>insertion sort</em>: 55 segundos.</p></li>
+<li><p><em>quick sort</em>: 2.5 segundos.</p></li>
+</ul>
+<p>O cálculo do erro relativo mostra que:</p>
+<ul class="simple">
+<li><p><em>insertion sort</em>: <span class="math notranslate nohighlight">\(ER = 1 - \frac{55}{50} = 1 - 1.1 = -0.1 = -10\%\)</span></p></li>
+<li><p><em>quick sort</em>: <span class="math notranslate nohighlight">\(ER = 1 - \frac{2.5}{2} = 1 - 1.25 = -0.25 = -25\%\)</span>.</p></li>
+</ul>
+<p>Ou seja, para o <em>insertion sort</em>, o erro relativo de -10% indica que o algoritmo demorou 10% mais do que o esperado, o que pode ser atribuído a fatores como sobrecarga de processamento ou otimizações que não foram realizadas. Para o <em>quick sort</em>, o erro relativo de -25% indica que o algoritmo demorou 25% mais do que o esperado, sugerindo que o algoritmo pode não ter se comportado da melhor maneira para este conjunto de dados específico, ou que a implementação usada não foi a mais eficiente.</p>
+<p>Esses cálculos de erro relativo são essenciais para avaliar o desempenho dos algoritmos em ambientes reais, comparando-os com as expectativas teóricas. Eles ajudam a identificar discrepâncias que podem surgir devido a vários fatores, como características do hardware, implementações específicas do algoritmo, e peculiaridades dos dados de entrada.</p>
+</section>
+<section id="erros-de-precificacao-imobiliaria-por-redes-neurais">
+<h3><span class="section-number">3.5.3. </span>Erros de precificação imobiliária por redes neurais<a class="headerlink" href="#erros-de-precificacao-imobiliaria-por-redes-neurais" title="Link to this heading">#</a></h3>
+<p>Vamos considerar um cenário onde estamos treinando uma rede neural para prever preços de imóveis com base em características como área, número de quartos, localização, etc. Para avaliar o desempenho da rede neural, usaremos o MSE e o MAE.</p>
+<ol class="arabic simple">
+<li><p><strong>Dados do Conjunto de Treinamento e Teste</strong></p>
+<ul class="simple">
+<li><p>Temos um conjunto de dados com 1.000 amostras de preços de imóveis.</p></li>
+</ul>
+</li>
+<li><p><strong>Treinamento da Rede Neural</strong></p>
+<ul class="simple">
+<li><p>A rede neural é treinada com um conjunto de treinamento e avaliada com um conjunto de teste.</p></li>
+</ul>
+</li>
+<li><p><strong>Resultados do Conjunto de Teste</strong></p>
+<ul class="simple">
+<li><p>Valores reais dos preços dos imóveis: <span class="math notranslate nohighlight">\(\mathbf{x} = [200 \ \ 300 \ \ 250 \ \ 500 \ \ 400]^T\)</span></p></li>
+<li><p>Valores previstos pela rede neural <span class="math notranslate nohighlight">\(\mathbf{\hat{x}} = [210 \ \ 290 \ \ 240 \ \ 520 \ \ 410]^T\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Cálculo do MSE</strong></p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ (200 - 210)^2 + (300 - 290)^2 + (250 - 240)^2 + (500 - 520)^2 + (400 - 410)^2 \right]\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ 100 + 100 + 100 + 400 + 100 \right] = \frac{1}{5} \times 800 = 160\)</span></p>
+<ol class="arabic simple" start="5">
+<li><p><strong>Cálculo do MAE</strong></p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ |200 - 210| + |300 - 290| + |250 - 240| + |500 - 520| + |400 - 410| \right]\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ 10 + 10 + 10 + 20 + 10 \right] = \frac{1}{5} \times 60 = 12\)</span></p>
+<ol class="arabic simple" start="6">
+<li><p><strong>Interpretação dos Resultados</strong></p>
+<ul class="simple">
+<li><p><strong>MSE</strong>: Um valor de 160 indica que, em média, os quadrados dos erros são relativamente altos. Como o MSE penaliza mais fortemente os grandes erros, este valor sugere que há algumas previsões com grandes discrepâncias.</p></li>
+<li><p><strong>MAE</strong>: Um valor de 12 indica que, em média, os erros absolutos entre as previsões e os valores reais são de 12 unidades monetárias. O MAE sendo menor que o MSE sugere que a maioria dos erros são pequenos, mas existem alguns grandes erros que estão influenciando o MSE.</p></li>
+<li><p><strong>Ajuste do Modelo</strong>: Se o MSE for muito maior que o MAE, isto pode indicar a presença de outliers que estão afetando negativamente o desempenho do modelo. Nesse caso, pode ser útil investigar os outliers e ajustar o modelo ou os dados de treinamento.</p></li>
+</ul>
+</li>
+<li><p><strong>Avaliação de Desempenho</strong></p></li>
+</ol>
+<p>Ambas as métricas são úteis para avaliar a precisão do modelo, mas cada uma tem suas vantagens. O MSE é mais sensível a grandes erros, enquanto o MAE é mais intuitivo e menos sensível a outliers. O uso de MSE e MAE permite uma avaliação completa do desempenho de uma rede neural. Enquanto o MSE fornece uma visão detalhada dos erros grandes, o MAE oferece uma métrica mais robusta contra outliers, facilitando a interpretação dos resultados e a melhoria do modelo.</p>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">3.6. </span>Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id6">
+<div role="list" class="citation-list">
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">FM21</a><span class="fn-bracket">]</span></span>
+<p>Massimiliano Fasi and Mantas Mikaitis. Algorithms for stochastically rounded elementary arithmetic operations in ieee 754 floating-point arithmetic. <em>IEEE Transactions on Emerging Topics in Computing</em>, 9(3):1451–1466, 2021. <a class="reference external" href="https://doi.org/10.1109/IEEESTD.2019.8766229">doi:10.1109/IEEESTD.2019.8766229</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">MallasenDBPM24</a><span class="fn-bracket">]</span></span>
+<p>David Mallasén, Alberto A Del Barrio, and Manuel Prieto-Matias. Big-percival: exploring the native use of 64-bit posit arithmetic in scientific computing. <em>IEEE Transactions on Computers</em>, 2024. <a class="reference external" href="https://doi.org/10.1109/TC.2024.3377890">doi:10.1109/TC.2024.3377890</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Milosavljevic20</a><span class="fn-bracket">]</span></span>
+<p>Aleksandar Milosavljević. Identification of salt deposits on seismic images using deep learning method for semantic segmentation. <em>ISPRS International Journal of Geo-Information</em>, 9(1):24, 2020. <a class="reference external" href="https://doi.org/10.3390/ijgi9010024">doi:10.3390/ijgi9010024</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">SKP+21</a><span class="fn-bracket">]</span></span>
+<p>Parisa Shokouhi, Vikas Kumar, Sumedha Prathipati, Seyyed A Hosseini, Clyde Lee Giles, and Daniel Kifer. Physics-informed deep learning for prediction of co2 storage site response. <em>Journal of Contaminant Hydrology</em>, 241:103835, 2021. <a class="reference external" href="https://doi.org/10.1016/j.jconhyd.2021.103835">doi:10.1016/j.jconhyd.2021.103835</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WDW+24</a><span class="fn-bracket">]</span></span>
+<p>Yan-Wei Wang, Zhen-Xue Dai, Gui-Sheng Wang, Li Chen, Yu-Zhou Xia, and Yu-Hao Zhou. A hybrid physics-informed data-driven neural network for co2 storage in depleted shale reservoirs. <em>Petroleum Science</em>, 21(1):286–301, 2024. <a class="reference external" href="https://doi.org/10.1016/j.petsci.2023.08.032">doi:10.1016/j.petsci.2023.08.032</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ipynb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="aula-01-introMetnum.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Métodos Numéricos: Necessidade, Evolução e Profissão</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="aula-03-analise-grafica.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetica-computacional">3.1. Aritmética computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">3.1.1. Unidade Lógica e Aritmética</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-curiosos">3.1.2. Casos curiosos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-finitude-explicada">3.1.2.1. A finitude explicada</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-cientifica">3.1.3. Notação científica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">3.2. Ponto flutuante: a reta “perfurada”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulador-de-mathbb-f">3.2.1. Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">3.2.2. Limites de máquina para ponto flutuante</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-epsilon-de-maquina">3.2.2.1. O épsilon de máquina</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidade-numerica">3.2.2.2. Sensibilidade numérica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-e-operacoes-especiais">3.2.3. Valores e operações especiais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-seus-efeitos">3.3. Erros e seus efeitos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">3.3.1. Motivação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-erros">3.3.2. Tipos de erros</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-real">3.3.2.1. Erro real</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto">3.3.2.2. Erro absoluto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo">3.3.2.3. Erro relativo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-percentual">3.3.2.4. Erro relativo percentual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">3.3.2.5. Erro relativo aproximado (<em>benchmark</em>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">3.3.2.6. Erro relativo aproximado percentual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-de-cancelamento">3.3.2.7. Erro de cancelamento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">3.3.2.8. Erros de truncamento e de arredondamento</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">3.4. Erros e funções de perda no contexto da inteligência artificial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio">3.4.1. Erro absoluto médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-quadratico-medio">3.4.2. Erro quadrático médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">3.4.3. Erro absoluto médio percentual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">3.4.4. Erro logarítmico quadrático médio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">3.4.5. Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-o-desempenho">3.4.6. Calculando o desempenho</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">3.5. Aplicações</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">3.5.1. Erros pontuais na função de Airy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">3.5.2. Avaliação de algoritmos de ordenação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">3.5.3. Erros de precificação imobiliária por redes neurais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.6. Referências</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

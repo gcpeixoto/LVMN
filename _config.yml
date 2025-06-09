@@ -4,7 +4,7 @@
 title: "Métodos Numéricos para Ciências Computacionais e Engenharia"
 author: Prof. Gustavo Oliveira
 logo: "styles/numbiosis.png" # Leave it with "" for none
-copyright: "2024"
+copyright: "2025"
 exclude_patterns: [_build,Thumds.db,.DS_Store,"**.ipynb_checkpoints","/rise/*.ipynb","README.md","/etc/*"]
 
 # Change this to "on" to have notebooks executed
@@ -31,7 +31,7 @@ parse:
     - smartquotes
     - substitution
 
-  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
+  myst_url_schemes: [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
 
 
 
@@ -50,7 +50,6 @@ latex:
 
 
 # HTML-SPECIFIC SETTINGS
-
 html:
   favicon                   : "styles/numbiosis.png"  # A path to a favicon image
   use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
@@ -58,7 +57,8 @@ html:
   use_issues_button         : false  # Whether to add an "open an issue" button
   extra_navbar              : Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>  # Will be displayed underneath the left navbar.
   extra_footer              : ""  # Will be displayed underneath the footer.
-  google_analytics_id       : ""  # A GA id that can be used to track book views.
+  analytics:
+    google_analytics_id       : ""  # A GA id that can be used to track book views.
   home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
   baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
@@ -82,6 +82,11 @@ repository:
 # ADVANCED AND POWER-USER SETTINGS
 sphinx:
   extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
+    - sphinxcontrib.mermaid
+    - sphinxcontrib.bibtex
   local_extensions          :   # A list of local extensions to load by sphinx specified by "name: path" items
   config                    :   # key-value pairs to directly over-ride the Sphinx configuration
+    bibtex_reference_style  : author_year # label , super
+    bibtex_bibfiles: [refs/refs.bib]
+
   

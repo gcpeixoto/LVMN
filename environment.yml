@@ -1,0 +1,20 @@
+name: LVMN
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - numpy
+  - scipy
+  - sympy
+  - matplotlib
+  - pandas
+  - jupyter-book
+  - pip
+  - plotly
+  - sklearn  
+  - pip:
+    - dash
+    - prettytable
+    - scikit-learn
+    - sphinxcontrib-mermaid==1.0.0
+    - sphinxcontrib-bibtex
