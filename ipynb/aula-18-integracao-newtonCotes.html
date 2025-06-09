@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Integração Numérica: Regras de Newton-Cotes &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-18-integracao-newtonCotes';</script>
+    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="conteudo.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">23. Documentação de código</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-18-integracao-newtonCotes.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ipynb/aula-18-integracao-newtonCotes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Integração Numérica: Regras de Newton-Cotes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-regra-do-trapezio">A Regra do Trapézio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacao-multipla-da-regra-do-trapezio">Aplicação Múltipla da Regra do Trapézio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-regra-1-3-de-simpson">A Regra 1/3 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson">Aplicações Múltiplas da Regra 1/3 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-3-8-de-simpson">Regra 3/8 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-com-segmentos-desiguais">Integração com Segmentos Desiguais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas">Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa">Tarefa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-simbolica">Integração simbólica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-quadratura-de-simpson">Regra quadratura de Simpson</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-multipla">Integração múltipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-dupla">Integração dupla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-tripla">Integração tripla</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="integracao-numerica-regras-de-newton-cotes">
+<h1>Integração Numérica: Regras de Newton-Cotes<a class="headerlink" href="#integracao-numerica-regras-de-newton-cotes" title="Link to this heading">#</a></h1>
+<p>As fórmulas de Newton-Cotes são os esquemas mais comuns de integração numérica. Elas são baseadas na estratégia de substituir uma função complicada ou dados tabulados por uma função aproximadora simples que seja fácil de integrar:</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _a^b f(x)dx \cong \int _a^b f_n (x)dx \qquad (1)
+\]</div>
+<p>em que <span class="math notranslate nohighlight">\(f_n (x)\)</span> é um polinômio da forma</p>
+<div class="math notranslate nohighlight">
+\[
+f_n (x) = a_0 + a_1 x + \dots + a_{n-1} x^{n-1} + a_n x^n
+\]</div>
+<p>em que <span class="math notranslate nohighlight">\(n\)</span> é o grau do polinômio.</p>
+<section id="a-regra-do-trapezio">
+<h2>A Regra do Trapézio<a class="headerlink" href="#a-regra-do-trapezio" title="Link to this heading">#</a></h2>
+<p>A <strong>regra do trapézio</strong> corresponde ao caso no qual o polinômio na Equação (1) é de primeiro grau:</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _a^b f(x)dx \cong \int _a^b f_1 (x)dx
+\]</div>
+<p>onde</p>
+<div class="math notranslate nohighlight">
+\[
+f_1 (x) = f(a) + \dfrac{f(b) - f(a)}{b - a} (x - a)
+\]</div>
+<p>O resultado da integração é</p>
+<div class="math notranslate nohighlight">
+\[
+I = (b - a) \dfrac{f(a) + f(b)}{2} \qquad (2)
+\]</div>
+<p>Geometricamente, a regra dos trapézios é equivalente a aproximar a integral pela área do trapézio sob a reta ligando <span class="math notranslate nohighlight">\(f(a)\)</span> e <span class="math notranslate nohighlight">\(f(b)\)</span> (conforme figura abaixo). Portanto, a estimativa da integral pode ser representada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+I \cong \text{largura} \times \text{altura média} \\
+I \cong (b - a) \times \text{altura média}
+\end{split}\]</div>
+<p>em que, para a regra dos trapézios, a altura média é a média dos valores da função nas extremidades, ou <span class="math notranslate nohighlight">\([f (a) + f (b)]/2\)</span>, conforme Equação (2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Representação geométrica da regra do trapézio</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">15</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">10</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">)],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f1(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(a)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(b)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">)]),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Altura Média&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Área do Trapézio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bb6881c96427e3f45fe2aef2196c035c99c2d924b4f3fe383534941024bda7e7.png" src="../_images/bb6881c96427e3f45fe2aef2196c035c99c2d924b4f3fe383534941024bda7e7.png" />
+</div>
+</div>
+</section>
+<section id="aplicacao-multipla-da-regra-do-trapezio">
+<h2>Aplicação Múltipla da Regra do Trapézio<a class="headerlink" href="#aplicacao-multipla-da-regra-do-trapezio" title="Link to this heading">#</a></h2>
+<p>Uma maneira de melhorar a acurácia da regra do trapézio é dividir o intervalo de integração de <span class="math notranslate nohighlight">\(a\)</span> a <span class="math notranslate nohighlight">\(b\)</span> em diversos segmentos e aplicar o método a cada segmento (conforme figura abaixo). As áreas correspondentes aos segmentos individuais podem então ser somadas parafornecer a integral para o intervalo inteiro. As equações resultantes são chamadas fórmulas de integração por aplicações múltiplas ou compostas.</p>
+<p>Existem <span class="math notranslate nohighlight">\(n + 1\)</span> pontos base igualmente espaçados <span class="math notranslate nohighlight">\((x_0, x_1, x_2, \dots , x_n)\)</span>. Consequentemente, existem <span class="math notranslate nohighlight">\(n\)</span> segmentos de largura igual:</p>
+<div class="math notranslate nohighlight">
+\[
+h = \dfrac{b − a}{n} \qquad (3)
+\]</div>
+<p>Se <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> forem designados por <span class="math notranslate nohighlight">\(x_0\)</span> e <span class="math notranslate nohighlight">\(x_n\)</span>, respectivamente, a integral total pode ser representada como</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _{x_0}^{x_1} f(x)dx + \int _{x_1}^{x_2} f(x)dx + \dots + \int _{x_{n - 1}}^{x_n} f(x)dx 
+\]</div>
+<p>Substituindo cada integral pela regra do trapézio, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[
+I = h \dfrac{f(x_0) + f(x_1)}{2} + h \dfrac{f(x_1) + f(x_2)}{2} + \dots + h \dfrac{f(x_{n - 1}) + f(x_n)}{2}
+\]</div>
+<p>ou, agrupando termos,</p>
+<div class="math notranslate nohighlight">
+\[
+I = \dfrac{h}{2} \left[ f(x_0) + 2 \sum _{i = 1} ^{n - 1} f(x_i) + f(x_n) \right] \qquad (4)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Representação geométrica da aplicação múltipla da regra do trapézio</span>
+<span class="c1"># É possível observar, visualmente, que houve uma redução do erro do resultado em comparação com o caso anterior</span>
+
+<span class="n">xd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">yd</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xd</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xd</span><span class="p">,</span><span class="n">yd</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x0)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Área do Trapézio 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Área do Trapézio 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/360bd9236d341b0dd6cf9d909919fcc9d93ac2e40d7de722d869f20ed2be4c81.png" src="../_images/360bd9236d341b0dd6cf9d909919fcc9d93ac2e40d7de722d869f20ed2be4c81.png" />
+</div>
+</div>
+</section>
+<section id="a-regra-1-3-de-simpson">
+<h2>A Regra 1/3 de Simpson<a class="headerlink" href="#a-regra-1-3-de-simpson" title="Link to this heading">#</a></h2>
+<p>A <strong>regra 1/3 de Simpson</strong> é obtida quando um polinômio interpolador de segundo grau é substituído na Equação (1):</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _a^b f(x)dx \cong \int _a^b f_2 (x)dx
+\]</div>
+<p>Se <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> forem designados por <span class="math notranslate nohighlight">\(x_0\)</span> e <span class="math notranslate nohighlight">\(x_2\)</span> e se <span class="math notranslate nohighlight">\(f_2(x)\)</span> for representado por um polinômio de Lagrange de segundo grau, a integral se torna</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _{x_0}^{x_2} \left[ \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_0) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_1) + \dfrac{(x - x_1)(x - x_2)}{(x_0 - x_1)(x_0 - x_2)} f(x_2) \right] dx
+\]</div>
+<p>Depois da integração e de manipulações algébricas, obtém-se a seguinte fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong \dfrac{h}{3} [f(x_0) + 4 f(x_1) + f(x_2)] \qquad (5)
+\]</div>
+<p>em que, para esse caso</p>
+<div class="math notranslate nohighlight">
+\[
+h = \dfrac{b − a}{2} \qquad (6)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descrição gráfica da regra 1/3 de Simpson: ela consiste em tomar a área sob uma parábola ligando três pontos</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.127382111059529</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1.73647155618593</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">2.0569711669823</span> <span class="c1"># Obtido pelo MMQ</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">yc</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">xc</span><span class="p">)</span>
+
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">xf</span><span class="p">)</span>
+
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">]),</span> <span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">])))</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">yf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f2(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x0)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">yf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/67f72755f340f5a79c257113eb0c7530fcca44b3636ab0e899f8aa531666ca86.png" src="../_images/67f72755f340f5a79c257113eb0c7530fcca44b3636ab0e899f8aa531666ca86.png" />
+</div>
+</div>
+</section>
+<section id="aplicacoes-multiplas-da-regra-1-3-de-simpson">
+<h2>Aplicações Múltiplas da Regra 1/3 de Simpson<a class="headerlink" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson" title="Link to this heading">#</a></h2>
+<p>Do mesmo modo como no caso da regra do trapézio, a regra de Simpson pode ser melhorada dividindo-se o intervalo de integração em diversos segmentos de mesmo comprimento</p>
+<div class="math notranslate nohighlight">
+\[
+h = \dfrac{b − a}{2}
+\]</div>
+<p>A integral total pode ser representada como</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _{x_0}^{x_2} f(x)dx + \int _{x_2}^{x_4} f(x)dx + \dots + \int _{x_{n - 2}}^{x_n} f(x)dx 
+\]</div>
+<p>Substituindo cada integral individual pela regra 1/3 de Simpson, obtemos</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong 2 h \dfrac{f(x_0) + 4 f(x_1) + f(x_2)}{6} + 2 h \dfrac{f(x_2) + 4 f(x_3) + f(x_4)}{6} + \dots + 2 h \dfrac{f(x_{n - 2}) + 4 f(x_{n - 1}) + f(x_n)}{6}
+\]</div>
+<p>ou</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong (b - a) \dfrac{ f(x_0) + 4 \sum _{i = 1, 3, 5}^{n-1} f(x_i) + 2 \sum _{i = 2, 4, 6}^{n-2} f(x_j) + f(x_n) }{3 n} \qquad (7)
+\]</div>
+</section>
+<section id="regra-3-8-de-simpson">
+<h2>Regra 3/8 de Simpson<a class="headerlink" href="#regra-3-8-de-simpson" title="Link to this heading">#</a></h2>
+<p>De uma maneira parecida com a dedução da regra do trapézio e da regra 1/3 de Simpson, um polinômio de Lagrange de ordem três pode ser ajustado a quatro pontos e integrado</p>
+<div class="math notranslate nohighlight">
+\[
+I = \int _a^b f(x)dx \cong \int _a^b f_3 (x)dx
+\]</div>
+<p>para fornecer</p>
+<div class="math notranslate nohighlight">
+\[
+I \cong \dfrac{3 h}{8} [f(x_0) + 3 f(x_1) + 3 f(x_2) + f(x_3)] \qquad (8)
+\]</div>
+<p>em que</p>
+<div class="math notranslate nohighlight">
+\[
+h = \dfrac{b − a}{3} \qquad (9)
+\]</div>
+<p>Essa equação é chamada regra 3/8 de Simpson porque <span class="math notranslate nohighlight">\(h\)</span> é multiplicada por 3/8.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descrição gráfica da regra 3/8 de Simpson: ela consiste em tomar a área sob uma equação cúbica ligando quatro pontos</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.0166482246490701</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mf">0.189467273747325</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.117878777555138</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1.10393743650415</span> <span class="c1"># Obtido pelo MMQ</span>
+
+<span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">yc</span> <span class="o">=</span> <span class="n">f3</span><span class="p">(</span><span class="n">xc</span><span class="p">)</span>
+
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">f3</span><span class="p">(</span><span class="n">xf</span><span class="p">)</span>
+
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">]),</span> <span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">])))</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">yf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f3(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x0)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f(x3)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">yf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3de589ad27cef2dc7b78b112972a999bbca493b0cd0dc7c0646f36b8fc9553ef.png" src="../_images/3de589ad27cef2dc7b78b112972a999bbca493b0cd0dc7c0646f36b8fc9553ef.png" />
+</div>
+</div>
+</section>
+<section id="integracao-com-segmentos-desiguais">
+<h2>Integração com Segmentos Desiguais<a class="headerlink" href="#integracao-com-segmentos-desiguais" title="Link to this heading">#</a></h2>
+<p>Até esse ponto, todas as fórmulas para integração numérica foram baseadas em dados igualmente espaçados. Na prática, existem muitas situações nas quais essa hipótese não é válida e precisamos lidar com segmentos de tamanhos distintos. Por exemplo, dados obtidos experimentalmente, muitas vezes, são desse tipo. Para tais casos, um método é aplicar a regra do trapézio para cada segmento e somar os resultados:</p>
+<div class="math notranslate nohighlight">
+\[
+I = h_1 \dfrac{f(x_0) + f(x_1)}{2} + h_2 \dfrac{f(x_1) + f(x_2)}{2} + \dots + h_n \dfrac{f(x_{n - 1}) + f(x_n)}{2}
+\]</div>
+<p>em que <span class="math notranslate nohighlight">\(h_i\)</span> é a largura do segmento <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</section>
+<section id="implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas">
+<h2>Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas<a class="headerlink" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Newton-Cotes: Regra do Trapezio</span>
+<span class="sd">    assume Y igualmente espaçado e </span>
+<span class="sd">    com pelo menos 2 pontos </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">integral_trapezio</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span> <span class="n">val</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="sd">&#39;&#39;&#39; Newton-Cotes: Regra 1/3 de Simpson</span>
+<span class="sd">    assume Y igualmente espaçado e </span>
+<span class="sd">    com pelo menos 3 pontos </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">integral_onethird_simpson</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="mi">4</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>        
+    
+    <span class="n">val</span> <span class="o">=</span> <span class="n">h</span><span class="o">/</span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span> <span class="n">val</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="sd">&#39;&#39;&#39; HELPER&#39;&#39;&#39;</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">print_metodo</span><span class="p">(</span><span class="n">flag</span><span class="p">):</span>            
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*** Método de integração: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; ***&#39;</span><span class="p">)</span>
+
+<span class="c1"># limites de integração</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">93</span>
+
+<span class="c1"># integrando </span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="mi">97000</span><span class="o">*</span><span class="n">v</span><span class="o">/</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">570000</span><span class="p">)</span>
+
+<span class="c1"># pontos de integração (ímpares para testar com 1/3 simpson)</span>
+<span class="n">npi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">1001</span><span class="p">,</span><span class="mi">10001</span><span class="p">,</span><span class="mi">100001</span><span class="p">]</span>
+
+<span class="c1"># integral exata</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">vex</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingegral exata (simbólica): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vex</span><span class="p">))</span>
+<span class="n">vex</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">vex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Integral exata (numérica): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vex</span><span class="p">))</span>
+
+<span class="n">metodos</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;trapezio&#39;</span><span class="p">,</span><span class="s1">&#39;13simpson&#39;</span><span class="p">]</span>
+<span class="n">no</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># integração numérica</span>
+<span class="k">for</span> <span class="n">metodo</span> <span class="ow">in</span> <span class="n">metodos</span><span class="p">:</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">EREL</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">npi</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">fv</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>    
+                
+        <span class="k">if</span> <span class="n">metodo</span> <span class="o">==</span> <span class="s1">&#39;trapezio&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">no</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">print_metodo</span><span class="p">(</span><span class="n">metodo</span><span class="p">)</span>
+                <span class="n">no</span> <span class="o">=</span> <span class="kc">True</span>            
+            <span class="n">val</span> <span class="o">=</span> <span class="n">integral_trapezio</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">fv</span><span class="p">)</span>
+            <span class="n">erel</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">vex</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span><span class="o">/</span><span class="n">vex</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+            <span class="n">I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">EREL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">erel</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no. de pontos de integração = </span><span class="si">{0:d}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> I = </span><span class="si">{1:.10f}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> EREL = </span><span class="si">{2:.10f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">erel</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">metodo</span> <span class="o">==</span> <span class="s1">&#39;13simpson&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">no</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">print_metodo</span><span class="p">(</span><span class="n">metodo</span><span class="p">)</span>
+                <span class="n">no</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">integral_onethird_simpson</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">fv</span><span class="p">)</span>
+            <span class="n">erel</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">vex</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span><span class="o">/</span><span class="n">vex</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+            <span class="n">I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">EREL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">erel</span><span class="p">)</span>        
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no. de pontos de integração = </span><span class="si">{0:d}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> I = </span><span class="si">{1:.10f}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> EREL = </span><span class="si">{2:.10f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">erel</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="n">no</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingegral exata (simbólica): -9700*log(114000) + 9700*log(122649)
+Integral exata (numérica): 709.3432392521672
+*** Método de integração: TRAPEZIO ***
+no. de pontos de integração = 11 	 I = 644.6326388025 	 EREL = 9.1226076276%
+no. de pontos de integração = 101 	 I = 702.3175905243 	 EREL = 0.9904441657%
+no. de pontos de integração = 1001 	 I = 708.6345799441 	 EREL = 0.0999035825%
+no. de pontos de integração = 10001 	 I = 709.2723117737 	 EREL = 0.0099990350%
+no. de pontos de integração = 100001 	 I = 709.3361458882 	 EREL = 0.0009999903%
+*** Método de integração: 13SIMPSON ***
+no. de pontos de integração = 11 	 I = 644.8576901994 	 EREL = 9.0908809000%
+no. de pontos de integração = 101 	 I = 702.3200388852 	 EREL = 0.9900990068%
+no. de pontos de integração = 1001 	 I = 708.6346046475 	 EREL = 0.0999000999%
+no. de pontos de integração = 10001 	 I = 709.2723120210 	 EREL = 0.0099990001%
+no. de pontos de integração = 100001 	 I = 709.3361458907 	 EREL = 0.0009999900%
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tarefa">
+<h3>Tarefa<a class="headerlink" href="#tarefa" title="Link to this heading">#</a></h3>
+<p>Implemente uma função para realizar a integração numérica pela regra 3/8 de Simpson, use-a para calcular o valor de</p>
+<div class="math notranslate nohighlight">
+\[\int_{a=0}^{b=93} \frac{97000v}{(5v^2 + 570000)} \, dx\]</div>
+<p>e compare o resultado com os obtidos pelas anteriores.</p>
+</section>
+</section>
+<section id="integracao-simbolica">
+<h2>Integração simbólica<a class="headerlink" href="#integracao-simbolica" title="Link to this heading">#</a></h2>
+<p>Vamos ver alguns exemplos de integração simbólica. Para termos uma impressão mais elegante de expressões, antes usamos a seguinte instrução:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="regra-quadratura-de-simpson">
+<h3>Regra quadratura de Simpson<a class="headerlink" href="#regra-quadratura-de-simpson" title="Link to this heading">#</a></h3>
+<p>Vamos usar símbolos para chegar à expressão da regra de quadratura de Simpson.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">X</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;a, b, x&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos tuplas para os pontos de amostra e pesos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="c1"># ponto médio </span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="n">sy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;w_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span> <span class="c1"># pesos </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+<span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b93e3bcfee5f037e80e56962ab592d7111ba5eb8e2e95da9ff2a19259684dd57.png" src="../_images/b93e3bcfee5f037e80e56962ab592d7111ba5eb8e2e95da9ff2a19259684dd57.png" />
+</div>
+</div>
+<p>Para calcular valores aproximados dos pesos <span class="math notranslate nohighlight">\(w_i\)</span>, escolhemos a base polinomial</p>
+<div class="math notranslate nohighlight">
+\[\{ \phi_n(x) = x^n \}_{n=0}^2\]</div>
+<p>para a interpolação de <span class="math notranslate nohighlight">\(f(x)\)</span> e um objeto simbólico para representar cada uma dessas funções.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi</span> <span class="o">=</span> <span class="p">[</span><span class="n">sy</span><span class="o">.</span><span class="n">Lambda</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="o">**</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+<span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1c7aeae71e4f82234bcab8dfbf4bb8746722590b51ce565282f8bd26902bcd93.png" src="../_images/1c7aeae71e4f82234bcab8dfbf4bb8746722590b51ce565282f8bd26902bcd93.png" />
+</div>
+</div>
+<p>Agora temos que descobrir os valores dos pesos. A integral <span class="math notranslate nohighlight">\(\int_a^b \phi_n(x) \, dx\)</span> pode ser calculada analiticamente para cada função de base. Isto nos ajuda a resolver o seguinte sistema:</p>
+<div class="math notranslate nohighlight">
+\[\sum\limits_{i=0}^2 w_i \phi_n(x_i) = \int_a^b \phi_n(x) \, dx\]</div>
+<p>O sistema pode ser construído no <code class="docutils literal notranslate"><span class="pre">sympy</span></code> da seguinte forma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">-</span> <span class="n">sy</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="p">](</span><span class="n">X</span><span class="p">),</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">phi</span><span class="p">))]</span>
+<span class="n">eqs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c457c0ddf06f9a87a96fbfa6e29a35984a573031fa3d0df02dd733796f0074da.png" src="../_images/c457c0ddf06f9a87a96fbfa6e29a35984a573031fa3d0df02dd733796f0074da.png" />
+</div>
+</div>
+<p>Em seguida, resolvemos o sistema para obter as expressões analíticas para os pesos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_sol</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eqs</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">w_sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c3db56014e0868e65298ad06c1841faed5da372ef802c7c366f16158c75f96dc.png" src="../_images/c3db56014e0868e65298ad06c1841faed5da372ef802c7c366f16158c75f96dc.png" />
+</div>
+</div>
+<p>Substituindo a solução na expressão simbólica para a regra de quadratura:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">w_sol</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e917f37b3fdb2c501b43e3e94f74b0d6e36ff343d3588ed63ede1c2ea7839f77.png" src="../_images/e917f37b3fdb2c501b43e3e94f74b0d6e36ff343d3588ed63ede1c2ea7839f77.png" />
+</div>
+</div>
+<p>Podemos verificar no material que esta é, de fato, a expressão para a regra de quadratura de Simpson.</p>
+</section>
+</section>
+<section id="integracao-multipla">
+<h2>Integração múltipla<a class="headerlink" href="#integracao-multipla" title="Link to this heading">#</a></h2>
+<p>A integração em 2 ou mais variáveis pode ser feita usando as funções <code class="docutils literal notranslate"><span class="pre">dblquad</span></code>, <code class="docutils literal notranslate"><span class="pre">tplquad</span></code> e <code class="docutils literal notranslate"><span class="pre">nquad</span></code>, onde o número de funções e de limites de integração deve se adequar ao tipo de integral.</p>
+<p>Abaixo, temos alguns exemplos:</p>
+<section id="integracao-dupla">
+<h3>Integração dupla<a class="headerlink" href="#integracao-dupla" title="Link to this heading">#</a></h3>
+<p>Neste exemplo, integramos
+$<span class="math notranslate nohighlight">\(\int_0^1\int_0^1 e^{-x^2 - y^2} \, dx dy\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrate</span><span class="o">.</span><span class="n">dblquad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee8150d721619313fa5a81280b616c6bd67b907d7c78e22e51d47c7c14992008.png" src="../_images/ee8150d721619313fa5a81280b616c6bd67b907d7c78e22e51d47c7c14992008.png" />
+</div>
+</div>
+</section>
+<section id="integracao-tripla">
+<h3>Integração tripla<a class="headerlink" href="#integracao-tripla" title="Link to this heading">#</a></h3>
+<p>Neste exemplo, integramos
+$<span class="math notranslate nohighlight">\(\int_0^1\int_0^1\int_0^1 e^{-x^2 - y^2 - z^2} \, dx dy dz\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> 
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">g</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">integrate</span><span class="o">.</span><span class="n">tplquad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6709755ea9995e54d105a39f20a0ff2e643b5f54dc9ab80f2cd47d55d9400503.png" src="../_images/6709755ea9995e54d105a39f20a0ff2e643b5f54dc9ab80f2cd47d55d9400503.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.42072780425561
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ipynb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-regra-do-trapezio">A Regra do Trapézio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacao-multipla-da-regra-do-trapezio">Aplicação Múltipla da Regra do Trapézio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-regra-1-3-de-simpson">A Regra 1/3 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-multiplas-da-regra-1-3-de-simpson">Aplicações Múltiplas da Regra 1/3 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-3-8-de-simpson">Regra 3/8 de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-com-segmentos-desiguais">Integração com Segmentos Desiguais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacoes-de-newton-cotes-regra-do-trapezio-e-1-3-simpson-generalizadas">Implementações de Newton-Cotes: Regra do Trapézio e 1/3 Simpson Generalizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa">Tarefa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-simbolica">Integração simbólica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-quadratura-de-simpson">Regra quadratura de Simpson</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-multipla">Integração múltipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-dupla">Integração dupla</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-tripla">Integração tripla</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

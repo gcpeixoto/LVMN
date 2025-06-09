@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Code Session 5: Sistemas Lineares &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/code-sessions/codeSession-5-solve';</script>
+    <link rel="icon" href="../../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../conteudo.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-docstrings.html">23. Documentação de código</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/code-sessions/codeSession-5-solve.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ipynb/code-sessions/codeSession-5-solve.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Code Session 5: Sistemas Lineares</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linalg-solve"><code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-1">Problema 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao">Resolução</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa">Tarefa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linalg-cholesky"><code class="docutils literal notranslate"><span class="pre">linalg.cholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-2">Problema 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-3">Problema 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-4">Problema 4</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="code-session-5-sistemas-lineares">
+<h1><em>Code Session</em> 5: Sistemas Lineares<a class="headerlink" href="#code-session-5-sistemas-lineares" title="Link to this heading">#</a></h1>
+<section id="linalg-solve">
+<h2><code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code><a class="headerlink" href="#linalg-solve" title="Link to this heading">#</a></h2>
+<p>A função <code class="docutils literal notranslate"><span class="pre">solve</span></code> é o método mais simples disponibilizado pelos módulos <code class="docutils literal notranslate"><span class="pre">numpy</span></code> e <code class="docutils literal notranslate"><span class="pre">scipy</span></code> para resolver sistemas matriciais lineares. Como a função pertence ao escopo da Álgebra Linear, ela está localizada em submódulo chamado <code class="docutils literal notranslate"><span class="pre">linalg</span></code>. <code class="docutils literal notranslate"><span class="pre">solve</span></code> calculará a solução exata do sistema como um método direto se a matriz do sistema for determinada (quadrada e sem colunas linearmente dependentes). Se a matriz for singular, o método retorna um erro. Se for de posto deficiente, o método resolve o sistema linear usando um algoritmo de mínimos quadrados.</p>
+<p>Os argumentos de entrada obrigatórios desta função são:</p>
+<ol class="arabic simple">
+<li><p>a matriz <code class="docutils literal notranslate"><span class="pre">A</span></code> dos coeficientes</p></li>
+<li><p>o vetor independente <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+</ol>
+<p>O argumento de saída é:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: o vetor-solução do sistema.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="problema-1">
+<h3>Problema 1<a class="headerlink" href="#problema-1" title="Link to this heading">#</a></h3>
+<p>Uma rede elétrica contém 3 <em>loops</em>. Ao aplicar a lei de Kirchoff a cada <em>loop</em>, o cientista Hely Johnson obteve as seguintes equações para as correntes <span class="math notranslate nohighlight">\(i_1\)</span>, <span class="math notranslate nohighlight">\(i_2\)</span> e <span class="math notranslate nohighlight">\(i_3\)</span> em cada <em>loop:</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+(50 + R)i_1 - Ri_2 - 30i_3 &amp;= 0 \\
+- Ri_1 + (65 + R)i_2 - 15i_3 &amp;= 0 \\
+-30i_1 - 15i_2 + 45i_3 &amp;= 120 
+\end{cases}\end{split}\]</div>
+<p>Ajude Hely Johnson em seus experimentos e calcule as correntes para os valores de resistência <span class="math notranslate nohighlight">\(R = \{ 5 \Omega, 10 \Omega, 20 \Omega \}\)</span>.</p>
+</section>
+<section id="resolucao">
+<h3>Resolução<a class="headerlink" href="#resolucao" title="Link to this heading">#</a></h3>
+<p>Podemos começar definindo uma lista para armazenar os valores das resistências de teste:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">20.</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida, escreveremos a matriz dos coeficientes e o vetor independente (lado direito). Note que precisamos de uma “lista de listas”, ou melhor, um <em>“array de arrays”</em>, onde cada <em>array</em> está associado à uma linha da matriz.</p>
+<p>Todavia, vamos definir uma função para montar o sistema em função do valor de <span class="math notranslate nohighlight">\(R\)</span> e resolvê-lo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># montagem do sistema</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resolve_sistema</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">50</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="p">],[</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="mi">65</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">],[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span> <span class="p">])</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Além disso, usaremos um laço <code class="docutils literal notranslate"><span class="pre">for</span></code> para calcularmos todas as respostas necessárias de uma só vez e organizaremos os resultados em dicionário (objeto <code class="docutils literal notranslate"><span class="pre">dict</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># salva soluções agrupadas em um dicionário</span>
+<span class="n">sols</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolve_sistema</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Para o valor de resistência R = </span><span class="si">{0:g}</span><span class="s1"> ohms: i1 = </span><span class="si">{1:g}</span><span class="s1"> A, i2 = </span><span class="si">{2:g}</span><span class="s1"> A, i3 = </span><span class="si">{3:g}</span><span class="s1"> A&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">sols</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Para o valor de resistência R = 1 ohms: i1 = 3.00565 A, i2 = 1.19774 A, i3 = 5.06968 A
+Para o valor de resistência R = 2 ohms: i1 = 2.95652 A, i2 = 1.21739 A, i3 = 5.04348 A
+Para o valor de resistência R = 3 ohms: i1 = 2.91099 A, i2 = 1.2356 A, i3 = 5.0192 A
+Para o valor de resistência R = 4 ohms: i1 = 2.86869 A, i2 = 1.25253 A, i3 = 4.99663 A
+Para o valor de resistência R = 5 ohms: i1 = 2.82927 A, i2 = 1.26829 A, i3 = 4.97561 A
+Para o valor de resistência R = 6 ohms: i1 = 2.79245 A, i2 = 1.28302 A, i3 = 4.95597 A
+Para o valor de resistência R = 7 ohms: i1 = 2.75799 A, i2 = 1.2968 A, i3 = 4.9376 A
+Para o valor de resistência R = 8 ohms: i1 = 2.72566 A, i2 = 1.30973 A, i3 = 4.92035 A
+Para o valor de resistência R = 9 ohms: i1 = 2.69528 A, i2 = 1.32189 A, i3 = 4.90415 A
+Para o valor de resistência R = 10 ohms: i1 = 2.66667 A, i2 = 1.33333 A, i3 = 4.88889 A
+Para o valor de resistência R = 11 ohms: i1 = 2.63968 A, i2 = 1.34413 A, i3 = 4.87449 A
+Para o valor de resistência R = 12 ohms: i1 = 2.61417 A, i2 = 1.35433 A, i3 = 4.86089 A
+Para o valor de resistência R = 13 ohms: i1 = 2.59004 A, i2 = 1.36398 A, i3 = 4.84802 A
+Para o valor de resistência R = 14 ohms: i1 = 2.56716 A, i2 = 1.37313 A, i3 = 4.83582 A
+Para o valor de resistência R = 15 ohms: i1 = 2.54545 A, i2 = 1.38182 A, i3 = 4.82424 A
+Para o valor de resistência R = 16 ohms: i1 = 2.52482 A, i2 = 1.39007 A, i3 = 4.81324 A
+Para o valor de resistência R = 17 ohms: i1 = 2.50519 A, i2 = 1.39792 A, i3 = 4.80277 A
+Para o valor de resistência R = 18 ohms: i1 = 2.48649 A, i2 = 1.40541 A, i3 = 4.79279 A
+Para o valor de resistência R = 19 ohms: i1 = 2.46865 A, i2 = 1.41254 A, i3 = 4.78328 A
+Para o valor de resistência R = 20 ohms: i1 = 2.45161 A, i2 = 1.41935 A, i3 = 4.77419 A
+Para o valor de resistência R = 21 ohms: i1 = 2.43533 A, i2 = 1.42587 A, i3 = 4.76551 A
+Para o valor de resistência R = 22 ohms: i1 = 2.41975 A, i2 = 1.4321 A, i3 = 4.7572 A
+Para o valor de resistência R = 23 ohms: i1 = 2.40483 A, i2 = 1.43807 A, i3 = 4.74924 A
+Para o valor de resistência R = 24 ohms: i1 = 2.39053 A, i2 = 1.44379 A, i3 = 4.74162 A
+Para o valor de resistência R = 25 ohms: i1 = 2.37681 A, i2 = 1.44928 A, i3 = 4.7343 A
+Para o valor de resistência R = 26 ohms: i1 = 2.36364 A, i2 = 1.45455 A, i3 = 4.72727 A
+Para o valor de resistência R = 27 ohms: i1 = 2.35097 A, i2 = 1.45961 A, i3 = 4.72052 A
+Para o valor de resistência R = 28 ohms: i1 = 2.3388 A, i2 = 1.46448 A, i3 = 4.71403 A
+Para o valor de resistência R = 29 ohms: i1 = 2.32708 A, i2 = 1.46917 A, i3 = 4.70777 A
+Para o valor de resistência R = 30 ohms: i1 = 2.31579 A, i2 = 1.47368 A, i3 = 4.70175 A
+Para o valor de resistência R = 31 ohms: i1 = 2.30491 A, i2 = 1.47804 A, i3 = 4.69595 A
+Para o valor de resistência R = 32 ohms: i1 = 2.29442 A, i2 = 1.48223 A, i3 = 4.69036 A
+Para o valor de resistência R = 33 ohms: i1 = 2.28429 A, i2 = 1.48628 A, i3 = 4.68495 A
+Para o valor de resistência R = 34 ohms: i1 = 2.27451 A, i2 = 1.4902 A, i3 = 4.67974 A
+Para o valor de resistência R = 35 ohms: i1 = 2.26506 A, i2 = 1.49398 A, i3 = 4.6747 A
+Para o valor de resistência R = 36 ohms: i1 = 2.25592 A, i2 = 1.49763 A, i3 = 4.66983 A
+Para o valor de resistência R = 37 ohms: i1 = 2.24709 A, i2 = 1.50117 A, i3 = 4.66511 A
+Para o valor de resistência R = 38 ohms: i1 = 2.23853 A, i2 = 1.50459 A, i3 = 4.66055 A
+Para o valor de resistência R = 39 ohms: i1 = 2.23025 A, i2 = 1.5079 A, i3 = 4.65613 A
+Para o valor de resistência R = 40 ohms: i1 = 2.22222 A, i2 = 1.51111 A, i3 = 4.65185 A
+Para o valor de resistência R = 41 ohms: i1 = 2.21444 A, i2 = 1.51422 A, i3 = 4.6477 A
+Para o valor de resistência R = 42 ohms: i1 = 2.2069 A, i2 = 1.51724 A, i3 = 4.64368 A
+Para o valor de resistência R = 43 ohms: i1 = 2.19958 A, i2 = 1.52017 A, i3 = 4.63977 A
+Para o valor de resistência R = 44 ohms: i1 = 2.19247 A, i2 = 1.52301 A, i3 = 4.63598 A
+Para o valor de resistência R = 45 ohms: i1 = 2.18557 A, i2 = 1.52577 A, i3 = 4.6323 A
+Para o valor de resistência R = 46 ohms: i1 = 2.17886 A, i2 = 1.52846 A, i3 = 4.62873 A
+Para o valor de resistência R = 47 ohms: i1 = 2.17234 A, i2 = 1.53106 A, i3 = 4.62525 A
+Para o valor de resistência R = 48 ohms: i1 = 2.16601 A, i2 = 1.5336 A, i3 = 4.62187 A
+Para o valor de resistência R = 49 ohms: i1 = 2.15984 A, i2 = 1.53606 A, i3 = 4.61858 A
+Para o valor de resistência R = 50 ohms: i1 = 2.15385 A, i2 = 1.53846 A, i3 = 4.61538 A
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tarefa">
+<h3>Tarefa<a class="headerlink" href="#tarefa" title="Link to this heading">#</a></h3>
+<p>Retorne ao notebook da <a class="reference internal" href="../aula-09-eliminacao-gauss.html"><span class="std std-doc">Aula 09</span></a> e use o conteúdo da aula para fazer uma verificação das soluções encontradas para este problema em cada caso. Use a função <code class="docutils literal notranslate"><span class="pre">linalg.cond</span></code> para calcular o <em>número de condicionamento</em> da matriz do sistema em cada caso. (<strong>Sugestão:</strong> vide <code class="docutils literal notranslate"><span class="pre">numpy.allclose</span></code>)</p>
+</section>
+</section>
+<section id="linalg-cholesky">
+<h2><code class="docutils literal notranslate"><span class="pre">linalg.cholesky</span></code><a class="headerlink" href="#linalg-cholesky" title="Link to this heading">#</a></h2>
+<p>Assim como <code class="docutils literal notranslate"><span class="pre">solve</span></code>, a função <code class="docutils literal notranslate"><span class="pre">cholesky</span></code> está disponível tanto via <code class="docutils literal notranslate"><span class="pre">numpy</span></code> como <code class="docutils literal notranslate"><span class="pre">scipy</span></code> para determinar a decomposição de Cholesky de uma matriz simétrica e positiva definida.</p>
+<p>Na prática, não é recomendável verificar se uma matriz é positiva definida através dos critérios teóricos. A função <code class="docutils literal notranslate"><span class="pre">cholesky</span></code> não realiza essa checagem. Portanto, é importante que, pelo menos, se saiba que a matriz é simétrica. Para testar se ela atende a propriedade de definição positiva, a abordagem mais direta é usar <code class="docutils literal notranslate"><span class="pre">cholesky</span></code> e verificar se ela retorna uma decomposição de Cholesky. Se não for o caso, um erro será lançado.</p>
+<p>O argumento de entrada desta função é:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: matriz dos coeficientes</p></li>
+</ul>
+<p>O argumento de saída é:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code>: o fator de Cholesky</p></li>
+</ul>
+<p>Como importá-la?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">cholesky</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">cholesky</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="problema-2">
+<h3>Problema 2<a class="headerlink" href="#problema-2" title="Link to this heading">#</a></h3>
+<p>Calcule o fator de Cholesky para a matriz <span class="math notranslate nohighlight">\(A\)</span> do Problema 1 para <span class="math notranslate nohighlight">\(R = 5\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">50</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="p">],[</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="mi">65</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">],[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span> <span class="p">])</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="n">cholesky</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.41619849,  0.        ,  0.        ],
+       [-0.67419986,  8.33939174,  0.        ],
+       [-4.04519917, -2.12572731,  4.91097211]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos verificar a decomposição multiplicando a matriz triangular (fator de Cholesky) pela sua transposta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 55.,  -5., -30.],
+       [ -5.,  70., -15.],
+       [-30., -15.,  45.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 55.,  -5., -30.],
+       [ -5.,  70., -15.],
+       [-30., -15.,  45.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entretanto, não é verdade que</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># por que a igualdade falha </span>
+<span class="c1"># para algumas entradas?</span>
+<span class="n">B</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ True, False,  True],
+       [False,  True, False],
+       [ True, False, False]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="problema-3">
+<h2>Problema 3<a class="headerlink" href="#problema-3" title="Link to this heading">#</a></h2>
+<p>Verificar se uma matriz simétrica é positiva definida.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cria matriz simétrica </span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="mi">60</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">C</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -5., -65., -90.],
+       [-65.,  10., -75.],
+       [-90., -75., -15.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># erro! </span>
+<span class="c1"># matriz não é PD</span>
+<span class="c1">#cholesky(C)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cria outra matriz simétrica</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 56.,  -4., -29.],
+       [ -4.,  71., -14.],
+       [-29., -14.,  46.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matriz é PD</span>
+<span class="n">cholesky</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.48331477,  0.        ,  0.        ],
+       [-0.53452248,  8.40917866,  0.        ],
+       [-3.87528801, -1.91117697,  5.22776678]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="problema-4">
+<h2>Problema 4<a class="headerlink" href="#problema-4" title="Link to this heading">#</a></h2>
+<p>Resolva o Problema 1 para <span class="math notranslate nohighlight">\(R = 10\)</span> usando a fatoração de Cholesky.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="mf">10.</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">50</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">30</span><span class="p">],[</span><span class="o">-</span><span class="n">R</span><span class="p">,</span><span class="mi">65</span><span class="o">+</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">],[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span> <span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+
+<span class="c1"># fator </span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">cholesky</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+<span class="c1"># passo 1</span>
+<span class="c1"># Ly = b</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># passo 2</span>
+<span class="c1"># L^T x = y</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># solução</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.66666667, 1.33333333, 4.88888889])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare a solução via Cholesky com a do Problema 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">sols</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([2.66666667, 1.33333333, 4.88888889]),
+ array([2.66666667, 1.33333333, 4.88888889]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mais uma vez, note que:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A comparação falha.</span>
+<span class="c1"># Por quê?</span>
+<span class="n">x</span> <span class="o">==</span> <span class="n">sols</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False, False])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.27272727,  0.09090909,  0.45454545])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.440892098500626e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ipynb/code-sessions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linalg-solve"><code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-1">Problema 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao">Resolução</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa">Tarefa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linalg-cholesky"><code class="docutils literal notranslate"><span class="pre">linalg.cholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-2">Problema 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-3">Problema 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-4">Problema 4</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
