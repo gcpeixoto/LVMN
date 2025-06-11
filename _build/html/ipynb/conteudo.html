@@ -1,170 +1,113 @@
 
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Laboratório Virtual de Métodos Numéricos - LVMN &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/conteudo';</script>
-    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real" href="aula-00-modelagem-programacao.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
     
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+    <div class="container-fluid" id="banner"></div>
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
+    
 
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      
-      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="#">
-  
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
@@ -173,293 +116,745 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">9. Implementação do método da secante</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">11. Processamento de sinais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">12. Otimização de código</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">23. Documentação de código</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   7. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   8. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   9. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   10. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   11. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   12. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   13. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   14. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   15. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   16. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   17. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   18. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   19. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   20. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   21. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   22. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   23. Documentação de código
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
     </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
   </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/conteudo.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/ipynb/conteudo.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
+  <div class="menu-dropdown__content">
+    <ul>
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/conteudo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
 >
   
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
   </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/conteudo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Laboratório Virtual de Métodos Numéricos - LVMN</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apresentacao">Apresentação</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-do-lvmn">Objetivos do LVMN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">Conteúdo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-e-programa">Estrutura e Programa</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-1">Módulo 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-2">Módulo 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-3">Módulo 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-4">Módulo 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-especial">Módulo especial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-de-exercicios">Listas de exercícios</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-de-avaliacao">Metodologia de Avaliação</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manuais-de-orientacao">Manuais de orientação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-projetos">Exemplos de projetos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-da-nota-final">Cálculo da nota final</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo-complementar">Conteúdo Complementar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apostila-introdutoria-de-python">Apostila introdutória de Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topicos">Tópicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recortes">Recortes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-contribuir">Como contribuir?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientacoes-academicas">Orientações acadêmicas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-para-tccs">Temas para TCCs</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apresentacao">
+   Apresentação
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objetivos-do-lvmn">
+   Objetivos do LVMN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conteudo">
+   Conteúdo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estrutura-e-programa">
+   Estrutura e Programa
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-1">
+     Módulo 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-2">
+     Módulo 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-3">
+     Módulo 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-4">
+     Módulo 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-especial">
+     Módulo especial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#listas-de-exercicios">
+     Listas de exercícios
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodologia-de-avaliacao">
+   Metodologia de Avaliação
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manuais-de-orientacao">
+     Manuais de orientação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplos-de-projetos">
+     Exemplos de projetos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculo-da-nota-final">
+     Cálculo da nota final
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conteudo-complementar">
+   Conteúdo Complementar
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apostila-introdutoria-de-python">
+     Apostila introdutória de Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topicos">
+     Tópicos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recortes">
+     Recortes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#como-contribuir">
+   Como contribuir?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orientacoes-academicas">
+   Orientações acadêmicas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#temas-para-tccs">
+     Temas para TCCs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Laboratório Virtual de Métodos Numéricos - LVMN</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apresentacao">
+   Apresentação
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objetivos-do-lvmn">
+   Objetivos do LVMN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conteudo">
+   Conteúdo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estrutura-e-programa">
+   Estrutura e Programa
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-1">
+     Módulo 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-2">
+     Módulo 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-3">
+     Módulo 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-4">
+     Módulo 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modulo-especial">
+     Módulo especial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#listas-de-exercicios">
+     Listas de exercícios
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodologia-de-avaliacao">
+   Metodologia de Avaliação
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manuais-de-orientacao">
+     Manuais de orientação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplos-de-projetos">
+     Exemplos de projetos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculo-da-nota-final">
+     Cálculo da nota final
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conteudo-complementar">
+   Conteúdo Complementar
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apostila-introdutoria-de-python">
+     Apostila introdutória de Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topicos">
+     Tópicos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recortes">
+     Recortes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#como-contribuir">
+   Como contribuir?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orientacoes-academicas">
+   Orientações acadêmicas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#temas-para-tccs">
+     Temas para TCCs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="laboratorio-virtual-de-metodos-numericos-lvmn">
-<h1>Laboratório Virtual de Métodos Numéricos - LVMN<a class="headerlink" href="#laboratorio-virtual-de-metodos-numericos-lvmn" title="Link to this heading">#</a></h1>
+<h1>Laboratório Virtual de Métodos Numéricos - LVMN<a class="headerlink" href="#laboratorio-virtual-de-metodos-numericos-lvmn" title="Permalink to this headline">#</a></h1>
 <p>O Laboratório Virtual de Métodos Numéricos - LVMN é constituído de uma coleção de materiais digitais para cursos de graduação em ciências exatas, computacionais e engenharias que possuam disciplinas de métodos numéricos ou afins em seus currículos.</p>
 <section id="apresentacao">
-<h2>Apresentação<a class="headerlink" href="#apresentacao" title="Link to this heading">#</a></h2>
+<h2>Apresentação<a class="headerlink" href="#apresentacao" title="Permalink to this headline">#</a></h2>
 <p>O conteúdo principal é ensinado ao longo de um semestre na disciplina <em>Cálculo Numérico</em> (GDCOC0072) ministrada pelo <a class="reference external" href="https://gcpeixoto.github.io">Prof. Gustavo Oliveira</a> e atende principalmente os cursos de graduação do Centro de Informática da UFPB e de alguns outros centros. O material começou a ser desenvolvido pelo professor no âmbito do <a class="reference external" href="http://numbiosis.ci.ufpb.br/pt/inicio/">Projeto Numbiosis</a> em 2017. Até o ano de 2020, recebeu suporte do Programa Institucional de Monitoria com contribuições ativas. De 2021 a 2024, o projeto teve suporte reduzido com atualizações esporádicas. A partir de 2025, uma nova etapa de melhorias foi iniciada para contemplar extensões de conteúdo para aplicações voltadas a dados e modernizações para um espectro novo de ciência e engenharia computacional.</p>
 </section>
 <section id="objetivos-do-lvmn">
-<h2>Objetivos do LVMN<a class="headerlink" href="#objetivos-do-lvmn" title="Link to this heading">#</a></h2>
+<h2>Objetivos do LVMN<a class="headerlink" href="#objetivos-do-lvmn" title="Permalink to this headline">#</a></h2>
 <p>Os objetivos gerais do LVMN são:</p>
 <ul class="simple">
 <li><p>Apresentar o universo dos métodos numéricos a estudantes de graduação em ciências exatas e no eixo STEM;</p></li>
@@ -468,7 +863,7 @@
 </ul>
 </section>
 <section id="conteudo">
-<h2>Conteúdo<a class="headerlink" href="#conteudo" title="Link to this heading">#</a></h2>
+<h2>Conteúdo<a class="headerlink" href="#conteudo" title="Permalink to this headline">#</a></h2>
 <p>O curso contém uma série de materiais didáticos que estimulam várias habilidades e proporcionam que estudantes com necessidades distintas de aprendizagem encontrem o recurso mais adequuado para si. O conteúdo está organizado em cadernos interativos que incluem:</p>
 <ul class="simple">
 <li><p>exemplos teóricos e aplicados;</p></li>
@@ -482,7 +877,7 @@
 <p>O curso cobre não apenas os assuntos clássicos que costumam ser ensinados em disciplinas equivalentes em qualquer curso superior de universidades nacionais ou estrangeiras, mas também traz inserções sobre assuntos modernos que se entrelaçam para produzir uma engenharia cada vez mais centrada em dados. Este <em>ebook</em> pretende mostrar que conceitos tradicionais são a base para os <em>métodos numéricos de nova geração</em>, que criam interdisciplinaridade com temáticas do estado-da-arte, tais como aprendizado de máquina, redes neurais informadas pela física, modelos de ordem reduzida e outras técnicas que fazem interface com a ciência da computação e outaas áreas aplicadas.</p>
 </section>
 <section id="estrutura-e-programa">
-<h2>Estrutura e Programa<a class="headerlink" href="#estrutura-e-programa" title="Link to this heading">#</a></h2>
+<h2>Estrutura e Programa<a class="headerlink" href="#estrutura-e-programa" title="Permalink to this headline">#</a></h2>
 <p>O curso é normalmente realizado em 4 módulos. Cada módulo possui cadernos, sessões de código e avaliações como seus componentes. Nos cadernos estão os capítulos do conteúdo principal do curso. As sessões de código (<em>code sessions</em>) são aulas dedicadas ao estudo de funções de utilidade predefinidas em módulos Python para resolução direta de problemas aplicados. Essas funções são apresentadas como “receitas prontas” que abrem caminhos para implementações de maior complexidade.</p>
 <p>A estrutura resumida segue abaixo:</p>
 <ul class="simple">
@@ -518,37 +913,37 @@
 </ul>
 <p>O programa do curso segue abaixo:</p>
 <section id="modulo-1">
-<h3>Módulo 1<a class="headerlink" href="#modulo-1" title="Link to this heading">#</a></h3>
+<h3>Módulo 1<a class="headerlink" href="#modulo-1" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Modelagem integrada e engenharia computacional</p>
 <ul>
-<li><p><a class="reference internal" href="aula-00-modelagem-programacao.html"><span class="std std-doc">Caderno 1 - Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</span></a> (1h)</p></li>
-<li><p><a class="reference internal" href="aula-01-introMetnum.html"><span class="std std-doc">Caderno 2 - Métodos Numéricos: Necessidade, Evolução e Profissão</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="aula-02-erros.html"><span class="std std-doc">Caderno 3 - Do Contínuo ao Computável: Discretização e Erros Numéricos</span></a> (1h)</p></li>
+<li><p><a class="reference internal" href="aula-00-modelagem-programacao.html"><span class="doc std std-doc">Caderno 1 - Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</span></a> (1h)</p></li>
+<li><p><a class="reference internal" href="aula-01-introMetnum.html"><span class="doc std std-doc">Caderno 2 - Métodos Numéricos: Necessidade, Evolução e Profissão</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="aula-02-erros.html"><span class="doc std std-doc">Caderno 3 - Do Contínuo ao Computável: Discretização e Erros Numéricos</span></a> (1h)</p></li>
 <li><p>Avaliação: Quiz (1h)</p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="modulo-2">
-<h3>Módulo 2<a class="headerlink" href="#modulo-2" title="Link to this heading">#</a></h3>
+<h3>Módulo 2<a class="headerlink" href="#modulo-2" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Determinação de raízes de equações unidimensionais</p>
 <ul>
-<li><p><a class="reference internal" href="aula-02-erros.html"><span class="std std-doc">Caderno 3 - Do Contínuo ao Computável: Discretização e Erros Numéricos</span></a> (1h)</p></li>
-<li><p><a class="reference internal" href="aula-03-analise-grafica.html"><span class="std std-doc">Caderno 4 - Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><span class="std std-doc"><em>Code session 1</em> - roots e polyval</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="aula-04-bissecao.html"><span class="std std-doc">Caderno 5 - Método da Bisseção: A Arte de Cindir e Convergir</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><span class="std std-doc"><em>Code session 2</em> - bisect</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="aula-05-newton.html"><span class="std std-doc">Caderno 6 - Método de Newton: Sair pela Tangente sem Perder o Rumo</span></a> (2h)</p></li>
-<li><p><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><span class="std std-doc"><em>Code session 3</em> - newton</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="aula-02-erros.html"><span class="doc std std-doc">Caderno 3 - Do Contínuo ao Computável: Discretização e Erros Numéricos</span></a> (1h)</p></li>
+<li><p><a class="reference internal" href="aula-03-analise-grafica.html"><span class="doc std std-doc">Caderno 4 - Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><span class="doc std std-doc"><em>Code session 1</em> - roots e polyval</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="aula-04-bissecao.html"><span class="doc std std-doc">Caderno 5 - Método da Bisseção: A Arte de Cindir e Convergir</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><span class="doc std std-doc"><em>Code session 2</em> - bisect</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="aula-05-newton.html"><span class="doc std std-doc">Caderno 6 - Método de Newton: Sair pela Tangente sem Perder o Rumo</span></a> (2h)</p></li>
+<li><p><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><span class="doc std std-doc"><em>Code session 3</em> - newton</span></a> (2h)</p></li>
 <li><p>Avaliação: Prova (2h)</p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="modulo-3">
-<h3>Módulo 3<a class="headerlink" href="#modulo-3" title="Link to this heading">#</a></h3>
+<h3>Módulo 3<a class="headerlink" href="#modulo-3" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Resolução de sistemas de equações multidimensionais</p>
 <ul>
@@ -571,7 +966,7 @@
 </ul>
 </section>
 <section id="modulo-4">
-<h3>Módulo 4<a class="headerlink" href="#modulo-4" title="Link to this heading">#</a></h3>
+<h3>Módulo 4<a class="headerlink" href="#modulo-4" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Teoria da aproximação</p>
 <ul>
@@ -605,93 +1000,92 @@
 </ul>
 </section>
 <section id="modulo-especial">
-<h3>Módulo especial<a class="headerlink" href="#modulo-especial" title="Link to this heading">#</a></h3>
+<h3>Módulo especial<a class="headerlink" href="#modulo-especial" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Diferenciação numérica e resolução de equações diferenciais</p>
 <ul>
-<li><p><a class="reference internal" href="aula-20-diferenciacao-numerica.html"><span class="std std-doc">Caderno 16 - Diferenciação numérica</span></a></p></li>
-<li><p><a class="reference internal" href="aula-21-solucoes-edo.html"><span class="std std-doc">Caderno 17 - Solução numérica de EDOs</span></a></p></li>
-<li><p><a class="reference internal" href="aula-22-metodo-euler.html"><span class="std std-doc">Caderno 18 - Método de Euler</span></a></p></li>
-<li><p><a class="reference internal" href="aula-23-taylor-rungeKutta.html"><span class="std std-doc">Aula 23 - Métodos de Taylor e Runge-Kutta de 2a. ordem</span></a></p></li>
-<li><p><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><span class="std std-doc"><em>Code session 9</em> - solve_ivp</span></a></p></li>
+<li><p><a class="reference internal" href="aula-20-diferenciacao-numerica.html"><span class="doc std std-doc">Caderno 16 - Diferenciação numérica</span></a></p></li>
+<li><p><a class="reference internal" href="aula-21-solucoes-edo.html"><span class="doc std std-doc">Caderno 17 - Solução numérica de EDOs</span></a></p></li>
+<li><p><a class="reference internal" href="aula-22-metodo-euler.html"><span class="doc std std-doc">Caderno 18 - Método de Euler</span></a></p></li>
+<li><p><a class="reference internal" href="aula-23-taylor-rungeKutta.html"><span class="doc std std-doc">Aula 23 - Métodos de Taylor e Runge-Kutta de 2a. ordem</span></a></p></li>
+<li><p><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><span class="doc std std-doc"><em>Code session 9</em> - solve_ivp</span></a></p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="listas-de-exercicios">
-<h3>Listas de exercícios<a class="headerlink" href="#listas-de-exercicios" title="Link to this heading">#</a></h3>
+<h3>Listas de exercícios<a class="headerlink" href="#listas-de-exercicios" title="Permalink to this headline">#</a></h3>
 <p>Estes cadernos interativos contém o solucionário matemático e computacional de alguns exercícios gerais de menor complexidade. As listas são apenas para fixação de conceitos.</p>
 <p><em>Obs.: este conteúdo será descontinuado no futuro.</em></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="lists/lista-1-solucoes.html"><span class="std std-doc">Lista 1</span></a></p></li>
-<li><p><a class="reference internal" href="lists/lista-2-solucoes.html"><span class="std std-doc">Lista 2</span></a></p></li>
-<li><p><a class="reference internal" href="lists/lista-3-solucoes.html"><span class="std std-doc">Lista 3</span></a></p></li>
-<li><p><a class="reference internal" href="lists/lista-4-solucoes.html"><span class="std std-doc">Lista 4</span></a></p></li>
-<li><p><a class="reference internal" href="lists/lista-5-solucoes.html"><span class="std std-doc">Lista 5</span></a></p></li>
-<li><p><a class="reference internal" href="lists/lista-6-solucoes.html"><span class="std std-doc">Lista 6</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-1-solucoes.html"><span class="doc std std-doc">Lista 1</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-2-solucoes.html"><span class="doc std std-doc">Lista 2</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-3-solucoes.html"><span class="doc std std-doc">Lista 3</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-4-solucoes.html"><span class="doc std std-doc">Lista 4</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-5-solucoes.html"><span class="doc std std-doc">Lista 5</span></a></p></li>
+<li><p><a class="reference internal" href="lists/lista-6-solucoes.html"><span class="doc std std-doc">Lista 6</span></a></p></li>
 </ul>
 </section>
 </section>
 <section id="metodologia-de-avaliacao">
-<h2>Metodologia de Avaliação<a class="headerlink" href="#metodologia-de-avaliacao" title="Link to this heading">#</a></h2>
+<h2>Metodologia de Avaliação<a class="headerlink" href="#metodologia-de-avaliacao" title="Permalink to this headline">#</a></h2>
 <p>O curso é composto por 4 avaliações, organizadas de acordo com o seguinte quadro:</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>Módulo</p></th>
-<th class="head text-center"><p>ID</p></th>
-<th class="head text-center"><p>Modalidade</p></th>
-<th class="head text-center"><p>Tipo</p></th>
-<th class="head text-center"><p>Peso</p></th>
-<th class="head text-left"><p>Descrição</p></th>
+<tr class="row-odd"><th class="text-align:center head"><p>Módulo</p></th>
+<th class="text-align:center head"><p>ID</p></th>
+<th class="text-align:center head"><p>Modalidade</p></th>
+<th class="text-align:center head"><p>Tipo</p></th>
+<th class="text-align:center head"><p>Peso</p></th>
+<th class="text-align:left head"><p>Descrição</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p>1</p></td>
-<td class="text-center"><p>P1</p></td>
-<td class="text-center"><p>Quiz</p></td>
-<td class="text-center"><p>Individual</p></td>
-<td class="text-center"><p>0,2</p></td>
-<td class="text-left"><p>Ver manual de orientação</p></td>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>P1</p></td>
+<td class="text-align:center"><p>Quiz</p></td>
+<td class="text-align:center"><p>Individual</p></td>
+<td class="text-align:center"><p>0,2</p></td>
+<td class="text-align:left"><p>Ver manual de orientação</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>2</p></td>
-<td class="text-center"><p>P2</p></td>
-<td class="text-center"><p>Prova</p></td>
-<td class="text-center"><p>Individual</p></td>
-<td class="text-center"><p>0,2</p></td>
-<td class="text-left"><p>Ver manual de orientação</p></td>
+<tr class="row-odd"><td class="text-align:center"><p>2</p></td>
+<td class="text-align:center"><p>P2</p></td>
+<td class="text-align:center"><p>Prova</p></td>
+<td class="text-align:center"><p>Individual</p></td>
+<td class="text-align:center"><p>0,2</p></td>
+<td class="text-align:left"><p>Ver manual de orientação</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>3</p></td>
-<td class="text-center"><p>P3</p></td>
-<td class="text-center"><p>Projeto</p></td>
-<td class="text-center"><p>Equipe</p></td>
-<td class="text-center"><p>0,3</p></td>
-<td class="text-left"><p>Ver manual de orientação</p></td>
+<tr class="row-even"><td class="text-align:center"><p>3</p></td>
+<td class="text-align:center"><p>P3</p></td>
+<td class="text-align:center"><p>Projeto</p></td>
+<td class="text-align:center"><p>Equipe</p></td>
+<td class="text-align:center"><p>0,3</p></td>
+<td class="text-align:left"><p>Ver manual de orientação</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-center"><p>P4</p></td>
-<td class="text-center"><p>Projeto</p></td>
-<td class="text-center"><p>Equipe</p></td>
-<td class="text-center"><p>0,3</p></td>
-<td class="text-left"><p>Ver manual de orientação</p></td>
+<tr class="row-odd"><td class="text-align:center"><p>4</p></td>
+<td class="text-align:center"><p>P4</p></td>
+<td class="text-align:center"><p>Projeto</p></td>
+<td class="text-align:center"><p>Equipe</p></td>
+<td class="text-align:center"><p>0,3</p></td>
+<td class="text-align:left"><p>Ver manual de orientação</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <section id="manuais-de-orientacao">
-<h3>Manuais de orientação<a class="headerlink" href="#manuais-de-orientacao" title="Link to this heading">#</a></h3>
+<h3>Manuais de orientação<a class="headerlink" href="#manuais-de-orientacao" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Para <em>quizzes</em> e provas, clique <a class="reference external" href="https://drive.google.com/file/d/1cSI8ROuixGP-Gg2CcB3d7RuYqTRjSl1z/view?usp=share_link">aqui</a>.</p></li>
 <li><p>Para projetos, clique <a class="reference external" href="https://drive.google.com/file/d/1A7A8IpBZ1jXxOuxMs7Tw6bjdhNwQtgEZ/view?usp=sharing">aqui</a>.</p></li>
 </ul>
 </section>
 <section id="exemplos-de-projetos">
-<h3>Exemplos de projetos<a class="headerlink" href="#exemplos-de-projetos" title="Link to this heading">#</a></h3>
+<h3>Exemplos de projetos<a class="headerlink" href="#exemplos-de-projetos" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Para exemplo de projetos <em>high-grade</em>, clique <a class="reference external" href="https://drive.google.com/drive/folders/1sJmXAr5zc3OqJ3ZjWpQmA439nNgmI5g9?usp=sharing">aqui</a>.</p></li>
 </ul>
 </section>
 <section id="calculo-da-nota-final">
-<h3>Cálculo da nota final<a class="headerlink" href="#calculo-da-nota-final" title="Link to this heading">#</a></h3>
+<h3>Cálculo da nota final<a class="headerlink" href="#calculo-da-nota-final" title="Permalink to this headline">#</a></h3>
 <p>A nota final do curso, <span class="math notranslate nohighlight">\(NF\)</span>, é dada pela seguinte média ponderada:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -707,48 +1101,48 @@ NF = \sum_{i=1}^{M} p_i N_i - pN
 </section>
 </section>
 <section id="conteudo-complementar">
-<h2>Conteúdo Complementar<a class="headerlink" href="#conteudo-complementar" title="Link to this heading">#</a></h2>
+<h2>Conteúdo Complementar<a class="headerlink" href="#conteudo-complementar" title="Permalink to this headline">#</a></h2>
 <p>Alguns materiais complementares não contemplados no curso regular ou não explorados com maior detalhamento são fornecidos aqui para aguçar o interesse de estudantes para temas que orbitam ao redor dos métodos numéricos e são úteis para aplicações gerais.</p>
 <section id="apostila-introdutoria-de-python">
-<h3>Apostila introdutória de Python<a class="headerlink" href="#apostila-introdutoria-de-python" title="Link to this heading">#</a></h3>
+<h3>Apostila introdutória de Python<a class="headerlink" href="#apostila-introdutoria-de-python" title="Permalink to this headline">#</a></h3>
 <p>Python é a linguagem escolhida para o curso devido à sua disponibilidade gratuita, versatilidade e facilidade de aprendizagem. Como forma de nivelamento dos estudantes que não possuem experiência com Python, a apostila <a class="reference external" href="https://gcpeixoto.github.io/lecture-ipynb/indice.html">Introdução à Linguagem Python para Ciências Computacionais e Engenharia</a>, traduzido pelo professor a partir dos trabalhos do Prof. Hans Fanghor (Universidade de Southampton/UK), tem o propósito de fornecer conhecimento básico da linguagem para uso no curso e uma oportunidade de estudo paralelo. Caso você se enquadre neste grupo de estudantes, não deixe de consultar este material.</p>
 </section>
 <section id="topicos">
-<h3>Tópicos<a class="headerlink" href="#topicos" title="Link to this heading">#</a></h3>
+<h3>Tópicos<a class="headerlink" href="#topicos" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="extra/extra-pontoFlutuante.html"><span class="std std-doc">Números em ponto flutuante e seus problemas</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-pontoFixo.html"><span class="std std-doc">Método do ponto fixo</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-secante.html"><span class="std std-doc">Método da secante</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-muller.html"><span class="std std-doc">Método de Müller</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-malhasNumericas.html"><span class="std std-doc">Malhas numéricas</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-matplotlibTopicos.html"><span class="std std-doc">Plotagem com <em>matplotlib</em>: tópicos especiais</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-camposDirecaoEDO.html"><span class="std std-doc">Campos de direção para EDOs</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-eulerMelhorado.html"><span class="std std-doc">Melhoramentos do método de Euler</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-estabilidadeEuler.html"><span class="std std-doc">Estabilidade do método de Euler</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-eulerImplicito.html"><span class="std std-doc">Método de Euler implícito</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html"><span class="std std-doc">Métodos de múltiplos passos: <em>Adams-Bashfort</em></span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-edoSuperior.html"><span class="std std-doc">EDOs de ordem superior</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-sistemasEDO.html"><span class="std std-doc">Sistemas de EDOs</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-fft.html"><span class="std std-doc">Transformada de Fourier</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-numba.html"><span class="std std-doc">Otimização de código</span></a></p></li>
-<li><p><a class="reference internal" href="extra/extra-docstrings.html"><span class="std std-doc">Documentação de código</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-pontoFlutuante.html"><span class="doc std std-doc">Números em ponto flutuante e seus problemas</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-pontoFixo.html"><span class="doc std std-doc">Método do ponto fixo</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-secante.html"><span class="doc std std-doc">Método da secante</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-muller.html"><span class="doc std std-doc">Método de Müller</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-malhasNumericas.html"><span class="doc std std-doc">Malhas numéricas</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-matplotlibTopicos.html"><span class="doc std std-doc">Plotagem com <em>matplotlib</em>: tópicos especiais</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-camposDirecaoEDO.html"><span class="doc std std-doc">Campos de direção para EDOs</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-eulerMelhorado.html"><span class="doc std std-doc">Melhoramentos do método de Euler</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-estabilidadeEuler.html"><span class="doc std std-doc">Estabilidade do método de Euler</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-eulerImplicito.html"><span class="doc std std-doc">Método de Euler implícito</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html"><span class="doc std std-doc">Métodos de múltiplos passos: <em>Adams-Bashfort</em></span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-edoSuperior.html"><span class="doc std std-doc">EDOs de ordem superior</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-sistemasEDO.html"><span class="doc std std-doc">Sistemas de EDOs</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-fft.html"><span class="doc std std-doc">Transformada de Fourier</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-numba.html"><span class="doc std std-doc">Otimização de código</span></a></p></li>
+<li><p><a class="reference internal" href="extra/extra-docstrings.html"><span class="doc std std-doc">Documentação de código</span></a></p></li>
 </ul>
 </section>
 <section id="recortes">
-<h3>Recortes<a class="headerlink" href="#recortes" title="Link to this heading">#</a></h3>
+<h3>Recortes<a class="headerlink" href="#recortes" title="Permalink to this headline">#</a></h3>
 <p>Os recortes contemplam curiosidades ou anedotas sobre tópicos variados. Acesse-os pela barra lateral de navegação.</p>
 <p><em>Obs.: este conteúdo está sendo gradualmente incorporado no livro-texto e será descontinuado no futuro</em>.</p>
 </section>
 </section>
 <section id="como-contribuir">
-<h2>Como contribuir?<a class="headerlink" href="#como-contribuir" title="Link to this heading">#</a></h2>
+<h2>Como contribuir?<a class="headerlink" href="#como-contribuir" title="Permalink to this headline">#</a></h2>
 <p>O material passa por revisões periodicamente, mas possui suporte limitado. O projeto Numbiosis não recebe financiamento direto para bolsas. Todo o conteúdo é desenvolvido pelo Prof. Gustavo Oliveira e discentes (monitores e/ou tutores bolsistas ou voluntários, bem como aqueles que se matriculam no curso e contribuem com melhorias). Caso queira contribuir com melhorias, apontamento de erros ou sugestões diversas, fale com o professor.</p>
 </section>
 <section id="orientacoes-academicas">
-<h2>Orientações acadêmicas<a class="headerlink" href="#orientacoes-academicas" title="Link to this heading">#</a></h2>
+<h2>Orientações acadêmicas<a class="headerlink" href="#orientacoes-academicas" title="Permalink to this headline">#</a></h2>
 <p>Consulte projetos do Prof. Gustavo nos horizontes estratégicos do <a class="reference external" href="http://tril.ci.ufpb.br">TRIL Lab</a>. Saiba mais na <a class="reference external" href="https://gcpeixoto.github.io">página pessoal</a> do Prof. Gustavo.</p>
 <section id="temas-para-tccs">
-<h3>Temas para TCCs<a class="headerlink" href="#temas-para-tccs" title="Link to this heading">#</a></h3>
+<h3>Temas para TCCs<a class="headerlink" href="#temas-para-tccs" title="Permalink to this headline">#</a></h3>
 <p>Você é de algum curso do Centro de Informática e deseja trabalhar com alguma tecnologia ou materiais digitais para ensino? Em particular, no âmbito do projeto Numbiosis e do LVMN existem vários tópicos possíveis, tais como:</p>
 <ul class="simple">
 <li><p>Implementação de gráficos interativos para visualização 3D de processos iterativos.</p></li>
@@ -785,7 +1179,7 @@ NF = \sum_{i=1}^{M} p_i N_i - pN
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./ipynb"
         },
         predefinedOutput: true
@@ -793,123 +1187,43 @@ NF = \sum_{i=1}^{M} p_i N_i - pN
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="right-next"
-       href="aula-00-modelagem-programacao.html"
-       title="next page">
-      <div class="prev-next-info">
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="aula-00-modelagem-programacao.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">1. </span>Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apresentacao">Apresentação</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-do-lvmn">Objetivos do LVMN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">Conteúdo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-e-programa">Estrutura e Programa</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-1">Módulo 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-2">Módulo 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-3">Módulo 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-4">Módulo 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-especial">Módulo especial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-de-exercicios">Listas de exercícios</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-de-avaliacao">Metodologia de Avaliação</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manuais-de-orientacao">Manuais de orientação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-projetos">Exemplos de projetos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-da-nota-final">Cálculo da nota final</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo-complementar">Conteúdo Complementar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apostila-introdutoria-de-python">Apostila introdutória de Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topicos">Tópicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recortes">Recortes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-contribuir">Como contribuir?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientacoes-academicas">Orientações acadêmicas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-para-tccs">Temas para TCCs</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Gustavo Oliveira
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>

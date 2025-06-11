@@ -1,169 +1,114 @@
 
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../../" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lista de Exercícios 3 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dddbae8f" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/lists/lista-3-solucoes';</script>
-    <link rel="icon" href="../../_static/numbiosis.png"/>
+    <link rel="shortcut icon" href="../../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lista de Exercícios 4" href="lista-4-solucoes.html" />
     <link rel="prev" title="Lista de Exercícios 2" href="lista-2-solucoes.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
     
-<form class="bd-search d-flex align-items-center"
-      action="../../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+    <div class="container-fluid" id="banner"></div>
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
+    
 
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../conteudo.html">
-  
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-    <img src="../../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -172,283 +117,708 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lista-1-solucoes.html">Lista de Exercícios 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lista-2-solucoes.html">Lista de Exercícios 2</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lista de Exercícios 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lista-4-solucoes.html">Lista de Exercícios 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lista-5-solucoes.html">Lista de Exercícios 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-secante.html">9. Implementação do método da secante</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-fft.html">11. Processamento de sinais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-numba.html">12. Otimização de código</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../extra/extra-docstrings.html">23. Documentação de código</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-pontoFlutuante.html">
+   7. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-pontoFixo.html">
+   8. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-secante.html">
+   9. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-muller.html">
+   10. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-fft.html">
+   11. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-numba.html">
+   12. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-matplotlibTopicos.html">
+   13. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-malhasNumericas.html">
+   14. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-camposDirecaoEDO.html">
+   15. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-eulerMelhorado.html">
+   16. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-estabilidadeEuler.html">
+   17. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-eulerImplicito.html">
+   18. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-multistep-adamsBashfort.html">
+   19. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-edoSuperior.html">
+   20. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-sistemasEDO.html">
+   21. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-metodo-linhas.html">
+   22. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extra/extra-docstrings.html">
+   23. Documentação de código
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
     </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
   </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/lists/lista-3-solucoes.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../../_sources/ipynb/lists/lista-3-solucoes.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
+  <div class="menu-dropdown__content">
+    <ul>
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/lists/lista-3-solucoes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
 >
   
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
   </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/ipynb/lists/lista-3-solucoes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lista de Exercícios 3</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineares">Sistemas lineares</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-1">Questão 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-2">Questão 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-3">Questão 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-4">Questão 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-5">Questão 5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-6">Questão 6</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-7">Questão 7</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-8">Questão 8</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-lu">Fatoração LU</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-9">Questão 9</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-10">Questão 10</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-11">Questão 11</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-de-cholesky">Fatoração de Cholesky</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-12">Questão 12</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução:</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-13">Questão 13</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-14">Questão 14</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistemas-lineares">
+   Sistemas lineares
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-1">
+     Questão 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-2">
+     Questão 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-3">
+     Questão 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-4">
+     Questão 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-5">
+     Questão 5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-6">
+     Questão 6
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-7">
+     Questão 7
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-8">
+     Questão 8
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fatoracao-lu">
+   Fatoração LU
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-9">
+     Questão 9
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-10">
+     Questão 10
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-11">
+     Questão 11
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fatoracao-de-cholesky">
+   Fatoração de Cholesky
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-12">
+     Questão 12
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       Solução:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-13">
+     Questão 13
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-14">
+     Questão 14
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lista de Exercícios 3</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistemas-lineares">
+   Sistemas lineares
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-1">
+     Questão 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-2">
+     Questão 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-3">
+     Questão 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-4">
+     Questão 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-5">
+     Questão 5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-6">
+     Questão 6
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-7">
+     Questão 7
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-8">
+     Questão 8
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fatoracao-lu">
+   Fatoração LU
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-9">
+     Questão 9
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-10">
+     Questão 10
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-11">
+     Questão 11
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fatoracao-de-cholesky">
+   Fatoração de Cholesky
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-12">
+     Questão 12
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solucao">
+       Solução:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-13">
+     Questão 13
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questao-14">
+     Questão 14
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="lista-de-exercicios-3">
-<h1>Lista de Exercícios 3<a class="headerlink" href="#lista-de-exercicios-3" title="Link to this heading">#</a></h1>
+<h1>Lista de Exercícios 3<a class="headerlink" href="#lista-de-exercicios-3" title="Permalink to this headline">#</a></h1>
 <p>Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -459,8 +829,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -469,8 +839,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Funções Implementadas</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">gauss_simples</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss sem pivotamento.</span>
+<span class="k">def</span> <span class="nf">gauss_simples</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss sem pivotamento.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gauss_simples(AB)</span>
@@ -506,8 +876,8 @@
         
     <span class="k">return</span> <span class="n">X</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">gauss_pivparc</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss com pivotamento parcial.</span>
+<span class="k">def</span> <span class="nf">gauss_pivparc</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss com pivotamento parcial.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gauss_pivparc(AB)</span>
@@ -546,8 +916,8 @@
         
     <span class="k">return</span> <span class="n">X</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">gaussjordan</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss-Jordan simples.</span>
+<span class="k">def</span> <span class="nf">gaussjordan</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de eliminação de Gauss-Jordan simples.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         X = gaussjordan(AB)</span>
@@ -571,8 +941,8 @@
                 
     <span class="k">return</span> <span class="n">AB</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">lu_solver</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de decomposição LU.</span>
+<span class="k">def</span> <span class="nf">lu_solver</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método de decomposição LU.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         L, U, X = lu_solver(AB)</span>
@@ -628,8 +998,8 @@
     
     <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">cholesky</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método LU, por decomposição de Cholesky.</span>
+<span class="k">def</span> <span class="nf">cholesky</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Realiza o cálculo de um sistema linear através do método LU, por decomposição de Cholesky.</span>
 <span class="sd">    </span>
 <span class="sd">    Sinopse:</span>
 <span class="sd">         C = cholesky(AB)</span>
@@ -691,12 +1061,12 @@
 </div>
 </div>
 <section id="sistemas-lineares">
-<h2>Sistemas lineares<a class="headerlink" href="#sistemas-lineares" title="Link to this heading">#</a></h2>
+<h2>Sistemas lineares<a class="headerlink" href="#sistemas-lineares" title="Permalink to this headline">#</a></h2>
 <section id="questao-1">
-<h3>Questão 1<a class="headerlink" href="#questao-1" title="Link to this heading">#</a></h3>
+<h3>Questão 1<a class="headerlink" href="#questao-1" title="Permalink to this headline">#</a></h3>
 <p>Escreva o seguinte conjunto de equações na forma matricial:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-48077562-2015-4f40-bd16-3e0f49d65fa6">
-<span class="eqno">(1)<a class="headerlink" href="#equation-48077562-2015-4f40-bd16-3e0f49d65fa6" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-82e4f2a5-3f06-408d-9692-3d597c02008d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-82e4f2a5-3f06-408d-9692-3d597c02008d" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8 &amp;= 6x_3 + 2x_2 \\
 2 − x_1 &amp;= x_3 \\
 5x_2 + x_1 &amp;= 13
@@ -740,10 +1110,10 @@ Logo, o produto entre A e sua transposta é:
 </div>
 </section>
 <section id="questao-2">
-<h3>Questão 2<a class="headerlink" href="#questao-2" title="Link to this heading">#</a></h3>
+<h3>Questão 2<a class="headerlink" href="#questao-2" title="Permalink to this headline">#</a></h3>
 <p>Use o metodo gráfico para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-247c2392-7d0d-4b17-b87c-8176ca14b556">
-<span class="eqno">(2)<a class="headerlink" href="#equation-247c2392-7d0d-4b17-b87c-8176ca14b556" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-57aa27a8-3cb5-4785-bd50-1e6e4fc817a0">
+<span class="eqno">(2)<a class="headerlink" href="#equation-57aa27a8-3cb5-4785-bd50-1e6e4fc817a0" title="Permalink to this equation">#</a></span>\[\begin{align} 
 4x_1 − 8x_2 &amp;= −24 \\
 −x_1 + 6x_2 &amp;= 34
 \end{align}\]</div>
@@ -751,10 +1121,10 @@ Logo, o produto entre A e sua transposta é:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solução</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">24</span><span class="p">)</span><span class="o">/</span><span class="mi">8</span> <span class="c1"># x2 isolado na primeira equação</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">34</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span> <span class="c1"># x2 isolado na segunda equação</span>
 
 <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -774,15 +1144,15 @@ Logo, o produto entre A e sua transposta é:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f84f958d8d0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/81d8df45e10c0294d671c612f09865151e8a31094451687b01c192f398c229ce.png" src="../../_images/81d8df45e10c0294d671c612f09865151e8a31094451687b01c192f398c229ce.png" />
+<img alt="../../_images/lista-3-solucoes_8_1.png" src="../../_images/lista-3-solucoes_8_1.png" />
 </div>
 </div>
 </section>
 <section id="questao-3">
-<h3>Questão 3<a class="headerlink" href="#questao-3" title="Link to this heading">#</a></h3>
+<h3>Questão 3<a class="headerlink" href="#questao-3" title="Permalink to this headline">#</a></h3>
 <p>Para o conjunto de equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5b09376-25a9-4816-8c7e-03d5a2624745">
-<span class="eqno">(3)<a class="headerlink" href="#equation-b5b09376-25a9-4816-8c7e-03d5a2624745" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-9d3a6072-f40d-4e18-852f-d4dd38f9801b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-9d3a6072-f40d-4e18-852f-d4dd38f9801b" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_2 + 5x_3 &amp;= 9 \\
 2x_1 + x_2 + x_3 &amp;= 9 \\
 3x_1 + x_2 &amp;= 10
@@ -825,10 +1195,10 @@ Logo, o produto entre A e sua transposta é:
 </div>
 </section>
 <section id="questao-4">
-<h3>Questão 4<a class="headerlink" href="#questao-4" title="Link to this heading">#</a></h3>
+<h3>Questão 4<a class="headerlink" href="#questao-4" title="Permalink to this headline">#</a></h3>
 <p>Dadas as equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17945cd3-74e0-41f4-93e1-a78adae1f112">
-<span class="eqno">(4)<a class="headerlink" href="#equation-17945cd3-74e0-41f4-93e1-a78adae1f112" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-7e51f4d8-bafe-40bf-b712-542613f2209b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7e51f4d8-bafe-40bf-b712-542613f2209b" title="Permalink to this equation">#</a></span>\[\begin{align} 
 10x_1 + 2x_2 − x_3 &amp;= 27 \\
 −3x_1 − 6x_2 + 2x_3 &amp;= −61.5 \\
 x_1 + 5x_2 + 5x_3 &amp;= −21.5
@@ -900,10 +1270,10 @@ A solução do problema é:
 </div>
 </section>
 <section id="questao-5">
-<h3>Questão 5<a class="headerlink" href="#questao-5" title="Link to this heading">#</a></h3>
+<h3>Questão 5<a class="headerlink" href="#questao-5" title="Permalink to this headline">#</a></h3>
 <p>Use Eliminação de Gauss com pivotamento parcial para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-adff7c55-1ca4-4fd5-8199-745b66bbc2fe">
-<span class="eqno">(5)<a class="headerlink" href="#equation-adff7c55-1ca4-4fd5-8199-745b66bbc2fe" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-f83a22bd-e637-413a-93e1-6f2ec8c901c2">
+<span class="eqno">(5)<a class="headerlink" href="#equation-f83a22bd-e637-413a-93e1-6f2ec8c901c2" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8x_1 + 2x_2 − 2x_3 &amp;= −2 \\
 10x_1 + 2x_2 − 4x_3 &amp;= 4 \\
 12x_1 + 2x_2 + 2x_3 &amp;= 6
@@ -930,10 +1300,10 @@ A solução do problema é:
 </div>
 </section>
 <section id="questao-6">
-<h3>Questão 6<a class="headerlink" href="#questao-6" title="Link to this heading">#</a></h3>
+<h3>Questão 6<a class="headerlink" href="#questao-6" title="Permalink to this headline">#</a></h3>
 <p>Dadas as equações:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32ef2900-15d8-493b-94b1-ea2277bf480e">
-<span class="eqno">(6)<a class="headerlink" href="#equation-32ef2900-15d8-493b-94b1-ea2277bf480e" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-b0e1c509-e344-4896-9d05-ca4739dfadd2">
+<span class="eqno">(6)<a class="headerlink" href="#equation-b0e1c509-e344-4896-9d05-ca4739dfadd2" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 − 6x_2 − x_3 &amp;= −38 \\
 −3x_1 − x_2 + 7x_3 &amp;= 34 \\
 −8x_1 + x_2 − 2x_3 &amp;= −20
@@ -960,10 +1330,10 @@ A solução do problema é:
 </div>
 </section>
 <section id="questao-7">
-<h3>Questão 7<a class="headerlink" href="#questao-7" title="Link to this heading">#</a></h3>
+<h3>Questão 7<a class="headerlink" href="#questao-7" title="Permalink to this headline">#</a></h3>
 <p>Use Eliminação de Gauss-Jordan para resolver:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0693fba-72f4-462a-b018-81fe1204d4cc">
-<span class="eqno">(7)<a class="headerlink" href="#equation-f0693fba-72f4-462a-b018-81fe1204d4cc" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-8dd54f61-7033-4b1b-a9b9-c06d3e708a58">
+<span class="eqno">(7)<a class="headerlink" href="#equation-8dd54f61-7033-4b1b-a9b9-c06d3e708a58" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 + x_2 − x_3 &amp;= 1 \\
 5x_1 + 2x_2 + 2x_3 &amp;= −4 \\
 3x_1 + x_2 + x_3 &amp;= 5
@@ -987,10 +1357,10 @@ A solução do problema é:
 </div>
 </section>
 <section id="questao-8">
-<h3>Questão 8<a class="headerlink" href="#questao-8" title="Link to this heading">#</a></h3>
+<h3>Questão 8<a class="headerlink" href="#questao-8" title="Permalink to this headline">#</a></h3>
 <p>Resolva:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfe1427e-46f3-4e8f-aeed-a0d263d9a622">
-<span class="eqno">(8)<a class="headerlink" href="#equation-bfe1427e-46f3-4e8f-aeed-a0d263d9a622" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-557fdd73-0713-47af-a242-5fdc484596e1">
+<span class="eqno">(8)<a class="headerlink" href="#equation-557fdd73-0713-47af-a242-5fdc484596e1" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_1 + x_2 − x_3 &amp;= −3 \\
 6x_1 + 2x_2 + 2x_3 &amp;= 2 \\
 −3x_1 + 4x_2 + x_3 &amp;= 1
@@ -1039,12 +1409,12 @@ x_1 + x_2 − x_3 &amp;= −3 \\
 </section>
 </section>
 <section id="fatoracao-lu">
-<h2>Fatoração LU<a class="headerlink" href="#fatoracao-lu" title="Link to this heading">#</a></h2>
+<h2>Fatoração LU<a class="headerlink" href="#fatoracao-lu" title="Permalink to this headline">#</a></h2>
 <section id="questao-9">
-<h3>Questão 9<a class="headerlink" href="#questao-9" title="Link to this heading">#</a></h3>
+<h3>Questão 9<a class="headerlink" href="#questao-9" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU sem pivotamento (usando a definição A = LU):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27aab9ab-64cd-499f-b2cc-8c21bcbefbdb">
-<span class="eqno">(9)<a class="headerlink" href="#equation-27aab9ab-64cd-499f-b2cc-8c21bcbefbdb" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-00bc2a39-f9bf-4a41-9e72-ad447439fcec">
+<span class="eqno">(9)<a class="headerlink" href="#equation-00bc2a39-f9bf-4a41-9e72-ad447439fcec" title="Permalink to this equation">#</a></span>\[\begin{align} 
 8x_1 + 4x_2 − x_3 &amp;= 11 \\
 −2x_1 + 5x_2 + x_3 &amp;= 4 \\
 2x_1 − x_2 + 6x_3 &amp;= 7
@@ -1093,10 +1463,10 @@ O produto entre A e sua inversa é:
 </div>
 </section>
 <section id="questao-10">
-<h3>Questão 10<a class="headerlink" href="#questao-10" title="Link to this heading">#</a></h3>
+<h3>Questão 10<a class="headerlink" href="#questao-10" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU com pivotamento parcial.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-914ae8dc-3e7c-4e4a-a654-e66bb32be306">
-<span class="eqno">(10)<a class="headerlink" href="#equation-914ae8dc-3e7c-4e4a-a654-e66bb32be306" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-bb15ae21-b921-4351-b0d6-f1e781860ede">
+<span class="eqno">(10)<a class="headerlink" href="#equation-bb15ae21-b921-4351-b0d6-f1e781860ede" title="Permalink to this equation">#</a></span>\[\begin{align} 
 2x_1 − 6x_2 − x_3 &amp;= −38 \\
 −3x_1 − x_2 + 7x_3 &amp;= −34 \\
 −8x_1 + x_2 − 2x_3 &amp;= −20
@@ -1157,10 +1527,10 @@ O produto entre A e sua inversa é:
 </div>
 </section>
 <section id="questao-11">
-<h3>Questão 11<a class="headerlink" href="#questao-11" title="Link to this heading">#</a></h3>
+<h3>Questão 11<a class="headerlink" href="#questao-11" title="Permalink to this headline">#</a></h3>
 <p>Resolva o seguinte sistema de equações por decomposição LU.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efb9b782-8c12-4b1a-9063-314da0ed4fe4">
-<span class="eqno">(11)<a class="headerlink" href="#equation-efb9b782-8c12-4b1a-9063-314da0ed4fe4" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-bcdffe81-b92d-44d9-b415-157267bc4e65">
+<span class="eqno">(11)<a class="headerlink" href="#equation-bcdffe81-b92d-44d9-b415-157267bc4e65" title="Permalink to this equation">#</a></span>\[\begin{align} 
 10x_1 + 2x_2 − x_3 &amp;= 27 \\
 −3x_1 − 6x_2 + 2x_3 &amp;= −61.5 \\
 x_1 + x_2 + 5x_3 &amp;= −21.5
@@ -1222,9 +1592,9 @@ O produto entre A e sua inversa é:
 </section>
 </section>
 <section id="fatoracao-de-cholesky">
-<h2>Fatoração de Cholesky<a class="headerlink" href="#fatoracao-de-cholesky" title="Link to this heading">#</a></h2>
+<h2>Fatoração de Cholesky<a class="headerlink" href="#fatoracao-de-cholesky" title="Permalink to this headline">#</a></h2>
 <section id="questao-12">
-<h3>Questão 12<a class="headerlink" href="#questao-12" title="Link to this heading">#</a></h3>
+<h3>Questão 12<a class="headerlink" href="#questao-12" title="Permalink to this headline">#</a></h3>
 <p>Determine quais matrizes a seguir são (i) simétricas, (ii) singulares, (iii) diagonalmente dominantes, (iv) positivas definidas.</p>
 <p>(a) \begin{pmatrix}
 2 &amp; 1 \
@@ -1290,7 +1660,7 @@ Os determinantes dos menores principais de (d) são: [ 4. 28. 28. 28.]
 </div>
 </div>
 <section id="solucao">
-<h4>Solução:<a class="headerlink" href="#solucao" title="Link to this heading">#</a></h4>
+<h4>Solução:<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h4>
 <p>(i) Apenas a matriz em (a) e simétrica.</p>
 <p>(ii) Apenas a matriz em (d) é singular.</p>
 <p>(iii) As matrizes em (a) e (b) são diagonalmente dominantes.</p>
@@ -1298,7 +1668,7 @@ Os determinantes dos menores principais de (d) são: [ 4. 28. 28. 28.]
 </section>
 </section>
 <section id="questao-13">
-<h3>Questão 13<a class="headerlink" href="#questao-13" title="Link to this heading">#</a></h3>
+<h3>Questão 13<a class="headerlink" href="#questao-13" title="Permalink to this headline">#</a></h3>
 <p>Determine a fatoração de Cholesky <span class="math notranslate nohighlight">\(A = GGT\)</span> das matrizes a seguir.</p>
 <p>(a) \begin{pmatrix}
 2 &amp; −1 &amp; 0 \
@@ -1409,7 +1779,7 @@ A matriz G é:
 </div>
 </section>
 <section id="questao-14">
-<h3>Questão 14<a class="headerlink" href="#questao-14" title="Link to this heading">#</a></h3>
+<h3>Questão 14<a class="headerlink" href="#questao-14" title="Permalink to this headline">#</a></h3>
 <p>Resolva os seguintes sistemas de equações por decomposição de Cholesky.</p>
 <p>(a) \begin{cases}
 8x_1 + 20x_2 + 15x_3 = 50 \
@@ -1509,7 +1879,7 @@ A solução do sistema é:
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./ipynb/lists"
         },
         predefinedOutput: true
@@ -1517,129 +1887,50 @@ A solução do sistema é:
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="lista-2-solucoes.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lista de Exercícios 2</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lista-2-solucoes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lista de Exercícios 2</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="lista-4-solucoes.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="lista-4-solucoes.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lista de Exercícios 4</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineares">Sistemas lineares</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-1">Questão 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-2">Questão 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-3">Questão 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-4">Questão 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-5">Questão 5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-6">Questão 6</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-7">Questão 7</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-8">Questão 8</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-lu">Fatoração LU</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-9">Questão 9</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-10">Questão 10</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-11">Questão 11</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-de-cholesky">Fatoração de Cholesky</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-12">Questão 12</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução:</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-13">Questão 13</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questao-14">Questão 14</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Gustavo Oliveira
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
