@@ -91,12 +91,12 @@
 # <!--
 # - [Caderno 7 - Elementos de Álgebra Linear Computacional](aula-08a-matrizes-vetores.ipynb)
 # - [Caderno 8 - Fatoração LU](aula-10-fatoracao-lu.ipynb)
+# - [_Code session 4_ - solve](./code-sessions/codeSession-4-solve.ipynb)
 # - [Caderno 9 - Jacobi e Gauss-Seidel](aula-12-jacobi.ipynb)
 # - [Caderno 10 - Newton não-linear](aula-13-newton-nao-linear.ipynb)
 # - [Aula 09 - Eliminação Gaussiana](aula-09-eliminacao-gauss.ipynb)
 # - [Aula 11 - Cholesky](aula-11-cholesky.ipynb) 
-# - [_Code session 4_ - fsolve](./code-sessions/codeSession-4-fsolve.ipynb)
-# - [_Code session 5_ - solve](./code-sessions/codeSession-5-solve.ipynb)
+# - [_Code session 4_ - fsolve](./code-sessions/codeSession-5-fsolve.ipynb)
 # -->
 # - Avaliação: Projeto Computacional (4h)
 # 
@@ -134,9 +134,8 @@
 #     - [Caderno 16 - Diferenciação numérica](aula-20-diferenciacao-numerica.ipynb)
 #     - [Caderno 17 - Solução numérica de EDOs](aula-21-solucoes-edo.ipynb)
 #     - [Caderno 18 - Método de Euler](aula-22-metodo-euler.ipynb)
-#     - [Aula 23 - Métodos de Taylor e Runge-Kutta de 2a. ordem](aula-23-taylor-rungeKutta.ipynb)
+#     - [Caderno 19 - Métodos de Taylor e Runge-Kutta de 2a. ordem](aula-23-taylor-rungeKutta.ipynb)
 #     - [_Code session 9_ - solve_ivp](code-sessions/codeSession-9-solve_ivp.ipynb)
-# 
 # 
 
 # ### Listas de exercícios
@@ -158,10 +157,10 @@
 # 
 # | Módulo | ID | Modalidade | Tipo | Peso | Descrição |
 # |:---:|:---:|:---:|:---:|:---:|:---|
-# | 1 | P1 | Quiz | Individual | 0,2 | Ver manual de orientação |
-# | 2 | P2 | Prova | Individual | 0,2 | Ver manual de orientação |
-# | 3 | P3 | Projeto | Equipe | 0,3 | Ver manual de orientação |
-# | 4 | P4 | Projeto | Equipe | 0,3 | Ver manual de orientação |
+# | 1 | P1 | Quiz | Individual | 1/3 | Ver manual de orientação |
+# | 2 | P2 | Prova | Individual | 1/3 | Ver manual de orientação |
+# | 3 | P3 | Projeto | Equipe | 1/3 | Ver manual de orientação |
+# | 4 | P4 | Projeto | Equipe | 1/3 | Ver manual de orientação |
 # 
 # ### Manuais de orientação
 # 

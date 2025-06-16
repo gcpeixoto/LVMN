@@ -10,8 +10,6 @@ parts:
   - file: ipynb/aula-03-analise-grafica
   - file: ipynb/aula-04-bissecao
   - file: ipynb/aula-05-newton
-#   - file: ipynb/aula-07-secante
-#   - file: ipynb/aula-08-muller
 #   - file: ipynb/aula-08a-matrizes-vetores
 #   - file: ipynb/aula-09-eliminacao-gauss
 #   - file: ipynb/aula-10-fatoracao-lu
@@ -33,11 +31,11 @@ parts:
   - file: ipynb/code-sessions/codeSession-1-polyval
   - file: ipynb/code-sessions/codeSession-2-bisect
   - file: ipynb/code-sessions/codeSession-3-newton
-#   - file: ipynb/code-sessions/codeSession-4-fsolve
-#   - file: ipynb/code-sessions/codeSession-5-solve
-#   - file: ipynb/code-sessions/codeSession-6-interp
-#   - file: ipynb/code-sessions/codeSession-7-fit
-#   - file: ipynb/code-sessions/codeSession-8-integrate
+  - file: ipynb/code-sessions/codeSession-4-solve
+  - file: ipynb/code-sessions/codeSession-5-fsolve
+  - file: ipynb/code-sessions/codeSession-6-interp
+  - file: ipynb/code-sessions/codeSession-7-fit
+  - file: ipynb/code-sessions/codeSession-8-integrate
   - file: ipynb/code-sessions/codeSession-9-solve_ivp
 - caption: Exercícios Resolvidos
   chapters:
