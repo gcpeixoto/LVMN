@@ -1,112 +1,167 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>13. Plotagem com matplotlib: tópicos especiais &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="shortcut icon" href="../../_static/numbiosis.png"/>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/extra/extra-matplotlibTopicos';</script>
+    <link rel="icon" href="../../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="14. Malhas numéricas" href="extra-malhasNumericas.html" />
     <link rel="prev" title="12. Otimização de código" href="extra-numba.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-    
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../conteudo.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/numbiosis.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -115,826 +170,313 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Cadernos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-01-introMetnum.html">
-   2. Métodos Numéricos: Necessidade, Evolução e Profissão
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-02-erros.html">
-   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-03-analise-grafica.html">
-   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-04-bissecao.html">
-   5. Método da Bisseção: A Arte de Cindir e Convergir
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-newton.html">
-   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code Sessions
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-1-polyval.html">
-   <em>
-    Code Session
-   </em>
-   1:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     roots
-    </span>
-   </code>
-   e
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     polyval
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-2-bisect.html">
-   <em>
-    Code Session
-   </em>
-   2:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     bisect
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-3-newton.html">
-   <em>
-    Code Session
-   </em>
-   3:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     newton
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
-   <em>
-    Code Session
-   </em>
-   9: Método de Euler
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Exercícios Resolvidos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-1-solucoes.html">
-   Lista de Exercícios 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-2-solucoes.html">
-   Lista de Exercícios 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-3-solucoes.html">
-   Lista de Exercícios 3
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-4-solucoes.html">
-   Lista de Exercícios 4
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-5-solucoes.html">
-   Lista de Exercícios 5
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-6-solucoes.html">
-   Lista de Exercícios 6
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Recortes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">
-   Recorte 1: Breve Histórico da Análise Numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-02-programacao-software.html">
-   Recorte 2: Programação e
-   <em>
-    Software
-   </em>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
-   Recorte 4: Dígitos significativos, precisão e acurácia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">
-   Recorte 5: Um desastre motivado por erros numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">
-   Recorte 6: Definições de erro
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">
-   Recorte 7: Erros de medição em aparelhos de pressão arterial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">
-   Recorte 8: Enganos, erros de formulação e incerteza nos dados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">
-   Recorte 9: Aritmética exata e números racionais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-10-hpc.html">
-   Recorte 10: Computação de alto desempenho
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">
-   Recorte 11: Método de Newton-Raphson para raízes múltiplas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">
-   Recorte 12: Condicionamento e normas de matrizes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">
-   Recorte 13: Análise de erros em interpolação polinomial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
-   Recorte 14: Projeção ortogonal e equações normais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">
-   Recorte 15: Fórmulas de Newton-Cotes
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Extra
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-pontoFlutuante.html">
-   7. Números em ponto flutuante e seus problemas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-pontoFixo.html">
-   8. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-secante.html">
-   9. Implementação do método da secante
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-muller.html">
-   10. Raízes de polinômios com o método de Müller
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-fft.html">
-   11. Processamento de sinais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-numba.html">
-   12. Otimização de código
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   13. Plotagem com
-   <em>
-    matplotlib
-   </em>
-   : tópicos especiais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-malhasNumericas.html">
-   14. Malhas numéricas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-camposDirecaoEDO.html">
-   15. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerMelhorado.html">
-   16. Variações do Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-estabilidadeEuler.html">
-   17. Estabilidade Numérica para o Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerImplicito.html">
-   18. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   19. Métodos de Adams-Bashfort
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-edoSuperior.html">
-   20. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-sistemasEDO.html">
-   21. Sistemas de EDOs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-metodo-linhas.html">
-   22. Método das Linhas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-docstrings.html">
-   23. Documentação de código
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-docstrings.html">23. Documentação de código</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/extra/extra-matplotlibTopicos.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/extra/extra-matplotlibTopicos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ipynb/extra/extra-matplotlibTopicos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/ipynb/extra/extra-matplotlibTopicos.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
 
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backend-x-frontend">
-   13.1.
-   <em>
-    Backend
-   </em>
-   x
-   <em>
-    frontend
-   </em>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuracao-de-backend">
-     13.1.1. Configuração de
-     <em>
-      backend
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#modificando-as-rc-settings">
-       13.1.1.1. Modificando as
-       <em>
-        rc settings
-       </em>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#definindo-variavel-de-ambiente">
-       13.1.1.2. Definindo variável de ambiente
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#usando-a-funcao-use">
-       13.1.1.3. Usando a função
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         use()
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backends-predefinidos-renderizadores-e-canvas">
-     13.1.2.
-     <em>
-      Backends
-     </em>
-     predefinidos, renderizadores e
-     <em>
-      canvas
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#rasterizacao-e-vetorizacao">
-       13.1.2.1. Rasterização e vetorização
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dissecando-um-plot">
-   13.2. Dissecando um plot
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anatomia-de-uma-figura">
-     13.2.1. Anatomia de uma figura
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem">
-     13.2.2. Template para função de auxílio (
-     <em>
-      helper function
-     </em>
-     ) de plotagem
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-de-codagem">
-   13.3. Estilos de codagem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilizacao-do-artist">
-   13.4. Estilização do
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Artist
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-padronizados">
-   13.5. Estilos padronizados
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-personalizados">
-   13.6. Estilos personalizados
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introspeccao-do-artist">
-   13.7. Introspecção do
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Artist
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manipulando-objetos">
-     13.7.1. Manipulando objetos
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gets-e-sets">
-     13.7.2.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       gets
-      </span>
-     </code>
-     e
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       sets
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Plotagem com matplotlib: tópicos especiais</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backend-x-frontend">
-   13.1.
-   <em>
-    Backend
-   </em>
-   x
-   <em>
-    frontend
-   </em>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuracao-de-backend">
-     13.1.1. Configuração de
-     <em>
-      backend
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#modificando-as-rc-settings">
-       13.1.1.1. Modificando as
-       <em>
-        rc settings
-       </em>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#definindo-variavel-de-ambiente">
-       13.1.1.2. Definindo variável de ambiente
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#usando-a-funcao-use">
-       13.1.1.3. Usando a função
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         use()
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backends-predefinidos-renderizadores-e-canvas">
-     13.1.2.
-     <em>
-      Backends
-     </em>
-     predefinidos, renderizadores e
-     <em>
-      canvas
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#rasterizacao-e-vetorizacao">
-       13.1.2.1. Rasterização e vetorização
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dissecando-um-plot">
-   13.2. Dissecando um plot
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anatomia-de-uma-figura">
-     13.2.1. Anatomia de uma figura
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem">
-     13.2.2. Template para função de auxílio (
-     <em>
-      helper function
-     </em>
-     ) de plotagem
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-de-codagem">
-   13.3. Estilos de codagem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilizacao-do-artist">
-   13.4. Estilização do
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Artist
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-padronizados">
-   13.5. Estilos padronizados
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#estilos-personalizados">
-   13.6. Estilos personalizados
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introspeccao-do-artist">
-   13.7. Introspecção do
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Artist
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manipulando-objetos">
-     13.7.1. Manipulando objetos
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gets-e-sets">
-     13.7.2.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       gets
-      </span>
-     </code>
-     e
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       sets
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Plotagem com matplotlib: tópicos especiais</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-x-frontend">13.1. <em>Backend</em> x <em>frontend</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracao-de-backend">13.1.1. Configuração de <em>backend</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificando-as-rc-settings">13.1.1.1. Modificando as <em>rc settings</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definindo-variavel-de-ambiente">13.1.1.2. Definindo variável de ambiente</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-a-funcao-use">13.1.1.3. Usando a função <code class="docutils literal notranslate"><span class="pre">use()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backends-predefinidos-renderizadores-e-canvas">13.1.2. <em>Backends</em> predefinidos, renderizadores e <em>canvas</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterizacao-e-vetorizacao">13.1.2.1. Rasterização e vetorização</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dissecando-um-plot">13.2. Dissecando um plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-uma-figura">13.2.1. Anatomia de uma figura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem">13.2.2. Template para função de auxílio (<em>helper function</em>) de plotagem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-de-codagem">13.3. Estilos de codagem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilizacao-do-artist">13.4. Estilização do <code class="docutils literal notranslate"><span class="pre">Artist</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-padronizados">13.5. Estilos padronizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-personalizados">13.6. Estilos personalizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introspeccao-do-artist">13.7. Introspecção do <code class="docutils literal notranslate"><span class="pre">Artist</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulando-objetos">13.7.1. Manipulando objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gets-e-sets">13.7.2. <code class="docutils literal notranslate"><span class="pre">gets</span></code> e <code class="docutils literal notranslate"><span class="pre">sets</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="plotagem-com-matplotlib-topicos-especiais">
-<h1><span class="section-number">13. </span>Plotagem com <em>matplotlib</em>: tópicos especiais<a class="headerlink" href="#plotagem-com-matplotlib-topicos-especiais" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">13. </span>Plotagem com <em>matplotlib</em>: tópicos especiais<a class="headerlink" href="#plotagem-com-matplotlib-topicos-especiais" title="Link to this heading">#</a></h1>
 <section id="backend-x-frontend">
-<h2><span class="section-number">13.1. </span><em>Backend</em> x <em>frontend</em><a class="headerlink" href="#backend-x-frontend" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.1. </span><em>Backend</em> x <em>frontend</em><a class="headerlink" href="#backend-x-frontend" title="Link to this heading">#</a></h2>
 <p><em>Backends</em> são mecanismos que agem “por detrás do palco” para construir as figuras. São de dois tipos:</p>
 <ul class="simple">
 <li><p><em>Backend interativo</em>: utilizado para produzir figuras para uso em interfaces, tais como PyQt/PySide, PyGObject, Tkinter, wxPython e macOS/Cocoa.</p></li>
 <li><p><em>Backend de impressão</em>: utilizado para produzir arquivos de imagem em formatos usuais, tais como SVG, PNG, PDF e PS.</p></li>
 </ul>
 <section id="configuracao-de-backend">
-<h3><span class="section-number">13.1.1. </span>Configuração de <em>backend</em><a class="headerlink" href="#configuracao-de-backend" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.1.1. </span>Configuração de <em>backend</em><a class="headerlink" href="#configuracao-de-backend" title="Link to this heading">#</a></h3>
 <p>Útil para modificar propriedades padrão de estilo. Realizada de 3 formas:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Modificando as configurações de execução (<em>runtime configuration</em>), comumente chamadas de <em>rc settings</em>.</p></li>
 <li><p>Definindo a variável de ambiente <code class="docutils literal notranslate"><span class="pre">MPLBACKEND</span></code>.</p></li>
 <li><p>Usando a função <code class="docutils literal notranslate"><span class="pre">matplotlib.use()</span></code>.</p></li>
 </ol>
 <section id="modificando-as-rc-settings">
-<h4><span class="section-number">13.1.1.1. </span>Modificando as <em>rc settings</em><a class="headerlink" href="#modificando-as-rc-settings" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">13.1.1.1. </span>Modificando as <em>rc settings</em><a class="headerlink" href="#modificando-as-rc-settings" title="Link to this heading">#</a></h4>
 <p>Os parâmetros padrão são definidos em uma variável tipo <code class="docutils literal notranslate"><span class="pre">dict</span></code> denominada <code class="docutils literal notranslate"><span class="pre">rcParams</span></code>. Para alterar o <em>backend</em>, devemos alterar a propriedade de mesmo nome no arquivo de configuração <code class="docutils literal notranslate"><span class="pre">matplotlibrc</span></code>.</p>
 <ul class="simple">
 <li><p>Localize o arquivo:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">matplotlib_fname</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -964,7 +506,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="definindo-variavel-de-ambiente">
-<h4><span class="section-number">13.1.1.2. </span>Definindo variável de ambiente<a class="headerlink" href="#definindo-variavel-de-ambiente" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">13.1.1.2. </span>Definindo variável de ambiente<a class="headerlink" href="#definindo-variavel-de-ambiente" title="Link to this heading">#</a></h4>
 <p>Se este método for usado, uma variável de ambiente pode ser definida para o <em>shell</em> atual ou globalmente. Por exemplo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">MPLBACKEND</span><span class="o">=</span><span class="n">macoxs</span>
 </pre></div>
@@ -972,7 +514,7 @@ title="Print to PDF"
 <p>Entretanto, defini-la globalmente em arquivos de configuração, tais como <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> ou <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> pode não ser uma escolha sábia.</p>
 </section>
 <section id="usando-a-funcao-use">
-<h4><span class="section-number">13.1.1.3. </span>Usando a função <code class="docutils literal notranslate"><span class="pre">use()</span></code><a class="headerlink" href="#usando-a-funcao-use" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">13.1.1.3. </span>Usando a função <code class="docutils literal notranslate"><span class="pre">use()</span></code><a class="headerlink" href="#usando-a-funcao-use" title="Link to this heading">#</a></h4>
 <p>A função <code class="docutils literal notranslate"><span class="pre">matplotlib.use()</span></code> deve ser chamada apenas se o <em>script</em> a ser executado depende de um <em>backend</em> específico. Neste caso, a chamada deve preceder a criação de qualquer figura e ser aplicada toda vez que houver alterações de <em>backend</em> entre usuários diferentes. O modo de chamá-la é:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;macosx&#39;</span><span class="p">)</span>
 </pre></div>
@@ -980,7 +522,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="backends-predefinidos-renderizadores-e-canvas">
-<h3><span class="section-number">13.1.2. </span><em>Backends</em> predefinidos, renderizadores e <em>canvas</em><a class="headerlink" href="#backends-predefinidos-renderizadores-e-canvas" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.1.2. </span><em>Backends</em> predefinidos, renderizadores e <em>canvas</em><a class="headerlink" href="#backends-predefinidos-renderizadores-e-canvas" title="Link to this heading">#</a></h3>
 <p>O <em>matplotlib</em> possui <em>backends</em> predefinidos e, em geral, um <em>backend</em> padrão é carregado quando trabalhamos com plotagens, não sendo, a princípio, necessário tomar nenhuma ação por parte do usuário.</p>
 <p>Por outro lado, quando interfaces gráficas ou aplicações <em>web</em> são pretendidas, manipular <em>backends</em> pode ser inevitável. Visando facilitar o desenvolvimento de interfaces, o <em>matplotlib</em> segmenta <em>backends</em> em duas classes:</p>
 <ul class="simple">
@@ -989,7 +531,7 @@ title="Print to PDF"
 </ul>
 <p>O renderizador canônico para interfaces é o <code class="docutils literal notranslate"><span class="pre">Agg</span></code>, baseado na biblioteca para C++ <em>Anti-Grain Geometry</em>, responsável pela rasterização das imagens. O <code class="docutils literal notranslate"><span class="pre">Agg</span></code> é utilizado pelos backends <code class="docutils literal notranslate"><span class="pre">QtAgg</span></code>, <code class="docutils literal notranslate"><span class="pre">GTK4Agg</span></code>, <code class="docutils literal notranslate"><span class="pre">GTK3Agg</span></code>, <code class="docutils literal notranslate"><span class="pre">wxAgg</span></code>, <code class="docutils literal notranslate"><span class="pre">TkAgg</span></code>, e <code class="docutils literal notranslate"><span class="pre">macosx</span></code>. Outro renderizador é baseado na biblioteca <code class="docutils literal notranslate"><span class="pre">Cairo</span></code>, tal como o <code class="docutils literal notranslate"><span class="pre">QtCairo</span></code>.</p>
 <section id="rasterizacao-e-vetorizacao">
-<h4><span class="section-number">13.1.2.1. </span>Rasterização e vetorização<a class="headerlink" href="#rasterizacao-e-vetorizacao" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">13.1.2.1. </span>Rasterização e vetorização<a class="headerlink" href="#rasterizacao-e-vetorizacao" title="Link to this heading">#</a></h4>
 <p>Os renderizadores podem ser classificados em dois tipos:</p>
 <ul class="simple">
 <li><p>rasterizadores: produzem imagens bidimensionais a partir de uma matriz retangular ou grade de pixels. O espaço de cores a que os pixels se submetem determina a imagem. Exemplos de arquivos de imagens rasterizadas são BMP, GIF, JPEG e PNG. São livres de escala.</p></li>
@@ -1005,12 +547,12 @@ title="Print to PDF"
 </section>
 </section>
 <section id="dissecando-um-plot">
-<h2><span class="section-number">13.2. </span>Dissecando um plot<a class="headerlink" href="#dissecando-um-plot" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.2. </span>Dissecando um plot<a class="headerlink" href="#dissecando-um-plot" title="Link to this heading">#</a></h2>
 <p>O <em>matplotlib</em> plota dados em um objeto abstrato chamado “Figura” (<code class="docutils literal notranslate"><span class="pre">Figure</span></code>), que contém um “eixo” (<code class="docutils literal notranslate"><span class="pre">Axes</span></code>) ou mais, que define a “área” de plotagem.</p>
 <p>A maneira mais simples de se plotar algo é usando <code class="docutils literal notranslate"><span class="pre">pyplot.subplots</span></code> e <code class="docutils literal notranslate"><span class="pre">Axes.plot</span></code> como comandos essenciais.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -1023,11 +565,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_14_0.png" src="../../_images/extra-matplotlibTopicos_14_0.png" />
+<img alt="../../_images/7c32838aa0d195c774421f5890651d634273b1633b77c250203d5c49804031df.png" src="../../_images/7c32838aa0d195c774421f5890651d634273b1633b77c250203d5c49804031df.png" />
 </div>
 </div>
 <section id="anatomia-de-uma-figura">
-<h3><span class="section-number">13.2.1. </span>Anatomia de uma figura<a class="headerlink" href="#anatomia-de-uma-figura" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.2.1. </span>Anatomia de uma figura<a class="headerlink" href="#anatomia-de-uma-figura" title="Link to this heading">#</a></h3>
 <p>Em matplotlib, <code class="docutils literal notranslate"><span class="pre">Artist</span></code> é uma classe abstrata que comporta vários objetos. <code class="docutils literal notranslate"><span class="pre">Figure</span></code>, <code class="docutils literal notranslate"><span class="pre">Axes</span></code>, <code class="docutils literal notranslate"><span class="pre">Axis</span></code>, <code class="docutils literal notranslate"><span class="pre">Text</span></code>, <code class="docutils literal notranslate"><span class="pre">Line2D</span></code>, <code class="docutils literal notranslate"><span class="pre">Patch</span></code> são todos “filhos” de <code class="docutils literal notranslate"><span class="pre">Artist</span></code>, mas considerados “artistas” do <em>canvas</em>.</p>
 <p>O resumo dos objetos é dado como segue:</p>
 <ul class="simple">
@@ -1064,7 +606,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_20_0.png" src="../../_images/extra-matplotlibTopicos_20_0.png" />
+<img alt="../../_images/8fbdb06e6be254cf540367de6ba50195d0e85541823a91cdd4aea1f30be346a8.png" src="../../_images/8fbdb06e6be254cf540367de6ba50195d0e85541823a91cdd4aea1f30be346a8.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1077,7 +619,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_22_0.png" src="../../_images/extra-matplotlibTopicos_22_0.png" />
+<img alt="../../_images/da4667ec95d8e50e0a17965149403387210622bbd6774352570856eb7256674a.png" src="../../_images/da4667ec95d8e50e0a17965149403387210622bbd6774352570856eb7256674a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1094,7 +636,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_24_0.png" src="../../_images/extra-matplotlibTopicos_24_0.png" />
+<img alt="../../_images/9bfb26b8090cd63b3c220633a91bcaf07bd4274731b8090fa22271e0a17225ab.png" src="../../_images/9bfb26b8090cd63b3c220633a91bcaf07bd4274731b8090fa22271e0a17225ab.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1104,7 +646,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># localiza parâmetros do objeto especificado</span>
 <span class="c1"># e imprime o nome de suas propriedades e valores</span>
-<span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">match</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">re</span><span class="w"> </span><span class="kn">import</span> <span class="n">match</span>
 
 <span class="n">art</span> <span class="o">=</span> <span class="s1">&#39;axes&#39;</span> <span class="c1"># axes</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1164,7 +706,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_28_0.png" src="../../_images/extra-matplotlibTopicos_28_0.png" />
+<img alt="../../_images/352b7aae57eed6273949b965efaaf518af634353ee057e195777ae39e554b1b9.png" src="../../_images/352b7aae57eed6273949b965efaaf518af634353ee057e195777ae39e554b1b9.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1188,7 +730,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_30_0.png" src="../../_images/extra-matplotlibTopicos_30_0.png" />
+<img alt="../../_images/1ef60a2b003ceef5080b017df3c782ed9bb3df42c4c72b545393a84282cd0007.png" src="../../_images/1ef60a2b003ceef5080b017df3c782ed9bb3df42c4c72b545393a84282cd0007.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1196,7 +738,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 
@@ -1211,17 +753,17 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_32_0.png" src="../../_images/extra-matplotlibTopicos_32_0.png" />
+<img alt="../../_images/4c0768e94b20581c8f55227b28e31de2cce42fe6a3be126bb4935e3fccf644df.png" src="../../_images/4c0768e94b20581c8f55227b28e31de2cce42fe6a3be126bb4935e3fccf644df.png" />
 </div>
 </div>
 </section>
 <section id="template-para-funcao-de-auxilio-helper-function-de-plotagem">
-<h3><span class="section-number">13.2.2. </span>Template para função de auxílio (<em>helper function</em>) de plotagem<a class="headerlink" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.2.2. </span>Template para função de auxílio (<em>helper function</em>) de plotagem<a class="headerlink" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem" title="Link to this heading">#</a></h3>
 <p>O código abaixo define uma função de auxílio básica para plotagem genérica usando <code class="docutils literal notranslate"><span class="pre">plot</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">h_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function para gráficos simples e modificação de Line2D.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
@@ -1253,13 +795,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_35_0.png" src="../../_images/extra-matplotlibTopicos_35_0.png" />
+<img alt="../../_images/b8939742bc5a0b2d99cd38e6b3532063b888d6f8cb98a6f7b5a6db1d8e769c86.png" src="../../_images/b8939742bc5a0b2d99cd38e6b3532063b888d6f8cb98a6f7b5a6db1d8e769c86.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="estilos-de-codagem">
-<h2><span class="section-number">13.3. </span>Estilos de codagem<a class="headerlink" href="#estilos-de-codagem" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.3. </span>Estilos de codagem<a class="headerlink" href="#estilos-de-codagem" title="Link to this heading">#</a></h2>
 <p>Plotagens genéricas podem ser executadas por meio de dois estilos de codagem:</p>
 <ul class="simple">
 <li><p><em>explícito</em>, quando chamamos métodos a partir de objetos <code class="docutils literal notranslate"><span class="pre">Figure</span></code> e <code class="docutils literal notranslate"><span class="pre">Axes</span></code> (estilo orientação a objetos);</p></li>
@@ -1281,7 +823,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_39_0.png" src="../../_images/extra-matplotlibTopicos_39_0.png" />
+<img alt="../../_images/71a11ecdbfe295cc8241dc8445e4ccc131ff5a5a6573877d5eb4ea5ece7c1bd8.png" src="../../_images/71a11ecdbfe295cc8241dc8445e4ccc131ff5a5a6573877d5eb4ea5ece7c1bd8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1299,18 +841,18 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_40_0.png" src="../../_images/extra-matplotlibTopicos_40_0.png" />
+<img alt="../../_images/71a11ecdbfe295cc8241dc8445e4ccc131ff5a5a6573877d5eb4ea5ece7c1bd8.png" src="../../_images/71a11ecdbfe295cc8241dc8445e4ccc131ff5a5a6573877d5eb4ea5ece7c1bd8.png" />
 </div>
 </div>
 <p>Nota: o estilo explícito é recomendado para plotagens complicadas ou scripts reutilizáveis, ao passo que o estilo implícito é recomendado para plotagens simples e rápidas.</p>
 </section>
 <section id="estilizacao-do-artist">
-<h2><span class="section-number">13.4. </span>Estilização do <code class="docutils literal notranslate"><span class="pre">Artist</span></code><a class="headerlink" href="#estilizacao-do-artist" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.4. </span>Estilização do <code class="docutils literal notranslate"><span class="pre">Artist</span></code><a class="headerlink" href="#estilizacao-do-artist" title="Link to this heading">#</a></h2>
 <p>Para exemplificar estilos, tomaremos como dado de exemplo a série temporal de anomalia de temperatura no período 2020 - 2021 para as coordenadas próximas à cidade de João Pessoa (7.1S,35.0W), disponibilizadas
 pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># série temporal de anomalia de temperatura: 2020 - 2021</span>
 <span class="c1"># (lat,lot) = (7.1S,35.0W) :: JPA</span>
@@ -1349,7 +891,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_45_0.png" src="../../_images/extra-matplotlibTopicos_45_0.png" />
+<img alt="../../_images/d422209bfb1d0826c989a9253e4bfcef2cee9e3d5425f12fe0dcaf9d0ecb4f90.png" src="../../_images/d422209bfb1d0826c989a9253e4bfcef2cee9e3d5425f12fe0dcaf9d0ecb4f90.png" />
 </div>
 </div>
 <p>Em segundo lugar, plotamos os dados reais.</p>
@@ -1384,12 +926,12 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_47_0.png" src="../../_images/extra-matplotlibTopicos_47_0.png" />
+<img alt="../../_images/41aac8b0914bb1998aebcc344861ab45bf1a4454f583ca46d34c04db803d1bcc.png" src="../../_images/41aac8b0914bb1998aebcc344861ab45bf1a4454f583ca46d34c04db803d1bcc.png" />
 </div>
 </div>
 </section>
 <section id="estilos-padronizados">
-<h2><span class="section-number">13.5. </span>Estilos padronizados<a class="headerlink" href="#estilos-padronizados" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.5. </span>Estilos padronizados<a class="headerlink" href="#estilos-padronizados" title="Link to this heading">#</a></h2>
 <p>O <em>matplotlib</em> dispõe de algumas dezenas de estilos padronizados para uso imediato. Para listá-los, invocamos <code class="docutils literal notranslate"><span class="pre">plt.style.available</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1435,7 +977,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sty_test</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;classic&#39;</span><span class="p">,</span><span class="s1">&#39;ggplot&#39;</span><span class="p">,</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">,</span>
 <span class="s1">&#39;grayscale&#39;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">plot_test</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">sty</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_test</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">sty</span><span class="p">):</span>
     <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;plt.style.use(</span><span class="se">\&#39;</span><span class="si">{</span><span class="n">sty</span><span class="si">}</span><span class="se">\&#39;</span><span class="s1">)&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y = x^2 - 1$&#39;</span><span class="p">)</span>
@@ -1454,15 +996,15 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_51_0.png" src="../../_images/extra-matplotlibTopicos_51_0.png" />
-<img alt="../../_images/extra-matplotlibTopicos_51_1.png" src="../../_images/extra-matplotlibTopicos_51_1.png" />
-<img alt="../../_images/extra-matplotlibTopicos_51_2.png" src="../../_images/extra-matplotlibTopicos_51_2.png" />
-<img alt="../../_images/extra-matplotlibTopicos_51_3.png" src="../../_images/extra-matplotlibTopicos_51_3.png" />
+<img alt="../../_images/4dbd615fe818e63c62ec936061f0b8a657075a013171408834f384820b1399dd.png" src="../../_images/4dbd615fe818e63c62ec936061f0b8a657075a013171408834f384820b1399dd.png" />
+<img alt="../../_images/208b2acf08a8d1abc60730bb9c34bcbda031040ca52e2680c07a6a99e67adbf6.png" src="../../_images/208b2acf08a8d1abc60730bb9c34bcbda031040ca52e2680c07a6a99e67adbf6.png" />
+<img alt="../../_images/58e5f4be21025084c913612ff256d3df668fed042fd4c51c82e3e2308b928e23.png" src="../../_images/58e5f4be21025084c913612ff256d3df668fed042fd4c51c82e3e2308b928e23.png" />
+<img alt="../../_images/34da00821a9efc329846a9ae3cc59af0a33fba2aafb4c942956c4b229c89f5ef.png" src="../../_images/34da00821a9efc329846a9ae3cc59af0a33fba2aafb4c942956c4b229c89f5ef.png" />
 </div>
 </div>
 </section>
 <section id="estilos-personalizados">
-<h2><span class="section-number">13.6. </span>Estilos personalizados<a class="headerlink" href="#estilos-personalizados" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.6. </span>Estilos personalizados<a class="headerlink" href="#estilos-personalizados" title="Link to this heading">#</a></h2>
 <p>É possível customizar o estilo das plotagens criando uma folha de estilo (<em>style sheet</em>) personalizada. A <em>style sheet</em> pode ser criada seguindo um padrão similar ao encontrado em <a class="reference external" href="https://www.w3schools.com/css/default.asp">CSS</a>.</p>
 <p>A folha de estilo possui extensão <code class="docutils literal notranslate"><span class="pre">mplstyle</span></code> e é carregada com <code class="docutils literal notranslate"><span class="pre">plt.style.use(&lt;arquivo&gt;.mplstyle)</span></code>.</p>
 <p>Abaixo temos um extrato de uma <em>style sheet</em> que modifica propriedades de <code class="docutils literal notranslate"><span class="pre">Axes</span></code> e <code class="docutils literal notranslate"><span class="pre">Grid</span></code>.</p>
@@ -1486,14 +1028,14 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_53_0.png" src="../../_images/extra-matplotlibTopicos_53_0.png" />
+<img alt="../../_images/11688a88da395e91d90707d7f457e471905d44c5c07280e1d71d435f5fa926d2.png" src="../../_images/11688a88da395e91d90707d7f457e471905d44c5c07280e1d71d435f5fa926d2.png" />
 </div>
 </div>
 </section>
 <section id="introspeccao-do-artist">
-<h2><span class="section-number">13.7. </span>Introspecção do <code class="docutils literal notranslate"><span class="pre">Artist</span></code><a class="headerlink" href="#introspeccao-do-artist" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.7. </span>Introspecção do <code class="docutils literal notranslate"><span class="pre">Artist</span></code><a class="headerlink" href="#introspeccao-do-artist" title="Link to this heading">#</a></h2>
 <p>A arquitetura do <em>matplotlib</em> possui 3 camadas maiores:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Camada de base (<em>backend layer</em>), a mais interna.</p></li>
 <li><p>Camada do artista (<em>artista layer</em>), a intermediária.</p></li>
 <li><p>Camada de código (<em>script layer</em>), a mais externa.</p></li>
@@ -1513,7 +1055,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </ul>
 <p>O <em>pipeline</em> de uso do <em>matplotlib</em> basicamente depende da criação de uma <code class="docutils literal notranslate"><span class="pre">Figure</span></code> e da manipulação de <code class="docutils literal notranslate"><span class="pre">Axes</span></code>.</p>
 <section id="manipulando-objetos">
-<h3><span class="section-number">13.7.1. </span>Manipulando objetos<a class="headerlink" href="#manipulando-objetos" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.7.1. </span>Manipulando objetos<a class="headerlink" href="#manipulando-objetos" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nova figura</span>
@@ -1531,12 +1073,12 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_56_0.png" src="../../_images/extra-matplotlibTopicos_56_0.png" />
+<img alt="../../_images/18cc70f6a6061ac785e6b85d5d95f8f3be5dedbe43bc357f09a44c6d6506ef4c.png" src="../../_images/18cc70f6a6061ac785e6b85d5d95f8f3be5dedbe43bc357f09a44c6d6506ef4c.png" />
 </div>
 </div>
 </section>
 <section id="gets-e-sets">
-<h3><span class="section-number">13.7.2. </span><code class="docutils literal notranslate"><span class="pre">gets</span></code> e <code class="docutils literal notranslate"><span class="pre">sets</span></code><a class="headerlink" href="#gets-e-sets" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">13.7.2. </span><code class="docutils literal notranslate"><span class="pre">gets</span></code> e <code class="docutils literal notranslate"><span class="pre">sets</span></code><a class="headerlink" href="#gets-e-sets" title="Link to this heading">#</a></h3>
 <p>As propriedades dos objetos são acessadas por <code class="docutils literal notranslate"><span class="pre">get</span></code> e modificadas por <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1631,7 +1173,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_59_0.png" src="../../_images/extra-matplotlibTopicos_59_0.png" />
+<img alt="../../_images/18cc70f6a6061ac785e6b85d5d95f8f3be5dedbe43bc357f09a44c6d6506ef4c.png" src="../../_images/18cc70f6a6061ac785e6b85d5d95f8f3be5dedbe43bc357f09a44c6d6506ef4c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1643,7 +1185,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-matplotlibTopicos_60_0.png" src="../../_images/extra-matplotlibTopicos_60_0.png" />
+<img alt="../../_images/13798fac9b0abef8ae5b90c493a8266f0d2707967bc6acbf48937b9070c74c38.png" src="../../_images/13798fac9b0abef8ae5b90c493a8266f0d2707967bc6acbf48937b9070c74c38.png" />
 </div>
 </div>
 </section>
@@ -1662,7 +1204,7 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./ipynb/extra"
         },
         predefinedOutput: true
@@ -1670,50 +1212,130 @@ pelo <a class="reference external" href="https://www.ncei.noaa.gov/">NOAA/NASA</
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="extra-numba.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">12. </span>Otimização de código</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="extra-numba.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Otimização de código</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="extra-malhasNumericas.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="extra-malhasNumericas.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">14. </span>Malhas numéricas</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backend-x-frontend">13.1. <em>Backend</em> x <em>frontend</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracao-de-backend">13.1.1. Configuração de <em>backend</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modificando-as-rc-settings">13.1.1.1. Modificando as <em>rc settings</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definindo-variavel-de-ambiente">13.1.1.2. Definindo variável de ambiente</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-a-funcao-use">13.1.1.3. Usando a função <code class="docutils literal notranslate"><span class="pre">use()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backends-predefinidos-renderizadores-e-canvas">13.1.2. <em>Backends</em> predefinidos, renderizadores e <em>canvas</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterizacao-e-vetorizacao">13.1.2.1. Rasterização e vetorização</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dissecando-um-plot">13.2. Dissecando um plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-uma-figura">13.2.1. Anatomia de uma figura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-para-funcao-de-auxilio-helper-function-de-plotagem">13.2.2. Template para função de auxílio (<em>helper function</em>) de plotagem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-de-codagem">13.3. Estilos de codagem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilizacao-do-artist">13.4. Estilização do <code class="docutils literal notranslate"><span class="pre">Artist</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-padronizados">13.5. Estilos padronizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-personalizados">13.6. Estilos personalizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introspeccao-do-artist">13.7. Introspecção do <code class="docutils literal notranslate"><span class="pre">Artist</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulando-objetos">13.7.1. Manipulando objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gets-e-sets">13.7.2. <code class="docutils literal notranslate"><span class="pre">gets</span></code> e <code class="docutils literal notranslate"><span class="pre">sets</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Prof. Gustavo Oliveira<br/>
-  
-      &copy; Copyright 2025.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

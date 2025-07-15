@@ -1,114 +1,169 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lista de Exercícios 5 &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <link rel="shortcut icon" href="../../_static/numbiosis.png"/>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/lists/lista-5-solucoes';</script>
+    <link rel="icon" href="../../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lista de Exercícios 6" href="lista-6-solucoes.html" />
     <link rel="prev" title="Lista de Exercícios 4" href="lista-4-solucoes.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-    
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../conteudo.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/numbiosis.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,938 +172,319 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Cadernos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-01-introMetnum.html">
-   2. Métodos Numéricos: Necessidade, Evolução e Profissão
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-02-erros.html">
-   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-03-analise-grafica.html">
-   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-04-bissecao.html">
-   5. Método da Bisseção: A Arte de Cindir e Convergir
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-newton.html">
-   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code Sessions
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-1-polyval.html">
-   <em>
-    Code Session
-   </em>
-   1:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     roots
-    </span>
-   </code>
-   e
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     polyval
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-2-bisect.html">
-   <em>
-    Code Session
-   </em>
-   2:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     bisect
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-3-newton.html">
-   <em>
-    Code Session
-   </em>
-   3:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     newton
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
-   <em>
-    Code Session
-   </em>
-   9: Método de Euler
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Exercícios Resolvidos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="lista-1-solucoes.html">
-   Lista de Exercícios 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lista-2-solucoes.html">
-   Lista de Exercícios 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lista-3-solucoes.html">
-   Lista de Exercícios 3
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lista-4-solucoes.html">
-   Lista de Exercícios 4
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lista de Exercícios 5
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lista-6-solucoes.html">
-   Lista de Exercícios 6
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lista-6-solucoes.html">Lista de Exercícios 6</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Recortes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">
-   Recorte 1: Breve Histórico da Análise Numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-02-programacao-software.html">
-   Recorte 2: Programação e
-   <em>
-    Software
-   </em>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
-   Recorte 4: Dígitos significativos, precisão e acurácia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">
-   Recorte 5: Um desastre motivado por erros numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">
-   Recorte 6: Definições de erro
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">
-   Recorte 7: Erros de medição em aparelhos de pressão arterial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">
-   Recorte 8: Enganos, erros de formulação e incerteza nos dados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">
-   Recorte 9: Aritmética exata e números racionais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-10-hpc.html">
-   Recorte 10: Computação de alto desempenho
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">
-   Recorte 11: Método de Newton-Raphson para raízes múltiplas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">
-   Recorte 12: Condicionamento e normas de matrizes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">
-   Recorte 13: Análise de erros em interpolação polinomial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
-   Recorte 14: Projeção ortogonal e equações normais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">
-   Recorte 15: Fórmulas de Newton-Cotes
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Extra
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-pontoFlutuante.html">
-   7. Números em ponto flutuante e seus problemas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-pontoFixo.html">
-   8. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-secante.html">
-   9. Implementação do método da secante
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-muller.html">
-   10. Raízes de polinômios com o método de Müller
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-fft.html">
-   11. Processamento de sinais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-numba.html">
-   12. Otimização de código
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-matplotlibTopicos.html">
-   13. Plotagem com
-   <em>
-    matplotlib
-   </em>
-   : tópicos especiais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-malhasNumericas.html">
-   14. Malhas numéricas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-camposDirecaoEDO.html">
-   15. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-eulerMelhorado.html">
-   16. Variações do Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-estabilidadeEuler.html">
-   17. Estabilidade Numérica para o Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-eulerImplicito.html">
-   18. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-multistep-adamsBashfort.html">
-   19. Métodos de Adams-Bashfort
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-edoSuperior.html">
-   20. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-sistemasEDO.html">
-   21. Sistemas de EDOs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-metodo-linhas.html">
-   22. Método das Linhas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../extra/extra-docstrings.html">
-   23. Documentação de código
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra-docstrings.html">23. Documentação de código</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/lists/lista-5-solucoes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/lists/lista-5-solucoes.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ipynb/lists/lista-5-solucoes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/ipynb/lists/lista-5-solucoes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
 
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ajuste-de-curvas">
-   Ajuste de curvas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exemplo-solucao-fechada-2d">
-     Exemplo: solução fechada 2D
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resolucao-da-lista-5">
-   Resolução da Lista 5
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funcao-base-para-computar-ajuste-e-plotar-resultados">
-     Função-base para computar ajuste e plotar resultados
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q2">
-     L5-Q2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao">
-     Solução
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metodologia-matematica">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metodologia-computacional">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q3">
-     L5-Q3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Solução
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q4">
-     L5-Q4
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-b">
-     solucao-L5-Q4-b
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-c">
-     solucao-L5-Q4-c
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-d">
-     solucao-L5-Q4-d
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-e">
-     solucao-L5-Q4-e
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-f">
-     solucao-L5-Q4-f
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solucao-l5-q5-a">
-   solucao-L5-Q5-a
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-reta">
-     AJUSTE POR RETA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-parabola">
-     AJUSTE POR PARÁBOLA
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integracao-numerica">
-   Integração Numérica
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funcao-base-para-integrais-de-newton-cotes">
-     Função-base para integrais de Newton-Cotes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exemplo">
-     Exemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Exemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#funcao-residente-em-python-para-integracao">
-   Função residente em Python para integração
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Exemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q9">
-     solucao-L5-Q9
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q10">
-     solucao-L5-Q10
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q11">
-     solucao-L5-Q11
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q17">
-     solucao L5-Q17
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadratura-gaussiana">
-     QUADRATURA GAUSSIANA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18a">
-     solucao-L5-Q18a
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18b">
-     solucao-L5-Q18b
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplos-de-integrandos-com-singularidades">
-       Exemplos de integrandos com singularidades
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18c">
-     solucao-L5-Q18c
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18d">
-     solucao-L5-Q18d
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lista de Exercícios 5</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ajuste-de-curvas">
-   Ajuste de curvas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exemplo-solucao-fechada-2d">
-     Exemplo: solução fechada 2D
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resolucao-da-lista-5">
-   Resolução da Lista 5
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funcao-base-para-computar-ajuste-e-plotar-resultados">
-     Função-base para computar ajuste e plotar resultados
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q2">
-     L5-Q2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao">
-     Solução
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metodologia-matematica">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metodologia-computacional">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q3">
-     L5-Q3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Solução
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#l5-q4">
-     L5-Q4
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       Metodologia matemática
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       Metodologia computacional
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-b">
-     solucao-L5-Q4-b
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-c">
-     solucao-L5-Q4-c
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-d">
-     solucao-L5-Q4-d
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-e">
-     solucao-L5-Q4-e
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q4-f">
-     solucao-L5-Q4-f
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solucao-l5-q5-a">
-   solucao-L5-Q5-a
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-reta">
-     AJUSTE POR RETA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-parabola">
-     AJUSTE POR PARÁBOLA
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integracao-numerica">
-   Integração Numérica
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#funcao-base-para-integrais-de-newton-cotes">
-     Função-base para integrais de Newton-Cotes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exemplo">
-     Exemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Exemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#funcao-residente-em-python-para-integracao">
-   Função residente em Python para integração
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Exemplo
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q9">
-     solucao-L5-Q9
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q10">
-     solucao-L5-Q10
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q11">
-     solucao-L5-Q11
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q17">
-     solucao L5-Q17
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadratura-gaussiana">
-     QUADRATURA GAUSSIANA
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18a">
-     solucao-L5-Q18a
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18b">
-     solucao-L5-Q18b
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplos-de-integrandos-com-singularidades">
-       Exemplos de integrandos com singularidades
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18c">
-     solucao-L5-Q18c
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucao-l5-q18d">
-     solucao-L5-Q18d
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lista de Exercícios 5</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-curvas">Ajuste de curvas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-solucao-fechada-2d">Exemplo: solução fechada 2D</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao-da-lista-5">Resolução da Lista 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-base-para-computar-ajuste-e-plotar-resultados">Função-base para computar ajuste e plotar resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q2">L5-Q2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-matematica">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-computacional">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q3">L5-Q3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solução</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q4">L5-Q4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-b">solucao-L5-Q4-b</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-c">solucao-L5-Q4-c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-d">solucao-L5-Q4-d</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-e">solucao-L5-Q4-e</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-f">solucao-L5-Q4-f</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q5-a">solucao-L5-Q5-a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-reta">AJUSTE POR RETA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-parabola">AJUSTE POR PARÁBOLA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-numerica">Integração Numérica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-base-para-integrais-de-newton-cotes">Função-base para integrais de Newton-Cotes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-residente-em-python-para-integracao">Função residente em Python para integração</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q9">solucao-L5-Q9</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q10">solucao-L5-Q10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q11">solucao-L5-Q11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q17">solucao L5-Q17</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratura-gaussiana">QUADRATURA GAUSSIANA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18a">solucao-L5-Q18a</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18b">solucao-L5-Q18b</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-integrandos-com-singularidades">Exemplos de integrandos com singularidades</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18c">solucao-L5-Q18c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18d">solucao-L5-Q18d</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="lista-de-exercicios-5">
-<h1>Lista de Exercícios 5<a class="headerlink" href="#lista-de-exercicios-5" title="Permalink to this headline">#</a></h1>
+<h1>Lista de Exercícios 5<a class="headerlink" href="#lista-de-exercicios-5" title="Link to this heading">#</a></h1>
 <p>Solucionário matemático e computacional de exercícios selecionados da Lista de Exercícios 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1060,20 +496,20 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importação de módulos</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="ajuste-de-curvas">
-<h2>Ajuste de curvas<a class="headerlink" href="#ajuste-de-curvas" title="Permalink to this headline">#</a></h2>
+<h2>Ajuste de curvas<a class="headerlink" href="#ajuste-de-curvas" title="Link to this heading">#</a></h2>
 <p><strong>Obs.:</strong>: função <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> retorna coeficientes da curva de ajuste na ordem:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="o">...</span>
 </pre></div>
 </div>
 <section id="exemplo-solucao-fechada-2d">
-<h3>Exemplo: solução fechada 2D<a class="headerlink" href="#exemplo-solucao-fechada-2d" title="Permalink to this headline">#</a></h3>
+<h3>Exemplo: solução fechada 2D<a class="headerlink" href="#exemplo-solucao-fechada-2d" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tabela de dados</span>
@@ -1093,15 +529,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/lista-5-solucoes_5_0.png" src="../../_images/lista-5-solucoes_5_0.png" />
+<img alt="../../_images/69a22a7678b14bdf37ebb55dd03cdf6dcea25d05156bf8c9090dd60c2f752a2b.png" src="../../_images/69a22a7678b14bdf37ebb55dd03cdf6dcea25d05156bf8c9090dd60c2f752a2b.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="resolucao-da-lista-5">
-<h2>Resolução da Lista 5<a class="headerlink" href="#resolucao-da-lista-5" title="Permalink to this headline">#</a></h2>
+<h2>Resolução da Lista 5<a class="headerlink" href="#resolucao-da-lista-5" title="Link to this heading">#</a></h2>
 <section id="funcao-base-para-computar-ajuste-e-plotar-resultados">
-<h3>Função-base para computar ajuste e plotar resultados<a class="headerlink" href="#funcao-base-para-computar-ajuste-e-plotar-resultados" title="Permalink to this headline">#</a></h3>
+<h3>Função-base para computar ajuste e plotar resultados<a class="headerlink" href="#funcao-base-para-computar-ajuste-e-plotar-resultados" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -1111,7 +547,7 @@ title="Print to PDF"
 <span class="sd">        x,y : tabela de valores (numpy arrays)</span>
 <span class="sd">        g   : grau do polinômio de ajuste (int)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="k">def</span> <span class="nf">resolve_ajuste</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resolve_ajuste</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
     
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="c1"># ajuste</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> 
@@ -1127,7 +563,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="l5-q2">
-<h3>L5-Q2<a class="headerlink" href="#l5-q2" title="Permalink to this headline">#</a></h3>
+<h3>L5-Q2<a class="headerlink" href="#l5-q2" title="Link to this heading">#</a></h3>
 <p>Ajuste os dados abaixo pelo método dos mínimos quadrados:</p>
 <p>\begin{array}{c|cccccccc}
 x &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 \
@@ -1138,9 +574,9 @@ y &amp; 0.5 &amp; 0.6  &amp; 0.9 &amp; 0.8 &amp; 1.2 &amp; 1.5 &amp;  1.7 &amp; 
 <p>b) por parábola do tipo <span class="math notranslate nohighlight">\(ax^2 + bx + c\)</span>;</p>
 </section>
 <section id="solucao">
-<h3>Solução<a class="headerlink" href="#solucao" title="Permalink to this headline">#</a></h3>
+<h3>Solução<a class="headerlink" href="#solucao" title="Link to this heading">#</a></h3>
 <section id="metodologia-matematica">
-<h4>Metodologia matemática<a class="headerlink" href="#metodologia-matematica" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia matemática<a class="headerlink" href="#metodologia-matematica" title="Link to this heading">#</a></h4>
 <p>a)</p>
 <div class="math notranslate nohighlight">
 \[g_1(x) = x$$$$ g_2(x)=1\]</div>
@@ -1233,7 +669,7 @@ b_{3}=\  &lt;g_3,f&gt;  \ &amp;= 9.2
 \[f(x) = 0.01547 + 0.07738x + 0.4071x^2\]</div>
 </section>
 <section id="metodologia-computacional">
-<h4>Metodologia computacional<a class="headerlink" href="#metodologia-computacional" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia computacional<a class="headerlink" href="#metodologia-computacional" title="Link to this heading">#</a></h4>
 <p>a)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1252,7 +688,7 @@ b_{3}=\  &lt;g_3,f&gt;  \ &amp;= 9.2
 Coeficiente de ajuste p[1]: 0.17499999999999996
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_15_1.png" src="../../_images/lista-5-solucoes_15_1.png" />
+<img alt="../../_images/58a44c5734916edd58faad105c7fd0b03e4724b0621512d504fa7403e3911a3a.png" src="../../_images/58a44c5734916edd58faad105c7fd0b03e4724b0621512d504fa7403e3911a3a.png" />
 </div>
 </div>
 <p>b)</p>
@@ -1270,13 +706,13 @@ Coeficiente de ajuste p[1]: 0.07738095238095268
 Coeficiente de ajuste p[2]: 0.407142857142857
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_17_1.png" src="../../_images/lista-5-solucoes_17_1.png" />
+<img alt="../../_images/c0d8666da9cc60a4eaa97c788ae9801c5a22d0cc75014a29ec98b1504149d761.png" src="../../_images/c0d8666da9cc60a4eaa97c788ae9801c5a22d0cc75014a29ec98b1504149d761.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="l5-q3">
-<h3>L5-Q3<a class="headerlink" href="#l5-q3" title="Permalink to this headline">#</a></h3>
+<h3>L5-Q3<a class="headerlink" href="#l5-q3" title="Link to this heading">#</a></h3>
 <p>Dada a tabela abaixo, faça o gráfico de dispersão dos dados e ajuste uma curva da melhor maneira possı́vel:</p>
 <p>\begin{array}{c|cccccc}
 x &amp; 0.5 &amp; 0.75 &amp; 1 &amp; 1.5 &amp; 2.0 &amp; 2.5 &amp; 3.0  \
@@ -1285,9 +721,9 @@ y &amp; -2.8 &amp; -0.6 &amp; 1&amp; 3.2&amp; 4.8 &amp; 6.0 &amp; 7.0
 \end{array}</p>
 </section>
 <section id="id1">
-<h3>Solução<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Solução<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <section id="id2">
-<h4>Metodologia matemática<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia matemática<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(g_1(x) = 1\)</span>; <span class="math notranslate nohighlight">\(g_2(x)=x\)</span>; <span class="math notranslate nohighlight">\(g_3(x)=x^2\)</span>; <span class="math notranslate nohighlight">\(g_4(x)=x^3\)</span></p>
 <p>\begin{array}{c|cccccc}
 g_1 &amp; 1 &amp; 1 &amp; 1&amp; 1&amp; 1 &amp; 1 &amp; 1 \
@@ -1340,7 +776,7 @@ b_{4}=\  &lt;g_4,f&gt;  \ &amp;= 332.34
 \[f(x) = 0.5813  - 4.3250x + 12.79x^2 - 8.1043x^3\]</div>
 </section>
 <section id="id3">
-<h4>Metodologia computacional<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia computacional<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tabela</span>
@@ -1366,13 +802,13 @@ Coeficiente de ajuste p[3]: -8.131256481519904
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.040251260748212274
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_22_2.png" src="../../_images/lista-5-solucoes_22_2.png" />
+<img alt="../../_images/9f63526430653740c5d87a10a464cd264535e095341b2040239f3eceeb2a430f.png" src="../../_images/9f63526430653740c5d87a10a464cd264535e095341b2040239f3eceeb2a430f.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="l5-q4">
-<h3>L5-Q4<a class="headerlink" href="#l5-q4" title="Permalink to this headline">#</a></h3>
+<h3>L5-Q4<a class="headerlink" href="#l5-q4" title="Link to this heading">#</a></h3>
 <p>A tabela abaixo mostra as alturas e pesos de nove homens entre as idades de 25 a 29 anos extraı́da ao acaso entre funcionários de uma grande indústria:</p>
 <p>\begin{array}{c|ccccccccc}
 \text{Altura/cm} &amp; 183&amp; 173 &amp; 168 &amp; 188  &amp; 158 &amp; 163 &amp; 193 &amp;163 &amp;178 \
@@ -1380,7 +816,7 @@ Coeficiente de ajuste p[3]: -8.131256481519904
 \text{Peso/kg} &amp; 79 &amp; 69 &amp; 70&amp; 81  &amp; 61 &amp;63 &amp;79 &amp; 71 &amp; 73
 \end{array}</p>
 <section id="id4">
-<h4>Metodologia matemática<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia matemática<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(g_1(x) = 1\)</span>; <span class="math notranslate nohighlight">\(g_2(x)=x\)</span></p>
 <p>\begin{array}{c|cccccccc}
 g_1 &amp; 1 &amp; 1 &amp; 1&amp; 1&amp; 1 &amp; 1 &amp; 1 &amp; 1&amp;1\
@@ -1416,7 +852,7 @@ b_{2}=\ &lt;g_2,f&gt;  \ &amp;= 113.103
 \[f(x) = 0.5276x - 20.0832\]</div>
 </section>
 <section id="id5">
-<h4>Metodologia computacional<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<h4>Metodologia computacional<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">altura</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">183</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">188</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mi">163</span><span class="p">,</span><span class="mi">193</span><span class="p">,</span><span class="mi">163</span><span class="p">,</span><span class="mi">178</span><span class="p">])</span>
@@ -1431,13 +867,13 @@ b_{2}=\ &lt;g_2,f&gt;  \ &amp;= 113.103
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fc4720ed610&gt;
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_26_1.png" src="../../_images/lista-5-solucoes_26_1.png" />
+<img alt="../../_images/8bbe4735e5bb69a23bb03a9d463c2c59297ef1399cea63274759952e6b7ca45b.png" src="../../_images/8bbe4735e5bb69a23bb03a9d463c2c59297ef1399cea63274759952e6b7ca45b.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="solucao-l5-q4-b">
-<h3>solucao-L5-Q4-b<a class="headerlink" href="#solucao-l5-q4-b" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q4-b<a class="headerlink" href="#solucao-l5-q4-b" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ajuste da reta </span>
@@ -1450,12 +886,12 @@ b_{2}=\ &lt;g_2,f&gt;  \ &amp;= 113.103
 Coeficiente de ajuste p[1]: -20.078037383177612
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_28_1.png" src="../../_images/lista-5-solucoes_28_1.png" />
+<img alt="../../_images/29f0e00c0e16427e07793bae4cfa018b2f046bd5af60d6a1237c026d298fb4a2.png" src="../../_images/29f0e00c0e16427e07793bae4cfa018b2f046bd5af60d6a1237c026d298fb4a2.png" />
 </div>
 </div>
 </section>
 <section id="solucao-l5-q4-c">
-<h3>solucao-L5-Q4-c<a class="headerlink" href="#solucao-l5-q4-c" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q4-c<a class="headerlink" href="#solucao-l5-q4-c" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimativa de peso (kg)</span>
@@ -1479,7 +915,7 @@ Coeficiente de ajuste p[1]: -20.078037383177612
 </div>
 </section>
 <section id="solucao-l5-q4-d">
-<h3>solucao-L5-Q4-d<a class="headerlink" href="#solucao-l5-q4-d" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q4-d<a class="headerlink" href="#solucao-l5-q4-d" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">resolve_ajuste</span><span class="p">(</span><span class="n">peso</span><span class="p">,</span><span class="n">altura</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -1491,12 +927,12 @@ Coeficiente de ajuste p[1]: -20.078037383177612
 Coeficiente de ajuste p[1]: 60.294943820224695
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_32_1.png" src="../../_images/lista-5-solucoes_32_1.png" />
+<img alt="../../_images/211a73bb7c0641d0f7a6b2ce6cd227b846a4c75e0e93130731c0422fa8cda662.png" src="../../_images/211a73bb7c0641d0f7a6b2ce6cd227b846a4c75e0e93130731c0422fa8cda662.png" />
 </div>
 </div>
 </section>
 <section id="solucao-l5-q4-e">
-<h3>solucao-L5-Q4-e<a class="headerlink" href="#solucao-l5-q4-e" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q4-e<a class="headerlink" href="#solucao-l5-q4-e" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimativa de peso a partir de altura com novo ajuste </span>
@@ -1520,7 +956,7 @@ Coeficiente de ajuste p[1]: 60.294943820224695
 </div>
 </section>
 <section id="solucao-l5-q4-f">
-<h3>solucao-L5-Q4-f<a class="headerlink" href="#solucao-l5-q4-f" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q4-f<a class="headerlink" href="#solucao-l5-q4-f" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comparação das retas de ajuste</span>
@@ -1535,15 +971,15 @@ Coeficiente de ajuste p[1]: 60.294943820224695
  &lt;matplotlib.lines.Line2D at 0x7fc4724d1810&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_36_1.png" src="../../_images/lista-5-solucoes_36_1.png" />
+<img alt="../../_images/1593743ae9f28699de99cc47391fc6c0c969fee1cdbad74869d60804807c5f86.png" src="../../_images/1593743ae9f28699de99cc47391fc6c0c969fee1cdbad74869d60804807c5f86.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="solucao-l5-q5-a">
-<h2>solucao-L5-Q5-a<a class="headerlink" href="#solucao-l5-q5-a" title="Permalink to this headline">#</a></h2>
+<h2>solucao-L5-Q5-a<a class="headerlink" href="#solucao-l5-q5-a" title="Link to this heading">#</a></h2>
 <section id="ajuste-por-reta">
-<h3>AJUSTE POR RETA<a class="headerlink" href="#ajuste-por-reta" title="Permalink to this headline">#</a></h3>
+<h3>AJUSTE POR RETA<a class="headerlink" href="#ajuste-por-reta" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; </span>
@@ -1582,7 +1018,7 @@ Coeficiente de ajuste p[1]: -3420.8153029001523
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>208.83231551826748
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_39_2.png" src="../../_images/lista-5-solucoes_39_2.png" />
+<img alt="../../_images/bb73a61b20999fb0d2de42073ec418179b0a7e36feebdadd973ec0cf9b74125b.png" src="../../_images/bb73a61b20999fb0d2de42073ec418179b0a7e36feebdadd973ec0cf9b74125b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1630,12 +1066,12 @@ Coeficiente de ajuste p[1]: -3420.8153029001523
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7fc47246b410&gt;
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_41_2.png" src="../../_images/lista-5-solucoes_41_2.png" />
+<img alt="../../_images/582f05326eb3b60741c2b8e3fa368d5ab8228df27a77f07c84f99f10699418ce.png" src="../../_images/582f05326eb3b60741c2b8e3fa368d5ab8228df27a77f07c84f99f10699418ce.png" />
 </div>
 </div>
 </section>
 <section id="ajuste-por-parabola">
-<h3>AJUSTE POR PARÁBOLA<a class="headerlink" href="#ajuste-por-parabola" title="Permalink to this headline">#</a></h3>
+<h3>AJUSTE POR PARÁBOLA<a class="headerlink" href="#ajuste-por-parabola" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotagem</span>
@@ -1666,7 +1102,7 @@ Coeficiente de ajuste p[2]: 51061.1779002923
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>249.95013340016885
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_43_2.png" src="../../_images/lista-5-solucoes_43_2.png" />
+<img alt="../../_images/62b5d655209dbf76076ef888a3ee8390a091bc1773ec29ff432ebf5e6aad18e9.png" src="../../_images/62b5d655209dbf76076ef888a3ee8390a091bc1773ec29ff432ebf5e6aad18e9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1715,18 +1151,18 @@ Coeficiente de ajuste p[2]: 51061.1779002923
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7fc471ff9310&gt;
 </pre></div>
 </div>
-<img alt="../../_images/lista-5-solucoes_45_2.png" src="../../_images/lista-5-solucoes_45_2.png" />
+<img alt="../../_images/cd4f325b4726ce2e37ec4153bd1583e67d017ef1bf1a6c0b8db831be478df58d.png" src="../../_images/cd4f325b4726ce2e37ec4153bd1583e67d017ef1bf1a6c0b8db831be478df58d.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="integracao-numerica">
-<h2>Integração Numérica<a class="headerlink" href="#integracao-numerica" title="Permalink to this headline">#</a></h2>
+<h2>Integração Numérica<a class="headerlink" href="#integracao-numerica" title="Link to this heading">#</a></h2>
 <section id="funcao-base-para-integrais-de-newton-cotes">
-<h3>Função-base para integrais de Newton-Cotes<a class="headerlink" href="#funcao-base-para-integrais-de-newton-cotes" title="Permalink to this headline">#</a></h3>
+<h3>Função-base para integrais de Newton-Cotes<a class="headerlink" href="#funcao-base-para-integrais-de-newton-cotes" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">integral_newton_cotes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">metodo</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">integral_newton_cotes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">metodo</span><span class="p">):</span>
 
     <span class="c1"># diff computa h = x[k+1] - x[k]; </span>
     <span class="c1"># duplo diff retorna 0 se igualmente espaçado</span>
@@ -1780,7 +1216,7 @@ Coeficiente de ajuste p[2]: 51061.1779002923
 </div>
 </section>
 <section id="exemplo">
-<h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h3>
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Link to this heading">#</a></h3>
 <p>Integração numérica pela regra do trapézio para a função
 $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x + 2) + 0.5\pi ] \, dx \approx I_T \)</span>$</p>
 <div class="cell docutils container">
@@ -1818,12 +1254,12 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/lista-5-solucoes_51_0.png" src="../../_images/lista-5-solucoes_51_0.png" />
+<img alt="../../_images/eebefadc3e0e65d51fe961ae98d5ee0e020a62ede7f2e840e31aaea969380835.png" src="../../_images/eebefadc3e0e65d51fe961ae98d5ee0e020a62ede7f2e840e31aaea969380835.png" />
 </div>
 </div>
 </section>
 <section id="id6">
-<h3>Exemplo<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Exemplo<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>Idem, para regra 1/3 de Simpson <span class="math notranslate nohighlight">\(I_S\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1842,16 +1278,16 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </section>
 </section>
 <section id="funcao-residente-em-python-para-integracao">
-<h2>Função residente em Python para integração<a class="headerlink" href="#funcao-residente-em-python-para-integracao" title="Permalink to this headline">#</a></h2>
+<h2>Função residente em Python para integração<a class="headerlink" href="#funcao-residente-em-python-para-integracao" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">sp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="id7">
-<h3>Exemplo<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Exemplo<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>Mesma função <span class="math notranslate nohighlight">\(f(x)\)</span>, agora calculada com o Scipy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1869,7 +1305,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q9">
-<h3>solucao-L5-Q9<a class="headerlink" href="#solucao-l5-q9" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q9<a class="headerlink" href="#solucao-l5-q9" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dados</span>
@@ -1901,7 +1337,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q10">
-<h3>solucao-L5-Q10<a class="headerlink" href="#solucao-l5-q10" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q10<a class="headerlink" href="#solucao-l5-q10" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># caso h = 0.1</span>
@@ -1945,7 +1381,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q11">
-<h3>solucao-L5-Q11<a class="headerlink" href="#solucao-l5-q11" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q11<a class="headerlink" href="#solucao-l5-q11" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
@@ -1973,7 +1409,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q17">
-<h3>solucao L5-Q17<a class="headerlink" href="#solucao-l5-q17" title="Permalink to this headline">#</a></h3>
+<h3>solucao L5-Q17<a class="headerlink" href="#solucao-l5-q17" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2005,17 +1441,17 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/lista-5-solucoes_66_0.png" src="../../_images/lista-5-solucoes_66_0.png" />
+<img alt="../../_images/6e50c55c4c4cb64e906633d2858942b348e70671073e8d4ad3a072dac6543549.png" src="../../_images/6e50c55c4c4cb64e906633d2858942b348e70671073e8d4ad3a072dac6543549.png" />
 </div>
 </div>
 </section>
 <section id="quadratura-gaussiana">
-<h3>QUADRATURA GAUSSIANA<a class="headerlink" href="#quadratura-gaussiana" title="Permalink to this headline">#</a></h3>
+<h3>QUADRATURA GAUSSIANA<a class="headerlink" href="#quadratura-gaussiana" title="Link to this heading">#</a></h3>
 <p>Algumas informações:</p>
 <ul class="simple">
 <li><p>A quadratura gaussiana pode ser chamada como</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quadrature</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quadrature</span>
 </pre></div>
 </div>
 <p>Depois de importar, veja</p>
@@ -2034,10 +1470,10 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q18a">
-<h3>solucao-L5-Q18a<a class="headerlink" href="#solucao-l5-q18a" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q18a<a class="headerlink" href="#solucao-l5-q18a" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quadrature</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quadrature</span>
 
 <span class="c1"># integração</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">1</span>
@@ -2054,7 +1490,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificando computação numérica x simbólica com Sympy</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sy</span>
 
 <span class="c1"># cria símbolo para z</span>
 <span class="n">zsym</span> <span class="o">=</span> <span class="n">sy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span> 
@@ -2074,7 +1510,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q18b">
-<h3>solucao-L5-Q18b<a class="headerlink" href="#solucao-l5-q18b" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q18b<a class="headerlink" href="#solucao-l5-q18b" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># integração</span>
@@ -2105,12 +1541,12 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </div>
 <section id="exemplos-de-integrandos-com-singularidades">
-<h4>Exemplos de integrandos com singularidades<a class="headerlink" href="#exemplos-de-integrandos-com-singularidades" title="Permalink to this headline">#</a></h4>
+<h4>Exemplos de integrandos com singularidades<a class="headerlink" href="#exemplos-de-integrandos-com-singularidades" title="Link to this heading">#</a></h4>
 <p>Esses casos não são bem manipulados pelo submódulo <code class="docutils literal notranslate"><span class="pre">integrate</span></code>.</p>
 </section>
 </section>
 <section id="solucao-l5-q18c">
-<h3>solucao-L5-Q18c<a class="headerlink" href="#solucao-l5-q18c" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q18c<a class="headerlink" href="#solucao-l5-q18c" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># função com singularidade</span>
@@ -2133,7 +1569,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
 </div>
 </section>
 <section id="solucao-l5-q18d">
-<h3>solucao-L5-Q18d<a class="headerlink" href="#solucao-l5-q18d" title="Permalink to this headline">#</a></h3>
+<h3>solucao-L5-Q18d<a class="headerlink" href="#solucao-l5-q18d" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># função com singularidade </span>
@@ -2170,7 +1606,7 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./ipynb/lists"
         },
         predefinedOutput: true
@@ -2178,50 +1614,160 @@ $<span class="math notranslate nohighlight">\(\int_{a=0}^{b=\pi} [ {\rm sen}(3x 
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lista-4-solucoes.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lista de Exercícios 4</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lista-4-solucoes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lista de Exercícios 4</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="lista-6-solucoes.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="lista-6-solucoes.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lista de Exercícios 6</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-curvas">Ajuste de curvas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-solucao-fechada-2d">Exemplo: solução fechada 2D</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao-da-lista-5">Resolução da Lista 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-base-para-computar-ajuste-e-plotar-resultados">Função-base para computar ajuste e plotar resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q2">L5-Q2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-matematica">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-computacional">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q3">L5-Q3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solução</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l5-q4">L5-Q4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Metodologia matemática</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Metodologia computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-b">solucao-L5-Q4-b</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-c">solucao-L5-Q4-c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-d">solucao-L5-Q4-d</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-e">solucao-L5-Q4-e</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q4-f">solucao-L5-Q4-f</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q5-a">solucao-L5-Q5-a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-reta">AJUSTE POR RETA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-parabola">AJUSTE POR PARÁBOLA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-numerica">Integração Numérica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-base-para-integrais-de-newton-cotes">Função-base para integrais de Newton-Cotes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-residente-em-python-para-integracao">Função residente em Python para integração</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q9">solucao-L5-Q9</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q10">solucao-L5-Q10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q11">solucao-L5-Q11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q17">solucao L5-Q17</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratura-gaussiana">QUADRATURA GAUSSIANA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18a">solucao-L5-Q18a</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18b">solucao-L5-Q18b</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-integrandos-com-singularidades">Exemplos de integrandos com singularidades</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18c">solucao-L5-Q18c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-l5-q18d">solucao-L5-Q18d</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Prof. Gustavo Oliveira<br/>
-  
-      &copy; Copyright 2025.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
