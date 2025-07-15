@@ -1,114 +1,169 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>10. Raízes de polinômios com o método de Müller &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <link rel="shortcut icon" href="../../_static/numbiosis.png"/>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/extra/extra-muller';</script>
+    <link rel="icon" href="../../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11. Processamento de sinais" href="extra-fft.html" />
     <link rel="prev" title="9. Implementação do método da secante" href="extra-secante.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-    
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../conteudo.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/numbiosis.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,570 +172,275 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Cadernos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-00-modelagem-programacao.html">
-   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-01-introMetnum.html">
-   2. Métodos Numéricos: Necessidade, Evolução e Profissão
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-02-erros.html">
-   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-03-analise-grafica.html">
-   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-04-bissecao.html">
-   5. Método da Bisseção: A Arte de Cindir e Convergir
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../aula-05-newton.html">
-   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code Sessions
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-1-polyval.html">
-   <em>
-    Code Session
-   </em>
-   1:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     roots
-    </span>
-   </code>
-   e
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     polyval
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-2-bisect.html">
-   <em>
-    Code Session
-   </em>
-   2:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     bisect
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-3-newton.html">
-   <em>
-    Code Session
-   </em>
-   3:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     newton
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html">
-   <em>
-    Code Session
-   </em>
-   9: Método de Euler
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Exercícios Resolvidos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-1-solucoes.html">
-   Lista de Exercícios 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-2-solucoes.html">
-   Lista de Exercícios 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-3-solucoes.html">
-   Lista de Exercícios 3
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-4-solucoes.html">
-   Lista de Exercícios 4
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-5-solucoes.html">
-   Lista de Exercícios 5
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lists/lista-6-solucoes.html">
-   Lista de Exercícios 6
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Recortes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">
-   Recorte 1: Breve Histórico da Análise Numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-02-programacao-software.html">
-   Recorte 2: Programação e
-   <em>
-    Software
-   </em>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
-   Recorte 4: Dígitos significativos, precisão e acurácia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">
-   Recorte 5: Um desastre motivado por erros numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">
-   Recorte 6: Definições de erro
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">
-   Recorte 7: Erros de medição em aparelhos de pressão arterial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">
-   Recorte 8: Enganos, erros de formulação e incerteza nos dados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">
-   Recorte 9: Aritmética exata e números racionais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-10-hpc.html">
-   Recorte 10: Computação de alto desempenho
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">
-   Recorte 11: Método de Newton-Raphson para raízes múltiplas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">
-   Recorte 12: Condicionamento e normas de matrizes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">
-   Recorte 13: Análise de erros em interpolação polinomial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
-   Recorte 14: Projeção ortogonal e equações normais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">
-   Recorte 15: Fórmulas de Newton-Cotes
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Extra
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-pontoFlutuante.html">
-   7. Números em ponto flutuante e seus problemas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-pontoFixo.html">
-   8. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-secante.html">
-   9. Implementação do método da secante
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   10. Raízes de polinômios com o método de Müller
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-fft.html">
-   11. Processamento de sinais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-numba.html">
-   12. Otimização de código
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-matplotlibTopicos.html">
-   13. Plotagem com
-   <em>
-    matplotlib
-   </em>
-   : tópicos especiais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-malhasNumericas.html">
-   14. Malhas numéricas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-camposDirecaoEDO.html">
-   15. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerMelhorado.html">
-   16. Variações do Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-estabilidadeEuler.html">
-   17. Estabilidade Numérica para o Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-eulerImplicito.html">
-   18. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-multistep-adamsBashfort.html">
-   19. Métodos de Adams-Bashfort
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-edoSuperior.html">
-   20. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-sistemasEDO.html">
-   21. Sistemas de EDOs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-metodo-linhas.html">
-   22. Método das Linhas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra-docstrings.html">
-   23. Documentação de código
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-secante.html">9. Implementação do método da secante</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-fft.html">11. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-numba.html">12. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-malhasNumericas.html">14. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-metodo-linhas.html">22. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-docstrings.html">23. Documentação de código</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/extra/extra-muller.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/extra/extra-muller.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/ipynb/extra/extra-muller.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/ipynb/extra/extra-muller.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
 
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computacao-com-polinomios">
-   10.1. Computação com polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculando-raizes-de-polinomios">
-   10.2. Calculando raízes de polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#avaliando-polinomios">
-   10.3. Avaliando polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementacao-metodo-de-muller">
-   10.4. Implementação: Método de Müller
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos">
-   10.5. Exemplos
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Raízes de polinômios com o método de Müller</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computacao-com-polinomios">
-   10.1. Computação com polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculando-raizes-de-polinomios">
-   10.2. Calculando raízes de polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#avaliando-polinomios">
-   10.3. Avaliando polinômios
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementacao-metodo-de-muller">
-   10.4. Implementação: Método de Müller
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos">
-   10.5. Exemplos
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Raízes de polinômios com o método de Müller</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-com-polinomios">10.1. Computação com polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-raizes-de-polinomios">10.2. Calculando raízes de polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliando-polinomios">10.3. Avaliando polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-metodo-de-muller">10.4. Implementação: Método de Müller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">10.5. Exemplos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="raizes-de-polinomios-com-o-metodo-de-muller">
-<h1><span class="section-number">10. </span>Raízes de polinômios com o método de Müller<a class="headerlink" href="#raizes-de-polinomios-com-o-metodo-de-muller" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">10. </span>Raízes de polinômios com o método de Müller<a class="headerlink" href="#raizes-de-polinomios-com-o-metodo-de-muller" title="Link to this heading">#</a></h1>
 <section id="computacao-com-polinomios">
-<h2><span class="section-number">10.1. </span>Computação com polinômios<a class="headerlink" href="#computacao-com-polinomios" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.1. </span>Computação com polinômios<a class="headerlink" href="#computacao-com-polinomios" title="Link to this heading">#</a></h2>
 <p>Como exemplo, vamos implementar a forma aninhada de um polinômio de grau 3 (também conhecida como <strong>forma de Hörner</strong>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">sy</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
 
@@ -716,7 +476,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_4_0.png" src="../../_images/extra-muller_4_0.png" />
+<img alt="../../_images/11af0a5c7b3e55718e5ddb708e90b00ad0d99516a62cce4f01e2c4d45a1fcc9b.png" src="../../_images/11af0a5c7b3e55718e5ddb708e90b00ad0d99516a62cce4f01e2c4d45a1fcc9b.png" />
 </div>
 </div>
 <p>Imprimindo a derivada simbólica do polinômio implementada pelo usuário</p>
@@ -727,7 +487,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_6_0.png" src="../../_images/extra-muller_6_0.png" />
+<img alt="../../_images/813dad38e0b63e1166bbdc9155e786ff37d2571ca301190bfbd411e23ed493f3.png" src="../../_images/813dad38e0b63e1166bbdc9155e786ff37d2571ca301190bfbd411e23ed493f3.png" />
 </div>
 </div>
 <p>Imprimindo a derivada simbólica do polinômio pela função residente <code class="docutils literal notranslate"><span class="pre">diff</span></code></p>
@@ -738,7 +498,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_8_0.png" src="../../_images/extra-muller_8_0.png" />
+<img alt="../../_images/813dad38e0b63e1166bbdc9155e786ff37d2571ca301190bfbd411e23ed493f3.png" src="../../_images/813dad38e0b63e1166bbdc9155e786ff37d2571ca301190bfbd411e23ed493f3.png" />
 </div>
 </div>
 <p>Verificando igualdade</p>
@@ -756,7 +516,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="calculando-raizes-de-polinomios">
-<h2><span class="section-number">10.2. </span>Calculando raízes de polinômios<a class="headerlink" href="#calculando-raizes-de-polinomios" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.2. </span>Calculando raízes de polinômios<a class="headerlink" href="#calculando-raizes-de-polinomios" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define valores dos coeficientes aj para o polinômio</span>
@@ -784,7 +544,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_14_0.png" src="../../_images/extra-muller_14_0.png" />
+<img alt="../../_images/e9bfc968f076c55b855273525c6ab17174c7eac89d9954584ebf7664a5632e10.png" src="../../_images/e9bfc968f076c55b855273525c6ab17174c7eac89d9954584ebf7664a5632e10.png" />
 </div>
 </div>
 <p>Calcula apenas as raízes reais de <code class="docutils literal notranslate"><span class="pre">pn</span></code></p>
@@ -796,12 +556,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_16_0.png" src="../../_images/extra-muller_16_0.png" />
+<img alt="../../_images/11b515fe1f5ff1ce3dcb43fbc689af2b3dc34e7ee8763e1ef8504f6d105f70b9.png" src="../../_images/11b515fe1f5ff1ce3dcb43fbc689af2b3dc34e7ee8763e1ef8504f6d105f70b9.png" />
 </div>
 </div>
 </section>
 <section id="avaliando-polinomios">
-<h2><span class="section-number">10.3. </span>Avaliando polinômios<a class="headerlink" href="#avaliando-polinomios" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.3. </span>Avaliando polinômios<a class="headerlink" href="#avaliando-polinomios" title="Link to this heading">#</a></h2>
 <p>Podemos avaliar polinômios usando a função <code class="docutils literal notranslate"><span class="pre">polyval</span></code> do <em>Numpy</em>. Entretanto, como ela recebe coeficientes do maior para o menor grau, para mantermos a consistência com nosso polinômio anterior, devemos converter a lista <code class="docutils literal notranslate"><span class="pre">v</span></code> para um objeto <code class="docutils literal notranslate"><span class="pre">array</span></code> e fazer uma inversão (<code class="docutils literal notranslate"><span class="pre">flip</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,7 +585,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_20_0.png" src="../../_images/extra-muller_20_0.png" />
+<img alt="../../_images/ad7b889c339be28cd0542b4d24b4665d60824c9cc25318b69ff4a2a19cf82b67.png" src="../../_images/ad7b889c339be28cd0542b4d24b4665d60824c9cc25318b69ff4a2a19cf82b67.png" />
 </div>
 </div>
 <p>Note que se avaliássemos o polinômio em um ponto arbitrário, a forma impressa é idêntica àquela que obtivemos anteriormente.</p>
@@ -836,7 +596,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_22_0.png" src="../../_images/extra-muller_22_0.png" />
+<img alt="../../_images/c50f14da28c355ce48019480d2b840bb7b685adbbb1dfcaf5e1e91a4cd0caa47.png" src="../../_images/c50f14da28c355ce48019480d2b840bb7b685adbbb1dfcaf5e1e91a4cd0caa47.png" />
 </div>
 </div>
 <p>Agora vamos plotar o polinômio. Antes, vamos converter nosso polinômio para uma função a fim de a avaliarmos em um intervalo. Vamos escolher o intervalo <span class="math notranslate nohighlight">\(-1 \le x \le 1\)</span></p>
@@ -859,17 +619,17 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_24_0.png" src="../../_images/extra-muller_24_0.png" />
+<img alt="../../_images/17b2370066aabeadf31a8b4af186a4c0baacf2acb3fdefbbc059b1016fc8aec1.png" src="../../_images/17b2370066aabeadf31a8b4af186a4c0baacf2acb3fdefbbc059b1016fc8aec1.png" />
 </div>
 </div>
 </section>
 <section id="implementacao-metodo-de-muller">
-<h2><span class="section-number">10.4. </span>Implementação: Método de Müller<a class="headerlink" href="#implementacao-metodo-de-muller" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.4. </span>Implementação: Método de Müller<a class="headerlink" href="#implementacao-metodo-de-muller" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># \TODO caso complexo (verificar aritmética)</span>
-<span class="k">def</span> <span class="nf">metodo_muller</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">EPS</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">metodo_muller</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">EPS</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Busca aproximação para raiz da função f</span>
 <span class="sd">        pelo método de Muller.</span>
 <span class="sd">        </span>
@@ -936,7 +696,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="exemplos">
-<h2><span class="section-number">10.5. </span>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.5. </span>Exemplos<a class="headerlink" href="#exemplos" title="Link to this heading">#</a></h2>
 <p><strong>Exemplo</strong>. Determinando raízes para o polinômio <span class="math notranslate nohighlight">\(P(x) = 4x^3 + 3.5x^2 + 2.2x - 1\)</span> com estimativas iniciais <span class="math notranslate nohighlight">\(x_0 = 0.5\)</span> <span class="math notranslate nohighlight">\(x_1 = 1.0\)</span> e <span class="math notranslate nohighlight">\(x_2 = 1.5\)</span>, <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span> e <span class="math notranslate nohighlight">\(N = 100\)</span>. Notemos que o segundo argumento da função desempenha o papel de <span class="math notranslate nohighlight">\(x_1\)</span> e o terceiro argumento opera como um “raio” de comprimento <span class="math notranslate nohighlight">\(dx = 0.5\)</span> que fará com que <span class="math notranslate nohighlight">\(x_0 = x_1 - dx\)</span> e <span class="math notranslate nohighlight">\(x_2 = x_1 + dx\)</span>. Isto decorre de como o a função foi programada. Veja o código anterior.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -957,7 +717,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_30_0.png" src="../../_images/extra-muller_30_0.png" />
+<img alt="../../_images/10f3a3dd0136a030529b398a23365d9ff707664bfd5ebda85697f0567d6f6c4f.png" src="../../_images/10f3a3dd0136a030529b398a23365d9ff707664bfd5ebda85697f0567d6f6c4f.png" />
 </div>
 </div>
 <p><strong>Exemplo</strong>. Determinando raízes para o polinômio <span class="math notranslate nohighlight">\(P(x) = x^4 - 3x^3 + x^2 + x + 1\)</span> com estimativas iniciais <span class="math notranslate nohighlight">\(x_0 = -0.5\)</span> <span class="math notranslate nohighlight">\(x_1 = 0.0\)</span> e <span class="math notranslate nohighlight">\(x_2 = 0.5\)</span>, <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span> e <span class="math notranslate nohighlight">\(N = 100\)</span>.</p>
@@ -1011,8 +771,8 @@ title="Print to PDF"
 <p>Por que há resultados diferentes? Vamos verificar o gráfico deste polinômio no domínio <span class="math notranslate nohighlight">\([-1,2.8]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span><span class="n">legend</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">logical_and</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot</span><span class="p">,</span><span class="n">legend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">logical_and</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -1026,7 +786,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/extra-muller_37_0.png" src="../../_images/extra-muller_37_0.png" />
+<img alt="../../_images/35d43e53db767e5fd9178ee409fb12f727262937f88e14f46e8a1cd0bc1eb3f2.png" src="../../_images/35d43e53db767e5fd9178ee409fb12f727262937f88e14f46e8a1cd0bc1eb3f2.png" />
 </div>
 </div>
 <p>Na primeira escolha de estimativas iniciais, obtivemos uma raiz complexa porque no intervalo <span class="math notranslate nohighlight">\([-0.5,0.5]\)</span>, o polinômio não intersecta o eixo <span class="math notranslate nohighlight">\(x\)</span>. Nos outros dois casos, temos as duas raízes reais do polinômio.</p>
@@ -1045,7 +805,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./ipynb/extra"
         },
         predefinedOutput: true
@@ -1053,50 +813,108 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="extra-secante.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">9. </span>Implementação do método da secante</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="extra-secante.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Implementação do método da secante</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="extra-fft.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="extra-fft.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">11. </span>Processamento de sinais</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-com-polinomios">10.1. Computação com polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-raizes-de-polinomios">10.2. Calculando raízes de polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliando-polinomios">10.3. Avaliando polinômios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-metodo-de-muller">10.4. Implementação: Método de Müller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">10.5. Exemplos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Prof. Gustavo Oliveira<br/>
-  
-      &copy; Copyright 2025.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
