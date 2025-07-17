@@ -1,169 +1,114 @@
 
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>3. Do Contínuo ao Computável: Discretização e Erros Numéricos &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-02-erros';</script>
-    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes" href="aula-03-analise-grafica.html" />
     <link rel="prev" title="2. Métodos Numéricos: Necessidade, Evolução e Profissão" href="aula-01-introMetnum.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
     
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+    <div class="container-fluid" id="banner"></div>
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
+    
 
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="conteudo.html">
-  
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -172,314 +117,967 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-matrizes-vetores.html">
+   7. Do Vetor ao
+   <em>
+    Array
+   </em>
+   : Computação Vetorizada Na Prática
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
+   <em>
+    Code Session
+   </em>
+   4:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
+   <em>
+    Code Session
+   </em>
+   5:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fsolve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
+   <em>
+    Code Session
+   </em>
+   8: Integração
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">9. Implementação do método da secante</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">11. Processamento de sinais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">12. Otimização de código</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">23. Documentação de código</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   8. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   9. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   10. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   11. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   12. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   13. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   14. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   15. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   16. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   17. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   18. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   19. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   20. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   21. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   22. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   23. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   24. Documentação de código
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
     </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
   </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-02-erros.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/ipynb/aula-02-erros.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
+  <div class="menu-dropdown__content">
+    <ul>
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-02-erros.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
 >
   
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
   </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/aula-02-erros.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Do Contínuo ao Computável: Discretização e Erros Numéricos</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetica-computacional">3.1. Aritmética computacional</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">3.1.1. Unidade Lógica e Aritmética</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-curiosos">3.1.2. Casos curiosos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-finitude-explicada">3.1.2.1. A finitude explicada</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-cientifica">3.1.3. Notação científica</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">3.2. Ponto flutuante: a reta “perfurada”</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulador-de-mathbb-f">3.2.1. Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">3.2.2. Limites de máquina para ponto flutuante</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-epsilon-de-maquina">3.2.2.1. O épsilon de máquina</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidade-numerica">3.2.2.2. Sensibilidade numérica</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-e-operacoes-especiais">3.2.3. Valores e operações especiais</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-seus-efeitos">3.3. Erros e seus efeitos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">3.3.1. Motivação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-erros">3.3.2. Tipos de erros</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-real">3.3.2.1. Erro real</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto">3.3.2.2. Erro absoluto</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo">3.3.2.3. Erro relativo</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-percentual">3.3.2.4. Erro relativo percentual</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">3.3.2.5. Erro relativo aproximado (<em>benchmark</em>)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">3.3.2.6. Erro relativo aproximado percentual</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-de-cancelamento">3.3.2.7. Erro de cancelamento</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">3.3.2.8. Erros de truncamento e de arredondamento</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">3.4. Erros e funções de perda no contexto da inteligência artificial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio">3.4.1. Erro absoluto médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-quadratico-medio">3.4.2. Erro quadrático médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">3.4.3. Erro absoluto médio percentual</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">3.4.4. Erro logarítmico quadrático médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">3.4.5. Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-o-desempenho">3.4.6. Calculando o desempenho</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">3.5. Aplicações</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">3.5.1. Erros pontuais na função de Airy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">3.5.2. Avaliação de algoritmos de ordenação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">3.5.3. Erros de precificação imobiliária por redes neurais</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.6. Referências</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aritmetica-computacional">
+   3.1. Aritmética computacional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">
+     3.1.1. Unidade Lógica e Aritmética
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#casos-curiosos">
+     3.1.2. Casos curiosos
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-finitude-explicada">
+       3.1.2.1. A finitude explicada
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notacao-cientifica">
+     3.1.3. Notação científica
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">
+   3.2. Ponto flutuante: a reta “perfurada”
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulador-de-mathbb-f">
+     3.2.1. Simulador de
+     <span class="math notranslate nohighlight">
+      \(\mathbb{F}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
+     3.2.2. Limites de máquina para ponto flutuante
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#o-epsilon-de-maquina">
+       3.2.2.1. O épsilon de máquina
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sensibilidade-numerica">
+       3.2.2.2. Sensibilidade numérica
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#valores-e-operacoes-especiais">
+     3.2.3. Valores e operações especiais
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-e-seus-efeitos">
+   3.3. Erros e seus efeitos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivacao">
+     3.3.1. Motivação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tipos-de-erros">
+     3.3.2. Tipos de erros
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-real">
+       3.3.2.1. Erro real
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-absoluto">
+       3.3.2.2. Erro absoluto
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo">
+       3.3.2.3. Erro relativo
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-percentual">
+       3.3.2.4. Erro relativo percentual
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">
+       3.3.2.5. Erro relativo aproximado (
+       <em>
+        benchmark
+       </em>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">
+       3.3.2.6. Erro relativo aproximado percentual
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-de-cancelamento">
+       3.3.2.7. Erro de cancelamento
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">
+       3.3.2.8. Erros de truncamento e de arredondamento
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">
+   3.4. Erros e funções de perda no contexto da inteligência artificial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.4.1. Erro absoluto médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.4.2. Erro quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">
+     3.4.3. Erro absoluto médio percentual
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
+     3.4.4. Erro logarítmico quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">
+     3.4.5. Erro induzido pela norma
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     e erro máximo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculando-o-desempenho">
+     3.4.6. Calculando o desempenho
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicacoes">
+   3.5. Aplicações
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">
+     3.5.1. Erros pontuais na função de Airy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">
+     3.5.2. Avaliação de algoritmos de ordenação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">
+     3.5.3. Erros de precificação imobiliária por redes neurais
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   3.6. Referências
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Do Contínuo ao Computável: Discretização e Erros Numéricos</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aritmetica-computacional">
+   3.1. Aritmética computacional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">
+     3.1.1. Unidade Lógica e Aritmética
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#casos-curiosos">
+     3.1.2. Casos curiosos
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-finitude-explicada">
+       3.1.2.1. A finitude explicada
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notacao-cientifica">
+     3.1.3. Notação científica
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">
+   3.2. Ponto flutuante: a reta “perfurada”
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulador-de-mathbb-f">
+     3.2.1. Simulador de
+     <span class="math notranslate nohighlight">
+      \(\mathbb{F}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">
+     3.2.2. Limites de máquina para ponto flutuante
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#o-epsilon-de-maquina">
+       3.2.2.1. O épsilon de máquina
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sensibilidade-numerica">
+       3.2.2.2. Sensibilidade numérica
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#valores-e-operacoes-especiais">
+     3.2.3. Valores e operações especiais
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-e-seus-efeitos">
+   3.3. Erros e seus efeitos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivacao">
+     3.3.1. Motivação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tipos-de-erros">
+     3.3.2. Tipos de erros
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-real">
+       3.3.2.1. Erro real
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-absoluto">
+       3.3.2.2. Erro absoluto
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo">
+       3.3.2.3. Erro relativo
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-percentual">
+       3.3.2.4. Erro relativo percentual
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">
+       3.3.2.5. Erro relativo aproximado (
+       <em>
+        benchmark
+       </em>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">
+       3.3.2.6. Erro relativo aproximado percentual
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erro-de-cancelamento">
+       3.3.2.7. Erro de cancelamento
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">
+       3.3.2.8. Erros de truncamento e de arredondamento
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">
+   3.4. Erros e funções de perda no contexto da inteligência artificial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio">
+     3.4.1. Erro absoluto médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-quadratico-medio">
+     3.4.2. Erro quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">
+     3.4.3. Erro absoluto médio percentual
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">
+     3.4.4. Erro logarítmico quadrático médio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">
+     3.4.5. Erro induzido pela norma
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     e erro máximo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculando-o-desempenho">
+     3.4.6. Calculando o desempenho
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicacoes">
+   3.5. Aplicações
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">
+     3.5.1. Erros pontuais na função de Airy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">
+     3.5.2. Avaliação de algoritmos de ordenação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">
+     3.5.3. Erros de precificação imobiliária por redes neurais
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   3.6. Referências
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+              <div>
+                
   <div class="cell tag_remove-input docutils container">
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="do-continuo-ao-computavel-discretizacao-e-erros-numericos">
-<h1><span class="section-number">3. </span>Do Contínuo ao Computável: Discretização e Erros Numéricos<a class="headerlink" href="#do-continuo-ao-computavel-discretizacao-e-erros-numericos" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Do Contínuo ao Computável: Discretização e Erros Numéricos<a class="headerlink" href="#do-continuo-ao-computavel-discretizacao-e-erros-numericos" title="Permalink to this headline">#</a></h1>
 <div class="chapter-thumb">
     <div class="chapter-oa">
         <h2>Objetivos de aprendizagem</h2>
@@ -498,28 +1096,27 @@
 <p>Quando resolvemos numericamente problemas formulados na linguagem do Cálculo — que envolve conceitos como continuidade, derivadas e integrais —, precisamos realizar um processo chamado <em>discretização</em>. Esse processo consiste em transformar variáveis, domínios e operações contínuas em versões finitas e manipuláveis por algoritmos. Contudo, essa transformação introduz inevitavelmente erros computacionais, que podem ser classificados em diversas categorias: erros de arredondamento, decorrentes da representação finita dos números; erros de truncamento, provenientes da aproximação de processos infinitos (como séries ou integrais) por expressões finitas; e erros algorítmicos ou de método, que surgem das escolhas específicas dos procedimentos numéricos adotados.</p>
 <p>Compreender a origem, o comportamento e os impactos desses erros é fundamental para qualquer profissional que utiliza simulações numéricas ou algoritmos computacionais. Mais do que uma questão técnica, essa compreensão permite avaliar a confiabilidade dos resultados, projetar métodos mais robustos e, quando possível, minimizar os efeitos adversos da discretização. Em última análise, o estudo dos métodos numéricos é, em grande parte, um estudo sobre como transpor, com inteligência e controle, a fronteira que separa o contínuo idealizado da matemática do discreto real dos computadores.</p>
 <section id="aritmetica-computacional">
-<h2><span class="section-number">3.1. </span>Aritmética computacional<a class="headerlink" href="#aritmetica-computacional" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Aritmética computacional<a class="headerlink" href="#aritmetica-computacional" title="Permalink to this headline">#</a></h2>
 <p>Computadores representam números inteiros de forma exata [<a class="reference internal" href="clippings/clipping-09-decimal-fractions.html#clipping-decimal"><span class="std std-ref">Recorte 9: Aritmética exata e números racionais</span></a>]. No entanto, a representação de números reais é sempre aproximada e limitada a um conjunto finito de valores. Essa limitação decorre da necessidade de codificar números contínuos em uma estrutura binária finita. A aritmética computacional, portanto, lida tanto com números inteiros quanto com os chamados números em ponto flutuante, que permitem representar aproximações de números reais.</p>
 <p>O estudo da aritmética computacional concentra-se em dois aspectos fundamentais:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>a representação dos números no formato de máquina, isto é, em base binária, com precisão e alcance finitos; e</p></li>
 <li><p>o desenvolvimento de algoritmos capazes de realizar operações aritméticas fundamentais, como adição, subtração, multiplicação e divisão, de forma eficiente e consistente dentro dos limites impostos pelo hardware.</p></li>
 </ol>
 <p>Métodos numéricos são, essencialmente, algoritmos que utilizam essas quatro operações como blocos fundamentais, aplicando-as de forma estruturada e sofisticada para resolver problemas matemáticos de interesse científico e de engenharia. Atualmente, o padrão IEEE 754 [<a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html#clipping-ieee754"><span class="std std-ref">Recorte 3: Padrão de Ponto Flutuante IEEE 754</span></a>] é adotado globalmente pelos fabricantes de processadores. Esse padrão define as regras para a representação, as operações e os comportamentos dos números em ponto flutuante, assegurando portabilidade e previsibilidade dos cálculos entre diferentes arquiteturas, seja em 16, 32, 64 ou 128 bits. Sua primeira versão foi publicada em 1985, com a atualização mais recente ocorrendo em 2019 <span id="id1">[<a class="reference internal" href="#id8" title="Massimiliano Fasi and Mantas Mikaitis. Algorithms for stochastically rounded elementary arithmetic operations in ieee 754 floating-point arithmetic. IEEE Transactions on Emerging Topics in Computing, 9(3):1451–1466, 2021. doi:10.1109/IEEESTD.2019.8766229.">Fasi and Mikaitis, 2021</a>]</span>.</p>
 <section id="unidade-logica-e-aritmetica">
-<h3><span class="section-number">3.1.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Unidade Lógica e Aritmética<a class="headerlink" href="#unidade-logica-e-aritmetica" title="Permalink to this headline">#</a></h3>
 <p>A <em>Unidade Lógica e Aritmética</em> (ULA) é a parte do hardware computacional conectada à unidade central de processamento (CPU) que realiza as operações aritméticas e lógicas sobre os dados processados (<a class="reference internal" href="#fig-ula"><span class="std std-numref">Fig. 3.1</span></a>). A ULA é um componente eletrônico que funciona segundo a lógica dos cicuitos digitais, ou seja, interpretando operações em lógica Booleana (<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>).</p>
 <p>Há muito mais por trás das operações fundamentais executadas pelos computadores. Em Python, por exemplo, há casos de aproximações que chegam a ser curiosos. Isto ocorre devido ao erro inerente da representação numérica, principalmente quando os números são fracionários.</p>
 <figure class="align-default" id="fig-ula">
-<a class="reference internal image-reference" href="../_images/ula-ai.png"><img alt="../_images/ula-ai.png" src="../_images/ula-ai.png" style="width: 250px;" />
-</a>
+<a class="reference internal image-reference" href="../_images/ula-ai.png"><img alt="../_images/ula-ai.png" src="../_images/ula-ai.png" style="width: 250px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustração de um chip de computador destacando as interconexões responsáveis por operações lógicas, aritméticas e troca de informação com a unidade de controle.</span><a class="headerlink" href="#fig-ula" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustração de um chip de computador destacando as interconexões responsáveis por operações lógicas, aritméticas e troca de informação com a unidade de controle.</span><a class="headerlink" href="#fig-ula" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="casos-curiosos">
-<h3><span class="section-number">3.1.2. </span>Casos curiosos<a class="headerlink" href="#casos-curiosos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Casos curiosos<a class="headerlink" href="#casos-curiosos" title="Permalink to this headline">#</a></h3>
 <p>A aritmética de ponto flutuante possui situações inusitadas e respostas estranhas que podem levar-nos a duvidar se estamos realizando operações corretamente. Abaixo, mostramos alguns casos curiosos (coloquialmentem) que ocorrem devido à representação finita de números pelo computador. Outras indagações sobre ponto flutuante são respondidas em [<a class="reference internal" href="extra/extra-pontoFlutuante.html#extra-float"><span class="std std-ref">Números em ponto flutuante e seus problemas</span></a>].</p>
 <ul class="simple">
 <li><p>A fração <span class="math notranslate nohighlight">\(1/3 = 0.3333\ldots\)</span> é uma dízima. O seu triplo é?</p></li>
@@ -603,7 +1200,7 @@
 </div>
 </div>
 <section id="a-finitude-explicada">
-<h4><span class="section-number">3.1.2.1. </span>A finitude explicada<a class="headerlink" href="#a-finitude-explicada" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.1.2.1. </span>A finitude explicada<a class="headerlink" href="#a-finitude-explicada" title="Permalink to this headline">#</a></h4>
 <p>Os casos acima possuem uma razão comum: a capacidade finita dos computadores para representar números fracionários. Vamos analisar de modo breve o caso da fração 1/10 sem nos aprofundar em detalhes.</p>
 <p>Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.</p>
 <div class="cell docutils container">
@@ -663,34 +1260,33 @@
 </section>
 </section>
 <section id="notacao-cientifica">
-<h3><span class="section-number">3.1.3. </span>Notação científica<a class="headerlink" href="#notacao-cientifica" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Notação científica<a class="headerlink" href="#notacao-cientifica" title="Permalink to this headline">#</a></h3>
 <p>Números em ponto flutuante são a versão computacional da notação científica. Escrevemos um número decimal em notação científica da seguinte forma:</p>
 <div class="math notranslate nohighlight">
 \[x = f \times 10^e,\]</div>
 <p>com a fração (ou mantissa) <span class="math notranslate nohighlight">\(f\)</span> determinando a precisão e o expoente <span class="math notranslate nohighlight">\(e\)</span> a ordem de grandeza. Pontos flutuantes admitem <span class="math notranslate nohighlight">\(f\)</span> na forma <em>normalizada</em>, isto é, menor do que 1. A tabela abaixo mostra alguns exemplos de como usamos essas notações.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Número decimal</p></th>
+<tr class="row-odd"><th class="text-align:left head"><p>Número decimal</p></th>
 <th class="head"><p>Notação científica</p></th>
-<th class="head text-right"><p>Repr. ponto flutuante</p></th>
+<th class="text-align:right head"><p>Repr. ponto flutuante</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(2.65\)</span></p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(2.65\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(2.65 \times 10^0\)</span></p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(0.265 \times 10^1\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(0.265 \times 10^1\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000012\)</span></p></td>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.0000012\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(1.2 \times 10^{-6}\)</span></p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(0.12 \times 10^{-5}\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(0.12 \times 10^{-5}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(4532\)</span></p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(4532\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(4.532 \times 10^{3}\)</span></p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(0.4532 \times 10^{4}\)</span></p></td>
+<td class="text-align:right"><p><span class="math notranslate nohighlight">\(0.4532 \times 10^{4}\)</span></p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>Em termos de código Python – e em outras linguagen smte, a notação científica em base 10 pode ser realizada da seguinte forma:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,7 +1303,7 @@
 </section>
 </section>
 <section id="ponto-flutuante-a-reta-perfurada">
-<h2><span class="section-number">3.2. </span>Ponto flutuante: a reta “perfurada”<a class="headerlink" href="#ponto-flutuante-a-reta-perfurada" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Ponto flutuante: a reta “perfurada”<a class="headerlink" href="#ponto-flutuante-a-reta-perfurada" title="Permalink to this headline">#</a></h2>
 <p>Desde os primórdios dos computadores mecânicos e eletrônicos, a precisão e a confiabilidade dos cálculos têm estado no centro das atenções e ambas são afetadas pelas discrepâncias entre números reais, infinitos e contínuos, e suas representações em máquina, finitas e discretas. Nas décadas de 1940 e 1950, houve uma clara percepção de que o sistema de ponto fixo, até então utilizado, era bastante limitado para dar precisão aos cálculos e que o aparato de <em>hardware</em> disponível na época era incapaz de lidar com situações de “sobrecarga” (<em>overflow</em>) ou “subfluxo” (<em>underflow</em>). Em outras palavras, representar números muito pequenos ou muito grandes, como <span class="math notranslate nohighlight">\(10^{-30}\)</span> ou <span class="math notranslate nohighlight">\(543.671^3\)</span>, era algo impensável.</p>
 <p>Com a introdução da aritmética de ponto flutuante nos anos 1950 e 1960, os computadores passaram a representar uma quantidade significativa de números. Porém, o preço que se pagou por esse progresso foi a aparição de novos tipos de erros, como os erros de arredondamento, que ocorrem quando os números são aproximados para caber no formato de ponto flutuante. Mesmo com a implantação do padrão IEEE-754 em 1985, o qual uniformizou a representação e a manipulação de números em ponto flutuante, os erros inerentes não foram eliminados. A pesquisa em computação científica e de alto desempenho, reveladora de que os erros são obstinados, está bastante ativa e expandindo o conhecimento. Recentemente, um grupo de espanhois trouxe perspectivas promissoras para o formato <em>posit64</em> <span id="id2">[<a class="reference internal" href="#id9" title="David Mallasén, Alberto A Del Barrio, and Manuel Prieto-Matias. Big-percival: exploring the native use of 64-bit posit arithmetic in scientific computing. IEEE Transactions on Computers, 2024. doi:10.1109/TC.2024.3377890.">Mallasén <em>et al.</em>, 2024</a>]</span>, uma alternativa potencialmente superior ao padrão IEEE-754. Através de diversos testes, eles concluíram que o sistema baseado na arquitetura RISC-V (quinta geração da <em>Reduced Instruction Set Computer</em>), oferece maior precisão, resiliência a erros de arredondamento e eficiência de armazenamento.</p>
 <p>Em vez de operar sobre o conjunto dos números reais (conjunto <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>), a matemática computacional está definida no domínio <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, o conjunto dos números em ponto flutuante representáveis pela máquina. Vejamos um exemplo.</p>
@@ -724,7 +1320,7 @@
 </ul>
 <p>(…)</p>
 <p>Prosseguindo para os números restantes, obtemos a seguinte tabela:</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p>m</p></th>
@@ -772,30 +1368,24 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>Na reta real, esses valores ficariam dispostos da seguinte forma:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/dc9cff4ae62abcff7d106634a654984f56848e58b1d444f8dfef15dbbbfd2d59.png" src="../_images/dc9cff4ae62abcff7d106634a654984f56848e58b1d444f8dfef15dbbbfd2d59.png" />
+<img alt="../_images/aula-02-erros_23_0.png" src="../_images/aula-02-erros_23_0.png" />
 </div>
 </div>
 <p>Isto é, <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> é uma reta “perfurada”, para a qual apenas 16 números positivos, 16 simétricos destes (que seriam refletidos na origem para o extremo negativo) e mais o 0 são representáveis. Logo, esse sistema seria capaz de representar apenas 33 números.</p>
 <section id="simulador-de-mathbb-f">
-<h3><span class="section-number">3.2.1. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span><a class="headerlink" href="#simulador-de-mathbb-f" title="Permalink to this headline">#</a></h3>
 <p>Clássicamente, um sistema de ponto flutuante é descrito por <span class="math notranslate nohighlight">\(\mathbb{F}(b, t, L, U)\)</span>, onde <span class="math notranslate nohighlight">\(b\)</span> é a base (geralmente binária nos sistemas modernos), <span class="math notranslate nohighlight">\(t\)</span> são os dígitos significativos da mantissa, que determina a precisão, <span class="math notranslate nohighlight">\(L\)</span> é o menor expoente inteiro possível (que controal o limite de <em>underflow</em>) e <span class="math notranslate nohighlight">\(U\)</span> é o maior expoente inteiro possível (que controla o limite de <em>overflow</em>). No exemplo acima, o sistema é <span class="math notranslate nohighlight">\(\mathbb{F}(2, 3, -1, 2)\)</span>.</p>
 <p>O código abaixa gera uma reta perfurada para um sistema computacional de interesse.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">simulacao_F</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">simulacao_F</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">epsm</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="c1"># epsilon de máquina</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="n">b</span><span class="o">-</span><span class="n">epsm</span><span class="p">,</span><span class="n">epsm</span><span class="p">)</span>
@@ -826,53 +1416,51 @@
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-<img alt="../_images/8ff9edcacc97cf45de310904c1222613313664b2f9c71e55ec9d8f6118f620f6.png" src="../_images/8ff9edcacc97cf45de310904c1222613313664b2f9c71e55ec9d8f6118f620f6.png" />
+<img alt="../_images/aula-02-erros_26_0.png" src="../_images/aula-02-erros_26_0.png" />
 </div>
 </div>
 </section>
 <section id="limites-de-maquina-para-ponto-flutuante">
-<h3><span class="section-number">3.2.2. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Limites de máquina para ponto flutuante<a class="headerlink" href="#limites-de-maquina-para-ponto-flutuante" title="Permalink to this headline">#</a></h3>
 <p>Nos sistemas mais modernos, os parâmetros de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> crescem vertiginosamente com o aumento dos <em>bits</em> (<a class="reference internal" href="#tbl-f"><span class="std std-numref">Tabela 3.1</span></a>). A quantidade de números representáveis no Float64 é aproximadamente 1.84e19 apenas considerando os números normais.</p>
-<div class="pst-scrollable-table-container"><table class="table" id="tbl-f">
-<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Parâmetros de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> para as arquiteturas modernas.</span><a class="headerlink" href="#tbl-f" title="Link to this table">#</a></caption>
+<table class="colwidths-auto table" id="tbl-f">
+<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Parâmetros de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> para as arquiteturas modernas.</span><a class="headerlink" href="#tbl-f" title="Permalink to this table">#</a></caption>
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Formato</p></th>
+<tr class="row-odd"><th class="text-align:left head"><p>Formato</p></th>
 <th class="head"><p>Base (<span class="math notranslate nohighlight">\(b\)</span>)</p></th>
 <th class="head"><p>Dígitos significativos (<span class="math notranslate nohighlight">\(t\)</span>)</p></th>
 <th class="head"><p>Expoente inferior (<span class="math notranslate nohighlight">\(L\)</span>)</p></th>
-<th class="head text-right"><p>Expoente superior (<span class="math notranslate nohighlight">\(U\)</span>)</p></th>
+<th class="text-align:right head"><p>Expoente superior (<span class="math notranslate nohighlight">\(U\)</span>)</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>float16</p></td>
+<tr class="row-even"><td class="text-align:left"><p>float16</p></td>
 <td><p>2</p></td>
 <td><p>11</p></td>
 <td><p>-14</p></td>
-<td class="text-right"><p>+15</p></td>
+<td class="text-align:right"><p>+15</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>float32</p></td>
+<tr class="row-odd"><td class="text-align:left"><p>float32</p></td>
 <td><p>2</p></td>
 <td><p>24</p></td>
 <td><p>-126</p></td>
-<td class="text-right"><p>+127</p></td>
+<td class="text-align:right"><p>+127</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>float64</p></td>
+<tr class="row-even"><td class="text-align:left"><p>float64</p></td>
 <td><p>2</p></td>
 <td><p>53</p></td>
 <td><p>-1022</p></td>
-<td class="text-right"><p>+1023</p></td>
+<td class="text-align:right"><p>+1023</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>float128 (*)</p></td>
+<tr class="row-odd"><td class="text-align:left"><p>float128 (*)</p></td>
 <td><p>2</p></td>
 <td><p>113</p></td>
 <td><p>-16382</p></td>
-<td class="text-right"><p>+16383</p></td>
+<td class="text-align:right"><p>+16383</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>(*) Nem todos os processadores oferecem suporte nativo para <code class="docutils literal notranslate"><span class="pre">float128</span></code>. É frequentemente implementado em software.</p>
 <p>Em Python, podemos utilizar diferentes sistemas de ponto flutuante. Cada um possui suas particularidades. Os mais comuns são:</p>
 <ul class="simple">
@@ -881,86 +1469,80 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code> (precisão dupla; <em>alias</em> para <code class="docutils literal notranslate"><span class="pre">float</span></code>): essencial para simulações científicas, finanças e outras áreas onde a precisão é crucial e a memória não é preocupação.</p></li>
 </ul>
 <p>O <code class="docutils literal notranslate"><span class="pre">numpy</span></code> suporta todos os três na maioria dos computadores de hoje (<a class="reference internal" href="#tbl-float"><span class="std std-numref">Tabela 3.2</span></a>).</p>
-<div class="pst-scrollable-table-container"><table class="table" id="tbl-float">
-<caption><span class="caption-number">Table 3.2 </span><span class="caption-text">Comparativo entre sistemas de ponto flutuante</span><a class="headerlink" href="#tbl-float" title="Link to this table">#</a></caption>
+<table class="colwidths-auto table" id="tbl-float">
+<caption><span class="caption-number">Table 3.2 </span><span class="caption-text">Comparativo entre sistemas de ponto flutuante</span><a class="headerlink" href="#tbl-float" title="Permalink to this table">#</a></caption>
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Atributo</p></th>
-<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float16</span></code></p></th>
-<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float32</span></code></p></th>
-<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">float64</span></code></p></th>
+<tr class="row-odd"><th class="text-align:left head"><p>Atributo</p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float16</span></code></p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float32</span></code></p></th>
+<th class="text-align:left head"><p><code class="docutils literal notranslate"><span class="pre">float64</span></code></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Tamanho</strong></p></td>
-<td class="text-left"><p>16 bits (2 bytes)</p></td>
-<td class="text-left"><p>32 bits (4 bytes)</p></td>
-<td class="text-left"><p>64 bits (8 bytes)</p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Tamanho</strong></p></td>
+<td class="text-align:left"><p>16 bits (2 bytes)</p></td>
+<td class="text-align:left"><p>32 bits (4 bytes)</p></td>
+<td class="text-align:left"><p>64 bits (8 bytes)</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Precisão</strong></p></td>
-<td class="text-left"><p>Baixa</p></td>
-<td class="text-left"><p>Moderada</p></td>
-<td class="text-left"><p>Alta</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Precisão</strong></p></td>
+<td class="text-align:left"><p>Baixa</p></td>
+<td class="text-align:left"><p>Moderada</p></td>
+<td class="text-align:left"><p>Alta</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Intervalo de Valores</strong></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 5.96 \times 10^{-8}\)</span> a <span class="math notranslate nohighlight">\(6.55 \times 10^{4} \)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 1.18 \times 10^{-38} \)</span> a <span class="math notranslate nohighlight">\(3.4 \times 10^{38} \)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(\approx 2.23 \times 10^{-308} \)</span> a <span class="math notranslate nohighlight">\(1.8 \times 10^{308} \)</span></p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Intervalo de Valores</strong></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 5.96 \times 10^{-8}\)</span> a <span class="math notranslate nohighlight">\(6.55 \times 10^{4} \)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 1.18 \times 10^{-38} \)</span> a <span class="math notranslate nohighlight">\(3.4 \times 10^{38} \)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\approx 2.23 \times 10^{-308} \)</span> a <span class="math notranslate nohighlight">\(1.8 \times 10^{308} \)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Bits de Sinal</strong></p></td>
-<td class="text-left"><p>1</p></td>
-<td class="text-left"><p>1</p></td>
-<td class="text-left"><p>1</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Bits de Sinal</strong></p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Bits de Expoente</strong></p></td>
-<td class="text-left"><p>5</p></td>
-<td class="text-left"><p>8</p></td>
-<td class="text-left"><p>11</p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Bits de Expoente</strong></p></td>
+<td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>11</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Bits de Mantissa</strong></p></td>
-<td class="text-left"><p>10</p></td>
-<td class="text-left"><p>23</p></td>
-<td class="text-left"><p>52</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Bits de Mantissa</strong></p></td>
+<td class="text-align:left"><p>10</p></td>
+<td class="text-align:left"><p>23</p></td>
+<td class="text-align:left"><p>52</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Uso de Memória</strong></p></td>
-<td class="text-left"><p>Muito baixo</p></td>
-<td class="text-left"><p>Moderado</p></td>
-<td class="text-left"><p>Alto</p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Uso de Memória</strong></p></td>
+<td class="text-align:left"><p>Muito baixo</p></td>
+<td class="text-align:left"><p>Moderado</p></td>
+<td class="text-align:left"><p>Alto</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Aplicações</strong></p></td>
-<td class="text-left"><p>Aprendizado profundo em dispositivos de recursos limitados</p></td>
-<td class="text-left"><p>Gráficos de computador, simulações científicas, aprendizado de máquina</p></td>
-<td class="text-left"><p>Cálculos científicos, engenharia, finanças de alta precisão</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Aplicações</strong></p></td>
+<td class="text-align:left"><p>Aprendizado profundo em dispositivos de recursos limitados</p></td>
+<td class="text-align:left"><p>Gráficos de computador, simulações científicas, aprendizado de máquina</p></td>
+<td class="text-align:left"><p>Cálculos científicos, engenharia, finanças de alta precisão</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Exemplo de Valores</strong></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(3.140625\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1415927\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(3.141592653589793\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Exemplo de Valores</strong></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.140625\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.1415927\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(3.141592653589793\)</span> para representar aproximadamente <span class="math notranslate nohighlight">\(\pi\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Vantagens</strong></p></td>
-<td class="text-left"><p>Usa menos memória e é mais rápido em termos de computação. Ideal para aplicações onde a memória é restrita e a precisão pode ser sacrificada.</p></td>
-<td class="text-left"><p>Oferece um bom equilíbrio entre precisão e uso de memória. Amplamente utilizado em gráficos e aprendizado de máquina.</p></td>
-<td class="text-left"><p>Alta precisão e amplo intervalo dinâmico. Ideal para cálculos científicos e de engenharia onde a precisão é crucial.</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Vantagens</strong></p></td>
+<td class="text-align:left"><p>Usa menos memória e é mais rápido em termos de computação. Ideal para aplicações onde a memória é restrita e a precisão pode ser sacrificada.</p></td>
+<td class="text-align:left"><p>Oferece um bom equilíbrio entre precisão e uso de memória. Amplamente utilizado em gráficos e aprendizado de máquina.</p></td>
+<td class="text-align:left"><p>Alta precisão e amplo intervalo dinâmico. Ideal para cálculos científicos e de engenharia onde a precisão é crucial.</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Desvantagens</strong></p></td>
-<td class="text-left"><p>Precisão muito limitada, o que pode levar a erros significativos em cálculos complexos.</p></td>
-<td class="text-left"><p>Pode não ser suficientemente preciso para cálculos científicos muito precisos.</p></td>
-<td class="text-left"><p>Usa mais memória e pode ser mais lento em termos de computação comparado com float16 e float32.</p></td>
+<tr class="row-even"><td class="text-align:left"><p><strong>Desvantagens</strong></p></td>
+<td class="text-align:left"><p>Precisão muito limitada, o que pode levar a erros significativos em cálculos complexos.</p></td>
+<td class="text-align:left"><p>Pode não ser suficientemente preciso para cálculos científicos muito precisos.</p></td>
+<td class="text-align:left"><p>Usa mais memória e pode ser mais lento em termos de computação comparado com float16 e float32.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>A seguinte função imprime os valores dos principais atributos de <code class="docutils literal notranslate"><span class="pre">numpy.finfo</span></code> que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">print_attribute</span><span class="p">(</span><span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrib</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">print_attribute</span><span class="p">(</span><span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrib</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Imprime informações de atributo para os sistemas de ponto flutuante \</span>
 <span class="sd">        de 16, 32 e 64 bits operados pelo numpy</span>
 <span class="sd">        </span>
@@ -983,11 +1565,10 @@
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <p>A partir daí, podemos verificar os valores para cada sistema individualmente:</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--- float16 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;tiny&#39;</span><span class="p">,</span> <span class="s1">&#39;nexp&#39;</span><span class="p">,</span> <span class="s1">&#39;nmant&#39;</span><span class="p">]:</span>
     <span class="n">print_attribute</span><span class="p">(</span><span class="s1">&#39;float16&#39;</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
@@ -1002,11 +1583,6 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- float16 
 
@@ -1055,10 +1631,9 @@ nmant:
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <section id="o-epsilon-de-maquina">
-<h4><span class="section-number">3.2.2.1. </span>O épsilon de máquina<a class="headerlink" href="#o-epsilon-de-maquina" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.2.1. </span>O épsilon de máquina<a class="headerlink" href="#o-epsilon-de-maquina" title="Permalink to this headline">#</a></h4>
 <p>A unidade de arredondamento, comumente chamada de “épsilon de máquina” e aqui denotada por <span class="math notranslate nohighlight">\(\epsilon_M\)</span>, é definida como o menor número positivo que, somado à unidade, produz um resultado diferente de 1 na máquina. Em termos matemáticos:</p>
 <div class="math notranslate nohighlight">
 \[1.0 + \epsilon_M &gt; 1.0\]</div>
@@ -1083,7 +1658,7 @@ nmant:
 <p>Esse exemplo evidencia um ponto fundamental: a unidade de arredondamento (<span class="math notranslate nohighlight">\(\epsilon_M\)</span>) não corresponde a uma “distância constante” na reta dos números reais. A densidade dos números representáveis na máquina não é uniforme — ela depende diretamente do valor do expoente. Assim, embora <span class="math notranslate nohighlight">\(\epsilon_M\)</span> defina a menor diferença ao redor de 1, para números muito maiores ou muito menores, essa distância aumenta ou diminui exponencialmente, como a figura da reta perfurada anterior mostra.</p>
 </section>
 <section id="sensibilidade-numerica">
-<h4><span class="section-number">3.2.2.2. </span>Sensibilidade numérica<a class="headerlink" href="#sensibilidade-numerica" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.2.2. </span>Sensibilidade numérica<a class="headerlink" href="#sensibilidade-numerica" title="Permalink to this headline">#</a></h4>
 <p>A sensibilidade numérica mede o quanto a saída de um problema ou algoritmo é afetada por pequenas variações na entrada. Se pequenas perturbações nos dados de entrada causam grandes variações na saída, dizemos que o problema (ou o algoritmo) é sensível, ou seja, mal condicionado. Se, ao contrário, a saída varia pouco frente a pequenas perturbações, dizemos que o problema é bem condicionado, portanto, pouco sensível.</p>
 <p>Quando subtraímos 1 de valores de <span class="math notranslate nohighlight">\(\epsilon\)</span> cada vez menores, a subtração no denominador da fração</p>
 <div class="math notranslate nohighlight">
@@ -1091,13 +1666,13 @@ nmant:
 <p>começa a se aproximar de zero por cancelamento subtrativo e o valor de <span class="math notranslate nohighlight">\(f\)</span> torna-se cada vez mais instável até cair a “zero”. O efeito de <span class="math notranslate nohighlight">\(\epsilon_M\)</span> em cálculos pode ser mostrado na figura abaixo.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/f7e3684c0865b130298db86fff11a53ca5193c94ebbe5997e6ae7b6cc8ec0e2d.png" src="../_images/f7e3684c0865b130298db86fff11a53ca5193c94ebbe5997e6ae7b6cc8ec0e2d.png" />
+<img alt="../_images/aula-02-erros_36_0.png" src="../_images/aula-02-erros_36_0.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="valores-e-operacoes-especiais">
-<h3><span class="section-number">3.2.3. </span>Valores e operações especiais<a class="headerlink" href="#valores-e-operacoes-especiais" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Valores e operações especiais<a class="headerlink" href="#valores-e-operacoes-especiais" title="Permalink to this headline">#</a></h3>
 <p>O padrão IEEE 754 traz alguns valores especiais para representar cadeias de bits especiais. São eles:</p>
 <ul class="simple">
 <li><p><em>NaN</em> (<em>not a number</em>): representa um valor que é um erro.</p></li>
@@ -1106,7 +1681,7 @@ nmant:
 <p>A partir desses valores especiais, operáveis pelo módulo <em>numpy</em> com <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code> e <code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>, respectivamente, podemos imitar operações matemáticas “equivalentes”. Primeiramente, façamos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">nan</span><span class="p">,</span> <span class="n">inf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">nan</span><span class="p">,</span> <span class="n">inf</span>
 </pre></div>
 </div>
 </div>
@@ -1272,14 +1847,13 @@ nmant:
 </section>
 </section>
 <section id="erros-e-seus-efeitos">
-<h2><span class="section-number">3.3. </span>Erros e seus efeitos<a class="headerlink" href="#erros-e-seus-efeitos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Erros e seus efeitos<a class="headerlink" href="#erros-e-seus-efeitos" title="Permalink to this headline">#</a></h2>
 <p>Credita-se a Alexander Pope (1688 - 1744), poeta inglês, a autoria do provérbio: <em>“errar é humano; perdoar é divino”</em> <a class="reference external" href="https://www.phrases.org.uk/meanings/to-err-is-human.html">[phrases.org.uk]</a>. Apesar de sua motivação, no século XVIII, ser o apontamento da indelével falibilidade humana – que Nicolau de Cusa (citado na epígrafe) via como elemento positivo para que a humanidade construa seu conhecimento gradativamente com percepção intelectual de sua insipiência –, esta máxima tem uma tênue relação com os diversos tipos de erros que persistem em cálculos realizados por máquinas. Discutiremos a seguir algumas definições de erros computacionais e como eles se manifestam ou se propagam em cálculos numéricos aplicáveis a qualquer área do conhecimento.</p>
 <figure class="align-default" id="fig-errareai">
-<a class="reference internal image-reference" href="../_images/errare-ai.png"><img alt="../_images/errare-ai.png" src="../_images/errare-ai.png" style="width: 250px;" />
-</a>
+<a class="reference internal image-reference" href="../_images/errare-ai.png"><img alt="../_images/errare-ai.png" src="../_images/errare-ai.png" style="width: 250px;" /></a>
 </figure>
 <section id="motivacao">
-<h3><span class="section-number">3.3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">#</a></h3>
 <p>Como forma de demonstrar que cômputos podem ter resultados distintos, consideremos a somatória (descendente, da maior para a menor parcela)</p>
 <div class="math notranslate nohighlight">
 \[S_D(n) = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \ldots + \frac{1}{n-1} + \frac{1}{n},\]</div>
@@ -1289,10 +1863,10 @@ nmant:
 <p>É evidente que <span class="math notranslate nohighlight">\(S_A(n)\)</span> e <span class="math notranslate nohighlight">\(S_D(n)\)</span> são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de <span class="math notranslate nohighlight">\(n\)</span> e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prettytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span> <span class="k">as</span> <span class="n">pt</span>
 
 <span class="c1"># define séries</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     
     <span class="n">S_D</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -1395,10 +1969,10 @@ nmant:
 <p>Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de <span class="math notranslate nohighlight">\(S_2(n)\)</span> com <span class="math notranslate nohighlight">\(n\)</span> crescente até o limite de 100.000, até porque não temos como computar <span class="math notranslate nohighlight">\(S_2\)</span> <em>ad infinitum</em>. Então, vejamos um código similar:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 
 <span class="c1"># define série</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">S2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">S2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     
     <span class="n">S_2</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -1483,7 +2057,7 @@ nmant:
 </div>
 </div>
 <p>Talvez não tenha sido percebido, mas, até aqui, já tratamos, conceitualmente, de três tipificações de erro, a saber:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p><em>erro de truncamento</em>, quando limitamos o número de termos de uma expansão infinita, tornando-a finita.</p></li>
 <li><p><em>erro real aproximado</em> (ou <em>erro verdadeiro aproximado</em>), quando assumimos que o valor exato da expansão infinita (série divergente) é a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>, com <span class="math notranslate nohighlight">\(n\)</span> muito grande, mas finito, e calculamos a diferença entre este valor e a soma obtida até uma parcela anterior à <span class="math notranslate nohighlight">\(n\)</span>-ésima;</p></li>
 <li><p><em>erro real</em> (ou <em>erro verdadeiro</em>), quando calculamos a diferença entre a soma exata (série convergente) e a soma obtida até a parcela <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
@@ -1491,11 +2065,11 @@ nmant:
 <p>Curioso, não? E não para por aí! Ainda há outras definições de erro. Veremos mais algumas no decorrer do curso.</p>
 </section>
 <section id="tipos-de-erros">
-<h3><span class="section-number">3.3.2. </span>Tipos de erros<a class="headerlink" href="#tipos-de-erros" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.3.2. </span>Tipos de erros<a class="headerlink" href="#tipos-de-erros" title="Permalink to this headline">#</a></h3>
 <p>Consideremos avaliar o polinômio <span class="math notranslate nohighlight">\(P(x) = 0.172x^3 - 0.878x^2 + 0.042x + 0.583\)</span>
 no ponto <span class="math notranslate nohighlight">\(x=79.9\)</span>.</p>
 <p>Vamos fazer o seguinte:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Assumir que <span class="math notranslate nohighlight">\(82132.957032\)</span> seja o valor exato para o polinômio em <span class="math notranslate nohighlight">\(x = 79.9\)</span>.</p></li>
 <li><p>Calcular <span class="math notranslate nohighlight">\(P(79.9)\)</span> utilizando duas formas.</p></li>
 </ol>
@@ -1503,9 +2077,9 @@ no ponto <span class="math notranslate nohighlight">\(x=79.9\)</span>.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código para gerar polinômio cúbico com raízes reais</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">roots</span><span class="p">,</span> <span class="n">lambdify</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">roots</span><span class="p">,</span> <span class="n">lambdify</span>
 
 <span class="c1"># Semente aleatória</span>
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1578,7 +2152,7 @@ PH(79.9) = 82132.95064799999818
 <p>Qual é a diferença entre ambas? O número de multiplicações (vermelho) e adições/subtrações (azul) é diferente. Enquanto na forma <span class="math notranslate nohighlight">\(P(x)\)</span>, temos 6 multiplicações e 3 adições/subtrações, a forma <span class="math notranslate nohighlight">\(P_H(x)\)</span> reduz as operações para 3 multiplicações e 3 adições/subtrações. Isso é o mesmo que dizer que o número de operações aritméticas de multiplicação foi reduzido em 50%!</p>
 <p>A conclusão é: a avaliação de polinômios pela forma de Hörner é mais lucrativa e propensa a um erro menor.</p>
 <section id="erro-real">
-<h4><span class="section-number">3.3.2.1. </span>Erro real<a class="headerlink" href="#erro-real" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.1. </span>Erro real<a class="headerlink" href="#erro-real" title="Permalink to this headline">#</a></h4>
 <p>O erro real (ou verdadeiro), <span class="math notranslate nohighlight">\(E\)</span>, não sinalizado, entre o valor
 exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <span class="math notranslate nohighlight">\(\hat{x}\)</span> é dado por:</p>
 <div class="math notranslate nohighlight">
@@ -1610,7 +2184,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-absoluto">
-<h4><span class="section-number">3.3.2.2. </span>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.2. </span>Erro absoluto<a class="headerlink" href="#erro-absoluto" title="Permalink to this headline">#</a></h4>
 <p>O erro absoluto, <span class="math notranslate nohighlight">\(EA\)</span>, é a versão sinalizada de <span class="math notranslate nohighlight">\(E\)</span>. Dado por</p>
 <div class="math notranslate nohighlight">
 \[EA = | \hat{x} - x |,\]</div>
@@ -1651,7 +2225,7 @@ exato <span class="math notranslate nohighlight">\(x\)</span> e o aproximado <sp
 </div>
 </section>
 <section id="erro-relativo">
-<h4><span class="section-number">3.3.2.3. </span>Erro relativo<a class="headerlink" href="#erro-relativo" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.3. </span>Erro relativo<a class="headerlink" href="#erro-relativo" title="Permalink to this headline">#</a></h4>
 <p>O erro relativo, <span class="math notranslate nohighlight">\(ER\)</span>, aperfeiçoa a idea de erro absoluto a partir do momento que passa a considerar a ordem de grandeza das quantidades envolvidas, mensurando uma variação que se limita ao valor exato. Assim,</p>
 <div class="math notranslate nohighlight">
 \[ER = \dfrac{ | \hat{x} - x | }{|x|} = \dfrac{ EA }{|x|}.\]</div>
@@ -1678,7 +2252,7 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </section>
 <section id="erro-relativo-percentual">
-<h4><span class="section-number">3.3.2.4. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.4. </span>Erro relativo percentual<a class="headerlink" href="#erro-relativo-percentual" title="Permalink to this headline">#</a></h4>
 <p>O erro relativo percentual é outra forma útil de expressar a disparidade relativa entre valores. Ele é definido por:</p>
 <div class="math notranslate nohighlight">
 \[ER_{\%} = ER \times 100\% = \bigg|1 - \frac{\hat{x}}{x}\bigg| \times 100\%.\]</div>
@@ -1702,7 +2276,7 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </section>
 <section id="erro-relativo-aproximado-benchmark">
-<h4><span class="section-number">3.3.2.5. </span>Erro relativo aproximado (<em>benchmark</em>)<a class="headerlink" href="#erro-relativo-aproximado-benchmark" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.5. </span>Erro relativo aproximado (<em>benchmark</em>)<a class="headerlink" href="#erro-relativo-aproximado-benchmark" title="Permalink to this headline">#</a></h4>
 <p>Como vimos no exemplo motivacional deste capítulo, há casos (a maioria deles) em que não dispomos de valores exatos (obtidos por soluções analíticas, por exemplo), sendo possível estimar erros relativos apenas aproximadamente usando um <em>valor de referência</em>. Costuma-se chamar este valor de <em>benchmark</em>. Definido o <em>benchmark</em> por <span class="math notranslate nohighlight">\(x'\)</span>, o <em>erro relativo aproximado</em> é dado:</p>
 <div class="math notranslate nohighlight">
 \[ER' = \dfrac{ | \hat{x} - x' | }{|x'|} = \dfrac{ EA }{|x'|}.\]</div>
@@ -1722,13 +2296,13 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </section>
 <section id="erro-relativo-aproximado-percentual">
-<h4><span class="section-number">3.3.2.6. </span>Erro relativo aproximado percentual<a class="headerlink" href="#erro-relativo-aproximado-percentual" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.6. </span>Erro relativo aproximado percentual<a class="headerlink" href="#erro-relativo-aproximado-percentual" title="Permalink to this headline">#</a></h4>
 <p>O erro relativo aproximado percentual é, meramente, a versão percentual do erro relativo aproximado, logo, dado por</p>
 <div class="math notranslate nohighlight">
 \[ER'_{\%} = ER' \times 100 \%.\]</div>
 </section>
 <section id="erro-de-cancelamento">
-<h4><span class="section-number">3.3.2.7. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.7. </span>Erro de cancelamento<a class="headerlink" href="#erro-de-cancelamento" title="Permalink to this headline">#</a></h4>
 <p>O erro de cancelamento ocorre quando números de grandezas próximas são subtraídos. Como exemplo de situação crítica, induzimos uma divisão por zero usando o valor do épsilon de máquina <span class="math notranslate nohighlight">\(\epsilon_M\)</span> ao fazer</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{1}{(1 + 0.25\epsilon_M) - 1}.\]</div>
@@ -1736,8 +2310,8 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inf</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">finfo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">filterwarnings</span><span class="p">;</span> 
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">finfo</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">filterwarnings</span><span class="p">;</span> 
 <span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
 <span class="n">e</span> <span class="o">=</span> <span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
@@ -1765,7 +2339,7 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </div>
 </section>
 <section id="erros-de-truncamento-e-de-arredondamento">
-<h4><span class="section-number">3.3.2.8. </span>Erros de truncamento e de arredondamento<a class="headerlink" href="#erros-de-truncamento-e-de-arredondamento" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.3.2.8. </span>Erros de truncamento e de arredondamento<a class="headerlink" href="#erros-de-truncamento-e-de-arredondamento" title="Permalink to this headline">#</a></h4>
 <p>O erro de truncamento está relacionado ao “corte” abrupto de dígitos de precisão em um valor numérico ou de parcelas em uma expansão infinita. No início do capítulo, exemplificamos como uma série pode ser aproximada truncando um ou mais termos de sua expansão.</p>
 <p>No caso de números, o truncamento ocorre quando se ignora o valor da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa decimal para finalidades de aproximação até a <span class="math notranslate nohighlight">\(k\)</span>-ésima casa. Por exemplo, se <span class="math notranslate nohighlight">\(x = 13.4256\)</span>, a aproximação de <span class="math notranslate nohighlight">\(x\)</span> por truncamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.425\)</span>. O dígito 6 é ignorado nos cálculos.</p>
 <p>No caso do arredondamento, o <span class="math notranslate nohighlight">\(k\)</span>-ésimo dígito é somado de 1 se o dígito da <span class="math notranslate nohighlight">\(k+1\)</span>-ésima casa for maior ou igual a 5. A aproximação de <span class="math notranslate nohighlight">\(x\)</span> por arredondamento até a terceira casa seria <span class="math notranslate nohighlight">\(x = 13.426\)</span>, visto que o dígito 6 é maior do que 5. A regra de arredondamento é a que usamos no cotidiano.</p>
@@ -1773,36 +2347,36 @@ $<span class="math notranslate nohighlight">\(ER = \dfrac{ | x - \hat{x} | }{|x|
 </section>
 </section>
 <section id="erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">
-<h2><span class="section-number">3.4. </span>Erros e funções de perda no contexto da inteligência artificial<a class="headerlink" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Erros e funções de perda no contexto da inteligência artificial<a class="headerlink" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial" title="Permalink to this headline">#</a></h2>
 <p>Diversas definições de erro também existem no contexto da inteligência artificial (IA). Todavia, em modelos de IA, o conceito de erro está profundamente vinculado à diferença entre a saída produzida por um modelo e um valor considerado verdadeiro, chamado de “gabarito” (<em>ground truth</em>). O gabarito representa o conhecimento correto sobre um fenômeno, seja a classificação correta de uma imagem, o preço real de um imóvel, ou a demanda energética observada em determinado dia. O modelo, por sua vez, gera uma saída predita — e a diferença entre predição e realidade constitui o erro.</p>
 <p>Essa diferença é quantificada por meio de uma <em>função de perda</em> (<em>loss function</em>), que mede o quão ruim uma predição foi em relação ao gabarito. Portanto, a conotação do erro nesse contexto é de uma <em>métrica de desempenho</em>. Várias métricas existem e tendem a expressar distâncias entre valores reais e valores preditos. A seguir, descrevemos algumas dessas métricas sob o ponto de vista de vetores no espaço de <span class="math notranslate nohighlight">\(n\)</span> dimensões. Em todas as fórmulas, <span class="math notranslate nohighlight">\(\bf{x}\)</span> é o vetor de dados reais, cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(x_i\)</span>, e <span class="math notranslate nohighlight">\(\bf{\hat{x}}\)</span> é o vetor de dados preditos (aproximados), cuja <span class="math notranslate nohighlight">\(i\)</span>-ésima componente é representada por <span class="math notranslate nohighlight">\(\hat{x_i}\)</span>. Assim, <span class="math notranslate nohighlight">\(n\)</span> reflete o número de pontos de amostragem.</p>
 <section id="erro-absoluto-medio">
-<h3><span class="section-number">3.4.1. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Erro absoluto médio<a class="headerlink" href="#erro-absoluto-medio" title="Permalink to this headline">#</a></h3>
 <p>O erro absoluto médio (<em>mean absolute error</em>, MAE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MAE = \dfrac{1}{n}\sum_{i=1}^n |x_i - \hat{x}_i|\]</div>
 <p>O MAE é útil quando queremos minimizar a soma das diferenças absolutas.</p>
 </section>
 <section id="erro-quadratico-medio">
-<h3><span class="section-number">3.4.2. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>Erro quadrático médio<a class="headerlink" href="#erro-quadratico-medio" title="Permalink to this headline">#</a></h3>
 <p>O erro quadrático médio (<em>mean squared error</em>, MSE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MSE = \dfrac{1}{n}\sum_{i=1}^n (x_i - \hat{x}_i)^2\]</div>
 </section>
 <section id="erro-absoluto-medio-percentual">
-<h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.3. </span>Erro absoluto médio percentual<a class="headerlink" href="#erro-absoluto-medio-percentual" title="Permalink to this headline">#</a></h3>
 <p>O erro absoluto médio percentual (<em>mean absolute percentage error</em>, MAPE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MAPE = \dfrac{1}{n}\sum_{i=1}^n \dfrac { |x_i - \hat{x}_i| }{ | x_i | } \times 100\]</div>
 </section>
 <section id="erro-logaritmico-quadratico-medio">
-<h3><span class="section-number">3.4.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.4. </span>Erro logarítmico quadrático médio<a class="headerlink" href="#erro-logaritmico-quadratico-medio" title="Permalink to this headline">#</a></h3>
 <p>O erro logarítmico quadrático médio (<em>mean squared logarithmic error</em>, MSLE) é definido como:</p>
 <div class="math notranslate nohighlight">
 \[MSLE = \dfrac{1}{n}\sum_{i=1}^n [ \log(1 + x_i) - \log(1 + \hat{x}_i) ]^2\]</div>
 </section>
 <section id="erro-induzido-pela-norma-p-e-erro-maximo">
-<h3><span class="section-number">3.4.5. </span>Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo<a class="headerlink" href="#erro-induzido-pela-norma-p-e-erro-maximo" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.5. </span>Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo<a class="headerlink" href="#erro-induzido-pela-norma-p-e-erro-maximo" title="Permalink to this headline">#</a></h3>
 <p>O MAE e o MSE, por exemplo, são casos particulares da definição genérica dada por:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1821,20 +2395,20 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </div>
 </section>
 <section id="calculando-o-desempenho">
-<h3><span class="section-number">3.4.6. </span>Calculando o desempenho<a class="headerlink" href="#calculando-o-desempenho" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.6. </span>Calculando o desempenho<a class="headerlink" href="#calculando-o-desempenho" title="Permalink to this headline">#</a></h3>
 <p>Usando a biblioteca <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, é possível utilizar funções já disponíveis no módulo <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code> para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para <span class="math notranslate nohighlight">\(n=4\)</span>. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">MSE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="k">as</span> <span class="n">MAE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">MAPE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_log_error</span> <span class="k">as</span> <span class="n">MSLE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span> <span class="k">as</span> <span class="n">pNorm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">MSE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="k">as</span> <span class="n">MAE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">MAPE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span> <span class="k">as</span> <span class="n">MSLE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">pairwise_distances</span> <span class="k">as</span> <span class="n">pNorm</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">subplots</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1.inset_locator</span><span class="w"> </span><span class="kn">import</span> <span class="n">inset_axes</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">subplots</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">inset_axes</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mticker</span>
 
 <span class="c1"># conjunto de dados</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span> <span class="c1"># valores reais</span>
@@ -1879,21 +2453,21 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/40acef20aa510a32e31e0ddd7a25a6cf3712affe6276dc3b1633bd53302b3f0e.png" src="../_images/40acef20aa510a32e31e0ddd7a25a6cf3712affe6276dc3b1633bd53302b3f0e.png" />
+<img alt="../_images/aula-02-erros_100_0.png" src="../_images/aula-02-erros_100_0.png" />
 </div>
 </div>
 <p>Percebe-se que cada métrica retorna um valor diferente para o erro entre os valores exatos e os aproximados. Cabe ao usuário interpretar qual faz mais sentido para o conjunto de dados em análise.</p>
 </section>
 </section>
 <section id="aplicacoes">
-<h2><span class="section-number">3.5. </span>Aplicações<a class="headerlink" href="#aplicacoes" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Aplicações<a class="headerlink" href="#aplicacoes" title="Permalink to this headline">#</a></h2>
 <section id="erros-pontuais-na-funcao-de-airy">
-<h3><span class="section-number">3.5.1. </span>Erros pontuais na função de Airy<a class="headerlink" href="#erros-pontuais-na-funcao-de-airy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.5.1. </span>Erros pontuais na função de Airy<a class="headerlink" href="#erros-pontuais-na-funcao-de-airy" title="Permalink to this headline">#</a></h3>
 <p>A função de Airy é solução da <a class="reference external" href="https://pt.wikipedia.org/wiki/Equa%C3%A7%C3%A3o_de_Schr%C3%B6dinger">equação de Schrödinger</a> da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma função “perturbada” que simulará o papel de função de Airy aproximada, enquanto manteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">special</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">special</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Eixo das abscissas</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -1926,7 +2500,7 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotagem das funções </span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">legend</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">legend</span>
 
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Airy exata&#39;</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A_</span><span class="p">,</span> <span class="s1">&#39;g:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Airy aprox.&#39;</span><span class="p">)</span>
@@ -1935,7 +2509,7 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef474f5c84177019cf48010ba74b6e196a9d3f12f7686a9720d84a4842605811.png" src="../_images/ef474f5c84177019cf48010ba74b6e196a9d3f12f7686a9720d84a4842605811.png" />
+<img alt="../_images/aula-02-erros_107_0.png" src="../_images/aula-02-erros_107_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1949,12 +2523,12 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb0418321f0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/01deb449cf2156b57272a224186673fd39d169f417270e9f7f6dbc3baa464798.png" src="../_images/01deb449cf2156b57272a224186673fd39d169f417270e9f7f6dbc3baa464798.png" />
+<img alt="../_images/aula-02-erros_108_1.png" src="../_images/aula-02-erros_108_1.png" />
 </div>
 </div>
 </section>
 <section id="avaliacao-de-algoritmos-de-ordenacao">
-<h3><span class="section-number">3.5.2. </span>Avaliação de algoritmos de ordenação<a class="headerlink" href="#avaliacao-de-algoritmos-de-ordenacao" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.5.2. </span>Avaliação de algoritmos de ordenação<a class="headerlink" href="#avaliacao-de-algoritmos-de-ordenacao" title="Permalink to this headline">#</a></h3>
 <p>Vamos considerar um cenário em que estamos avaliando a eficiência de dois algoritmos de ordenação: o algoritmo de ordenação por inserção (<em>insertion sort</em>) e o algoritmo de ordenação rápida (<em>quick sort</em>). Suponha que temos um conjunto de dados com 10.000 elementos e queremos comparar o tempo de execução teórico e o medido para ambos os algoritmos.</p>
 <p>Consideremos:</p>
 <ul class="simple">
@@ -1977,9 +2551,9 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 <p>Esses cálculos de erro relativo são essenciais para avaliar o desempenho dos algoritmos em ambientes reais, comparando-os com as expectativas teóricas. Eles ajudam a identificar discrepâncias que podem surgir devido a vários fatores, como características do hardware, implementações específicas do algoritmo, e peculiaridades dos dados de entrada.</p>
 </section>
 <section id="erros-de-precificacao-imobiliaria-por-redes-neurais">
-<h3><span class="section-number">3.5.3. </span>Erros de precificação imobiliária por redes neurais<a class="headerlink" href="#erros-de-precificacao-imobiliaria-por-redes-neurais" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.5.3. </span>Erros de precificação imobiliária por redes neurais<a class="headerlink" href="#erros-de-precificacao-imobiliaria-por-redes-neurais" title="Permalink to this headline">#</a></h3>
 <p>Vamos considerar um cenário onde estamos treinando uma rede neural para prever preços de imóveis com base em características como área, número de quartos, localização, etc. Para avaliar o desempenho da rede neural, usaremos o MSE e o MAE.</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p><strong>Dados do Conjunto de Treinamento e Teste</strong></p>
 <ul class="simple">
 <li><p>Temos um conjunto de dados com 1.000 amostras de preços de imóveis.</p></li>
@@ -2000,12 +2574,12 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </ol>
 <p><span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ (200 - 210)^2 + (300 - 290)^2 + (250 - 240)^2 + (500 - 520)^2 + (400 - 410)^2 \right]\)</span></p>
 <p><span class="math notranslate nohighlight">\(\text{MSE} = \frac{1}{5} \left[ 100 + 100 + 100 + 400 + 100 \right] = \frac{1}{5} \times 800 = 160\)</span></p>
-<ol class="arabic simple" start="5">
+<ol class="simple">
 <li><p><strong>Cálculo do MAE</strong></p></li>
 </ol>
 <p><span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ |200 - 210| + |300 - 290| + |250 - 240| + |500 - 520| + |400 - 410| \right]\)</span></p>
 <p><span class="math notranslate nohighlight">\(\text{MAE} = \frac{1}{5} \left[ 10 + 10 + 10 + 20 + 10 \right] = \frac{1}{5} \times 60 = 12\)</span></p>
-<ol class="arabic simple" start="6">
+<ol class="simple">
 <li><p><strong>Interpretação dos Resultados</strong></p>
 <ul class="simple">
 <li><p><strong>MSE</strong>: Um valor de 160 indica que, em média, os quadrados dos erros são relativamente altos. Como o MSE penaliza mais fortemente os grandes erros, este valor sugere que há algumas previsões com grandes discrepâncias.</p></li>
@@ -2019,30 +2593,25 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </section>
 </section>
 <section id="referencias">
-<h2><span class="section-number">3.6. </span>Referências<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.6. </span>Referências<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id6">
-<div role="list" class="citation-list">
-<div class="citation" id="id8" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">FM21</a><span class="fn-bracket">]</span></span>
-<p>Massimiliano Fasi and Mantas Mikaitis. Algorithms for stochastically rounded elementary arithmetic operations in ieee 754 floating-point arithmetic. <em>IEEE Transactions on Emerging Topics in Computing</em>, 9(3):1451–1466, 2021. <a class="reference external" href="https://doi.org/10.1109/IEEESTD.2019.8766229">doi:10.1109/IEEESTD.2019.8766229</a>.</p>
-</div>
-<div class="citation" id="id9" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">MallasenDBPM24</a><span class="fn-bracket">]</span></span>
-<p>David Mallasén, Alberto A Del Barrio, and Manuel Prieto-Matias. Big-percival: exploring the native use of 64-bit posit arithmetic in scientific computing. <em>IEEE Transactions on Computers</em>, 2024. <a class="reference external" href="https://doi.org/10.1109/TC.2024.3377890">doi:10.1109/TC.2024.3377890</a>.</p>
-</div>
-<div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Milosavljevic20</a><span class="fn-bracket">]</span></span>
-<p>Aleksandar Milosavljević. Identification of salt deposits on seismic images using deep learning method for semantic segmentation. <em>ISPRS International Journal of Geo-Information</em>, 9(1):24, 2020. <a class="reference external" href="https://doi.org/10.3390/ijgi9010024">doi:10.3390/ijgi9010024</a>.</p>
-</div>
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">SKP+21</a><span class="fn-bracket">]</span></span>
-<p>Parisa Shokouhi, Vikas Kumar, Sumedha Prathipati, Seyyed A Hosseini, Clyde Lee Giles, and Daniel Kifer. Physics-informed deep learning for prediction of co2 storage site response. <em>Journal of Contaminant Hydrology</em>, 241:103835, 2021. <a class="reference external" href="https://doi.org/10.1016/j.jconhyd.2021.103835">doi:10.1016/j.jconhyd.2021.103835</a>.</p>
-</div>
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WDW+24</a><span class="fn-bracket">]</span></span>
-<p>Yan-Wei Wang, Zhen-Xue Dai, Gui-Sheng Wang, Li Chen, Yu-Zhou Xia, and Yu-Hao Zhou. A hybrid physics-informed data-driven neural network for co2 storage in depleted shale reservoirs. <em>Petroleum Science</em>, 21(1):286–301, 2024. <a class="reference external" href="https://doi.org/10.1016/j.petsci.2023.08.032">doi:10.1016/j.petsci.2023.08.032</a>.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id1">FM21</a></span></dt>
+<dd><p>Massimiliano Fasi and Mantas Mikaitis. Algorithms for stochastically rounded elementary arithmetic operations in ieee 754 floating-point arithmetic. <em>IEEE Transactions on Emerging Topics in Computing</em>, 9(3):1451–1466, 2021. <a class="reference external" href="https://doi.org/10.1109/IEEESTD.2019.8766229">doi:10.1109/IEEESTD.2019.8766229</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id2">MallasenDBPM24</a></span></dt>
+<dd><p>David Mallasén, Alberto A Del Barrio, and Manuel Prieto-Matias. Big-percival: exploring the native use of 64-bit posit arithmetic in scientific computing. <em>IEEE Transactions on Computers</em>, 2024. <a class="reference external" href="https://doi.org/10.1109/TC.2024.3377890">doi:10.1109/TC.2024.3377890</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id3">Milosavljevic20</a></span></dt>
+<dd><p>Aleksandar Milosavljević. Identification of salt deposits on seismic images using deep learning method for semantic segmentation. <em>ISPRS International Journal of Geo-Information</em>, 9(1):24, 2020. <a class="reference external" href="https://doi.org/10.3390/ijgi9010024">doi:10.3390/ijgi9010024</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id4">SKP+21</a></span></dt>
+<dd><p>Parisa Shokouhi, Vikas Kumar, Sumedha Prathipati, Seyyed A Hosseini, Clyde Lee Giles, and Daniel Kifer. Physics-informed deep learning for prediction of co2 storage site response. <em>Journal of Contaminant Hydrology</em>, 241:103835, 2021. <a class="reference external" href="https://doi.org/10.1016/j.jconhyd.2021.103835">doi:10.1016/j.jconhyd.2021.103835</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id5">WDW+24</a></span></dt>
+<dd><p>Yan-Wei Wang, Zhen-Xue Dai, Gui-Sheng Wang, Li Chen, Yu-Zhou Xia, and Yu-Hao Zhou. A hybrid physics-informed data-driven neural network for co2 storage in depleted shale reservoirs. <em>Petroleum Science</em>, 21(1):286–301, 2024. <a class="reference external" href="https://doi.org/10.1016/j.petsci.2023.08.032">doi:10.1016/j.petsci.2023.08.032</a>.</p>
+</dd>
+</dl>
 </div>
 <div class="cell tag_remove-input docutils container">
 </div>
@@ -2061,7 +2630,7 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./ipynb"
         },
         predefinedOutput: true
@@ -2069,153 +2638,50 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="aula-01-introMetnum.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Métodos Numéricos: Necessidade, Evolução e Profissão</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-01-introMetnum.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Métodos Numéricos: Necessidade, Evolução e Profissão</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="aula-03-analise-grafica.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="aula-03-analise-grafica.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">4. </span>Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetica-computacional">3.1. Aritmética computacional</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unidade-logica-e-aritmetica">3.1.1. Unidade Lógica e Aritmética</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-curiosos">3.1.2. Casos curiosos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-finitude-explicada">3.1.2.1. A finitude explicada</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-cientifica">3.1.3. Notação científica</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ponto-flutuante-a-reta-perfurada">3.2. Ponto flutuante: a reta “perfurada”</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulador-de-mathbb-f">3.2.1. Simulador de <span class="math notranslate nohighlight">\(\mathbb{F}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-maquina-para-ponto-flutuante">3.2.2. Limites de máquina para ponto flutuante</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-epsilon-de-maquina">3.2.2.1. O épsilon de máquina</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidade-numerica">3.2.2.2. Sensibilidade numérica</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-e-operacoes-especiais">3.2.3. Valores e operações especiais</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-seus-efeitos">3.3. Erros e seus efeitos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">3.3.1. Motivação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-erros">3.3.2. Tipos de erros</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-real">3.3.2.1. Erro real</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto">3.3.2.2. Erro absoluto</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo">3.3.2.3. Erro relativo</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-percentual">3.3.2.4. Erro relativo percentual</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-benchmark">3.3.2.5. Erro relativo aproximado (<em>benchmark</em>)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-relativo-aproximado-percentual">3.3.2.6. Erro relativo aproximado percentual</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-de-cancelamento">3.3.2.7. Erro de cancelamento</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-truncamento-e-de-arredondamento">3.3.2.8. Erros de truncamento e de arredondamento</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-e-funcoes-de-perda-no-contexto-da-inteligencia-artificial">3.4. Erros e funções de perda no contexto da inteligência artificial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio">3.4.1. Erro absoluto médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-quadratico-medio">3.4.2. Erro quadrático médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-absoluto-medio-percentual">3.4.3. Erro absoluto médio percentual</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-logaritmico-quadratico-medio">3.4.4. Erro logarítmico quadrático médio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erro-induzido-pela-norma-p-e-erro-maximo">3.4.5. Erro induzido pela norma <span class="math notranslate nohighlight">\(p\)</span> e erro máximo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-o-desempenho">3.4.6. Calculando o desempenho</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">3.5. Aplicações</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-pontuais-na-funcao-de-airy">3.5.1. Erros pontuais na função de Airy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avaliacao-de-algoritmos-de-ordenacao">3.5.2. Avaliação de algoritmos de ordenação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erros-de-precificacao-imobiliaria-por-redes-neurais">3.5.3. Erros de precificação imobiliária por redes neurais</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.6. Referências</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Gustavo Oliveira
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>

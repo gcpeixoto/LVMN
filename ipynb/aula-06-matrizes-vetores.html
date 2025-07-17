@@ -1,0 +1,2177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Do Vetor ao Array: Computação Vetorizada Na Prática &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Session 1: roots e polyval" href="code-sessions/codeSession-1-polyval.html" />
+    <link rel="prev" title="6. Método de Newton: Sair pela Tangente sem Perder o Rumo" href="aula-05-newton.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Do Vetor ao
+   <em>
+    Array
+   </em>
+   : Computação Vetorizada Na Prática
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
+   <em>
+    Code Session
+   </em>
+   4:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
+   <em>
+    Code Session
+   </em>
+   5:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fsolve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
+   <em>
+    Code Session
+   </em>
+   8: Integração
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   8. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   9. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   10. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   11. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   12. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   13. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   14. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   15. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   16. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   17. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   18. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   19. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   20. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   21. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   22. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   23. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   24. Documentação de código
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-06-matrizes-vetores.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/aula-06-matrizes-vetores.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   7.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacao-vetorizada">
+   7.2. Computação vetorizada
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">
+     7.2.1. Comprimento, tamanho e dimensão
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy">
+     7.2.2.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       numpy
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compreendendo-notacoes">
+   7.3. Compreendendo notações
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrizes-e-vetores">
+   7.4. Matrizes e vetores
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transposicao">
+     7.4.1. Transposição
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-igualdade">
+     7.4.2. Teste de igualdade
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operacoes-fundamentais">
+   7.5. Operações fundamentais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicao-e-subtracao">
+     7.5.1. Adição e subtração
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-interno">
+     7.5.2. Produto interno
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#norma-de-vetor">
+     7.5.3. Norma de vetor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-de-matrizes">
+     7.5.4. Produto de matrizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">
+     7.5.5. Produto entre matriz e vetor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">
+   7.6. Demais operações com
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     numpy.linalg
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determinante">
+     7.6.1. Determinante
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-uma-matriz">
+     7.6.2. Inversa de uma matriz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucoes-de-sistemas-lineares">
+     7.6.3. Soluções de sistemas lineares
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-matriz">
+     7.6.4. Inversa de matriz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algumas-matrizes-especiais">
+   7.7. Algumas matrizes especiais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nula">
+     7.7.1. Nula
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identidade">
+     7.7.2. Identidade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matriz-de-uns">
+     7.7.3. Matriz de “uns”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-inferior">
+     7.7.4. Triangular inferior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-superior">
+     7.7.5. Triangular superior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   7.8. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#somas-e-valores-extremos">
+   7.9. Somas e valores extremos
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Do Vetor ao Array: Computação Vetorizada Na Prática</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   7.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacao-vetorizada">
+   7.2. Computação vetorizada
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">
+     7.2.1. Comprimento, tamanho e dimensão
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy">
+     7.2.2.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       numpy
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compreendendo-notacoes">
+   7.3. Compreendendo notações
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrizes-e-vetores">
+   7.4. Matrizes e vetores
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transposicao">
+     7.4.1. Transposição
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-igualdade">
+     7.4.2. Teste de igualdade
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operacoes-fundamentais">
+   7.5. Operações fundamentais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicao-e-subtracao">
+     7.5.1. Adição e subtração
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-interno">
+     7.5.2. Produto interno
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#norma-de-vetor">
+     7.5.3. Norma de vetor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-de-matrizes">
+     7.5.4. Produto de matrizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">
+     7.5.5. Produto entre matriz e vetor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">
+   7.6. Demais operações com
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     numpy.linalg
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determinante">
+     7.6.1. Determinante
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-uma-matriz">
+     7.6.2. Inversa de uma matriz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucoes-de-sistemas-lineares">
+     7.6.3. Soluções de sistemas lineares
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-matriz">
+     7.6.4. Inversa de matriz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algumas-matrizes-especiais">
+   7.7. Algumas matrizes especiais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nula">
+     7.7.1. Nula
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identidade">
+     7.7.2. Identidade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matriz-de-uns">
+     7.7.3. Matriz de “uns”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-inferior">
+     7.7.4. Triangular inferior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-superior">
+     7.7.5. Triangular superior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   7.8. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#somas-e-valores-extremos">
+   7.9. Somas e valores extremos
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="do-vetor-ao-array-computacao-vetorizada-na-pratica">
+<h1><span class="section-number">7. </span>Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática<a class="headerlink" href="#do-vetor-ao-array-computacao-vetorizada-na-pratica" title="Permalink to this headline">#</a></h1>
+<div class="chapter-thumb">
+    <div class="chapter-oa">
+        <h2>Objetivos de aprendizagem</h2>
+        <ul>
+        <li>Associar conceitos abstratos de Álgebra Linear a estruturas computacionais; </li>
+	    <li>Realizar operações básicas com matrizes e vetores;</li>
+	    <li>Saber como resolver sistemas lineares de pequeno porte;</li>	    
+        <li>Reconhecer e calcular operações comuns entre matrizes e vetores;</li>
+        </ul>
+    </div>        
+    <div class="quote-box">
+        <p><em>"Como em tudo o mais, também numa teoria matemática: a beleza pode ser percebida, mas não explicada. (Arthur Cayley)"
+        </p></em>
+    </div>        
+</div><section id="introducao">
+<h2><span class="section-number">7.1. </span>Introdução<a class="headerlink" href="#introducao" title="Permalink to this headline">#</a></h2>
+<p>Matrizes e vetores são estruturas fundamentais nas ciências aplicadas, em especial na engenharia e na computação, pois oferecem uma linguagem unificada para modelar sistemas, representar dados e realizar cálculos eficientes. Do ponto de vista algébrico, vetores podem representar estados de um sistema, enquanto matrizes atuam como operadores que transformam esses estados — como em sistemas de equações lineares usados para modelar circuitos elétricos, fluxos de calor ou estruturas mecânicas. Na economia, vetores podem representar cestas de bens ou variáveis macroeconômicas, e matrizes podem modelar interações entre setores produtivos em modelos insumo-produto. Já em engenharia computacional, matrizes são onipresentes em métodos numéricos para resolução de equações diferenciais que modela um problema físico e são discretizadas em sistemas lineares matriciais.</p>
+<p>No plano geométrico, vetores representam pontos ou direções em espaços de qualquer dimensão, enquanto matrizes podem ser interpretadas como transformações lineares — rotações, escalamentos ou projeções — aplicadas a esses vetores. Essa visão é central, por exemplo, na computação gráfica, onde transformações matriciais controlam a renderização de cenas tridimensionais. Já na ciência de dados e no processamento de sinais, vetores de alta dimensão representam amostras de áudio, imagens ou vídeos — com cada dimensão correspondendo a um pixel, uma intensidade sonora, ou uma característica extraída. A manipulação de dados n-dimensionais, por meio de operações matriciais como multiplicação, decomposição ou diagonalização, é essencial para reduzir dimensionalidade (como na análise de componentes principais), filtrar ruído, identificar padrões e treinar modelos de aprendizado de máquina. Assim, além de seu papel teórico, matrizes e vetores são ferramentas práticas para interpretar, simular e interagir com os fenômenos complexos do mundo real.</p>
+<p>Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador como utilidade para a compreensão de armazenamento de dados principalmente em estruturas uni ou bidimensionais. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da <em>Álgebra Linear Computacional</em>, porém, aqui, enfantizaremos aplicações práticas e o uso de operações comuns.</p>
+<figure class="align-default" id="fig-matrix-world">
+<a class="reference internal image-reference" href="../_images/matrix-world.png"><img alt="../_images/matrix-world.png" src="../_images/matrix-world.png" style="width: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">“O mundo das matrizes”: ilustração produzida por Kenji Hiranabe e Gilbert Strang para o livro <a class="reference external" href="https://math.mit.edu/~gs/everyone/"><em>Linear Algebra for Everyone</em></a>.</span><a class="headerlink" href="#fig-matrix-world" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade: a origem da “matrix”</p>
+<p>O termo “matriz” (matrix) deriva da palavra arcaica francesa “matrice”, que significa “útero”. Etimologicamente, está ligada à ideia de “origem”, por “mater”, de onde vem o significado de “mother” (mãe). Isso ajuda a explicar bastante o enredo da franquia de filmes “Matrix”, protagonizada por Keanu Reeves, onde o personagem Neo e seus amigos nascem em um ambiente artificial em que os corpos são cultivados em cápsulas e as mentes conectadas à Matriz, uma simulação de realidade. Surpreendentemente, essa mesma ideia é a que subsiste na matemática.</p>
+<p>Credita-se ao matemático inglês <a class="reference external" href="https://en.wikipedia.org/wiki/James_Joseph_Sylvester">James Joseph Sylvester</a> (1814 - 1897) o primeiro uso do termo “matriz”, que apareceu em um <a class="reference external" href="https://doi.org/10.1080/14786445008646629">artigo de sua autoria publicado em 1850</a>. Sylvester assim disse, em tradução livre do <a class="reference external" href="https://www.kevinhouston.net/blog/2017/10/why-is-it-called-a-matrix/">original</a>:</p>
+<p>“Para esse propósito, devemos começar, não com um quadrado, mas com uma disposição retangular de termos composta, suponhamos, por m linhas e n colunas. Isso, por si só não representa um determinante, mas é, por assim dizer, uma matriz a partir da qual podemos formar diversos sistemas de determinantes ao fixarmos um número p e selecionarmos, à vontade, p linhas e p colunas — os quadrados correspondentes a essas seleções podem ser chamados de determinantes de ordem p.”</p>
+<p>E daí nasceu o conceito de matriz, como uma associação ao que chamamos de “array” em computação. Entretanto, na Matemática, a definição de uma matriz não é tão simples quanto parece, sendo necessário compreendê-la como uma “função” que associa um espaço vetorial a outro. É por isso que nem sempre quando falamos do conceito de “dimensão” (size) ou “comprimento” (length), como atributos de arrays computacionais, existe um paralelo imediato com o conceito de dimensão (“dimension”) utilizado pela álgebra linear.</p>
+</div>
+</section>
+<section id="computacao-vetorizada">
+<h2><span class="section-number">7.2. </span>Computação vetorizada<a class="headerlink" href="#computacao-vetorizada" title="Permalink to this headline">#</a></h2>
+<p>O conceito de computação vetorizada, ou computação baseada em <em>arrays</em>, está relacionado à execução de operações que podem ser feitas de uma só vez a um conjunto amplo de valores. A ideia principal da computação vetorizada é evitar laços e cálculos com repetições a fim de acelerar operações matemáticas e permite que essas estruturas multidimensionais sejam identificadas com a nossa compreensão de vetores, matrizes e tensores. Vetores são arrays unidimensionais. Matrizes são arrays bidimensionais. Tensores são arrays de três ou mais dimensões. <em>Arrays</em> possuem alguns atributos, tais como “comprimento”, “formato” e “dimensão, os quais dizem respeito, de certa forma, à quantidade de seus elementos e ao modo como ocupam a memória. Esses nomes variam de linguagem para linguagem. Em Python, existem funções e métodos específicos para verificar comprimento, formato e dimensão, tais como <code class="docutils literal notranslate"><span class="pre">len</span></code>, <code class="docutils literal notranslate"><span class="pre">shape</span></code> e <code class="docutils literal notranslate"><span class="pre">ndim</span></code>.  Entretanto, esses conceitos possuem sentidos um pouco diferentes quando queremos descrever os conceitos matemáticos.</p>
+<section id="comprimento-tamanho-e-dimensao">
+<h3><span class="section-number">7.2.1. </span>Comprimento, tamanho e dimensão<a class="headerlink" href="#comprimento-tamanho-e-dimensao" title="Permalink to this headline">#</a></h3>
+<p>Para exemplificar o que queremos dizer com “comprimento”, “tamanho” e “dimensão”, vejamos uma ilustração. Se <code class="docutils literal notranslate"><span class="pre">x1</span></code> e <code class="docutils literal notranslate"><span class="pre">x2</span></code> são dois números inteiros, a lista <code class="docutils literal notranslate"><span class="pre">[x1,x2]</span></code> seria um <em>array</em> unidimensional, mas de comprimento dois. Agora, imagine que <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> seja a notação matemática para representar as coordenadas de um ponto do plano cartesiano. Sabemos da geometria que o plano cartesiano tem duas dimensões. Porém, poderíamos, computacionalmente, usar a mesma lista anterior para armazenar no computador essas duas coordenadas. A lista continuaria sendo unidimensional, porém de tamanho dois. Logo, embora a entidade matemática seja bidimensional, não necessariamente a sua representação computacional deve ser bidimensional.</p>
+<p>Vejamos outra ilustração. Uma esfera é um sólido geométrico. Cada ponto da esfera está no espaço tridimensional. Isto significa que precisamos de 3 coordenadas para localizar cada um desses pontos. Do mesmo modo que o caso anterior, suponha que você tenha não apenas <code class="docutils literal notranslate"><span class="pre">x1</span></code> e <code class="docutils literal notranslate"><span class="pre">x2</span></code> como dois números inteiros, mas também um terceiro, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, para montar as coordenadas do seu ponto espacial. Você poderia representá-lo, matematicamente, por uma tripla <span class="math notranslate nohighlight">\((x_1,x_2,x_3)\)</span> sem problema algum. Por outro lado, no computador, a lista <code class="docutils literal notranslate"><span class="pre">[x1,x2,x3]</span></code> seria um <em>array</em> adequado para armazenar os valores das suas coordendas. Entretanto, esta lista continuaria sendo um <em>array</em> unidimensional, mas com tamanho 3. Portanto, <em>arrays</em> unidimensionais podem representar dados em dimensões maiores do que um.</p>
+</section>
+<section id="numpy">
+<h3><span class="section-number">7.2.2. </span><code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#numpy" title="Permalink to this headline">#</a></h3>
+<p>Em Python, <em>numpy</em> é a ferramenta ideal para lidar com tudo isso, a biblioteca padrão em Python para trabalhar com <em>arrays</em> multidimensionais e computação vetorizada. Ela praticamente dá “superpoderes” às listas e permite que trabalhemos com cálculos numéricos de maneira ágil, simples e eficiente. Com <em>numpy</em>, também podemos ler e escrever arquivos, trabalhar com sistemas lineares e realizar muito mais. O exemplo abaixo compara a eficiência de operações feitas com listas comuns e com arrays do <em>numpy</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Função de teste</span>
+<span class="k">def</span> <span class="nf">test_cube</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;numpy&#39;</span><span class="p">:</span>        
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Método indefinido&quot;</span><span class="p">)</span>
+
+<span class="c1"># Número de repetições para a medição do tempo</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Número de elementos</span>
+<span class="n">nel</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">]</span>
+
+<span class="c1"># Loop para diferentes tamanhos de entrada</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nel</span><span class="p">:</span>
+
+    <span class="c1"># Medindo o tempo de execução para o método &#39;list&#39;</span>
+    <span class="n">t_list</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">test_cube</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
+
+    <span class="c1"># Medindo o tempo de execução para o método &#39;numpy&#39;</span>
+    <span class="n">t_numpy</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">test_cube</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
+
+    <span class="c1"># Calculando o overhead normalizado</span>
+    <span class="n">overhead</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_list</span> <span class="o">-</span> <span class="n">t_numpy</span><span class="p">)</span> <span class="o">/</span> <span class="n">t_numpy</span>    
+
+    <span class="c1"># Exibindo os resultados</span>
+    <span class="c1">#print(f&quot;Tempo gasto com &#39;list&#39; para {n} elementos: {t_list:.6f} s&quot;)</span>
+    <span class="c1">#print(f&quot;Tempo gasto com &#39;numpy&#39; para {n} elementos: {t_numpy:.6f} s&quot;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overhead normalizado para </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> elementos: </span><span class="si">{</span><span class="n">overhead</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overhead normalizado para 10 elementos: -0.950
+Overhead normalizado para 100 elementos: 0.071
+Overhead normalizado para 500 elementos: 1.645
+Overhead normalizado para 1000 elementos: 9.431
+Overhead normalizado para 5000 elementos: 47.239
+Overhead normalizado para 10000 elementos: 51.317
+Overhead normalizado para 50000 elementos: 85.217
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="compreendendo-notacoes">
+<h2><span class="section-number">7.3. </span>Compreendendo notações<a class="headerlink" href="#compreendendo-notacoes" title="Permalink to this headline">#</a></h2>
+<p>A diversidade de notações utilizadas para representar vetores e matrizes reflete não apenas preferências estilísticas, mas sobretudo a influência das diferentes tradições científicas e áreas de aplicação. Vetores podem ser indicados por letras em negrito, letras com setas, letas entre colchetes e ainda por índices subscritos conforme o contexto. Na física, a notação com setas é comum; na matemática aplicada, encontra-se o uso de negrito tipográfico; nas engenharias, por vezes encontramos o uso de chaves ou colchetes para representar matrizes e também subíndices; na computação, o uso é variado.</p>
+<p>A notação indicial, por exemplo, também conhecida como <a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">notação de Einstein</a> — onde se assume uma soma implícita sobre índices repetidos —, é fundamental em teorias de tensores e na mecânica do contínuo, permitindo expressar operações complexas de forma compacta e elegante. A escola de <a class="reference external" href="https://pt.wikipedia.org/wiki/Josiah_Willard_Gibbs">Gibbs</a>, por sua vez, introduziu notações específicas para produtos vetoriais e escalares, ainda largamente utilizadas, predominante nos símbolos em negrito. Em computação, há uma tendência a representar vetores como arrays unidimensionais e matrizes em forma tabular, alinhando a abstração matemática à estrutura de dados. Enquanto essa pluralidade de notações deve-se a fatores históricos e culturais, ela pode influenciar ativamente a maneira como os conceitos são compreendidos, manipulados e ensinados.</p>
+<p>Para os nossos interesses, o fundamental a saber não é a notação em si, mas como os conceitos fundamentais da álgebra linear, que têm impacto em quase tudo o que fazemos com dados, são transportados para o computador a ponto de serem manipulados com precisão. O quadro abaixo resume algumas notações para operações clássicas e as áreas onde predominam.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Notação</strong></p></th>
+<th class="head"><p><strong>Significado</strong></p></th>
+<th class="head"><p><strong>Área(s) predominante(s)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{A}, \mathbf{v}\)</span></p></td>
+<td><p>matriz e vetor em negrito</p></td>
+<td><p>Matemática, Computação</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{v}\)</span></p></td>
+<td><p>vetor com seta</p></td>
+<td><p>Física, Engenharias, Computação</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\overrightarrow{A}\)</span></p></td>
+<td><p>matriz com seta maior</p></td>
+<td><p>Física</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(v_i\)</span>, <span class="math notranslate nohighlight">\(A_{ij}\)</span></p></td>
+<td><p>notação indicial para componente de vetor ou matriz</p></td>
+<td><p>Matemática, Engenharias</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\([a_{ij}]\)</span>, <span class="math notranslate nohighlight">\(\{a_{ij}\}\)</span></p></td>
+<td><p>matriz com notação indicial de componentes</p></td>
+<td><p>Engenharias</p></td>
+</tr>
+</tbody>
+</table>
+<p>Por conveniência, priorizaremos a notação em negrito.</p>
+<p>Além do significado algébrico, geométrico ou computacional que representam nas ciências, matrizes e vetores podem ser vistos sob diferentes perspectivas que enriquecem não só a intuição, mas também a capacidade de aplicar conceitos a contextos diversos, principalmente ao se lidar com áreas computacionais. Formas interessantes de compreender matrizes e vetores através de visualizações são propostas por <a class="reference external" href="https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra/">Kenji Hiranabe</a>, co-autor do artigo <a class="reference external" href="https://doi.org/10.1080/10511970.2024.2321349">The Art of Linear Algebra</a>.</p>
+<div class="hint dropdown admonition">
+<p class="admonition-title">Dica: a origem da “matrix”</p>
+<p>Existem vídeos excelentes com aulas do Prof. Gilbert Strang sobre como melhor enxergar a Álgebra Linear nesta página do <a class="reference external" href="https://ocw.mit.edu/courses/res-18-010-a-2020-vision-of-linear-algebra-spring-2020/pages/about-the-videos/">MIT/OCW</a>. Vale a pena assistir.</p>
+</div>
+</section>
+<section id="matrizes-e-vetores">
+<h2><span class="section-number">7.4. </span>Matrizes e vetores<a class="headerlink" href="#matrizes-e-vetores" title="Permalink to this headline">#</a></h2>
+<p>Uma matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> de ordem <span class="math notranslate nohighlight">\(m \times n\)</span> pode ser escrita como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = 
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
+\end{bmatrix}\end{split}\]</div>
+<p>As colunas de uma matriz com <span class="math notranslate nohighlight">\(m\)</span> linhas correspondem a <span class="math notranslate nohighlight">\(n\)</span> vetores <span class="math notranslate nohighlight">\(\vec{v}_1, \vec{v}_2, \ldots,\vec{v}_n\)</span>, de maneira que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = 
+\begin{bmatrix}
+\vec{v}_1 &amp; \vec{v}_2 &amp; \ldots &amp; \vec{v}_n \\
+\end{bmatrix}\end{split}\]</div>
+<p>é uma representação equivalente para a matriz anterior.</p>
+<p>Em Python, usamos o módulo <em>numpy</em> para trabalhar com matrizes e vetores. Vetores são <em>arrays</em> 1D, ao passo que matrizes são <em>arrays</em> 2D, ou seja, um “<em>array</em> de <em>arrays</em>”.</p>
+<p><strong>Exemplo.</strong> Represente computacionalmente os vetores do <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> a seguir:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{u} = 3\vec{i} - 2\vec{j} + 9\vec{k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{v} = -2\vec{i} + 4\vec{j}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{w} = \vec{i}\)</span></p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade: ndarray</p>
+<p>O <em>NumPy</em> possui uma classe especial para se trabalhar com matrizes e vetores em uma ou duas dimensões, a saber o tipo <code class="docutils literal notranslate"><span class="pre">matrix</span></code>, ou <code class="docutils literal notranslate"><span class="pre">mat</span></code>. Com objetos <code class="docutils literal notranslate"><span class="pre">matrix</span></code>, as  operações particulares de multiplicação matriz-matriz ou matriz-vetor comportam-se diferentemente daquelas na classe <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. Neste texto, abordaremos apenas os tipos <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> porque são aplicáveis também a matrizes multidimensionais.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 3 -2  9]
+[-2  4  0]
+[1 0 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo.</strong> Represente computacionalmente a matriz 3 x 3 dada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = 
+\begin{bmatrix}
+\vec{u} &amp; \vec{v} &amp; \vec{w} \\
+\end{bmatrix}\end{split}\]</div>
+<p>Observe que os vetores devem ser escritos como “coluna”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo.</strong> Represente computacionalmente a matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{bmatrix}
+2 &amp; -2 \\
+4 &amp; 1 \\
+2 &amp; 1 
+\end{bmatrix}\end{split}\]</div>
+<p>Vamos escrever linha por linha.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># linha 1</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># linha 2</span>
+<span class="n">L3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># linha 3</span>
+
+<span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">])</span> <span class="c1"># lista de listas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2 -2]
+ [ 4  1]
+ [ 2  1]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Diretamente, poderíamos também definir:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2 -2]
+ [ 4  1]
+ [ 2  1]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note que cada lista representa uma linha.</p>
+<section id="transposicao">
+<h3><span class="section-number">7.4.1. </span>Transposição<a class="headerlink" href="#transposicao" title="Permalink to this headline">#</a></h3>
+<p>Matrizes e vetores podem ser transpostos com <code class="docutils literal notranslate"><span class="pre">.T</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A2T</span> <span class="o">=</span> <span class="n">A2</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A2T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2  4  2]
+ [-2  1  1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">uu1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uu0</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">uu0</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">uu1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(list, numpy.ndarray)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assim, com as variáveis antes definidas, poderíamos, equivalentemente, fazer para <span class="math notranslate nohighlight">\({\bf A}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modo 2: matriz transposta</span>
+<span class="n">At</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">At</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 3 -2  1]
+ [-2  4  0]
+ [ 9  0  0]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="teste-de-igualdade">
+<h3><span class="section-number">7.4.2. </span>Teste de igualdade<a class="headerlink" href="#teste-de-igualdade" title="Permalink to this headline">#</a></h3>
+<p>Podemos verificar a igualdade entre matrizes como</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1,  2,  3],
+       [-4,  2,  1],
+       [ 3,  3,  1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>No caso de vetores:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vetor &quot;linha&quot; não difere</span>
+<span class="c1"># do vetor &quot;coluna&quot;</span>
+<span class="n">u</span> <span class="o">==</span> <span class="n">u</span><span class="o">.</span><span class="n">T</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="operacoes-fundamentais">
+<h2><span class="section-number">7.5. </span>Operações fundamentais<a class="headerlink" href="#operacoes-fundamentais" title="Permalink to this headline">#</a></h2>
+<p>Veremos algumas operações fundamentais entre matrizes e vetores e destacar algumas, como as do quadro abaixo.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Nome em Português</strong></p></th>
+<th class="head"><p><strong>Nome em Inglês</strong></p></th>
+<th class="head"><p><strong>Notações Comuns</strong></p></th>
+<th class="head"><p><strong>Exemplo de Aplicação</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Produto escalar ou interno</p></td>
+<td><p><em>scalar (or dot) product</em></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{u} \cdot \mathbf{v} \)</span>, <span class="math notranslate nohighlight">\( \mathbf{u}^T \mathbf{v} \)</span></p></td>
+<td><p>Similaridade entre dois vetores</p></td>
+</tr>
+<tr class="row-odd"><td><p>Produto tensorial (diádico)</p></td>
+<td><p><em>tensor (outer) product</em></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{u} \otimes \mathbf{v} \)</span>, <span class="math notranslate nohighlight">\(\mathbf{u} \mathbf{v}\)</span></p></td>
+<td><p>Gerar uma matriz a partir de dois vetores</p></td>
+</tr>
+<tr class="row-even"><td><p>Produto vetorial</p></td>
+<td><p><em>cross product</em></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{u} \times \mathbf{v} \)</span></p></td>
+<td><p>Calcular a direção perpendicular a dois vetores em 3D</p></td>
+</tr>
+<tr class="row-odd"><td><p>Produto elemento-a-elemento</p></td>
+<td><p><em>Hadamard (or Schur) product</em></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{u} \circ \mathbf{v} \)</span>, <span class="math notranslate nohighlight">\( \mathbf{u} \odot \mathbf{v} \)</span></p></td>
+<td><p>Operações de redes neurais e métodos numéricos</p></td>
+</tr>
+<tr class="row-even"><td><p>Produto escalar</p></td>
+<td><p><em>Fröbenius inner product</em></p></td>
+<td><p><span class="math notranslate nohighlight">\( \langle A, B \rangle \)</span></p></td>
+<td><p>Produto escalar entre duas matrizes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notas:</p>
+<ul class="simple">
+<li><p>o símbolo <span class="math notranslate nohighlight">\(\otimes\)</span> também é usado para denotar o <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">produto de Kronecker</a>.</p></li>
+<li><p>na operação <span class="math notranslate nohighlight">\(\mathbf{u} \mathbf{v}\)</span>, quando originalmente chamada de “produto externo”, <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> é um vetor coluna e <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> é um vetor linha. No Brasil, o o termo “produto externo” é menos frequente e usado como sinônimo de produto vetorial.</p></li>
+<li><p>na operação <span class="math notranslate nohighlight">\(\mathbf{u}^T \mathbf{v}\)</span>, exibida como outra forma de produto interno, <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> são vetores coluna.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Curiosidade: produto exterior</p>
+<p>Na Geometria Diferencial, estuda-se o “Cálculo Diferencial Exterior”, e lá se define também <em>outer product</em> como “produto exterior”, o que também é conhecido internacionalmente como <em>wedge product</em>, denotado por <span class="math notranslate nohighlight">\(\mathbf{u} \wedge \mathbf{v}\)</span>, que é uma operação que combina dois vetores para produzir um elemento de ordem superior. Como nesta geometria estudam-se curvas e superfícies, o produto externo é frequentemente usado para definir grandezas como área e volume.</p>
+</div>
+<section id="adicao-e-subtracao">
+<h3><span class="section-number">7.5.1. </span>Adição e subtração<a class="headerlink" href="#adicao-e-subtracao" title="Permalink to this headline">#</a></h3>
+<p>A adição (subtração) de matrizes e vetores pode ser realizada de modo usual com computação vetorizada.</p>
+<p><strong>Exemplo:</strong> <span class="math notranslate nohighlight">\(\vec{u} \pm \vec{v}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adição </span>
+<span class="n">ad</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+
+<span class="c1"># subtração</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 9]
+[ 5 -6  9]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exemplo:</strong> <span class="math notranslate nohighlight">\(\bf{A} \pm \bf{B}\)</span>, com</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf B} = 
+\begin{bmatrix}
+\vec{u} &amp; 2\vec{u} &amp; 3\vec{v} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adição</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">,</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">ad2</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ad2</span><span class="p">)</span>
+
+<span class="n">sub2</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">B</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sub2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 6  4 -5]
+ [-4  0 12]
+ [18 18  0]]
+[[  0  -8   7]
+ [  0   8 -12]
+ [  0 -18   0]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="produto-interno">
+<h3><span class="section-number">7.5.2. </span>Produto interno<a class="headerlink" href="#produto-interno" title="Permalink to this headline">#</a></h3>
+<p>O produto interno <span class="math notranslate nohighlight">\(\langle \vec{u}, \vec{v}\rangle\)</span> é computado com <code class="docutils literal notranslate"><span class="pre">.dot</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">pi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pi2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-14
+-4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uma segunda forma, mais imediata, emprega o operador infixo <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pii</span> <span class="o">=</span> <span class="n">u</span> <span class="o">@</span> <span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pii</span><span class="p">)</span>
+
+<span class="n">pii2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pii2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-14
+-4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="norma-de-vetor">
+<h3><span class="section-number">7.5.3. </span>Norma de vetor<a class="headerlink" href="#norma-de-vetor" title="Permalink to this headline">#</a></h3>
+<p>A norma <span class="math notranslate nohighlight">\(||\vec{u}||\)</span> de um vetor <span class="math notranslate nohighlight">\(\vec{u}\)</span> é calculada como:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">u</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9.695359714832659)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="produto-de-matrizes">
+<h3><span class="section-number">7.5.4. </span>Produto de matrizes<a class="headerlink" href="#produto-de-matrizes" title="Permalink to this headline">#</a></h3>
+<p>O produto <span class="math notranslate nohighlight">\(\bf{A}\bf{B}\)</span> entre matrizes bidimensionais pode ser calculado com <code class="docutils literal notranslate"><span class="pre">np.dot</span></code>, mas recomenda-se usar <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># não tem o mesmo efeito para </span>
+<span class="c1"># matrizes A e B de tamanhos arbitrários</span>
+<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 22,  44, -42],
+       [-14, -28,  60],
+       [ 27,  54, -54]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uso recomendado para a operação tradicional</span>
+<span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 22,  44, -42],
+       [-14, -28,  60],
+       [ 27,  54, -54]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="produto-entre-matriz-e-vetor">
+<h3><span class="section-number">7.5.5. </span>Produto entre matriz e vetor<a class="headerlink" href="#produto-entre-matriz-e-vetor" title="Permalink to this headline">#</a></h3>
+<p>Neste caso, sendo <span class="math notranslate nohighlight">\({\vec{\vec A}}\)</span> (dois símbolos indicam que a matriz é uma grandeza de ordem 2, ao passo que o vetor é de ordem 1 e aqui usamos para consistência de notação) uma matriz <span class="math notranslate nohighlight">\(m \times n\)</span> e <span class="math notranslate nohighlight">\({\vec{b}}\)</span> e um vetor <span class="math notranslate nohighlight">\(n \times 1\)</span>, respectivamente, o produto <span class="math notranslate nohighlight">\(\vec{\vec{A}}\vec{b}\)</span> é dado por:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 10, 27])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="demais-operacoes-com-numpy-linalg">
+<h2><span class="section-number">7.6. </span>Demais operações com <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code><a class="headerlink" href="#demais-operacoes-com-numpy-linalg" title="Permalink to this headline">#</a></h2>
+<p>Para outras operações, devemos utilizar o submódulo <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>. Para importá-lo com o <em>alias</em> <code class="docutils literal notranslate"><span class="pre">lin</span></code>, fazemos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">lin</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="determinante">
+<h3><span class="section-number">7.6.1. </span>Determinante<a class="headerlink" href="#determinante" title="Permalink to this headline">#</a></h3>
+<p>O determinante de <span class="math notranslate nohighlight">\({\bf A}\)</span> é dado por <span class="math notranslate nohighlight">\(\det({\bf A})\)</span> e pode ser computado pela função <code class="docutils literal notranslate"><span class="pre">det</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculando o determinante da matriz</span>
+<span class="n">det</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">det</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-36.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inversa-de-uma-matriz">
+<h3><span class="section-number">7.6.2. </span>Inversa de uma matriz<a class="headerlink" href="#inversa-de-uma-matriz" title="Permalink to this headline">#</a></h3>
+<p>A inversa de uma matriz é dada por <span class="math notranslate nohighlight">\({\bf A}^{-1}\)</span>, onde <span class="math notranslate nohighlight">\({\bf A}{\bf A}^{-1}={\bf I}\)</span>, e <span class="math notranslate nohighlight">\({\bf I}\)</span> é a matriz identidade.
+Para usar esta função, devemos fazer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span> 
+
+<span class="n">B3</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B2</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">B3</span><span class="p">,</span><span class="n">B2</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ True, False,  True],
+       [False, False,  True],
+       [ True,  True,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="solucoes-de-sistemas-lineares">
+<h3><span class="section-number">7.6.3. </span>Soluções de sistemas lineares<a class="headerlink" href="#solucoes-de-sistemas-lineares" title="Permalink to this headline">#</a></h3>
+<p>Para resolver sistemas lineares, devemos escrever as equações em forma de matriz, ou seja, <span class="math notranslate nohighlight">\({\vec{\vec A}}\vec{x} = \vec{b}\)</span> e utilizar <code class="docutils literal notranslate"><span class="pre">solve</span></code>.</p>
+<p><strong>Exemplo:</strong> Resolva o sistema linear abaixo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+ax + by = c \\ 
+dx + ey = f
+\end{cases}\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(a = -4\)</span>, <span class="math notranslate nohighlight">\(b = 1\)</span>, <span class="math notranslate nohighlight">\(c = 1/2\)</span>, <span class="math notranslate nohighlight">\(d = 3\)</span>, <span class="math notranslate nohighlight">\(e = 5\)</span> e <span class="math notranslate nohighlight">\(f = 10\)</span>,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">25</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">90</span><span class="p">]</span> <span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">80</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="mi">72</span><span class="p">])</span>
+
+<span class="c1"># solução</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.90666667  5.82666667  0.69333333]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ainv</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">xx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3.90666667,  5.82666667,  0.69333333])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inversa-de-matriz">
+<h3><span class="section-number">7.6.4. </span>Inversa de matriz<a class="headerlink" href="#inversa-de-matriz" title="Permalink to this headline">#</a></h3>
+<p>A inversa de uma matriz (faça esta operação apenas para matrizes quadradas de pequena dimensão) pode ser encontrada como:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ainv</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ainv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.40333333  0.2         0.21333333]
+ [ 0.46333333 -0.2        -0.25333333]
+ [-0.00333333  0.          0.01333333]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para realizar uma “prova real” da solução do sistema anterior, poderíamos fazer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lin</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.90666667  5.82666667  0.69333333]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note, entretanto que:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">==</span> <span class="n">x2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Isto ocorre devido a erros numéricos. Um teste mais adequado deve computar a norma do vetor “erro”, dado por <span class="math notranslate nohighlight">\({\bf e} = \bf{b} - \bf{A}\bf{x}\)</span>. A norma pode ser calculada diretamente com:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">lin</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Isto é, esperamos que <span class="math notranslate nohighlight">\(||{\bf e}|| \approx 0\)</span> quando a solução do sistema for exata, a menos de erros numéricos.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Nunca compare dois números reais (<code class="docutils literal notranslate"><span class="pre">float</span></code>) usando igualdade. Ou seja, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code>, não é, em geral, um bom teste lógico para verificar se <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> possuem o mesmo valor numérico.</p>
+</div>
+</section>
+</section>
+<section id="algumas-matrizes-especiais">
+<h2><span class="section-number">7.7. </span>Algumas matrizes especiais<a class="headerlink" href="#algumas-matrizes-especiais" title="Permalink to this headline">#</a></h2>
+<section id="nula">
+<h3><span class="section-number">7.7.1. </span>Nula<a class="headerlink" href="#nula" title="Permalink to this headline">#</a></h3>
+<p>Para criar uma matriz nula de ordem <em>m x n</em>, usamos <code class="docutils literal notranslate"><span class="pre">zeros</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">6</span>
+<span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identidade">
+<h3><span class="section-number">7.7.2. </span>Identidade<a class="headerlink" href="#identidade" title="Permalink to this headline">#</a></h3>
+<p>Uma matriz identidade (quadrada) de ordem <em>p</em> é criada com <code class="docutils literal notranslate"><span class="pre">eye</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-uns">
+<h3><span class="section-number">7.7.3. </span>Matriz de “uns”<a class="headerlink" href="#matriz-de-uns" title="Permalink to this headline">#</a></h3>
+<p>Uma matriz composta apenas de valores 1 de ordem <em>m x n</em> pode ser criada com <code class="docutils literal notranslate"><span class="pre">ones</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="triangular-inferior">
+<h3><span class="section-number">7.7.4. </span>Triangular inferior<a class="headerlink" href="#triangular-inferior" title="Permalink to this headline">#</a></h3>
+<p>A matriz triangular inferior de uma dada matriz pode ser criada com <code class="docutils literal notranslate"><span class="pre">tril</span></code>. Note que podemos também defini-la explicitamente, linha a linha.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># os valores correspondentes</span>
+<span class="c1"># são zerados</span>
+<span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  0,  0],
+       [-2, -4,  0],
+       [ 9, 18,  0]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="triangular-superior">
+<h3><span class="section-number">7.7.5. </span>Triangular superior<a class="headerlink" href="#triangular-superior" title="Permalink to this headline">#</a></h3>
+<p>A matriz triangular superior de uma dada matriz pode ser criada com <code class="docutils literal notranslate"><span class="pre">triu</span></code>. Note que podemos também defini-la explicitamente, linha a linha.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  6, -6],
+       [ 0, -4, 12],
+       [ 0,  0,  0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercício.</strong> Por que há dois valores <code class="docutils literal notranslate"><span class="pre">False</span></code> no teste a seguir?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[False,  True,  True],
+       [ True, False,  True],
+       [ True,  True,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="autovalores-e-autovetores">
+<h2><span class="section-number">7.8. </span>Autovalores e autovetores<a class="headerlink" href="#autovalores-e-autovetores" title="Permalink to this headline">#</a></h2>
+<p>Um vetor <span class="math notranslate nohighlight">\({\bf v} \in V\)</span>, <span class="math notranslate nohighlight">\({\bf v} \neq {\bf 0}\)</span> é vetor próprio de <span class="math notranslate nohighlight">\({\bf A}\)</span> se existir <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[{\bf Av}=\lambda {\bf v}.\]</div>
+<p>O número real <span class="math notranslate nohighlight">\(\lambda\)</span> é denominado valor próprio (autovalor) de <span class="math notranslate nohighlight">\({\bf A}\)</span> associado ao vetor próprio (autovetor) <span class="math notranslate nohighlight">\({\bf v}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
+
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">lin</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">w</span>
+
+<span class="c1"># autovalores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># autovetor 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># autovetor 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1400549446402586 -5.1400549446402595
+[0.99033427 0.13870121]
+[-0.13870121  0.99033427]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="somas-e-valores-extremos">
+<h2><span class="section-number">7.9. </span>Somas e valores extremos<a class="headerlink" href="#somas-e-valores-extremos" title="Permalink to this headline">#</a></h2>
+<p>Podemos calcular somas de elementos de matrizes e vetores de maneiras diferentes. Para matrizes, em particular, há soma total, por linha, ou por coluna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># soma de todos os elementos </span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modo alternativo</span>
+<span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># soma total de matriz</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modo alternativo</span>
+<span class="n">O</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># soma por linha </span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">]]</span> <span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[-1,  1],
+        [-1,  1]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># soma por coluna </span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">O</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3., 3., 3., 3., 3.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Valores máximos e mínimos, absolutos ou não, também podem ser computados com funções simples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># min</span>
+<span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(-3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># max</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modo alternativo</span>
+<span class="n">a</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(-3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mínimo absoluto </span>
+<span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># máximo absoluto</span>
+<span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
+
+<span class="c1"># min</span>
+<span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">O2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(-4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># max </span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">O2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O2</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(-4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">O2</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">O2</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0, -2, -3])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ipynb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-05-newton.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Método de Newton: Sair pela Tangente sem Perder o Rumo</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="code-sessions/codeSession-1-polyval.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
