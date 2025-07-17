@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 import matplotlib.pyplot as plt
-plt.style.use('styles/gcpeixoto-book.mplstyle')
+plt.style.use('../styles/gcpeixoto-book.mplstyle')
 
 
 # # Método de Newton: Sair pela Tangente sem Perder o Rumo
@@ -74,6 +74,39 @@ plt.style.use('styles/gcpeixoto-book.mplstyle')
 # 3. Se o número máximo de iterações for atingido, retorne a última aproximação $x^{(k-1)}$.
 # 
 
+# ## Um caso clássico
+# 
+# Considere que desejamos calcular a raiz enésima de um número real positivo $d$, ou seja, $x = \sqrt[n]{d}$. Podemos fazer isto utilizando o método de Newton de uma forma muito simples, mas "diferente". Em primeiro lugar, note que buscamos a solução da equação $f(x) = 0$, tal que
+# 
+# $$f(x) = x^n - d.$$
+# 
+# Calculando derivada, obtemos
+# 
+# $$f'(x) = n x^{n-1}.$$
+# 
+# Utilizando ambas na função de iteração do método de Newton, chegamos a
+# 
+# $$x^{(k)} = \phi(x^{(k-1)}) = x^{(k-1)} - \dfrac{[x^{(k-1)}]^n - d}{n [x^{(k-1)}]^{n-1}} = x^{(k-1)} - \frac{1}{n} \left( x^{(k-1)} - \frac{d}{[x^{(k-1)}]^{n-1}} \right),$$ 
+# 
+# que, finalmente, pode ser simplificada no processo iterativo
+# 
+# $$x^{(k)} = \frac{1}{n} \left( (n-1)x^{(k-1)} + \frac{d}{[x^{(k-1)}]^{n-1}} \right), \ \ k = 1,2, \ldots < \infty$$
+# 
+# Se um "palpite" razoável for dado para $x^{(0)}$, a convergência para o valor real será rápida.
+# 
+# ### Exemplo numérico
+# 
+# Vamos calcular $\sqrt[3]{27}$ – claramente, $n = 3$ e $d=27$ – com um chute inicial $x^{(0)} = 5.0$.
+# 
+# 1. A função de iteração para este exemplo é dada por $x^{(k)} = \frac{1}{3} \left( 2x^{(k-1)} + \frac{27}{[x^{(k-1)}]^{2}} \right) = \frac{2x^{(k-1)}}{3} + \frac{9}{[x^{(k-1)}]^{2}}$
+# 2. Partindo de $x^{(0)} = 5$, desenvolvemos as seguintes iterações
+#     - $k = 1 \Rightarrow x^{(1)} = \frac{2(5)}{3} + \frac{9}{5^2} = \frac{10}{3} + \frac{9}{25} = 3.333 + 0,36 = 3.693$
+#     - $k = 2 \Rightarrow x^{(2)} = \frac{2(3.693)}{3} + \frac{9}{3.693^2} \approx 2.462 + \frac{9}{13.636} \approx 2.462 + 0.660 = 3.122$
+#     - $k = 3 \Rightarrow x^{(3)} = \frac{2(3.122)}{3} + \frac{9}{3.122^2} \approx 2.081 + \frac{9}{9.750} \approx 2.081 + 0.923 = 3.004$
+#     - $k = 4 \Rightarrow x^{(4)} = \frac{2(3.004)}{3} + \frac{9}{3.004^2} \approx 2.0027 + \frac{9}{9.024} \approx 2.0027 + 0.9973 = 3.000$
+# 
+# Com apenas 4 iteradas chegamos à resposta.
+
 # ## Implementação do algoritmo
 
 # No algoritmo proposto abaixo, a função `newton` requererá 5 argumentos: 
@@ -84,7 +117,7 @@ plt.style.use('styles/gcpeixoto-book.mplstyle')
 # - o erro relativo assumido, representado por `tol`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `nmax`.
 
-# In[2]:
+# In[5]:
 
 
 import inspect, re, numpy as np
@@ -168,7 +201,7 @@ def newton(x0,f,df,tol,N):
 # 
 # Utilize o _playground_ interativo abaixo para testar o método da bisseção para funções não lineares quaisquer. Como dado de entrada para $f(x)$, utilize funções escritas nos moldes de Python científico como um tipo `str`. Para os parâmetros do intervalo inicial e de erro, utilize `float`.
 
-# In[ ]:
+# In[6]:
 
 
 import dash
@@ -381,7 +414,7 @@ if __name__ == '__main__':
 # 
 # **Exemplo:** Resolva o problema $f(x) = 0$, para $f(x) = -\text{arccos}(x) + 4\text{sen}(x) + 1.7$, no intervalo $-0.2 \le x \le 1.0$ e $\epsilon = 10^{-3}$.
 
-# In[3]:
+# In[7]:
 
 
 # Chamada da função
@@ -396,7 +429,7 @@ xm = newton(-0.1,
 
 # Como no exemplo anterior, para utilizarmos o método de Newton é preciso saber a derivada da função $h(z)$. Vamos encontrá-la utilizando o módulo de computação simbólica `sympy`.
 
-# In[4]:
+# In[8]:
 
 
 # Importa variável z como símbolo
@@ -412,7 +445,7 @@ print(dh)
 
 # A partir daí, utilizamos a expressão normalmente na função.
 
-# In[5]:
+# In[9]:
 
 
 zm = newton(5,
@@ -504,7 +537,7 @@ zm = newton(5,
 # - Crie um código genérico que implemente o algoritmo do método de Newton de modo que a derivada seja calculada diretamenta por computação simbólica, sem intervenção manual, quando for possível. Dica: use `sympy.lambdify`.
 # - Faça uma implementação do método de Newton para otimização e uma para o método de Halley. Em seguida, incorpore a capacidade de cálculo das derivadas de maneira automática.
 
-# In[6]:
+# In[10]:
 
 
 plt.rcdefaults()

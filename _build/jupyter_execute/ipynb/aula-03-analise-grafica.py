@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[67]:
+# In[6]:
 
 
 import matplotlib.pyplot as plt
@@ -130,7 +130,7 @@ plt.style.use('../styles/gcpeixoto-book.mplstyle')
 # 
 # A visualização de "cortes" paralelos aos eixos coordenados que resultam da fixação de uma variável (tornando-se parâmetro) e da liberação de outra para um caso em que $f$ é bivariada está disponível abaixo. Ao interagir com a representação visual somos capazes de reconhecer que $f(x_1,x_2)$ recai em uma função univariada se a variável $x_1$ ou $x_2$ for fixada – de modo exclusivo – , assim podendo ser estudada pelas ferramentas aprendidas neste curso.
 
-# In[68]:
+# In[7]:
 
 
 from plotly.offline import plot
@@ -190,7 +190,7 @@ fig.update_layout(
 );
 
 
-# In[69]:
+# In[8]:
 
 
 plot(fig, show_link=False,filename='../figs/analise-grafica.html')
@@ -215,11 +215,11 @@ display(HTML('../figs/analise-grafica.html'))
 # 
 # Vamos fazer experimentos numéricos e começar com alguns valores iniciais para os parâmetros.
 
-# In[70]:
+# In[9]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt 
+import numpy as np # comp. vetorizada
+import matplotlib.pyplot as plt # plotagem
 
 # Parâmetros fixados 
 t = 120.0
@@ -228,7 +228,7 @@ m = 90.0
 g = 10.
 
 
-# In[71]:
+# In[10]:
 
 
 # Localização
@@ -248,7 +248,7 @@ plt.title('Variação do coeficiente de arrasto');
 # 
 # Nos gráficos abaixo, produzimos uma espécie de refinamento apenas através de plotagens. Até aí, não há nada numérico acontecendo. Porém, isso nos ajuda a selecionar ainda melhor uma condição inicial para o processo iterativo subsequente.
 
-# In[72]:
+# In[11]:
 
 
 # Refinamento
@@ -260,7 +260,7 @@ plt.plot(c,f,'g-');
 plt.plot(c,0*c,'k:');
 
 
-# In[73]:
+# In[12]:
 
 
 # Refinamento
@@ -272,7 +272,7 @@ plt.plot(c,f,'g-')
 plt.plot(c,0*c,'k:');
 
 
-# In[74]:
+# In[13]:
 
 
 # Refinamento
@@ -416,7 +416,7 @@ ax.legend();
 
 # - $\phi_1 = \dfrac{ (x^{(k-1)})^{1/2}}{\pi} - x^{(k-1)}, \ \  x^{(0)} = 1, \ \ k < N$
 
-# In[76]:
+# In[14]:
 
 
 # No. de elementos
@@ -443,7 +443,7 @@ plt.legend(loc='upper right', fontsize=12);
 
 # - $\phi_2 = \dfrac{k}{x^{(k-1)}}, \ \  x^{(0)} = 1/5, \ \ k < 10$
 
-# In[77]:
+# In[15]:
 
 
 # No. de elementos

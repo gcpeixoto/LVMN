@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[31]:
 
 
 import matplotlib.pyplot as plt
@@ -80,7 +80,7 @@ plt.style.use('../styles/gcpeixoto-book.mplstyle')
 # - o erro absoluto desejado $EA_d$, representado por `e`;
 # - o número máximo de iterações $N$ para tentativa de solução, representado por `N`.
 
-# In[2]:
+# In[32]:
 
 
 import inspect, re 
@@ -209,7 +209,7 @@ def bissecao(f,a,b,tol,N):
 # 
 # Utilize o _playground_ interativo abaixo para testar o método da bisseção para funções não lineares quaisquer. Como dado de entrada para $f(x)$, utilize funções escritas nos moldes de Python científico como um tipo `str`. Para os parâmetros do intervalo inicial e de erro, utilize `float`.
 
-# In[ ]:
+# In[34]:
 
 
 import dash, re 
@@ -414,7 +414,7 @@ if __name__ == '__main__':
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-# In[16]:
+# In[38]:
 
 
 x = np.linspace(-0.2,1,100)
@@ -423,15 +423,15 @@ plot(x,-np.arccos(x) + 4*np.sin(x) + 1.7,'g',x,0*x,'k:');
 
 # - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
-# In[17]:
+# In[39]:
 
 
-xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,1.0,1e-3,40)
+xm = bissecao('-arccos(x) + 4*sin(x) + 1.7',-0.2,0.2,1e-9,30)
 
 
 # - A raiz aproximada $x^{*}$, tal que para $f(x^{*}) = 0$ no intervalo-alvo é mostrada na última linha da tabela. Isto é,
 
-# In[18]:
+# In[40]:
 
 
 # raiz aproximada
@@ -442,7 +442,7 @@ xm
 
 # - Primeiramente, façamos uma análise gráfica para verificar o comportamento da função.
 
-# In[19]:
+# In[41]:
 
 
 z = np.linspace(1,8,100)
@@ -460,7 +460,7 @@ plot(z,z/(1 - 2*z) - np.tan(z+1),'g',z,0*z,'k:');
 
 # - Uma vez que a raiz é única, basta aplicar o método que construímos à função desejada.
 
-# In[21]:
+# In[42]:
 
 
 zm = bissecao('z/(1 - 2*z) - tan(z+1)',4,6,1e-5,20)
@@ -479,7 +479,7 @@ zm
 # 
 # Primeiramente, definiremos uma função para retornar a equação particular.
 
-# In[23]:
+# In[43]:
 
 
 def eq_paraq(tempo,massa,vel,grav):
@@ -522,7 +522,7 @@ def eq_paraq(tempo,massa,vel,grav):
 
 # Em seguida, inserimos valores de entrada para teste. 
 
-# In[24]:
+# In[49]:
 
 
 # parâmetros de entrada
@@ -534,7 +534,7 @@ fs,fn = eq_paraq(tempo,massa,vel,grav)
 
 # O próximo passo realiza a análise gráfica para localização do intervalo de aproximação da raiz.
 
-# In[25]:
+# In[47]:
 
 
 c = np.linspace(1,20)
@@ -543,7 +543,7 @@ plot(c,fn(c),'g',c,0*c,'k:');
 
 # Encerrando, chamamos a função.
 
-# In[26]:
+# In[50]:
 
 
 cm = bissecao(str(fs),14,17.0,1e-4,20)

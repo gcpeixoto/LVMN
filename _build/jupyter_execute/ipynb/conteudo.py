@@ -87,10 +87,8 @@
 # 
 # - Resolução de sistemas de equações multidimensionais
 # 
-#     - Em atualização
-# <!--
-# - [Caderno 7 - Elementos de Álgebra Linear Computacional](aula-08a-matrizes-vetores.ipynb)
-# - [Caderno 8 - Fatoração LU](aula-10-fatoracao-lu.ipynb)
+#     - [Caderno 7 - Do Vetor ao Sistema Linear: Computação Vetorizada Na Prática](aula-06-matrizes-vetores.ipynb) (2h)
+# <!--- [Caderno 8 - Fatoração LU](aula-10-fatoracao-lu.ipynb)
 # - [_Code session 4_ - solve](./code-sessions/codeSession-4-solve.ipynb)
 # - [Caderno 9 - Jacobi e Gauss-Seidel](aula-12-jacobi.ipynb)
 # - [Caderno 10 - Newton não-linear](aula-13-newton-nao-linear.ipynb)

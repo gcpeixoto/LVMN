@@ -64,13 +64,13 @@ plt.style.use('../styles/gcpeixoto-book.mplstyle')
 # 
 # - A fração $1/3 = 0.3333\ldots$ é uma dízima. O seu triplo é?
 
-# In[3]:
+# In[2]:
 
 
 1/3
 
 
-# In[7]:
+# In[3]:
 
 
 1/3 + 1/3 + 1/3
@@ -94,7 +94,7 @@ plt.style.use('../styles/gcpeixoto-book.mplstyle')
 
 # - Multiplicação por fracionários
 
-# In[7]:
+# In[6]:
 
 
 # note a variabilidade de dígitos após o ponto
@@ -108,7 +108,7 @@ for x in [0.3, 0.33, 0.333, 0.3333, 0.33333, 0.333333, 0.3333333, 0.333333333]:
 # 
 # Em um computador de arquitetura 64 bits que segue o padrão IEEE 754, a melhor aproximação para 1/10 é um número com 55 dígitos decimais.
 
-# In[8]:
+# In[7]:
 
 
 # imprime número com 55 dígitos
@@ -117,14 +117,14 @@ print(format(0.1,'.55f'))
 
 # Notemos que tentar aumentar os dígitos não produzirá significância:
 
-# In[9]:
+# In[8]:
 
 
 # imprime número com 60 dígitos
 print(format(0.1,'.60f'))
 
 
-# In[10]:
+# In[9]:
 
 
 # imprime número com 80 dígitos
@@ -133,7 +133,7 @@ print(format(0.1,'.80f'))
 
 # Portanto, quando somamos 1/10 + 1/10 + 1/10 vemos um número diferente de 3/10.
 
-# In[11]:
+# In[10]:
 
 
 # imprime número com 55 dígitos
@@ -157,7 +157,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Em termos de código Python – e em outras linguagen smte, a notação científica em base 10 pode ser realizada da seguinte forma:
 
-# In[12]:
+# In[11]:
 
 
 2.65e0, 1.2e-6, 4532e3
@@ -197,7 +197,7 @@ print(format(0.1 + 0.1 + 0.1,'.55f'))
 # 
 # Na reta real, esses valores ficariam dispostos da seguinte forma: 
 
-# In[13]:
+# In[12]:
 
 
 from matplotlib.pyplot import subplots
@@ -228,7 +228,7 @@ ax.set_xlim([0.23,3.6]);
 # 
 # O código abaixa gera uma reta perfurada para um sistema computacional de interesse.
 
-# In[14]:
+# In[13]:
 
 
 import numpy as np
@@ -309,7 +309,7 @@ ax.get_yaxis().set_visible(False)
 
 # A seguinte função imprime os valores dos principais atributos de `numpy.finfo` que nos ajudam a entender melhor os limites de máquina em Python para esses sistemas de ponto flutuante.
 
-# In[15]:
+# In[14]:
 
 
 import numpy as np 
@@ -339,7 +339,7 @@ def print_attribute(dtype: str, attrib: str) -> None:
 
 # A partir daí, podemos verificar os valores para cada sistema individualmente:
 
-# In[16]:
+# In[15]:
 
 
 print('--- float16 \n')
@@ -399,7 +399,7 @@ for attrib in ['eps', 'max', 'min', 'tiny', 'nexp', 'nmant']:
 # 
 # começa a se aproximar de zero por cancelamento subtrativo e o valor de $f$ torna-se cada vez mais instável até cair a "zero". O efeito de $\epsilon_M$ em cálculos pode ser mostrado na figura abaixo. 
 
-# In[17]:
+# In[16]:
 
 
 from matplotlib.pyplot import subplots
@@ -428,7 +428,7 @@ ax.set_title(r'Variação relativa a $\epsilon \to \epsilon_M $');
 # 
 # A partir desses valores especiais, operáveis pelo módulo _numpy_ com `numpy.nan` e `numpy.inf`, respectivamente, podemos imitar operações matemáticas "equivalentes". Primeiramente, façamos:
 
-# In[18]:
+# In[17]:
 
 
 from numpy import nan, inf
@@ -438,7 +438,7 @@ from numpy import nan, inf
 # 
 # - $n \div \pm \infty \to \pm 0, \ \ n \in \mathbb{F}$
 
-# In[19]:
+# In[18]:
 
 
 2.1/inf, -4/inf, 5.2/-inf, 6/-inf
@@ -446,7 +446,7 @@ from numpy import nan, inf
 
 # - $\pm \infty \times \pm \infty \to \pm \infty$
 
-# In[20]:
+# In[19]:
 
 
 inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
@@ -454,7 +454,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $n \div \pm 0 \to \ \ !, \ \ n \in \mathbb{F}^{*}$ (neste caso, teremos um erro de divisão por zero)
 
-# In[21]:
+# In[20]:
 
 
 1/0, -2/0, 3/(-0), 4/(-0)
@@ -462,7 +462,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $n \times \pm \infty \to \pm \infty, n \in \mathbb{F}$
 
-# In[22]:
+# In[ ]:
 
 
 1*inf, -2*inf, 3.1112*(-inf), -111*(-inf)
@@ -470,7 +470,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $\pm \infty \pm \infty \to \pm \infty \vee \text{nan}$
 
-# In[23]:
+# In[ ]:
 
 
 inf + inf, inf - inf, - inf + inf, -inf - inf 
@@ -478,7 +478,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm 0 \div \pm 0 \to \ \ !$ (neste caso, também teremos um erro de divisão por zero)
 
-# In[24]:
+# In[ ]:
 
 
 0/-0
@@ -486,7 +486,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm \infty \div \pm \infty \to \text{nan}$
 
-# In[25]:
+# In[ ]:
 
 
 inf/inf, inf/-inf, -inf/inf, -inf/-inf
@@ -494,7 +494,7 @@ inf/inf, inf/-inf, -inf/inf, -inf/-inf
 
 # - $\pm \infty \times 0 \to \text{nan}$
 
-# In[26]:
+# In[ ]:
 
 
 inf*0,-inf*0
@@ -502,13 +502,13 @@ inf*0,-inf*0
 
 # - $\text{nan} \neq \text{nan}$
 
-# In[27]:
+# In[ ]:
 
 
 nan == nan, nan != nan
 
 
-# In[28]:
+# In[ ]:
 
 
 nan + inf == nan + inf
@@ -538,7 +538,7 @@ nan + inf == nan + inf
 # 
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 
-# In[30]:
+# In[ ]:
 
 
 from prettytable import PrettyTable as pt
@@ -600,7 +600,7 @@ print(tbl)
 # 
 # Para obter cada valor acima, poderíamos escrever:
 
-# In[31]:
+# In[ ]:
 
 
 # O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.
@@ -630,7 +630,7 @@ print(E_10)
 # 
 # Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de $S_2(n)$ com $n$ crescente até o limite de 100.000, até porque não temos como computar $S_2$ _ad infinitum_. Então, vejamos um código similar:
 
-# In[32]:
+# In[ ]:
 
 
 from math import pi
@@ -675,7 +675,7 @@ print(tbl2)
 
 # A partir daí, notamos que o erro reduz-se a quase zero à medida que o valor de $n$ aumenta, assim dando-nos uma constatação, pelo menos aproximada, de que a soma, de fato, é $\pi^2/6 \approx 1.6449340668482264$. Para obtermos os valores dos erros, um código similar poderia ser implementado:
 
-# In[33]:
+# In[ ]:
 
 
 # Expressões do erro real
@@ -711,7 +711,7 @@ print(E_10)
 # 1. Assumir que $82132.957032$ seja o valor exato para o polinômio em $x = 79.9$.
 # 2. Calcular $P(79.9)$ utilizando duas formas.
 
-# In[34]:
+# In[ ]:
 
 
 # Código para gerar polinômio cúbico com raízes reais
@@ -754,7 +754,7 @@ r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 #P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
 
 
-# In[35]:
+# In[ ]:
 
 
 # Valor (comentários)
@@ -799,7 +799,7 @@ print(f'PH({x}) = {PHx:.14f}')
 # 
 # Utilizando o exemplo da seção anterior, temos:
 
-# In[36]:
+# In[ ]:
 
 
 # Valor exato
@@ -824,7 +824,7 @@ print(E_PH)
 # 
 # A função módulo, $f(x) = | x |$, pode ser diretamente calculada com `abs`.
 
-# In[37]:
+# In[ ]:
 
 
 # Erro absoluto (forma padrão)
@@ -838,7 +838,7 @@ print(EA_PH)
 
 # É evidente que $E_{PH} > E_P$. Entretanto, podemos verificar isso pelo seguinte teste lógico:
 
-# In[38]:
+# In[ ]:
 
 
 # O teste é verdadeiro
@@ -857,7 +857,7 @@ EA_PH > EA_P
 
 # Os erros relativos podem ser computados como:
 
-# In[39]:
+# In[ ]:
 
 
 ER_P = EA_P/abs(Px_ex)
@@ -875,7 +875,7 @@ print(ER_PH)
 # 
 # Como não temos uma forma explícita de percentual, por cálculo, o melhor a fazer é algo como:
 
-# In[40]:
+# In[ ]:
 
 
 ER_Pp = ER_P * 100
@@ -894,7 +894,7 @@ print(f'{ER_PHp:e} %')
 # 
 # No exemplo da avaliação dos polinômios, se não dispuséssemos do valor exato, ou $P(x=79.9)$ ou $P_H(x=79.9)$ deveria ser adotado como _benchmark_. Se optássemos pelo segundo, apenas um erro relativo aproximado poderia ser calculado, a saber:
 
-# In[41]:
+# In[ ]:
 
 
 ER_ =  abs(PHx - Px)/abs(PHx)
@@ -915,7 +915,7 @@ print(f'{ER_:e}')
 # 
 # Isto ocorre porque o denominador sofre um _cancelamento subtrativo_ Uma vez que $0.25\epsilon_M < \epsilon_M$, a operação $0.25\epsilon_M$ não produz efeito sobre 1, de modo que a computação encontra um "limbo". Para a matemática exata, a operação deveria ser "diferente de zero".
 
-# In[42]:
+# In[ ]:
 
 
 # inf
@@ -927,10 +927,10 @@ e = finfo(float).eps
 1/(1 + 0.25*e - 1)
 
 
-# In[43]:
+# In[ ]:
 
 
-1+0.5*e > 1
+1+0.25*e > 1
 
 
 # #### Erros de truncamento e de arredondamento
@@ -1001,7 +1001,7 @@ e = finfo(float).eps
 # 
 # Usando a biblioteca `scikit-learn`, é possível utilizar funções já disponíveis no módulo `sklearn.metrics` para calcular essas métricas. Abaixo, utilizamos um exemplo genérico para um conjunto de valores reais e valores preditos associados aos reais para $n=4$. As plotagens resumem a dispersão entre valores reais e preditos e os erros dados por cada métrica.
 
-# In[45]:
+# In[ ]:
 
 
 from sklearn.metrics import mean_squared_error as MSE
@@ -1065,7 +1065,7 @@ ax[2].set_xlabel('normas de Minkowski'); ax[1].set_ylabel('erro');
 # A função de Airy é solução da [equação de Schrödinger](https://pt.wikipedia.org/wiki/Equação_de_Schrödinger) da mecânica quântica. Ela muda o seu comportamento de oscilatório para exponencial. A fim de demonstrar como o erro é uma função, dependente do ponto onde é avaliado, criaremos uma função "perturbada" que simulará o papel de função de Airy aproximada, enquanto manteremos a função de Airy verdadeira como exata. Em seguida, criaremos outra função de utilidade para calcular diretamente o erro relativo pontual.
 # 
 
-# In[46]:
+# In[ ]:
 
 
 from scipy import special
@@ -1087,7 +1087,7 @@ A_ = 1.152*A + 0.056*np.cos(x)
 # 
 # onde $\hat{A}(x)$ é a função de Airy aproximada e $A(x)$ é a função de Airy exata. Então:
 
-# In[47]:
+# In[ ]:
 
 
 # Define função anônima para erro relativo
@@ -1099,7 +1099,7 @@ E_airy = ai(A,A_)
 
 # A seguir, mostramos a plotagem das funções exatas e aproximadas, bem como do erro relativo pontual.
 
-# In[48]:
+# In[ ]:
 
 
 # Plotagem das funções 
@@ -1110,7 +1110,7 @@ plot(x, A_, 'g:', label='Airy aprox.')
 legend(loc='upper right');
 
 
-# In[49]:
+# In[ ]:
 
 
 # Plotagem do erro 
@@ -1191,7 +1191,7 @@ plot(x, E_airy,'g')
 # :filter: docname in docnames
 # ```
 
-# In[50]:
+# In[ ]:
 
 
 plt.rcdefaults()

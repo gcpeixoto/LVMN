@@ -1,169 +1,112 @@
 
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Ajuste de Curvas por Mínimos Quadrados &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-16-minimos-quadrados';</script>
-    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
     
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+    <div class="container-fluid" id="banner"></div>
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
+    
 
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      
-      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="conteudo.html">
-  
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -172,274 +115,657 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-matrizes-vetores.html">
+   7. Do Vetor ao
+   <em>
+    Array
+   </em>
+   : Computação Vetorizada Na Prática
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
+   <em>
+    Code Session
+   </em>
+   4:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
+   <em>
+    Code Session
+   </em>
+   5:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fsolve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
+   <em>
+    Code Session
+   </em>
+   8: Integração
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">7. Números em ponto flutuante e seus problemas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">8. Método da Iteração Linear (Ponto Fixo)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">9. Implementação do método da secante</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">10. Raízes de polinômios com o método de Müller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">11. Processamento de sinais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">12. Otimização de código</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">13. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">14. Malhas numéricas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">15. Campos de direção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">16. Variações do Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">17. Estabilidade Numérica para o Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">18. Método de Euler Implícito</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">19. Métodos de Adams-Bashfort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">20. EDOs de ordem superior (redução de ordem)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">21. Sistemas de EDOs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">22. Método das Linhas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">23. Documentação de código</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   8. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   9. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   10. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   11. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   12. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   13. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   14. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   15. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   16. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   17. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   18. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   19. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   20. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   21. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   22. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   23. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   24. Documentação de código
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
     </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
   </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-16-minimos-quadrados.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/ipynb/aula-16-minimos-quadrados.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
+  <div class="menu-dropdown__content">
+    <ul>
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-16-minimos-quadrados.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
 >
   
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
   </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/aula-16-minimos-quadrados.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ajuste de Curvas por Mínimos Quadrados</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressao-linear">Regressão Linear</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-para-um-melhor-ajuste">Critério para um Melhor Ajuste</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-quadrados-por-uma-reta">Ajuste por Mínimos Quadrados por uma Reta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantificacao-do-erro-da-regressao-linear">Quantificação do Erro da Regressão Linear</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressao-polinomial">Regressão Polinomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nota">Nota</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-evolucao-da-populacao-paraibana">Motivação: Evolução da População Paraibana</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressao-linear">
+   Regressão Linear
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-para-um-melhor-ajuste">
+     Critério para um Melhor Ajuste
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ajuste-por-minimos-quadrados-por-uma-reta">
+     Ajuste por Mínimos Quadrados por uma Reta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quantificacao-do-erro-da-regressao-linear">
+     Quantificação do Erro da Regressão Linear
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressao-polinomial">
+   Regressão Polinomial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nota">
+   Nota
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivacao-evolucao-da-populacao-paraibana">
+   Motivação: Evolução da População Paraibana
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplo">
+   Exemplo
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Ajuste de Curvas por Mínimos Quadrados</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressao-linear">
+   Regressão Linear
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-para-um-melhor-ajuste">
+     Critério para um Melhor Ajuste
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ajuste-por-minimos-quadrados-por-uma-reta">
+     Ajuste por Mínimos Quadrados por uma Reta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quantificacao-do-erro-da-regressao-linear">
+     Quantificação do Erro da Regressão Linear
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressao-polinomial">
+   Regressão Polinomial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nota">
+   Nota
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivacao-evolucao-da-populacao-paraibana">
+   Motivação: Evolução da População Paraibana
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemplo">
+   Exemplo
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-quadrados">
-<h1>Ajuste de Curvas por Mínimos Quadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-quadrados" title="Link to this heading">#</a></h1>
+<h1>Ajuste de Curvas por Mínimos Quadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-quadrados" title="Permalink to this headline">#</a></h1>
 <section id="regressao-linear">
-<h2>Regressão Linear<a class="headerlink" href="#regressao-linear" title="Link to this heading">#</a></h2>
+<h2>Regressão Linear<a class="headerlink" href="#regressao-linear" title="Permalink to this headline">#</a></h2>
 <p>O exemplo mais simples de aproximação por mínimos quadrados é ajustar uma reta a um conjunto de pares de observações <span class="math notranslate nohighlight">\((x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)\)</span>. A expressão matemática do ajuste por uma reta é</p>
 <div class="math notranslate nohighlight">
 \[ y = a_0 + a_1 x + e \qquad (1) \]</div>
@@ -448,14 +774,14 @@
 \[ e = y − a_0 − a_1 x \]</div>
 <p>Portanto, o erro ou resíduo é a discrepância entre o valor verdadeiro de <span class="math notranslate nohighlight">\(y\)</span> e o valor aproximado, <span class="math notranslate nohighlight">\(a_0 + a_1 x\)</span>, previsto pela equação linear.</p>
 <section id="criterio-para-um-melhor-ajuste">
-<h3>Critério para um Melhor Ajuste<a class="headerlink" href="#criterio-para-um-melhor-ajuste" title="Link to this heading">#</a></h3>
+<h3>Critério para um Melhor Ajuste<a class="headerlink" href="#criterio-para-um-melhor-ajuste" title="Permalink to this headline">#</a></h3>
 <p>Uma estratégia para ajustar uma melhor reta pelos dados é minimizar a soma dos quadrados dos resíduos entre o <span class="math notranslate nohighlight">\(y\)</span> medido e o <span class="math notranslate nohighlight">\(y\)</span> calculado com o modelo linear</p>
 <div class="math notranslate nohighlight">
 \[ S_r = \sum _{i = 1}^{n} e_i^2 = \sum _{i = 1}^{n} (y_{i,medido} - y_{i,modelo})^2 = \sum _{i = 1}^{n} (y_i - a_0 - a_1 x_i)^2 \qquad (2) \]</div>
 <p>Esse critério tem diversas vantagens, incluindo o fato de que ele fornece uma única reta para um dado conjunto de dados.</p>
 </section>
 <section id="ajuste-por-minimos-quadrados-por-uma-reta">
-<h3>Ajuste por Mínimos Quadrados por uma Reta<a class="headerlink" href="#ajuste-por-minimos-quadrados-por-uma-reta" title="Link to this heading">#</a></h3>
+<h3>Ajuste por Mínimos Quadrados por uma Reta<a class="headerlink" href="#ajuste-por-minimos-quadrados-por-uma-reta" title="Permalink to this headline">#</a></h3>
 <p>Para determinar os valores de <span class="math notranslate nohighlight">\(a_0\)</span> e <span class="math notranslate nohighlight">\(a_1\)</span>, a Equação (2) é derivada com relação a cada coeficiente</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -483,7 +809,7 @@ a_0 = \overline{y} - a_1 \overline{x} \qquad (4)
 <p>onde <span class="math notranslate nohighlight">\(\overline{y}\)</span> e <span class="math notranslate nohighlight">\(\overline{x}\)</span> são as médias de <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(x\)</span>, respectivamente.</p>
 </section>
 <section id="quantificacao-do-erro-da-regressao-linear">
-<h3>Quantificação do Erro da Regressão Linear<a class="headerlink" href="#quantificacao-do-erro-da-regressao-linear" title="Link to this heading">#</a></h3>
+<h3>Quantificação do Erro da Regressão Linear<a class="headerlink" href="#quantificacao-do-erro-da-regressao-linear" title="Permalink to this headline">#</a></h3>
 <p>Um “desvio padrão” para a reta de regressão pode ser determinado por</p>
 <div class="math notranslate nohighlight">
 \[ s_{y/x} = \sqrt{\dfrac{S_r}{n-2}} \]</div>
@@ -500,7 +826,7 @@ a_0 = \overline{y} - a_1 \overline{x} \qquad (4)
 </section>
 </section>
 <section id="regressao-polinomial">
-<h2>Regressão Polinomial<a class="headerlink" href="#regressao-polinomial" title="Link to this heading">#</a></h2>
+<h2>Regressão Polinomial<a class="headerlink" href="#regressao-polinomial" title="Permalink to this headline">#</a></h2>
 <p>O procedimento dos mínimos quadrados pode ser prontamente estendido para ajustar dados por um polinômio de grau mais alto. Por exemplo, suponha que se queira ajustar um polinômio de segundo grau ou quadrático</p>
 <div class="math notranslate nohighlight">
 \[ y = a_0 + a_1 x + a_2 x_2 + e \qquad (6) \]</div>
@@ -545,21 +871,21 @@ a_2
 \[ y = a_0 + a_1 x + a_2 x^2 + \dots + a_m x^m + e \]</div>
 </section>
 <section id="nota">
-<h2>Nota<a class="headerlink" href="#nota" title="Link to this heading">#</a></h2>
+<h2>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">#</a></h2>
 <p>O presente texto (conteúdo teórico) é um resumo baseado no livro Métodos Numéricos para Engenharia (Chapra e Canale).</p>
 </section>
 <section id="motivacao-evolucao-da-populacao-paraibana">
-<h2>Motivação: Evolução da População Paraibana<a class="headerlink" href="#motivacao-evolucao-da-populacao-paraibana" title="Link to this heading">#</a></h2>
+<h2>Motivação: Evolução da População Paraibana<a class="headerlink" href="#motivacao-evolucao-da-populacao-paraibana" title="Permalink to this headline">#</a></h2>
 <p>Este exemplo lê um arquivo CSV, plota o gráfico de dispersão, compara modelos e formata os dados para visualização.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">output_notebook</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">bokeh.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrintfTickFormatter</span><span class="p">,</span> <span class="n">Range1d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_notebook</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">PrintfTickFormatter</span><span class="p">,</span> <span class="n">Range1d</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
 
 <span class="c1"># tabela de dados</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;file-pop-pb.csv&quot;</span><span class="p">)</span>
@@ -889,7 +1215,7 @@ if (force === true) {
     });
   }
 }(window));</script><div class="output text_html">
-  <div class="bk-root" id="78e8e157-dcdb-4118-812c-77d0c3fdc06a" data-root-id="1158"></div>
+<div class="bk-root" id="78e8e157-dcdb-4118-812c-77d0c3fdc06a" data-root-id="1158"></div>
 </div><script type="application/javascript">(function(root) {
   function embed_document(root) {
   const docs_json = {"2a19bff7-7881-4813-a1fc-f2b70aecd636":{"defs":[],"roots":{"references":[{"attributes":{"background_fill_alpha":0.02,"background_fill_color":"blue","below":[{"id":"1167"}],"center":[{"id":"1170"},{"id":"1174"}],"height":400,"left":[{"id":"1171"}],"renderers":[{"id":"1193"},{"id":"1203"},{"id":"1209"},{"id":"1215"}],"title":{"id":"1234"},"toolbar":{"id":"1182"},"width":400,"x_range":{"id":"1195"},"x_scale":{"id":"1163"},"y_range":{"id":"1196"},"y_scale":{"id":"1165"}},"id":"1158","subtype":"Figure","type":"Plot"},{"attributes":{"line_alpha":0.2,"line_color":"red","x":{"field":"x"},"y":{"field":"y"}},"id":"1214","type":"Line"},{"attributes":{},"id":"1241","type":"UnionRenderers"},{"attributes":{},"id":"1179","type":"ResetTool"},{"attributes":{},"id":"1163","type":"LinearScale"},{"attributes":{"line_alpha":0.1,"line_color":"green","x":{"field":"x"},"y":{"field":"y"}},"id":"1201","type":"Line"},{"attributes":{"source":{"id":"1211"}},"id":"1216","type":"CDSView"},{"attributes":{},"id":"1168","type":"BasicTicker"},{"attributes":{"bottom_units":"screen","coordinates":null,"fill_alpha":0.5,"fill_color":"lightgrey","group":null,"left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","syncable":false,"top_units":"screen"},"id":"1181","type":"BoxAnnotation"},{"attributes":{},"id":"1245","type":"UnionRenderers"},{"attributes":{"axis":{"id":"1167"},"coordinates":null,"group":null,"ticker":null},"id":"1170","type":"Grid"},{"attributes":{},"id":"1178","type":"SaveTool"},{"attributes":{"axis_label":"Ano","coordinates":null,"formatter":{"id":"1239"},"group":null,"major_label_policy":{"id":"1240"},"ticker":{"id":"1168"}},"id":"1167","type":"LinearAxis"},{"attributes":{"overlay":{"id":"1181"}},"id":"1177","type":"BoxZoomTool"},{"attributes":{},"id":"1246","type":"Selection"},{"attributes":{},"id":"1175","type":"PanTool"},{"attributes":{},"id":"1176","type":"WheelZoomTool"},{"attributes":{"coordinates":null,"data_source":{"id":"1205"},"glyph":{"id":"1206"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"1208"},"nonselection_glyph":{"id":"1207"},"view":{"id":"1210"}},"id":"1209","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"black"},"hatch_alpha":{"value":0.2},"line_alpha":{"value":0.2},"line_width":{"value":4},"marker":{"value":"square"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1208","type":"Scatter"},{"attributes":{"tools":[{"id":"1175"},{"id":"1176"},{"id":"1177"},{"id":"1178"},{"id":"1179"},{"id":"1180"}]},"id":"1182","type":"Toolbar"},{"attributes":{"axis":{"id":"1171"},"coordinates":null,"dimension":1,"group":null,"ticker":null},"id":"1174","type":"Grid"},{"attributes":{"line_color":"green","x":{"field":"x"},"y":{"field":"y"}},"id":"1200","type":"Line"},{"attributes":{"data":{"x":[1970,1980,1991,2000,2010],"y":{"__ndarray__":"gL6KXnZTLkHAefpofXw2QUCwQXW5ij5BQFcy7gCRQkGA5AwLYjpGQQ==","dtype":"float64","order":"little","shape":[5]}},"selected":{"id":"1248"},"selection_policy":{"id":"1247"}},"id":"1211","type":"ColumnDataSource"},{"attributes":{},"id":"1242","type":"Selection"},{"attributes":{"end":3402044.0,"start":502156.0},"id":"1196","type":"Range1d"},{"attributes":{"coordinates":null,"data_source":{"id":"1211"},"glyph":{"id":"1212"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"1214"},"nonselection_glyph":{"id":"1213"},"view":{"id":"1216"}},"id":"1215","type":"GlyphRenderer"},{"attributes":{"coordinates":null,"group":null},"id":"1234","type":"Title"},{"attributes":{"line_alpha":0.1,"line_color":"red","x":{"field":"x"},"y":{"field":"y"}},"id":"1213","type":"Line"},{"attributes":{"fill_color":{"value":"blue"},"line_color":{"value":"#1f77b4"},"radius":{"value":1},"x":{"field":"x"},"y":{"field":"y"}},"id":"1190","type":"Circle"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"blue"},"hatch_alpha":{"value":0.2},"line_alpha":{"value":0.2},"line_color":{"value":"#1f77b4"},"radius":{"value":1},"x":{"field":"x"},"y":{"field":"y"}},"id":"1192","type":"Circle"},{"attributes":{"data":{"x":[1970,1980,1991,2000,2010],"y":[1002156,1449004,2015576,2447212,2902044]},"selected":{"id":"1242"},"selection_policy":{"id":"1241"}},"id":"1189","type":"ColumnDataSource"},{"attributes":{"end":2020,"start":1960},"id":"1195","type":"Range1d"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"blue"},"hatch_alpha":{"value":0.1},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"radius":{"value":1},"x":{"field":"x"},"y":{"field":"y"}},"id":"1191","type":"Circle"},{"attributes":{},"id":"1237","type":"AllLabels"},{"attributes":{},"id":"1247","type":"UnionRenderers"},{"attributes":{"data":{"x":[1975,1982],"y":{"__ndarray__":"AAAAAGyzMkF00UUXka43QQ==","dtype":"float64","order":"little","shape":[2]}},"selected":{"id":"1246"},"selection_policy":{"id":"1245"}},"id":"1205","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1189"}},"id":"1194","type":"CDSView"},{"attributes":{},"id":"1172","type":"BasicTicker"},{"attributes":{"format":"%1.2e"},"id":"1197","type":"PrintfTickFormatter"},{"attributes":{},"id":"1239","type":"BasicTickFormatter"},{"attributes":{},"id":"1248","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"black"},"hatch_alpha":{"value":0.1},"line_alpha":{"value":0.1},"line_width":{"value":4},"marker":{"value":"square"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1207","type":"Scatter"},{"attributes":{"axis_label":"Pop. urbana - PB","coordinates":null,"formatter":{"id":"1197"},"group":null,"major_label_policy":{"id":"1237"},"ticker":{"id":"1172"}},"id":"1171","type":"LinearAxis"},{"attributes":{"coordinates":null,"data_source":{"id":"1189"},"glyph":{"id":"1190"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"1192"},"nonselection_glyph":{"id":"1191"},"view":{"id":"1194"}},"id":"1193","type":"GlyphRenderer"},{"attributes":{"fill_color":{"value":"black"},"line_width":{"value":4},"marker":{"value":"square"},"x":{"field":"x"},"y":{"field":"y"}},"id":"1206","type":"Scatter"},{"attributes":{},"id":"1180","type":"HelpTool"},{"attributes":{},"id":"1240","type":"AllLabels"},{"attributes":{},"id":"1244","type":"Selection"},{"attributes":{},"id":"1165","type":"LinearScale"},{"attributes":{"line_color":"red","x":{"field":"x"},"y":{"field":"y"}},"id":"1212","type":"Line"},{"attributes":{"source":{"id":"1199"}},"id":"1204","type":"CDSView"},{"attributes":{"coordinates":null,"data_source":{"id":"1199"},"glyph":{"id":"1200"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"1202"},"nonselection_glyph":{"id":"1201"},"view":{"id":"1204"}},"id":"1203","type":"GlyphRenderer"},{"attributes":{},"id":"1243","type":"UnionRenderers"},{"attributes":{"line_alpha":0.2,"line_color":"green","x":{"field":"x"},"y":{"field":"y"}},"id":"1202","type":"Line"},{"attributes":{"data":{"x":[1970,1980,1991,2000,2010],"y":[1002156,1449004,2015576,2447212,2902044]},"selected":{"id":"1244"},"selection_policy":{"id":"1243"}},"id":"1199","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1205"}},"id":"1210","type":"CDSView"}],"root_ids":["1158"]},"title":"Bokeh Application","version":"2.4.3"}};
@@ -974,21 +1300,21 @@ if (force === true) {
 </div>
 </section>
 <section id="exemplo">
-<h2>Exemplo<a class="headerlink" href="#exemplo" title="Link to this heading">#</a></h2>
+<h2>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this headline">#</a></h2>
 <p>Vamos resolver um problema de regressão linear por meio das equações normais passo a passo. Em primeiro lugar, importemos os módulos de computação numérica e de plotagem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importação de módulos </span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sy</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
 </div>
 <p>Consideremos a simples tabela abaixo de um experimento fictício que busca correlacionar densidade e diâmetro médio de grãos em alimentos.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>densidade</p></th>
 <th class="head"><p>diâmetro médio de grão</p></th>
@@ -1009,7 +1335,6 @@ if (force === true) {
 </tr>
 </tbody>
 </table>
-</div>
 <p>Vamos escrever os dados como <em>arrays</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1053,7 +1378,7 @@ if (force === true) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b46a49a347eb0f8f8a43a07602473601437bc2898a778c1cfee187a42c31f17.png" src="../_images/7b46a49a347eb0f8f8a43a07602473601437bc2898a778c1cfee187a42c31f17.png" />
+<img alt="../_images/aula-16-minimos-quadrados_16_0.png" src="../_images/aula-16-minimos-quadrados_16_0.png" />
 </div>
 </div>
 <p>Na prática, podemos calcular regressão linear usando o módulo <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. Vide <em>Code session 7</em>.</p>
@@ -1072,7 +1397,7 @@ if (force === true) {
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./ipynb"
         },
         predefinedOutput: true
@@ -1080,95 +1405,36 @@ if (force === true) {
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
 </div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressao-linear">Regressão Linear</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-para-um-melhor-ajuste">Critério para um Melhor Ajuste</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-quadrados-por-uma-reta">Ajuste por Mínimos Quadrados por uma Reta</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantificacao-do-erro-da-regressao-linear">Quantificação do Erro da Regressão Linear</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressao-polinomial">Regressão Polinomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nota">Nota</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-evolucao-da-populacao-paraibana">Motivação: Evolução da População Paraibana</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Gustavo Oliveira
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>

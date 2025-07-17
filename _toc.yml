@@ -10,7 +10,7 @@ parts:
   - file: ipynb/aula-03-analise-grafica
   - file: ipynb/aula-04-bissecao
   - file: ipynb/aula-05-newton
-#   - file: ipynb/aula-08a-matrizes-vetores
+  - file: ipynb/aula-06-matrizes-vetores
 #   - file: ipynb/aula-09-eliminacao-gauss
 #   - file: ipynb/aula-10-fatoracao-lu
 #   - file: ipynb/aula-11-cholesky
