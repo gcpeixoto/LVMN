@@ -1,114 +1,169 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. Métodos Numéricos: Necessidade, Evolução e Profissão &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-01-introMetnum';</script>
+    <link rel="icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Do Contínuo ao Computável: Discretização e Erros Numéricos" href="aula-02-erros.html" />
     <link rel="prev" title="1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real" href="aula-00-modelagem-programacao.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-    
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="conteudo.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/numbiosis.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,709 +172,286 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Cadernos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-00-modelagem-programacao.html">
-   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   2. Métodos Numéricos: Necessidade, Evolução e Profissão
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-02-erros.html">
-   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-03-analise-grafica.html">
-   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-04-bissecao.html">
-   5. Método da Bisseção: A Arte de Cindir e Convergir
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-05-newton.html">
-   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="aula-06-matrizes-vetores.html">
-   7. Do Vetor ao
-   <em>
-    Array
-   </em>
-   : Computação Vetorizada Na Prática
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-06-matrizes-vetores.html">7. Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-07-fatoracao-lu.html">8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code Sessions
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
-   <em>
-    Code Session
-   </em>
-   1:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     roots
-    </span>
-   </code>
-   e
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     polyval
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
-   <em>
-    Code Session
-   </em>
-   2:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     bisect
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
-   <em>
-    Code Session
-   </em>
-   3:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     newton
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
-   <em>
-    Code Session
-   </em>
-   4:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     solve
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
-   <em>
-    Code Session
-   </em>
-   5:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     fsolve
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
-   <em>
-    Code Session
-   </em>
-   6: Interpolação
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
-   <em>
-    Code Session 7
-   </em>
-   : Ajuste de Curvas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
-   <em>
-    Code Session
-   </em>
-   8: Integração
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
-   <em>
-    Code Session
-   </em>
-   9: Método de Euler
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Exercícios Resolvidos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-1-solucoes.html">
-   Lista de Exercícios 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-2-solucoes.html">
-   Lista de Exercícios 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-3-solucoes.html">
-   Lista de Exercícios 3
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-4-solucoes.html">
-   Lista de Exercícios 4
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-5-solucoes.html">
-   Lista de Exercícios 5
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lists/lista-6-solucoes.html">
-   Lista de Exercícios 6
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Recortes
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
-   Recorte 1: Breve Histórico da Análise Numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
-   Recorte 2: Programação e
-   <em>
-    Software
-   </em>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
-   Recorte 3: Padrão de Ponto Flutuante IEEE 754
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
-   Recorte 4: Dígitos significativos, precisão e acurácia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
-   Recorte 5: Um desastre motivado por erros numéricos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
-   Recorte 6: Definições de erro
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
-   Recorte 7: Erros de medição em aparelhos de pressão arterial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
-   Recorte 8: Enganos, erros de formulação e incerteza nos dados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
-   Recorte 9: Aritmética exata e números racionais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-10-hpc.html">
-   Recorte 10: Computação de alto desempenho
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
-   Recorte 11: Método de Newton-Raphson para raízes múltiplas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
-   Recorte 12: Condicionamento e normas de matrizes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
-   Recorte 13: Análise de erros em interpolação polinomial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
-   Recorte 14: Projeção ortogonal e equações normais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
-   Recorte 15: Fórmulas de Newton-Cotes
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Extra
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
-   8. Números em ponto flutuante e seus problemas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-pontoFixo.html">
-   9. Método da Iteração Linear (Ponto Fixo)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-secante.html">
-   10. Implementação do método da secante
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-muller.html">
-   11. Raízes de polinômios com o método de Müller
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-fft.html">
-   12. Processamento de sinais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-numba.html">
-   13. Otimização de código
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
-   14. Plotagem com
-   <em>
-    matplotlib
-   </em>
-   : tópicos especiais
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-malhasNumericas.html">
-   15. Malhas numéricas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
-   16. Campos de direção
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
-   17. Variações do Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
-   18. Estabilidade Numérica para o Método de Euler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-eulerImplicito.html">
-   19. Método de Euler Implícito
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
-   20. Métodos de Adams-Bashfort
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-edoSuperior.html">
-   21. EDOs de ordem superior (redução de ordem)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-sistemasEDO.html">
-   22. Sistemas de EDOs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-metodo-linhas.html">
-   23. Método das Linhas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="extra/extra-docstrings.html">
-   24. Documentação de código
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">9. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">10. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">11. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">12. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">13. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">14. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">15. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">16. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">17. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">18. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">19. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">20. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">21. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">22. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">23. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">24. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">25. Documentação de código</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-01-introMetnum.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-01-introMetnum.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ipynb/aula-01-introMetnum.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/ipynb/aula-01-introMetnum.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
 
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solucoes-exatas-vs-solucoes-aproximadas">
-   2.1. Soluções exatas vs. soluções aproximadas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-formula-de-bhaskara">
-     2.1.1. A fórmula de Bhaskara
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-formula-de-hagen-poiseuille">
-     2.1.2. A fórmula de Hagen-Poiseuille
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#casos-sem-solucao-exata">
-     2.1.3. Casos sem solução exata
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivacao">
-     2.1.4. Motivação
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definicao">
-     2.1.5. Definição
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho">
-   2.2. Evolução histórica dos métodos numéricos e da computação de alto desempenho
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computacao-de-alto-desempenho">
-     2.2.1. Computação de alto desempenho
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#flops">
-       2.2.1.1. FLOPS
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#razoes-para-estudar-metodos-numericos-na-era-digital">
-   2.3. Razões para estudar métodos numéricos na era digital
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regimes-de-dados">
-     2.3.1. Regimes de dados
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vertentes-profissionais">
-   2.4. Vertentes profissionais
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Métodos Numéricos: Necessidade, Evolução e Profissão</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solucoes-exatas-vs-solucoes-aproximadas">
-   2.1. Soluções exatas vs. soluções aproximadas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-formula-de-bhaskara">
-     2.1.1. A fórmula de Bhaskara
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-formula-de-hagen-poiseuille">
-     2.1.2. A fórmula de Hagen-Poiseuille
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#casos-sem-solucao-exata">
-     2.1.3. Casos sem solução exata
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#motivacao">
-     2.1.4. Motivação
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definicao">
-     2.1.5. Definição
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho">
-   2.2. Evolução histórica dos métodos numéricos e da computação de alto desempenho
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computacao-de-alto-desempenho">
-     2.2.1. Computação de alto desempenho
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#flops">
-       2.2.1.1. FLOPS
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#razoes-para-estudar-metodos-numericos-na-era-digital">
-   2.3. Razões para estudar métodos numéricos na era digital
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regimes-de-dados">
-     2.3.1. Regimes de dados
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vertentes-profissionais">
-   2.4. Vertentes profissionais
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Métodos Numéricos: Necessidade, Evolução e Profissão</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucoes-exatas-vs-solucoes-aproximadas">2.1. Soluções exatas vs. soluções aproximadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-formula-de-bhaskara">2.1.1. A fórmula de Bhaskara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-formula-de-hagen-poiseuille">2.1.2. A fórmula de Hagen-Poiseuille</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-sem-solucao-exata">2.1.3. Casos sem solução exata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">2.1.4. Motivação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">2.1.5. Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho">2.2. Evolução histórica dos métodos numéricos e da computação de alto desempenho</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-de-alto-desempenho">2.2.1. Computação de alto desempenho</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flops">2.2.1.1. FLOPS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#razoes-para-estudar-metodos-numericos-na-era-digital">2.3. Razões para estudar métodos numéricos na era digital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regimes-de-dados">2.3.1. Regimes de dados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vertentes-profissionais">2.4. Vertentes profissionais</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <div class="cell tag_remove-input docutils container">
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="metodos-numericos-necessidade-evolucao-e-profissao">
-<h1><span class="section-number">2. </span>Métodos Numéricos: Necessidade, Evolução e Profissão<a class="headerlink" href="#metodos-numericos-necessidade-evolucao-e-profissao" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2. </span>Métodos Numéricos: Necessidade, Evolução e Profissão<a class="headerlink" href="#metodos-numericos-necessidade-evolucao-e-profissao" title="Link to this heading">#</a></h1>
 <div class="chapter-thumb">
     <div class="chapter-oa">
         <h2>Objetivos de aprendizagem</h2>
@@ -849,11 +481,11 @@ title="Print to PDF"
 <p>A computação moderna, ao mesmo tempo que herda as restrições teóricas da matemática formal, oferece ferramentas para navegar na complexidade. Mesmo quando não se pode obter uma solução analítica exata — seja por limitações teóricas, como nos casos em que não se pode isolar uma variável, ou por limitações práticas, como equações diferenciais sem solução fechada — os métodos numéricos oferecem estratégias para aproximar soluções com controle de erro. Esses métodos reconhecem que, em engenharia, uma resposta “boa o bastante” dentro de certos limites de precisão pode ter mais valor do que uma prova formal da existência ou unicidade da solução.</p>
 <p>Portanto, tanto as limitações lógicas do conhecimento formal quanto a necessidade concreta de resolver problemas complexos confluem para os métodos numéricos. Eles nos permitem avançar onde a análise pura falha, e nos capacitam a transformar modelos matemáticos em algoritmos executáveis.</p>
 <section id="solucoes-exatas-vs-solucoes-aproximadas">
-<h2><span class="section-number">2.1. </span>Soluções exatas vs. soluções aproximadas<a class="headerlink" href="#solucoes-exatas-vs-solucoes-aproximadas" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1. </span>Soluções exatas vs. soluções aproximadas<a class="headerlink" href="#solucoes-exatas-vs-solucoes-aproximadas" title="Link to this heading">#</a></h2>
 <p>Soluções exatas são obtidas por expressões “fechadas”, isto é, fórmulas analíticas que resolvem completamente o problema dentro do próprio sistema matemático. Já as soluções aproximadas surgem de abordagens “abertas”, iterativas e numéricas, que produzem respostas com erro controlado, mas sem uma forma explícita final. Enquanto as soluções fechadas buscam exatidão formal, as abertas priorizam viabilidade prática, especialmente diante da complexidade e não linearidade dos problemas reais. A existência de soluções por fórmulas analíticas para modelos matemáticos que conhecemos é limitadíssima e, é um dos motivos porque necessitamos de métodos numéricos.</p>
 <p>Vejamos alguns casos em que há soluções exatas (fechadas) conhecidas para o modelo matemático subjacente.</p>
 <section id="a-formula-de-bhaskara">
-<h3><span class="section-number">2.1.1. </span>A fórmula de Bhaskara<a class="headerlink" href="#a-formula-de-bhaskara" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>A fórmula de Bhaskara<a class="headerlink" href="#a-formula-de-bhaskara" title="Link to this heading">#</a></h3>
 <p>Todos sabemos que os casos abaixo, admitidos para o discriminante <span class="math notranslate nohighlight">\(\Delta\)</span>, decorrem da famosa fórmula de Bhaskara:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( \Delta &lt; 0 \Rightarrow \)</span> nenhuma raiz real;</p></li>
@@ -872,7 +504,7 @@ f(x) = a_0 + a_1x + a_2x^2, \ \ \forall x \in A \subset \mathbb{R}
 </div>
 </section>
 <section id="a-formula-de-hagen-poiseuille">
-<h3><span class="section-number">2.1.2. </span>A fórmula de Hagen-Poiseuille<a class="headerlink" href="#a-formula-de-hagen-poiseuille" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.2. </span>A fórmula de Hagen-Poiseuille<a class="headerlink" href="#a-formula-de-hagen-poiseuille" title="Link to this heading">#</a></h3>
 <p>Um exemplo um pouco mais elaborado é o caso da equação de <a class="reference external" href="https://en.wikipedia.org/wiki/Hagen%E2%80%93Poiseuille_equation">Hagen-Poiseuille</a> que determina a velocidade axial de um fluido escoando em um tubo, desde que alguns parâmetros sejam fornecidos e hipóteses satisfeitas, tais como permanência, axissimetria e pleno desenvolvimento. A equação pode ser descrita por:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -882,7 +514,7 @@ u(r) = - \dfrac{1}{4 \mu} G (R^2 - r^2),
 <p>Essa equação funciona como uma <strong>solução fechada</strong> e serve como referência para cálculos.</p>
 </section>
 <section id="casos-sem-solucao-exata">
-<h3><span class="section-number">2.1.3. </span>Casos sem solução exata<a class="headerlink" href="#casos-sem-solucao-exata" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.3. </span>Casos sem solução exata<a class="headerlink" href="#casos-sem-solucao-exata" title="Link to this heading">#</a></h3>
 <p>Podemos dar dois exemplos simples para os quais não há solução exata (analítica):</p>
 <ul class="simple">
 <li><p>A equação</p></li>
@@ -903,7 +535,7 @@ V(T) = \int_{0}^{T} \frac{1000}{ \sqrt{ 1 + t + 0.01t^3  } } \, dt,
 <p>São situações como esses que exigem o uso de métodos numéricos.</p>
 </section>
 <section id="motivacao">
-<h3><span class="section-number">2.1.4. </span>Motivação<a class="headerlink" href="#motivacao" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.4. </span>Motivação<a class="headerlink" href="#motivacao" title="Link to this heading">#</a></h3>
 <p>No <a class="reference internal" href="aula-00-modelagem-programacao.html#cap-modelagem"><span class="std std-numref">Caderno 1</span></a>, apresentamos a seguinte equação</p>
 <div class="math notranslate nohighlight">
 \[
@@ -914,8 +546,8 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 <p>O código abaixo nos ajuda a analisar graficamente alterações do perfil de <span class="math notranslate nohighlight">\(v(t)\)</span> ao variarmos o coeficiente de arrasto, por exemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">exp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">exp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">360</span><span class="p">)</span> <span class="c1"># intervalo de tempo</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span> <span class="c1"># gravidade</span>
@@ -935,7 +567,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/aula-01-introMetnum_7_0.png" src="../_images/aula-01-introMetnum_7_0.png" />
+<img alt="../_images/4e78b5f5124d73e178aaa49f5ed4d3a11be0498e68dd5132707644cd47490e2a.png" src="../_images/4e78b5f5124d73e178aaa49f5ed4d3a11be0498e68dd5132707644cd47490e2a.png" />
 </div>
 </div>
 <p>Por outro lado, e se a questão for:</p>
@@ -946,7 +578,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 <p>Métodos numéricos nos ajudam a responder perguntas desse tipo, como veremos ao longo deste <em>ebook</em>.</p>
 </section>
 <section id="definicao">
-<h3><span class="section-number">2.1.5. </span>Definição<a class="headerlink" href="#definicao" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.5. </span>Definição<a class="headerlink" href="#definicao" title="Link to this heading">#</a></h3>
 <p>Antes de fazer uma breve retrospectiva sobre a evolução dos métodos numéricos para compreender em que ponto da história estamos, é adequado trazer alguma definição para eles. De maneira simples, podemos dizer que:</p>
 <blockquote>
 <div><p>Método numérico é uma técnica computacional que usa operações aritméticas para resolver, de forma aproximada, problemas formulados matematicamente cujas soluções analíticas são desconhecidas.</p>
@@ -954,7 +586,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </section>
 </section>
 <section id="evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho">
-<h2><span class="section-number">2.2. </span>Evolução histórica dos métodos numéricos e da computação de alto desempenho<a class="headerlink" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2. </span>Evolução histórica dos métodos numéricos e da computação de alto desempenho<a class="headerlink" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho" title="Link to this heading">#</a></h2>
 <p>Alguns métodos que usamos até hoje têm origem no período babilônico antigo. Entretanto, no século XVII houve um enorme salto no aspecto analítico. O método de Newton-Raphson, que iremos estudar mais tarde, por exemplo, remonta a 1669 e foi aperfeiçoado como método iterativo por volta de 1740. Métodos para calcular derivadas surgiram com Euler, por volta de 1768, mas foram estendidos para dimensões superiores apenas no início do século XX. Após o advento das ideias de Alan Turing e de sua <a class="reference external" href="https://pt.wikipedia.org/wiki/M%C3%A1quina_de_Turing"><em>máquina universal</em></a>, a era do computador digital emergiu.</p>
 <p>Depois da invenção do <a class="reference external" href="https://en.wikipedia.org/wiki/ENIAC">ENIAC</a>, em 1945, o primeiro computador digital programável do mundo a capacidade computacional aumentou vertiginosamente. Para se ter ideia, um dos primeiros trabalhos formais que analisaram o custo computacional de inverter matrizes, autorado por Jonh Von Neumann e H. H. Goldstine, apareceu em <a class="reference external" href="https://www.ams.org/journals/bull/1947-53-11/S0002-9904-1947-08909-6/S0002-9904-1947-08909-6.pdf">1947</a>. Naquela época, discutia-se que matrizes quadradas da ordem de 15, 50, 150 poderiam ser invertidas com precisão de 8, 10, 12 dígitos, já que elas compunham o que se chamava de “sistema de grande porte”. Hoje, esse “grande porte” despertaria alguns risos pelos especialistas da área.</p>
 <p>O primeiro supercomputador foi criado na década de 1960, o <a class="reference external" href="https://pt.wikipedia.org/wiki/CDC_6600">CDC 6600</a>, oferencendo um <em>clock</em> de 100 nanosegundos, o mais veloz então conhecido. Dos mesmos criadores deste, nasce o <a class="reference external" href="https://en.wikipedia.org/wiki/Cray-1">Cray-1</a>, em 1976, com capacidade de 160 MFLOPS e já operando com arquitetura de 64 bits. Instalado no conhecido <a class="reference external" href="https://en.wikipedia.org/wiki/Los_Alamos_National_Laboratory">Los Alamos National Laboratory</a>, quatro anos depois de a Intel lançar seu primeiro microprocessador de apenas 4 bits, o <a class="reference external" href="https://pt.wikipedia.org/wiki/Intel_4004">Intel 4004</a>, ele foi densamente usado para acelerar a pesquisa científica sobre reações nucleares, já que o mundo vivia o auge da Guerra Fria. Foi na década de 1970 também que começaram a se popularizar métodos numéricos para resolução de equações diferenciais parciais, como o <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_element_method">método dos elementos finitos</a>, que ganhou projeção na engenharia civil.</p>
@@ -962,7 +594,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 <p>Na década de 2000, uma nova era de supercomputadores surgiu com as arquiteturas massivamente paralelas abrindo caminho para tecnologias distribuiídas. Na vanguarda desse desenvolvimento estava a IBM, que investiu 100 milhões de dólares na construção da plataforma <a class="reference external" href="https://en.wikipedia.org/wiki/IBM_Blue_Gene">Blue Gene</a>, que esteve por várias vezes no topo da lista TOP500, que lista os 500 supercomputadores mais poderosos do mundo. A última edição da lista, publicada em novembro de 2024 apontava o <a class="reference external" href="https://www.youtube.com/watch?v=Q8wtuk3XPWM">El Capitan</a> como o computador mais rápido do mundo, com capacidade de operação de 2.79 exaFLOPS!</p>
 <p>Depois do rompimento da ordem de exaFLOPS (quintilhão de operações por segundo), os métodos numéricos entraram em uma nova geração, sendo necessária a compreensão mínima de seus fundamentos e de conhecimentos básicos de programação. Sem os quais, será impossível aproveitar o que os novos paradigmas de computação têm a oferecer, como sistemas baseados em GPUs (unidade de processamento gráfico, do inglês <em>Graphics Processing Unit</em>) e FPGAs (array de porta programável em campo, do inglês <em>Field-Programmable Gate Array</em>). Linguagens como <a class="reference external" href="https://pt.wikipedia.org/wiki/CUDA">CUDA</a> e <a class="reference external" href="https://pt.wikipedia.org/wiki/OpenCL">OpenCL</a> têm sido primordiais para implementações paralelas e farão parte do futuro da computação científica e dos métodos numéricos.</p>
 <section id="computacao-de-alto-desempenho">
-<h3><span class="section-number">2.2.1. </span>Computação de alto desempenho<a class="headerlink" href="#computacao-de-alto-desempenho" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>Computação de alto desempenho<a class="headerlink" href="#computacao-de-alto-desempenho" title="Link to this heading">#</a></h3>
 <p>A Computação de Alto Desempenho (HPC, do inglês <em>High Performance Computing</em>) refere-se ao uso de supercomputadores e arquiteturas paralelas para resolver problemas computacionalmente intensivos, que seriam inviáveis ou extremamente lentos em computadores convencionais. Seu foco está na execução simultânea de milhões ou bilhões de operações por segundo, utilizando centenas ou milhares de núcleos de processamento, geralmente distribuídos em clusters interconectados. A HPC combina conhecimento em hardware (como CPUs, GPUs e redes de alta velocidade) com software otimizado (bibliotecas paralelas, escalabilidade, balanceamento de carga e algoritmos eficientes) para maximizar desempenho.</p>
 <p>Os temas envolvidos em HPC incluem paralelismo (explícito e implícito), programação distribuída (com <code class="docutils literal notranslate"><span class="pre">MPI</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>, <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> etc.), escalabilidade de algoritmos, gerenciamento de recursos, e otimização de desempenho. Essas técnicas são aplicadas em diversas áreas do conhecimento e da indústria, como simulações climáticas, engenharia computacional, bioinformática, astrofísica, inteligência artificial, finanças quantitativas e projetos aeroespaciais. A HPC viabiliza experimentos numéricos em larga escala, acelera processos de inovação e permite avanços científicos e tecnológicos que dependem de enorme poder computacional.</p>
 <div class="dropdown admonition">
@@ -973,48 +605,49 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </div>
 </div>
 <section id="flops">
-<h4><span class="section-number">2.2.1.1. </span>FLOPS<a class="headerlink" href="#flops" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">2.2.1.1. </span>FLOPS<a class="headerlink" href="#flops" title="Link to this heading">#</a></h4>
 <p>O termo <em>FLOPS</em> (do inglês <em>Floating Point Operations Per Second</em>) é uma medida de desempenho de supercomputadores que indica quantas operações de ponto flutuante – conceito expandido no próximo capítulo – um processador ou sistema consegue executar em um segundo. Essa métrica é especialmente importante para a simulações científicas, modelagem numérica e inteligência artificial, que dependem de exigem alto poder de cálculo. Como os números envolvidos podem ser muito grandes, utiliza-se com frequência prefixos do Sistema Internacional para facilitar a leitura (<a class="reference internal" href="#tbl-flops"><span class="std std-numref">Tabela 2.1</span></a>).</p>
-<table class="colwidths-auto table" id="tbl-flops">
-<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Unidades e valores numéricos correspondentes para FLOPS.</span><a class="headerlink" href="#tbl-flops" title="Permalink to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="tbl-flops">
+<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Unidades e valores numéricos correspondentes para FLOPS.</span><a class="headerlink" href="#tbl-flops" title="Link to this table">#</a></caption>
 <thead>
-<tr class="row-odd"><th class="text-align:left head"><p>Nome</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Nome</p></th>
 <th class="head"><p>Unidade</p></th>
-<th class="text-align:right head"><p>Valor numérico</p></th>
+<th class="head text-right"><p>Valor numérico</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:left"><p>kiloFLOPS</p></td>
+<tr class="row-even"><td class="text-left"><p>kiloFLOPS</p></td>
 <td><p>kFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{3}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{3}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p>megaFLOPS</p></td>
+<tr class="row-odd"><td class="text-left"><p>megaFLOPS</p></td>
 <td><p>MFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{6}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{6}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p>gigaFLOPS</p></td>
+<tr class="row-even"><td class="text-left"><p>gigaFLOPS</p></td>
 <td><p>GFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{9}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{9}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p>teraFLOPS</p></td>
+<tr class="row-odd"><td class="text-left"><p>teraFLOPS</p></td>
 <td><p>TFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{12}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{12}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p>petaFLOPS</p></td>
+<tr class="row-even"><td class="text-left"><p>petaFLOPS</p></td>
 <td><p>PFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{15}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{15}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p>exaFLOPS</p></td>
+<tr class="row-odd"><td class="text-left"><p>exaFLOPS</p></td>
 <td><p>EFLOPS</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(10^{18}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(10^{18}\)</span></p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 </section>
 </section>
 <section id="razoes-para-estudar-metodos-numericos-na-era-digital">
-<h2><span class="section-number">2.3. </span>Razões para estudar métodos numéricos na era digital<a class="headerlink" href="#razoes-para-estudar-metodos-numericos-na-era-digital" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.3. </span>Razões para estudar métodos numéricos na era digital<a class="headerlink" href="#razoes-para-estudar-metodos-numericos-na-era-digital" title="Link to this heading">#</a></h2>
 <p>Como temos visto, métodos numéricos estão entremeados em diversos campos de interesse. Além do que já expusemos, há outros motivos para empreender uma jornada de aprendizado em métodos numéricos. Entre eles, podemos citar:</p>
 <ul class="simple">
 <li><p><em>Ampliação das ferramentas de resolução</em>: permite lidar com grandes sistemas de equações, problemas não lineares e geometrias complexas, difíceis de tratar por métodos analíticos tradicionais.</p></li>
@@ -1032,7 +665,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </ul>
 </div>
 <section id="regimes-de-dados">
-<h3><span class="section-number">2.3.1. </span>Regimes de dados<a class="headerlink" href="#regimes-de-dados" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>Regimes de dados<a class="headerlink" href="#regimes-de-dados" title="Link to this heading">#</a></h3>
 <p>O conceito de regime de dados emergiu para tipificar a escala de dados com que uma organização ou sistema lida, impactando diretamente as técnicas e abordagens utilizadas para processá-los. Em um cenário tradicional, os dados são tratados em regimes pequenos, onde podem ser facilmente armazenados e processados por sistemas convencionais, utilizando ferramentas e bancos de dados tradicionais. No entanto, conforme o volume e a complexidade dos dados aumentam, os sistemas precisam ser ajustados para lidar com regimes maiores. Atualmente, são 3 os principais termos usados para definir o regime de dados no contexto da engenharia computacional (<a class="reference internal" href="#fig-dataregime"><span class="std std-numref">Fig. 2.1</span></a>):</p>
 <ul class="simple">
 <li><p><em>Small data</em>: quando existem pouquíssimos dados sobre os fenômenos físicos fundamentais. Neste regime, métodos clássicos são mais intensos do que aqueles guiados por dados.</p></li>
@@ -1041,15 +674,16 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </ul>
 <p>Existem diversas áreas em que o <em>big data</em> é uma realidade, como o e-commerce e o marketing digital, onde é possível, por exemplo, desenvolver sistemas de recomendação a partir do volume de dados circulados sobre clientes. O <em>middle data</em> ocorre em algumas áreas da saúde, por exemplo, onde se conhece com algum grau explicativo uma doença, ou reações desencadeadas por compostos químicos. Na área de petróleo e gás, predomina o <em>small data</em> principalmente em áreas geológicas não exploradas, onde são necessários estudos sísmicos detalhados para mapear o local.</p>
 <figure class="align-default" id="fig-dataregime">
-<a class="reference internal image-reference" href="../_images/data-regime.png"><img alt="../_images/data-regime.png" src="../_images/data-regime.png" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/data-regime.png"><img alt="../_images/data-regime.png" src="../_images/data-regime.png" style="width: 350px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Visão holística dos regimes de dados em engenharia computacional: fatias de participação, áreas de competência e características.</span><a class="headerlink" href="#fig-dataregime" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Visão holística dos regimes de dados em engenharia computacional: fatias de participação, áreas de competência e características.</span><a class="headerlink" href="#fig-dataregime" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="vertentes-profissionais">
-<h2><span class="section-number">2.4. </span>Vertentes profissionais<a class="headerlink" href="#vertentes-profissionais" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.4. </span>Vertentes profissionais<a class="headerlink" href="#vertentes-profissionais" title="Link to this heading">#</a></h2>
 <p>Neste <em>ebook</em>, compreendemos que o caminho dos métodos numéricos pende para duas vertentes principais:</p>
 <ul class="simple">
 <li><p><em>Análise numérica</em>. A análise numérica gera profissionais com inclinação acentuada para a matemática. Um analista numéricO estará voltado para o estudo teórico e prático de algoritmos usados para resolver problemas contínuos e discretos. Seu foco está em entender profundamente a convergência, estabilidade, consistência e propagação de erros nos métodos, muitas vezes com suporte de teoremas matemáticos que garantem a validade e a eficiência das técnicas numéricas. Este perfil é essencial em contextos onde se exige uma justificativa rigorosa da confiabilidade dos métodos aplicados — como em modelagens físicas críticas, validações de simulações ou em desenvolvimento de novos algoritmos para problemas mal-condicionados.</p></li>
@@ -1057,7 +691,8 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
 </ul>
 <p>Ambas as vertentes são relevantes e complementares, mas a segunda tende a se adaptar melhor ao currículo oferecido às formações para as quais este <em>ebook</em> está direcionado. Por este motivo, não se verá no conteúdo posterior discussões extensas sobre os aspectos teóricos dos métodos numéricos.</p>
 <figure class="align-default" id="fig-profile">
-<a class="reference internal image-reference" href="../_images/profiles-ai.png"><img alt="../_images/profiles-ai.png" src="../_images/profiles-ai.png" style="width: 250px;" /></a>
+<a class="reference internal image-reference" href="../_images/profiles-ai.png"><img alt="../_images/profiles-ai.png" src="../_images/profiles-ai.png" style="width: 250px;" />
+</a>
 </figure>
 </section>
 </section>
@@ -1074,7 +709,7 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./ipynb"
         },
         predefinedOutput: true
@@ -1082,50 +717,123 @@ v(t) = \dfrac{mg}{c} \left(1 - e^{-\dfrac{c}{m}t}\right),
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="aula-00-modelagem-programacao.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="aula-00-modelagem-programacao.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="aula-02-erros.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="aula-02-erros.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">3. </span>Do Contínuo ao Computável: Discretização e Erros Numéricos</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucoes-exatas-vs-solucoes-aproximadas">2.1. Soluções exatas vs. soluções aproximadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-formula-de-bhaskara">2.1.1. A fórmula de Bhaskara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-formula-de-hagen-poiseuille">2.1.2. A fórmula de Hagen-Poiseuille</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-sem-solucao-exata">2.1.3. Casos sem solução exata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">2.1.4. Motivação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">2.1.5. Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-historica-dos-metodos-numericos-e-da-computacao-de-alto-desempenho">2.2. Evolução histórica dos métodos numéricos e da computação de alto desempenho</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-de-alto-desempenho">2.2.1. Computação de alto desempenho</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flops">2.2.1.1. FLOPS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#razoes-para-estudar-metodos-numericos-na-era-digital">2.3. Razões para estudar métodos numéricos na era digital</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regimes-de-dados">2.3.1. Regimes de dados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vertentes-profissionais">2.4. Vertentes profissionais</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Prof. Gustavo Oliveira<br/>
-  
-      &copy; Copyright 2025.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
