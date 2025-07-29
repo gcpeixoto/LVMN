@@ -21,5 +21,5 @@ def extract_outline_from_ipynb(ipynb_path, output_path=None):
 
 
 # Usage:
-file = "../ipynb/aula-06-matrizes-vetores.ipynb"
+file = "../ipynb/aula-07-fatoracao-lu.ipynb"
 extract_outline_from_ipynb(file, 'outline.txt')

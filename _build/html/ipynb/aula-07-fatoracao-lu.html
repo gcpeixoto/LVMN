@@ -1,0 +1,1462 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-07-fatoracao-lu';</script>
+    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Session 1: roots e polyval" href="code-sessions/codeSession-1-polyval.html" />
+    <link rel="prev" title="7. Do Vetor ao Array: Computação Vetorizada Na Prática" href="aula-06-matrizes-vetores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="conteudo.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula-06-matrizes-vetores.html">7. Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">9. Números em ponto flutuante e seus problemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">10. Método da Iteração Linear (Ponto Fixo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">11. Implementação do método da secante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">12. Raízes de polinômios com o método de Müller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">13. Processamento de sinais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">14. Otimização de código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">15. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">16. Malhas numéricas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">17. Campos de direção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">18. Variações do Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">19. Estabilidade Numérica para o Método de Euler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">20. Método de Euler Implícito</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">21. Métodos de Adams-Bashfort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">22. EDOs de ordem superior (redução de ordem)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">23. Sistemas de EDOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">24. Método das Linhas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">25. Documentação de código</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-07-fatoracao-lu.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ipynb/aula-07-fatoracao-lu.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-diretos">8.1. Métodos diretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-de-matrizes">8.1.1. Fatoração de matrizes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-lu-por-substituicao-de-recorrencia">8.2. Fatoração LU por substituição de recorrência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-da-fatoracao-lu">8.3. Algoritmo da fatoração LU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">8.3.1. Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-computacional">8.3.2. Implementação computacional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao-de-sistemas-com-scipy-linalg">8.4. Resolução de sistemas com <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacao-da-solucao">8.4.1. Verificação da solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacao-gaussiana">8.5. Eliminação Gaussiana</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicionamento-de-matrizes">8.6. Condicionamento de matrizes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-gauss-jordan">8.7. Método de Gauss-Jordan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sistemas-lineares-na-pratica-computacional-metodos-diretos-e-fatoracao-lu">
+<h1><span class="section-number">8. </span>Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU<a class="headerlink" href="#sistemas-lineares-na-pratica-computacional-metodos-diretos-e-fatoracao-lu" title="Link to this heading">#</a></h1>
+<div class="chapter-thumb">
+    <div class="chapter-oa">
+        <h2>Objetivos de aprendizagem</h2>
+        <ul>
+        <li>Compreender os fundamentos dos métodos diretos para a resolução de sistemas lineares e sua relação com a fatoração de matrizes.; </li>
+	    <li>Aplicar a fatoração LU como estratégia eficiente para resolver sistemas lineares;</li>
+	    <li>Implementar algoritmos de fatoração LU e resolver sistemas computacionalmente;</li>	    
+        <li>Analisar o condicionamento de matrizes e compreender seu impacto na estabilidade numérica das soluções computacionais;</li>
+        </ul>
+    </div>        
+    <div class="quote-box">
+        <p><em>""
+        </p></em>
+    </div>        
+</div><section id="metodos-diretos">
+<h2><span class="section-number">8.1. </span>Métodos diretos<a class="headerlink" href="#metodos-diretos" title="Link to this heading">#</a></h2>
+<p>A resolução de sistemas lineares é uma das tarefas mais fundamentais da engenharia computacional, estando no cerne de aplicações que vão desde a análise estrutural até a simulação de escoamentos e processos térmicos. Um sistema linear é tipicamente representado na forma matricial <span class="math notranslate nohighlight">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span>, onde <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> é uma matriz de coeficientes conhecida, <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> é um vetor de termos independentes conhecido, e <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> é o vetor de incógnitas a ser determinado. Para resolver esse tipo de problema, pode-se recorrer a métodos iterativos ou diretos. Os métodos diretos visam encontrar a solução exata (dentro dos limites da precisão numérica da máquina) por meio de um número finito de operações. Esses métodos são preferidos quando a matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> é de tamanho moderado e bem condicionada, pois permitem resolver o sistema com robustez e sem necessidade de aproximações sucessivas.</p>
+<section id="fatoracao-de-matrizes">
+<h3><span class="section-number">8.1.1. </span>Fatoração de matrizes<a class="headerlink" href="#fatoracao-de-matrizes" title="Link to this heading">#</a></h3>
+<p>O conceito de fatoração em álgebra linear tem forte analogia com a fatoração algébrica aprendida ainda no ensino médio, como quando escrevemos <span class="math notranslate nohighlight">\(x^2 - 9\)</span> como <span class="math notranslate nohighlight">\((x - 3)(x + 3)\)</span>, ou <span class="math notranslate nohighlight">\(x^2 + 5x + 6\)</span> como <span class="math notranslate nohighlight">\((x + 2)(x + 3)\)</span>. Nessas expressões, decompor um polinômio em fatores mais simples permite resolver equações com mais facilidade. Da mesma forma, na álgebra matricial, a fatoração de uma matriz busca expressar uma matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> como o produto de duas ou mais matrizes com estrutura conhecida e propriedades computacionalmente vantajosas. Por exemplo, dada uma matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} =\begin{bmatrix}2 &amp; 4 \\4 &amp; 10\end{bmatrix},\end{split}\]</div>
+<p>podemos reescrevê-la como o produto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} = \mathbf{L} \mathbf{U} =\begin{bmatrix}1 &amp; 0 \\2 &amp; 1\end{bmatrix} = \begin{bmatrix} 2 &amp; 4 \\ 0 &amp; 2 \end{bmatrix},\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> é uma matriz triangular inferior com 1s na diagonal, e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> é uma matriz triangular superior. Essa fatoração, em particular, é chamada de <em>fatoração LU</em>, que generaliza a ideia da eliminação Gaussiana, de transformar a matriz densa associada ao sistema em uma matriz triangular superior, para facilitar a resolução. Essa técnica é especialmente poderosa e serve como base para variações mais sofisticadas, como a fatoração com pivotamento e a decomposição de Cholesky para matrizes simétricas positivas definidas. O quadro abaixo resume os principais esquemas de fatoração conhecidos e as condições de funcionamento.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fatoração</p></th>
+<th class="head"><p>Forma da Decomposição</p></th>
+<th class="head"><p>Condições / Observações</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LU (genérica)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span></p></td>
+<td><p>A quadrada e não singular. Pode requerer pivotamento para estabilidade.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LU de Doolittle</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span>, com <span class="math notranslate nohighlight">\(\textrm{diag}(L) = 1\)</span></p></td>
+<td><p>A quadrada. <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> com 1s na diagonal; facilita implementação.</p></td>
+</tr>
+<tr class="row-even"><td><p>LU de Crout</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span>, com <span class="math notranslate nohighlight">\(\textrm{diag}(U) = 1\)</span></p></td>
+<td><p>A quadrada. <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> com 1s na diagonal; alternativa ao Doolittle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LU com pivotamento</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{P}\mathbf{A} = \mathbf{LU}\)</span> ou <span class="math notranslate nohighlight">\(\mathbf{PAQ}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span></p></td>
+<td><p>Usa permutação <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> para melhorar estabilidade numérica.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cholesky</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LL}^T\)</span></p></td>
+<td><p>A simétrica, definida positiva. Muito eficiente; reduz pela metade o custo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LDL<span class="math notranslate nohighlight">\(^T\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LDL}^T\)</span></p></td>
+<td><p>A simétrica. <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> é diagonal; útil em substituição ao Cholesky quando <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> não é positiva definida.</p></td>
+</tr>
+<tr class="row-even"><td><p>QR</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A} = QR\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> ortogonal, <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> triangular superior. Muito usada em problemas de mínimos quadrados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thomas</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span> otimizada</p></td>
+<td><p>Para matrizes tridiagonais. Complexidade linear <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p>LU blocada</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{LU}\)</span>, por blocos</p></td>
+<td><p>Usado para matrizes muito grandes ou estruturadas em blocos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SVD</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> = <span class="math notranslate nohighlight">\(\mathbf{U\Sigma V}^T\)</span></p></td>
+<td><p>Decomposição de valores singulares. Mais geral, usada em problemas mal-condicionados.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Neste capítulo, exploraremos o processo de <em>fatoração LU de Doolittle</em> cujo algoritmo busca resolver o sistema <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>, em duas etapas principais. Ambas as etapas envolvem apenas substituições diretas — progressiva e regressiva — que são muito mais eficientes do ponto de vista computacional do que operar diretamente com <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Assim, a fatoração transforma o problema original em uma sequência de tarefas mais simples e rápidas de resolver, além de permitir reaproveitamento em casos com múltiplos vetores <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p>
+</section>
+</section>
+<section id="fatoracao-lu-por-substituicao-de-recorrencia">
+<h2><span class="section-number">8.2. </span>Fatoração LU por substituição de recorrência<a class="headerlink" href="#fatoracao-lu-por-substituicao-de-recorrencia" title="Link to this heading">#</a></h2>
+<p>Consideraremos que as matrizes triangulares inferiores <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> sempre terão a sua diagonal principal formada por entradas iguais a 1.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix} = \mathbf{L}\mathbf{U}\end{split}\]</div>
+<p>onde</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf L} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+L_{21} &amp; 1 &amp; 0\\
+L_{31} &amp; L_{32} &amp; 1
+\end{bmatrix}
+\quad \text{e} \quad
+{\bf U} = \begin{bmatrix}
+U_{11} &amp; U_{12} &amp; U_{13}\\
+0 &amp; U_{22} &amp; U_{23}\\
+0 &amp; 0 &amp; U_{33}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Multiplicando <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{U}\)</span> e definindo a resposta igual a <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> temos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+U_{11} &amp; U_{12} &amp; U_{13}\\
+L_{21} U_{11} &amp; L_{21} U_{12} + U_{22} &amp; L_{21} U_{13} + U_{23}\\
+L_{31} U_{11} &amp; L_{31} U_{12} + L_{32} U_{22} &amp; L_{31} U_{13} + L_{32} U_{23} + U_{33}
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix}
+\end{split}\]</div>
+<p>Agora, através de substituição de recorrência, facilmente encontramos <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+{\bf A} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+3 &amp; 8 &amp; 14\\
+2 &amp; 6 &amp; 13
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="algoritmo-da-fatoracao-lu">
+<h2><span class="section-number">8.3. </span>Algoritmo da fatoração LU<a class="headerlink" href="#algoritmo-da-fatoracao-lu" title="Link to this heading">#</a></h2>
+<p>Uma vez decomposta a matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> no produto <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{U}\)</span>, podemos obter a solução <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> de forma direta. O procedimento, equivalente à substituição de recorrência mencionada anteriormente, pode ser resumido como segue: dada <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, encontre <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> tal que <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{L}\mathbf{U}\)</span>, ou seja, <span class="math notranslate nohighlight">\((\mathbf{L}\mathbf{U})\mathbf{x} = \mathbf{b}\)</span>. Em outras palavras:</p>
+<ul class="simple">
+<li><p>Defina <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{U}\mathbf{x}\)</span>.</p></li>
+<li><p>Resolva o sistema triangular <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{y} = \mathbf{b}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p></li>
+<li><p>Finalmente, resolva o sistema triangular <span class="math notranslate nohighlight">\(\mathbf{U}\mathbf{x} = \mathbf{y}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
+</ul>
+<p>O benefício desta abordagem é a resolução de somente sistemas triangulares. Por outro lado, o custo empregado é termos de resolver dois sistemas.</p>
+<section id="exemplo">
+<h3><span class="section-number">8.3.1. </span>Exemplo<a class="headerlink" href="#exemplo" title="Link to this heading">#</a></h3>
+<p>Encontre a solução <span class="math notranslate nohighlight">\(\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\)</span> do sistema</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 
+1 &amp; 2 &amp; 4\\ 
+3 &amp; 8 &amp; 14\\ 
+2 &amp; 6 &amp; 13 
+\end{bmatrix} 
+\begin{bmatrix} 
+x_1 \\ x_2 \\ x_3 
+\end{bmatrix} 
+= 
+\begin{bmatrix} 
+3 \\ 13 \\ 4
+\end{bmatrix}.
+\end{split}\]</div>
+<ul class="simple">
+<li><p>As matrizes <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> já foram obtidas anteriormente.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{L} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix},
+\quad 
+\mathbf{U} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p>A próxima etapa é resolver <span class="math notranslate nohighlight">\(\mathbf{L}\mathbf{y} = \mathbf{b}\)</span>, para o vetor <span class="math notranslate nohighlight">\(\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{L}\mathbf{y} = \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+3 &amp; 1 &amp; 0\\
+2 &amp; 1 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+y_1 \\ y_2 \\ y_3
+\end{bmatrix} =
+\begin{bmatrix}
+3 \\ 13 \\ 4
+\end{bmatrix} = \mathbf{b}\end{split}\]</div>
+<p>Este sistema pode ser resolvido por substituição direta, obtendo <span class="math notranslate nohighlight">\(\mathbf{y} = \begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}\)</span>.</p>
+<ul class="simple">
+<li><p>Agora que encontramos <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, concluímos o procedimento resolvendo <span class="math notranslate nohighlight">\(\mathbf{U}\mathbf{x} = \mathbf{y}\)</span> para <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Ou seja, resolvemos:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{U}\mathbf{x} = \begin{bmatrix}
+1 &amp; 2 &amp; 4\\
+0 &amp; 2 &amp; 2\\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = 
+\begin{bmatrix} 3 \\ 4 \\ -6 \end{bmatrix}
+\end{split}\]</div>
+<p>Realizando a substituição regressiva (baixo para cima; direita para esquerda), obtemos a solução do problema.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{x} = \begin{bmatrix} 3 \\ 4 \\ -2 \end{bmatrix}\end{split}\]</div>
+</section>
+<section id="implementacao-computacional">
+<h3><span class="section-number">8.3.2. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Link to this heading">#</a></h3>
+<p>Em implementações computacionais, é comum armazenar as matrizes <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> sobre a própria estrutura da matriz original, economizando memória: os elementos abaixo da diagonal representam <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> (sem armazenar os 1s da diagonal), e os elementos da diagonal para cima representam <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>. Além disso, o custo computacional da fatoração LU é da ordem de <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span> para matrizes densas, com <span class="math notranslate nohighlight">\(n\)</span> sendo o número de variáveis, mas isso pode ser reduzido consideravelmente em matrizes esparsas ou com estrutura especial (como tridiagonais).</p>
+<p>Abaixo, temos uma implementação de uma fatoração LU sem pivoteamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lu_nopivot</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Realiza fatoração LU para a matriz A</span>
+<span class="sd">    </span>
+<span class="sd">    entrada: </span>
+<span class="sd">        A  -  matriz:  array (nxn) </span>
+<span class="sd">    </span>
+<span class="sd">    saida: </span>
+<span class="sd">        L,U  - matriz triangular inferior, superior : array (nxn)         </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+        
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># dimensao</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># auxiliar </span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>        
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">l</span><span class="p">,</span><span class="n">k</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,:])</span>
+            
+    <span class="n">U</span> <span class="o">=</span> <span class="n">A</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos testar a implementação anterior para uma matriz de quarta ordem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} =
+\begin{bmatrix}
+4 &amp; -2 &amp; -3 &amp;  6 \\  
+1 &amp;  4 &amp;  2 &amp;  3 \\
+2 &amp; -3 &amp;  3 &amp; -2 \\ 
+1 &amp;  5 &amp;  3 &amp;  4
+\end{bmatrix}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">4.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">],[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">],[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="o">-</span><span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">],[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">]])</span>
+
+<span class="n">L</span><span class="p">,</span><span class="n">U</span> <span class="o">=</span> <span class="n">lu_nopivot</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[ 1.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.25      ,  1.        ,  0.        ,  0.        ],
+        [ 0.5       , -0.44444444,  1.        ,  0.        ],
+        [ 0.25      ,  1.22222222,  0.06796117,  1.        ]]),
+ array([[ 4.        , -2.        , -3.        ,  6.        ],
+        [ 0.        ,  4.5       ,  2.75      ,  1.5       ],
+        [ 0.        ,  0.        ,  5.72222222, -4.33333333],
+        [ 0.        ,  0.        ,  0.        ,  0.96116505]]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="resolucao-de-sistemas-com-scipy-linalg">
+<h2><span class="section-number">8.4. </span>Resolução de sistemas com <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code><a class="headerlink" href="#resolucao-de-sistemas-com-scipy-linalg" title="Link to this heading">#</a></h2>
+<p>Métodos adequados para a resolução de sistemas lineares e realizar operações no escopo da Álgebra Linear são encontrados no submódulo <code class="docutils literal notranslate"><span class="pre">linalg</span></code> do <code class="docutils literal notranslate"><span class="pre">scipy</span></code>. Importamos essas funcionalidades com:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linalg</span>
+</pre></div>
+</div>
+<p>Vamos calcular a solução do sistema linear <span class="math notranslate nohighlight">\({\bf A}{\bf x} = {\bf b}\)</span> com</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\bf A} = \begin{bmatrix}
+4   &amp; -2  &amp; -3   &amp; 6   &amp;  \\
+-6  &amp; 7   &amp; 6.5  &amp; -6  &amp;  \\
+1   &amp; 7.5 &amp; 6.25 &amp; 5.5 &amp;  \\
+-12 &amp; 22  &amp; 15.5 &amp; -1 
+\end{bmatrix},
+\quad
+{\bf b} = \begin{bmatrix}
+12   \\
+-6.5 \\
+16   \\
+17 
+\end{bmatrix}\end{split}\]</div>
+<p>Vamos importar os módulos e escrever a matriz <span class="math notranslate nohighlight">\({\bf A}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linalg</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">6.5</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mf">6.25</span><span class="p">,</span><span class="mf">5.5</span><span class="p">],[</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mf">15.5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  4.    -2.    -3.     6.  ]
+ [ -6.     7.     6.5   -6.  ]
+ [  1.     7.5    6.25   5.5 ]
+ [-12.    22.    15.5   -1.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora, vamos escrever o vetor <span class="math notranslate nohighlight">\({\bf b}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.  -6.5 16.  17. ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos checar as dimensões com</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dimensões de A</span>
+<span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dimensão de b</span>
+<span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>A solução do sistema pode ser obtida através do método <code class="docutils literal notranslate"><span class="pre">linalg.solve</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 2.   4.  -3.   0.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Matematicamente, a solução do sistema anterior é dada por <span class="math notranslate nohighlight">\({\bf x} = {\bf A}^{-1}{\bf b}\)</span>. Podemos até invocar a matriz inversa aqui com <code class="docutils literal notranslate"><span class="pre">linalg.inv(A).dot(b)</span></code> e a solução é a mesma que no caso anterior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 2.   4.  -3.   0.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por outro lado, este método é ineficiente. Computacionalmente, a inversão de matrizes <strong>não</strong> é aconselhável.</p>
+<section id="verificacao-da-solucao">
+<h3><span class="section-number">8.4.1. </span>Verificação da solução<a class="headerlink" href="#verificacao-da-solucao" title="Link to this heading">#</a></h3>
+<p>Podemos usar o fato de que <span class="math notranslate nohighlight">\({\bf A}{\bf A}^{-1}{\bf b} - {\bf b} = {\bf 0}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x3</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="o">-</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.42108547e-14  3.01980663e-14  2.48689958e-14  8.88178420e-14]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note que o vetor é próximo do vetor nulo, mas não identicamente nulo.</p>
+<p>Podemos também computar a <strong>norma do resíduo (erro)</strong>: <span class="math notranslate nohighlight">\(||{\bf r}|| = ||{\bf b} - {\bf A}{\bf x}|| =  \langle {\bf b} - {\bf A}{\bf x}, {\bf b} - {\bf A}{\bf x} \rangle^{1/2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(7.993605777301127e-15)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como a norma do resíduo é próxima de zero, a solução do sistema linear é assumida como correta.</p>
+</section>
+</section>
+<section id="eliminacao-gaussiana">
+<h2><span class="section-number">8.5. </span>Eliminação Gaussiana<a class="headerlink" href="#eliminacao-gaussiana" title="Link to this heading">#</a></h2>
+<p>A Eliminação Gaussiana (EG) é um algoritmo utilizado para resolver sistemas de equações lineares ao reduzir a matriz plena associada do sistema a uma matriz triangular. Este processo também é chamado de <em>escalonamento</em>. Abaixo, usaremos uma matriz genérica 3x3 para exemplificação.</p>
+<p>Os passos para a EG são os seguintes:</p>
+<ol class="arabic simple">
+<li><p>Escrever o sistema linear na forma de <em>matriz estendida</em> usando os coeficientes das variáveis como elementos da matriz e o vetor independente como sendo a última coluna;</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}a_{11}x_1+a_{12}x_2+a_{13}x_3 = b_1 \quad(L_1)\\
+a_{21}x_1+a_{22}x_2+a_{23}x_3 = b_2 \quad(L_2)\\
+a_{31}x_1+a_{32}x_2+a_{33}x_3 = b_3 \quad(L_3)\\
+\downarrow\\
+\left[
+\begin{array}{ccc|c}
+	a_{11}&amp;a_{12}&amp;a_{13}&amp;b_{1}\\
+	a_{21}&amp;a_{22}&amp;a_{23}&amp;b_{2}\\
+	a_{31}&amp;a_{32}&amp;a_{33}&amp;b_{3}
+\end{array}
+\right]
+\end{array}\end{split}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Realizar operações elementares de combinação linear e permutação entre linhas;</p></li>
+</ol>
+<ul class="simple">
+<li><p>Multiplicação por escalar:<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+L_2 \leftarrow L_2 .w\ \Rightarrow\ 
+\begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}\\
+\end{bmatrix} \rightarrow
+\begin{bmatrix}
+a_{11}&amp;a_{12}\\
+w.a_{21}&amp;w.a_{22}\\
+\end{bmatrix}
+\end{array}
+\)</span>$</p></li>
+<li><p>Combinação linear:<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+L_2 \leftarrow L_2 - L_1.w\ \Rightarrow\ 
+\begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}\\
+\end{bmatrix} \rightarrow
+\begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}-a_{11}.w&amp;a_{22}-a_{12}.w\\
+\end{bmatrix}
+\end{array}
+\)</span>$</p></li>
+<li><p>Permutação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+L_2 \leftarrow L_1\ e\ L_1\leftarrow L_2\ \Rightarrow\ 
+\begin{bmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}\\
+\end{bmatrix} \rightarrow
+\begin{bmatrix}
+a_{21}&amp;a_{22}\\
+a_{11}&amp;a_{12}\\
+\end{bmatrix}
+\end{array}
+\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Anular todos os elementos na porção triangular inferior da matriz original, isto é, todas as entradas exatamente abaixo das entradas dispostas na diagonal principal;</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[
+\begin{array}{ccc|c}
+	a_{11}&amp;a_{12}&amp;a_{13}&amp;b_{1}\\
+	a_{21}&amp;a_{22}&amp;a_{23}&amp;b_{2}\\
+	a_{31}&amp;a_{32}&amp;a_{33}&amp;b_{3}
+\end{array}
+\right]\ \rightarrow\ 
+\left[
+\begin{array}{ccc|c}
+	a_{11}^{(k)}&amp;a_{12}^{(k)}&amp;a_{13}^{(k)}&amp;b_{1}^{(k)}\\
+	0&amp;a_{22}^{(k)}&amp;a_{23}^{(k)}&amp;b_{2}^{(k)}\\
+	0&amp;0&amp;a_{33}^{(k)}&amp;b_{3}^{(k)}
+\end{array}
+\right]\end{split}\]</div>
+<ol class="arabic simple" start="4">
+<li><p>A partir da forma triangular, realizar a substituição regressiva.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccc|c}
+	a_{11}^{(k)}&amp;a_{12}^{(k)}&amp;a_{13}^{(k)}&amp;b_{1}^{(k)}\\
+	0&amp;a_{22}^{(k)}&amp;a_{23}^{(k)}&amp;b_{2}^{(k)}\\
+	0&amp;0&amp;a_{33}^{(k)}&amp;b_{3}^{(k)}
+\end{array}
+\right]\ \rightarrow\ 
+\left\{
+\begin{array}{c}
+x_3 = \frac{b_3^{(k)}}{a_{33}^{(k)}},\ a_{33}^{(k)} \neq 0\\\\
+x_2 = \frac{b_2^{(k)}-a_{23}^{(k)}.x_3}{a_{22}^{(k)}},\ a_{22}^{(k)} \neq 0\\\\
+x_1 = \frac{b_1^{(k)}-a_{12}^{(k)}.x_2-a_{13}^{(k)}.x_3}{a_{11}^{(k)}},\ a_{11}^{(k)} \neq 0\\\\
+\end{array}
+\right.
+\end{split}\]</div>
+<p>Vejamos um exemplo numérico de como funciona a Eliminação Gaussiana.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matriz</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.   1.5 -2. ]
+ [ 2.   1.  -1. ]
+ [ 3.  -1.   2. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># zeramento da segunda linha </span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">m1</span><span class="o">*</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.   1.5 -2. ]
+ [ 0.  -2.   3. ]
+ [ 3.  -1.   2. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># zeramento da terceira linha</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">m2</span><span class="o">*</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.   1.5 -2. ]
+ [ 0.  -2.   3. ]
+ [ 0.  -5.5  8. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># eliminação</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">pivo</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>                        
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">pivo</span><span class="o">*</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>            
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.5  -2.  ]
+ [ 0.   -2.    3.  ]
+ [ 0.    0.   -0.25]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># função simples para eliminação</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">eliminacao</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">pivo</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>                        
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">pivo</span><span class="o">*</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matriz randômica 5x5</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eliminacao</span><span class="p">(</span><span class="n">M2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.26322677  0.17317725  0.55391175  0.52701218  0.90831928]
+ [ 0.          0.59223283  0.54239128  0.17315164 -0.11651073]
+ [ 0.          0.          0.47207176  0.40849469  0.21907946]
+ [ 0.          0.          0.         -0.62577315 -0.89987426]
+ [ 0.          0.          0.          0.         -1.87176104]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="condicionamento-de-matrizes">
+<h2><span class="section-number">8.6. </span>Condicionamento de matrizes<a class="headerlink" href="#condicionamento-de-matrizes" title="Link to this heading">#</a></h2>
+<p>O condicionamento de uma matriz está relacionado à sensibilidade da solução de um sistema linear <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> a pequenas perturbações nos dados, sejam elas no vetor <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> ou nos coeficientes da própria matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Uma matriz é considerada <em>bem condicionada</em> quando pequenas variações em <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> produzem pequenas variações na solução <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>; caso contrário, diz-se que a matriz é <em>mal condicionada</em>, o que compromete a estabilidade numérica e a confiabilidade da solução computacional.</p>
+<p>O número de condição da matriz, denotado por <span class="math notranslate nohighlight">\(\kappa(\mathbf{A})\)</span>, é uma medida quantitativa desse comportamento, sendo definido, por exemplo, como</p>
+<div class="math notranslate nohighlight">
+\[\kappa(\mathbf{A}) = \|\mathbf{A}\| \cdot \|\mathbf{A}^{-1}\|\]</div>
+<p>para uma dada norma. Quanto maior esse número, pior o condicionamento. Em problemas de engenharia e ciências aplicadas, identificar o condicionamento da matriz é fundamental para avaliar a precisão da solução e escolher algoritmos adequados, como métodos com pivotamento ou regularizações.</p>
+<p>Vejamos como pequenas “perturbações” em matrizes podem provocar mudanças drásticas nas soluções de sistemas. Isto ocorre quando temos um problema <em>mal condicionado</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mf">1.1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;vetor&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matriz
+[[1.  2. ]
+ [1.1 2. ]]
+vetor
+[10.  10.4]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solução do sistema A1x1 = b1</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span><span class="n">b1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4. 3.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mf">0.045</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mf">1.1</span><span class="o">-</span><span class="n">d</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;vetor&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matriz
+[[1.    2.   ]
+ [1.055 2.   ]]
+vetor
+[10.  10.4]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solução do sistema perturbado A2x1 = b2</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span><span class="n">b2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.27272727 1.36363636]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A solução muda drasticamente aqui! Isto se deve à quase dependência linear em que a matriz se encontra. Ou seja, <span class="math notranslate nohighlight">\(\det({\bf A}_2) \approx 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A1</span><span class="p">),</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.20000000000000018 -0.11000000000000032
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(169.2838804582743)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-gauss-jordan">
+<h2><span class="section-number">8.7. </span>Método de Gauss-Jordan<a class="headerlink" href="#metodo-de-gauss-jordan" title="Link to this heading">#</a></h2>
+<p>O método de Gauss-Jordan é uma variação da EG, em que não apenas as entradas da porção inferior da matriz plena do sistema são anuladas, mas também as entradas da porção superior, resultando em uma matriz diagonal.</p>
+<p>Além disso, todas as linhas são normalizadas através da sua divisão pelo respectivo elemento pivô. Por exemplo, <span class="math notranslate nohighlight">\(a_{11}\)</span> é o elemento pivô da primeira equação, <span class="math notranslate nohighlight">\(a_{22}\)</span> da segunda, e assim por diante). A partir daí, a obtenção dos valores das variáveis é imediata.</p>
+<p>O método é melhor ilustrado no seguinte exemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz aumentada</span>
+<span class="n">AB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">7.85</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">71.4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  3.    -0.1   -0.2    7.85]
+ [  0.1    7.    -0.3  -19.3 ]
+ [  0.3   -0.2   10.    71.4 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalização da 1a. linha</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">/=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># L1 &lt;- L1/a11</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00000000e+00 -3.33333333e-02 -6.66666667e-02  2.61666667e+00]
+ [ 1.00000000e-01  7.00000000e+00 -3.00000000e-01 -1.93000000e+01]
+ [ 3.00000000e-01 -2.00000000e-01  1.00000000e+01  7.14000000e+01]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminação de x1 da 2a. e 3a. linhas</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m1</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="c1"># L2 &lt;- L2 - m1*L1</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m2</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="c1"># L3 &lt;- L3 - m2*L1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00000000e+00 -3.33333333e-02 -6.66666667e-02  2.61666667e+00]
+ [ 0.00000000e+00  7.00333333e+00 -2.93333333e-01 -1.95616667e+01]
+ [ 0.00000000e+00 -1.90000000e-01  1.00200000e+01  7.06150000e+01]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalização da 2a. linha</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">/=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># L2 &lt;- L2/a22</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00000000e+00 -3.33333333e-02 -6.66666667e-02  2.61666667e+00]
+ [ 0.00000000e+00  1.00000000e+00 -4.18848168e-02 -2.79319372e+00]
+ [ 0.00000000e+00 -1.90000000e-01  1.00200000e+01  7.06150000e+01]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminação de x2 da 1a. e 3a. linhas</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m3</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1"># L1 &lt;- L1 - m3*L2  </span>
+<span class="n">m4</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m4</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1"># L3 &lt;- L3 - m4*L2 </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00000000e+00  0.00000000e+00 -6.80628272e-02  2.52356021e+00]
+ [ 0.00000000e+00  1.00000000e+00 -4.18848168e-02 -2.79319372e+00]
+ [ 0.00000000e+00  0.00000000e+00  1.00120419e+01  7.00842932e+01]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalização da 3a. linha</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="o">/=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># L3 &lt;- L3/a33</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.          0.         -0.06806283  2.52356021]
+ [ 0.          1.         -0.04188482 -2.79319372]
+ [ 0.          0.          1.          7.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminação de x3 da 1a. e 2a. linhas</span>
+<span class="n">m5</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m5</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="c1"># L1 &lt;- L1 - m5*L3</span>
+<span class="n">m6</span> <span class="o">=</span> <span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">m6</span><span class="o">*</span><span class="n">AB</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="c1"># L2 &lt;- L2 - m5*L3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.   0.   0.   3. ]
+ [ 0.   1.   0.  -2.5]
+ [ 0.   0.   1.   7. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do último resultado, vemos que a matriz identidade é obtida, apontando para o vetor solução <span class="math notranslate nohighlight">\([3 \ \ -2.5 \ \ 7]^T\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ipynb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="aula-06-matrizes-vetores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="code-sessions/codeSession-1-polyval.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-diretos">8.1. Métodos diretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-de-matrizes">8.1.1. Fatoração de matrizes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fatoracao-lu-por-substituicao-de-recorrencia">8.2. Fatoração LU por substituição de recorrência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-da-fatoracao-lu">8.3. Algoritmo da fatoração LU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">8.3.1. Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-computacional">8.3.2. Implementação computacional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucao-de-sistemas-com-scipy-linalg">8.4. Resolução de sistemas com <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacao-da-solucao">8.4.1. Verificação da solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacao-gaussiana">8.5. Eliminação Gaussiana</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicionamento-de-matrizes">8.6. Condicionamento de matrizes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-gauss-jordan">8.7. Método de Gauss-Jordan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Gustavo Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
