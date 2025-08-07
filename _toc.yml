@@ -12,8 +12,7 @@ parts:
   - file: ipynb/aula-05-newton
   - file: ipynb/aula-06-matrizes-vetores
   - file: ipynb/aula-07-fatoracao-lu
-#   - file: ipynb/aula-11-cholesky
-#   - file: ipynb/aula-12-jacobi
+  - file: ipynb/aula-08-jacobi-seidel
 #   - file: ipynb/aula-13-newton-nao-linear
 #   - file: ipynb/aula-14-interpolacao-lagrange
 #   - file: ipynb/aula-15-interpolacao-newton

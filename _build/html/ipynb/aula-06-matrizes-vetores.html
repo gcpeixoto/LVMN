@@ -1,169 +1,114 @@
 
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>7. Do Vetor ao Array: Computação Vetorizada Na Prática &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=dddbae8f" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ipynb/aula-06-matrizes-vetores';</script>
-    <link rel="icon" href="../_static/numbiosis.png"/>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU" href="aula-07-fatoracao-lu.html" />
     <link rel="prev" title="6. Método de Newton: Sair pela Tangente sem Perder o Rumo" href="aula-05-newton.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
     
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+    <div class="container-fluid" id="banner"></div>
 
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
+    
 
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="conteudo.html">
-  
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/numbiosis.png" class="logo__image only-light" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-    <img src="../_static/numbiosis.png" class="logo__image only-dark pst-js-only" alt="Métodos Numéricos para Ciências Computacionais e Engenharia - Home"/>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -172,302 +117,883 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cadernos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula-00-modelagem-programacao.html">1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-01-introMetnum.html">2. Métodos Numéricos: Necessidade, Evolução e Profissão</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-02-erros.html">3. Do Contínuo ao Computável: Discretização e Erros Numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-03-analise-grafica.html">4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-04-bissecao.html">5. Método da Bisseção: A Arte de Cindir e Convergir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-05-newton.html">6. Método de Newton: Sair pela Tangente sem Perder o Rumo</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula-07-fatoracao-lu.html">8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Do Vetor ao
+   <em>
+    Array
+   </em>
+   : Computação Vetorizada Na Prática
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-fatoracao-lu.html">
+   8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-08-jacobi-seidel.html">
+   9. Sistemas Lineares na Prática Computacional: Métodos Iterativos
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Sessions</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-1-polyval.html"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-2-bisect.html"><em>Code Session</em> 2: <code class="docutils literal notranslate"><span class="pre">bisect</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-3-newton.html"><em>Code Session</em> 3: <code class="docutils literal notranslate"><span class="pre">newton</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-4-solve.html"><em>Code Session</em> 4: <code class="docutils literal notranslate"><span class="pre">solve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-5-fsolve.html"><em>Code Session</em> 5: <code class="docutils literal notranslate"><span class="pre">fsolve</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-6-interp.html"><em>Code Session</em> 6: Interpolação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-7-fit.html"><em>Code Session 7</em>: Ajuste de Curvas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-8-integrate.html"><em>Code Session</em> 8: Integração</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html"><em>Code Session</em> 9: Método de Euler</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
+   <em>
+    Code Session
+   </em>
+   4:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
+   <em>
+    Code Session
+   </em>
+   5:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fsolve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
+   <em>
+    Code Session
+   </em>
+   8: Integração
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios Resolvidos</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-1-solucoes.html">Lista de Exercícios 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-2-solucoes.html">Lista de Exercícios 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-3-solucoes.html">Lista de Exercícios 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-4-solucoes.html">Lista de Exercícios 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-5-solucoes.html">Lista de Exercícios 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists/lista-6-solucoes.html">Lista de Exercícios 6</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Recortes</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-01-analise-numerica.html">Recorte 1: Breve Histórico da Análise Numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-02-programacao-software.html">Recorte 2: Programação e <em>Software</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">Recorte 3: Padrão de Ponto Flutuante IEEE 754</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">Recorte 4: Dígitos significativos, precisão e acurácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">Recorte 5: Um desastre motivado por erros numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">Recorte 6: Definições de erro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">Recorte 7: Erros de medição em aparelhos de pressão arterial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">Recorte 8: Enganos, erros de formulação e incerteza nos dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">Recorte 9: Aritmética exata e números racionais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-10-hpc.html">Recorte 10: Computação de alto desempenho</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">Recorte 11: Método de Newton-Raphson para raízes múltiplas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">Recorte 12: Condicionamento e normas de matrizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">Recorte 13: Análise de erros em interpolação polinomial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">Recorte 14: Projeção ortogonal e equações normais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">Recorte 15: Fórmulas de Newton-Cotes</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFlutuante.html">9. Números em ponto flutuante e seus problemas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-pontoFixo.html">10. Método da Iteração Linear (Ponto Fixo)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-secante.html">11. Implementação do método da secante</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-muller.html">12. Raízes de polinômios com o método de Müller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-fft.html">13. Processamento de sinais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-numba.html">14. Otimização de código</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-matplotlibTopicos.html">15. Plotagem com <em>matplotlib</em>: tópicos especiais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-malhasNumericas.html">16. Malhas numéricas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-camposDirecaoEDO.html">17. Campos de direção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerMelhorado.html">18. Variações do Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-estabilidadeEuler.html">19. Estabilidade Numérica para o Método de Euler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-eulerImplicito.html">20. Método de Euler Implícito</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">21. Métodos de Adams-Bashfort</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-edoSuperior.html">22. EDOs de ordem superior (redução de ordem)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-sistemasEDO.html">23. Sistemas de EDOs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-metodo-linhas.html">24. Método das Linhas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extra/extra-docstrings.html">25. Documentação de código</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   12. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   13. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   14. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   15. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   16. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   17. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   18. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   19. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   20. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   21. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   22. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   23. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   24. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   25. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   26. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   27. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   28. Documentação de código
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
     </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
   </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-06-matrizes-vetores.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/ipynb/aula-06-matrizes-vetores.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
+  <div class="menu-dropdown__content">
+    <ul>
       <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-06-matrizes-vetores.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
 >
   
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
   </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
-
-
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/aula-06-matrizes-vetores.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Do Vetor ao Array: Computação Vetorizada Na Prática</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">7.1. Introdução</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-vetorizada">7.2. Computação vetorizada</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">7.2.1. Comprimento, tamanho e dimensão</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">7.2.2. <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compreendendo-notacoes">7.3. Compreendendo notações</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrizes-e-vetores">7.4. Matrizes e vetores</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transposicao">7.4.1. Transposição</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teste-de-igualdade">7.4.2. Teste de igualdade</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-fundamentais">7.5. Operações fundamentais</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao-e-subtracao">7.5.1. Adição e subtração</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">7.5.2. Produto interno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma-de-vetor">7.5.3. Norma de vetor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-matrizes">7.5.4. Produto de matrizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">7.5.5. Produto entre matriz e vetor</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">7.6. Demais operações com <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinante">7.6.1. Determinante</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-uma-matriz">7.6.2. Inversa de uma matriz</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-matriz">7.6.3. Inversa de matriz</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algumas-matrizes-especiais">7.7. Algumas matrizes especiais</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nula">7.7.1. Nula</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identidade">7.7.2. Identidade</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uns">7.7.3. Matriz de “uns”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangular-inferior">7.7.4. Triangular inferior</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangular-superior">7.7.5. Triangular superior</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-e-autovetores">7.8. Autovalores e autovetores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#somas-e-valores-extremos">7.9. Somas e valores extremos</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   7.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacao-vetorizada">
+   7.2. Computação vetorizada
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">
+     7.2.1. Comprimento, tamanho e dimensão
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy">
+     7.2.2.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       numpy
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compreendendo-notacoes">
+   7.3. Compreendendo notações
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrizes-e-vetores">
+   7.4. Matrizes e vetores
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transposicao">
+     7.4.1. Transposição
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-igualdade">
+     7.4.2. Teste de igualdade
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operacoes-fundamentais">
+   7.5. Operações fundamentais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicao-e-subtracao">
+     7.5.1. Adição e subtração
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-interno">
+     7.5.2. Produto interno
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#norma-de-vetor">
+     7.5.3. Norma de vetor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-de-matrizes">
+     7.5.4. Produto de matrizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">
+     7.5.5. Produto entre matriz e vetor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">
+   7.6. Demais operações com
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     numpy.linalg
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determinante">
+     7.6.1. Determinante
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-uma-matriz">
+     7.6.2. Inversa de uma matriz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-matriz">
+     7.6.3. Inversa de matriz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algumas-matrizes-especiais">
+   7.7. Algumas matrizes especiais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nula">
+     7.7.1. Nula
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identidade">
+     7.7.2. Identidade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matriz-de-uns">
+     7.7.3. Matriz de “uns”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-inferior">
+     7.7.4. Triangular inferior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-superior">
+     7.7.5. Triangular superior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   7.8. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#somas-e-valores-extremos">
+   7.9. Somas e valores extremos
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Do Vetor ao Array: Computação Vetorizada Na Prática</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducao">
+   7.1. Introdução
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacao-vetorizada">
+   7.2. Computação vetorizada
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">
+     7.2.1. Comprimento, tamanho e dimensão
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy">
+     7.2.2.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       numpy
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compreendendo-notacoes">
+   7.3. Compreendendo notações
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrizes-e-vetores">
+   7.4. Matrizes e vetores
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transposicao">
+     7.4.1. Transposição
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-igualdade">
+     7.4.2. Teste de igualdade
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operacoes-fundamentais">
+   7.5. Operações fundamentais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicao-e-subtracao">
+     7.5.1. Adição e subtração
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-interno">
+     7.5.2. Produto interno
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#norma-de-vetor">
+     7.5.3. Norma de vetor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-de-matrizes">
+     7.5.4. Produto de matrizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">
+     7.5.5. Produto entre matriz e vetor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">
+   7.6. Demais operações com
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     numpy.linalg
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determinante">
+     7.6.1. Determinante
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-uma-matriz">
+     7.6.2. Inversa de uma matriz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inversa-de-matriz">
+     7.6.3. Inversa de matriz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algumas-matrizes-especiais">
+   7.7. Algumas matrizes especiais
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nula">
+     7.7.1. Nula
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identidade">
+     7.7.2. Identidade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matriz-de-uns">
+     7.7.3. Matriz de “uns”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-inferior">
+     7.7.4. Triangular inferior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangular-superior">
+     7.7.5. Triangular superior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autovalores-e-autovetores">
+   7.8. Autovalores e autovetores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#somas-e-valores-extremos">
+   7.9. Somas e valores extremos
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+              <div>
+                
   <div class="cell tag_remove-input docutils container">
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="do-vetor-ao-array-computacao-vetorizada-na-pratica">
-<h1><span class="section-number">7. </span>Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática<a class="headerlink" href="#do-vetor-ao-array-computacao-vetorizada-na-pratica" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Do Vetor ao <em>Array</em>: Computação Vetorizada Na Prática<a class="headerlink" href="#do-vetor-ao-array-computacao-vetorizada-na-pratica" title="Permalink to this headline">#</a></h1>
 <div class="chapter-thumb">
     <div class="chapter-oa">
         <h2>Objetivos de aprendizagem</h2>
@@ -483,15 +1009,14 @@
         </p></em>
     </div>        
 </div><section id="introducao">
-<h2><span class="section-number">7.1. </span>Introdução<a class="headerlink" href="#introducao" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Introdução<a class="headerlink" href="#introducao" title="Permalink to this headline">#</a></h2>
 <p>Matrizes e vetores são estruturas fundamentais nas ciências aplicadas, em especial na engenharia e na computação, pois oferecem uma linguagem unificada para modelar sistemas, representar dados e realizar cálculos eficientes. Do ponto de vista algébrico, vetores podem representar estados de um sistema, enquanto matrizes atuam como operadores que transformam esses estados — como em sistemas de equações lineares usados para modelar circuitos elétricos, fluxos de calor ou estruturas mecânicas. Na economia, vetores podem representar cestas de bens ou variáveis macroeconômicas, e matrizes podem modelar interações entre setores produtivos em modelos insumo-produto. Já em engenharia computacional, matrizes são onipresentes em métodos numéricos para resolução de equações diferenciais que modela um problema físico e são discretizadas em sistemas lineares matriciais.</p>
 <p>No plano geométrico, vetores representam pontos ou direções em espaços de qualquer dimensão, enquanto matrizes podem ser interpretadas como transformações lineares — rotações, escalamentos ou projeções — aplicadas a esses vetores. Essa visão é central, por exemplo, na computação gráfica, onde transformações matriciais controlam a renderização de cenas tridimensionais. Já na ciência de dados e no processamento de sinais, vetores de alta dimensão representam amostras de áudio, imagens ou vídeos — com cada dimensão correspondendo a um pixel, uma intensidade sonora, ou uma característica extraída. A manipulação de dados n-dimensionais, por meio de operações matriciais como multiplicação, decomposição ou diagonalização, é essencial para reduzir dimensionalidade (como na análise de componentes principais), filtrar ruído, identificar padrões e treinar modelos de aprendizado de máquina. Assim, além de seu papel teórico, matrizes e vetores são ferramentas práticas para interpretar, simular e interagir com os fenômenos complexos do mundo real.</p>
 <p>Neste capítulo, mostraremos como realizar operações básicas entre matrizes e vetores usando o computador como utilidade para a compreensão de armazenamento de dados principalmente em estruturas uni ou bidimensionais. O estudo da relação entre algoritmos e métodos computacionais para trabalhar eficientemente com matrizes e vetores é realizado no âmbito da <em>Álgebra Linear Computacional</em>, porém, aqui, enfantizaremos aplicações práticas e o uso de operações comuns.</p>
 <figure class="align-default" id="fig-matrix-world">
-<a class="reference internal image-reference" href="../_images/matrix-world.png"><img alt="../_images/matrix-world.png" src="../_images/matrix-world.png" style="width: 550px;" />
-</a>
+<a class="reference internal image-reference" href="../_images/matrix-world.png"><img alt="../_images/matrix-world.png" src="../_images/matrix-world.png" style="width: 550px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">“O mundo das matrizes”: ilustração produzida por Kenji Hiranabe e Gilbert Strang para o livro <a class="reference external" href="https://math.mit.edu/~gs/everyone/"><em>Linear Algebra for Everyone</em></a>.</span><a class="headerlink" href="#fig-matrix-world" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">“O mundo das matrizes”: ilustração produzida por Kenji Hiranabe e Gilbert Strang para o livro <a class="reference external" href="https://math.mit.edu/~gs/everyone/"><em>Linear Algebra for Everyone</em></a>.</span><a class="headerlink" href="#fig-matrix-world" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="dropdown admonition">
@@ -503,23 +1028,23 @@
 </div>
 </section>
 <section id="computacao-vetorizada">
-<h2><span class="section-number">7.2. </span>Computação vetorizada<a class="headerlink" href="#computacao-vetorizada" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Computação vetorizada<a class="headerlink" href="#computacao-vetorizada" title="Permalink to this headline">#</a></h2>
 <p>O conceito de computação vetorizada, ou computação baseada em <em>arrays</em>, está relacionado à execução de operações que podem ser feitas de uma só vez a um conjunto amplo de valores. A ideia principal da computação vetorizada é evitar laços e cálculos com repetições a fim de acelerar operações matemáticas e permite que essas estruturas multidimensionais sejam identificadas com a nossa compreensão de vetores, matrizes e tensores. Vetores são arrays unidimensionais. Matrizes são arrays bidimensionais. Tensores são arrays de três ou mais dimensões. <em>Arrays</em> possuem alguns atributos, tais como “comprimento”, “formato” e “dimensão, os quais dizem respeito, de certa forma, à quantidade de seus elementos e ao modo como ocupam a memória. Esses nomes variam de linguagem para linguagem. Em Python, existem funções e métodos específicos para verificar comprimento, formato e dimensão, tais como <code class="docutils literal notranslate"><span class="pre">len</span></code>, <code class="docutils literal notranslate"><span class="pre">shape</span></code> e <code class="docutils literal notranslate"><span class="pre">ndim</span></code>.  Entretanto, esses conceitos possuem sentidos um pouco diferentes quando queremos descrever os conceitos matemáticos.</p>
 <section id="comprimento-tamanho-e-dimensao">
-<h3><span class="section-number">7.2.1. </span>Comprimento, tamanho e dimensão<a class="headerlink" href="#comprimento-tamanho-e-dimensao" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Comprimento, tamanho e dimensão<a class="headerlink" href="#comprimento-tamanho-e-dimensao" title="Permalink to this headline">#</a></h3>
 <p>Para exemplificar o que queremos dizer com “comprimento”, “tamanho” e “dimensão”, vejamos uma ilustração. Se <code class="docutils literal notranslate"><span class="pre">x1</span></code> e <code class="docutils literal notranslate"><span class="pre">x2</span></code> são dois números inteiros, a lista <code class="docutils literal notranslate"><span class="pre">[x1,x2]</span></code> seria um <em>array</em> unidimensional, mas de comprimento dois. Agora, imagine que <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> seja a notação matemática para representar as coordenadas de um ponto do plano cartesiano. Sabemos da geometria que o plano cartesiano tem duas dimensões. Porém, poderíamos, computacionalmente, usar a mesma lista anterior para armazenar no computador essas duas coordenadas. A lista continuaria sendo unidimensional, porém de tamanho dois. Logo, embora a entidade matemática seja bidimensional, não necessariamente a sua representação computacional deve ser bidimensional.</p>
 <p>Vejamos outra ilustração. Uma esfera é um sólido geométrico. Cada ponto da esfera está no espaço tridimensional. Isto significa que precisamos de 3 coordenadas para localizar cada um desses pontos. Do mesmo modo que o caso anterior, suponha que você tenha não apenas <code class="docutils literal notranslate"><span class="pre">x1</span></code> e <code class="docutils literal notranslate"><span class="pre">x2</span></code> como dois números inteiros, mas também um terceiro, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, para montar as coordenadas do seu ponto espacial. Você poderia representá-lo, matematicamente, por uma tripla <span class="math notranslate nohighlight">\((x_1,x_2,x_3)\)</span> sem problema algum. Por outro lado, no computador, a lista <code class="docutils literal notranslate"><span class="pre">[x1,x2,x3]</span></code> seria um <em>array</em> adequado para armazenar os valores das suas coordendas. Entretanto, esta lista continuaria sendo um <em>array</em> unidimensional, mas com tamanho 3. Portanto, <em>arrays</em> unidimensionais podem representar dados em dimensões maiores do que um.</p>
 </section>
 <section id="numpy">
-<h3><span class="section-number">7.2.2. </span><code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#numpy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.2. </span><code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#numpy" title="Permalink to this headline">#</a></h3>
 <p>Em Python, <em>numpy</em> é a ferramenta ideal para lidar com tudo isso, a biblioteca padrão em Python para trabalhar com <em>arrays</em> multidimensionais e computação vetorizada. Ela praticamente dá “superpoderes” às listas e permite que trabalhemos com cálculos numéricos de maneira ágil, simples e eficiente. Com <em>numpy</em>, também podemos ler e escrever arquivos, trabalhar com sistemas lineares e realizar muito mais. O exemplo abaixo compara a eficiência de operações feitas com listas comuns e com arrays do <em>numpy</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">timeit</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Função de teste</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_cube</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_cube</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;numpy&#39;</span><span class="p">:</span>        
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
@@ -567,11 +1092,11 @@ Overhead normalizado para 50000 elementos: 85.217
 </section>
 </section>
 <section id="compreendendo-notacoes">
-<h2><span class="section-number">7.3. </span>Compreendendo notações<a class="headerlink" href="#compreendendo-notacoes" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Compreendendo notações<a class="headerlink" href="#compreendendo-notacoes" title="Permalink to this headline">#</a></h2>
 <p>A diversidade de notações utilizadas para representar vetores e matrizes reflete não apenas preferências estilísticas, mas sobretudo a influência das diferentes tradições científicas e áreas de aplicação. Vetores podem ser indicados por letras em negrito, letras com setas, letas entre colchetes e ainda por índices subscritos conforme o contexto. Na física, a notação com setas é comum; na matemática aplicada, encontra-se o uso de negrito tipográfico; nas engenharias, por vezes encontramos o uso de chaves ou colchetes para representar matrizes e também subíndices; na computação, o uso é variado.</p>
 <p>A notação indicial, por exemplo, também conhecida como <a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">notação de Einstein</a> — onde se assume uma soma implícita sobre índices repetidos —, é fundamental em teorias de tensores e na mecânica do contínuo, permitindo expressar operações complexas de forma compacta e elegante. A escola de <a class="reference external" href="https://pt.wikipedia.org/wiki/Josiah_Willard_Gibbs">Gibbs</a>, por sua vez, introduziu notações específicas para produtos vetoriais e escalares, ainda largamente utilizadas, predominante nos símbolos em negrito. Em computação, há uma tendência a representar vetores como arrays unidimensionais e matrizes em forma tabular, alinhando a abstração matemática à estrutura de dados. Enquanto essa pluralidade de notações deve-se a fatores históricos e culturais, ela pode influenciar ativamente a maneira como os conceitos são compreendidos, manipulados e ensinados.</p>
 <p>Para os nossos interesses, o fundamental a saber não é a notação em si, mas como os conceitos fundamentais da álgebra linear, que têm impacto em quase tudo o que fazemos com dados, são transportados para o computador a ponto de serem manipulados com precisão. O quadro abaixo resume algumas notações para operações clássicas e as áreas onde predominam.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Notação</strong></p></th>
 <th class="head"><p><strong>Significado</strong></p></th>
@@ -601,7 +1126,6 @@ Overhead normalizado para 50000 elementos: 85.217
 </tr>
 </tbody>
 </table>
-</div>
 <p>Por conveniência, priorizaremos a notação em negrito.</p>
 <p>Além do significado algébrico, geométrico ou computacional que representam nas ciências, matrizes e vetores podem ser vistos sob diferentes perspectivas que enriquecem não só a intuição, mas também a capacidade de aplicar conceitos a contextos diversos, principalmente ao se lidar com áreas computacionais. Formas interessantes de compreender matrizes e vetores através de visualizações são propostas por <a class="reference external" href="https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra/">Kenji Hiranabe</a>, co-autor do artigo <a class="reference external" href="https://doi.org/10.1080/10511970.2024.2321349">The Art of Linear Algebra</a>.</p>
 <div class="hint dropdown admonition">
@@ -610,7 +1134,7 @@ Overhead normalizado para 50000 elementos: 85.217
 </div>
 </section>
 <section id="matrizes-e-vetores">
-<h2><span class="section-number">7.4. </span>Matrizes e vetores<a class="headerlink" href="#matrizes-e-vetores" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Matrizes e vetores<a class="headerlink" href="#matrizes-e-vetores" title="Permalink to this headline">#</a></h2>
 <p>Uma matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> de ordem <span class="math notranslate nohighlight">\(m \times n\)</span> pode ser escrita como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\bf A} = 
@@ -640,7 +1164,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -717,7 +1241,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 <p>Note que cada lista representa uma linha.</p>
 <section id="transposicao">
-<h3><span class="section-number">7.4.1. </span>Transposição<a class="headerlink" href="#transposicao" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.4.1. </span>Transposição<a class="headerlink" href="#transposicao" title="Permalink to this headline">#</a></h3>
 <p>Matrizes e vetores podem ser transpostos com <code class="docutils literal notranslate"><span class="pre">.T</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -766,7 +1290,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="teste-de-igualdade">
-<h3><span class="section-number">7.4.2. </span>Teste de igualdade<a class="headerlink" href="#teste-de-igualdade" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.4.2. </span>Teste de igualdade<a class="headerlink" href="#teste-de-igualdade" title="Permalink to this headline">#</a></h3>
 <p>Podemos verificar a igualdade entre matrizes como</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -800,9 +1324,9 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </section>
 </section>
 <section id="operacoes-fundamentais">
-<h2><span class="section-number">7.5. </span>Operações fundamentais<a class="headerlink" href="#operacoes-fundamentais" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.5. </span>Operações fundamentais<a class="headerlink" href="#operacoes-fundamentais" title="Permalink to this headline">#</a></h2>
 <p>Veremos algumas operações fundamentais entre matrizes e vetores e destacar algumas, como as do quadro abaixo.</p>
-<div class="pst-scrollable-table-container"><table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Nome em Português</strong></p></th>
 <th class="head"><p><strong>Nome em Inglês</strong></p></th>
@@ -838,7 +1362,6 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </tr>
 </tbody>
 </table>
-</div>
 <p>Notas:</p>
 <ul class="simple">
 <li><p>o símbolo <span class="math notranslate nohighlight">\(\otimes\)</span> também é usado para denotar o <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">produto de Kronecker</a>.</p></li>
@@ -850,7 +1373,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 <p>Na Geometria Diferencial, estuda-se o “Cálculo Diferencial Exterior”, e lá se define também <em>outer product</em> como “produto exterior”, o que também é conhecido internacionalmente como <em>wedge product</em>, denotado por <span class="math notranslate nohighlight">\(\mathbf{u} \wedge \mathbf{v}\)</span>, que é uma operação que combina dois vetores para produzir um elemento de ordem superior. Como nesta geometria estudam-se curvas e superfícies, o produto externo é frequentemente usado para definir grandezas como área e volume.</p>
 </div>
 <section id="adicao-e-subtracao">
-<h3><span class="section-number">7.5.1. </span>Adição e subtração<a class="headerlink" href="#adicao-e-subtracao" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.5.1. </span>Adição e subtração<a class="headerlink" href="#adicao-e-subtracao" title="Permalink to this headline">#</a></h3>
 <p>A adição (subtração) de matrizes e vetores pode ser realizada de modo usual com computação vetorizada.</p>
 <p><strong>Exemplo:</strong> <span class="math notranslate nohighlight">\(\vec{u} \pm \vec{v}\)</span></p>
 <div class="cell docutils container">
@@ -905,7 +1428,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="produto-interno">
-<h3><span class="section-number">7.5.2. </span>Produto interno<a class="headerlink" href="#produto-interno" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.5.2. </span>Produto interno<a class="headerlink" href="#produto-interno" title="Permalink to this headline">#</a></h3>
 <p>O produto interno <span class="math notranslate nohighlight">\(\langle \vec{u}, \vec{v}\rangle\)</span> é computado com <code class="docutils literal notranslate"><span class="pre">.dot</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -944,7 +1467,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="norma-de-vetor">
-<h3><span class="section-number">7.5.3. </span>Norma de vetor<a class="headerlink" href="#norma-de-vetor" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.5.3. </span>Norma de vetor<a class="headerlink" href="#norma-de-vetor" title="Permalink to this headline">#</a></h3>
 <p>A norma <span class="math notranslate nohighlight">\(||\vec{u}||\)</span> de um vetor <span class="math notranslate nohighlight">\(\vec{u}\)</span> é calculada como:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -960,7 +1483,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="produto-de-matrizes">
-<h3><span class="section-number">7.5.4. </span>Produto de matrizes<a class="headerlink" href="#produto-de-matrizes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.5.4. </span>Produto de matrizes<a class="headerlink" href="#produto-de-matrizes" title="Permalink to this headline">#</a></h3>
 <p>O produto <span class="math notranslate nohighlight">\(\bf{A}\bf{B}\)</span> entre matrizes bidimensionais pode ser calculado com <code class="docutils literal notranslate"><span class="pre">np.dot</span></code>, mas recomenda-se usar <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -995,7 +1518,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="produto-entre-matriz-e-vetor">
-<h3><span class="section-number">7.5.5. </span>Produto entre matriz e vetor<a class="headerlink" href="#produto-entre-matriz-e-vetor" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.5.5. </span>Produto entre matriz e vetor<a class="headerlink" href="#produto-entre-matriz-e-vetor" title="Permalink to this headline">#</a></h3>
 <p>Neste caso, sendo <span class="math notranslate nohighlight">\({\vec{\vec A}}\)</span> (dois símbolos indicam que a matriz é uma grandeza de ordem 2, ao passo que o vetor é de ordem 1 e aqui usamos para consistência de notação) uma matriz <span class="math notranslate nohighlight">\(m \times n\)</span> e <span class="math notranslate nohighlight">\({\vec{b}}\)</span> e um vetor <span class="math notranslate nohighlight">\(n \times 1\)</span>, respectivamente, o produto <span class="math notranslate nohighlight">\(\vec{\vec{A}}\vec{b}\)</span> é dado por:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,17 +1537,17 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </section>
 </section>
 <section id="demais-operacoes-com-numpy-linalg">
-<h2><span class="section-number">7.6. </span>Demais operações com <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code><a class="headerlink" href="#demais-operacoes-com-numpy-linalg" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.6. </span>Demais operações com <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code><a class="headerlink" href="#demais-operacoes-com-numpy-linalg" title="Permalink to this headline">#</a></h2>
 <p>Para outras operações, devemos utilizar o submódulo <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>. Para importá-lo com o <em>alias</em> <code class="docutils literal notranslate"><span class="pre">lin</span></code>, fazemos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">lin</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="determinante">
-<h3><span class="section-number">7.6.1. </span>Determinante<a class="headerlink" href="#determinante" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.6.1. </span>Determinante<a class="headerlink" href="#determinante" title="Permalink to this headline">#</a></h3>
 <p>O determinante de <span class="math notranslate nohighlight">\({\bf A}\)</span> é dado por <span class="math notranslate nohighlight">\(\det({\bf A})\)</span> e pode ser computado pela função <code class="docutils literal notranslate"><span class="pre">det</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1042,7 +1565,7 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn}
 </div>
 </section>
 <section id="inversa-de-uma-matriz">
-<h3><span class="section-number">7.6.2. </span>Inversa de uma matriz<a class="headerlink" href="#inversa-de-uma-matriz" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.6.2. </span>Inversa de uma matriz<a class="headerlink" href="#inversa-de-uma-matriz" title="Permalink to this headline">#</a></h3>
 <p>A inversa de uma matriz é dada por <span class="math notranslate nohighlight">\({\bf A}^{-1}\)</span>, onde <span class="math notranslate nohighlight">\({\bf A}{\bf A}^{-1}={\bf I}\)</span>, e <span class="math notranslate nohighlight">\({\bf I}\)</span> é a matriz identidade.
 Para usar esta função, devemos fazer:</p>
 <div class="cell docutils container">
@@ -1066,7 +1589,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="inversa-de-matriz">
-<h3><span class="section-number">7.6.3. </span>Inversa de matriz<a class="headerlink" href="#inversa-de-matriz" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.6.3. </span>Inversa de matriz<a class="headerlink" href="#inversa-de-matriz" title="Permalink to this headline">#</a></h3>
 <p>A inversa de uma matriz (faça esta operação apenas para matrizes quadradas de pequena dimensão) pode ser encontrada como:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1132,9 +1655,9 @@ Para usar esta função, devemos fazer:</p>
 </section>
 </section>
 <section id="algumas-matrizes-especiais">
-<h2><span class="section-number">7.7. </span>Algumas matrizes especiais<a class="headerlink" href="#algumas-matrizes-especiais" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.7. </span>Algumas matrizes especiais<a class="headerlink" href="#algumas-matrizes-especiais" title="Permalink to this headline">#</a></h2>
 <section id="nula">
-<h3><span class="section-number">7.7.1. </span>Nula<a class="headerlink" href="#nula" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.7.1. </span>Nula<a class="headerlink" href="#nula" title="Permalink to this headline">#</a></h3>
 <p>Para criar uma matriz nula de ordem <em>m x n</em>, usamos <code class="docutils literal notranslate"><span class="pre">zeros</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1152,7 +1675,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="identidade">
-<h3><span class="section-number">7.7.2. </span>Identidade<a class="headerlink" href="#identidade" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.7.2. </span>Identidade<a class="headerlink" href="#identidade" title="Permalink to this headline">#</a></h3>
 <p>Uma matriz identidade (quadrada) de ordem <em>p</em> é criada com <code class="docutils literal notranslate"><span class="pre">eye</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1172,7 +1695,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="matriz-de-uns">
-<h3><span class="section-number">7.7.3. </span>Matriz de “uns”<a class="headerlink" href="#matriz-de-uns" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.7.3. </span>Matriz de “uns”<a class="headerlink" href="#matriz-de-uns" title="Permalink to this headline">#</a></h3>
 <p>Uma matriz composta apenas de valores 1 de ordem <em>m x n</em> pode ser criada com <code class="docutils literal notranslate"><span class="pre">ones</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1190,7 +1713,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="triangular-inferior">
-<h3><span class="section-number">7.7.4. </span>Triangular inferior<a class="headerlink" href="#triangular-inferior" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.7.4. </span>Triangular inferior<a class="headerlink" href="#triangular-inferior" title="Permalink to this headline">#</a></h3>
 <p>A matriz triangular inferior de uma dada matriz pode ser criada com <code class="docutils literal notranslate"><span class="pre">tril</span></code>. Note que podemos também defini-la explicitamente, linha a linha.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1210,7 +1733,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="triangular-superior">
-<h3><span class="section-number">7.7.5. </span>Triangular superior<a class="headerlink" href="#triangular-superior" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.7.5. </span>Triangular superior<a class="headerlink" href="#triangular-superior" title="Permalink to this headline">#</a></h3>
 <p>A matriz triangular superior de uma dada matriz pode ser criada com <code class="docutils literal notranslate"><span class="pre">triu</span></code>. Note que podemos também defini-la explicitamente, linha a linha.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1244,7 +1767,7 @@ Para usar esta função, devemos fazer:</p>
 </section>
 </section>
 <section id="autovalores-e-autovetores">
-<h2><span class="section-number">7.8. </span>Autovalores e autovetores<a class="headerlink" href="#autovalores-e-autovetores" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.8. </span>Autovalores e autovetores<a class="headerlink" href="#autovalores-e-autovetores" title="Permalink to this headline">#</a></h2>
 <p>Um vetor <span class="math notranslate nohighlight">\({\bf v} \in V\)</span>, <span class="math notranslate nohighlight">\({\bf v} \neq {\bf 0}\)</span> é vetor próprio de <span class="math notranslate nohighlight">\({\bf A}\)</span> se existir <span class="math notranslate nohighlight">\(\lambda \in \mathbb{R}\)</span> tal que</p>
 <div class="math notranslate nohighlight">
 \[{\bf Av}=\lambda {\bf v}.\]</div>
@@ -1278,7 +1801,7 @@ Para usar esta função, devemos fazer:</p>
 </div>
 </section>
 <section id="somas-e-valores-extremos">
-<h2><span class="section-number">7.9. </span>Somas e valores extremos<a class="headerlink" href="#somas-e-valores-extremos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.9. </span>Somas e valores extremos<a class="headerlink" href="#somas-e-valores-extremos" title="Permalink to this headline">#</a></h2>
 <p>Podemos calcular somas de elementos de matrizes e vetores de maneiras diferentes. Para matrizes, em particular, há soma total, por linha, ou por coluna.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1549,7 +2072,7 @@ Para usar esta função, devemos fazer:</p>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./ipynb"
         },
         predefinedOutput: true
@@ -1557,139 +2080,50 @@ Para usar esta função, devemos fazer:</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="aula-05-newton.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Método de Newton: Sair pela Tangente sem Perder o Rumo</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-05-newton.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Método de Newton: Sair pela Tangente sem Perder o Rumo</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="aula-07-fatoracao-lu.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="aula-07-fatoracao-lu.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">8. </span>Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">7.1. Introdução</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-vetorizada">7.2. Computação vetorizada</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprimento-tamanho-e-dimensao">7.2.1. Comprimento, tamanho e dimensão</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">7.2.2. <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compreendendo-notacoes">7.3. Compreendendo notações</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrizes-e-vetores">7.4. Matrizes e vetores</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transposicao">7.4.1. Transposição</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teste-de-igualdade">7.4.2. Teste de igualdade</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-fundamentais">7.5. Operações fundamentais</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao-e-subtracao">7.5.1. Adição e subtração</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">7.5.2. Produto interno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma-de-vetor">7.5.3. Norma de vetor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-matrizes">7.5.4. Produto de matrizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-entre-matriz-e-vetor">7.5.5. Produto entre matriz e vetor</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demais-operacoes-com-numpy-linalg">7.6. Demais operações com <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinante">7.6.1. Determinante</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-uma-matriz">7.6.2. Inversa de uma matriz</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-matriz">7.6.3. Inversa de matriz</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algumas-matrizes-especiais">7.7. Algumas matrizes especiais</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nula">7.7.1. Nula</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identidade">7.7.2. Identidade</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uns">7.7.3. Matriz de “uns”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangular-inferior">7.7.4. Triangular inferior</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangular-superior">7.7.5. Triangular superior</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-e-autovetores">7.8. Autovalores e autovetores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#somas-e-valores-extremos">7.9. Somas e valores extremos</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Gustavo Oliveira
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>

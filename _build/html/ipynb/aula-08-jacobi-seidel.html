@@ -1,0 +1,1319 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9. Sistemas Lineares na Prática Computacional: Métodos Iterativos &#8212; Métodos Numéricos para Ciências Computacionais e Engenharia</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/numbiosis.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Session 1: roots e polyval" href="code-sessions/codeSession-1-polyval.html" />
+    <link rel="prev" title="8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU" href="aula-07-fatoracao-lu.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/numbiosis.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Métodos Numéricos para Ciências Computacionais e Engenharia</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="conteudo.html">
+                    Laboratório Virtual de Métodos Numéricos - LVMN
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cadernos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-00-modelagem-programacao.html">
+   1. Modelagem Integrada: Uma Ferramenta para Compreender e Simular o Mundo Real
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-01-introMetnum.html">
+   2. Métodos Numéricos: Necessidade, Evolução e Profissão
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-02-erros.html">
+   3. Do Contínuo ao Computável: Discretização e Erros Numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-03-analise-grafica.html">
+   4. Domando Equações Não Lineares: Inspeção e Descobrimento de Raízes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-04-bissecao.html">
+   5. Método da Bisseção: A Arte de Cindir e Convergir
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-05-newton.html">
+   6. Método de Newton: Sair pela Tangente sem Perder o Rumo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-06-matrizes-vetores.html">
+   7. Do Vetor ao
+   <em>
+    Array
+   </em>
+   : Computação Vetorizada Na Prática
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="aula-07-fatoracao-lu.html">
+   8. Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Sistemas Lineares na Prática Computacional: Métodos Iterativos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Sessions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-1-polyval.html">
+   <em>
+    Code Session
+   </em>
+   1:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     roots
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     polyval
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-2-bisect.html">
+   <em>
+    Code Session
+   </em>
+   2:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     bisect
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-3-newton.html">
+   <em>
+    Code Session
+   </em>
+   3:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     newton
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-4-solve.html">
+   <em>
+    Code Session
+   </em>
+   4:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-5-fsolve.html">
+   <em>
+    Code Session
+   </em>
+   5:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     fsolve
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-6-interp.html">
+   <em>
+    Code Session
+   </em>
+   6: Interpolação
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-7-fit.html">
+   <em>
+    Code Session 7
+   </em>
+   : Ajuste de Curvas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-8-integrate.html">
+   <em>
+    Code Session
+   </em>
+   8: Integração
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code-sessions/codeSession-9-solve_ivp.html">
+   <em>
+    Code Session
+   </em>
+   9: Método de Euler
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Exercícios Resolvidos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-1-solucoes.html">
+   Lista de Exercícios 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-2-solucoes.html">
+   Lista de Exercícios 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-3-solucoes.html">
+   Lista de Exercícios 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-4-solucoes.html">
+   Lista de Exercícios 4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-5-solucoes.html">
+   Lista de Exercícios 5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lists/lista-6-solucoes.html">
+   Lista de Exercícios 6
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Recortes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-01-analise-numerica.html">
+   Recorte 1: Breve Histórico da Análise Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-02-programacao-software.html">
+   Recorte 2: Programação e
+   <em>
+    Software
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-03-padrao-ieee-754.html">
+   Recorte 3: Padrão de Ponto Flutuante IEEE 754
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-04-digitos-significativos-precisao-acuracia.html">
+   Recorte 4: Dígitos significativos, precisão e acurácia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-05-desastre-patriot.html">
+   Recorte 5: Um desastre motivado por erros numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-06-definicoes-erros.html">
+   Recorte 6: Definições de erro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-07-erros-medicao-esfigmomanometro.html">
+   Recorte 7: Erros de medição em aparelhos de pressão arterial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-08-enganos-erros-incerteza.html">
+   Recorte 8: Enganos, erros de formulação e incerteza nos dados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-09-decimal-fractions.html">
+   Recorte 9: Aritmética exata e números racionais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-10-hpc.html">
+   Recorte 10: Computação de alto desempenho
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-11-newton-raphson-raizes-multiplas.html">
+   Recorte 11: Método de Newton-Raphson para raízes múltiplas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-12-condicionamento-normas-matrizes.html">
+   Recorte 12: Condicionamento e normas de matrizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-13-erro-interpolacao.html">
+   Recorte 13: Análise de erros em interpolação polinomial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-14-projecao-ortogonal-equacoes-normais.html">
+   Recorte 14: Projeção ortogonal e equações normais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clippings/clipping-15-formulas-newton-cotes.html">
+   Recorte 15: Fórmulas de Newton-Cotes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Extra
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFlutuante.html">
+   12. Números em ponto flutuante e seus problemas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-pontoFixo.html">
+   13. Método da Iteração Linear (Ponto Fixo)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-secante.html">
+   14. Implementação do método da secante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-muller.html">
+   15. Raízes de polinômios com o método de Müller
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-fft.html">
+   16. Processamento de sinais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-numba.html">
+   17. Otimização de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-matplotlibTopicos.html">
+   18. Plotagem com
+   <em>
+    matplotlib
+   </em>
+   : tópicos especiais
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-malhasNumericas.html">
+   19. Malhas numéricas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-camposDirecaoEDO.html">
+   20. Campos de direção
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerMelhorado.html">
+   21. Variações do Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-estabilidadeEuler.html">
+   22. Estabilidade Numérica para o Método de Euler
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-eulerImplicito.html">
+   23. Método de Euler Implícito
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-multistep-adamsBashfort.html">
+   24. Métodos de Adams-Bashfort
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-edoSuperior.html">
+   25. EDOs de ordem superior (redução de ordem)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-sistemasEDO.html">
+   26. Sistemas de EDOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-metodo-linhas.html">
+   27. Método das Linhas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extra/extra-docstrings.html">
+   28. Documentação de código
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Projeto <a href="http://numbiosis.ci.ufpb.br/pt/inicio/">Numbiosis</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/gcpeixoto/LVMN/blob/master/ipynb/aula-08-jacobi-seidel.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ipynb/aula-08-jacobi-seidel.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   9. Sistemas Lineares na Prática Computacional: Métodos Iterativos
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processo-iterativo-multidimensional">
+   10. Processo iterativo multidimensional
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-jacobi-richardson">
+   11. Método de Jacobi-Richardson
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrizes-diagonalmente-dominantes">
+     11.1. Matrizes diagonalmente dominantes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementacao-computacional">
+     11.2. Implementação computacional
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodo-de-gauss-seidel">
+     11.3. Método de Gauss-Seidel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       11.3.1. Implementação computacional
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterios-de-parada">
+     11.4. Critérios de parada
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arcabouco-teorico-relevante">
+     11.5. Arcabouço teórico relevante
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Sistemas Lineares na Prática Computacional: Métodos Iterativos</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   9. Sistemas Lineares na Prática Computacional: Métodos Iterativos
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processo-iterativo-multidimensional">
+   10. Processo iterativo multidimensional
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-jacobi-richardson">
+   11. Método de Jacobi-Richardson
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrizes-diagonalmente-dominantes">
+     11.1. Matrizes diagonalmente dominantes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementacao-computacional">
+     11.2. Implementação computacional
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodo-de-gauss-seidel">
+     11.3. Método de Gauss-Seidel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       11.3.1. Implementação computacional
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterios-de-parada">
+     11.4. Critérios de parada
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arcabouco-teorico-relevante">
+     11.5. Arcabouço teórico relevante
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;../styles/gcpeixoto-book.mplstyle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="sistemas-lineares-na-pratica-computacional-metodos-iterativos">
+<h1><span class="section-number">9. </span>Sistemas Lineares na Prática Computacional: Métodos Iterativos<a class="headerlink" href="#sistemas-lineares-na-pratica-computacional-metodos-iterativos" title="Permalink to this headline">#</a></h1>
+<div class="chapter-thumb">
+    <div class="chapter-oa">
+        <h2>Objetivos de aprendizagem</h2>
+        <ul>
+        <li>Compreender os fundamentos dos métodos iterativos para a resolução de sistemas lineares; </li>
+	    <li>Aplicar os métodos de Jacobi e Gauss-Seidel para resolver sistemas lineares;</li>	    
+        <li>Analisar critérios de convergência e recursos para condicionamento de sistemas;</li>
+        <li>Implementar algoritmos e resolver sistemas computacionalmente;</li>	    
+        </ul>
+    </div>        
+    <div class="quote-box">
+        <p><em>""
+        </p></em>
+    </div>        
+</div></section>
+<section class="tex2jax_ignore mathjax_ignore" id="processo-iterativo-multidimensional">
+<h1><span class="section-number">10. </span>Processo iterativo multidimensional<a class="headerlink" href="#processo-iterativo-multidimensional" title="Permalink to this headline">#</a></h1>
+<p>Diferentemente da abordagem dos métodos diretos, a resolução de sistemas lineares por métodos iterativos dá-se por meio de aproximações sucessivas, nos mesmos moldes daquilo que estudamos para uma dimensão. A diferença, no caso do <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, é que os elementos da sequência são vetores que devem convergir para o vetor que soluciona o sistema dentro de uma margem de erro desejada.</p>
+<p>De forma similar ao caso unidimensional, um processo iterativo a várias variáveis pode ser descrito por:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{({k})} = \mathbf{\phi}(\mathbf{x}^{(k-1)}), \ \ k = 1, \ldots, n &lt; \infty\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{(0)} = \mathbf{x}_0,\]</div>
+<p>Acima, <span class="math notranslate nohighlight">\(\mathbf{\phi}\)</span> é uma função de iteração vetorial e <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> o vetor de estimativa inicial. Nesta notação, <span class="math notranslate nohighlight">\(\mathbf{x}^{(k)}\)</span> é a <span class="math notranslate nohighlight">\(k\)</span>-ésima <em>iterada</em> de uma sequência numérica discreta de vetores.</p>
+<p>No espaço de <span class="math notranslate nohighlight">\(n\)</span> dimensões, como o objetivo é encontrar o vetor-solução <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> que soluciona a equação matricial</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\mathbf{x} = \mathbf{b},\]</div>
+<p>para <span class="math notranslate nohighlight">\(\mathbf{A}_{n \times n}\)</span> (condições internas) e <span class="math notranslate nohighlight">\(\mathbf{b}_{n \times 1}\)</span> (condições externas) previamente conhecidos, a estratégia a ser seguida é decompor a matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> de forma a facilitar a solução. De uma maneira geral, este procedimento, chamado de <em>splitting</em>, pode ser realizado da seguinte forma:</p>
+<ul class="simple">
+<li><p>devemos escolher duas matrizes <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{N}\)</span>, tais que <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{M} - \mathbf{N}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{M}\)</span> deve ser uma matriz facilmente inversível(p.ex. diagonal ou triangular).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{N}\)</span>, por sua vez, seja a parcela restante.</p></li>
+</ul>
+<p>Por substituição direta da decomposição da matriz principal na equação, vemos que</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\mathbf{x} = \mathbf{b} \Rightarrow
+(\mathbf{M} - \mathbf{N}) \mathbf{x} = \mathbf{b} \Rightarrow
+\mathbf{M} \mathbf{x} = \mathbf{N} \mathbf{x} + \mathbf{b} \Rightarrow 
+\mathbf{x} = \mathbf{M}^{-1}\mathbf{N} \mathbf{x} + \mathbf{M}^{-1}\mathbf{b}.\]</div>
+<p>Uma vez que <span class="math notranslate nohighlight">\(\mathbf{M}^{-1}\)</span> é supostamente fácil de ser calculada, a última equação descreve o processo iterativo</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{({k})} = \mathbf{M}^{-1}\mathbf{N} \mathbf{x}^{(k-1)} + \mathbf{M}^{-1}\mathbf{b} = 
+\mathbf{B} \mathbf{x}^{(k-1)} + \mathbf{c},\]</div>
+<p>com <span class="math notranslate nohighlight">\(\mathbf{B} = \mathbf{M}^{-1}\mathbf{N}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{c} = \mathbf{M}^{-1}\mathbf{b}\)</span>. Em outras palavras,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{({k})} = \mathbf{\phi}(\mathbf{x}^{(k-1)}) = \mathbf{C} \mathbf{x}^{(k-1)} + \mathbf{g},\]</div>
+<p>e a função de iteração estabelecida é, em síntese, uma sucessão de operações algébricas que resulta em um produto matriz-vetor seguido de uma adição. Geometricamente, este processo equivale a subsequentes modificações do vetor inicial no espaço de <span class="math notranslate nohighlight">\(n\)</span> dimensões, acompanhadas de um deslocamento.</p>
+<p>Os diferentes métodos de solução para a equação original passam a existir, portanto, quando <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{g}\)</span> assumem formas distintas em decorrência da escolha do <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> e <span class="math notranslate nohighlight">\(\mathbf{N}\)</span>. Neste capítulo, estudaremos dois procedimentos de <em>splitting</em>: o método de Jacobi-Richardson e o método de Gauss-Seidel, que é uma derivação do primeiro. Entretanto, o método de Gauss-Seidel é computacionalmente mais eficiente e deve ser priorizado para utilidade. A tabela abaixo resume essas escolhas.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Método</p></th>
+<th class="head"><p>Escolha de <span class="math notranslate nohighlight">\(\mathbf{M}\)</span></p></th>
+<th class="head"><p>Escolha de <span class="math notranslate nohighlight">\(\mathbf{N}\)</span></p></th>
+<th class="head"><p>Resumo do Método</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jacobi-Richardson</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{M} = \mathbf{D}\)</span> (matriz diagonal de <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{N} = \mathbf{L} + \mathbf{U}\)</span> (triangular inferior + superior estrita)</p></td>
+<td><p>Atualiza todas as variáveis simultaneamente usando apenas a diagonal de <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gauss-Seidel</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{M} = \mathbf{D} - \mathbf{L}\)</span> (diagonal + triangular inferior estrita)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbf{N} = \mathbf{U}\)</span> (triangular superior estrita)</p></td>
+<td><p>Atualiza as variáveis sequencialmente, usando valores mais recentes na mesma iteração.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metodo-de-jacobi-richardson">
+<h1><span class="section-number">11. </span>Método de Jacobi-Richardson<a class="headerlink" href="#metodo-de-jacobi-richardson" title="Permalink to this headline">#</a></h1>
+<p>Suponha um sistema linear nas incógnitas <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_n\)</span> da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a_{11} x_{1} + a_{12} x_{2} + \dots + a_{1n} x_{n} = b_1 \\
+a_{21} x_{1} + a_{22} x_{2} + \dots + a_{2n} x_{n} = b_2 \\
+\vdots \\
+a_{n1} x_{1} + a_{n2} x_{2} + \dots + a_{nn} x_{n} = b_n\end{split}\]</div>
+<p>Suponha também que todos os termos <span class="math notranslate nohighlight">\(a_{ii}\)</span> (diagonal) sejam diferentes de zero. Se não for o caso, isso pode, geralmente, ser resolvido permutando equações.</p>
+<p>Inicialmente, o método sugere que as variáveis sejam isoladas em cada equação (passagem de <span class="math notranslate nohighlight">\(\mathbf{M} = \mathbf{D}\)</span> à esquerda seguida da aplicação da inversa). Assim, escrevemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x_{2} - a_{13} x_{3} - \dots - a_{1n} x_{n}] \\
+x_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x_{1} - a_{23} x_{3} - \dots - a_{2n} x_{n}] \\
+\vdots \\
+x_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x_{1} - a_{n2} x_{2} - \dots - a_{n \ n-1} x_{n-1}]
+\end{split}\]</div>
+<p>A partir dessas equações “isoladas” e do vetor de estimativa inicial <span class="math notranslate nohighlight">\(\mathbf{x}^{(0)} = [x^{(0)}_1 \ \ x^{(0)}_2 \ \ \dots \ \  x^{(0)}_n]^T\)</span>, criamos o processo iterativo inserindo o contador <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x^{(k+1)}_1 = \dfrac{1}{a_{11}} [b_1 - a_{12} x^{(k)}_{2} - a_{13} x^{(k)}_{3} - \dots - a_{1n} x^{(k)}_{n}] \\
+x^{(k+1)}_2 = \dfrac{1}{a_{22}} [b_2 - a_{21} x^{(k)}_{1} - a_{23} x^{(k)}_{3} - \dots - a_{2n} x^{(k)}_{n}] \\
+\vdots \\
+x^{(k+1)}_n = \dfrac{1}{a_{nn}} [b_n - a_{n1} x^{(k)}_{1} - a_{n2} x^{(k)}_{2} - \dots - a_{n \ n-1} x^{(k)}_{n-1}]
+\end{split}\]</div>
+<p>Logo, para todo <span class="math notranslate nohighlight">\(i = 1, 2, \dots , n\)</span>, esperamos que a sequência de vetores <span class="math notranslate nohighlight">\(\{ \mathbf{x}^{(k)} \}_{k=1}^N\)</span> convirja para o vetor solução <span class="math notranslate nohighlight">\({\bf x}^{*}\)</span> do sistema original.</p>
+<p>De outra forma, basta notar que o processo iterativo descrito acima por componente pode ser representado pela equação matricial:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{(k+1)} = \mathbf{D}^{-1} (\mathbf{L} + \mathbf{U}) \mathbf{x}^{(k)} + \mathbf{D}^{-1} b,\]</div>
+<p>pois</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D = \begin{bmatrix}
+a_{11} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; a_{22} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; a_{nn}
+\end{bmatrix}, \quad
+L = \begin{bmatrix}
+0 &amp; 0 &amp; \cdots &amp; 0 \\
+-a_{21} &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+-a_{n1} &amp; -a_{n2} &amp; \cdots &amp; 0
+\end{bmatrix}, \quad
+U = \begin{bmatrix}
+0 &amp; -a_{12} &amp; \cdots &amp; -a_{1n} \\
+0 &amp; 0 &amp; \cdots &amp; -a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; 0
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Ou, explícita e compactamente,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{x}^{(k)} = \begin{bmatrix}
+0 &amp; -\frac{a_{12}}{a_{11}} &amp; \cdots &amp; -\frac{a_{1n}}{a_{11}} \\
+-\frac{a_{21}}{a_{22}} &amp; 0 &amp; \cdots &amp; -\frac{a_{2n}}{a_{22}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+-\frac{a_{n1}}{a_{nn}} &amp; -\frac{a_{n2}}{a_{nn}} &amp; \cdots &amp; 0
+\end{bmatrix} \mathbf{x}^{(k-1)} + \begin{bmatrix}
+\frac{b_1}{a_{11}} \\
+\frac{b_2}{a_{22}} \\
+\vdots \\
+\frac{b_n}{a_{nn}}
+\end{bmatrix}.
+\end{split}\]</div>
+<p>No Método de Jacobi-Richardson (MJR), a matriz de iteração</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{C} =
+\begin{bmatrix}
+0 &amp; -\frac{a_{12}}{a_{11}} &amp; \cdots &amp; -\frac{a_{1n}}{a_{11}} \\
+-\frac{a_{21}}{a_{22}} &amp; 0 &amp; \cdots &amp; -\frac{a_{2n}}{a_{22}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+-\frac{a_{n1}}{a_{nn}} &amp; -\frac{a_{n2}}{a_{nn}} &amp; \cdots &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>torna-se o “motor” responsável pela progressão do método. Ela transforma os vetores da sequência buscando uma trajetória “espiral” que deve estacionar em um ponto fixo do espaço <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, identificando-se com o vetor-solução. Como veremos adiante, existem condições a serem atendidas para que <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> produza uma sequência convergente. Mas, de maneira geral, se <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> for uma matriz <em>diagonalmente dominante</em>, as componentes de <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> terão valores menores do que 1 e o efeito geométrico de <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> sobre qualquer vetor será de uma <em>contração</em>.</p>
+<section id="matrizes-diagonalmente-dominantes">
+<h2><span class="section-number">11.1. </span>Matrizes diagonalmente dominantes<a class="headerlink" href="#matrizes-diagonalmente-dominantes" title="Permalink to this headline">#</a></h2>
+<p>Matrizes <em>diagonalmente dominantes</em> são aquelas em que o valor absoluto do termo diagonal de sua <span class="math notranslate nohighlight">\(i\)</span>-ésima linha é maior ou igual à soma dos valores absolutos de todos os outros termos na mesma linha. Esta condição é refletida no <em>critério das linhas</em>, que deve atender à sequinte desigualdade:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{\substack{j = 1 \\ j \neq i}} ^n |a_{ij}| &lt; |a_{ii}|,\end{split}\]</div>
+<p>para cada linha <span class="math notranslate nohighlight">\(i = 1, 2, \dots, n\)</span>. Se satisfeitas as inequações acima, a matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> é (estritamente) diagonalmente dominante (sinal <span class="math notranslate nohighlight">\(&lt;\)</span>). É importante observar que o critério das linhas pode deixar de ser satisfeito se houver permutações na matriz. Todavia, uma permutação cuidadosa pode fazer com que o sistema passe a satisfazer o critério. Por teorema, admite-se que se a matriz do sistema linear satisfaz o critério das linhas, então o algoritmo de Jacobi-Richardson converge para uma solução aproximada.</p>
+<p>Por exemplo, a matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = \begin{bmatrix}
+4 &amp; 2 &amp; 2 \\
+1 &amp; 3 &amp; 1 \\
+-2 &amp; -2 &amp; 4
+\end{bmatrix}
+\end{split}\]</div>
+<p>é diagonalmente dominante (não estrita), pois</p>
+<ul class="simple">
+<li><p>na linha 1: <span class="math notranslate nohighlight">\(|2| + |2| = 4 = |4| = 4\)</span>,</p></li>
+<li><p>na linha 2: <span class="math notranslate nohighlight">\(|1| + |1| = 2 &lt; |3| = 3\)</span> e</p></li>
+<li><p>na linha 3: <span class="math notranslate nohighlight">\(|-2| + |-2| = 4 = |4| = 4\)</span>.</p></li>
+</ul>
+<p>Por outro lado, a matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{B} = \begin{bmatrix}
+5 &amp; 1 &amp; 1 \\
+1 &amp; 4 &amp; 1 \\
+0 &amp; 1 &amp; 6
+\end{bmatrix}
+\end{split}\]</div>
+<p>é estritamente diagonalmente dominante, porque</p>
+<ul class="simple">
+<li><p>na linha 1: <span class="math notranslate nohighlight">\(|1| + |1| = 2 &lt; |5| = 5\)</span>,</p></li>
+<li><p>na linha 2: <span class="math notranslate nohighlight">\(|1| + |1| = 2 &lt; |4| = 4\)</span> e</p></li>
+<li><p>na linha 3: <span class="math notranslate nohighlight">\(|0| + |1| = 2 &lt; |6| = 6\)</span>.</p></li>
+</ul>
+</section>
+<section id="implementacao-computacional">
+<h2><span class="section-number">11.2. </span>Implementação computacional<a class="headerlink" href="#implementacao-computacional" title="Permalink to this headline">#</a></h2>
+<p>A função abaixo é uma implementação simples do método de Jacobi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">nit</span><span class="p">):</span>    
+    <span class="sd">&quot;&quot;&quot; Método de Jacobi para solução do sistema Ax=b.</span>
+
+<span class="sd">    x = jacobi(A, b, x0, nit)</span>
+
+<span class="sd">    Entradas:</span>
+<span class="sd">        - A: matriz n x n (tipo: lista de listas)</span>
+<span class="sd">        - b: vetor n x 1 (tipo: lista)</span>
+<span class="sd">        - x0: vetor n x 1, ponto de partida (tipo: lista)</span>
+<span class="sd">        - nit: número de iterações</span>
+<span class="sd">    </span>
+<span class="sd">    Saídas:</span>
+<span class="sd">        - x:  matriz n x nit, contendo a sequência de vetores</span>
+<span class="sd">        - c:  norma da matriz de iteração</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>    
+    
+    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>     
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">f</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;A, b e x0 devem ser do tipo list.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+            
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">nit</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+        
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">P</span> <span class="o">-</span> <span class="n">A</span> <span class="c1"># elementos de fora da diagonal</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">Q</span><span class="p">)</span> <span class="c1"># matriz da função de iteração</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1"># vetor da função de iteração</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> 
+    
+    <span class="c1">#processo iterativo</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[:]</span>    
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nit</span><span class="p">):</span>        
+        <span class="n">X</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">g</span>        
+        <span class="n">x</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vetor solução:</span><span class="si">{</span><span class="n">x</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>                
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||C|| = </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>                
+        
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este código simples aplicado ao sistema <span class="math notranslate nohighlight">\(\mathbf{B}\mathbf{x} = \mathbf{b}\)</span>, onde <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> é a matriz de exemplo acima e <span class="math notranslate nohighlight">\(\mathbf{b} = [ 7 \ \  -8 \ \ 6]^T\)</span>, converge para a solução aproximada em 15 passos com a norma do resíduo da ordem de <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">nit</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">jacobi</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># vetor-solução</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">_</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># norma do resíduo</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">B</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||r|| = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vetor solução:[ 1.66363667 -2.78181782  1.46363653]
+||C|| = 0.4825
+||r|| = 3.144060e-06
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-gauss-seidel">
+<h2><span class="section-number">11.3. </span>Método de Gauss-Seidel<a class="headerlink" href="#metodo-de-gauss-seidel" title="Permalink to this headline">#</a></h2>
+<p>O método de Gauss-Seidel (MGS) é uma leve variação do MJR. A diferença é que para calcular a componente <span class="math notranslate nohighlight">\(x_j^{(k+1)}\)</span>, usamos os valores <span class="math notranslate nohighlight">\(x_1^{(k+1)}, x_2^{(k+1)}, \ldots, x_{j-1}^{(k+1)}\)</span>, já calculados e os valores restantes <span class="math notranslate nohighlight">\(x_{j+1}^{(k)}, \ldots, x_{n}^{(k)}\)</span> da mesma forma.</p>
+<p>O mesmo esquema iterativo de Jacobi, alterado apenas nas componentes coloridas, produz o processo iterativo de Gauss-Seidel,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+{\color{red}x_1^{(k+1)}} = \frac{1}{a_{11}} \left[b_1 - a_{12} x_2^{(k)} + a_{13} x_3^{(k)} + \cdots + a_{1n} x_n^{(k)}\right] \\ 
+{\color{blue}x_2^{(k+1)}} = \frac{1}{a_{22}} \left[b_2 - a_{21} {\color{red}x_1^{(k+1)}} + a_{23} x_3^{(k)} + \cdots + a_{2n} x_n^{(k)}\right] \\
+{x_3^{(k+1)}} = \frac{1}{a_{33}} \left[b_3 - a_{31} {\color{red}x_1^{(k+1)}} + a_{32} {\color{blue} x_2^{(k+1)}} + \cdots + a_{3n} x_n^{(k)}\right] \\
+\vdots\\
+{x_n^{(k+1)}} = \frac{1}{a_{nn}} \left[b_n - a_{n1} {\color{red}x_1^{(k+1)}} + a_{n2} {\color{blue} x_2^{(k+1)}} + \cdots + a_{n(n-1)} {\color{magenta} x_{n-1}^{{(k+1)}} }\right],
+\end{cases} \end{split}\]</div>
+<p>cuja equação matricial é dada por $<span class="math notranslate nohighlight">\(\mathbf{x}^{(k+1)} = - ( \mathbf{D} + \mathbf{L})^{-1} \mathbf{U} \mathbf{x}^{(k)} + ( \mathbf{D} + \mathbf{L})^{-1}  b,\)</span>$</p>
+<section id="id1">
+<h3><span class="section-number">11.3.1. </span>Implementação computacional<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>A função abaixo implementa o método de Gauss-Seidel como variação da função elaborada para o método de Jacobi, porém acrescentando o critério de parada baseado no erro relativo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">nit</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Método de Gauss-Seidel de solucao do sistema Ax=b</span>
+
+<span class="sd">    Entradas:</span>
+<span class="sd">        - A: matriz n x n (tipo: lista de listas)</span>
+<span class="sd">        - b: vetor n x 1 (tipo: lista)</span>
+<span class="sd">        - x0: vetor n x 1, ponto de partida (tipo: lista)</span>
+<span class="sd">        - nit: número de iterações</span>
+<span class="sd">        - tol: tolerancia de erro relativo</span>
+<span class="sd">   </span>
+<span class="sd">    Saídas:</span>
+<span class="sd">        - x: matriz n x N, contendo a sequência de vetores</span>
+<span class="sd">        - c: norma da matriz de iteração       </span>
+<span class="sd">        - err: erro relativo percentual por iteracao (norma 2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">nit</span><span class="p">))</span>
+    <span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">x0</span> <span class="c1"># iterada atual</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">P</span> <span class="o">-</span> <span class="n">A</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nit</span><span class="p">):</span>
+        <span class="n">xx</span> <span class="o">=</span> <span class="n">C</span> <span class="o">@</span> <span class="n">xx</span> <span class="o">+</span> <span class="n">g</span>
+        <span class="n">x</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">xx</span>
+         
+    <span class="n">key</span> <span class="o">=</span> <span class="kc">True</span>    
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nit</span><span class="p">):</span>   
+             
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+            
+        <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>                        
+            <span class="n">key</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Vetor-solução: </span><span class="si">{</span><span class="n">x</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||C|| = </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aplicando-a ao mesmo sistema anterior, chegamos a uma solução com poucos passos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">nit</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
+
+<span class="c1"># vetor-solução</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">_</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># norma do resíduo</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">B</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||r|| = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vetor-solução: [ 1.66363636 -2.78181818  1.46363636]
+||C|| = 0.3517
+||r|| = 2.512148e-14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#(Este código depende da biblioteca `plotly`, mas não *está otimizado*.)</span>
+<span class="c1">#Desenvolver código para plotagem 3D da convergência para o método de Jacobi.</span>
+
+<span class="c1"># # plotagem 3D da convergência </span>
+<span class="c1"># import plotly.graph_objs as go</span>
+<span class="c1"># from plotly.offline import iplot, init_notebook_mode, plot</span>
+<span class="c1"># init_notebook_mode(connected=False)</span>
+
+<span class="c1"># xp = sol[0,:]</span>
+<span class="c1"># yp = sol[1,:]</span>
+<span class="c1"># zp = sol[2,:]</span>
+
+<span class="c1"># points = go.Scatter3d(x = xp, y = yp, z = zp, mode = &#39;markers&#39;, marker = dict(size = 0.1,color = &quot;rgb(227,26,28)&quot;))</span>
+
+<span class="c1"># vecs = []</span>
+<span class="c1"># for i in range(len(xp)):</span>
+<span class="c1">#     v = go.Scatter3d( x = [0,xp[i]], y = [0,yp[i]], z = [0,zp[i]], marker = dict(size = 0.1, color = &quot;rgb(0,255,0)&quot;),</span>
+<span class="c1">#                        line = dict( color = &quot;rgb(0,255,0)&quot;, width = 4) )</span>
+<span class="c1">#     vecs.append(v)</span>
+
+
+<span class="c1"># cx = np.sum(xp)/np.size(xp)</span>
+<span class="c1"># cy = np.sum(yp)/np.size(yp)</span>
+<span class="c1"># cz = np.sum(zp)/np.size(zp)</span>
+
+<span class="c1"># vector = go.Scatter3d( x = [0,cx], y = [0,cy], z = [0,cz], marker = dict(size = 1, color = &quot;rgb(100,100,100)&quot;),</span>
+<span class="c1">#                        line = dict( color = &quot;rgb(100,100,100)&quot;, width = 4) )</span>
+
+<span class="c1"># data = [points,vector] + vecs</span>
+<span class="c1"># layout = go.Layout(margin = dict( l = 0,r = 0, b = 0, t = 0))</span>
+<span class="c1"># fig = go.Figure(data=data,layout=layout)</span>
+
+
+<span class="c1"># # vector</span>
+
+<span class="c1"># fig.add_cone(x=[cx],y=[cy],z=[cz],u=[cx],v=[cy],w=[cz],sizeref=0.1,anchor=&#39;tip&#39;,colorscale=&#39;gray&#39;)</span>
+
+<span class="c1"># for i in range(len(xp)):</span>
+<span class="c1">#     fig.add_cone(x=[xp[i]],y=[yp[i]],z=[zp[i]],u=[xp[i]],v=[yp[i]],w=[zp[i]],sizeref=0.1,anchor=&#39;tip&#39;,colorscale=&#39;jet&#39;)</span>
+<span class="c1">#     fig.update_layout(showlegend=False)</span>
+
+
+<span class="c1"># plot(fig, show_link=True,filename=&#39;jacobi-3d-vectors.html&#39;)</span>
+<span class="c1"># from IPython.display import display, HTML</span>
+<span class="c1"># display(HTML(&#39;jacobi-3d-vectors.html&#39;))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="criterios-de-parada">
+<h2><span class="section-number">11.4. </span>Critérios de parada<a class="headerlink" href="#criterios-de-parada" title="Permalink to this headline">#</a></h2>
+<p>Consideremos <span class="math notranslate nohighlight">\({\bf x}^{(k)} = [x_1^{(k)} \ x_2^{(k)} \ \ldots \ x_n^{(k)}]^T\)</span> o <span class="math notranslate nohighlight">\(k\)</span>-ésimo vetor de uma sequência de vetores do <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> e <span class="math notranslate nohighlight">\({\bf x} = [x_1 \ x_2 \ \ldots \ x_n]^T\)</span> um vetor de referência. A distância entre eles, em uma norma especificada define o erro (ou resíduo), ou seja:</p>
+<div class="math notranslate nohighlight">
+\[r^{(k)} = || {\bf x}^{(k)} - {\bf x} ||_{\square}\]</div>
+<p>A depender da escolha de <span class="math notranslate nohighlight">\({\square}\)</span>, chegamos a diferentes formas de medir o erro. As mais comuns são por meio de normas clássicas:</p>
+<ul class="simple">
+<li><p><em>norma do máximo</em> ( <span class="math notranslate nohighlight">\(\square = \infty\)</span> ) <span class="math notranslate nohighlight">\(\Rightarrow r^{(k)} = \max\limits_{1 \le i \le n} | x_i^{(k)} - x_i |\)</span></p></li>
+<li><p>_norma Euclidiana ( <span class="math notranslate nohighlight">\(\square = 2\)</span> ) <span class="math notranslate nohighlight">\(\Rightarrow r^{(k)} = \{\sum_{i=1}^n (x_i^{(k+1)} - x_i)^2\}^{1/2}\)</span></p></li>
+</ul>
+<p>Dado <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> (tolerância) e para uma norma escolhida, temos duas maneiras usuais de encerrar o processo iterativo:</p>
+<ul class="simple">
+<li><p><em>critério de parada do erro absoluto:</em> <span class="math notranslate nohighlight">\(r^{(k)} &lt; \epsilon\)</span></p></li>
+<li><p><em>critério de parada do erro relativo:</em> <span class="math notranslate nohighlight">\(\frac{ r^{(k)} }{ r } &lt; \epsilon\)</span>, onde <span class="math notranslate nohighlight">\(r = \max\limits_{1 \le i \le n} | x_i^{(k)} |\)</span></p></li>
+</ul>
+</section>
+<section id="arcabouco-teorico-relevante">
+<h2><span class="section-number">11.5. </span>Arcabouço teórico relevante<a class="headerlink" href="#arcabouco-teorico-relevante" title="Permalink to this headline">#</a></h2>
+<p>Esta seção traz alguns elementos teóricos importantes que ajudam a compreender os métodos iterativos e as situações de convergência.</p>
+<p><strong>Teorema:</strong> Se <span class="math notranslate nohighlight">\({\bf A}\)</span> é uma matriz estritamente diagonalmente dominante, então, para qualquer escolha de <span class="math notranslate nohighlight">\({\bf x}^{(0)}\)</span>, tanto o MJR quanto o MGS geram sequencias que convergem para a solução única de <span class="math notranslate nohighlight">\({\bf A}{\bf x} = {\bf b}\)</span>.</p>
+<p><strong>Teorema [Critério geral de convergência]:</strong> O processo iterativo definido por<br />
+$<span class="math notranslate nohighlight">\({\bf x}^{(k+1)} = {\bf C} {\bf x}^{(k)} + {\bf g}, \ \ k = 0,1,2,\ldots,\)</span><span class="math notranslate nohighlight">\(
+é convergente se, para qualquer norma de matrizes, \)</span>|| {\bf C} || &lt; 1$.</p>
+<blockquote>
+<div><p>Definição [Raio espectral]: O raio espectral <span class="math notranslate nohighlight">\(\rho({\bf A})\)</span> de uma matriz <span class="math notranslate nohighlight">\({\bf A}\)</span> é definido como <span class="math notranslate nohighlight">\(\rho({\bf A}) = \max | \lambda |\)</span>, onde <span class="math notranslate nohighlight">\(\lambda\)</span> é um autovalor de <span class="math notranslate nohighlight">\({\bf A}\)</span>. Se <span class="math notranslate nohighlight">\(\lambda = a + bi\)</span>, <span class="math notranslate nohighlight">\(| \lambda | = (a^2 + b^2)^{1/2}\)</span>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Teorema [Stein-Rosenberg]: Considere <span class="math notranslate nohighlight">\({\bf J}\)</span> e <span class="math notranslate nohighlight">\({\bf G}\)</span> as matrizes estacionárias que definem o processo iterativo de Jacobi-Richardson e Gauss-Seidel respectivamente, isto é, <span class="math notranslate nohighlight">\({\bf C} = {\bf J}\)</span>, ou <span class="math notranslate nohighlight">\({\bf C} = {\bf G}\)</span>.
+Se <span class="math notranslate nohighlight">\(a_{ij} \le 0\)</span>, para cada <span class="math notranslate nohighlight">\(i \ne j\)</span> e <span class="math notranslate nohighlight">\(a_{ii} &gt; 0\)</span>, para <span class="math notranslate nohighlight">\(i=1,2,\ldots,n\)</span>, então uma, e apenas uma, das seguintes sentenças vale:</p>
+<ul class="simple">
+<li><p>i) <span class="math notranslate nohighlight">\( 0 \le \rho({\bf G}) &lt; \rho({\bf J}) &lt; 1\)</span></p></li>
+<li><p>ii) <span class="math notranslate nohighlight">\( 1 &lt; \rho({\bf J}) &lt; \rho({\bf G})\)</span></p></li>
+<li><p>iii) <span class="math notranslate nohighlight">\( \rho({\bf G}) = \rho({\bf J}) = 0\)</span></p></li>
+<li><p>iv) <span class="math notranslate nohighlight">\( \rho({\bf G}) = \rho({\bf J}) = 1\)</span></p></li>
+</ul>
+<p>Em especial, o caso i) indica que, quando um método converge, então ambos convergem, e o MGS converge mais rápido do que o MJR; o caso ii) indica que, quando um método diverge, ambos divergem, com a divergência do MGS sendo mais pronunciada.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ipynb"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="aula-07-fatoracao-lu.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Sistemas Lineares na Prática Computacional: Métodos Diretos e Fatoração LU</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="code-sessions/codeSession-1-polyval.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><em>Code Session</em> 1: <code class="docutils literal notranslate"><span class="pre">roots</span></code> e <code class="docutils literal notranslate"><span class="pre">polyval</span></code></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Gustavo Oliveira<br/>
+  
+      &copy; Copyright 2025.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
