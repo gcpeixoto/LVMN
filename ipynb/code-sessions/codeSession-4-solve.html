@@ -713,6 +713,11 @@ title="Print to PDF"
    Problema 4
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotacao-de-rodrigues">
+   Rotação de Rodrigues
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -782,6 +787,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problema-4">
    Problema 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotacao-de-rodrigues">
+   Rotação de Rodrigues
   </a>
  </li>
 </ul>
@@ -1162,6 +1172,98 @@ Para o valor de resistência R = 50 ohms: i1 = 2.15385 A, i2 = 1.53846 A, i3 = 4
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.440892098500626e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rotacao-de-rodrigues">
+<h2>Rotação de Rodrigues<a class="headerlink" href="#rotacao-de-rodrigues" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+
+
+<span class="k">class</span> <span class="nc">Kinematics</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">rodrigues_rot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Cria matriz de rotação de Rodrigues</span>
+
+<span class="sd">            Entrada:</span>
+<span class="sd">                - theta: ângulo de rotação (deg)</span>
+<span class="sd">                - u</span>
+
+<span class="sd">            Saída: </span>
+<span class="sd">                - R                </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># conversão</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># normalização</span>
+
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="c1"># conversão de ângulo</span>
+
+        <span class="c1"># antissimetria</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span> <span class="mi">0</span>    <span class="p">,</span> <span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">],</span>
+            <span class="p">[</span>  <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>     <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>    <span class="mi">0</span>  <span class="p">]</span>
+        <span class="p">])</span>
+
+        <span class="c1"># matriz de rotacao </span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">K</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">R</span>
+
+    <span class="k">def</span> <span class="nf">solve_system</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">opt_check</span><span class="o">=</span><span class="s1">&#39;allclose&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Resolve sistema Ax = b, para matriz de rotação&quot;&quot;&quot;</span>
+
+        <span class="c1"># conversão do vetor independente</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># resolução do sistema</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># resíduo</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+
+        <span class="c1"># flag de checagem</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">opt_check</span> <span class="o">==</span> <span class="s1">&#39;allclose&#39;</span><span class="p">:</span> <span class="c1"># checagem por &#39;allclose&#39;     </span>
+            <span class="n">ok</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">opt_check</span> <span class="o">==</span> <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="c1"># checagem por &#39;norm&#39;</span>
+            <span class="n">ok</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-10</span>
+
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># eixo</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># posição final</span>
+
+
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">360</span><span class="p">]:</span> <span class="c1"># graus</span>
+
+    <span class="n">K</span> <span class="o">=</span> <span class="n">Kinematics</span><span class="p">()</span>
+
+    <span class="n">R</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">rodrigues_rot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">solve_system</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;theta: </span><span class="si">{</span><span class="n">theta</span><span class="si">}</span><span class="s2">; x: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>theta: 120; x: [3. 4. 2.]
+theta: 240; x: [4. 2. 3.]
+theta: 360; x: [2. 3. 4.]
 </pre></div>
 </div>
 </div>

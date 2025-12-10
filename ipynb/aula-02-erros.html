@@ -1739,7 +1739,7 @@ nmant:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_23391</span><span class="o">/</span><span class="mf">2764843083.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="ne">ZeroDivisionError</span>: division by zero
@@ -1789,7 +1789,7 @@ nmant:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_58486</span><span class="o">/</span><span class="mf">2371805177.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_23391</span><span class="o">/</span><span class="mf">2371805177.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">0</span><span class="o">/-</span><span class="mi">0</span>
 
 <span class="ne">ZeroDivisionError</span>: division by zero
@@ -1899,7 +1899,7 @@ nmant:
 <span class="c1"># loop de teste</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">]:</span>
     <span class="n">sd</span><span class="p">,</span> <span class="n">sa</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    
-    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="n">sd</span><span class="p">,</span><span class="n">e</span><span class="p">]</span>
     <span class="n">tbl</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
    
 <span class="c1"># imprime tabela</span>
@@ -1912,10 +1912,10 @@ nmant:
 |   n    |       S_A(n)       |       S_D(n)       |    S_D(n) - S_A(n)     |
 +--------+--------------------+--------------------+------------------------+
 |   10   | 2.9289682539682538 | 2.9289682539682538 |          0.0           |
-|  100   | 5.187377517639621  | 5.1873775176396215 | -8.881784197001252e-16 |
-|  1000  | 7.485470860550343  | 7.485470860550341  | 2.6645352591003757e-15 |
-| 10000  | 9.787606036044348  | 9.787606036044386  | -3.730349362740526e-14 |
-| 100000 | 12.090146129863335 | 12.090146129863408 | -7.283063041541027e-14 |
+|  100   | 5.1873775176396215 | 5.187377517639621  | -8.881784197001252e-16 |
+|  1000  | 7.485470860550341  | 7.485470860550343  | 2.6645352591003757e-15 |
+| 10000  | 9.787606036044386  | 9.787606036044348  | -3.730349362740526e-14 |
+| 100000 | 12.090146129863408 | 12.090146129863335 | -7.283063041541027e-14 |
 +--------+--------------------+--------------------+------------------------+
 </pre></div>
 </div>
@@ -1962,11 +1962,23 @@ nmant:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.090146129863408
-2.3025400938190224
-4.604675269313067
-6.902768612223786
-9.161177875895154
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ll</span><span class="o">/</span><span class="n">g0vl8b194pbfyp4cwpzz4p740000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_23391</span><span class="o">/</span><span class="mf">3127801116.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Em Python, cada um é acessível por indexação na forma [i][2]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">E_100000</span> <span class="o">=</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>           <span class="c1"># i = 4</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">E_10000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># i = 3</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">E_1000</span> <span class="o">=</span> <span class="n">E_100000</span> <span class="o">-</span> <span class="n">tbl</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># i = 2</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.9/site-packages/prettytable/prettytable.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span>                 <span class="k">return</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">192</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span> 
+<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+
+<span class="ne">AttributeError</span>: rows
 </pre></div>
 </div>
 </div>
@@ -2121,7 +2133,6 @@ no ponto <span class="math notranslate nohighlight">\(x=79.9\)</span>.</p>
 <span class="n">r2n</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">r3n</span> <span class="o">=</span> <span class="n">r3</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="c1">#print(P3)</span>
 <span class="c1">#P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822</span>
 </pre></div>
 </div>
@@ -2530,7 +2541,7 @@ E_{\infty} = || {\bf x} - {\bf \hat{x}} ||_{\infty} = \max \{ |x_i - \hat{x}_i| 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb0418321f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9f9e62e880&gt;]
 </pre></div>
 </div>
 <img alt="../_images/aula-02-erros_108_1.png" src="../_images/aula-02-erros_108_1.png" />
