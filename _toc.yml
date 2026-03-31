@@ -13,17 +13,16 @@ parts:
   - file: ipynb/aula-06-matrizes-vetores
   - file: ipynb/aula-07-fatoracao-lu
   - file: ipynb/aula-08-jacobi-seidel
-#   - file: ipynb/aula-13-newton-nao-linear
-#   - file: ipynb/aula-14-interpolacao-lagrange
-#   - file: ipynb/aula-15-interpolacao-newton
-#   - file: ipynb/aula-16-minimos-quadrados
-#   - file: ipynb/aula-17-ajusteNaoLinear
-#   - file: ipynb/aula-18-integracao-newtonCotes
-#   - file: ipynb/aula-19-quadratura-gaussiana
-#   - file: ipynb/aula-20-diferenciacao-numerica
-#   - file: ipynb/aula-21-solucoes-edo
-#   - file: ipynb/aula-22-metodo-euler
-#   - file: ipynb/aula-23-taylor-rungeKutta
+  - file: ipynb/aula-09-newton-nao-linear
+  - file: ipynb/aula-10-interpolacao-newton
+  - file: ipynb/aula-11-minimos-quadrados
+  - file: ipynb/aula-12-ajusteNaoLinear
+  - file: ipynb/aula-13-integracao-newtonCotes
+  - file: ipynb/aula-14-quadratura-gaussiana
+  - file: ipynb/aula-15-diferenciacao-numerica
+  - file: ipynb/aula-16-solucoes-edo
+  - file: ipynb/aula-17-metodo-euler
+  - file: ipynb/aula-18-taylor-rungeKutta
 - caption: Code Sessions
   chapters:
   - file: ipynb/code-sessions/codeSession-1-polyval
@@ -36,13 +35,13 @@ parts:
   - file: ipynb/code-sessions/codeSession-8-integrate
   - file: ipynb/code-sessions/codeSession-9-solve_ivp
 - caption: Exercícios Resolvidos
-  chapters:
-  - file: ipynb/lists/lista-1-solucoes
-  - file: ipynb/lists/lista-2-solucoes
-  - file: ipynb/lists/lista-3-solucoes
-  - file: ipynb/lists/lista-4-solucoes
-  - file: ipynb/lists/lista-5-solucoes
-  - file: ipynb/lists/lista-6-solucoes
+  # chapters:
+  # - file: ipynb/lists/lista-1-solucoes
+  # - file: ipynb/lists/lista-2-solucoes
+  # - file: ipynb/lists/lista-3-solucoes
+  # - file: ipynb/lists/lista-4-solucoes
+  # - file: ipynb/lists/lista-5-solucoes
+  # - file: ipynb/lists/lista-6-solucoes
 - caption: Recortes
   chapters:
   - file: ipynb/clippings/clipping-01-analise-numerica

@@ -16,7 +16,7 @@
 # 
 # - `x`: o vetor-solução do sistema.
 
-# In[5]:
+# In[1]:
 
 
 from numpy.linalg import solve
@@ -39,7 +39,7 @@ import numpy as np
 
 # Podemos começar definindo uma lista para armazenar os valores das resistências de teste:
 
-# In[27]:
+# In[2]:
 
 
 R = [5.,10.,20.]
@@ -49,7 +49,7 @@ R = [5.,10.,20.]
 # 
 # Todavia, vamos definir uma função para montar o sistema em função do valor de $R$ e resolvê-lo. 
 
-# In[7]:
+# In[3]:
 
 
 # montagem do sistema
@@ -62,7 +62,7 @@ def resolve_sistema(R):
 
 # Além disso, usaremos um laço `for` para calcularmos todas as respostas necessárias de uma só vez e organizaremos os resultados em dicionário (objeto `dict`):
 
-# In[29]:
+# In[6]:
 
 
 # salva soluções agrupadas em um dicionário
@@ -238,28 +238,86 @@ e = np.matmul(A,x) - b
 np.sqrt(np.dot(e,e))
 
 
-# In[ ]:
+# ## Rotação de Rodrigues
+
+# In[26]:
 
 
+import numpy as np
+from typing import Tuple
 
 
+class Kinematics:
+    
+    def __init__(self):
+        pass
 
-# In[ ]:
+    def rodrigues_rot(self, theta: float, u: list) -> np.array:
+        """Cria matriz de rotação de Rodrigues
+
+            Entrada:
+                - theta: ângulo de rotação (deg)
+                - u
+
+            Saída: 
+                - R                
+        """
+
+        u = np.asarray(u) # conversão
+        u = u/np.linalg.norm(u) # normalização
+
+        theta = np.deg2rad(theta) # conversão de ângulo
+
+        # antissimetria
+        K = np.array([
+            [ 0    , -u[2],  u[1] ],
+            [  u[2],     0, -u[0] ],
+            [ -u[1],  u[0],    0  ]
+        ])
+
+        # matriz de rotacao 
+        R = np.eye(3) + np.sin(theta) * K + (1.0 - np.cos(theta)) * np.matmul(K, K)
+
+        return R
+
+    def solve_system(self, R: np.array, y: list, opt_check='allclose') -> Tuple[np.array, bool]:
+        """Resolve sistema Ax = b, para matriz de rotação"""
+
+        # conversão do vetor independente
+        y = np.asarray(y)
+
+        # resolução do sistema
+        x = np.linalg.solve(R, y)
+
+        # resíduo
+        r = R @ x - y
+
+        # flag de checagem
+        ok = False
+
+        if opt_check == 'allclose': # checagem por 'allclose'     
+            ok = np.allclose(r, np.zeros(3) )
+
+        elif opt_check == 'norm': # checagem por 'norm'
+            ok = np.linalg.norm(r) <= 1e-10
+
+        return x, ok
 
 
+# In[40]:
 
 
-
-# In[ ]:
-
-
+u = [1, 1, 1] # eixo
+y = [2, 3, 4] # posição final
 
 
+for theta in [120, 240, 360]: # graus
 
-# In[ ]:
+    K = Kinematics()
 
-
-
+    R = K.rodrigues_rot(theta, u)
+    x, ok = K.solve_system(R, y)
+    print(f"theta: {theta}; x: {x}")
 
 
 # In[ ]:

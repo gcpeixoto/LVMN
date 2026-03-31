@@ -2,12 +2,9 @@ numpy
 matplotlib
 scipy
 sympy
-notebook
-pytest
-bookbook
-nbval
-plotly
-numba
 pandas
+plotly
 prettytable
-warnings
+jupyter-book
+pytest
+numba

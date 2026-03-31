@@ -462,7 +462,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $n \times \pm \infty \to \pm \infty, n \in \mathbb{F}$
 
-# In[ ]:
+# In[21]:
 
 
 1*inf, -2*inf, 3.1112*(-inf), -111*(-inf)
@@ -470,7 +470,7 @@ inf*inf, inf*(-inf), -inf*inf, (-inf)*(-inf)
 
 # - $\pm \infty \pm \infty \to \pm \infty \vee \text{nan}$
 
-# In[ ]:
+# In[22]:
 
 
 inf + inf, inf - inf, - inf + inf, -inf - inf 
@@ -478,7 +478,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm 0 \div \pm 0 \to \ \ !$ (neste caso, também teremos um erro de divisão por zero)
 
-# In[ ]:
+# In[23]:
 
 
 0/-0
@@ -486,7 +486,7 @@ inf + inf, inf - inf, - inf + inf, -inf - inf
 
 # - $\pm \infty \div \pm \infty \to \text{nan}$
 
-# In[ ]:
+# In[24]:
 
 
 inf/inf, inf/-inf, -inf/inf, -inf/-inf
@@ -494,7 +494,7 @@ inf/inf, inf/-inf, -inf/inf, -inf/-inf
 
 # - $\pm \infty \times 0 \to \text{nan}$
 
-# In[ ]:
+# In[25]:
 
 
 inf*0,-inf*0
@@ -502,13 +502,13 @@ inf*0,-inf*0
 
 # - $\text{nan} \neq \text{nan}$
 
-# In[ ]:
+# In[26]:
 
 
 nan == nan, nan != nan
 
 
-# In[ ]:
+# In[27]:
 
 
 nan + inf == nan + inf
@@ -538,7 +538,7 @@ nan + inf == nan + inf
 # 
 # É evidente que $S_A(n)$ e $S_D(n)$ são matematicamente equivalentes e devem produzir o mesmo resultado independentemente de $n$ e do sentido em que forem somadas. Porém, vejamos o que acontece ao programarmos uma pequena função para computar ambas as formas.
 
-# In[ ]:
+# In[28]:
 
 
 from prettytable import PrettyTable as pt
@@ -567,7 +567,7 @@ tbl.align = 'c'
 # loop de teste
 for n in [10**1, 10**2, 10**3, 10**4, 10**5]:
     sd, sa, e = S(n)    
-    row = [n,sd,sa,e]
+    row = [n,sa,sd,e]
     tbl.add_row(row)
    
 # imprime tabela
@@ -600,7 +600,7 @@ print(tbl)
 # 
 # Para obter cada valor acima, poderíamos escrever:
 
-# In[ ]:
+# In[29]:
 
 
 # O valor de S_D(n) está na entrada (i,2) da tabela, para i = 0,1,2,3,4.
@@ -630,7 +630,7 @@ print(E_10)
 # 
 # Do mesmo modo como fizemos no caso anterior, geraremos uma nova tabela para valores de $S_2(n)$ com $n$ crescente até o limite de 100.000, até porque não temos como computar $S_2$ _ad infinitum_. Então, vejamos um código similar:
 
-# In[ ]:
+# In[30]:
 
 
 from math import pi
@@ -750,7 +750,6 @@ r1n = r1.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 r2n = r2.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 r3n = r3.subs({'a':a, 'b':b, 'c':c, 'd': d}).evalf(10)
 
-#print(P3)
 #P3_ex = 0.172428207550436*x**3 - 0.877858417921372*x**2 + 0.0422137467155928*x + 0.582815213715822
 
 

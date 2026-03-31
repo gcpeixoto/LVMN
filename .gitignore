@@ -2,3 +2,6 @@
 .DS_Store
 .vscode/
 ./scripts/outline.txt
+
+# MyST build outputs
+_build

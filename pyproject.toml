@@ -1,0 +1,17 @@
+[project]
+name = "lvmn"
+version = "0.1.0"
+description = "Métodos Numéricos para Ciências Computacionais e Engenharia"
+requires-python = ">=3.11"
+dependencies = [
+    "jupyter-book>=2.1.2",
+    "matplotlib>=3.10.8",
+    "numba>=0.64.0",
+    "numpy>=2.4.4",
+    "pandas>=3.0.1",
+    "plotly>=6.6.0",
+    "prettytable>=3.17.0",
+    "pytest>=9.0.2",
+    "scipy>=1.17.1",
+    "sympy>=1.14.0",
+]
